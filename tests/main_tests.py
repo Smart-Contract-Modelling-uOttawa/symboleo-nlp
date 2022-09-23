@@ -1,20 +1,13 @@
 import unittest
 from app.lib.matchers.matchers_builder import MatchersBuilder
 from app.lib.norm_updater import NormUpdater
-from tests.helpers.TestUnit import TestUnit
 from tests.helpers.test_nlp import TestNLP
 
 from app.lib.sentence_obligation_converter import SentenceObligationConverter
 from app.classes.spec.symboleo_spec import Norm
 
 from app.templates.meat_sale.norms import meat_sale_norms
-
-test_suite: list[TestUnit] = [
-    TestUnit('obligations', 'O1', 'trigger', 'the sky is blue', 
-        'O1: occurs(is_blue(sky), X) => O(Seller, Buyer, T, happens(delivered, BEFORE delivered.delDueD))'
-    ),
-    ### Add more tests here...
-]
+from tests.helpers.meat_sale_test_suite import meat_sale_test_suite as test_suite
 
 # Main full-stack test suite
 class MainTests(unittest.TestCase):
