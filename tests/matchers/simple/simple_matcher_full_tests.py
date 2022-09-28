@@ -5,11 +5,11 @@ from tests.helpers.test_nlp import TestNLP
 test_suite = [
     {
         'sentence': 'the sky is blue',
-        'sym': 'occurs(is_blue(sky), X)'
+        'sym': 'Happens(is_blue(sky))'
     },
     {
         'sentence': 'the cat is angry',
-        'sym': 'occurs(is_angry(cat), X)'
+        'sym': 'Happens(is_angry(cat))'
     }
 ]
 

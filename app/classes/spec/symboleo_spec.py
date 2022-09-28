@@ -1,42 +1,41 @@
-class Atom:
+from app.classes.spec.helpers import VariableDotExpression
+from app.classes.spec.power_function import PowerFunction
+
+class PAtom:
     def to_sym(self):
         raise NotImplementedError()
-
-class NegAtom:
-    def __init__(self, atom: Atom, negation: bool = False):
-        self.atom = atom
-        self.negation = negation
-
-    def to_sym(self):
-        result = self.atom.to_sym()
-
-        if self.negation:
-            result = f'NOT {result}'
         
-        return result
-        
-
-class Junction:
-    def __init__(self, negAtoms: list[NegAtom]):
-        self.negAtoms = negAtoms
+class PComparison:
+    def __init__(self, p_atoms: list[PAtom], op: str = ''):
+        self.p_atoms = p_atoms
+        self.op = op # ">=" | "<=" | ">" | "<"
     
     def to_sym(self):
-        return ' AND '.join([x.to_sym() for x in self.negAtoms])
+        return f' {self.op} '.join([x.to_sym() for x in self.p_atoms])
 
+
+class PEquality:
+    def __init__(self, p_comps: list[PComparison], op: str = ''):
+        self.p_comps = p_comps
+        self.op = op # == or !=
+    
+    def to_sym(self):
+        return f' {self.op} '.join([x.to_sym() for x in self.p_comps])
+
+# TODO: May not need this... already have an 'AND' joiner... May need an OR joiner...
+class PAnd:
+    def __init__(self, p_eqs: list[PEquality]):
+        self.p_eqs = p_eqs
+    
+    def to_sym(self):
+        return ' AND '.join([x.to_sym() for x in self.p_eqs])
 
 class Proposition:
-    def __init__(self, junctions: list[Junction]):
-        self.junctions = junctions
+    def __init__(self, p_ands: list[PAnd]):
+        self.p_ands = p_ands
     
     def to_sym(self):
-        return ' OR '.join([x.to_sym() for x in self.junctions])
-
-class Role:
-    def __init__(self, name: str):
-        self.name = name
-    
-    def to_sym(self):
-        return self.name
+        return ' AND '.join([x.to_sym() for x in self.p_ands])
 
 
 class Norm:
@@ -44,11 +43,11 @@ class Norm:
         self,
         id: str,
         trigger: Proposition,
-        debtor: Role,
-        creditor: Role,
+        debtor: VariableDotExpression,
+        creditor: VariableDotExpression,
         antecedent: Proposition,
         consequent: Proposition,
-        norm_type
+        norm_type: str
     ):
         self.id = id
         self.trigger = trigger
@@ -61,12 +60,12 @@ class Norm:
     def to_sym(self):
         trigger_text = ''
         if self.trigger:
-            trigger_text = self.trigger.to_sym() + ' => '
+            trigger_text = self.trigger.to_sym() + ' -> '
 
         deb_text = self.debtor.to_sym()
         cred_text = self.creditor.to_sym()
 
-        ant_text = 'T'
+        ant_text = 'true'
         if self.antecedent:
             ant_text = self.antecedent.to_sym()
         
@@ -79,8 +78,8 @@ class Obligation(Norm):
         self, 
         id: str, 
         trigger: Proposition, 
-        debtor: Role, 
-        creditor: Role, 
+        debtor: VariableDotExpression, 
+        creditor: VariableDotExpression, 
         antecedent: Proposition, 
         consequent: Proposition
     ):
@@ -102,10 +101,10 @@ class Power(Norm):
         self, 
         id: str, 
         trigger: Proposition, 
-        debtor: Role, 
-        creditor: Role, 
+        debtor: VariableDotExpression, 
+        creditor: VariableDotExpression, 
         antecedent: Proposition, 
-        consequent: Proposition
+        consequent: PowerFunction
     ):
         super().__init__(
             id, 
@@ -113,8 +112,9 @@ class Power(Norm):
             debtor, 
             creditor, 
             antecedent, 
-            consequent, 
+            None, 
             'P')
+        self.consequent = consequent 
     
     def to_sym(self):
         return super().to_sym()

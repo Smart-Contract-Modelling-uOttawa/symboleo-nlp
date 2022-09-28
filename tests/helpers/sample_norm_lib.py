@@ -1,25 +1,27 @@
-from app.classes.spec.atoms import EventProposition
-from app.classes.spec.helpers import Point, SymEvent
-from app.classes.spec.symboleo_spec import Junction, NegAtom, Norm, Obligation, Proposition, Role
+from app.classes.spec.helpers import VariableDotExpression
+from app.classes.spec.p_atoms import PAtomPredicate
+from app.classes.spec.predicate_function import PredicateFunctionHappens
+from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.symboleo_spec import Norm, Obligation, PAnd, PComparison, PEquality, Proposition
+
+
 
 class SampleNorms:
-
     @staticmethod
     def get_sample_norm() -> Norm:
         return Obligation(
-            'O1',
+            'test_id',
             None,
-            Role('Seller'),
-            Role('Buyer'),
+            VariableDotExpression('seller'),
+            VariableDotExpression('buyer'),
             None,
-            Proposition([
-                Junction([
-                    NegAtom(
-                        EventProposition(
-                            SymEvent('delivered'),
-                            Point('BEFORE delivered.delDueD')
+            Proposition([PAnd([PEquality([PComparison([
+                PAtomPredicate(
+                    PredicateFunctionHappens(
+                        VariableEvent(
+                            VariableDotExpression('action')
                         )
                     )
-                ])
-            ])
+                )
+            ])])])])
        )

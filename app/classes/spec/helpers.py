@@ -1,28 +1,36 @@
-class Point:
+class Particle:
+    def to_sym(self):
+        raise NotImplementedError()
+
+
+class VariableDotExpression(Particle):
     def __init__(self, name: str):
         self.name = name
     
     def to_sym(self):
         return self.name
 
-class SymEvent:
-    def __init__(self, name: str):
-        self.name = name
+
+class TimeValue:
+    def to_sym(self):
+        raise NotImplementedError()
+
+class TimeValueInt(TimeValue):
+    def __init__(self, value: int):
+        self.value = value
     
     def to_sym(self):
-        return self.name
+        return self.value
 
-class Situation:
-    def __init__(self, name: str):
-        self.name = name
+class TimeValueVariable(TimeValue):
+    def __init__(self, variable: VariableDotExpression):
+        self.variable = variable
     
     def to_sym(self):
-        return self.name
+        return self.variable.to_sym()
 
-class Interval:
-    def __init__(self, name: str):
-        self.name = name
+## Make this an enum...
+# TimeUnit:
+# 	'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years';
+
     
-    def to_sym(self):
-        return self.name
-

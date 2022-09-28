@@ -4,18 +4,18 @@ from app.templates.meat_sale.norms import meat_sale_norms as norms
 
 test_suite = {
     'obligations': {
-        'O1': 'O1: O(Seller, Buyer, T, happens(delivered, BEFORE delivered.delDueD))',
-        'O2': 'O2: O(Buyer, Seller, T, happens(paid, PayDueD))',
-        'O3': 'O3: occurs(oVIOLATION(O2), X) => O(Buyer, Seller, T, happens(PaidLate, X))'
+        'delivery': 'delivery: O(seller, buyer, true, WhappensBefore(delivered, delivered.delDueDate))',
+        'payment': 'payment: O(buyer, seller, true, WhappensBefore(paid, paid.payDueDate))',
+        'latePayment': 'latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))'
     },
     'surviving_obligations': {
-        'SO1': 'SO1: O(Seller, Buyer, T, NOT happens(disclosed, t) AND t within 6 Months after cActivated(meatSaleC))',
-        'SO2': 'SO2: O(Buyer, Seller, T, NOT happens(disclosed, t) AND t within 6 Months after cActivated(meatSaleC))'
+        'so1': 'so1: O(seller, buyer, true, not WhappensBefore(disclosed, Date.add(Activated(self), 6, months)))',
+        'so2': 'so2: O(buyer, seller, true, not WhappensBefore(disclosed, Date.add(Activated(self), 6, months)))'
     },
     'powers': {
-        'P1': 'P1: occurs(oViolation(O2), X) => P(Seller, Buyer, T, occurs(oSuspension(O1), X))',
-        'P2': 'P2: happens(PaidLate, Within oSuspension(O1)) => P(Buyer, Seller, T, occurs(oInEffect(O1), X))',
-        'P3': 'P3: NOT happens(Delivered, 10 days after DelDueDate) => P(Buyer, Seller, T, occurs(oDischarge(O2), X) AND occurs(oDischarge(O3), X) AND occurs(cUnsuccessfTulermination(meatSaleC), X))'
+        'suspendDelivery': 'suspendDelivery: Happens(Violated(obligations.payment)) -> P(seller, buyer, true, Suspended(obligations.delivery))',
+        'resumeDelivery': 'resumeDelivery: HappensWithin(paidLate, Suspension(obligations.delivery)) -> P(buyer, seller, true, Resumed(obligations.delivery))',
+        'terminateContract': 'terminateContract: Happens(Violated(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))'
     }
 }
 

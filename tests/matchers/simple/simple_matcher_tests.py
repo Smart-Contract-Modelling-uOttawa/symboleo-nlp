@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.atoms import SituationProposition
+from app.classes.spec.p_atoms import PAtomPredicate
+from app.classes.spec.predicate_function import PredicateFunctionHappens
+from app.classes.spec.sym_event import VariableEvent
 from app.lib.matchers.interfaces import IValidateMatches
 from app.lib.matchers.simple.simple_matcher import SimpleMatcher
 
@@ -23,14 +25,13 @@ class SimpleMatcherTests(unittest.TestCase):
         key = self.sut.key()
         self.assertEqual(key, self.key)
 
-        result = self.sut.try_match(doc)
-        res_atom: SituationProposition = result.atom
+        result: PAtomPredicate = self.sut.try_match(doc)
+        res_pred: PredicateFunctionHappens = result.predicate_function
+        res_event: VariableEvent = res_pred.event
 
-        self.assertEqual(result.negation, False)
-        self.assertEqual(res_atom.situation.name, 'is_blue(sky)')
-        self.assertEqual(res_atom.interval.name, 'X')
-
+        self.assertEqual(res_event.variable.name, 'is_blue(sky)')
     
+
     def test_simple_matcher_none(self):
         validator = IValidateMatches()
         validator.validate = MagicMock(return_value = False)

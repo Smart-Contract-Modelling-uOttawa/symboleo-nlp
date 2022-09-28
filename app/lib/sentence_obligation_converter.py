@@ -1,10 +1,10 @@
-from app.classes.spec.symboleo_spec import Norm
+from app.classes.spec.symboleo_spec import Obligation
 from app.lib.matchers.interfaces import IMatcher
-from app.lib.norm_updater import IUpdateNorms
+from app.lib.norm_proposition_updater import IUpdateNormPropositions
 
 
 class IConvertSentenceToObligation:
-    def convert(self, sentence: str, norm: Norm, selected_component: str) -> Norm:
+    def convert(self, sentence: str, obligation: Obligation, selected_component: str) -> Obligation:
         raise NotImplementedError()
 
 class SentenceObligationConverter(IConvertSentenceToObligation):
@@ -12,13 +12,13 @@ class SentenceObligationConverter(IConvertSentenceToObligation):
         self, 
         nlp,
         matchers: list[IMatcher],
-        norm_updater: IUpdateNorms
+        norm_updater: IUpdateNormPropositions
     ):
         self.__nlp = nlp
         self.__matchers = matchers
         self.__norm_updater = norm_updater
 
-    def convert(self, sentence: str, norm: Norm, selected_component: str) -> Norm:
+    def convert(self, sentence: str, obligation: Obligation, selected_component: str) -> Obligation:
         # NLP pipeline
         doc = self.__nlp(sentence)
 
@@ -27,7 +27,7 @@ class SentenceObligationConverter(IConvertSentenceToObligation):
         for next_matcher in self.__matchers:
             new_atom = next_matcher.try_match(doc)
             if new_atom:
-                result = self.__norm_updater.update(norm, selected_component, new_atom)
+                result = self.__norm_updater.update(obligation, selected_component, new_atom)
                 return result
 
         # No matches found => invalid entry
