@@ -4,7 +4,7 @@ class Particle:
 
 
 class VariableDotExpression(Particle):
-    def __init__(self, name: str):
+    def __init__(self, name: str = ''):
         self.name = name
     
     def to_sym(self):
@@ -23,6 +23,8 @@ class TimeValueInt(TimeValue):
         return self.value
 
 class TimeValueVariable(TimeValue):
+    variable = VariableDotExpression()
+    
     def __init__(self, variable: VariableDotExpression):
         self.variable = variable
     

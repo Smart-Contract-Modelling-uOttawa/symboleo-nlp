@@ -1,5 +1,10 @@
-from app.classes.spec.point import PointExpression
-from app.classes.spec.situation import Situation
+from app.classes.spec.sym_point import PointExpression
+from app.classes.spec.sym_situation import SymSituation
+
+class SymInterval():
+    def to_sym(self):
+        raise NotImplementedError()
+
 
 class IntervalExpression:
     def to_sym(self):
@@ -7,6 +12,9 @@ class IntervalExpression:
     
 
 class IntervalFunction(IntervalExpression):
+    arg1 = PointExpression()
+    arg2 = PointExpression()
+
     def __init__(self, arg1:PointExpression, arg2:PointExpression):
         self.arg1 = arg1
         self.arg2 = arg2
@@ -14,21 +22,20 @@ class IntervalFunction(IntervalExpression):
     def to_sym(self):
         return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()}'
 
-# custom
-class EmptyInterval(IntervalExpression):
-    def to_sym(self):
-        return 'X'
 
-# circular?
 class SituationExpression(IntervalExpression):
-    def __init__(self, situation: Situation):
+    situation = SymSituation()
+
+    def __init__(self, situation: SymSituation):
         self.situation = situation
     
     def to_sym(self):
         return self.situation.to_sym()
 
 
-class Interval:
+class Interval(SymInterval):
+    interval_expression = IntervalExpression()
+    
     def __init__(self, interval_expression: IntervalExpression):
         self.interval_expression = interval_expression
     

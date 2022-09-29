@@ -1,13 +1,13 @@
 import copy
-from app.classes.spec.symboleo_spec import Norm, Proposition, PAnd, PEquality, PComparison, PAtom
+from app.classes.spec.symboleo_spec import Norm, PNegAtom, Proposition, PAnd, PEquality, PComparison
 
 class IUpdateNormPropositions:
-    def update(self, norm: Norm, str_component: str, new_atom: PAtom) -> Norm:
+    def update(self, norm: Norm, str_component: str, new_atom: PNegAtom) -> Norm:
         raise NotImplementedError()
 
 
 class NormPropositionUpdater(IUpdateNormPropositions):
-    def update(self, norm: Norm, str_component: str, new_atom: PAtom) -> Norm:
+    def update(self, norm: Norm, str_component: str, new_atom: PNegAtom) -> Norm:
         new_norm = copy.deepcopy(norm)
         component: Proposition = getattr(new_norm, str_component)
 

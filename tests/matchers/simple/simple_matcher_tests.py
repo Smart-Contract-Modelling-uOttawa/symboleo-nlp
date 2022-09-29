@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.symboleo_spec import PNegAtom
 from app.lib.matchers.interfaces import IValidateMatches
 from app.lib.matchers.simple.simple_matcher import SimpleMatcher
 
@@ -25,8 +26,9 @@ class SimpleMatcherTests(unittest.TestCase):
         key = self.sut.key()
         self.assertEqual(key, self.key)
 
-        result: PAtomPredicate = self.sut.try_match(doc)
-        res_pred: PredicateFunctionHappens = result.predicate_function
+        result: PNegAtom = self.sut.try_match(doc)
+        atom_res: PAtomPredicate = result.atom
+        res_pred: PredicateFunctionHappens = atom_res.predicate_function
         res_event: VariableEvent = res_pred.event
 
         self.assertEqual(res_event.variable.name, 'is_blue(sky)')

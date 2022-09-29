@@ -5,8 +5,19 @@ class PAtom:
     def to_sym(self):
         raise NotImplementedError()
         
+class PNegAtom:
+    def __init__(self, atom: PAtom, negation: bool = False):
+        self.atom = atom
+        self.negation = negation
+    
+    def to_sym(self):
+        result = self.atom.to_sym()
+        if self.negation:
+            result = f'not {result}'
+        return result
+
 class PComparison:
-    def __init__(self, p_atoms: list[PAtom], op: str = ''):
+    def __init__(self, p_atoms: list[PNegAtom], op: str = ''):
         self.p_atoms = p_atoms
         self.op = op # ">=" | "<=" | ">" | "<"
     

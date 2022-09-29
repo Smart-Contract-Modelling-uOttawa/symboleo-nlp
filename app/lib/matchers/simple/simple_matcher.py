@@ -2,7 +2,8 @@ from app.classes.spec.helpers import VariableDotExpression
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.symboleo_spec import PAtom
+from app.classes.spec.symboleo_spec import PNegAtom
+
 from app.lib.matchers.interfaces import IMatcher, IValidateMatches
 
 # Very simple matcher: "the sky is blue"
@@ -20,7 +21,7 @@ class SimpleMatcher(IMatcher):
     def key(self):
         return self.__key
     
-    def try_match(self, doc) -> PAtom:
+    def try_match(self, doc) -> PNegAtom:
         if not self.__validator.validate(doc):
             return None
 
@@ -32,10 +33,12 @@ class SimpleMatcher(IMatcher):
         #pred_spec = SimplePredSpec(verb, adj, subj) ## May bring back something like this...
         situation_name = f'{verb}_{adj}({subj})'
 
-        return PAtomPredicate(
-            PredicateFunctionHappens(
-                VariableEvent(
-                    VariableDotExpression(situation_name)
+        return PNegAtom(
+            PAtomPredicate(
+                PredicateFunctionHappens(
+                    VariableEvent(
+                        VariableDotExpression(situation_name)
+                    )
                 )
             )
         )

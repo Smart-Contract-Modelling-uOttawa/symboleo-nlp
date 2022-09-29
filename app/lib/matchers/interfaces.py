@@ -1,7 +1,7 @@
-from app.classes.spec.symboleo_spec import PAtom
+from app.classes.spec.symboleo_spec import PNegAtom
 
 class IMatcher:
-    def try_match(self, doc) -> PAtom:
+    def try_match(self, doc) -> PNegAtom:
         raise NotImplementedError()
 
 class IValidateMatches:

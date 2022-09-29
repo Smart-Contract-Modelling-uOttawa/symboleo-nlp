@@ -1,13 +1,25 @@
 from app.classes.spec.helpers import VariableDotExpression, TimeValue
 from app.classes.spec.sym_event import ObligationEvent, ContractEvent, PowerEvent
 
+class SymPoint():
+    def to_sym(self):
+        raise NotImplementedError()
+
 class PointExpression():
     def to_sym(self):
         raise NotImplementedError()
 
-# circular...
+class PointAtom(PointExpression):
+    def to_sym(self):
+        raise NotImplementedError()
+
+
+# Note: Changed the arg from PointExpression to PointAtom to avoid circular dependency
 class PointFunction(PointExpression):
-    def __init__(self, arg: PointExpression, value: TimeValue, time_unit: str):
+    arg = PointAtom()
+    value = TimeValue()
+    
+    def __init__(self, arg: PointAtom, value: TimeValue, time_unit: str):
         self.name = 'Date.add'
         self.arg = arg
         self.value = value
@@ -17,12 +29,9 @@ class PointFunction(PointExpression):
         return f'{self.name}({self.arg.to_sym()}, {self.value.to_sym()}, {self.time_unit})'
 
 
-class PointAtom(PointExpression):
-    def to_sym(self):
-        raise NotImplementedError()
-
-
 class PointAtomParameterDotExpression(PointAtom):
+    variable = VariableDotExpression()
+
     def __init__(self, variable: VariableDotExpression):
         self.variable = variable
 
@@ -31,6 +40,8 @@ class PointAtomParameterDotExpression(PointAtom):
 
 
 class PointAtomObligationEvent(PointAtom):
+    obligation_event = ObligationEvent()
+
     def __init__(self, obligation_event: ObligationEvent):
         self.obligation_event = obligation_event
 
@@ -39,6 +50,8 @@ class PointAtomObligationEvent(PointAtom):
 
 
 class PointAtomPowerEvent(PointAtom):
+    power_event = PowerEvent()
+
     def __init__(self, power_event: PowerEvent):
         self.power_event = power_event
 
@@ -47,6 +60,8 @@ class PointAtomPowerEvent(PointAtom):
 
 
 class PointAtomContractEvent(PointAtom):
+    contract_event = ContractEvent()
+
     def __init__(self, contract_event: ContractEvent):
         self.contract_event = contract_event
 
@@ -54,7 +69,9 @@ class PointAtomContractEvent(PointAtom):
         return self.contract_event.to_sym()
 
 
-class Point():
+class Point(SymPoint):
+    point_expression = PointExpression()
+
     def __init__(self, point_expression: PointExpression):
         self.point_expression = point_expression
     

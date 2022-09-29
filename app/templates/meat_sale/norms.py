@@ -1,11 +1,11 @@
 from app.classes.spec.helpers import TimeValueInt, VariableDotExpression
-from app.classes.spec.symboleo_spec import Obligation, PAnd, PEquality, PComparison, Power, Proposition
-from app.classes.spec.p_atoms import PAtomPredicate, NegatedPAtom
-from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
+from app.classes.spec.symboleo_spec import Obligation, PAnd, PEquality, PComparison, Power, Proposition, PNegAtom
+from app.classes.spec.p_atoms import PAtomPredicate
+from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore
 from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent
-from app.classes.spec.interval import Interval, SituationExpression
-from app.classes.spec.situation import ObligationState
-from app.classes.spec.point import Point, PointAtomContractEvent, PointAtomParameterDotExpression, PointFunction
+from app.classes.spec.sym_interval import Interval, SituationExpression
+from app.classes.spec.sym_situation import ObligationState
+from app.classes.spec.sym_point import Point, PointAtomContractEvent, PointAtomParameterDotExpression, PointFunction
 from app.classes.spec.power_function import PFObligation, PFContract
 
 SELLER = VariableDotExpression('seller')
@@ -92,9 +92,11 @@ meat_sale_norms = {
                 PAnd([
                     PEquality([
                         PComparison([
-                            PAtomPredicate(
-                                PredicateFunctionHappens(
-                                    ObligationEvent('Violated', 'payment')
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        ObligationEvent('Violated', 'payment')
+                                    )
                                 )
                             )
                         ])
@@ -108,9 +110,11 @@ meat_sale_norms = {
                 PAnd([
                     PEquality([
                         PComparison([
-                            PAtomPredicate(
-                                PredicateFunctionHappens(
-                                    PAID_LATE_EVENT
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        PAID_LATE_EVENT
+                                    )
                                 )
                             )
                         ])
@@ -132,19 +136,22 @@ meat_sale_norms = {
                 PAnd([
                     PEquality([
                         PComparison([
-                            NegatedPAtom(
-                                PredicateFunctionWHappensBefore(
-                                    DISCLOSED_EVENT,
-                                    Point(
-                                        PointFunction(
-                                            PointAtomContractEvent(
-                                                ContractEvent('Activated')
-                                            ),
-                                            TimeValueInt(6),
-                                            'months'
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionWHappensBefore(
+                                        DISCLOSED_EVENT,
+                                        Point(
+                                            PointFunction(
+                                                PointAtomContractEvent(
+                                                    ContractEvent('Activated')
+                                                ),
+                                                TimeValueInt(6),
+                                                'months'
+                                            )
                                         )
                                     )
-                                )
+                                ),
+                                True
                             )
                         ])
                     ])
@@ -163,19 +170,22 @@ meat_sale_norms = {
                 PAnd([
                     PEquality([
                         PComparison([
-                            NegatedPAtom(
-                                PredicateFunctionWHappensBefore(
-                                    DISCLOSED_EVENT,
-                                    Point(
-                                        PointFunction(
-                                            PointAtomContractEvent(
-                                                ContractEvent('Activated')
-                                            ),
-                                            TimeValueInt(6),
-                                            'months'
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionWHappensBefore(
+                                        DISCLOSED_EVENT,
+                                        Point(
+                                            PointFunction(
+                                                PointAtomContractEvent(
+                                                    ContractEvent('Activated')
+                                                ),
+                                                TimeValueInt(6),
+                                                'months'
+                                            )
                                         )
                                     )
-                                )
+                                ),
+                                True
                             )
                         ])
                     ])
@@ -188,17 +198,13 @@ meat_sale_norms = {
         ## suspendDelivery : Happens(Violated(obligations.payment)) -> P(seller, buyer, true, Suspended(obligations.delivery))
         Power(
             'suspendDelivery',
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PredicateFunctionHappens(
-                                ObligationEvent('Violated', 'payment')
-                            )
-                        ])
-                    ])
-                ])
-            ]),
+            Proposition([PAnd([PEquality([PComparison([PNegAtom(
+                PAtomPredicate(
+                    PredicateFunctionHappens(
+                        ObligationEvent('Violated', 'payment')
+                    )
+                )
+            )])])])]),
             SELLER,
             BUYER,
             None,
@@ -208,16 +214,18 @@ meat_sale_norms = {
         ## resumeDelivery: HappensWithin(paidLate, Suspension(obligations.delivery)) -> P(buyer, seller, true, Resumed(obligations.delivery))
         Power(
             'resumeDelivery',
-            Proposition([PAnd([PEquality([PComparison([
-                PredicateFunctionHappensWithin(
-                    PAID_LATE_EVENT,
-                    Interval(
-                        SituationExpression(
-                            ObligationState('Suspension', 'delivery')
+            Proposition([PAnd([PEquality([PComparison([PNegAtom(
+                PAtomPredicate(
+                    PredicateFunctionHappensWithin(
+                        PAID_LATE_EVENT,
+                        Interval(
+                            SituationExpression(
+                                ObligationState('Suspension', 'delivery')
+                            )
                         )
                     )
                 )
-            ])])])]),
+            )])])])]),
             BUYER,
             SELLER,
             None,
@@ -227,11 +235,13 @@ meat_sale_norms = {
         ## terminateContract: Happens(Violated(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))
         Power(
             'terminateContract',
-            Proposition([PAnd([PEquality([PComparison([
-                PredicateFunctionHappens(
-                    ObligationEvent('Violated', 'delivery')
+            Proposition([PAnd([PEquality([PComparison([PNegAtom(
+                PAtomPredicate(
+                    PredicateFunctionHappens(
+                        ObligationEvent('Violated', 'delivery')
+                    )
                 )
-            ])])])]),
+            )])])])]),
             BUYER,
             SELLER,
             None,
