@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_spec import Obligation
-from app.lib.matchers.interfaces import IMatcher
-from app.lib.norm_proposition_updater import IUpdateNormPropositions
+from app.src.matchers.interfaces import IMatcher
+from app.src.norm_proposition_updater import IUpdateNormPropositions
 
 
 class IConvertSentenceToObligation:

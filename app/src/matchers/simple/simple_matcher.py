@@ -4,7 +4,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.symboleo_spec import PNegAtom
 
-from app.lib.matchers.interfaces import IMatcher, IValidateMatches
+from app.src.matchers.interfaces import IMatcher, IValidateMatches
 
 # Very simple matcher: "the sky is blue"
 class SimpleMatcher(IMatcher):

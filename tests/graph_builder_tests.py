@@ -1,7 +1,7 @@
 import unittest
 from app.classes.graph_node import test_graph
 from app.classes.spec.symboleo_spec import PAtom
-from app.lib.graph_builder import GraphBuilder
+from app.src.graph_builder import GraphBuilder
 
 class GraphBuilderTests(unittest.TestCase):
     def setUp(self):

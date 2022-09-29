@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.lib.matchers.spacy_matcher_wrapper import IWrapSpacyMatchers
-from app.lib.matchers.simple.simple_validator import SimpleValidator
+from app.src.matchers.spacy_matcher_wrapper import IWrapSpacyMatchers
+from app.src.matchers.simple.simple_validator import SimpleValidator
 
 from tests.helpers.test_nlp import TestNLP
 

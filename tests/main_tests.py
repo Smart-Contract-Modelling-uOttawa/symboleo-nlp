@@ -1,9 +1,9 @@
 import unittest
-from app.lib.matchers.matchers_builder import MatchersBuilder
-from app.lib.norm_proposition_updater import NormPropositionUpdater
+from app.src.matchers.matchers_builder import MatchersBuilder
+from app.src.norm_proposition_updater import NormPropositionUpdater
 from tests.helpers.test_nlp import TestNLP
 
-from app.lib.sentence_obligation_converter import SentenceObligationConverter
+from app.src.sentence_obligation_converter import SentenceObligationConverter
 from app.classes.spec.symboleo_spec import Obligation
 
 from app.templates.meat_sale.norms import meat_sale_norms

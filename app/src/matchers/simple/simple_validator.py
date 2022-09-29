@@ -1,6 +1,6 @@
 from spacy.matcher import Matcher
-from app.lib.matchers.interfaces import IValidateMatches
-from app.lib.matchers.spacy_matcher_wrapper import IWrapSpacyMatchers
+from app.src.matchers.interfaces import IValidateMatches
+from app.src.matchers.spacy_matcher_wrapper import IWrapSpacyMatchers
 
 class SimpleValidator(IValidateMatches):
     def __init__(self, key, nlp, spacy_matcher_wrapper):

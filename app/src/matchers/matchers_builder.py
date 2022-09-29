@@ -1,9 +1,9 @@
-from app.lib.matchers.interfaces import IMatcher
-from app.lib.matchers.simple.simple_matcher import SimpleMatcher
-from app.lib.matchers.simple.simple_validator import SimpleValidator
-from app.lib.matchers.spacy_matcher_wrapper import SpacyMatcherWrapper
+from app.src.matchers.interfaces import IMatcher
+from app.src.matchers.simple.simple_matcher import SimpleMatcher
+from app.src.matchers.simple.simple_validator import SimpleValidator
+from app.src.matchers.spacy_matcher_wrapper import SpacyMatcherWrapper
 
-from app.lib.matchers.match_patterns import match_patterns
+from app.src.matchers.match_patterns import match_patterns
 
 class MatchersBuilder:
     def __init__(self, nlp):

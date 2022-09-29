@@ -1,7 +1,7 @@
 import unittest
 from spacy.matcher import Matcher
 
-from app.lib.matchers.spacy_matcher_wrapper import SpacyMatcherWrapper
+from app.src.matchers.spacy_matcher_wrapper import SpacyMatcherWrapper
 
 from tests.helpers.test_nlp import TestNLP
 

@@ -2,6 +2,10 @@ todo.txt
 
 nlp.pickle
 
+nx.html
+
+lib/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

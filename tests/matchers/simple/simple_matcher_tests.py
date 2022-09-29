@@ -4,8 +4,8 @@ from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.symboleo_spec import PNegAtom
-from app.lib.matchers.interfaces import IValidateMatches
-from app.lib.matchers.simple.simple_matcher import SimpleMatcher
+from app.src.matchers.interfaces import IValidateMatches
+from app.src.matchers.simple.simple_matcher import SimpleMatcher
 
 from tests.helpers.test_nlp import TestNLP
 

@@ -5,7 +5,7 @@ from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
 
-from app.lib.norm_proposition_updater import NormPropositionUpdater
+from app.src.norm_proposition_updater import NormPropositionUpdater
 
 from tests.helpers.sample_norm_lib import SampleNorms
 

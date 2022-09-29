@@ -1,5 +1,5 @@
 import unittest
-from app.lib.matchers.matchers_builder import MatchersBuilder
+from app.src.matchers.matchers_builder import MatchersBuilder
 from tests.helpers.test_nlp import TestNLP
 
 test_suite = [
