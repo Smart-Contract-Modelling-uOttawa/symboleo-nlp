@@ -1,11 +1,12 @@
 import inspect
+from app.classes.graph.digraph import Digraph
 
 # Note: Any class that is needed on the graph needs to be imported here
 from app.classes.spec.p_atoms import * 
-from app.classes.graph_node import GraphNode
+from app.classes.graph.graph_node import GraphNode
 
 class IBuildGraphs:
-    def build(self, root: type):
+    def build(self, root: type) -> Digraph:
         raise NotImplementedError()
 
 class GraphBuilder(IBuildGraphs):
@@ -19,10 +20,10 @@ class GraphBuilder(IBuildGraphs):
             'property',
         ]
     
-    def build(self, root) -> list[GraphNode]:
+    def build(self, root) -> Digraph:
         self.main_list = {}
-        result = self._traverse(root, 'ROOT', d=0)
-        return result
+        nodes = self._traverse(root, 'ROOT', d=0)
+        return Digraph(nodes)
 
     def _traverse(self, C: type, node_type: str, d = 0) -> list[GraphNode]:
         name = C.__name__
