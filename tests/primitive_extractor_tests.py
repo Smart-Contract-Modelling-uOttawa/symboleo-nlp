@@ -1,23 +1,39 @@
 import unittest
 from unittest.mock import MagicMock
+from app.classes.spec.helpers import VariableDotExpression
+from app.classes.spec.primitive import ScoredPrimitive
+from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
 from tests.helpers.test_nlp import TestNLP
 from app.src.primitive_extractor import PrimitiveExtractor
 
 class PrimitiveExtractorTests(unittest.TestCase):
     def setUp(self):
-        # TODO: Will have many more inputs here...
-        # self.nlp = TestNLP.get_nlp()
-        self.sut = PrimitiveExtractor()
+        self.nlp = TestNLP.get_nlp()
+
+        self.ident1 = IIdentifyPrimitives()
+        self.fake_primitive1 = ScoredPrimitive(VariableDotExpression('X1'), 0.8)
+        self.ident1.identify = MagicMock(return_value = self.fake_primitive1)
+
+        self.ident2 = IIdentifyPrimitives()
+        self.fake_primitive2 = ScoredPrimitive(VariableDotExpression('X2'), 0.2)
+        self.ident2.identify = MagicMock(return_value = self.fake_primitive2)
+
+        self.identifiers = [
+            self.ident1,
+            self.ident2
+        ]
+
+        self.sut = PrimitiveExtractor(self.identifiers, 0.5)
 
     def test_primitive_extractor(self):
-        # sentence = 'this is a test'
-        # doc = self.nlp(sentence)
+        doc = self.nlp('this is a test')
+        result = self.sut.extract(doc)
+        self.assertEqual(len(result), 1)
 
-        # result = self.sut.extract(doc)
-        # TODO: Add tests
-        return
+        sp: ScoredPrimitive = result[0]
+        vde: VariableDotExpression = sp.primitive
+        self.assertEqual(vde.name, 'X1')
         
-
   
 if __name__ == '__main__':
     unittest.main()

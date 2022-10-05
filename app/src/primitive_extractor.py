@@ -1,18 +1,21 @@
 from app.classes.spec.primitive import Primitive
-
+from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
 
 class IExtractPrimitives:
     def extract(self, doc) -> list[Primitive]:
         raise NotImplementedError()
 
-
 class PrimitiveExtractor(IExtractPrimitives):
-    def __init__(self):
-        self.s = 0
+    def __init__(
+        self,
+        primitive_identifiers: list[IIdentifyPrimitives],
+        threshold: float
+    ):
+        self.__threshold = threshold
+        self.__identifiers = primitive_identifiers
     
-    # TODO: ...
+
     def extract(self, doc) -> list[Primitive]:
-        # Find the most likely candidates, and create them
-        # May use a scoring system as well
-        # May reuse the dynamic constructor... Or use separate ones
-        return []
+        results = [x.identify(doc) for x in self.__identifiers]
+        return [x for x in results if x.score > self.__threshold]
+

@@ -6,10 +6,13 @@ Primitive = VariableDotExpression or \
     ObligationEvent or \
     ContractEvent or \
     PowerEvent or \
-    PointAtomObligationEvent or \
-    PointAtomPowerEvent or \
-    PointAtomContractEvent or \
     TimeValue or \
     ObligationState or \
     PowerState or \
     ContractState
+
+
+class ScoredPrimitive:
+    def __init__(self, primitive: Primitive, score: float):
+        self.primitive = primitive
+        self.score = score
