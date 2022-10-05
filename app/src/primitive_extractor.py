@@ -5,6 +5,8 @@ class IExtractPrimitives:
     def extract(self, doc) -> list[Primitive]:
         raise NotImplementedError()
 
+# TODO: May alter this one - e.g. by including the scores
+## May include a decider to limit to certain configs, e.g. dont want both  a powerEvent and ObligationEvent?
 class PrimitiveExtractor(IExtractPrimitives):
     def __init__(
         self,
@@ -17,5 +19,5 @@ class PrimitiveExtractor(IExtractPrimitives):
 
     def extract(self, doc) -> list[Primitive]:
         results = [x.identify(doc) for x in self.__identifiers]
-        return [x for x in results if x.score > self.__threshold]
+        return [x.primitive for x in results if x.score > self.__threshold]
 

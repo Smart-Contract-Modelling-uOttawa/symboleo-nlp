@@ -30,8 +30,7 @@ class PrimitiveExtractorTests(unittest.TestCase):
         result = self.sut.extract(doc)
         self.assertEqual(len(result), 1)
 
-        sp: ScoredPrimitive = result[0]
-        vde: VariableDotExpression = sp.primitive
+        vde: VariableDotExpression = result[0]
         self.assertEqual(vde.name, 'X1')
         
   

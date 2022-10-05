@@ -1,12 +1,28 @@
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
-  
+
+from app.src.primitive_identifiers.synset_dicts import synset_dicts
+
 nltk.download('omw-1.4')
 
 class DictSetBuilder:
     def __init__(self):
         self.__lemmatizer = WordNetLemmatizer()
+
+    @staticmethod
+    def build_all():
+        builder = DictSetBuilder()
+        all_sets = {}
+
+        all_sets['obligation_events'] = builder.build(synset_dicts['obligation_events'], 'v')
+        all_sets['contract_events'] = builder.build(synset_dicts['contract_events'], 'v')
+        all_sets['power_events'] = builder.build(synset_dicts['power_events'], 'v')
+        
+        return all_sets
+
+
+
 
     def build(self, init_dict, pos_c = 'v'):
         dict1 = self._build_dict1(init_dict, pos_c)
