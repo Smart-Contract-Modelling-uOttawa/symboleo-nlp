@@ -19,6 +19,11 @@ class DictSetBuilder:
         all_sets['contract_events'] = builder.build(synset_dicts['contract_events'], 'v')
         all_sets['power_events'] = builder.build(synset_dicts['power_events'], 'v')
         
+        all_sets['obligation_states'] = builder.build(synset_dicts['obligation_states'], 'v')
+        all_sets['power_states'] = builder.build(synset_dicts['power_states'], 'v')
+        all_sets['contract_states'] = builder.build(synset_dicts['contract_states'], 'v')
+        
+
         return all_sets
 
 

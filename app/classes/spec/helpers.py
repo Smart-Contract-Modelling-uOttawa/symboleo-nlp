@@ -22,6 +22,17 @@ class TimeValueInt(TimeValue):
     def to_sym(self):
         return self.value
 
+class TimeUnit:
+    def to_sym(self):
+        raise NotImplementedError()
+
+class TimeUnitStr(TimeUnit):
+    def __init__(self, unit: str):
+        self.unit = unit # 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years';
+    
+    def to_sym(self):
+        return self.unit
+
 class TimeValueVariable(TimeValue):
     variable = VariableDotExpression()
     

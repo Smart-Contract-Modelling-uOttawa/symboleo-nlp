@@ -5,7 +5,7 @@ from app.classes.graph.digraph import Digraph
 from app.classes.spec.p_atoms import * 
 from app.classes.graph.graph_node import GraphNode
 
-class IBuildGraphs:
+class IBuildGraphs: # pragma: no cover
     def build(self, root: type) -> Digraph:
         raise NotImplementedError()
 

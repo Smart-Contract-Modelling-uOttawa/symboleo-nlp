@@ -4,3 +4,18 @@ source=app
 
 [report]
 skip_empty=true
+
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+
+    # Don't complain if tests don't hit defensive assertion code:
+    raise NotImplementedError
+
+omit =
+    app\src\graph\graph_visualizer.py
+    app\src\primitive_identifiers\synset_dicts.py
+    app\src\sentence_summarizer.py
+
+    app\src\matchers\dependency_match_patterns.py
+    app\src\matchers\spacy_dependency_matcher_wrapper.py

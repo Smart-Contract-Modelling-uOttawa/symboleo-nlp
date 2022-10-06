@@ -15,7 +15,7 @@ class ContractEventIdentifier(IIdentifyPrimitives):
     def identify(self, doc) -> ScoredPrimitive:
         event_name, event_score = self.__event_name_scorer.score(doc)
 
-        score = round(event_score/2, 3)
+        score = round(event_score * 0.7, 3)
 
         primitive = ContractEvent(event_name)
 

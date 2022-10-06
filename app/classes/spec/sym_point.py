@@ -1,4 +1,4 @@
-from app.classes.spec.helpers import VariableDotExpression, TimeValue
+from app.classes.spec.helpers import VariableDotExpression, TimeValue, TimeUnit
 from app.classes.spec.sym_event import ObligationEvent, ContractEvent, PowerEvent
 
 class SymPoint():
@@ -18,15 +18,16 @@ class PointAtom(PointExpression):
 class PointFunction(PointExpression):
     arg = PointAtom()
     value = TimeValue()
+    unit = TimeUnit() 
     
-    def __init__(self, arg: PointAtom, value: TimeValue, time_unit: str):
+    def __init__(self, arg: PointAtom, value: TimeValue, time_unit: TimeUnit):
         self.name = 'Date.add'
         self.arg = arg
         self.value = value
         self.time_unit = time_unit
 
     def to_sym(self):
-        return f'{self.name}({self.arg.to_sym()}, {self.value.to_sym()}, {self.time_unit})'
+        return f'{self.name}({self.arg.to_sym()}, {self.value.to_sym()}, {self.time_unit.to_sym()})'
 
 
 class PointAtomParameterDotExpression(PointAtom):

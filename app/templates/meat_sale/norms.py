@@ -1,4 +1,4 @@
-from app.classes.spec.helpers import TimeValueInt, VariableDotExpression
+from app.classes.spec.helpers import TimeValueInt, TimeUnitStr, VariableDotExpression
 from app.classes.spec.symboleo_spec import Obligation, PAnd, PEquality, PComparison, Power, Proposition, PNegAtom
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore
@@ -146,7 +146,7 @@ meat_sale_norms = {
                                                     ContractEvent('Activated')
                                                 ),
                                                 TimeValueInt(6),
-                                                'months'
+                                                TimeUnitStr('months')
                                             )
                                         )
                                     )
@@ -180,7 +180,7 @@ meat_sale_norms = {
                                                     ContractEvent('Activated')
                                                 ),
                                                 TimeValueInt(6),
-                                                'months'
+                                                TimeUnitStr('months')
                                             )
                                         )
                                     )

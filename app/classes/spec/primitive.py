@@ -1,12 +1,14 @@
 from app.classes.spec.sym_event import *
 from app.classes.spec.sym_point import *
 from app.classes.spec.sym_situation import * 
+from app.classes.spec.helpers import *
 
 Primitive = VariableDotExpression or \
     ObligationEvent or \
     ContractEvent or \
     PowerEvent or \
-    TimeValue or \
+    TimeValueInt or \
+    TimeUnit or \
     ObligationState or \
     PowerState or \
     ContractState

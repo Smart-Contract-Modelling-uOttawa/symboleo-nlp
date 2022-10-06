@@ -2,11 +2,7 @@ from nltk.tree import *
 from spacy import displacy
 from spacy.language import Language
 
-class ISummarizeSentence:
-    def summarize(self, sentence: str):
-        raise NotImplementedError()
-
-class SentenceSummarizer(ISummarizeSentence):
+class SentenceSummarizer:
     def __init__(
         self,
         nlp):

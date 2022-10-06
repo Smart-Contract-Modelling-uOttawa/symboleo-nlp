@@ -1,6 +1,5 @@
 from pyvis.network import Network
-
-from app.classes.graph_node import GraphNode
+from app.classes.graph.graph_node import GraphNode
 
 class GraphVisualizer:
     def __init__(self):

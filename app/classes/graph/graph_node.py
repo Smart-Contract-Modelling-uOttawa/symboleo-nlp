@@ -132,7 +132,7 @@ test_graph = {
         'PointFunction',
         SUBCLASS_TYPE,
         [],
-        ['PointAtom', 'TimeValue']
+        ['PointAtom', 'TimeValue', 'TimeUnit']
     ),
     'PointAtom': GraphNode(
         'PointAtom',
@@ -157,6 +157,18 @@ test_graph = {
         SUBCLASS_TYPE,
         [],
         ['VariableDotExpression']
+    ),
+    'TimeUnit': GraphNode(
+        'TimeUnit',
+        PROP_TYPE,
+        ['TimeUnitStr'],
+        []
+    ),
+    'TimeUnitStr': GraphNode(
+        'TimeUnitStr',
+        SUBCLASS_TYPE,
+        [],
+        []
     ),
     'PointAtomParameterDotExpression': GraphNode(
         'PointAtomParameterDotExpression',

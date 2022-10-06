@@ -7,6 +7,7 @@ class IExtractPrimitives:
 
 # TODO: May alter this one - e.g. by including the scores
 ## May include a decider to limit to certain configs, e.g. dont want both  a powerEvent and ObligationEvent?
+## May end up having quite a bit of orchestration involved
 class PrimitiveExtractor(IExtractPrimitives):
     def __init__(
         self,
