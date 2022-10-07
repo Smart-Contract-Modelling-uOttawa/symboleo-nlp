@@ -23,14 +23,14 @@ class PrimitiveExtractorTests(unittest.TestCase):
             self.ident2
         ]
 
-        self.sut = PrimitiveExtractor(self.identifiers, 0.5)
+        self.sut = PrimitiveExtractor(self.identifiers)
 
     def test_primitive_extractor(self):
         doc = self.nlp('this is a test')
         result = self.sut.extract(doc)
-        self.assertEqual(len(result), 1)
+        self.assertEqual(len(result), 2)
 
-        vde: VariableDotExpression = result[0]
+        vde: VariableDotExpression = result[0].primitive
         self.assertEqual(vde.name, 'X1')
         
   

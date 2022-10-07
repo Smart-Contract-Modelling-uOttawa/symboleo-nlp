@@ -1,8 +1,8 @@
-from app.classes.spec.primitive import Primitive
+from app.classes.spec.primitive import ScoredPrimitive
 from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
 
 class IExtractPrimitives:
-    def extract(self, doc) -> list[Primitive]:
+    def extract(self, doc) -> list[ScoredPrimitive]:
         raise NotImplementedError()
 
 # TODO: May alter this one - e.g. by including the scores
@@ -11,14 +11,13 @@ class IExtractPrimitives:
 class PrimitiveExtractor(IExtractPrimitives):
     def __init__(
         self,
-        primitive_identifiers: list[IIdentifyPrimitives],
-        threshold: float
+        primitive_identifiers: list[IIdentifyPrimitives]
     ):
-        self.__threshold = threshold
         self.__identifiers = primitive_identifiers
+        self.__threshold = 0
     
 
-    def extract(self, doc) -> list[Primitive]:
+    def extract(self, doc) -> list[ScoredPrimitive]:
         results = [x.identify(doc) for x in self.__identifiers]
-        return [x.primitive for x in results if x.score > self.__threshold]
+        return [x for x in results if x.score > self.__threshold]
 

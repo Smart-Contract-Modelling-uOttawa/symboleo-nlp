@@ -14,8 +14,6 @@ exclude_lines =
 
 omit =
     app\src\graph\graph_visualizer.py
-    app\src\primitive_identifiers\synset_dicts.py
     app\src\sentence_summarizer.py
-
-    app\src\matchers\dependency_match_patterns.py
-    app\src\matchers\spacy_dependency_matcher_wrapper.py
+    app\src\primitive_identifiers\dicts\init_event_dicts.py
+    app\src\primitive_identifiers\dicts\init_state_dicts.py

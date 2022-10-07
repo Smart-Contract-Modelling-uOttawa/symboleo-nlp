@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.helpers import VariableDotExpression
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.primitive import ScoredPrimitive
 from app.src.atom_assembler import IAssembleAtoms
 from app.src.atom_extractor import AtomExtractor
 from app.src.primitive_extractor import IExtractPrimitives
@@ -10,11 +11,11 @@ from tests.helpers.test_nlp import TestNLP
 
 class AtomExtractorTests(unittest.TestCase):
     def setUp(self):
-        options = { 'threshold': 0.6}
+        options = { }
         self.nlp = TestNLP.get_nlp()
         
         self.primitive_extractor = IExtractPrimitives()
-        self.fake_primitives = [VariableDotExpression('test')]
+        self.fake_primitives = [ScoredPrimitive(VariableDotExpression('test'), 0.5)]
         self.primitive_extractor.extract = MagicMock(return_value = self.fake_primitives)
         
         self.atom_assembler = IAssembleAtoms()

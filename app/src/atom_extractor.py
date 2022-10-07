@@ -26,7 +26,11 @@ class AtomExtractor(IExtractAtoms):
         doc = self.__nlp(text)
 
         # Extract the most likely primitives from the document
-        primitives = self.__primitive_extractor.extract(doc)
+        scored_primitives = self.__primitive_extractor.extract(doc)
+
+        # TODO: May add a threshold for scoring these here
+        ## Or put it back in the primitive_extractor
+        primitives = [x.primitive for x in scored_primitives]
 
         # Identify and assemble the main candidates
         result = self.__atom_assembler.assemble(primitives)
