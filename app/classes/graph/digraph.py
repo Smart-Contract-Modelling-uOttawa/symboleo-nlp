@@ -29,6 +29,11 @@ class Digraph:
             if self.is_subclass(a, sc):
                 return True
         
+        # New addition...
+        for p in node_b.props:
+            if self.is_subclass(a, p):
+                return True
+        
         return False
 
     def get_nx_graph(self):

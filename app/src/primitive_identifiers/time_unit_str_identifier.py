@@ -19,16 +19,19 @@ class TimeUnitStrIdentifier(IIdentifyPrimitives):
         self.__all_units = [item for sublist in unit_lists for item in sublist]
 
 
+    # Assumption: Only taking the first time unit that is found...
+    ## this is not a great assumption to make... e.g. "between 2 and 4 days" would be a problem
     def identify(self, doc) -> ScoredPrimitive:
-        target1 = [x for x in doc if x.text.lower() in self.__all_units]
+        
+        trigger_words = [x for x in doc if self._in_unit_list(x)]
 
-        target2 = [x for x in target1 if x.ent_type_ in ['TIME', 'DATE']]
+        datetime_ents = [x for x in trigger_words if self._is_datetime_entity(x)]
 
-        if len(target2) > 0:
-            primitive_text = self._pluralize(target2[0].text)
+        if len(datetime_ents) > 0:
+            primitive_text = self._pluralize(datetime_ents[0].text)
             score = 1
-        elif len(target1) > 0:
-            primitive_text = self._pluralize(target1[0].text)
+        elif len(trigger_words) > 0:
+            primitive_text = self._pluralize(trigger_words[0].text)
             score = 0.5
         else:
             primitive_text = ''
@@ -37,6 +40,10 @@ class TimeUnitStrIdentifier(IIdentifyPrimitives):
         return ScoredPrimitive(TimeUnitStr(primitive_text), score)
 
 
+    def _in_unit_list(self, x): return x.text.lower() in self.__all_units
+
+    def _is_datetime_entity(self, x): return x.ent_type_ in ['TIME', 'DATE']
+    
     def _pluralize(self, x):
         for k in self.__dict:
             if x in self.__dict[k]:

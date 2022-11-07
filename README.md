@@ -39,3 +39,6 @@ Before starting to explore NLP extraction techniques, need to do the following:
 - Complete the Symboleo class specification in Python (i.e. add more atoms, situation types, etc.)
 - Add 1-2 more completed templates (e.g. rent2own, sales, independent contractor, rental)
 - Start building a list of customizations and creating corresponding tests
+
+
+source symboleo-env/Scripts/activate

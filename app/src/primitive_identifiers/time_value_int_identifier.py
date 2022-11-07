@@ -9,7 +9,9 @@ class TimeValueIntIdentifier(IIdentifyPrimitives):
         self.s = 0
 
     # TODO: Should likely focus on spacy "entities" here
-    # TODO: May also want to convert anything to actual numbers
+    # TODO: May also want to convert anything to actual numbers. This could be a prepo step - assumption?
+    ## numerizer - https://spacy.io/universe/project/numerizer
+    ## Assumes only one time point...
     def identify(self, doc) -> ScoredPrimitive:
         # Look for numbers that are close to time units?
         target1 = [x for x in doc if x.dep_ == 'nummod' and x.ent_type_ in ['TIME', 'DATE']]

@@ -7,11 +7,13 @@ from app.src.primitive_identifiers.time_value_int_identifier import TimeValueInt
 from tests.helpers.test_nlp import TestNLP
 
 # TODO: More sophisticated tests
+# May assume that numbers come in as digits - can use numerizer in preprocessing
 test_suite = [
     ['I will arrive in 1 hour', '1', 1],
     ['I will arrive in 12 days', '12', 1],
     #['I will arrive in thirty-five minutes', 'thirty-five', 1],
-    ['There are ten things you need to know', 'ten', 0.7] # should be 10...
+    ['There are 10 things you need to know', '10', 0.7] # should be 10...
+    
 ]
 
 class TimeValueIntIdentifierTests(unittest.TestCase):
@@ -27,8 +29,8 @@ class TimeValueIntIdentifierTests(unittest.TestCase):
             result = self.sut.identify(doc)
             prim: TimeValueInt = result.primitive
             score = result.score
-            self.assertEqual(prim.value, exp_value)
-            self.assertEqual(score, exp_score)
+            self.assertEqual(prim.value, exp_value, f'failed: {test_sent}')
+            self.assertEqual(score, exp_score, f'failed: {test_sent}')
 
   
 if __name__ == '__main__':

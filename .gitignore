@@ -6,6 +6,8 @@ nx.html
 
 lib/
 
+symboleo-env/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

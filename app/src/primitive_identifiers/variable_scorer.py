@@ -5,6 +5,8 @@ class IScoreVariables:
     def score(self, doc) -> tuple[str, float]:
         raise NotImplementedError()
 
+# TODO: May incorporate other contrct elements here 
+## e.g. the NL sentences (already done), the domain model, etc.
 class VariableScorer(IScoreVariables):
     def __init__(
         self,

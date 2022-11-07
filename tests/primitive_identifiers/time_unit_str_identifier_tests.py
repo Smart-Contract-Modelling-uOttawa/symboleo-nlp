@@ -8,10 +8,17 @@ from tests.helpers.test_nlp import TestNLP
 
 # TODO: More sophisticated tests
 test_suite = [
+    ['you must pay within 10 days', 'days', 1],
     ['I will arrive in 1 hour', 'hours', 1],
     ['I will arrive in 12 days', 'days', 1],
-    #['I will arrive in thirty-five minutes', 'thirty-five', 1],
-    ['There are ten things you need to know', '', 0] # should be 10...
+    ['I will arrive in thirty-five minutes', 'minutes', 1],
+    ['There are ten things you need to know', '', 0],
+    ['I will finish in second place', 'seconds', 0.5],
+    ['I will finish in second', 'seconds', 0.5],
+    ['I will finish in a second', 'seconds', 1], # TODO: fix - 1
+    ['I will finish in one second', 'seconds', 0.5], # TODO: fix - 1
+    ['I will finish in 1 second', 'seconds', 0.5], # TODO: fix - 1
+    ['It will arrive between 10-15 business days', 'days', 0.5] # TODO: fix - 1
 ]
 
 class TimeUnitStrIdentifierTests(unittest.TestCase):
@@ -27,8 +34,8 @@ class TimeUnitStrIdentifierTests(unittest.TestCase):
             result = self.sut.identify(doc)
             prim: TimeUnitStr = result.primitive
             score = result.score
-            self.assertEqual(prim.unit, exp_value)
-            self.assertEqual(score, exp_score)
+            self.assertEqual(prim.unit, exp_value, f'failed: {test_sent}')
+            self.assertEqual(score, exp_score, f'failed: {test_sent}')
 
   
 if __name__ == '__main__':
