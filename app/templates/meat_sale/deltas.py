@@ -11,7 +11,7 @@ meat_sale_deltas = [
                 },
                 "result": {
                     "sym": "delivery: O(seller, buyer, true, WhappensBefore(delivered, delivered.delDueDate))",
-                    "notes": "sets the delivery due date as well"
+                    "notes": "sets the delivery due date as well (in the domain model); also the location (warehouse)"
                 }
             }
         ]
