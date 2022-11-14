@@ -1,0 +1,23 @@
+at its warehouse
+- we change the domain model. but what are we changing? 
+-- can add a delivery location
+-- or can add a buyer location 
+-- lets just pick one for now. Lets try delivery location
+
+Once the pattern is verified, the next steps may be easier
+- since all were doing is changing the domain model, we dont need to find primitives, etc
+- may be as easy as just putting the entire text as delivery.location
+
+But we can do a little bit of cleaning
+- for example, if its just "at the warehouse", then we want "warehouse"
+
+Examples
+- at the warehouse => "warehouse"
+- to its warehouse => use coreference resolution
+- to the buyer => use buyer's address (if it exists?)
+- 
+
+- more specific locations:
+-- behind... for more specific prepositions, may want to keep the prep in the final description
+-- multi-prep - to the back door of the warehouse... interesting...
+- a specific address - may have some entity detection on this: https://medium.com/globant/building-an-address-parser-with-spacy-e3376b7cff

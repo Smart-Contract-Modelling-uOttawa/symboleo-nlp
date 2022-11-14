@@ -1,9 +1,14 @@
 Levenshtein==0.18.2
-spacy>=3.0.0,<4.0.0
+spacy==3.4.1. #>=3.0.0,<4.0.0
 pyap==0.3.1
 coverage==6.4.4
-benepar==0.2.0
 nltk==3.7.0
 pyvis==0.3.0
 networkx==2.8.7
-https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.0.0/en_core_web_md-3.0.0.tar.gz#egg=en_core_web_md
+tokenizers>=0.12.1
+coreferee==1.3.0
+benepar==0.2.0
+transformers==4.21.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.1/en_core_web_md-3.4.1.tar.gz#egg=en_core_web_md
+https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.4.1/en_core_web_lg-3.4.1.tar.gz#egg=en_core_web_lg
+https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.4.1/en_core_web_trf-3.4.1.tar.gz#egg=en_core_web_trf
