@@ -1,12 +1,6 @@
-from copy import deepcopy
-from app.classes.symboleo_contract import ContractSpec, DomainModel, SymboleoContract
-from app.src.atom_extractor import IExtractAtoms
-
-class ContractUpdateRequest:
-    new_sentence: str = ''
-    key: str = ''
-    contract: SymboleoContract = None # Need a type here
-    
+from app.classes.symboleo_contract import SymboleoContract
+from app.src.processor_lookup import ILookupProcessor
+from app.classes.contract_update_request import ContractUpdateRequest
 
 class IUpdateContracts:
     def update(self, req: ContractUpdateRequest) -> SymboleoContract:
@@ -16,22 +10,12 @@ class IUpdateContracts:
 class ContractUpdater(IUpdateContracts):
     def __init__(
         self,
-        atom_extractor: IExtractAtoms
+        processor_lookup: ILookupProcessor
     ):
-        self.__atom_extractor = atom_extractor
+        self.__lookup = processor_lookup
     
+
     def update(self, req: ContractUpdateRequest) -> SymboleoContract:
-        # do stuff here
-        new_domain_model: DomainModel = deepcopy(req.contract.domain_model)
-        new_contract_spec: ContractSpec = deepcopy(req.contract.contract_spec)
-
-        # Perform some validation based on the new_sentence and the key
-        ## This may also do some basic extraction? since we will be running it through the NLP pipeline
-
-        # Identify the most likely primitives -> list of primitives + scores
-        ## Will also involve processing the domain model
-
-
-        # Orchestrate the primitives to get the possible candidates
-
-        return SymboleoContract(new_domain_model, new_contract_spec)
+        processor = self.__lookup.lookup(req.key)
+        result = processor.process(req)
+        return result

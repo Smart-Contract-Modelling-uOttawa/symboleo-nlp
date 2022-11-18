@@ -8,7 +8,7 @@ from spacy.matcher import Matcher
 # Will probably make this a class with some more rules and properties
 ## Three key matches: validation, cases, primitives
 ## Although validation may be covered by cases...
-def get_matcher(nlp):
+def get_dtf_matcher(nlp):
     matcher = Matcher(nlp.vocab)
 
     # Validation Patterns

@@ -4,25 +4,26 @@ from app.classes.spec.symboleo_spec import Obligation
 from app.classes.spec.symboleo_spec import Power
 
 class DomainModel:
-    roles: Dict[str, Role]
-    events: Dict[str, DomainEvent]
-    assets: Dict[str, Asset]
-
-    def __init__(self, roles, events, assets):
+    def __init__(
+        self, 
+        roles: Dict[str, Role], 
+        events: Dict[str, DomainEvent], 
+        assets: Dict[str, Asset]
+    ):
         self.roles = roles
         self.events = events
         self.assets = assets
     
     def to_sym(self):
-        result = 'Roles:\n'
+        result = '== Roles ==\n'
         for x in self.roles:
             result += f'{x}: {self.roles[x].to_sym()}\n'
         
-        result += '\nAssets:\n'
+        result += '\n== Assets ==\n'
         for x in self.assets:
             result += f'{x}: {self.assets[x].to_sym()}\n'
         
-        result += '\nEvents:\n'
+        result += '\n== Events ==\n'
         for x in self.events:
             result += f'{x}: {self.events[x].to_sym()}\n'
         
@@ -30,10 +31,11 @@ class DomainModel:
 
 
 class ContractSpec:
-    obligations: Dict[str, Obligation]
-    powers: Dict[str,Power]
-
-    def __init__(self, obligations, powers):
+    def __init__(
+        self, 
+        obligations: Dict[str, Obligation], 
+        powers: Dict[str,Power]
+    ):
         self.obligations = obligations
         self.powers = powers
     
@@ -50,13 +52,16 @@ class ContractSpec:
 
 
 class SymboleoContract:
-    domain_model: DomainModel
-    contract_spec: ContractSpec
-
-    def __init__(self, domain_model: DomainModel, contract_spec: ContractSpec):
+    def __init__(
+        self, 
+        domain_model: DomainModel, 
+        contract_spec: ContractSpec, 
+        template_strings # TODO: Standardize this
+    ):
         self.domain_model = domain_model
         self.contract_spec = contract_spec
+        self.template_strings = template_strings
     
     def to_sym(self):
-        return f'\nDOMAIN MODEL:\n{self.domain_model.to_sym()}\n\nCONTRACTSPEC:\n{self.contract_spec.to_sym()}'
+        return f'\nDOMAIN MODEL:\n{self.domain_model.to_sym()}\n\nCONTRACT SPEC:\n{self.contract_spec.to_sym()}'
 

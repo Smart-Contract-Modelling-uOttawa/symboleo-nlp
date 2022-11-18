@@ -26,7 +26,7 @@ class Role:
     
 
 class Asset:
-    def __init__(self, name: str, parent:str, props:list[DomainProp] = []):
+    def __init__(self, name: str, parent:str = 'Asset', props:list[DomainProp] = []):
         self.name = name
         self.parent = parent
         self.props = props

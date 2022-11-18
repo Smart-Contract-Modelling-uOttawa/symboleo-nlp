@@ -1,12 +1,15 @@
 from app.src.dynamic_constructor import IConstructDynamicObjects
-from app.src.rules.shared.i_config import IConfig
+from app.classes.contract_update_request import ContractUpdateRequest
+from app.src.rules.shared.interfaces import IExtractPredicates
+from app.src.rules.shared.configs import PredicateExtractorConfig
 from app.src.rules.shared.case_obj import CaseObj
 
-class MainProcessor:
+
+class PredicateExtractor(IExtractPredicates):
     def __init__(
         self, 
         nlp,
-        config: IConfig,
+        config: PredicateExtractorConfig,
         dynamic_constructor: IConstructDynamicObjects
     ):
         self.__nlp = nlp
@@ -18,14 +21,15 @@ class MainProcessor:
         self.__dynamic_constructor = dynamic_constructor
 
 
-    def process(self, doc):        
+    def extract(self, req: ContractUpdateRequest):      
+        doc = req.doc
         # Get the matches. Might even just pass these in 
         matches = self.__matcher(doc)
 
         # Find out which case we are in
         case_matches = self._get_case_matches(matches, doc)
         if len(case_matches) == 0:
-            raise 'Invalid. No matching patterns'
+            raise ValueError('Invalid. No matching patterns')
         
         # Extract all the primitives
         primitives = self._get_primitives(matches, doc)
@@ -36,7 +40,7 @@ class MainProcessor:
             self._build_next_result(primitives, self.__case_dict[k]) for k in case_matches 
         ]
 
-        return results
+        return results[0] # Handle empty case
 
     
 

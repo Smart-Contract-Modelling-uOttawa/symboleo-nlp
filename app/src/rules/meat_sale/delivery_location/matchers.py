@@ -1,9 +1,9 @@
 from spacy.matcher import Matcher
 
-def get_matcher(nlp):
+def get_validation_matcher(nlp):
     matcher = Matcher(nlp.vocab)
 
-    basic_pattern = [
+    validation_pattern = [
         [
             { "POS": "ADP", "LOWER": {'IN': ['at', 'to'] }, "IS_SENT_START": True }, 
             { "OP": "*"},
@@ -21,16 +21,16 @@ def get_matcher(nlp):
     # ]
 
     # at their warehouse
-    basic_poss_pattern = [
-        [
-            { "POS": "ADP", "LOWER": {'IN': ['at', 'to'] } }, 
-            { "POS": "PRON", "DEP": "poss" },
-            { "POS": "NOUN", "OP": "+" }
-        ]
-    ]
+    # basic_poss_pattern = [
+    #     [
+    #         { "POS": "ADP", "LOWER": {'IN': ['at', 'to'] } }, 
+    #         { "POS": "PRON", "DEP": "poss" },
+    #         { "POS": "NOUN", "OP": "+" }
+    #     ]
+    # ]
 
-    matcher.add('basic', basic_pattern)
-    matcher.add('basic_poss', basic_poss_pattern)
+    matcher.add('valid', validation_pattern)
+    #matcher.add('basic_poss', basic_poss_pattern)
 
     return matcher
     
