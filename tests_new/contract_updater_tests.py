@@ -16,12 +16,13 @@ class ContractUpdaterTests(unittest.TestCase):
         fake_processor = IProcessDocs()
         fake_contract = get_test_contract()
         fake_processor.process = MagicMock(return_value = fake_contract)
-        self.processor_lookup.lookup = MagicMock(return_value = fake_processor)
+        self.processor_lookup.lookup = MagicMock(return_value = [fake_processor])
         self.sut = ContractUpdater(self.processor_lookup)
 
 
     def test_contract_updater(self):
         test_contract = get_test_contract()
+        init_sym = test_contract.to_sym()
 
         req = ContractUpdateRequest(test_contract, 'TEST_KEY', 'value', None)
 
@@ -29,6 +30,7 @@ class ContractUpdaterTests(unittest.TestCase):
 
         self.assertEqual(type(result), SymboleoContract)
         self.assertEqual(self.processor_lookup.lookup.call_count, 1)
+        self.assertEqual(test_contract.to_sym(), init_sym)
         
 
   

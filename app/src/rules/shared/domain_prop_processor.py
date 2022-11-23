@@ -21,6 +21,10 @@ class DomainPropProcessor(IProcessDocs):
     
         target_event = new_dm.__dict__[self.__config.obj_type][self.__config.obj_name]
 
+        # There may be a case for having a request update MULTIPLE properties
+        ## e.g. the payment_amount key => updates the paid.amount AND paid.currency...
+        ## So we might need to do some extra work here
+        ## Or can leave this one alone and make a separate IProcessDocs implementation... 
         prop_value = self.__prop_extractor.extract(req)
 
         new_prop = DomainProp(self.__config.new_prop_name, prop_value, self.__config.new_prop_type)

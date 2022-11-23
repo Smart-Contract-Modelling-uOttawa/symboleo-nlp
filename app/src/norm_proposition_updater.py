@@ -5,7 +5,7 @@ class IUpdateNormPropositions:
     def update(self, norm: Norm, str_component: str, new_atom: PNegAtom) -> Norm:
         raise NotImplementedError()
 
-
+# TODO: Can we assume that we're replacing and not appending?? May need a flag argument
 class NormPropositionUpdater(IUpdateNormPropositions):
     def update(self, norm: Norm, str_component: str, new_atom: PNegAtom) -> Norm:
         new_norm = copy.deepcopy(norm)
@@ -24,9 +24,10 @@ class NormPropositionUpdater(IUpdateNormPropositions):
             new_p_and = PAnd([PEquality([PComparison([
                 new_atom
             ])])])
-            component.p_ands.append(new_p_and)
+            #component.p_ands.append(new_p_and) # Appends;
+            component.p_ands = [new_p_and] # Replaces; rather than appends. May need a flag argument...
             
         setattr(new_norm, str_component, component)
 
         return new_norm
-    
+

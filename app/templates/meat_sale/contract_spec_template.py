@@ -15,6 +15,7 @@ SELLER = dm.roles['seller'].to_obj()
 BUYER = dm.roles['buyer'].to_obj()
 
 DELIVERED_EVENT = dm.events['delivered'].to_obj()
+PAID_EVENT = dm.events['paid'].to_obj()
 
 meat_sale_contract_spec_template = ContractSpec(
     obligations = {
@@ -37,7 +38,28 @@ meat_sale_contract_spec_template = ContractSpec(
                     ])
                 ])
             ])
-        )
+        ),
+
+        'payment': Obligation(
+            'payment',
+            None,
+            BUYER,
+            SELLER,
+            None,
+            Proposition([
+                PAnd([
+                    PEquality([
+                        PComparison([
+                            PAtomPredicate(
+                                PredicateFunctionHappens(
+                                    PAID_EVENT
+                                )
+                            )
+                        ])
+                    ])
+                ])
+            ])
+        ),
 
         # Other obligations go here...
 

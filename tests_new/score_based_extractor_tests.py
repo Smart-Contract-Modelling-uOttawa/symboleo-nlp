@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.src.rules.shared.match_validator import IValidateMatches
 from app.src.rules.shared.interfaces import IScoreStuff
-from app.src.rules.meat_sale.delivery_location.location_extractor import LocationExtractor
+from app.src.rules.shared.score_based_extractor import ScoreBasedExtractor
 
 from app.classes.contract_update_request import ContractUpdateRequest
 from tests.helpers.test_nlp import TestNLP
@@ -30,19 +30,20 @@ class LocationExtractorTests(unittest.TestCase):
             self.scorer2
         ]
         
-        self.sut = LocationExtractor(self.nlp, self.validator, self.scorers)
+        self.sut = ScoreBasedExtractor(self.nlp, self.validator, self.scorers)
 
 
-    def test_location_extractor(self):
+    def test_score_based_extractor(self):
         test_contract = get_test_contract()
 
-        req = ContractUpdateRequest(test_contract, 'TEST_KEY', 'value', None)
+        doc = self.nlp('value')
+        req = ContractUpdateRequest(test_contract, 'TEST_KEY', 'value', doc)
 
         result = self.sut.extract(req)
 
         self.assertEqual(result, 'test_score2a')
-        self.assertEqual(self.scorer1.extract.call_count, 1)
-        self.assertEqual(self.scorer2.update.call_count, 1)
+        self.assertEqual(self.scorer1.score.call_count, 1)
+        self.assertEqual(self.scorer2.score.call_count, 1)
         
 
   

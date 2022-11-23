@@ -4,7 +4,7 @@ from app.src.rules.shared.interfaces import IExtractPredicates
 from app.src.rules.shared.configs import PredicateExtractorConfig
 from app.src.rules.shared.case_obj import CaseObj
 
-
+# TODO: Refactor this - needs to be seriously decomposed, and then tested
 class PredicateExtractor(IExtractPredicates):
     def __init__(
         self, 

@@ -3,8 +3,12 @@ from app.classes.contract_update_request import ContractUpdateRequest
 from app.src.rules.shared.match_validator import IValidateMatches
 from app.src.rules.shared.interfaces import IExtractProperties, IScoreStuff
 
-# May be able to generalize this to be for time-based prepositional phrases...
-class LocationExtractor(IExtractProperties):
+# This is the exact same as location_extractor.
+## May be able to collapse them into one thing... score_based_extractor?
+## This is just extracting a single property
+## So we need to separate the currency and the score... Would like to have some coherence though...
+
+class ScoreBasedExtractor(IExtractProperties):
     def __init__(
         self,
         nlp,

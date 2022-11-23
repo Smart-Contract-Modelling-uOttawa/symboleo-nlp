@@ -15,12 +15,12 @@ meat_sale_domain_model_template = DomainModel(
             DomainProp('item', 'meat', 'meat')
         ]),
 
-        # DomainEvent('paid', [
-        #     DomainProp('amount', '', 'number'),
-        #     DomainProp('currency', '', 'Currency'),
-        #     DomainProp('from', '', 'Role'),
-        #     DomainProp('to', '', 'Role')
-        # ]),
+        'paid': DomainEvent('paid', [
+            # DomainProp('amount', '', 'number'),
+            # DomainProp('currency', '', 'Currency'),
+            DomainProp('from', 'buyer', 'Role'), # Maybe should put the actual buyer/seller objects here...
+            DomainProp('to', 'seller', 'Role')
+        ]),
 
         # DomainEvent('paidLate', [
         #     DomainProp('amount', '', 'number'),

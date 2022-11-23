@@ -8,7 +8,7 @@ class IValidateMatches:
 
 class MatchValidator(IValidateMatches):
     def __init__(self, matcher: Matcher):
-        self.__matcher = Matcher
+        self.__matcher = matcher
 
     def validate(self, doc):
         matches = self.__matcher(doc)

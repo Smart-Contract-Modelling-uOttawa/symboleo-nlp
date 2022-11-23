@@ -1,3 +1,4 @@
+import copy
 from app.classes.symboleo_contract import SymboleoContract
 from app.src.processor_lookup import ILookupProcessor
 from app.classes.contract_update_request import ContractUpdateRequest
@@ -16,6 +17,9 @@ class ContractUpdater(IUpdateContracts):
     
 
     def update(self, req: ContractUpdateRequest) -> SymboleoContract:
-        processor = self.__lookup.lookup(req.key)
-        result = processor.process(req)
-        return result
+        processors = self.__lookup.lookup(req.key)
+        
+        for processor in processors:
+            req.contract = processor.process(req)
+        
+        return req.contract
