@@ -40,5 +40,15 @@ Before starting to explore NLP extraction techniques, need to do the following:
 - Add 1-2 more completed templates (e.g. rent2own, sales, independent contractor, rental)
 - Start building a list of customizations and creating corresponding tests
 
+## Env
+- Create a virtual env: python -m venv symboleo-env
+- Activate: source symboleo-env/Scripts/activate
+- upgrade pip: pip install --upgrade pip
+- install requirements: pip install -r requirements.txt
+- Ensure that notebooks are using the env as well
 
-source symboleo-env/Scripts/activate
+in the pyenv.cfg in the venv folder:
+- include-system-site-packages = true
+- required for protobuf...
+
+next error: Couldn't build proto file into descriptor pool: duplicate file name (sentencepiece_model.proto)

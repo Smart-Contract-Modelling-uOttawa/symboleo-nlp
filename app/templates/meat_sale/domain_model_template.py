@@ -22,12 +22,12 @@ meat_sale_domain_model_template = DomainModel(
             DomainProp('to', 'seller', 'Role')
         ]),
 
-        # DomainEvent('paidLate', [
-        #     DomainProp('amount', '', 'number'),
-        #     DomainProp('currency', '', 'Currency'),
-        #     DomainProp('from', '', 'Role'),
-        #     DomainProp('to', '', 'Role')
-        # ])
+        'paidLate': DomainEvent('paidLate', [
+            # DomainProp('amount', '', 'number'),
+            # DomainProp('currency', '', 'Currency'),
+            DomainProp('from', 'buyer', 'Role'),
+            DomainProp('to', 'seller', 'Role')
+        ])
     },
     assets = {
         'perishableGood': Asset('perishableGood', None, [

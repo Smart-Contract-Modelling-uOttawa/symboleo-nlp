@@ -16,6 +16,7 @@ BUYER = dm.roles['buyer'].to_obj()
 
 DELIVERED_EVENT = dm.events['delivered'].to_obj()
 PAID_EVENT = dm.events['paid'].to_obj()
+PAID_LATE_EVENT = dm.events['paidLate'].to_obj()
 
 meat_sale_contract_spec_template = ContractSpec(
     obligations = {
@@ -61,7 +62,43 @@ meat_sale_contract_spec_template = ContractSpec(
             ])
         ),
 
-        # Other obligations go here...
+        #latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))
+        'latePayment': Obligation(
+            'latePayment',
+            Proposition([
+                PAnd([
+                    PEquality([
+                        PComparison([
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        ObligationEvent('Violated', 'payment')
+                                    )
+                                )
+                            )
+                        ])
+                    ])
+                ])
+            ]),
+            BUYER,
+            SELLER,
+            None,
+            Proposition([
+                PAnd([
+                    PEquality([
+                        PComparison([
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        PAID_LATE_EVENT
+                                    )
+                                )
+                            )
+                        ])
+                    ])
+                ])
+            ])
+        ) 
 
     },
 

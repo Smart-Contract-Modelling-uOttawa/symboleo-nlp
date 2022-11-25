@@ -3,6 +3,7 @@ from app.src.rules.meat_sale.delivery_location.address_scorer import AddressScor
 from app.src.rules.meat_sale.delivery_location.noun_chunk_scorer import NounChunkScorer
 from app.src.rules.shared.basic_scorer import BasicScorer
 from app.src.rules.meat_sale.delivery_location.role_scorer import RoleScorer
+from app.src.rules.shared.property_similarity_scorer import PropertySimilarityScorer
 
 from app.src.rules.shared.match_validator import MatchValidator
 from app.src.rules.meat_sale.delivery_location.address_extractor import AddressExtractor
@@ -19,12 +20,13 @@ def get_dl_libs(nlp):
     coref_getter = CorefGetter(nlp)
     address_extractor = AddressExtractor()
     role_score_builder = RoleScoreBuilder(nlp, init_role_scores, coref_getter)
+    prop_scorer = PropertySimilarityScorer(nlp)
 
     scorers = [
         BasicScorer('buyer', 0),
         NounChunkScorer(nlp),
         AddressScorer(nlp, address_extractor),
-        RoleScorer(nlp, role_score_builder)
+        RoleScorer(nlp, role_score_builder, prop_scorer)
     ]
 
     v_matcher = get_validation_matcher(nlp)

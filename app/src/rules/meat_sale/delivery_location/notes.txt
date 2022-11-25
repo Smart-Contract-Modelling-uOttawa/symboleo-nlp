@@ -1,3 +1,11 @@
+General process
+- Perform some validation - location-based prepositional phrase 
+- Extract entities: roles, addresses, noun chunks
+- The result may be in the roles, so we want to dig into the domain model roles
+-- extract any role mentions as well as coreference resolution from the sentence
+--
+
+
 at its warehouse
 - we change the domain model. but what are we changing? 
 -- can add a delivery location
@@ -21,3 +29,37 @@ Examples
 -- behind... for more specific prepositions, may want to keep the prep in the final description
 -- multi-prep - to the back door of the warehouse... interesting...
 - a specific address - may have some entity detection on this: https://medium.com/globant/building-an-address-parser-with-spacy-e3376b7cff
+
+
+
+
+
+
+Ideas
+
+""
+- empty case - use buyer's address... or maybe just "buyer"
+- can have a default set somewhere
+- result: "buyer"
+
+"at the warehouse"
+- not much to go off - {prep - det - noun}
+- drop the "the", and just set warehouse
+- we would need to know that the buyer's address is a warehouse
+- should still search through all the properties, and maybe do a semantic similarity check... or wordnet check even
+- but not enough info
+- result: "warehouse"
+
+"at their warehouse"/"at its warehouse"
+- coref
+- could use coreferee; but may want to do our own - assume it is the creditors
+- again, could do similarity check between buyer props and "warehouse"
+- result: buyer.address - the possessive "their" takes precedence over the "warehouse" 
+
+"at the buyer's warehouse"
+- detect the possessive 
+- same as previous, but no coref needed
+- result: buyer.address
+
+"at 1234 Bank Street"
+- address entity recognition
