@@ -1,0 +1,43 @@
+
+DOMAIN MODEL:
+== Roles ==
+seller: seller
+- address (str): 123 Main street
+
+buyer: buyer
+- address (str): 999 Central Ave
+
+
+== Assets ==
+perishableGood: perishableGood (None)
+- quantity (number): 
+- quality (MeatQuality): 
+
+meat: meat (perishableGood)
+
+
+== Events ==
+delivered: delivered
+- item (meat): meat
+
+paid: paid
+- from (Role): buyer
+- to (Role): seller
+
+paidLate: paidLate
+- from (Role): buyer
+- to (Role): seller
+
+
+
+CONTRACT SPEC:
+
+== Obligations ==
+delivery: O(seller, buyer, true, Happens(delivered))
+
+payment: O(buyer, seller, true, Happens(paid))
+
+latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))
+
+
+== Powers ==

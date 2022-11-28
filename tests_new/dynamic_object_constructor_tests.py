@@ -5,7 +5,6 @@ from app.classes.spec.helpers import VariableDotExpression
 from app.classes.spec.sym_event import ObligationEvent
 from app.classes.spec.sym_situation import ObligationState
 
-
 from app.src.dynamic_constructor import DynamicObjectConstructor
 
 class DynamicObjectConstructorTests(unittest.TestCase):

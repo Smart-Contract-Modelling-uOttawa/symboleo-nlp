@@ -21,7 +21,7 @@ class DomainPropProcessorConfig:
         obj_type: str,
         obj_name: str,
         new_prop_name: str,
-        new_prop_type: str
+        new_prop_type: str ='str'
     ):
         self.obj_type = obj_type
         self.obj_name = obj_name

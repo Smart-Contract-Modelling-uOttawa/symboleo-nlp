@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.rules.shared.predicate_extractor import IExtractPredicates
+from app.src.rules.contract_spec.predicate_extractor import IExtractPredicates
 from app.src.norm_proposition_updater import IUpdateNormPropositions
-from app.src.rules.shared.predicate_processor import PredicateProcessor
+from app.src.rules.contract_spec.predicate_processor import PredicateProcessor
 
 from app.src.rules.shared.configs import PredicateProcessorConfig
 from app.classes.symboleo_contract import Obligation

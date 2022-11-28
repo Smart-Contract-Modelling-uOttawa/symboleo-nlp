@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.src.rules.shared.configs import DomainPropProcessorConfig
 from app.src.rules.shared.interfaces import IExtractProperties
-from app.src.rules.shared.domain_prop_processor import DomainPropProcessor
+from app.src.rules.domain_model.domain_prop_processor import DomainPropProcessor
 
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.contract_update_request import ContractUpdateRequest

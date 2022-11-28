@@ -40,13 +40,13 @@ class ContractSpec:
         self.powers = powers
     
     def to_sym(self):
-        result = 'Obligations:\n'
+        result = '\n== Obligations ==\n'
         for x in self.obligations:
-            result += f'{x}: {self.obligations[x].to_sym()}\n'
+            result += f'{self.obligations[x].to_sym()}\n\n'
         
-        result += '\nPowers:\n'
+        result += '\n== Powers ==\n'
         for x in self.powers:
-            result += f'{x}: {self.powers[x].to_sym()}\n'
+            result += f'{self.powers[x].to_sym()}\n\n'
         
         return result
 

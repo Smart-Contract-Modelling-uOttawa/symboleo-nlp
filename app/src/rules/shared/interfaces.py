@@ -2,7 +2,7 @@ from typing import List, Tuple
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.contract_update_request import ContractUpdateRequest
 from app.classes.contract_update_request import ContractUpdateRequest
-
+from app.classes.spec.predicate_function import PredicateFunction
 
 class IScoreStuff:
     def score(self, req: ContractUpdateRequest) -> List[Tuple[str, float]]:
@@ -14,8 +14,20 @@ class IExtractProperties:
         raise NotImplementedError()
 
 
+class IBuildPropertyExtractor:
+    @staticmethod
+    def build(nlp) -> IExtractProperties:
+        raise NotImplementedError()
+
+
 class IExtractPredicates:
     def extract(self, req: ContractUpdateRequest):
+        raise NotImplementedError()
+
+
+class IBuildPredicateExtractor:
+    @staticmethod
+    def build(nlp, template: PredicateFunction) -> IExtractPredicates:
         raise NotImplementedError()
 
 

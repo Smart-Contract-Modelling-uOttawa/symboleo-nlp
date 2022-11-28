@@ -3,13 +3,13 @@ from unittest.mock import MagicMock
 
 from app.src.rules.shared.match_validator import IValidateMatches
 from app.src.rules.shared.interfaces import IScoreStuff
-from app.src.rules.shared.score_based_extractor import ScoreBasedExtractor
+from app.src.rules.domain_model.score_based_extractor import ScoreBasedExtractor
 
 from app.classes.contract_update_request import ContractUpdateRequest
 from tests.helpers.test_nlp import TestNLP
 from tests.helpers.test_contract import get_test_contract
 
-# TODO: Need to get nlp working on the test...
+
 class LocationExtractorTests(unittest.TestCase):
     def setUp(self):
         self.nlp = TestNLP.get_nlp()
