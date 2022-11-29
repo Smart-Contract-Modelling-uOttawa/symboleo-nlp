@@ -36,10 +36,8 @@ class RoleScoreBuilder(IBuildRoleScores):
 
         # Corefs 
         ## Need to improve the template_string
-        key = req.key
-        template_key = 'delivery' # Need a way to map the key (DELIVERY_LOCATION) to template_key (delivery)
-        template_string = req.contract.template_strings['obligations'][template_key]
-        coref_set = self.__coref_getter.get(doc, key, template_string)
+        template_string = self._get_template_string(req)
+        coref_set = self.__coref_getter.get(doc, req.key, template_string)
 
         # Look through role matches
         # Find the role_match (e.g. buyer/seller)
@@ -56,3 +54,11 @@ class RoleScoreBuilder(IBuildRoleScores):
                     role_score_dict[c] = 1
         
         return role_score_dict
+    
+    def _get_template_string(self, req: ContractUpdateRequest) -> str:
+        for nk in req.contract.template_strings['obligations']:
+            sent = req.contract.template_strings['obligations'][nk]
+            if req.key in sent:
+                return sent
+        
+        raise ValueError(f'Invalid key... {req.key}')

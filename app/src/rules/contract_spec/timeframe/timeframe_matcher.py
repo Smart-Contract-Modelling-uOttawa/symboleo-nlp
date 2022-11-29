@@ -39,11 +39,16 @@ def get_tf_matcher(nlp):
         [{"LOWER": {'IN': ['between']}}, {"ENT_TYPE": 'DATE', "OP": "+"}, {"LOWER": "and"}, {"ENT_TYPE": 'DATE', "OP": "+"} ],
     ]
 
+    until_adp_event_pattern = [
+        [{"LOWER": {'IN': ['until']}}, {"ENT_TYPE": 'DATE', "OP": "+"}, {"LOWER": {'IN': ['after']}, "POS": "ADP"}, {"ENT_TYPE": "DOMAIN_EVENT", "OP": "+"} ],
+    ]
+
     matcher.add("within_time_period", within_time_period_pattern)
     matcher.add("before_date", before_date_pattern)
     matcher.add("before_event", before_event_pattern)
     matcher.add("after_date", after_date_pattern)
     matcher.add("between_dates", between_dates_pattern)
+    matcher.add("until_adp_event", until_adp_event_pattern)
 
 
     # Primitives
@@ -52,7 +57,7 @@ def get_tf_matcher(nlp):
     ]
 
     time_unit_pattern = [
-        [{"POS": "NOUN", "DEP": "pobj" , "ENT_TYPE": "DATE" }],
+        [{"POS": "NOUN", "DEP": { "IN": ["pobj", "npadvmod"]} , "ENT_TYPE": "DATE" }],
     ]
 
     point_vde_pattern = [

@@ -21,7 +21,7 @@ class DeliveryTimeframeTests(unittest.TestCase):
             doc = self.nlp(x.input_value)
             req = ContractUpdateRequest(contract, '', x.input_value, doc)
             result = self.sut.extract(req)
-            self.assertTrue(result.to_sym() in x.expected_sym, f'{result} not in {x.expected_sym}')
+            self.assertTrue(result.to_sym() in x.expected_sym, f'{result.to_sym()} not in expected result set')
          
 
 if __name__ == '__main__':

@@ -17,6 +17,7 @@ BUYER = dm.roles['buyer'].to_obj()
 DELIVERED_EVENT = dm.events['delivered'].to_obj()
 PAID_EVENT = dm.events['paid'].to_obj()
 PAID_LATE_EVENT = dm.events['paidLate'].to_obj()
+DISCLOSED_EVENT = dm.events['disclosed'].to_obj()
 
 meat_sale_contract_spec_template = ContractSpec(
     obligations = {
@@ -98,7 +99,57 @@ meat_sale_contract_spec_template = ContractSpec(
                     ])
                 ])
             ])
-        ) 
+        ),
+
+        ## disclosure1: O(seller, buyer, true, not Happens(disclosed))
+        'disclosure1': Obligation(
+            'disclosure1',
+            None,
+            SELLER,
+            BUYER,
+            None,
+            Proposition([
+                PAnd([
+                    PEquality([
+                        PComparison([
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        DISCLOSED_EVENT
+                                    )
+                                ),
+                                True
+                            )
+                        ])
+                    ])
+                ])
+            ])
+        ),
+
+        ## disclosure2: O(buyer, seller, true, not Happens(disclosed))
+        'disclosure2': Obligation(
+            'disclosure2',
+            None,
+            BUYER,
+            SELLER,
+            None,
+            Proposition([
+                PAnd([
+                    PEquality([
+                        PComparison([
+                            PNegAtom(
+                                PAtomPredicate(
+                                    PredicateFunctionHappens(
+                                        DISCLOSED_EVENT
+                                    )
+                                ),
+                                True
+                            )
+                        ])
+                    ])
+                ])
+            ])
+        )
 
     },
 

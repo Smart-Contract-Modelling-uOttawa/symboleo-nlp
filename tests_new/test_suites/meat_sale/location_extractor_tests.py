@@ -9,7 +9,7 @@ from app.templates.meat_sale.symboleo.contract_template import get_template
 
 class LocationExtractor(unittest.TestCase):
     def setUp(self):
-        self.key = 'TEST'
+        self.key = 'DELIVERY_LOCATION'
         self.nlp = TestNLP.get_nlp()
         self.sut = LocationExtractorBuilder.build(self.nlp)
 

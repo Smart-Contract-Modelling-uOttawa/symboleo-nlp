@@ -27,7 +27,11 @@ meat_sale_domain_model_template = DomainModel(
             # DomainProp('currency', '', 'Currency'),
             DomainProp('from', 'buyer', 'Role'),
             DomainProp('to', 'seller', 'Role')
+        ]),
+
+        'disclosed': DomainEvent('disclosed', [
         ])
+        
     },
     assets = {
         'perishableGood': Asset('perishableGood', None, [

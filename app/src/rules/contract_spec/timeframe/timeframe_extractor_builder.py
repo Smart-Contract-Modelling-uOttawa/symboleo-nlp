@@ -30,7 +30,8 @@ class TimeFrameExtractorBuilder(IBuildPredicateExtractor):
             'before_event': CaseObj([VariableEvent], PredicateFunctionWHappensBeforeEvent),
             'after_event': CaseObj([None], None),
             'between_date_and_date': CaseObj([None], None),
-            'within_time_period_of_event': CaseObj([None], None)
+            'within_time_period_of_event': CaseObj([None], None),
+            'until_adp_event': CaseObj([PointFunction], PredicateFunctionWHappensBefore)
         }
 
         # Can maybe just do this for all primitives... just loop through them
