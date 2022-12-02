@@ -1,4 +1,4 @@
-from app.classes.spec.sym_point import PointExpression
+from app.classes.spec.sym_point import PointExpression, Beginning, Ending
 from app.classes.spec.sym_situation import SymSituation
 
 class SymInterval():
@@ -23,6 +23,22 @@ class IntervalFunction(IntervalExpression):
         return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()}'
 
 
+# Added these ones - can express an interval with just a single point function (e.g. Date.add(...))
+class IntervalFunctionBeginning(IntervalFunction):
+    def __init__(self, arg: PointExpression):
+        super(IntervalFunctionBeginning, self).__init__(Beginning(), arg)
+
+    def to_sym(self):
+        return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()}'
+
+class IntervalFunctionEnding(IntervalFunction):
+    def __init__(self, arg: PointExpression):
+        super(IntervalFunctionEnding, self).__init__(arg, Ending())
+
+    def to_sym(self):
+        return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()}'
+
+
 class SituationExpression(IntervalExpression):
     situation = SymSituation()
 
@@ -41,3 +57,8 @@ class Interval(SymInterval):
     
     def to_sym(self):
         return self.interval_expression.to_sym()
+
+# Added to handle certain dynamic situations
+class Never(SymInterval):
+    def to_sym(self):
+        return 'NEVER'

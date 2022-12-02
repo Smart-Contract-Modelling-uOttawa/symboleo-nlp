@@ -5,7 +5,13 @@ nl_template = {
         'delivery': 'The Seller shall deliver the Order in one delivery [DELIVERY_TIMEFRAME] to the Buyer [DELIVERY_LOCATION]',
         'payment': 'The Buyer shall pay [PAYMENT_DETAILS] to the Seller [PAYMENT_TIMEFRAME].',
         'latePayment': 'In the event of late payment of the amount owed due, the Buyer shall pay interests equal to [INTEREST_DETAILS]',
-        'disclosure': 'Both Seller and Buyer must keep the contents of this contract confidential [CONFIDENTIALITY_TIMEFRAME]'
+        'disclosure': 'Both Seller and Buyer must keep the contents of this contract confidential [CONFIDENTIALITY_TIMEFRAME]',
+    },
+    'powers': {
+        # I think i'd like to have a condition on suspendDelivery, which can be a parameter (e.g. If payment is not made)
+        # The existence of suspendDelivery entails the existence of resumeDelivery. And it is initiated with a "Never" trigger
+        'suspendResumeDelivery': '[DELIVERY_SUSPENSION_CONDITION] the Seller may suspend performance of all of its obligations under the agreement [DELIVERY_RESUMPTION_CONDITION]',
+        'terminateContract': 'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract [TERMINATION_CONDITION]'
     }
 }
 
@@ -15,7 +21,10 @@ sample_customization = [
     ('PAYMENT_DETAILS', '$100.00 CAD'),
     ('PAYMENT_TIMEFRAME', 'before April 17, 2022'),
     ('INTEREST_DETAILS', '10% of the amount owed'),
-    ('CONFIDENTIALITY_TIEFRAME', 'until 6 months after the termination of the contract')
+    ('CONFIDENTIALITY_TIMEFRAME', 'until 6 months after the termination of the contract'),
+    ('DELIVERY_SUSPENSION_CONDITION', 'if payment is not made'),
+    ('DELIVERY_RESUMPTION_CONDITION', 'until payment is made'),
+    ('TERMINATION_CONDITION', 'unless such delay exceeds 10 Days')
 ]
 
 parameters = {
@@ -115,4 +124,37 @@ parameters = {
             )
         )
     ],
+
+    'DELIVERY_SUSPENSION_CONDITION': [
+        ContractSpecParameter(
+            ContractParamType.CONDITION,
+            PredicateProcessorConfig(
+                norm_type = 'powers',
+                norm_id = 'suspendDelivery',
+                norm_component = 'trigger',
+            )
+        )
+    ],
+
+    'DELIVERY_RESUMPTION_CONDITION': [
+        ContractSpecParameter(
+            ContractParamType.CONDITION,
+            PredicateProcessorConfig(
+                norm_type = 'powers',
+                norm_id = 'resumeDelivery',
+                norm_component = 'trigger',
+            )
+        )
+    ],
+
+    'TERMINATION_CONDITION': [
+        ContractSpecParameter(
+            ContractParamType.CONDITION,
+            PredicateProcessorConfig(
+                norm_type = 'powers',
+                norm_id = 'terminateContract',
+                norm_component = 'trigger'
+            )
+        )
+    ]
 }

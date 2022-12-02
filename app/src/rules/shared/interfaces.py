@@ -27,7 +27,11 @@ class IExtractPredicates:
 
 class IBuildPredicateExtractor:
     @staticmethod
-    def build(nlp, template: PredicateFunction) -> IExtractPredicates:
+    def build(
+        nlp, 
+        template: PredicateFunction, 
+        default_components = []
+    ) -> IExtractPredicates:
         raise NotImplementedError()
 
 

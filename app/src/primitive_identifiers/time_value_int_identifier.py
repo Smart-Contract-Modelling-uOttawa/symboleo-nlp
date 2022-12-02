@@ -1,18 +1,33 @@
+from app.src.matcher_helper import IGetMatches
 from app.classes.spec.helpers import TimeValueInt
 from app.classes.spec.primitive import ScoredPrimitive
 from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
 
 class TimeValueIntIdentifier(IIdentifyPrimitives):
     def __init__(
-        self, 
+        self,
+        matcher: IGetMatches
     ):
-        self.s = 0
+        self.__matcher = matcher
+
+    def identify(self, doc) -> ScoredPrimitive:
+        pattern = [
+            [{"POS": "NUM", "DEP": "nummod", "ENT_TYPE": "DATE" }],
+        ]
+        match = self.__matcher.match(pattern, doc)
+
+        if match:
+            return ScoredPrimitive(TimeValueInt(match.text), 1)
+        
+        return None
+
+    
 
     # TODO: Should likely focus on spacy "entities" here
     # TODO: May also want to convert anything to actual numbers. This could be a prepo step - assumption?
     ## numerizer - https://spacy.io/universe/project/numerizer
     ## Assumes only one time point...
-    def identify(self, doc) -> ScoredPrimitive:
+    def identify_old(self, doc) -> ScoredPrimitive:
         # Look for numbers that are close to time units?
         target1 = [x for x in doc if x.dep_ == 'nummod' and x.ent_type_ in ['TIME', 'DATE']]
 

@@ -1,4 +1,5 @@
-from app.classes.spec.sym_event import VariableDotExpression, VariableEvent
+from app.classes.spec.helpers import VariableDotExpression
+from app.classes.spec.sym_event import VariableEvent, EventVDE
 
 class DomainProp:
     def __init__(self, key, value, type):
@@ -45,7 +46,7 @@ class DomainEvent:
         self.props = props
     
     def to_obj(self):
-        return VariableEvent(VariableDotExpression(self.name))
+        return VariableEvent(EventVDE(self.name))
     
     def to_sym(self):
         result = f'{self.name}\n'

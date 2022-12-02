@@ -1,26 +1,24 @@
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensAfter, PredicateFunctionWHappensBefore, PredicateFunctionWHappensBeforeEvent
-from app.classes.spec.sym_point import PointAtomParameterDotExpression, PointFunction, PointAtomContractEvent
-from app.classes.spec.sym_event import ContractEvent, VariableEvent
-from app.classes.spec.helpers import TimeUnitStr, TimeValueInt, VariableDotExpression
+from app.classes.spec.sym_point import PointAtomParameterDotExpression, PointFunction, PointAtomContractEvent, PointVDE
+from app.classes.spec.sym_event import ContractEvent, VariableEvent, EventVDE
+from app.classes.spec.helpers import TimeUnitStr, TimeValueInt
 from app.src.rules.shared.configs import PredicateExtractorConfig
 from app.src.rules.shared.case_obj import CaseObj
 from app.src.rules.contract_spec.timeframe.timeframe_matcher import get_tf_matcher
-
 from app.classes.spec.predicate_function import PredicateFunction
 
 from app.src.rules.shared.interfaces import IBuildPredicateExtractor, IExtractPredicates
 from app.src.rules.contract_spec.predicate_extractor import PredicateExtractor
 from app.src.rules.contract_spec.dynamic_constructor_builder import DynamicConstructorBuilder
-
-
-# e.g. for payment:
-# paid_event = contract_template.domain_model.events['paid'].to_obj()
-# template = PredicateFunctionHappens(paid_event)
-
+from app.src.primitive_identifiers.primitive_scorer import PrimitiveScorer
 
 class TimeFrameExtractorBuilder(IBuildPredicateExtractor):
     @staticmethod
-    def build(nlp, template: PredicateFunction) -> IExtractPredicates:
+    def build(
+        nlp, 
+        template: PredicateFunction,
+        default_components = []
+    ) -> IExtractPredicates:
         matcher = get_tf_matcher(nlp)
         
         case_dict = {
@@ -34,21 +32,19 @@ class TimeFrameExtractorBuilder(IBuildPredicateExtractor):
             'until_adp_event': CaseObj([PointFunction], PredicateFunctionWHappensBefore)
         }
 
-        # Can maybe just do this for all primitives... just loop through them
-        primitive_dict = {
-            'time_value_int': TimeValueInt,
-            'time_unit_string': TimeUnitStr,
-            'point_vde': VariableDotExpression,
-            'event_vde': VariableDotExpression
-        }
+        target_primitives = [TimeValueInt, TimeUnitStr, PointVDE, EventVDE]
 
+        # TODO: The PointAtomContractEvent is not a primitive - may want to address this...
+        # Perhaps I just send along the ContractEvent instead
         contract_event = ContractEvent('activated')
         default_components = [
             PointAtomContractEvent(contract_event)
         ]
 
-        config = PredicateExtractorConfig(template, matcher, case_dict, primitive_dict, default_components)
+        config = PredicateExtractorConfig(template, matcher, case_dict, target_primitives, default_components)
         
         dynamic_constructor = DynamicConstructorBuilder.build()
         
-        return PredicateExtractor(nlp, config, dynamic_constructor)
+        primitive_scorer = PrimitiveScorer(nlp)
+
+        return PredicateExtractor(nlp, config, primitive_scorer, dynamic_constructor)

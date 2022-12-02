@@ -5,6 +5,7 @@ from app.src.rules.shared.configs import PredicateProcessorConfig, DomainPropPro
 # class syntax
 class ContractParamType(Enum):
     TIMEFRAME = 1
+    CONDITION = 2
 
 class DomainParamType(Enum):
     LOCATION = 1

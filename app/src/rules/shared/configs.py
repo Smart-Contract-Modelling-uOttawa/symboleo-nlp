@@ -1,3 +1,7 @@
+from typing import List
+from app.classes.spec.primitive import Primitive
+from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
+
 # TODO: Add in all the types here
 class PredicateExtractorConfig:
     def __init__(
@@ -5,13 +9,13 @@ class PredicateExtractorConfig:
         template,
         matcher,
         case_dict,
-        primitive_dict,
+        target_primitives: List[Primitive],
         default_components
     ):
         self.template = template
         self.matcher = matcher
         self.case_dict = case_dict
-        self.primitive_dict = primitive_dict
+        self.target_primitives = target_primitives
         self.default_components = default_components
 
 

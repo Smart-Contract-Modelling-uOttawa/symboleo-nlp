@@ -50,30 +50,4 @@ def get_tf_matcher(nlp):
     matcher.add("between_dates", between_dates_pattern)
     matcher.add("until_adp_event", until_adp_event_pattern)
 
-
-    # Primitives
-    time_value_pattern = [
-        [{"POS": "NUM", "DEP": "nummod", "ENT_TYPE": "DATE" }],
-    ]
-
-    time_unit_pattern = [
-        [{"POS": "NOUN", "DEP": { "IN": ["pobj", "npadvmod"]} , "ENT_TYPE": "DATE" }],
-    ]
-
-    point_vde_pattern = [
-        [{"POS": "PROPN", "DEP": "pobj" , "ENT_TYPE": "DATE" }, 
-         {"POS": "NUM", "DEP": "nummod" , "ENT_TYPE": "DATE" },
-         {"POS": "PUNCT", "DEP": "punct" , "ENT_TYPE": "DATE" },
-         {"POS": "NUM", "DEP": "nummod" , "ENT_TYPE": "DATE" }],
-    ]
-
-    event_vde_pattern = [
-        [{"POS": "VERB", "ENT_TYPE": "DOMAIN_EVENT" }],
-    ]
-
-    matcher.add('time_value_int', time_value_pattern)
-    matcher.add('time_unit_string', time_unit_pattern)
-    matcher.add('point_vde', point_vde_pattern)
-    matcher.add('event_vde', event_vde_pattern) # will have separate ones for contract/ob/pow events
-
     return matcher

@@ -13,6 +13,13 @@ class PointAtom(PointExpression):
     def to_sym(self):
         raise NotImplementedError()
 
+# Added in an effort to get rid of the main VDE
+class PointVDE:
+    def __init__(self, name: str = ''):
+        self.name = name
+    
+    def to_sym(self):
+        return self.name
 
 # Note: Changed the arg from PointExpression to PointAtom to avoid circular dependency
 class PointFunction(PointExpression):
@@ -30,10 +37,11 @@ class PointFunction(PointExpression):
         return f'{self.name}({self.arg.to_sym()}, {self.value.to_sym()}, {self.time_unit.to_sym()})'
 
 
+# May be able to just replace this with the PointVDE, and make that inherit PointAtom...
 class PointAtomParameterDotExpression(PointAtom):
-    variable = VariableDotExpression()
+    variable = PointVDE()
 
-    def __init__(self, variable: VariableDotExpression):
+    def __init__(self, variable: PointVDE):
         self.variable = variable
 
     def to_sym(self):
@@ -78,3 +86,12 @@ class Point(SymPoint):
     
     def to_sym(self):
         return self.point_expression.to_sym()
+
+
+class Beginning(PointExpression):
+    def to_sym(self):
+        return 'MIN_DATE'
+
+class Ending(PointExpression):
+    def to_sym(self):
+        return 'MAX_DATE'

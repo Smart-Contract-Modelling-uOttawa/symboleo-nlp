@@ -1,18 +1,31 @@
-from app.classes.spec.helpers import VariableDotExpression
-
 class SymEvent:
     def to_sym(self):
         raise NotImplementedError()
 
+class EventVDE:
+    def __init__(self, name: str = ''):
+        self.name = name
+    
+    def to_sym(self):
+        return self.name
 
 class VariableEvent(SymEvent):
-    variable = VariableDotExpression()
+    variable = EventVDE()
     
-    def __init__(self, variable: VariableDotExpression):
+    def __init__(self, variable: EventVDE):
         self.variable = variable
 
     def to_sym(self):
         return f'{self.variable.to_sym()}'
+
+# class VariableEvent(SymEvent):
+#     variable = VariableDotExpression()
+    
+#     def __init__(self, variable: VariableDotExpression):
+#         self.variable = variable
+
+#     def to_sym(self):
+#         return f'{self.variable.to_sym()}'
 
 
 class PowerEvent(SymEvent):

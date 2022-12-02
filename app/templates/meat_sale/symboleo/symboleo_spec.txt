@@ -47,3 +47,9 @@ disclosure2: O(buyer, seller, true, not Happens(disclosed))
 
 
 == Powers ==
+suspendDelivery: P(seller, buyer, true, Suspended(obligations.delivery))
+
+resumeDelivery: P(buyer, seller, true, Resumed(obligations.delivery))
+
+terminateContract: Occurs(Violation(obligations.delivery), NEVER) -> P(buyer, seller, true, Terminated(self))
+
