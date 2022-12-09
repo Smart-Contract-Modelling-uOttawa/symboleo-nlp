@@ -14,12 +14,12 @@ class LocationExtractor(unittest.TestCase):
         self.sut = LocationExtractorBuilder.build(self.nlp)
 
     def test_suite(self):
-        for x in test_suite:
+        for i,x in enumerate(test_suite):
             contract = get_template()
             doc = self.nlp(x.input_value)
             req = ContractUpdateRequest(contract, self.key, x.input_value, doc)
             result = self.sut.extract(req)
-            self.assertTrue(result in x.expected_property, f'{result} not in {x.expected_property}')
+            self.assertTrue(result in x.expected_property, f'{i}: {result} not in {x.expected_property}')
          
 
 if __name__ == '__main__':

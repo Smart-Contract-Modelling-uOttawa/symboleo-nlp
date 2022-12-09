@@ -7,7 +7,7 @@ from app.src.rules.contract_spec.predicate_processor import PredicateProcessor
 
 from app.src.rules.shared.configs import PredicateProcessorConfig
 from app.classes.symboleo_contract import Obligation
-from app.classes.spec.sym_event import VariableDotExpression, VariableEvent
+from app.classes.spec.sym_event import VariableEvent, EventVDE
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.contract_update_request import ContractUpdateRequest
@@ -17,7 +17,7 @@ from tests.helpers.test_contract import get_test_contract
 class PredicateProcessorTests(unittest.TestCase):
     def setUp(self):
         self.predicate_extractor = IExtractPredicates()
-        fake_predicate = PredicateFunctionHappens(VariableEvent(VariableDotExpression('test')))
+        fake_predicate = PredicateFunctionHappens(VariableEvent(EventVDE('test')))
         self.predicate_extractor.extract = MagicMock(return_value=fake_predicate)
         
         self.norm_updater = IUpdateNormPropositions()

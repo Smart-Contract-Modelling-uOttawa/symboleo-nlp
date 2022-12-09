@@ -13,6 +13,9 @@ class NounChunkScorer(IScoreStuff):
     def score(self, req: ContractUpdateRequest) -> List[Tuple[str, float]]:
         results = []
 
+        # I want a separate function in here that searches for location spans
+        # Will be re-used by the role scorer
+
         for nc in list(req.doc.noun_chunks):
             start_ind = 0
             if nc[0].pos_ == 'DET':

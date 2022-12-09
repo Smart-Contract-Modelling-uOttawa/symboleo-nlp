@@ -5,7 +5,7 @@ seller: seller
 - address (str): 123 Main street
 
 buyer: buyer
-- address (str): 999 Central Ave
+- warehouse (str): 999 Central Ave
 
 
 == Assets ==

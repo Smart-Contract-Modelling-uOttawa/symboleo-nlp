@@ -7,7 +7,7 @@ meat_sale_domain_model_template = DomainModel(
             DomainProp('address', '123 Main street', 'str')
         ]),
         'buyer': Role('buyer', [
-            DomainProp('address', '999 Central Ave', 'str')
+            DomainProp('warehouse', '999 Central Ave', 'str')
         ])
     },
     events = {

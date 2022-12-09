@@ -18,12 +18,18 @@ class ScoreBasedExtractor(IExtractProperties):
     
     def extract(self, req: ContractUpdateRequest) -> str:
         # Initial validation
+        ## May be able to get rid of this one actually. 
+        ## Push it to the scorers to send back messages
         self.__validator.validate(req.doc)
 
         # Iterate through scorers
         all_scores = []
         for scorer in self.__scorers:
+            ## Want to handle situations where a scorer throws an error.
+            ## We would wrap it in a catch, and log it in a message set - could be returned to user
+            ## Will require a more sophsiticated output than a string. Thats fine!
             next_score_set = scorer.score(req)
+            print(scorer.__class__, next_score_set)
             all_scores.extend(next_score_set)
 
         # Take the maximum score
