@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.src.primitive_identifiers.state_name_scorer import StateNameScorer
+from app.src.component_identifiers.helpers.state_name_scorer import StateNameScorer
 from tests.helpers.test_nlp import TestNLP
 
 class StateNameScorerTests(unittest.TestCase):

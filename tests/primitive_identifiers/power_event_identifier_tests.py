@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.primitive import Primitive
+from app.classes.processing.components import Primitive
 from app.classes.spec.sym_event import PowerEvent
-from app.src.primitive_identifiers.event_scorer import IScoreEvents
+from app.src.component_identifiers.helpers.event_scorer import IScoreEvents
 
-from app.src.primitive_identifiers.power_event_identifier import PowerEventIdentifier
-from app.src.primitive_identifiers.variable_scorer import IScoreVariables
+from app.src.component_identifiers.power_event_identifier import PowerEventIdentifier
+from app.src.component_identifiers.helpers.variable_scorer import IScoreVariables
 
 from tests.helpers.test_nlp import TestNLP
 

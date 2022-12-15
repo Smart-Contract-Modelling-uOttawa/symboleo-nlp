@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.helpers import TimeUnitStr
 
-from app.src.primitive_identifiers.time_unit_str_identifier import TimeUnitStrIdentifier
+from app.src.component_identifiers.time_unit_str_scorer import TimeUnitStrIdentifier
 
 from tests.helpers.test_nlp import TestNLP
 

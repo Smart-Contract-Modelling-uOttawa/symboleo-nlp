@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.primitive import Primitive
+from app.classes.processing.components import Primitive
 from app.classes.spec.sym_event import ContractEvent
-from app.src.primitive_identifiers.event_scorer import IScoreEvents
+from app.src.component_identifiers.helpers.event_scorer import IScoreEvents
 
-from app.src.primitive_identifiers.contract_event_identifier import ContractEventIdentifier
+from app.src.component_identifiers.contract_event_scorer import ContractEventIdentifier
 
 from tests.helpers.test_nlp import TestNLP
 

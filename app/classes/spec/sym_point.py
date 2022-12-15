@@ -14,7 +14,7 @@ class PointAtom(PointExpression):
         raise NotImplementedError()
 
 # Added in an effort to get rid of the main VDE
-class PointVDE:
+class PointVDE(PointAtom):
     def __init__(self, name: str = ''):
         self.name = name
     
@@ -38,14 +38,14 @@ class PointFunction(PointExpression):
 
 
 # May be able to just replace this with the PointVDE, and make that inherit PointAtom...
-class PointAtomParameterDotExpression(PointAtom):
-    variable = PointVDE()
+# class PointAtomParameterDotExpression(PointAtom):
+#     variable = PointVDE()
 
-    def __init__(self, variable: PointVDE):
-        self.variable = variable
+#     def __init__(self, variable: PointVDE):
+#         self.variable = variable
 
-    def to_sym(self):
-        return self.variable.to_sym()
+#     def to_sym(self):
+#         return self.variable.to_sym()
 
 
 class PointAtomObligationEvent(PointAtom):

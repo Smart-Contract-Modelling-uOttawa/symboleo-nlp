@@ -4,7 +4,7 @@ from app.src.rules.shared.configs import PredicateProcessorConfig
 from app.classes.symboleo_contract import SymboleoContract
 from app.src.rules.shared.interfaces import IExtractPredicates
 from app.classes.contract_update_request import ContractUpdateRequest
-from app.src.norm_proposition_updater import IUpdateNormPropositions
+from app.src.rules.contract_spec.norm_proposition_updater import IUpdateNormPropositions
 from app.classes.spec.symboleo_spec import PNegAtom
 from app.classes.spec.p_atoms import PAtomPredicate
 

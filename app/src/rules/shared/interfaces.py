@@ -3,6 +3,7 @@ from app.classes.symboleo_contract import SymboleoContract
 from app.classes.contract_update_request import ContractUpdateRequest
 from app.classes.contract_update_request import ContractUpdateRequest
 from app.classes.spec.predicate_function import PredicateFunction
+from app.classes.processing.scored_components import ScoredPredicate
 
 class IScoreStuff:
     def score(self, req: ContractUpdateRequest) -> List[Tuple[str, float]]:
@@ -21,7 +22,7 @@ class IBuildPropertyExtractor:
 
 
 class IExtractPredicates:
-    def extract(self, req: ContractUpdateRequest):
+    def extract(self, req: ContractUpdateRequest) -> List[ScoredPredicate]:
         raise NotImplementedError()
 
 

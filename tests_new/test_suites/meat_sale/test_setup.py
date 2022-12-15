@@ -11,7 +11,7 @@ from app.templates.meat_sale.nl_template import parameters as meat_sale_parms
 from app.src.rules.contract_spec.predicate_processor import PredicateProcessor
 from app.src.rules.domain_model.domain_prop_processor import DomainPropProcessor
 
-from app.src.norm_proposition_updater import NormPropositionUpdater
+from app.src.rules.contract_spec.norm_proposition_updater import NormPropositionUpdater
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 
 from app.classes.spec.sym_point import PointAtomContractEvent, ContractEvent

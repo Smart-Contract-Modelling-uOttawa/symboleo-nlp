@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from app.src.primitive_identifiers.sentence_preprocessor import SentencePreprocessor
-from app.src.primitive_identifiers.similarity_calculator import SentenceSimilarityCalculator
+from app.src.component_identifiers.helpers.sentence_preprocessor import SentencePreprocessor
+from app.src.component_identifiers.helpers.similarity_calculator import SentenceSimilarityCalculator
 from tests.helpers.test_nlp import TestNLP
 
 test_suite = [

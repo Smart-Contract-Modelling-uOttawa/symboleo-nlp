@@ -1,94 +1,40 @@
-from app.src.dynamic_constructor import IConstructDynamicObjects
+from typing import List
 from app.classes.contract_update_request import ContractUpdateRequest
 from app.src.rules.shared.interfaces import IExtractPredicates
-from app.src.rules.shared.configs import PredicateExtractorConfig
-from app.src.rules.shared.case_obj import CaseObj
-from app.src.primitive_identifiers.primitive_scorer import IScorePrimitives
-from app.src.primitive_identifiers.primitive_identifier import ScoredPrimitive
+from app.classes.processing.scored_components import ScoredPredicate, ScoredParameter
+from app.src.rules.contract_spec.predicate_scorer import IScorePredicates
+from app.src.rules.contract_spec.parameter_scorer import IScoreParameters
+from app.src.rules.contract_spec.pred_parm_combiner import ICombinePredsParms
 
-# TODO: Refactor this - needs to be seriously decomposed, and then tested
+# Might rename...
 class PredicateExtractor(IExtractPredicates):
     def __init__(
         self, 
-        nlp,
-        config: PredicateExtractorConfig,
-        primitive_scorer: IScorePrimitives,
-        dynamic_constructor: IConstructDynamicObjects,
+        predicate_scorer: IScorePredicates,
+        parameter_scorer: IScoreParameters,
+        combiner: ICombinePredsParms
     ):
-        self.__nlp = nlp
-        self.__template = config.template
-        self.__matcher = config.matcher
-        self.__case_dict = config.case_dict
-        self.__primitive_scorer = primitive_scorer
-        self.__target_primitives = config.target_primitives
-        self.__default_components = config.default_components
-        self.__dynamic_constructor = dynamic_constructor
+        self.__predicate_scorer = predicate_scorer
+        self.__parameter_scorer = parameter_scorer
+        self.__combiner = combiner
 
+    def extract(self, req: ContractUpdateRequest) -> List[ScoredPredicate]: 
+        preds = self.__predicate_scorer.score(req)
+        if len(preds) == 0:
+            return []  
 
-    def extract(self, req: ContractUpdateRequest):      
-        doc = req.doc
-        # Get the matches. Might even just pass these in 
-        matches = self.__matcher(doc)
+        parms = self.__parameter_scorer.score(req)
+        self._print_parms(parms)
+        if len(parms) == 0:
+            return []
 
-        # Find out which case we are in
-        case_matches = self._get_case_matches(matches, doc)
-        if len(case_matches) == 0:
-            raise ValueError('Invalid. No matching patterns')
-        
-        # Extract all the primitives
-        scored_primitives = self.__primitive_scorer.score(self.__target_primitives, doc)
-        primitives = [x.primitive for x in scored_primitives]
-        for x in self.__default_components:
-            primitives.append(x)
+        result_set = self.__combiner.combine(preds, parms)
 
-        # If none, then do something?
-        
-        # Build a predicate result for each matching case we find
-        results = [
-            self._build_next_result(primitives, self.__case_dict[k]) for k in case_matches 
-        ]
-
-        return results[0] # Handle empty case
-
+        return result_set
     
 
-    def _build_next_result(self, primitives, caseObj: CaseObj):
-        needed_args = caseObj.args
-
-        # May be a problem to have multiple needed_args - since the primitives will be used multiple times. - not good
-        arg_set = []
-        for target_type in needed_args:
-            next_arg = self.__dynamic_constructor.construct(target_type.__name__, primitives)
-            arg_set.append(next_arg)
-        
-        # Add the relevant template pieces
-        if self.__template:
-            for template_arg in self.__template.__dict__:
-                next_arg = self.__template.__dict__[template_arg]
-                arg_set.append(next_arg)
-        
-        # Construct it
-        target_type = caseObj.pred
-        next_result = self.__dynamic_constructor.construct(target_type.__name__, arg_set)
-        
-        return next_result
-
-
-    def _get_case_matches(self, matches, doc):
-        case_matches = {}
-        for x in self.__case_dict:
-            next_val = self._extract_max(matches, x)
-            if next_val:
-                next_span = doc[next_val[1]:next_val[2]]
-                case_matches[x] = next_span
-
-        return case_matches
-        
-
-    def _extract_max(self, matches, k):
-        all_matches = [x for x in matches if self.__nlp.vocab.strings[x[0]] == k]
-        if len(all_matches) > 0:
-            return max(all_matches, key=lambda x: x[2]-x[1])
-        else:
-            return None
-
+    def _print_parms(self, parms: List[ScoredParameter]):
+        print('\nPARMS:')
+        for x in parms:
+            print('--', x.obj.to_sym(), x.score)
+        print('\n')

@@ -2,21 +2,19 @@ class SymEvent:
     def to_sym(self):
         raise NotImplementedError()
 
-class EventVDE:
-    def __init__(self, name: str = ''):
-        self.name = name
+# class EventVDE:
+#     def __init__(self, name: str = ''):
+#         self.name = name
     
-    def to_sym(self):
-        return self.name
+#     def to_sym(self):
+#         return self.name
 
 class VariableEvent(SymEvent):
-    variable = EventVDE()
-    
-    def __init__(self, variable: EventVDE):
-        self.variable = variable
+    def __init__(self, name: str):
+        self.name = name
 
     def to_sym(self):
-        return f'{self.variable.to_sym()}'
+        return f'{self.name}'
 
 # class VariableEvent(SymEvent):
 #     variable = VariableDotExpression()

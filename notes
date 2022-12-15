@@ -1,0 +1,68 @@
+== PointFunction and PointAtom Issue ==
+
+Key issue with the graph-based recursive identification approach
+- suppose we are looking for a point
+- A point contains a pointExpression, which is an abstract class
+- a PointExpression can ultimately be a PointFunction or a PointAtom
+- Furthermore, a PointFunction CONTAINS A PointAtom
+
+Therefore:
+- if we are recursively searching for a Point in our NL
+- And we find that there is a PointAtom
+- We may then just skip over searching for a PointFunction
+- This is a problem
+
+Potential fix
+- For the subclasses, we can look at all possibilities
+- So suppose we extract both a PointAtom and a PointFunction
+- We could break the tie by simply choosing the one with the most arguments
+- Which in this case, would be PointFunction
+- We can also introduce other heuristics or even a straight-up fixed priority ranking
+
+
+== Default Component Issue ==
+
+Suppose we want to look for a PointFunction from the text "within 2 weeks"
+- The default component is a PointAtomContractEvent(ContractEvent('activated))
+- When doing the recursive identification, it drills down to the leaves
+- A PointFunction requires a PointAtom, TimeUnitString, and TimeValueInt
+- TimeUnitString and TimeValueInt are fine. It's the PointAtom that we need to focus on
+- A PointAtom can be a PACE, PAPE, PAOE, PVDE. Only the PVDE is a leaf; the others have proeprties that are events
+- We wont exract the required PointAtom from "within 2 weeks". This is the whole point of introduing the defaults
+- So as we recursively traverse the graph, at each stage, we should check if its in the defaults
+- If it is, then we return it as a component
+- This means we need to pass in the defaults to the RecursiveIdentifier. Thats fine
+
+Alternatively, we could identify all the components (prims + defaults) beforehand, and send that list to the RI
+- This is close to what we previously had with the PredicateBuilder
+- Need to ensure we don't double-use some pieces...
+- Find all the primitives, concat with defaults, and pass that to the RI. Then use that in the base case
+- So basically the identifying is done before. That also seems fine
+- This is also means we're not passing the doc object recursively...
+- I like this approach
+
+
+== Default parameters are kinda cheating ==
+- Why is the PACE(ContractEvent('activated')) the default anchor point?
+
+Defaults might not be a great idea
+
+Perhaps we should focus more on holistic identification
+- For example, in the PointFunction, if we have a TUS and TVI, and we're missing a PointAtom
+- Then we can write some rules that could potentially further handle the defaults...
+- I like this a little better.
+
+It might mean that we need to put the entire req inside the identifiers... not just the doc...
+- That's ok. Probably required for proper NLP
+- Just kinda want to be careful about passing big objects recursively...
+- the req object wont change, so may be a way around it.
+
+
+== HappensBeforeEvent Issue ==
+
+The HappensBeforeEvent predicate requires two events, which must be separate
+- By default, it is reusing the template event - not good
+- Need a way to uniquify the set of events...
+- e.g. if the template has a "test" event and we detect this predicate, then the result is HappensBeforeEvent(test, test)
+- Once we introduce more primitive identifiers, we may help solve the issue
+- but will likely need some uniqifiying

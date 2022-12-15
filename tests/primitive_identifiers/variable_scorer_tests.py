@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from app.src.primitive_identifiers.similarity_calculator import ICalculateSentenceSimilarity
-from app.src.primitive_identifiers.variable_scorer import VariableScorer
+from app.src.component_identifiers.helpers.similarity_calculator import ICalculateSentenceSimilarity
+from app.src.component_identifiers.helpers.variable_scorer import VariableScorer
 from tests.helpers.test_nlp import TestNLP
 
 class VariableScorerTests(unittest.TestCase):

@@ -5,7 +5,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens, Predic
 from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent
 from app.classes.spec.sym_interval import Interval, SituationExpression, Never, IntervalFunction
 from app.classes.spec.sym_situation import ObligationState
-from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, PointAtomParameterDotExpression, PointFunction
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, PointFunction
 from app.classes.spec.power_function import PFObligation, PFContract
 
 from app.classes.symboleo_contract import ContractSpec

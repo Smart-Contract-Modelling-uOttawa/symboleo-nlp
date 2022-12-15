@@ -15,6 +15,7 @@ test_suite = [
     ),
     TV(
         input_value = 'before the contract terminates',
-        expected_sym = ['WhappensBeforeE(test, contract.terminates)']
-    )
+        expected_sym = ['WhappensBeforeE(test, contract.terminates)'] # Currently failing
+    ),
+    
 ]

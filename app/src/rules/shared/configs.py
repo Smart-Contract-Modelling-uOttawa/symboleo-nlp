@@ -1,6 +1,6 @@
 from typing import List
-from app.classes.spec.primitive import Primitive
-from app.src.primitive_identifiers.primitive_identifier import IIdentifyPrimitives
+from app.classes.processing.components import Primitive
+from app.src.component_identifiers.interfaces import IScorePrimitives
 
 # TODO: Add in all the types here
 class PredicateExtractorConfig:

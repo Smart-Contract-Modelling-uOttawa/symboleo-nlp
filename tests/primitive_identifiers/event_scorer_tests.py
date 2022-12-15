@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.src.primitive_identifiers.event_scorer import EventScorer
+from app.src.component_identifiers.helpers.event_scorer import EventScorer
 from tests.helpers.test_nlp import TestNLP
 
 test_suite = [

@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.src.primitive_identifiers.sentence_preprocessor import SentencePreprocessor
+from app.src.component_identifiers.helpers.sentence_preprocessor import SentencePreprocessor
 from tests.helpers.test_nlp import TestNLP
 
 test_suite = [
