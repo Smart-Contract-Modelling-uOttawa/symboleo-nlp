@@ -8,27 +8,25 @@ from app.classes.spec.sym_event import VariableEvent, ContractEvent
 from app.classes.spec.sym_point import PointAtomContractEvent
 
 from app.templates.meat_sale.symboleo.contract_template import get_template
-from app.templates.meat_sale.test_suites.timeframe_extraction import test_suite
+from app.templates.meat_sale.test_suites.condition_extraction import test_suite
 
-from app.src.rules.contract_spec.timeframe.timeframe_patterns import get_tf_patterns
+from app.src.rules.contract_spec.condition.condition_patterns import get_condition_patterns
 from app.src.rules.contract_spec.predicate_extractor_builder import PredicateExtractorBuilder
 
 
 class DeliveryTimeframeTests(unittest.TestCase):
     def setUp(self):
         self.nlp = TestNLP.get_nlp()
-        template = PredicateFunctionHappens(VariableEvent('test')) 
-        # default_components = [
-        #     PointAtomContractEvent(ContractEvent('activated'))
-        # ]
-        case_patterns = get_tf_patterns(self.nlp)
+        template = None
+        #template = PredicateFunctionHappens(VariableEvent('test')) 
+        case_patterns = get_condition_patterns(self.nlp)
         self.sut = PredicateExtractorBuilder.build(self.nlp, template, case_patterns)
 
     def test_suite(self):
         for x in test_suite:
             contract = get_template()
             doc = self.nlp(x.input_value)
-            req = ContractUpdateRequest(contract, 'DELIVERY_TIMEFRAME', x.input_value, doc)
+            req = ContractUpdateRequest(contract, x.key, x.input_value, doc)
             results = self.sut.extract(req)
 
             for res in results:

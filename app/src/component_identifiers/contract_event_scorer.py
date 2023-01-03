@@ -22,6 +22,7 @@ class ContractEventScorer(IScorePrimitives):
         ## look for a noun that suggests a contract
         ## If found, look for a relation to a relevant contract-related verb
         ## etc etc etc
+        return None
 
         event_name, event_score = self.__event_name_scorer.score(doc)
 

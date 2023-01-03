@@ -8,7 +8,7 @@ nl_template = {
         'disclosure': 'Both Seller and Buyer must keep the contents of this contract confidential [CONFIDENTIALITY_TIMEFRAME]',
     },
     'powers': {
-        # I think i'd like to have a condition on suspendDelivery, which can be a parameter (e.g. If payment is not made)
+        # This refers to "all obligations" - may need to handle all of them...
         # The existence of suspendDelivery entails the existence of resumeDelivery. And it is initiated with a "Never" trigger
         'suspendResumeDelivery': '[DELIVERY_SUSPENSION_CONDITION] the Seller may suspend performance of all of its obligations under the agreement [DELIVERY_RESUMPTION_CONDITION]',
         'terminateContract': 'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract [TERMINATION_CONDITION]'

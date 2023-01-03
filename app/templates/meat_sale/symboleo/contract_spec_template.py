@@ -18,7 +18,7 @@ DELIVERED_EVENT = dm.events['delivered'].to_obj()
 PAID_EVENT = dm.events['paid'].to_obj()
 PAID_LATE_EVENT = dm.events['paidLate'].to_obj()
 DISCLOSED_EVENT = dm.events['disclosed'].to_obj()
-
+## https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/samples/MeatSaleContract.symboleo
 meat_sale_contract_spec_template = ContractSpec(
     obligations = {
         # delivery: O(seller, buyer, true, Happens(delivered))
@@ -177,7 +177,13 @@ meat_sale_contract_spec_template = ContractSpec(
         ## resumeDelivery: HappensWithin(paidLate, Suspension(obligations.delivery)) -> P(buyer, seller, true, Resumed(obligations.delivery))
         'resumeDelivery': Power(
             'resumeDelivery',
-            None, # This should be a "never", e.g. Happens(False) or somethnig like that
+            Proposition([PAnd([PEquality([PComparison([PNegAtom(
+                PAtomPredicate(
+                    PredicateFunctionHappens(
+                        Never() 
+                    )
+                )
+            )])])])]),
             # Proposition([PAnd([PEquality([PComparison([PNegAtom(
             #     PAtomPredicate(
             #         PredicateFunctionHappensWithin(

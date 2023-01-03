@@ -1,3 +1,4 @@
+from app.classes.contract_update_request import ContractUpdateRequest
 from app.classes.processing.scored_components import ScoredPrimitive
 from app.src.component_identifiers.interfaces import IScorePrimitives
 from app.src.matcher_helper import IGetMatches
@@ -6,7 +7,7 @@ from app.classes.spec.sym_event import ObligationEvent
 from app.src.component_identifiers.helpers.event_scorer import IScoreEvents
 from app.src.component_identifiers.helpers.variable_scorer import IScoreVariables
 
-class ObligationEventIdentifier(IScorePrimitives):
+class ObligationEventScorer(IScorePrimitives):
     def __init__(
         self,
         matcher: IGetMatches
@@ -17,7 +18,8 @@ class ObligationEventIdentifier(IScorePrimitives):
 
     # TODO: I may want to actually split the ObligationEvent up into separate string primitives...
     # defn of primitive may need to just be a single token/span/argument
-    def identify(self, doc) -> ScoredPrimitive:
+    def score(self, req: ContractUpdateRequest) -> ScoredPrimitive:
+        doc = req.doc
         # This needs to be populated from the domain_model or contract spec.
         # Likely needs to be pre-init'd and passed in separately
         # Look at the identify_old ideas - probably revive them a little

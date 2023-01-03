@@ -18,8 +18,9 @@ from app.classes.spec.sym_point import PointAtomContractEvent, ContractEvent
 from app.classes.spec.sym_interval import Interval, SituationExpression
 from app.classes.spec.sym_situation import ObligationState
 
-from app.src.rules.contract_spec.timeframe.timeframe_extractor_builder import TimeFrameExtractorBuilder
-from app.src.rules.contract_spec.condition.condition_extractor_builder import ConditionExtractorBuilder
+from app.src.rules.contract_spec.predicate_extractor_builder import PredicateExtractorBuilder
+from app.src.rules.contract_spec.timeframe.timeframe_patterns import get_tf_patterns
+from app.src.rules.contract_spec.condition.condition_patterns import get_condition_patterns 
 
 from app.src.rules.domain_model.amount.amount_extractor_builder import AmountExtractorBuilder
 from app.src.rules.domain_model.currency.currency_extractor_builder import CurrencyExtractorBuilder
@@ -34,6 +35,10 @@ class MeatSaleTestSetup:
         self.nlp = TestNLP.get_nlp()
         self.contract_template = get_template()
         self.norm_updater = NormPropositionUpdater()
+        self.case_patterns = {
+            'tf': get_tf_patterns(self.nlp),
+            'condition': get_condition_patterns(self.nlp)
+        }
 
         contract_updater = self._get_updater()
 
@@ -65,10 +70,10 @@ class MeatSaleTestSetup:
         delivered_event = self.contract_template.domain_model.events['delivered'].to_obj()
         template = PredicateFunctionHappens(delivered_event)
 
-        default_components = [
-            PointAtomContractEvent(ContractEvent('activated'))
-        ]
-        dtf_extractor = TimeFrameExtractorBuilder.build(self.nlp, template, default_components)
+        # default_components = [
+        #     PointAtomContractEvent(ContractEvent('activated'))
+        # ]
+        dtf_extractor = PredicateExtractorBuilder.build(self.nlp, template, self.case_patterns['tf'])
 
         dtf_pred_proc_config = meat_sale_parms['DELIVERY_TIMEFRAME'][0].config
 
@@ -104,10 +109,10 @@ class MeatSaleTestSetup:
     def _ptf_processor(self):
         paid_event = self.contract_template.domain_model.events['paid'].to_obj()
         paid_template = PredicateFunctionHappens(paid_event)
-        default_components = [
-            PointAtomContractEvent(ContractEvent('activated'))
-        ]
-        ptf_extractor = TimeFrameExtractorBuilder.build(self.nlp, paid_template, default_components)
+        # default_components = [
+        #     PointAtomContractEvent(ContractEvent('activated'))
+        # ]
+        ptf_extractor = PredicateExtractorBuilder.build(self.nlp, paid_template, self.case_patterns['tf'])
 
         ptf_config = meat_sale_parms['PAYMENT_TIMEFRAME'][0].config
 
@@ -136,7 +141,7 @@ class MeatSaleTestSetup:
         disclosed_event = self.contract_template.domain_model.events['disclosed'].to_obj()
         disclosed_template = PredicateFunctionHappens(disclosed_event)
 
-        ctf_extractor = TimeFrameExtractorBuilder.build(self.nlp, disclosed_template)
+        ctf_extractor = PredicateExtractorBuilder.build(self.nlp, disclosed_template, self.case_patterns['tf'])
 
         ctf_config1 = meat_sale_parms['CONFIDENTIALITY_TIMEFRAME'][0].config
 
@@ -150,7 +155,7 @@ class MeatSaleTestSetup:
     
     def _dsc_processor(self):
         suspension_template = None
-        sc_extractor = ConditionExtractorBuilder.build(self.nlp, suspension_template)
+        sc_extractor = PredicateExtractorBuilder.build(self.nlp, suspension_template, self.case_patterns['condition'])
 
         sc_config = meat_sale_parms['DELIVERY_SUSPENSION_CONDITION'][0].config
 
@@ -160,12 +165,11 @@ class MeatSaleTestSetup:
     
 
     def _drc_processor(self):
-
         resumption_template = None
-        default_components = [
-            Interval(SituationExpression(ObligationState('Suspension', 'delivery')))
-        ]
-        rc_extractor = ConditionExtractorBuilder.build(self.nlp, resumption_template, default_components)
+        # default_components = [
+        #     Interval(SituationExpression(ObligationState('Suspension', 'delivery')))
+        # ]
+        rc_extractor = PredicateExtractorBuilder.build(self.nlp, resumption_template, self.case_patterns['condition'])
 
         rc_config = meat_sale_parms['DELIVERY_RESUMPTION_CONDITION'][0].config
 
@@ -176,10 +180,10 @@ class MeatSaleTestSetup:
 
     def _tc_processor(self):
         termination_template = None
-        default_components = [
-            ObligationState('Violation', 'delivery')
-        ]
-        tc_extractor = ConditionExtractorBuilder.build(self.nlp, termination_template, default_components)
+        # default_components = [
+        #     ObligationState('Violation', 'delivery')
+        # ]
+        tc_extractor = PredicateExtractorBuilder.build(self.nlp, termination_template,  self.case_patterns['condition'])
 
         tc_config = meat_sale_parms['TERMINATION_CONDITION'][0].config
 

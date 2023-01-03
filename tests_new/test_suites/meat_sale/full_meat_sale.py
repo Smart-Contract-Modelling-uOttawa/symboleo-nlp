@@ -22,16 +22,14 @@ class MeatSaleTest(unittest.TestCase):
             ('INTEREST_DETAILS', '10% of the amount owed'),
             ('CONFIDENTIALITY_TIMEFRAME', 'until 6 months after termination of the contract'),
             ('DELIVERY_SUSPENSION_CONDITION', 'if payment is not made'),
-            ('DELIVERY_RESUMPTION_CONDITION', 'until payment is made'),
+            ('DELIVERY_RESUMPTION_CONDITION', 'until payment is made'), # This is a timeframe...can be both?
             ('TERMINATION_CONDITION', 'unless such delay exceeds 10 days')
         ]
 
     def test_suite(self):
         contract = get_template()
 
-        for c in self.customizations:
-            key = c[0]
-            value = c[1]
+        for key, value in self.customizations:
             doc = self.nlp(value)
 
             req = ContractUpdateRequest(contract, key, value, doc)

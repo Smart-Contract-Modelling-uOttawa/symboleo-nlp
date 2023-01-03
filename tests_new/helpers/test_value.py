@@ -9,9 +9,10 @@ class DomainPropTestValue:
 
 
 class ContractSpecTestValue:
-    def __init__(self, input_value:str, expected_sym: List[str]):
+    def __init__(self, input_value:str, expected_sym: List[str], key = ''):
         self.input_value = input_value
         self.expected_sym = expected_sym
+        self.key = key
 
 
 class DomainPropTestSuite:
