@@ -32,7 +32,6 @@ class AllPrimitiveScorerBuilder:
 
         # ContractEvent
         contract_event_scorer = ContractEventScorer(None)
-
         obligation_event_scorer = ObligationEventScorer(my_matcher)
 
         my_dict: Dict[str, IScorePrimitives] = {

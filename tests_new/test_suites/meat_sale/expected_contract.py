@@ -5,7 +5,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens, Predic
 from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent
 from app.classes.spec.sym_interval import Interval, SituationExpression, Never, IntervalFunction, IntervalFunctionEnding
 from app.classes.spec.sym_situation import ObligationState
-from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, PointAtomParameterDotExpression, PointFunction
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, PointFunction
 from app.classes.spec.power_function import PFObligation, PFContract
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.symboleo_contract import DomainModel
@@ -94,7 +94,7 @@ contract_spec = ContractSpec(
             Proposition([PAnd([PEquality([PComparison([PAtomPredicate(
                 PredicateFunctionWHappensBefore(
                     PAID_EVENT,
-                    PointAtomParameterDotExpression(PointVDE('April 17, 2022'))
+                    PointVDE('April 17, 2022')
                 )
             )])])])])
         ),
@@ -227,7 +227,7 @@ contract_spec = ContractSpec(
                                 Interval(
                                     IntervalFunctionEnding(
                                         PointFunction(
-                                            PointAtomParameterDotExpression(PointVDE('delivery.delDueDate')),
+                                            PointVDE('delivery.delDueDate'),
                                             TimeValueInt(10),
                                             TimeUnitStr('days')
                                         )

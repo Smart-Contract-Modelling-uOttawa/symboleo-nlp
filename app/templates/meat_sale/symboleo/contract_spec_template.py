@@ -18,6 +18,7 @@ DELIVERED_EVENT = dm.events['delivered'].to_obj()
 PAID_EVENT = dm.events['paid'].to_obj()
 PAID_LATE_EVENT = dm.events['paidLate'].to_obj()
 DISCLOSED_EVENT = dm.events['disclosed'].to_obj()
+
 ## https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/samples/MeatSaleContract.symboleo
 meat_sale_contract_spec_template = ContractSpec(
     obligations = {

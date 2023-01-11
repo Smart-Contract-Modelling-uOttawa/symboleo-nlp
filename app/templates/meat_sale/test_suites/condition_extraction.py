@@ -7,10 +7,13 @@ test_suite = [
         key='DELIVERY_SUSPENSION_CONDITION'
     ),
 
-    # TV(
-    #     input_value = 'before April 25, 2022',
-    #     expected_sym = ['WhappensBefore(test, April 25, 2022)']
-    # ),
+    TV(
+        input_value = 'until payment is made',
+        expected_sym = ['HappensWithin(paidLate, Suspension(obligations.delivery))'],
+        key='DELIVERY_RESUMPTION_CONDITION'
+    ),
+
+
     # TV(
     #     input_value = 'until 6 months after termination of the contract',
     #     expected_sym = ['WhappensBefore(test, Date.add(activated(self), 6, months))']

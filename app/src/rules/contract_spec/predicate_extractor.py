@@ -20,6 +20,7 @@ class PredicateExtractor(IExtractPredicates):
 
     def extract(self, req: ContractUpdateRequest) -> List[ScoredPredicate]: 
         preds = self.__predicate_scorer.score(req)
+
         if len(preds) == 0:
             return []  
 
