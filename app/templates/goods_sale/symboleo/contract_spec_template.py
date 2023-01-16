@@ -13,7 +13,7 @@ CUSTOMER = dm.roles['customer'].to_obj()
 
 SELL_EVENT = dm.events['sellGoods'].to_obj()
 DELIVER_EVENT = dm.events['deliverGoods'].to_obj()
-PAY_EVENT = dm.events['PayInvoice'].to_obj()
+PAY_EVENT = dm.events['payInvoice'].to_obj()
 PAY_LATE_EVENT = dm.events['payLate'].to_obj()
 PROVIDE_INVOICE_EVENT = dm.events['provideInvoice'].to_obj()
 PROVIDE_TERMINATION_NOTICE_EVENT = dm.events['provideTerminationNotice'].to_obj() 
@@ -23,8 +23,8 @@ PROVIDE_TERMINATION_NOTICE_EVENT = dm.events['provideTerminationNotice'].to_obj(
 goods_sale_contract_spec_template = ContractSpec(
     obligations = {
         # sell: O(seller, customer, true, Happens(deliverGoods))
-        'sell': Obligation(
-            'sell',
+        'O_sellGoods': Obligation(
+            'O_sellGoods',
             None,
             SELLER,
             CUSTOMER,
@@ -45,8 +45,8 @@ goods_sale_contract_spec_template = ContractSpec(
         ),
 
         # invoice: O(seller, customer, true, Happens(provideInvoice))
-        'invoice': Obligation(
-            'invoice',
+        'O_provideInvoice': Obligation(
+            'O_provideInvoice',
             None,
             SELLER,
             CUSTOMER,
@@ -67,8 +67,8 @@ goods_sale_contract_spec_template = ContractSpec(
         ),
 
         # payment: O(customer, seller, true, Happens(pay_invoice))
-        'payInvoice': Obligation(
-            'payInvoice',
+        'O_payInvoice': Obligation(
+            'O_payInvoice',
             None,
             CUSTOMER,
             SELLER,
@@ -89,8 +89,8 @@ goods_sale_contract_spec_template = ContractSpec(
         ),
 
         #payLate: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))
-        'payLate': Obligation(
-            'payLate',
+        'O_payLate': Obligation(
+            'O_payLate',
             Proposition([
                 PAnd([
                     PEquality([
@@ -98,7 +98,7 @@ goods_sale_contract_spec_template = ContractSpec(
                             PNegAtom(
                                 PAtomPredicate(
                                     PredicateFunctionHappens(
-                                        ObligationEvent('Violated', 'payInvoice')
+                                        ObligationEvent('Violated', 'O_payInvoice')
                                     )
                                 )
                             )
@@ -129,8 +129,8 @@ goods_sale_contract_spec_template = ContractSpec(
 
     powers = {
         ## terminateContract: Happens(provideTerminationNotice) -> P(customer, seller, true, Terminated(self))
-        'terminateContract1': Power(
-            'terminateContract1',
+        'O_terminateContract1': Power(
+            'O_terminateContract1',
             Proposition(
                 [
                     PAnd([PEquality([PComparison([PNegAtom(
@@ -150,8 +150,8 @@ goods_sale_contract_spec_template = ContractSpec(
         ),
 
         ## terminateContract2: Happens(provideTerminationNotice) -> P(seller, customer, true, Terminated(self))
-        'terminateContract2': Power(
-            'terminateContract2',
+        'O_terminateContract2': Power(
+            'O_terminateContract2',
             Proposition(
                 [
                     PAnd([PEquality([PComparison([PNegAtom(

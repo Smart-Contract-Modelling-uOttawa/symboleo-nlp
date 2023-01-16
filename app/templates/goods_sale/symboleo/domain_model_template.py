@@ -18,7 +18,7 @@ goods_sale_domain_model_template = DomainModel(
 
         'provideInvoice': DomainEvent('provideInvoice', []),
 
-        'payInvoice': DomainEvent('paid', [
+        'payInvoice': DomainEvent('payInvoice', [
             # DomainProp('amount', '', 'number'),
             # DomainProp('currency', '', 'Currency'),
         ]),
