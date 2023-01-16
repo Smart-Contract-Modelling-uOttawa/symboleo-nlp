@@ -7,9 +7,6 @@ from app.classes.spec.predicate_function import PredicateFunctionWHappensBeforeE
 class BeforeNode(SelectedNode):
     node_type = NodeType.BEFORE
 
-    def to_user_text(self) -> str:
-        return self.value
-
     def to_obj(self):
         # need access to default event
         default_event = VariableEvent('test')

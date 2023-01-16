@@ -1,13 +1,20 @@
 from app.classes.grammar.selected_node import SelectedNode
 from app.classes.grammar.node_type import NodeType
+from app.classes.frames.frame import Frame
+from app.classes.frames.all_frames import *
 
 class ObligationEventActionNode(SelectedNode):
     node_type = NodeType.OBLIGATION_EVENT_ACTION
 
-    # This is an example of where we need to access other parts of the structure
-    # e.g. "is" or "being" depending on other parts
-    def to_user_text(self) -> str:
-        return f'is {self.value}'
+    def build_frame(self, frame: Frame) -> Frame:
+        new_frame = Frame.copy(frame)
+
+        if isinstance(new_frame, BeforeEventFrame) or \
+            isinstance(new_frame, WithinTimespanEventFrame):
+            new_frame.verb = self.value
+        
+        return new_frame
+
 
     def to_obj(self):
         return self.value

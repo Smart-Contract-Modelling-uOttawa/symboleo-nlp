@@ -8,9 +8,6 @@ from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
 class WithinNode(SelectedNode):
     node_type = NodeType.WITHIN
 
-    def to_user_text(self) -> str:
-        return self.value
-
     def to_obj(self):
         default_event = VariableEvent('test')
         time_info = self.child.to_obj()

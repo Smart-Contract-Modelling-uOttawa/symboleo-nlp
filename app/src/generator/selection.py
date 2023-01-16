@@ -1,0 +1,56 @@
+from typing import List
+from app.classes.grammar.selected_node import SelectedNode
+from app.classes.frames.frame import Frame
+from app.classes.frames.frame_checker import FrameChecker
+from app.classes.frames.all_frames import get_all_frames
+
+
+class Selection:
+    def __init__(self):
+        self.nodes: List[SelectedNode] = []
+        self.possible_frames: List[Frame] = get_all_frames() # get all the frames 
+
+    def try_frames(self):
+        results = []
+
+        for frame in self.possible_frames:
+            # Find all the nodes that have a match for the frame
+            for node in self.nodes:
+                frame = node.build_frame(frame)
+
+            text = frame.to_text()
+            results.append(text)
+        
+        return results
+
+    def to_obj(self):
+        return self.nodes[0].to_obj()
+
+    def add_node(self, node: SelectedNode):
+        # Set index
+        ind = len(self.nodes)
+        node.ind = ind
+
+        # Add it
+        self.nodes.append(node)
+
+        # Set parent and child. This seems wrong...
+        if ind > 0:
+            node.parent = self.nodes[ind-1]
+            node.parent.child = node
+
+        # check frames - only do this if there is more than one
+        if len(self.possible_frames) > 1:
+            new_frame_list = []
+            for x in self.possible_frames:
+                if FrameChecker.check(self.nodes, x.pattern):
+                    new_frame_list.append(x)
+            
+            self.possible_frames = new_frame_list
+        
+        if len(self.possible_frames) == 0:
+            raise NotImplementedError('No possible frames!')
+        
+        
+    
+        
