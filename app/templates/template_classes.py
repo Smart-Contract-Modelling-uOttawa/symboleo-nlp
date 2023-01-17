@@ -14,7 +14,8 @@ class DomainParamType(Enum):
 
 class Parameter:
     def __init__(self):
-        self.s = 0
+        param_type: any = None
+        config: any = None
 
 class ContractSpecParameter(Parameter):
     def __init__(

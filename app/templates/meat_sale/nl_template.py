@@ -1,4 +1,5 @@
-from app.templates.template_classes import PredicateProcessorConfig, DomainPropProcessorConfig, ContractParamType, DomainParamType, DomainParameter, ContractSpecParameter
+from typing import Dict
+from app.templates.template_classes import Parameter, PredicateProcessorConfig, DomainPropProcessorConfig, ContractParamType, DomainParamType, DomainParameter, ContractSpecParameter
 
 nl_template = {
     'obligations': {
@@ -27,7 +28,7 @@ sample_customization = [
     ('TERMINATION_CONDITION', 'unless such delay exceeds 10 Days')
 ]
 
-parameters = {
+parameters: Dict[str, Parameter] = {
     'DELIVERY_TIMEFRAME': [
         ContractSpecParameter(
             ContractParamType.TIMEFRAME,

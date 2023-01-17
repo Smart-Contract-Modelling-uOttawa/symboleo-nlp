@@ -1,4 +1,5 @@
 from typing import List
+from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.grammar.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
 from app.classes.frames.frame_checker import FrameChecker
@@ -23,8 +24,12 @@ class Selection:
         
         return results
 
-    def to_obj(self):
-        return self.nodes[0].to_obj()
+    def to_obj(self, default_event: PredicateFunction):
+        # How do we handle the default event?
+        ## Can pass it in as an optional parm to every to_obj func. May end up being important
+        ## Can add it in after
+        ## Probably best to add it as a parm - most things won't use it, but it may end up being useful...
+        return self.nodes[0].to_obj(default_event)
 
     def add_node(self, node: SelectedNode):
         # Set index

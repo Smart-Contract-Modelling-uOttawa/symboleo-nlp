@@ -25,7 +25,7 @@ class GrammarGenerator(IGenerateGrammar):
         ## CONTRACT EVENTS ##
         # Contract Event Actions
         contract_event_action_nodes = [
-            ContractEventActionNode(f'ContractEvent.event_name.{x}', x) 
+            ContractEventActionNode(f'ContractEvent.event_name.{x}', [], x) 
             for x in self.__contract_actions
         ]
 
