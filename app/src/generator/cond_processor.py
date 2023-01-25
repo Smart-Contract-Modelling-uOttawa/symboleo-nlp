@@ -6,9 +6,6 @@ from app.src.rules.contract_spec.norm_proposition_updater import IUpdateNormProp
 from app.classes.spec.symboleo_spec import PNegAtom
 from app.classes.spec.p_atoms import PAtomPredicate
 
-# Initially conceived of this as just working for time-based prep phrases
-# But it also works for conditionals
-# May be able to make it generic...
 class TbppProcessor:
     def __init__(
         self,

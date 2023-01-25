@@ -11,7 +11,8 @@ class ObligationEventVarNode(SelectedNode):
         new_frame = Frame.copy(frame)
 
         if isinstance(new_frame, BeforeEventFrame) or \
-            isinstance(new_frame, WithinTimespanEventFrame):
+            isinstance(new_frame, WithinTimespanEventFrame) or \
+            isinstance(new_frame, IfStateFrame):
             new_frame.subject = f'the {self.value} obligation'
         
         return new_frame

@@ -8,12 +8,14 @@ class ISelectGrammar:
         raise NotImplementedError()
 
 class GrammarSelector(ISelectGrammar):
+    def __init__(self, selection: Selection):
+        self.selection = selection
+
     def select(self, root_node: AbstractNode) -> Selection:
         # Init
-        selection = Selection() 
         target = root_node
         list_head = self._convert_node(target)
-        selection.add_node(list_head)
+        self.selection.add_node(list_head)
 
         while(len(target.children) > 0):
             print('\nChoose an option:')
@@ -31,12 +33,13 @@ class GrammarSelector(ISelectGrammar):
             
             # Build the selected node
             next_node = GrammarSelector._convert_node(target, value)
-            selection.add_node(next_node)
+            self.selection.add_node(next_node)
         
-        return selection
+        return self.selection
 
 
     # Move this out...
+    @staticmethod
     def _convert_node(node: AbstractNode, value = None) -> SelectedNode:
         new_class = node_type_to_class[node.node_type]
         return new_class(node.id, value)

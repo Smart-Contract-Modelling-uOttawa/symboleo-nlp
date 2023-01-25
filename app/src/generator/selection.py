@@ -3,13 +3,11 @@ from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.grammar.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
 from app.classes.frames.frame_checker import FrameChecker
-from app.classes.frames.all_frames import get_all_frames
-
 
 class Selection:
-    def __init__(self):
+    def __init__(self, possible_frames: List[Frame]):
         self.nodes: List[SelectedNode] = []
-        self.possible_frames: List[Frame] = get_all_frames() # get all the frames 
+        self.possible_frames: List[Frame] = possible_frames
 
     def try_frames(self):
         results = []

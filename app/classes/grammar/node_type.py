@@ -13,5 +13,7 @@ class NodeType(Enum):
     DATE = 11,
     BEFORE = 12,
     TIMESPAN = 13,
-    WITHIN = 14
+    WITHIN = 14,
+    IF = 15,
+    STATE = 16
     # ....

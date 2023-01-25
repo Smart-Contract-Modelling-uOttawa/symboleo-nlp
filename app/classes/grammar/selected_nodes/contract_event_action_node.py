@@ -19,6 +19,10 @@ class ContractEventActionNode(SelectedNode):
             new_frame.verb = self.value
             new_frame.subject = 'the contract'
         
+        elif isinstance(new_frame, IfStateFrame):
+            new_frame.verb = self.value
+            new_frame.subject = 'the contract'
+        
         return new_frame
 
 

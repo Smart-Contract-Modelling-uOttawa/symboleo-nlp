@@ -14,6 +14,8 @@ from app.classes.grammar.selected_nodes.obligation_event_var_node import Obligat
 from app.classes.grammar.selected_nodes.root_node import RootNode
 from app.classes.grammar.selected_nodes.timespan_node import TimespanNode
 from app.classes.grammar.selected_nodes.within_node import WithinNode
+from app.classes.grammar.selected_nodes.if_node import IfNode
+from app.classes.grammar.selected_nodes.state_node import StateNode
 
 
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
@@ -30,5 +32,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.TIMESPAN: TimespanNode,
     NodeType.BEFORE: BeforeNode,
     NodeType.WITHIN: WithinNode,
+    NodeType.IF: IfNode,
+    NodeType.STATE: StateNode
     ####...
 }

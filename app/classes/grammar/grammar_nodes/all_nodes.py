@@ -14,4 +14,6 @@ from app.classes.grammar.grammar_nodes.obligation_event_var_node import Obligati
 from app.classes.grammar.grammar_nodes.root_node import RootNode
 from app.classes.grammar.grammar_nodes.timespan_node import TimespanNode
 from app.classes.grammar.grammar_nodes.within_node import WithinNode
+from app.classes.grammar.grammar_nodes.if_node import IfNode
+from app.classes.grammar.grammar_nodes.state_node import StateNode
 

@@ -1,14 +1,11 @@
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
-
-class IGenerateGrammar:
-    def generate(self, contract: SymboleoContract) -> RootNode:
-        raise NotImplementedError()
+from app.src.generator.grammar_generator import IGenerateGrammar
 
 # Note: This particular generator is for time-based PPs
 ## Very likely that I will need to introduce other types of generators (e.g. conditionals, noun_phrases, etc)
 ## Some generators may be very narrow, and that's ok
-class GrammarGenerator(IGenerateGrammar):
+class ConditionalGrammarGenerator(IGenerateGrammar):
     def __init__(self):
         # Symboleo State - should be loaded in
         self.__contract_actions = ['terminated', 'activated', 'suspended']
@@ -62,25 +59,16 @@ class GrammarGenerator(IGenerateGrammar):
         obligation_event_node = ObligationEventNode('ObligationEvent', obligation_name_nodes)
         
         ## EVENT ##
-        event_node = EventNode(
-            'Event', 
+        state_node = StateNode(
+            'State', 
             [obligation_event_node, contract_event_node, domain_event_node]
         )
         
-        ## DATE ##
-        date_node = DateNode('Date')
-
-        ## BEFORE ##
-        before_node = BeforeNode('Before', [date_node, event_node])
-
-        ## TIMESPAN ##
-        timespan_node = TimespanNode('Timespan', [event_node])
-
-        ## WITHIN ##
+        ## IF ##
         ## Within 2 weeks of [Event]
-        within_node = WithinNode('Within', [timespan_node])
+        if_node = IfNode('If', [state_node])
 
         ## ROOT ##
-        root_node = RootNode('Root', [before_node, within_node])
+        root_node = RootNode('Root', [if_node])
         
         return root_node
