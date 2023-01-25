@@ -35,7 +35,7 @@ class GrammarGenerator(IGenerateGrammar):
         ## DOMAIN EVENTS ##
         ## Domain Event Action
         domain_event_name_nodes = [
-            DomainEventNameNode('DomainEvent.event_name.{x}', [], x)
+            DomainEventNameNode(f'DomainEvent.event_name.{x}', [], x)
             for x in domain_event_names
         ]
 

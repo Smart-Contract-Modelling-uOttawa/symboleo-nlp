@@ -9,6 +9,9 @@ class Frame:
     def to_text(self) -> str:
         raise NotImplementedError()
     
+    def is_complete(self) -> bool:
+        return False
+    
     @staticmethod
     def copy(frame: Frame):
         return copy.deepcopy(frame)

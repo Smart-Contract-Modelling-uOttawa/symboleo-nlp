@@ -30,14 +30,14 @@ class GrammarSelector(ISelectGrammar):
             value = target.get_value()
             
             # Build the selected node
-            next_node = self._convert_node(target, value)
+            next_node = GrammarSelector._convert_node(target, value)
             selection.add_node(next_node)
         
         return selection
 
 
-    # Make this better?
-    def _convert_node(self, node: AbstractNode, value = None) -> SelectedNode:
+    # Move this out...
+    def _convert_node(node: AbstractNode, value = None) -> SelectedNode:
         new_class = node_type_to_class[node.node_type]
         return new_class(node.id, value)
     

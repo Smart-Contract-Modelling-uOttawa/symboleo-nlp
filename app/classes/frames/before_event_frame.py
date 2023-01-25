@@ -1,10 +1,14 @@
 from app.classes.frames.frame import Frame
 from app.classes.grammar.node_type import NodeType
 
+
 class BeforeEventFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
     subject: str = ''
     verb: str = ''
+
+    def is_complete(self):
+        return self.subject != '' and self.verb != '' 
 
     def to_text(self):
         # Will add NLP in here to ensure verb tense, etc
@@ -14,6 +18,9 @@ class BeforeEventFrame(Frame):
 class BeforeDateFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.DATE]
     date_text: str = ''
+
+    def is_complete(self):
+        return self.date_text != ''
 
     def to_text(self):
         return f'before {self.date_text}'
@@ -25,9 +32,18 @@ class WithinTimespanEventFrame(Frame):
     subject: str = ''
     verb: str = ''
 
+    def is_complete(self):
+        return self.subject != '' and self.verb != '' and self.timespan != ''
+
     def to_text(self):
         return f'within {self.timespan} of {self.subject} being {self.verb}'
 
 
+# class WhenEventFrame(Frame):
+#     pattern = [NodeType.ROOT, NodeType.WHEN, NodeType.EVENT]
+#     subject: str = ''
+#     verb: str = ''
 
+#     def to_text(self):
+#         return f'when {self.subject} is {self.verb}'
     

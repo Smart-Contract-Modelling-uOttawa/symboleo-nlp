@@ -19,8 +19,9 @@ class Selection:
             for node in self.nodes:
                 frame = node.build_frame(frame)
 
-            text = frame.to_text()
-            results.append(text)
+            if frame.is_complete():
+                text = frame.to_text()
+                results.append(text)
         
         return results
 
