@@ -1,6 +1,8 @@
 from app.classes.spec.helpers import VariableDotExpression
 from app.classes.spec.power_function import PowerFunction
 
+# XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
+
 class PAtom:
     def to_sym(self):
         raise NotImplementedError()

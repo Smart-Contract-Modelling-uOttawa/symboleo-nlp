@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 from app.classes.contract_update_request import ContractUpdateRequest
 from tests.helpers.test_nlp import TestNLP
 
-from app.templates.meat_sale.symboleo.contract_template import get_template
+from app.src.template_getter import get_template
 from tests_new.test_suites.meat_sale.test_setup import MeatSaleTestSetup
 from tests_new.test_suites.meat_sale.expected_contract import expected_contract
 

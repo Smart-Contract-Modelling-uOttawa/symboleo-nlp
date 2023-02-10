@@ -1,0 +1,121 @@
+
+DOMAIN MODEL:
+== Roles ==
+Seller
+- address (str)
+- name (str)
+
+Buyer
+- address (str)
+- name (str)
+
+
+== Assets ==
+PerishableGood (None)
+- quantity (Amount)
+- quality (MeatQuality)
+
+Meat (PerishableGood)
+
+
+== Events ==
+Evt_sell
+- seller (Role) 
+- buyer (Role)
+- item (Asset) 
+
+Evt_payment
+- from (Role)
+- to (Role)
+- amount (Price)
+- currency (Currency)
+
+Evt_has_title
+- owner (Role)
+- item (Asset) 
+* Not sure if this qualifies as an event; more like a situation?
+
+Evt_delivered
+- item (Asset)
+- location (str)
+
+Evt_late_payment
+- from (Role)
+- to (Role)
+- amount (Price)
+- currency (Currency)
+
+Evt_disclosed
+- agent (Role)
+
+
+CONTRACT SPEC:
+
+== Obligations ==
+ob_sell: O(seller, buyer, T, Happens(evt_sell))
+- Seller shall sell an amount of {MEAT_AMOUNT} meat with {MEAT_QUALITY} quality ("goods") to the Buyer.
+- * Should MEAT_AMOUNT include kg as well?
+
+ob_title_pass: Happens(evt_payment) -> O(seller, buyer, T, evt_has_title)
+- Title in the Goods shall not pass on to the Buyer until payment of the amount owed has been made in full.
+
+ob_delivery: O(seller, buyer, true, HappensBefore(evt_delivered, date.Add(activation(self), 10, days)))
+- The Seller shall deliver the Order in one delivery within {DELIVERY_DAYS} days to the Buyer at its warehouse.
+
+ob_payment: O(buyer, seller, true, HappensBefore(evt_payment, Date(PDD.year, PDD.month, PDD.day)))
+- The Buyer shall pay {SALE_PRICE} in {SALE_CURRENCY} ("currency") to the Seller before {PAYMENT_DUE_DATE}}.
+
+ob_late_payment: Happens(Violated(obligations.ob_payment)) -> O(buyer, seller, T, Happens(evt_late_payment))
+- In the event of late payment of the amount owed due, the Buyer shall pay interests equal to {LATE_PERCENT_INTEREST}% of the amount owed...
+- * Should the trigger refer to the obligation or the event?
+
+ob_disclosure1: O(seller, buyer, T, not HappensBefore(evt_disclosed_seller, Date.add(termination(self), DISCLOSURE_PERIOD_MONTHS, months)))
+- Both Seller and Buyer must keep the contents of this contract confidential during the execution of the contract and {DISCLOSURE_PERIOD_MONTHS} months after the termination of the contract
+- * Perhaps this can just be one obligation that mixes the roles?
+
+ob_disclosure2: O(buyer, seller, T, not HappensBefore(evt_disclosed_buyer, Date.add(termination(self), DISCLOSURE_PERIOD_MONTHS, months)))
+- Both Seller and Buyer must keep the contents of this contract confidential during the execution of the contract and {DISCLOSURE_PERIOD_MONTHS} months after the termination of the contract
+
+== Powers ==
+pow_suspend_delivery: Happens(Violated(obligations.ob_payment)) -> P(seller, buyer, T, Suspended(obligations.ob_delivery))
+- In the event of late payment of the amount owed due, [...] the Seller may suspend performance of all of its obligations under the agreement until payment of amounts due has been received in full.
+
+pow_resume_Delivery: Happens(evt_late_payment) -> P(seller, buyer, T, Resumed(obligations.ob_delivery))
+- ...the Seller may suspend performance of all of its obligations under the agreement until payment of amounts due has been received in full.
+
+pow_terminate_contract: Happens(Violated(obligations.ob_delivery), t) => P(buyer, seller, **(10 days after time t??), terminated(self))
+- Any delay in delivery of the goods will not entitle the Buyer to terminate the contract unless such a delay exceeds {TERMINATION_DELAY_DAYS} Days.
+
+
+
+INSTANTIATION:
+
+== Input Variables ==
+- SELLER_ADDRESS (str): 123 Test Street
+- SELLER_NAME (str): Meats Unlimited Inc.
+- BUYER_ADDRESS (str): 99 Fake Avenue
+- BUYER_NAME (str): GroceryVille
+- MEAT_AMOUNT (amount): 100kg
+- MEAT_QUALITY (MeatQuality): Prime
+- DELIVERY_DAYS (num): 10
+- SALE_PRICE (Price): 400
+- SALE_CURRENCY (Currency): CAD
+- PAYMENT_DUE_DATE: April 15, 2024
+- LATE_PERCENT_INTEREST (num): 10
+- DISCLOSURE_PERIOD_MONTHS (num): 6
+- TERMINATION_DELAY_DAYS (num): 10
+
+== Calculated ==
+- seller = Seller(address=SELLER_ADDRESS, name=SELLER_NAME)
+- buyer = Buyer(address=BUYER_ADDRESS, name=BUYER_NAME) 
+- goods = Meat(amount=MEAT_AMOUNT, quality=MEAT_QUALITY)
+- LATE_PAYMENT_AMOUNT = SALE_PRICE * LATE_PERCENT_INTEREST / 100
+
+== Events ==
+- evt_sell: Evt_sell(seller=seller, buyer=buyer, item=goods)
+- evt_payment: Evt_payment(from=seller, to=buyer, amount=SALE_PRICE, currency=SALE_CURRENCY)
+- evt_has_title: Evt_has_title(owner=buyer, item=goods)
+- evt_delivered: Evt_delivered(item=goods, location=buyer.address)
+- evt_late_payment: Evt_late_payment(from=buyer, to=seller, amount=LATE_PAYMENT_AMOUNT, currency=SALE_CURRENCY)
+- evt_disclosed_seller: Evt_disclosed(agent=seller)
+- evt_disclosed_buyer: Evt_disclosed(agent=buyer)

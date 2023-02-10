@@ -1,0 +1,35 @@
+
+CONTRACT SPEC:
+
+== Obligations ==
+ob_charge: O(contractor, client, T, Happens(evt_charge))
+- The Contractor will charge the Client a flat fee of {FLAT_FEE} for the Services (the "Compensation").
+- stays the same
+- * Should "charging" just be reframed as a payment obligation?
+
+ob_invoice: O(contractor, client, T, Happens(evt_invoice))
+- The Client will be invoiced [CONDITION]
+- CONDITION: when the Services are complete.
+
+ob_pay_invoice: O(client, contractor, T, Happens(evt_pay_invoice))
+- Invoices submitted by the Contractor to the Client are due [TIMERAME]
+- TIMEFRAME: within {INVOICE_PAYMENT_DAYS} days of receipt.
+- ** What is meant by receipt...? We may want to capture the time of the invoice event
+
+ob_pro_rata: Happens(terminates(self)) AND not Happens(evt_complete_services) AND Happens(evt_services_partly_complete) -> O(client, contractor, T, Happens(evt_pay_pro_rata))
+- In the event that this Agreement is terminated by the Client prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination provided that there has been no breach of contract on the part of the Contractor.
+- * 3-part trigger - difficult
+
+ob_reimburse: O(client, contractor, T, Happens(evt_reimburse))
+- The Contractor will be reimbursed from time to time for reasonable and necessary expenses incurred by the Contractor in connection with providing the Services.
+- * From time to time is vague; How do we handle frequencies?
+
+ob_return_property: O(contractor, client, T, Happens(evt_return_property))
+- [CONDITION] the Contractor will return to the Client any property, documentation, records, or Confidential Information which is the property of the Client.
+- CONDITION: Upon the expiry or termination of this Agreement,
+
+ob_confidentiality: O(role, ~role, T, not Happens(evt_break_confidentiality)) 
+- The obligations of confidentiality will apply [TIMEFRAME]
+- TIMEFRAME: during the Term and will survive indefinitely upon termination of this Agreement.
+- OR: from the contract activation indefinitely
+- ** timespan?

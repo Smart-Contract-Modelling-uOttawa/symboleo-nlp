@@ -23,7 +23,7 @@ class GrammarTests(unittest.TestCase):
         ]
         SelectedNode.organize_list(selected_nodes)
 
-        nl_result = GrammarSelector._get_full_text(selected_nodes)
+        nl_result = GrammarSelector
         sym_result = selected_nodes[0].to_obj().to_sym()
 
         exp_nl = 'within 3 days of the delivery obligation being suspended'

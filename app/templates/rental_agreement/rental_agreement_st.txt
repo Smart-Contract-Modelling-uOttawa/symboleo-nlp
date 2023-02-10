@@ -1,0 +1,142 @@
+
+DOMAIN MODEL:
+
+== Roles ==
+renter
+- address (str)
+- name (str)
+
+landlord
+- address (str)
+- name (str)
+
+
+== Assets ==
+property (None)
+- address (str)  
+- monthly_rent (price)
+
+
+== Events ==
+
+Evt_pay_rent
+- payment_method (str)
+
+Evt_pay_deposit
+- from (Role)
+- to (Role)
+- amount (Price)
+
+Evt_take_occupancy
+- agent (Role)
+
+Evt_premises_condition 
+- property (Property)
+* Is this an event or a situation...
+
+Evt_return_deposit
+- from (Role)
+- to (Role)
+
+Evt_impose_fine
+- agent (Role)
+- recipient (Role)
+- amount (Price)
+
+Evt_written_notice
+- from (Role)
+- to (Role)
+- days (num)
+
+Evt_enter_premises
+- agent (Role)
+- property (Property)
+
+Evt_abandon
+- agent (Role)
+- property (Property)
+
+Evt_repairs_required
+- property (Property)
+
+Evt_obtain_pet_consent
+- asker (Role)
+- granter (Role)
+
+Evt_keep_pets
+* Is this an event or a situation...
+
+
+CONTRACT SPEC:
+
+== Obligations ==
+
+ob_pay_rent: ??
+- It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on {FIRST_RENT_DUE_DATE}.
+- * How do we handle recurring payments?
+
+ob_pay_deposit: O(renter, landlord, T, HappensBefore(evt_pay_deposit, evt_take_occupancy)
+- Prior to taking occupancy of the premises, the Renter will pay the Landlord an amount of {SECURITY_DEPOSIT} as a security deposit to cover the cost of any damages suffered by the premises and cleaning.
+
+ob_return_deposit: Happens(terminates(self)) -> O(landlord, renter, Occurs(evt_premises_condition), Happens(evt_return_deposit)) 
+- Such security deposit will be returned to the Renter upon the end of this Agreement, provided the premises are left in the same condition as prior to the occupancy.
+- * Is this an antecedent and a trigger?
+
+== Power ==
+pow_late_fee: Violates(obligations.ob_pay_rent) => P(landlord, renter, T, Happens(evt_impose_fine)
+- In the event of late payments made by the Renter, the Landlord is entitled to impose a {LATE_FINE} fine as late fee.
+- ** do we treat this as a power to impose a fine; or do we make it a new late payment obligation?
+
+pow_termination: Happens(evt_written_notice) -> P(role, ~role, T, terminates(self))
+- ...At any given time by providing written notice to the other party {TERMINATION_NOTICE_DAYS} days prior to terminating the Agreement.
+
+pow_right_to_enter: Happens(evt_abandon) -> P(landlord, renter, T, Happens(evt_enter_premises))
+- In the event that the Renter abandons the premises during the term of this Agreement, the Landlord will be entitled to enter the Premises by any means without facing any liability ...
+- ** Should incorporate the "during..."
+
+pow_abandon_termination: Happens(evt_abandon) -> P(landlord, renter, T, terminates(self))
+- In the event that the Renter abandons the premises during the term of this Agreement, ...the Landlord may terminate this Agreement.
+
+pow_enter_maintenance: Happens(evt_repairs_required) -> P(landlord, renter, T, Happens(evt_enter_premises))
+- The Landlord is entitled to enter the premises to inspect or repair the premises.
+- * Not sure if "repairs required" is sufficiently implied here... May omit it
+
+pow_pets: Happens(evt_obtain_pet_consent) -> P(renter, landlord, T, Occurs(evt_keep_pets))
+- The Parties agree that the Renter will not keep any pets on the premises without obtaining written prior consent from the Landlord.
+- * Is keep_pets an event or a situation...?
+
+
+INSTANTIATION:
+
+== Input Variables ==
+- EFFECTIVE_DATE (Date):
+- RENTER_ADDRESS (str):
+- RENTER_NAME (str):
+- LANDLORD_ADDRESS (str):
+- LANDLORD_NAME (str):
+- TERMINATION_DATE (Date):
+- PROPERTY_ADDRESS (str):
+- MONTHLY_RENT (Price):
+- FIRST_RENT_DUE_DATE (Date):
+- PAYMENT_METHOD (str):
+- LATE_FINE (Price):
+- SECURITY_DEPOSIT (Price):
+- TERMINATION_NOTICE_DAYS (num):
+- GOVERNING_LAW_STATE (str):
+
+== Calculated ==
+- renter = Renter(address=RENTER_ADDRESS, name=RENTER_NAME)
+- landlord = Landlord(address=LANDLORD_ADDRESS, name=LANDLORD_NAME) 
+- property = Property(address=PROPERTY_ADDRESS, monthly_rent=MONTHLY_RENT)
+
+== Events ==
+- evt_pay_deposit: Evt_pay_deposit(from=renter, to=landlord, amount=SECURITY_DEPOSIT)
+- evt_take_occupancy: Evt_take_occupancy(agent=renter)
+- evt_premises_condition: Evt_premises_condition(property=property)
+- evt_return_deposit: Evt_return_deposit(from=landlord, to=renter)
+- evt_impose_fine: Evt_impose_fine(agent=landlord, recipient=renter, amount=LATE_FINE)
+- evt_written_notice: Evt_written_notice(from=role, to=~role, days=TERMINATION_NOTICE_DAYS)
+- evt_enter_premises: Evt_enter_premises(agent=landlord, property=property)
+- evt_abandon: Evt_abandon(agent=renter, property=property)
+- evt_repairs_required: Evt_repairs_required(property=property)
+- evt_obtain_pet_consent: Evt_obtain_pet_consent(asker=renter, granter=landlord)

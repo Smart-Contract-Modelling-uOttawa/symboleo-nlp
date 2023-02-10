@@ -1,0 +1,115 @@
+
+DOMAIN MODEL:
+== Roles ==
+contractor
+- address (str)
+- name (str)
+
+client
+- address (str)
+- name (str)
+
+
+== Assets ==
+Services (None)
+
+Property (None)
+
+
+== Events ==
+Evt_charge
+- charger (Role)
+- chargee (Role)
+- amount (Price)
+
+Evt_complete_services
+- performer (Role)
+
+Evt_send_invoice
+- sender (Role)
+- recipient (Role)
+
+Evt_pay_invoice 
+
+Evt_receipt
+- date (Date)
+
+Evt_complete_services
+
+Evt_services_partly_complete
+
+Evt_pay_pro_rata
+
+Evt_reimburse
+- from (Role)
+- to (Role)
+- amount (str)
+
+Evt_return_property
+- sender (Role)
+- recipient (Role)
+- property (Property)
+
+Evt_break_confidentiality
+- agent (Role)
+
+CONTRACT SPEC:
+
+== Obligations ==
+ob_charge: O(contractor, client, T, Happens(evt_charge))
+- The Contractor will charge the Client a flat fee of {FLAT_FEE} for the Services (the "Compensation").
+- * Should "charging" just be reframed as a payment obligation?
+
+ob_invoice: Happens(evt_complete_services) -> O(contractor, client, T, Happens(evt_invoice))
+- The Client will be invoiced when the Services are complete.
+
+ob_pay_invoice: O(client, contractor, T, HappensBefore(evt_pay_invoice, date.add(evt_receipt, INVOICE_PAYMENT_DAYS, days)))
+- Invoices submitted by the Contractor to the Client are due within {INVOICE_PAYMENT_DAYS} days of receipt.
+- ** What is meant by receipt...? We may want to capture the time of the invoice event
+
+ob_pro_rata: Happens(terminates(self)) AND not Happens(evt_complete_services) AND Happens(evt_services_partly_complete) -> O(client, contractor, T, Happens(evt_pay_pro_rata))
+- In the event that this Agreement is terminated by the Client prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination provided that there has been no breach of contract on the part of the Contractor.
+- * 3-part trigger - difficult
+
+ob_reimburse: O(client, contractor, T, Happens(evt_reimburse))
+- The Contractor will be reimbursed from time to time for reasonable and necessary expenses incurred by the Contractor in connection with providing the Services.
+- * From time to time is vague; How do we handle frequencies?
+
+ob_return_property: Happens(terminates(self)) -> O(contractor, client, T, Happens(evt_return_property))
+- Upon the expiry or termination of this Agreement, the Contractor will return to the Client any property, documentation, records, or Confidential Information which is the property of the Client.
+
+ob_confidentiality: O(role, ~role, T, not HappensWithin(evt_break_confidentiality), timespan(activation(self)), forever) * surviving
+- The obligations of confidentiality will apply during the Term and will survive indefinitely upon termination of this Agreement.
+- ** timespan?
+
+
+
+INSTANTIATION:
+
+== Input Variables ==
+- CLIENT_ADDRESS (str): 123 Test Street
+- CLIENT_NAME (str): 
+- CONTRACTOR_ADDRESS (str): 99 Fake Avenue
+- CONTRACTOR_NAME (str): 
+- FLAT_FEE (amount): 0
+- INVOICE_PAYMENT_DAYS (num): 30
+
+== Calculated ==
+- contractor = Contractor(address=CONTRACTOR_ADDRESS, name=CONTRACTOR_NAME)
+- client = Client(address=CLIENT_ADDRESS, name=CLIENT_NAME)
+- services = Services()
+- property = Property() 
+- PAYMENT_DUE_DATE = evt_receipt.date + INVOICE_PAYMENT_DAYS
+
+== Events ==
+- evt_charge = Evt_charge(charger=contractor, chargee=client, amount=FLAT_FEE)
+- evt_complete_services = Evt_complete_services(performer=contractor)
+- evt_send_invoice = Evt_send_invoice(sender=contractor, recipient=client)
+- evt_receipt = Evt_receipt(date=**?)
+- evt_pay_invoice = Evt_pay_invoice(from=client, to=contractor, due_date=PAYMENT_DUE_DATE)
+- evt_complete_services = Evt_complete_services()
+- evt_services_partly_complete = Evt_services_partly_complete()
+- evt_pay_pro_rata = Evt_pay_pro_rata()
+- evt_reimburse = Evt_reimburse(from=client, to=contractor, amount="necessary expenses")
+- evt_return_property = Evt_return_property(sender=conractor, recipient=client, item=Property)
+- evt_break_confidentiality = Evt_break_confidentiality(agent=role)

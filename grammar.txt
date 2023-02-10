@@ -1,8 +1,7 @@
-"obligation delivery is suspended"
-- case 1: before the obligation delivery is suspended
-- case 2: within 2 weeks of the obligation delivery being suspended
-
-
+The symboleo operation may not be a function of the parameter, but rather the frame that is chosen
+- for example: The client will be invoiced [TIMEFRAME]
+-- "When services are completed" => Adds a trigger
+-- "Before services are completed" => Refines a consequent
 
 
 Notes

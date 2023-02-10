@@ -1,0 +1,116 @@
+Property Management Agreement
+
+This Property Management Agreement (the "Agreement") is entered into {EFFECTIVE_DATE} (the "Effective Date"), 
+
+by and between {MANAGER_NAME}, with an address of {MANAGER_ADDRESS} (the "Manager") 
+
+and {OWNER_NAME}, with an address of {OWNER_ADDRESS}, (the "Owner"), 
+
+also individually referred to as "Party", and collectively "the Parties."
+
+
+== Purpose == 
+The Owner owns the property located at {PROPERTY_ADDRESS} (the "Property"). 
+
+The Manager is in the business of managing properties of this type. 
+
+The Owner desires to engage the Manager to manage the Property.
+
+== Manager’s Responsibilities == 
+
+The Manager agrees to perform the following duties and responsibilities with regards to the Property:
+
+=== Advertising of Property === 
+The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s). 
+
+The Owner shall reimburse the Manager for all expenses related to such Advertising. 
+
+The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising.
+
+
+=== Collection & Disbursement of Rent ===
+The Manager shall be responsible for all collection of Rent earned on the Property. 
+
+The Manager shall then be responsible for disbursement of those proceeds to the Owner. 
+
+The Owner shall provide the Manager with direction as to how proceeds shall be disbursed. 
+
+The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements.
+
+
+=== Maintenance & Repair ===
+The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property. 
+
+The Owner shall reimburse the Manager for the cost of all such maintenance and repairs. 
+
+The Manager shall provide the Owner invoices of the actual costs.
+
+
+=== Legal Proceedings === 
+In the event that collection and/or legal proceedings become necessary with regard to the rental of the Property, The Manager shall handle all such proceedings. 
+
+The Owner shall reimburse the Manager for all expenses incurred in the pursuit of collection proceedings and/or legal proceedings. 
+
+The Manager shall not be responsible for any legal proceedings that do not result from the management and rental of the Property.
+
+
+== Compensation == 
+The Parties agree the Manager shall be compensated as follows {COMPE}.
+
+
+== Term == 
+This Agreement shall commence upon the Effective Date, as stated above, and will continue until {TERMINATION_DATE}.
+
+
+== Termination == 
+This Agreement may be terminated at any time by either Party upon {TERMINATION_NOTICE_DAYS} days written notice to the other Party. 
+
+Upon termination, the Manager shall disburse to the Owner any monies in the Manager’s possession due and owing to the Owner within {DISBURSEMENT_DAYS=3-} days from the date of termination. 
+
+The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within {REIMBURSEMENT_DAYS} days from the date of termination.
+
+
+== Representations and Warranties == 
+Both Parties represent that they are fully authorized to enter into this Agreement. 
+
+The performance and obligations of either Party will not violate or infringe upon the rights of any third party or violate any other agreement between the Parties, individually, and any other person, organization, or business or any law or governmental regulation.
+
+
+== Indemnity == 
+The Parties each agree to indemnify and hold harmless the other Party, its respective affiliates, officers, agents, employees, and permitted successors and assigns against any and all claims, losses, damages, liabilities, penalties, punitive damages, expenses, reasonable legal fees and costs of any kind or amount whatsoever, which result from the negligence of or breach of this Agreement by the indemnifying party, its respective successors and assigns that occurs in connection with this Agreement. 
+
+This section remains in full force and effect even after termination of the Agreement by its natural termination or the early termination by either Party.
+
+
+== Limitation of Liability == 
+UNDER NO CIRCUMSTANCES SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ANY THIRD PARTY FOR ANY DAMAGES RESULTING FROM ANY PART OF THIS AGREEMENT SUCH AS, BUT NOT LIMITED TO, LOSS OF REVENUE OR ANTICIPATED PROFIT OR LOST BUSINESS, COSTS OF DELAY OR FAILURE OF DELIVERY, WHICH ARE NOT RELATED TO OR THE DIRECT RESULT OF A PARTY’S NEGLIGENCE OR BREACH.
+
+
+== Severability == 
+In the event any provision of this Agreement is deemed invalid or unenforceable, in whole or in part, that part shall be severed from the remainder of the Agreement and all other provisions should continue in full force and effect as valid and enforceable. 
+
+
+== Waiver == 
+The failure by either Party to exercise any right, power, or privilege under the terms of this Agreement will not be construed as a waiver of any subsequent or future exercise of that right, power, or privilege or the exercise of any other right, power, or privilege. 
+
+
+== Legal Fees == 
+In the event of a dispute resulting in legal action, the successful Party will be entitled to its legal fees, including, but not limited to its attorneys’ fees.
+
+
+== Legal and Binding Agreement == 
+This Agreement is legal and binding between the Parties as stated above. 
+
+This Agreement may be entered into and is legal and binding both in the United States and throughout Europe. 
+
+The Parties each represent that they have the authority to enter into this Agreement.
+
+
+== Governing Law and Jurisdiction == 
+The Parties agree that this Agreement shall be governed by the State and/or Country in which the Property is located.
+
+
+== Entire Agreement == 
+The Parties acknowledge and agree that this Agreement represents the entire agreement between the Parties. 
+
+In the event that the Parties desire to change, add, or otherwise modify any terms, they shall do so in writing to be signed by both Parties.
