@@ -67,13 +67,13 @@ ob_notify_expense: O(manager, owner, T, Happens(evt_notify_expense))
 
 ob_collection: O(manager, owner, T, Happens(evt_collection))
 - The Manager shall be responsible for all collection of Rent earned on the Property. 
-- ** This is more like a recurring event...
+- * This is more like a recurring event...
 
 ... Some more basic ones...
 
 ob_invoice: O(manager, owner, T, Happens(evt_provide_invoice))
 - The Manager shall provide the Owner invoices of the actual costs.
-- ** Should each invoicing be a separate event and tied to a specific purchase event?
+- * Should each invoicing be a separate event and tied to a specific purchase event?
 
 ob_legal_proceedings: Happens(evt_legal_proceeding_necessary) -> O(manager, owner, T, Happens(evt_handle_proceeding))
 - In the event that collection and/or legal proceedings become necessary with regard to the rental of the Property, The Manager shall handle all such proceedings. 

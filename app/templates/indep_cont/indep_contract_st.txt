@@ -65,7 +65,7 @@ ob_invoice: Happens(evt_complete_services) -> O(contractor, client, T, Happens(e
 
 ob_pay_invoice: O(client, contractor, T, HappensBefore(evt_pay_invoice, date.add(evt_receipt, INVOICE_PAYMENT_DAYS, days)))
 - Invoices submitted by the Contractor to the Client are due within {INVOICE_PAYMENT_DAYS} days of receipt.
-- ** What is meant by receipt...? We may want to capture the time of the invoice event
+- * What is meant by receipt...? We may want to capture the time of the invoice event
 
 ob_pro_rata: Happens(terminates(self)) AND not Happens(evt_complete_services) AND Happens(evt_services_partly_complete) -> O(client, contractor, T, Happens(evt_pay_pro_rata))
 - In the event that this Agreement is terminated by the Client prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination provided that there has been no breach of contract on the part of the Contractor.
@@ -80,7 +80,7 @@ ob_return_property: Happens(terminates(self)) -> O(contractor, client, T, Happen
 
 ob_confidentiality: O(role, ~role, T, not HappensWithin(evt_break_confidentiality), timespan(activation(self)), forever) * surviving
 - The obligations of confidentiality will apply during the Term and will survive indefinitely upon termination of this Agreement.
-- ** timespan?
+- * timespan?
 
 
 
@@ -105,7 +105,7 @@ INSTANTIATION:
 - evt_charge = Evt_charge(charger=contractor, chargee=client, amount=FLAT_FEE)
 - evt_complete_services = Evt_complete_services(performer=contractor)
 - evt_send_invoice = Evt_send_invoice(sender=contractor, recipient=client)
-- evt_receipt = Evt_receipt(date=**?)
+- evt_receipt = Evt_receipt(date=*?)
 - evt_pay_invoice = Evt_pay_invoice(from=client, to=contractor, due_date=PAYMENT_DUE_DATE)
 - evt_complete_services = Evt_complete_services()
 - evt_services_partly_complete = Evt_services_partly_complete()

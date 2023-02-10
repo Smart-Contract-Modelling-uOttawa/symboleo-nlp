@@ -33,7 +33,7 @@ ob_notify: Happens(evt_realize_inability) -> O(seller, buyer, T, Happens(evt_not
 == Powers ==
 pow_inability_termination: P(role, ~role, T, Happens(terminates(self)))
 - [CONDITION] either Party may terminate this Agreement.
-- CONDITION: Upon such notice, (** This is unclear out of context)
+- CONDITION: Upon such notice, (* This is unclear out of context)
 - OR: Upon notice of inability to deliver 
 
 pow_termination: P(role, ~role, T, terminates(self))

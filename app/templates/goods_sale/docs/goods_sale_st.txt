@@ -59,7 +59,7 @@ ob_sell: O(seller, buyer, T, Happens(evt_sell))
 
 ob_provide_invoice: Happens(evt_delivery, t) -> O(seller, buyer, T, Happens(evt_provide_invoice, t))
 - The Seller will provide an invoice to the Customer at the time of the delivery.
-- ** May want a HappensImmediately?? 
+- * May want a HappensImmediately?? 
 
 ob_pay_invoice: O(buyer, seller, T, HappensBefore(evt_pay_invoice, date.add(activates(self), INVOICE_PAYMENT_DAYS, days)))
 - All invoices are to be paid in full at least within {INVOICE_PAYMENT_DAYS} days.
@@ -69,7 +69,7 @@ ob_late_charge: Violates(obligations.ob_pay_invoice) -> O(buyer, seller, T, Happ
 
 ob_pay_shipping: O(SHIPPING_PAYER, ~SHIPPING_PAYER, T, Happens(evt_pay_shipping))
 - The shipping method will be decided by the {SHIPPING_METHOD_DECIDER} and {SHIPPING_PAYER} will be responsible for the costs of the shipment.
-- ** Need to inject a role...
+- * Need to inject a role...
 
 ob_notify: Happens(evt_realize_inability) -> O(seller, buyer, T, Happens(evt_notify_inability))
 - The Seller will notify the Customer immediately upon realization that it will not be able to deliver the Goods as promised.

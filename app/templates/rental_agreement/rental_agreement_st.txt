@@ -85,14 +85,14 @@ ob_return_deposit: Happens(terminates(self)) -> O(landlord, renter, Occurs(evt_p
 == Power ==
 pow_late_fee: Violates(obligations.ob_pay_rent) => P(landlord, renter, T, Happens(evt_impose_fine)
 - In the event of late payments made by the Renter, the Landlord is entitled to impose a {LATE_FINE} fine as late fee.
-- ** do we treat this as a power to impose a fine; or do we make it a new late payment obligation?
+- * do we treat this as a power to impose a fine; or do we make it a new late payment obligation?
 
 pow_termination: Happens(evt_written_notice) -> P(role, ~role, T, terminates(self))
 - ...At any given time by providing written notice to the other party {TERMINATION_NOTICE_DAYS} days prior to terminating the Agreement.
 
 pow_right_to_enter: Happens(evt_abandon) -> P(landlord, renter, T, Happens(evt_enter_premises))
 - In the event that the Renter abandons the premises during the term of this Agreement, the Landlord will be entitled to enter the Premises by any means without facing any liability ...
-- ** Should incorporate the "during..."
+- * Should incorporate the "during..."
 
 pow_abandon_termination: Happens(evt_abandon) -> P(landlord, renter, T, terminates(self))
 - In the event that the Renter abandons the premises during the term of this Agreement, ...the Landlord may terminate this Agreement.

@@ -31,7 +31,7 @@ pow_termination: P(role, ~role, T, terminates(self))
 pow_right_to_enter: P(landlord, renter, T, Happens(evt_enter_premises))
 - [CONDITION] the Landlord will be entitled to enter the Premises by any means without facing any liability ...
 - CONDITION: In the event that the Renter abandons the premises during the term of this Agreement,
-- ** Should incorporate the "during..." - extra complexity
+- * Should incorporate the "during..." - extra complexity
 
 pow_abandon_termination: P(landlord, renter, T, terminates(self))
 - [CONDITION] ...the Landlord may terminate this Agreement.

@@ -17,14 +17,14 @@ ob_notify_expense: O(manager, owner, T, Happens(evt_notify_expense))
 
 ob_collection: O(manager, owner, T, Happens(evt_collection))
 - The Manager shall be responsible for all collection of Rent earned on the Property. 
-- ** This is more like a recurring event...
+- * This is more like a recurring event...
 - stays the same
 
 ... Some more basic ones...
 
 ob_invoice: O(manager, owner, T, Happens(evt_provide_invoice))
 - The Manager shall provide the Owner invoices of the actual costs.
-- ** Should each invoicing be a separate event and tied to a specific purchase event?
+- * Should each invoicing be a separate event and tied to a specific purchase event?
 - stays the same
 
 ob_legal_proceedings: O(manager, owner, T, Happens(evt_handle_proceeding))
