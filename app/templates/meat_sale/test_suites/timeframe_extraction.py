@@ -1,4 +1,4 @@
-from tests_new.helpers.test_value import ContractSpecTestValue as TV
+from tests.helpers.test_value import ContractSpecTestValue as TV
 
 test_suite = [
     TV(

@@ -1,4 +1,4 @@
-from tests_new.helpers.test_value import DomainPropTestValue as TV
+from tests.helpers.test_value import DomainPropTestValue as TV
 
 test_suite = [
     TV(input_value = '$10.50 in USD', expected_property = ['10.50']),
