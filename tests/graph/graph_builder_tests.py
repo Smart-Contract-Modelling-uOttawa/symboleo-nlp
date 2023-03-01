@@ -1,6 +1,6 @@
 import unittest
 import copy
-from app.classes.spec.symboleo_spec import PAtom
+from app.classes.spec.proposition import PAtom
 from app.src.graph.graph_builder import GraphBuilder
 from app.classes.graph.graph_node import test_graph
 

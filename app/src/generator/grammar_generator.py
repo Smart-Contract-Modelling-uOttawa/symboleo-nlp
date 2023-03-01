@@ -1,13 +1,12 @@
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
 
+from app.src.generator.grammar_config import GrammarConfig, OpCode
+
 class IGenerateGrammar:
     def generate(self, contract: SymboleoContract) -> RootNode:
         raise NotImplementedError()
 
-# Note: This particular generator is for time-based PPs
-## Very likely that I will need to introduce other types of generators (e.g. conditionals, noun_phrases, etc)
-## Some generators may be very narrow, and that's ok
 class GrammarGenerator(IGenerateGrammar):
     def __init__(self):
         # Symboleo State - should be loaded in
@@ -15,9 +14,8 @@ class GrammarGenerator(IGenerateGrammar):
         self.__obligation_actions = ['suspended', 'triggered', 'completed', 'terminated successfully']
         self.__power_actions = []
 
-
     # Pattern: Generator func, create the nodes, add to the node_dict
-    def generate(self, contract: SymboleoContract) -> RootNode:
+    def generate(self, contract: SymboleoContract, config: GrammarConfig) -> RootNode:
         domain_model = contract.domain_model
         contract_spec = contract.contract_spec
 
@@ -80,7 +78,19 @@ class GrammarGenerator(IGenerateGrammar):
         ## Within 2 weeks of [Event]
         within_node = WithinNode('Within', [timespan_node])
 
+        ## IF ##
+        if_node = IfNode('If', [event_node])
+
+        # Set up pathways, depending on config
+        root_children =[]
+        if OpCode.ADD_TRIGGER in config.op_codes:
+            root_children.append(if_node)
+        
+        if OpCode.REFINE_PREDICATE in config.op_codes:
+            root_children.append(before_node)
+            root_children.append(within_node)
+
         ## ROOT ##
-        root_node = RootNode('Root', [before_node, within_node])
+        root_node = RootNode('Root', root_children)
         
         return root_node

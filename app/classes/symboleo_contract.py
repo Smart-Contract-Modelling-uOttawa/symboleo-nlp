@@ -1,7 +1,7 @@
 from typing import Dict
-from app.classes.domain_model.domain_model import Role, DomainEvent, Asset
-from app.classes.spec.symboleo_spec import Obligation
-from app.classes.spec.symboleo_spec import Power
+from app.classes.spec.domain_model import Role, DomainEvent, Asset
+from app.classes.spec.contract_spec import Obligation
+from app.classes.spec.contract_spec import Power
 
 class DomainModel:
     def __init__(

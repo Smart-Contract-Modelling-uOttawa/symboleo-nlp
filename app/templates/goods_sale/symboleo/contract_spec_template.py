@@ -1,5 +1,6 @@
 from app.classes.spec.helpers import TimeValueInt, TimeUnitStr, VariableDotExpression
-from app.classes.spec.symboleo_spec import Obligation, PAnd, PEquality, PComparison, Power, Proposition, PNegAtom
+from app.classes.spec.proposition import PAnd, PEquality, PComparison, PNegAtom, Proposition
+from app.classes.spec.contract_spec import Obligation, Power
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
 from app.classes.spec.sym_event import ObligationEvent

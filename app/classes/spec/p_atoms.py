@@ -1,4 +1,4 @@
-from app.classes.spec.symboleo_spec import PAtom, Proposition
+from app.classes.spec.proposition import PAtom, Proposition
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.other_function import OtherFunction
 from app.classes.spec.helpers import VariableDotExpression

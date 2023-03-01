@@ -13,3 +13,4 @@ class IfNode(SelectedNode):
             return PredicateFunctionHappens(evt)
 
         raise NotImplementedError('Oops!')
+        

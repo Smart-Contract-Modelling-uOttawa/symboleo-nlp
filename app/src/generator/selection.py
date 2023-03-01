@@ -4,13 +4,15 @@ from app.classes.grammar.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
 from app.classes.frames.frame_checker import FrameChecker
 
+# This class handles the selection process
+# It is fairly bulky and ill-defined - will need to trim it down as the program develops
 class Selection:
     def __init__(self, possible_frames: List[Frame]):
         self.nodes: List[SelectedNode] = []
         self.possible_frames: List[Frame] = possible_frames
 
-    def try_frames(self):
-        results = []
+    def get_frames(self) -> List[Frame]:
+        results: List[Frame] = []
 
         for frame in self.possible_frames:
             # Find all the nodes that have a match for the frame
@@ -18,8 +20,9 @@ class Selection:
                 frame = node.build_frame(frame)
 
             if frame.is_complete():
-                text = frame.to_text()
-                results.append(text)
+                results.append(frame)
+                #text = frame.to_text()
+                #results.append(text)
         
         return results
 
@@ -29,6 +32,7 @@ class Selection:
         ## Can add it in after
         ## Probably best to add it as a parm - most things won't use it, but it may end up being useful...
         return self.nodes[0].to_obj(default_event)
+
 
     def add_node(self, node: SelectedNode):
         # Set index

@@ -1,5 +1,6 @@
 from app.classes.spec.helpers import TimeValueInt, TimeUnitStr, VariableDotExpression
-from app.classes.spec.symboleo_spec import Obligation, PAnd, PEquality, PComparison, Power, Proposition, PNegAtom
+from app.classes.spec.proposition import PAnd, PEquality, PComparison, Proposition, PNegAtom
+from app.classes.spec.contract_spec import Obligation, Power, PNegAtom
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
 from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent
@@ -9,7 +10,7 @@ from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, 
 from app.classes.spec.power_function import PFObligation, PFContract
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.symboleo_contract import DomainModel
-from app.classes.domain_model.domain_model import Role, Asset, DomainEvent, DomainProp
+from app.classes.spec.domain_model import Role, Asset, DomainEvent, DomainProp
 from app.classes.symboleo_contract import ContractSpec
 
 

@@ -1,6 +1,7 @@
 
+# Will likely scrap this entire file
 from enum import Enum
-from app.src.rules.shared.configs import PredicateProcessorConfig, DomainPropProcessorConfig
+from app.src.operations.configs import PredicateProcessorConfig, DomainPropProcessorConfig
 
 # class syntax
 class ContractParamType(Enum):

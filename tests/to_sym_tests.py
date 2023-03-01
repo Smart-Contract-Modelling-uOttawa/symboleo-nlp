@@ -1,6 +1,6 @@
 import unittest
-from app.classes.spec.symboleo_spec import Obligation, Power
-from app.templates.meat_sale.norms import meat_sale_norms as norms
+from app.classes.spec.contract_spec import Obligation, Power
+from app.templates.meat_sale.nl_template import nl_template
 
 test_suite = {
     'obligations': {
@@ -21,6 +21,7 @@ test_suite = {
 
 class ToSymTests(unittest.TestCase):
     def test_obligations(self):
+        x = nl_template
         obs: list[Obligation] = norms['obligations']
         expected_obs = test_suite['obligations']
         for x in obs:

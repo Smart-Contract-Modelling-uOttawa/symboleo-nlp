@@ -1,6 +1,6 @@
 from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
-from app.classes.domain_model.domain_model import Role, DomainEvent, Asset
-from app.classes.spec.symboleo_spec import Obligation, Power, VariableDotExpression
+from app.classes.spec.domain_model import Role, DomainEvent, Asset
+from app.classes.spec.contract_spec import Obligation, Power, VariableDotExpression
 
 class FakeSym:
     def to_sym(self):

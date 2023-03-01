@@ -1,5 +1,5 @@
 from app.classes.symboleo_contract import DomainModel
-from app.classes.domain_model.domain_model import Role, Asset, DomainEvent, DomainProp
+from app.classes.spec.domain_model import Role, Asset, DomainEvent, DomainProp
 
 meat_sale_domain_model_template = DomainModel(
     roles = {
