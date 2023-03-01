@@ -1,7 +1,7 @@
 from app.classes.grammar.abstract_node import AbstractNode
 from app.classes.grammar.selected_node import SelectedNode
 from app.classes.grammar.selected_nodes.all_nodes import node_type_to_class
-from app.src.generator.selection import Selection
+from app.src.grammar.selection import Selection
 
 class ISelectGrammar:
     def select(self, root: AbstractNode) -> Selection:

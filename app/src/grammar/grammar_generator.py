@@ -1,7 +1,7 @@
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
 
-from app.src.generator.grammar_config import GrammarConfig, OpCode
+from app.src.grammar.grammar_config import GrammarConfig, OpCode
 
 class IGenerateGrammar:
     def generate(self, contract: SymboleoContract) -> RootNode:

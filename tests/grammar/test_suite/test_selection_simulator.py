@@ -1,7 +1,7 @@
 from app.classes.grammar.abstract_node import AbstractNode
 from app.classes.grammar.selected_node import SelectedNode
-from app.src.generator.selection import Selection
-from app.src.generator.grammar_selector import GrammarSelector
+from app.src.grammar.selection import Selection
+from app.src.grammar.grammar_selector import GrammarSelector
 
 class SelectionSimulator:
     def simulate(self, root_node: AbstractNode, iv_list):

@@ -5,7 +5,7 @@ from tests_new.src.grammar.test_suite.test_selection_simulator import SelectionS
 
 from app.src.template_getter import get_template
 from app.classes.grammar.selected_nodes.all_nodes import *
-from app.src.generator.grammar_generator import GrammarGenerator
+from app.src.grammar.grammar_generator import GrammarGenerator
 from app.classes.spec.sym_event import VariableEvent
 
 

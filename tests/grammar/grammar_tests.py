@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from typing import List
 from app.classes.grammar.selected_node import SelectedNode
 from app.classes.grammar.selected_nodes.all_nodes import *
-from app.src.generator.grammar_selector import GrammarSelector
+from app.src.grammar.grammar_selector import GrammarSelector
 
 class GrammarTests(unittest.TestCase):
     def setUp(self):
@@ -21,6 +21,7 @@ class GrammarTests(unittest.TestCase):
             ObligationEventVarNode('e', None, 'delivery'),
             ObligationEventActionNode('f', None,'suspended')
         ]
+        
         SelectedNode.organize_list(selected_nodes)
 
         nl_result = GrammarSelector

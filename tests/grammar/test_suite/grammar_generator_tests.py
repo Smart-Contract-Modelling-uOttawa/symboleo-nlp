@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.src.template_getter import get_template
 from app.classes.grammar.selected_nodes.all_nodes import *
-from app.src.generator.grammar_generator import GrammarGenerator
+from app.src.grammar.grammar_generator import GrammarGenerator
 
 
 # I can write some more tests that parse through this in much more detail, but not a priority
