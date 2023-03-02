@@ -1,6 +1,6 @@
 from typing import Dict, Type
 from app.classes.grammar.node_type import NodeType
-from app.classes.grammar.selected_node import SelectedNode
+from app.classes.grammar.selected_node import SelectedNode, DummyNode
 from app.classes.grammar.selected_nodes.before_node import BeforeNode
 from app.classes.grammar.selected_nodes.contract_event_action_node import ContractEventActionNode
 from app.classes.grammar.selected_nodes.contract_event_node import ContractEventNode
@@ -33,6 +33,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.BEFORE: BeforeNode,
     NodeType.WITHIN: WithinNode,
     NodeType.IF: IfNode,
-    NodeType.STATE: StateNode
+    NodeType.STATE: StateNode,
+    NodeType.DUMMY: DummyNode
     ####...
 }

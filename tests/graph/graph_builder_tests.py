@@ -1,13 +1,14 @@
 import unittest
 import copy
 from app.classes.spec.proposition import PAtom
-from app.src.graph.graph_builder import GraphBuilder
+from app.src.old.graph.graph_builder import GraphBuilder
 from app.classes.graph.graph_node import test_graph
 
 class GraphBuilderTests(unittest.TestCase):
     def setUp(self):
         self.sut = GraphBuilder()
 
+    @unittest.skip("Older... may update")
     def test_graph_builder(self):
         test_list = list(test_graph.values())
         test_list.sort(key=lambda x: x.name)

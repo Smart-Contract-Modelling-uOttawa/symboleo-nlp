@@ -19,4 +19,15 @@ class Frame:
         return copy.deepcopy(frame)
     
 
+class DummyFrame(Frame):
+    pattern = [NodeType.ROOT]
+    op_code = OpCode.REFINE_PREDICATE
+    test_value: str = ''
+
+    def is_complete(self):
+        return self.test_value != '' 
+
+    def to_text(self):
+        return f'DUMMY: {self.test_value}'
+    
     

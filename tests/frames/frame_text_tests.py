@@ -1,0 +1,44 @@
+import unittest
+from unittest.mock import MagicMock
+
+from app.classes.frames.all_frames import *
+
+
+class FrameTextTests(unittest.TestCase):
+    def setUp(self):
+        x = 0
+
+    def test_before_date_frame(self):
+        f = BeforeDateFrame()
+        f.date_text = '2020/02/03'
+        ev = 'before 2020/02/03'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+    
+    def test_before_event_frame(self):
+        f = BeforeEventFrame()
+        f.subject = 'contract'
+        f.verb = 'terminated'
+        ev = 'before contract is terminated'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+    
+    def test_within_timespan_date_frame(self):
+        f = WithinTimespanDateFrame()
+        f.date_text = '2020/02/03'
+        f.timespan = '2 weeks'
+        ev = 'within 2 weeks of 2020/02/03'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+
+    def test_within_timespan_date_frame(self):
+        f = WithinTimespanEventFrame()
+        f.subject = 'contract'
+        f.verb = 'terminated'
+        f.timespan = '2 weeks'
+        ev = 'within 2 weeks of contract being terminated'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+
+if __name__ == '__main__':
+    unittest.main()

@@ -8,14 +8,16 @@ class SelectedNode:
     node_type: NodeType = None
     parent: SelectedNode = None
     child: SelectedNode = None
-    ind: int = 0
+    ind: int = -1
 
     def __init__(
         self, 
         id:str,
-        value: str = ''
+        ind: int,
+        value: str = '',
     ):
         self.id = id
+        self.ind = ind
         self.value = value
     
     def build_frame(self, frame: Frame) -> Frame:
@@ -23,4 +25,9 @@ class SelectedNode:
 
     def to_obj(self, default_event: SymEvent = None):
         raise NotImplementedError()
-    
+
+class DummyNode(SelectedNode):
+    node_type = NodeType.DUMMY
+
+    def to_obj(self, default_event: SymEvent):
+        return 'dummy'

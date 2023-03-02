@@ -204,7 +204,7 @@ meat_sale_contract_spec_template = ContractSpec(
             PFObligation('Resumed', 'delivery')
         ),
 
-        ## terminateContract: Happens(Violated(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))
+        ## terminateContract: Occurs(Violation(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))
         'terminateContract': Power(
             'terminateContract',
             Proposition(

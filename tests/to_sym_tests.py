@@ -1,48 +1,42 @@
 import unittest
-from app.classes.spec.contract_spec import Obligation, Power
-from app.templates.meat_sale.nl_template import nl_template
+from app.src.helpers.template_getter import get_template
 
 test_suite = {
     'obligations': {
-        'delivery': 'delivery: O(seller, buyer, true, WhappensBefore(delivered, delivered.delDueDate))',
-        'payment': 'payment: O(buyer, seller, true, WhappensBefore(paid, paid.payDueDate))',
-        'latePayment': 'latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))'
-    },
-    'surviving_obligations': {
-        'so1': 'so1: O(seller, buyer, true, not WhappensBefore(disclosed, Date.add(Activated(self), 6, months)))',
-        'so2': 'so2: O(buyer, seller, true, not WhappensBefore(disclosed, Date.add(Activated(self), 6, months)))'
+        'delivery': 'delivery: O(seller, buyer, true, Happens(delivered))',
+        'payment': 'payment: O(buyer, seller, true, Happens(paid))',
+        'latePayment': 'latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))',
+        'disclosure1': 'disclosure1: O(seller, buyer, true, not Happens(disclosed))',
+        'disclosure2': 'disclosure2: O(buyer, seller, true, not Happens(disclosed))'
     },
     'powers': {
-        'suspendDelivery': 'suspendDelivery: Happens(Violated(obligations.payment)) -> P(seller, buyer, true, Suspended(obligations.delivery))',
-        'resumeDelivery': 'resumeDelivery: HappensWithin(paidLate, Suspension(obligations.delivery)) -> P(buyer, seller, true, Resumed(obligations.delivery))',
-        'terminateContract': 'terminateContract: Happens(Violated(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))'
+        'suspendDelivery': 'suspendDelivery: P(seller, buyer, true, Suspended(obligations.delivery))',
+        'resumeDelivery': 'resumeDelivery: Happens(NEVER) -> P(buyer, seller, true, Resumed(obligations.delivery))',
+        'terminateContract': 'terminateContract: Occurs(Violation(obligations.delivery), NEVER) -> P(buyer, seller, true, Terminated(self))'
     }
 }
 
 class ToSymTests(unittest.TestCase):
+    def setUp(self):
+        contract = get_template('meat_sale')
+        self.contract_spec = contract.contract_spec
+
     def test_obligations(self):
-        x = nl_template
-        obs: list[Obligation] = norms['obligations']
+        obs = self.contract_spec.obligations
         expected_obs = test_suite['obligations']
-        for x in obs:
-            result = x.to_sym()
-            expected = expected_obs[x.id]
-            self.assertEqual(result, expected)
-    
-    def test_surviving_obligations(self):
-        obs: list[Obligation] = norms['surviving_obligations']
-        expected_obs = test_suite['surviving_obligations']
-        for x in obs:
-            result = x.to_sym()
-            expected = expected_obs[x.id]
+        for ob_id in obs:
+            next_ob = obs[ob_id]
+            result = next_ob.to_sym()
+            expected = expected_obs[ob_id]
             self.assertEqual(result, expected)
     
     def test_powers(self):
-        obs: list[Power] = norms['powers']
-        expected_obs = test_suite['powers']
-        for x in obs:
-            result = x.to_sym()
-            expected = expected_obs[x.id]
+        pows = self.contract_spec.powers
+        expected_pows = test_suite['powers']
+        for p_id in pows:
+            next_pow = pows[p_id]
+            result = next_pow.to_sym()
+            expected = expected_pows[p_id]
             self.assertEqual(result, expected)
 
   

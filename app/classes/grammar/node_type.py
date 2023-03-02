@@ -16,4 +16,5 @@ class NodeType(Enum):
     WITHIN = 14,
     IF = 15,
     STATE = 16
+    DUMMY = 17
     # ....

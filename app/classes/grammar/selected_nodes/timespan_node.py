@@ -9,10 +9,6 @@ from app.classes.spec.helpers import TimeUnitStr, TimeValueInt
 class TimespanNode(SelectedNode):
     node_type = NodeType.TIMESPAN
 
-    def __init__(self, id: str, value: str = ''):
-        super().__init__(id, value)
-        print('TS VALUE', value)
-
     def build_frame(self, frame: Frame) -> Frame:
         new_frame = Frame.copy(frame)
 

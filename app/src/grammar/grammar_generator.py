@@ -1,7 +1,7 @@
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
 
-from app.src.grammar.grammar_config import GrammarConfig, OpCode
+from app.src.grammar.grammar_config import GrammarGeneratorConfig, OpCode
 
 class IGenerateGrammar:
     def generate(self, contract: SymboleoContract) -> RootNode:
@@ -15,7 +15,7 @@ class GrammarGenerator(IGenerateGrammar):
         self.__power_actions = []
 
     # Pattern: Generator func, create the nodes, add to the node_dict
-    def generate(self, contract: SymboleoContract, config: GrammarConfig) -> RootNode:
+    def generate(self, contract: SymboleoContract, config: GrammarGeneratorConfig) -> RootNode:
         domain_model = contract.domain_model
         contract_spec = contract.contract_spec
 
@@ -82,7 +82,7 @@ class GrammarGenerator(IGenerateGrammar):
         if_node = IfNode('If', [event_node])
 
         # Set up pathways, depending on config
-        root_children =[]
+        root_children = []
         if OpCode.ADD_TRIGGER in config.op_codes:
             root_children.append(if_node)
         
