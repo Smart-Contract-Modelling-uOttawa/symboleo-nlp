@@ -15,6 +15,7 @@ class NodeType(Enum):
     TIMESPAN = 13,
     WITHIN = 14,
     IF = 15,
-    STATE = 16
-    DUMMY = 17
+    STATE = 16,
+    DUMMY = 17,
+    AFTER = 18 
     # ....

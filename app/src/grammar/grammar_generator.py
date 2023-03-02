@@ -71,6 +71,9 @@ class GrammarGenerator(IGenerateGrammar):
         ## BEFORE ##
         before_node = BeforeNode('Before', [date_node, event_node])
 
+        ## AFTER ##
+        after_node = AfterNode('After', [date_node, event_node])
+
         ## TIMESPAN ##
         timespan_node = TimespanNode('Timespan', [event_node])
 
@@ -88,6 +91,7 @@ class GrammarGenerator(IGenerateGrammar):
         
         if OpCode.REFINE_PREDICATE in config.op_codes:
             root_children.append(before_node)
+            root_children.append(after_node)
             root_children.append(within_node)
 
         ## ROOT ##

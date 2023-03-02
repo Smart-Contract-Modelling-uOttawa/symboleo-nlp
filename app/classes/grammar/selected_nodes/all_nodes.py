@@ -16,6 +16,7 @@ from app.classes.grammar.selected_nodes.timespan_node import TimespanNode
 from app.classes.grammar.selected_nodes.within_node import WithinNode
 from app.classes.grammar.selected_nodes.if_node import IfNode
 from app.classes.grammar.selected_nodes.state_node import StateNode
+from app.classes.grammar.selected_nodes.after_node import AfterNode
 
 
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
@@ -34,6 +35,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.WITHIN: WithinNode,
     NodeType.IF: IfNode,
     NodeType.STATE: StateNode,
-    NodeType.DUMMY: DummyNode
+    NodeType.DUMMY: DummyNode,
+    NodeType.AFTER: AfterNode,
     ####...
 }

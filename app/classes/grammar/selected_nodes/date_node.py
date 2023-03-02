@@ -14,6 +14,8 @@ class DateNode(SelectedNode):
 
         if isinstance(new_frame, BeforeDateFrame):
             new_frame.date_text = self.value
+        if isinstance(new_frame, AfterDateFrame):
+            new_frame.date_text = self.value
         
         return new_frame
 

@@ -16,4 +16,5 @@ from app.classes.grammar.grammar_nodes.timespan_node import TimespanNode
 from app.classes.grammar.grammar_nodes.within_node import WithinNode
 from app.classes.grammar.grammar_nodes.if_node import IfNode
 from app.classes.grammar.grammar_nodes.state_node import StateNode
+from app.classes.grammar.grammar_nodes.after_node import AfterNode
 

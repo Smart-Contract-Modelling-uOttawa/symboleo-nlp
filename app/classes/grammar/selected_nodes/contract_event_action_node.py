@@ -11,7 +11,8 @@ class ContractEventActionNode(SelectedNode):
     def build_frame(self, frame: Frame) -> Frame:
         new_frame = Frame.copy(frame)
 
-        if isinstance(new_frame, BeforeEventFrame):
+        if isinstance(new_frame, BeforeEventFrame) or \
+            isinstance(new_frame, AfterEventFrame):
             new_frame.verb = self.value
             new_frame.subject = 'the contract'
         

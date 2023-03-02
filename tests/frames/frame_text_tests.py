@@ -39,6 +39,21 @@ class FrameTextTests(unittest.TestCase):
         ev = 'if contract has been terminated'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
+    
+    def test_after_event_frame(self):
+        f = AfterEventFrame()
+        f.subject = 'contract'
+        f.verb = 'terminated'
+        ev = 'after contract is terminated'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+    
+    def test_after_date_frame(self):
+        f = AfterDateFrame()
+        f.date_text = '2022/02/23'
+        ev = 'after 2022/02/23'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
 
 if __name__ == '__main__':
     unittest.main()
