@@ -54,6 +54,14 @@ class FrameTextTests(unittest.TestCase):
         ev = 'after 2022/02/23'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
+    
+    def test_until_event_frame(self):
+        f = UntilEventFrame()
+        f.subject = 'contract'
+        f.verb = 'terminated'
+        ev = 'until contract has been terminated'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
 
 if __name__ == '__main__':
     unittest.main()

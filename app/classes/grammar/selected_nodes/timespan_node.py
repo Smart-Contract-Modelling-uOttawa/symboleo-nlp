@@ -1,8 +1,7 @@
-from app.classes.grammar.selected_node import SelectedNode
+from app.classes.grammar.selected_node import SelectedNode, Basket
 from app.classes.grammar.node_type import NodeType
 from app.classes.frames.frame import Frame
 from app.classes.frames.all_frames import *
-from app.classes.spec.sym_event import SymEvent
 
 from app.classes.spec.helpers import TimeUnitStr, TimeValueInt
 
@@ -18,7 +17,7 @@ class TimespanNode(SelectedNode):
         return new_frame
 
 
-    def to_obj(self, default_event: SymEvent):
+    def to_obj(self, basket: Basket):
         # Will need to split up the self.value... maybe just by a space?
         (tvi,tsu)  = self.value.split(' ')
         

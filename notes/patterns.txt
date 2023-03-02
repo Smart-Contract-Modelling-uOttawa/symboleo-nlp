@@ -1,0 +1,15 @@
+== UNTIL DATE == 
+- this one might actually be a HappensWithin?
+- Let's get rid of this one... It's ambiguous. There are less ambiguous ways to express the same thing
+- e.g. the goods must be delivered until DATE - doesnt make sense 
+
+What about a "from DATE until DATE"
+- still doesnt really make sense
+- Between DATE and DATE makes way more sense - that works well with a HappensWithin 
+
+I think the UNLESS_EVENT pattern is more straightforward as adding the extra norm...
+
+UNTIL_EVENT ==> add the norm 
+UNLESS_EVENT ==> add the norm 
+
+Need to make the default_event more dynamic. Should have the ability to carry a few pieces

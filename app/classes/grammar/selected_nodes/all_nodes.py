@@ -17,6 +17,7 @@ from app.classes.grammar.selected_nodes.within_node import WithinNode
 from app.classes.grammar.selected_nodes.if_node import IfNode
 from app.classes.grammar.selected_nodes.state_node import StateNode
 from app.classes.grammar.selected_nodes.after_node import AfterNode
+from app.classes.grammar.selected_nodes.until_node import UntilNode
 
 
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
@@ -37,5 +38,6 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.STATE: StateNode,
     NodeType.DUMMY: DummyNode,
     NodeType.AFTER: AfterNode,
+    NodeType.UNTIL: UntilNode,
     ####...
 }

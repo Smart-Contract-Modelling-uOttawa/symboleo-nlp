@@ -2,8 +2,14 @@ from __future__ import annotations
 from app.classes.grammar.node_type import NodeType
 from app.classes.frames.frame import Frame
 from app.classes.spec.sym_event import SymEvent
+from app.classes.spec.contract_spec import Norm
 
+# class in which we can pass objects that are needed for constructing new objects 
+class Basket:
+    default_event: SymEvent
+    initial_norm: Norm
 
+# Need to change the default object - should be an event OR an existing norm
 class SelectedNode:
     node_type: NodeType = None
     parent: SelectedNode = None
@@ -23,7 +29,8 @@ class SelectedNode:
     def build_frame(self, frame: Frame) -> Frame:
         return frame
 
-    def to_obj(self, default_event: SymEvent = None):
+    # TODO: Change to default_object
+    def to_obj(self, basket: Basket = None):
         raise NotImplementedError()
 
 class DummyNode(SelectedNode):

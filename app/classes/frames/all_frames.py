@@ -6,6 +6,7 @@ from app.classes.frames.after_event_frame import AfterEventFrame
 from app.classes.frames.after_date_frame import AfterDateFrame
 from app.classes.frames.within_timespan_event_frame import WithinTimespanEventFrame 
 from app.classes.frames.if_event_frame import IfEventFrame
+from app.classes.frames.until_event_frame import UntilEventFrame
 
 
 def get_all_frames() -> List[Frame]:
@@ -15,5 +16,6 @@ def get_all_frames() -> List[Frame]:
         WithinTimespanEventFrame(),
         IfEventFrame(),
         AfterDateFrame(),
-        AfterEventFrame()
+        AfterEventFrame(),
+        UntilEventFrame()
     ]

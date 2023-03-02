@@ -84,7 +84,11 @@ class GrammarGenerator(IGenerateGrammar):
         ## IF ##
         if_node = IfNode('If', [event_node])
 
-        # Set up pathways, depending on config
+
+        ## UNTIL ##
+        until_node = UntilNode('Until', [event_node])
+
+        ## ROOT ##
         root_children = []
         if OpCode.ADD_TRIGGER in config.op_codes:
             root_children.append(if_node)
@@ -93,8 +97,10 @@ class GrammarGenerator(IGenerateGrammar):
             root_children.append(before_node)
             root_children.append(after_node)
             root_children.append(within_node)
+        
+        if OpCode.ADD_NORM in config.op_codes:
+            root_children.append(until_node)
 
-        ## ROOT ##
         root_node = RootNode('Root', root_children)
         
         return root_node
