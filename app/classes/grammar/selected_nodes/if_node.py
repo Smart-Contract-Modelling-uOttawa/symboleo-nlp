@@ -8,7 +8,7 @@ class IfNode(SelectedNode):
     node_type = NodeType.IF
 
     def to_obj(self, default_event: SymEvent):
-        if self.child.node_type == NodeType.STATE:
+        if self.child.node_type == NodeType.EVENT:
             evt = self.child.to_obj(default_event)    
             return PredicateFunctionHappens(evt)
 

@@ -1,16 +1,14 @@
 from tests.full_grammar.full_grammar_test_spec import FullGrammarTestSpec as Spec
 from app.classes.grammar.selected_nodes.all_nodes import *
 
-before_tests = [
+before_date_tests = [
     Spec([
             RootNode('Root',0 , None),
             BeforeNode('a',1 ,  'before'),
-            EventNode('c', 2, None),
-            DomainEventNode('d', 3, None),
-            DomainEventNameNode('e', 4, 'payment')
+            DateNode('c', 2, '2022/02/25')
         ],
-        'before payment is completed',
-        'WhappensBeforeE(test, payment)'
+        'before 2022/02/25',
+        'WhappensBefore(test, 2022/02/25)'
     ),
     #...
 ]

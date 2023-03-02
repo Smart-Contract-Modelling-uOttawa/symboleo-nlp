@@ -22,21 +22,21 @@ class FrameTextTests(unittest.TestCase):
         ev = 'before contract is terminated'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
-    
-    def test_within_timespan_date_frame(self):
-        f = WithinTimespanDateFrame()
-        f.date_text = '2020/02/03'
-        f.timespan = '2 weeks'
-        ev = 'within 2 weeks of 2020/02/03'
-        self.assertTrue(f.is_complete())
-        self.assertEqual(ev, f.to_text())
 
-    def test_within_timespan_date_frame(self):
+    def test_within_timespan_event_frame(self):
         f = WithinTimespanEventFrame()
         f.subject = 'contract'
         f.verb = 'terminated'
         f.timespan = '2 weeks'
         ev = 'within 2 weeks of contract being terminated'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
+
+    def test_if_event_frame(self):
+        f = IfEventFrame()
+        f.subject = 'contract'
+        f.verb = 'terminated'
+        ev = 'if contract has been terminated'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
 

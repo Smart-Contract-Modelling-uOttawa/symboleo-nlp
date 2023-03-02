@@ -8,8 +8,10 @@ from app.src.grammar.selection import Selection
 from app.classes.grammar.selected_nodes.all_nodes import *
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 
-from tests.full_grammar.before_tests import before_tests
-from tests.full_grammar.within_tests import within_tests
+from tests.full_grammar.before_date_tests import before_date_tests
+from tests.full_grammar.before_event_tests import before_event_tests
+from tests.full_grammar.within_timespan_event_tests import within_timespan_event_tests
+from tests.full_grammar.if_event_tests import if_event_tests
 
 
 class FullGrammarBeforeTests(unittest.TestCase):
@@ -17,8 +19,10 @@ class FullGrammarBeforeTests(unittest.TestCase):
         self.frame_checker = FrameCheckerConstructor.construct()
         self.default_event = VariableEvent('test')
         all_tests = [
-            before_tests,
-            within_tests,
+            before_date_tests,
+            before_event_tests,
+            within_timespan_event_tests,
+            if_event_tests
             #...
         ]
         self.test_suite = sum(all_tests, [])

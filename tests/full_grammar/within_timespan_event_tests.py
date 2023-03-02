@@ -1,7 +1,7 @@
 from tests.full_grammar.full_grammar_test_spec import FullGrammarTestSpec as Spec
 from app.classes.grammar.selected_nodes.all_nodes import *
 
-within_tests = [
+within_timespan_event_tests = [
     Spec([
             RootNode('Root', 0),
             WithinNode('a', 1, 'within'),

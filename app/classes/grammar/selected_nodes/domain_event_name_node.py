@@ -14,7 +14,7 @@ class DomainEventNameNode(SelectedNode):
 
         if isinstance(new_frame, BeforeEventFrame) or \
             isinstance(new_frame, WithinTimespanEventFrame) or \
-            isinstance(new_frame, IfStateFrame):
+            isinstance(new_frame, IfEventFrame):
             new_frame.subject = self.value
             new_frame.verb = 'completed'
         

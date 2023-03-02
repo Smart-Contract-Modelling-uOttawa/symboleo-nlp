@@ -13,7 +13,7 @@ class ObligationEventActionNode(SelectedNode):
 
         if isinstance(new_frame, BeforeEventFrame) or \
             isinstance(new_frame, WithinTimespanEventFrame) or \
-            isinstance(new_frame, IfStateFrame):
+            isinstance(new_frame, IfEventFrame):
             new_frame.verb = self.value
         
         return new_frame
