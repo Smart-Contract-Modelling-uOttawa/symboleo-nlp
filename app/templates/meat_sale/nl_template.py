@@ -38,6 +38,8 @@ parameters: Dict[str, Parameter] = {
                 norm_type = 'obligations',
                 norm_id = 'delivery',
                 norm_component = 'consequent',
+                dm_obj_type='events',
+                dm_obj_name='delivered'
             )
         )
     ],

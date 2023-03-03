@@ -62,6 +62,13 @@ class FrameTextTests(unittest.TestCase):
         ev = 'until contract has been terminated'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
+    
+    def test_using_instrument_frame(self):
+        f = UsingInstrumentFrame()
+        f.instrument = 'a van'
+        ev = 'using a van'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
 
 if __name__ == '__main__':
     unittest.main()

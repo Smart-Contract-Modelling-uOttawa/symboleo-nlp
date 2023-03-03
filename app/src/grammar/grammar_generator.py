@@ -84,9 +84,13 @@ class GrammarGenerator(IGenerateGrammar):
         ## IF ##
         if_node = IfNode('If', [event_node])
 
-
         ## UNTIL ##
         until_node = UntilNode('Until', [event_node])
+
+        ## USING ##
+        instrument_node = InstrumentNode('Instrument')
+
+        using_node = UsingNode('Using', [instrument_node])
 
         ## ROOT ##
         root_children = []
@@ -100,6 +104,9 @@ class GrammarGenerator(IGenerateGrammar):
         
         if OpCode.ADD_NORM in config.op_codes:
             root_children.append(until_node)
+        
+        if OpCode.ADD_DM_PROP in config.op_codes:
+            root_children.append(using_node)
 
         root_node = RootNode('Root', root_children)
         

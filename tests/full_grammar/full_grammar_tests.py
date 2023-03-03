@@ -17,6 +17,7 @@ from tests.full_grammar.if_event_tests import if_event_tests
 from tests.full_grammar.after_event_tests import after_event_tests
 from tests.full_grammar.after_date_tests import after_date_tests
 from tests.full_grammar.until_event_tests import until_event_tests
+from tests.full_grammar.using_instrument_tests import using_instrument_tests
 
 class FullGrammarBeforeTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -30,6 +31,7 @@ class FullGrammarBeforeTests(unittest.TestCase):
             after_event_tests,
             after_date_tests,
             until_event_tests,
+            using_instrument_tests
             #...
         ]
         self.test_suite = sum(all_tests, [])

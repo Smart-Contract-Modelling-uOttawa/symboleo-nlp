@@ -13,3 +13,20 @@ UNTIL_EVENT ==> add the norm
 UNLESS_EVENT ==> add the norm 
 
 Need to make the default_event more dynamic. Should have the ability to carry a few pieces
+
+== DM prop ==
+Lets start with the toy example: delivery must be made using a van:
+- The Seller shall deliver the Order in one delivery to the Buyer [DELIVERY_REFINEMENT]
+- DELIVERY_REFINEMENT = "using a van"
+- pattern: USING NOUN
+- result: add a property called "method" to the target event
+
+Places to add the NLP
+- on the user input - validation
+- on the build_frame
+- on the to_obj
+
+Do validation on the user input to ensure they enter something legit
+- then we may need to adjust the value depending on the frame or object, so we can use further nlp There
+- for now, lets try to use wordnet to get some sense of an "instrument"
+- would prefer to have it in one place - so we can centralize the NLP functionality - but that may not work out.

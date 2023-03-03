@@ -18,5 +18,7 @@ class NodeType(Enum):
     STATE = 16,
     DUMMY = 17,
     AFTER = 18,
-    UNTIL = 19
+    UNTIL = 19,
+    USING = 20,
+    INSTRUMENT = 21,
     # ....

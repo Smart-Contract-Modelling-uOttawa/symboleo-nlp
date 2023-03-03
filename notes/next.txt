@@ -1,0 +1,10 @@
+Next todos:
+- I have a PoC on 3/4 operations. Next try the add_dm_prop - should be interesting - consider the NLP stuff...
+- Then try adding a HappensWithin - maybe just a simple between dates?
+- Then dig deeper into the structure of events
+- Will also need to think about how instantiation of the contract will work here... 
+
+First, need to figure out exactly what I want out of the NLP work 
+- Then I need to decide how to technically integrate it smoothly with the rest of the application
+- I don't want to inject it into every node...
+- It will likely need to originate from the Selection object somehow
