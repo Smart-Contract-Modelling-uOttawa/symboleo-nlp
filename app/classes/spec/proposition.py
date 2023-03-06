@@ -1,8 +1,19 @@
+from enum import Enum
+
+class PAtomicExpression:
+    def to_sym(self):
+        raise NotImplementedError()
+    
+
+# NOTE: This one was added in to avoid recursion on the PNegAtom
+# All the other subclasses of PAtomicExpression, will now be subclasses of PAtom
 class PAtom:
     def to_sym(self):
         raise NotImplementedError()
         
-class PNegAtom:
+
+# Normally, the "atom" is another PAtomicExpression, but I am avoiding recursion
+class PNegAtom(PAtomicExpression):
     def __init__(self, atom: PAtom, negation: bool = False):
         self.atom = atom
         self.negation = negation
@@ -13,24 +24,43 @@ class PNegAtom:
             result = f'not {result}'
         return result
 
+
+class PComparisonOp(Enum):
+    GEq = '>='
+    LEq = '<='
+    GT = '>'
+    LT = '<'
+
 class PComparison:
-    def __init__(self, p_atoms: list[PNegAtom], op: str = ''):
-        self.p_atoms = p_atoms
+    def __init__(self, curr: PAtomicExpression, right: PAtomicExpression = None, op: PComparisonOp = PComparisonOp.GEq):
+        self.curr = curr
+        self.right = right
         self.op = op # ">=" | "<=" | ">" | "<"
     
     def to_sym(self):
-        return f' {self.op} '.join([x.to_sym() for x in self.p_atoms])
+        if self.right:
+            return f' {self.op.value} '.join([self.curr.to_sym(), self.right.to_sym()])
+        else:
+            return self.curr.to_sym()
 
+
+class PEqualityOp(Enum):
+    Equal = '=='
+    NotEqual = '!='
 
 class PEquality:
-    def __init__(self, p_comps: list[PComparison], op: str = ''):
-        self.p_comps = p_comps
-        self.op = op # == or !=
+    def __init__(self, curr: PComparison, right: PComparison = None, op: PEqualityOp = PEqualityOp.Equal):
+        self.curr = curr
+        self.right = right
+        self.op = op
     
     def to_sym(self):
-        return f' {self.op} '.join([x.to_sym() for x in self.p_comps])
+        if self.right:
+            return f' {self.op.value} '.join([self.curr.to_sym(), self.right.to_sym()])
+        else:
+            return self.curr.to_sym()
 
-# TODO: May not need this... already have an 'AND' joiner... May need an OR joiner...
+
 class PAnd:
     def __init__(self, p_eqs: list[PEquality]):
         self.p_eqs = p_eqs
@@ -38,9 +68,12 @@ class PAnd:
     def to_sym(self):
         return ' AND '.join([x.to_sym() for x in self.p_eqs])
 
+
 class Proposition:
     def __init__(self, p_ands: list[PAnd]):
         self.p_ands = p_ands
     
     def to_sym(self):
-        return ' AND '.join([x.to_sym() for x in self.p_ands])
+        return ' OR '.join([x.to_sym() for x in self.p_ands])
+
+

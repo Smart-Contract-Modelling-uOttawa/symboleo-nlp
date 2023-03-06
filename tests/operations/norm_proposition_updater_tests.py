@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.helpers import VariableDotExpression
+from app.classes.spec.proposition import PNegAtom
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
@@ -21,9 +21,7 @@ class NormPropositionUpdaterTests(unittest.TestCase):
 
         new_atom = PAtomPredicate(
             PredicateFunctionHappens(
-                VariableEvent(
-                    VariableDotExpression('action2')
-                )
+                VariableEvent('action2')
             )
         )
 
@@ -31,17 +29,18 @@ class NormPropositionUpdaterTests(unittest.TestCase):
 
         self.assertEqual(norm.to_sym(), init_sym)
         self.assertNotEqual(result.to_sym(), init_sym)
-        self.assertEqual(len(result.trigger.p_ands[0].p_eqs[0].p_comps[0].p_atoms), 1)
+
+        self.assertEqual(len(result.trigger.p_ands), 1)
     
 
     def test_norm_updater_replace(self):
         norm = SampleNorms.get_sample_norm()
         init_sym = norm.to_sym()
 
-        new_atom = PAtomPredicate(
-            PredicateFunctionHappens(
-                VariableEvent(
-                    VariableDotExpression('action2')
+        new_atom = PNegAtom(
+            PAtomPredicate(
+                PredicateFunctionHappens(
+                    VariableEvent('action2')
                 )
             )
         )

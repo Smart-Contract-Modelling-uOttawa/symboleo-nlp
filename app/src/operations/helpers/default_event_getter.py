@@ -1,9 +1,9 @@
 from app.classes.symboleo_contract import ContractSpec
 from app.src.operations.configs import PredicateProcessorConfig
 from app.classes.spec.sym_event import SymEvent
-from app.classes.spec.contract_spec import Proposition
+from app.classes.spec.proposition import Proposition, PNegAtom
 from app.classes.spec.predicate_function import PredicateFunctionHappens
-from app.classes.spec.p_atoms import PAtomPredicate
+from app.classes.spec.p_atoms import PAtomPredicate, PAtom
 
 # Extracts a SymEvent from a 'Happens' predicate in a targeted norm component
 class IGetDefaultEvents:
@@ -19,12 +19,14 @@ class DefaultEventGetter(IGetDefaultEvents):
         component: Proposition = getattr(target_norm, config.norm_component)
 
         # Get the PAtom
-        patom = component.p_ands[0].p_eqs[0].p_comps[0].p_atoms[0]
+        p_neg_atom = component.p_ands[0].p_eqs[0].curr.curr        
+        if isinstance(p_neg_atom, PNegAtom):
         
-        if isinstance(patom, PAtomPredicate):
-            predicate = patom.predicate_function
-
-            if isinstance(predicate, PredicateFunctionHappens):
-                return predicate.event
+            p_atom = p_neg_atom.atom
+            if isinstance (p_atom, PAtomPredicate):
+                
+                predicate_function = p_atom.predicate_function
+                if isinstance(predicate_function, PredicateFunctionHappens):
+                    return predicate_function.event
 
         raise NotImplementedError('Default event not found!')

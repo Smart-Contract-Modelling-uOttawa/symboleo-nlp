@@ -41,18 +41,9 @@ class GraphNode:
 # TODO: Update this!
 test_graph = {
     ## ROOTS ##
-    'PAtom': GraphNode(
-        'PAtom', 
-        'ROOT',
-        [
-            'PAtomPredicate',
-            #...
-        ],
-        []
-    ),
     'PAtomPredicate': GraphNode(
         'PAtomPredicate',
-        SUBCLASS_TYPE,
+        'ROOT',
         [],
         ['PredicateFunction']
     ),
@@ -63,7 +54,9 @@ test_graph = {
             'PredicateFunctionHappens', 
             'PredicateFunctionHappensWithin', 
             'PredicateFunctionWHappensBefore', 
+            'PredicateFunctionSHappensBefore', 
             'PredicateFunctionWHappensBeforeEvent',
+            'PredicateFunctionSHappensBeforeEvent',
             'PredicateFunctionHappensAfter',
             'PredicateFunctionOccurs',
             ### more...
@@ -84,6 +77,12 @@ test_graph = {
         [],
         ['SymEvent', 'SymPoint']
     ),
+    'PredicateFunctionSHappensBefore': GraphNode(
+        'PredicateFunctionSHappensBefore',
+        SUBCLASS_TYPE,
+        [],
+        ['SymEvent', 'SymPoint']
+    ),
     'PredicateFunctionHappensWithin': GraphNode(
         'PredicateFunctionHappensWithin',
         SUBCLASS_TYPE,
@@ -92,6 +91,12 @@ test_graph = {
     ),
     'PredicateFunctionWHappensBeforeEvent': GraphNode(
         'PredicateFunctionWHappensBeforeEvent',
+        SUBCLASS_TYPE,
+        [],
+        ['SymEvent', 'SymEvent']
+    ),
+    'PredicateFunctionSHappensBeforeEvent': GraphNode(
+        'PredicateFunctionSHappensBeforeEvent',
         SUBCLASS_TYPE,
         [],
         ['SymEvent', 'SymEvent']
@@ -132,49 +137,19 @@ test_graph = {
         'PointFunction',
         SUBCLASS_TYPE,
         [],
-        ['PointAtom', 'TimeValue', 'TimeUnit']
+        ['PointAtom']
     ),
     'PointAtom': GraphNode(
         'PointAtom',
         SUBCLASS_TYPE,
-        ['PointAtomParameterDotExpression', 'PointAtomObligationEvent', 'PointAtomPowerEvent', 'PointAtomContractEvent'],
+        ['PointVDE', 'PointAtomObligationEvent', 'PointAtomPowerEvent', 'PointAtomContractEvent'],
         []
     ),
-    'TimeValue': GraphNode(
-        'TimeValue',
-        PROP_TYPE,
-        ['TimeValueInt', 'TimeValueVariable'],
-        []
-    ),
-    'TimeValueInt': GraphNode(
-        'TimeValueInt',
+    'PointVDE': GraphNode(
+        'PointVDE',
         SUBCLASS_TYPE,
         [],
         []
-    ),
-    'TimeValueVariable': GraphNode(
-        'TimeValueVariable',
-        SUBCLASS_TYPE,
-        [],
-        ['VariableDotExpression']
-    ),
-    'TimeUnit': GraphNode(
-        'TimeUnit',
-        PROP_TYPE,
-        ['TimeUnitStr'],
-        []
-    ),
-    'TimeUnitStr': GraphNode(
-        'TimeUnitStr',
-        SUBCLASS_TYPE,
-        [],
-        []
-    ),
-    'PointAtomParameterDotExpression': GraphNode(
-        'PointAtomParameterDotExpression',
-        SUBCLASS_TYPE,
-        [],
-        ['VariableDotExpression']
     ),
     'PointAtomObligationEvent': GraphNode(
         'PointAtomObligationEvent',
@@ -199,7 +174,7 @@ test_graph = {
     'SymInterval': GraphNode(
         'SymInterval',
         PROP_TYPE,
-        ['Interval'],
+        ['Interval', 'Never'],
         []
     ),
     'Interval': GraphNode(
@@ -238,7 +213,7 @@ test_graph = {
         'VariableEvent',
         SUBCLASS_TYPE,
         [],
-        ['VariableDotExpression']
+        []
     ),
     'PowerEvent': GraphNode(
         'PowerEvent',
@@ -284,11 +259,9 @@ test_graph = {
         [],
         []
     ),
-
-    ## Variable ##
-    'VariableDotExpression': GraphNode(
-        'VariableDotExpression',
-        PROP_TYPE,
+    'Never': GraphNode(
+        'Never',
+        SUBCLASS_TYPE,
         [],
         []
     )

@@ -1,13 +1,12 @@
-from app.classes.spec.helpers import TimeValueInt, TimeUnitStr, VariableDotExpression
-from app.classes.spec.proposition import  PAnd, PEquality, PComparison,  PNegAtom, Proposition
 from app.classes.spec.contract_spec import Obligation, Power
-from app.classes.spec.p_atoms import PAtomPredicate
-from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
-from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent
+from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionOccurs, PredicateFunctionHappensWithin
+from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent, ObligationEventName
 from app.classes.spec.sym_interval import Interval, SituationExpression, Never, IntervalFunction
-from app.classes.spec.sym_situation import ObligationState
-from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent, PointFunction
-from app.classes.spec.power_function import PFObligation, PFContract
+from app.classes.spec.sym_situation import ObligationState, ObligationStateName
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent
+from app.classes.spec.point_function import PointFunction
+from app.classes.spec.power_function import PFObligation, PFContract, PFObligationName, PFContractName
+from app.classes.spec.prop_maker import PropMaker
 
 from app.classes.symboleo_contract import ContractSpec
 from app.templates.meat_sale.symboleo.domain_model_template import meat_sale_domain_model_template as dm
@@ -26,215 +25,102 @@ meat_sale_contract_spec_template = ContractSpec(
         # delivery: O(seller, buyer, true, Happens(delivered))
         'delivery': Obligation(
             'delivery',
-            None,
+            PropMaker.make_default(),
             SELLER,
             BUYER,
-            None,
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PAtomPredicate(
-                                PredicateFunctionHappens(
-                                    DELIVERED_EVENT
-                                )
-                            )
-                        ])
-                    ])
-                ])
-            ])
+            PropMaker.make_default(),
+            PropMaker.make(PredicateFunctionHappens(DELIVERED_EVENT))
         ),
 
         # payment: O(buyer, seller, true, Happens(paid))
         'payment': Obligation(
             'payment',
-            None,
+            PropMaker.make_default(),
             BUYER,
             SELLER,
-            None,
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PAtomPredicate(
-                                PredicateFunctionHappens(
-                                    PAID_EVENT
-                                )
-                            )
-                        ])
-                    ])
-                ])
-            ])
+            PropMaker.make_default(),
+            PropMaker.make(PredicateFunctionHappens(PAID_EVENT)),
         ),
 
         #latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))
         'latePayment': Obligation(
             'latePayment',
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PNegAtom(
-                                PAtomPredicate(
-                                    PredicateFunctionHappens(
-                                        ObligationEvent('Violated', 'payment')
-                                    )
-                                )
-                            )
-                        ])
-                    ])
-                ])
-            ]),
+            PropMaker.make(
+                PredicateFunctionHappens(
+                    ObligationEvent(ObligationEventName.Violated, 'payment')
+                )
+            ),
             BUYER,
             SELLER,
-            None,
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PNegAtom(
-                                PAtomPredicate(
-                                    PredicateFunctionHappens(
-                                        PAID_LATE_EVENT
-                                    )
-                                )
-                            )
-                        ])
-                    ])
-                ])
-            ])
+            PropMaker.make_default(),
+            PropMaker.make(PredicateFunctionHappens(PAID_LATE_EVENT))
         ),
 
         ## disclosure1: O(seller, buyer, true, not Happens(disclosed))
         'disclosure1': Obligation(
             'disclosure1',
-            None,
+            PropMaker.make_default(),
             SELLER,
             BUYER,
-            None,
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PNegAtom(
-                                PAtomPredicate(
-                                    PredicateFunctionHappens(
-                                        DISCLOSED_EVENT
-                                    )
-                                ),
-                                True
-                            )
-                        ])
-                    ])
-                ])
-            ])
+            PropMaker.make_default(),
+            PropMaker.make(PredicateFunctionHappens(DISCLOSED_EVENT), True)
         ),
 
         ## disclosure2: O(buyer, seller, true, not Happens(disclosed))
         'disclosure2': Obligation(
             'disclosure2',
-            None,
+            PropMaker.make_default(),
             BUYER,
             SELLER,
-            None,
-            Proposition([
-                PAnd([
-                    PEquality([
-                        PComparison([
-                            PNegAtom(
-                                PAtomPredicate(
-                                    PredicateFunctionHappens(
-                                        DISCLOSED_EVENT
-                                    )
-                                ),
-                                True
-                            )
-                        ])
-                    ])
-                ])
-            ])
+            PropMaker.make_default(),
+            PropMaker.make(PredicateFunctionHappens(DISCLOSED_EVENT), True)
         )
-
     },
 
     powers = {
         # suspendDelivery : P(seller, buyer, true, Suspended(obligations.delivery))
         'suspendDelivery': Power(
             'suspendDelivery',
-            None,
-            # Proposition([PAnd([PEquality([PComparison([PNegAtom(
-            #     PAtomPredicate(
-            #         PredicateFunctionHappens(
-            #             ObligationEvent('Violated', 'payment')
-            #         )
-            #     )
-            # )])])])]),
+            PropMaker.make_default(),
+            #PropMaker.make(PredicateFunctionHappens(ObligationEvent(ObligationEventName.Violated, 'payment'))),
             SELLER,
             BUYER,
-            None,
-            PFObligation('Suspended', 'delivery')
+            PropMaker.make_default(),
+            PFObligation(PFObligationName.Suspended, 'delivery')
         ),
 
+        # TODO: Review this!
         ## resumeDelivery: Never -> P(buyer, seller, true, Resumed(obligations.delivery))
         ## resumeDelivery: HappensWithin(paidLate, Suspension(obligations.delivery)) -> P(buyer, seller, true, Resumed(obligations.delivery))
         'resumeDelivery': Power(
             'resumeDelivery',
-            Proposition([PAnd([PEquality([PComparison([PNegAtom(
-                PAtomPredicate(
-                    PredicateFunctionHappens(
-                        Never() 
-                    )
-                )
-            )])])])]),
-            # Proposition([PAnd([PEquality([PComparison([PNegAtom(
-            #     PAtomPredicate(
-            #         PredicateFunctionHappensWithin(
-            #             PAID_LATE_EVENT,
-            #             Interval(
-            #                 SituationExpression(
-            #                     ObligationState('Suspension', 'delivery')
-            #                 )
-            #             )
-            #         )
+            PropMaker.make_default(False),
+            # PropMaker.make(
+            #     PredicateFunctionHappensWithin(
+            #         PAID_LATE_EVENT,
+            #         Interval(SituationExpression(ObligationState(ObligationStateName.Suspension, 'delivery')))
             #     )
-            # )])])])]),
+            # )
             BUYER,
             SELLER,
-            None,
-            PFObligation('Resumed', 'delivery')
+            PropMaker.make_default(),
+            PFObligation(PFObligationName.Resumed, 'delivery')
         ),
 
+        # TODO: Review this!
         ## terminateContract: Occurs(Violation(obligations.delivery)) -> P(buyer, seller, true, Terminated(self))
         'terminateContract': Power(
             'terminateContract',
-            Proposition(
-                [
-                    PAnd([PEquality([PComparison([PNegAtom(
-                        PAtomPredicate(
-                            PredicateFunctionOccurs(
-                                ObligationState('Violation', 'delivery'),
-                                Never()
-                                # Interval(
-                                #     IntervalFunction(
-                                #         PointAtomParameterDotExpression(PointVDE('delivery.delDueDate')),
-                                #         PointFunction(
-                                #             PointAtomParameterDotExpression(PointVDE('delivery.delDueDate')),
-                                #             TimeValueInt(10),
-                                #             TimeUnitStr('days')
-                                #         )
-                                #     )
-                                # )
-                                
-                            )
-                        )
-                    )])])]),
-                    
-                ]
+            PropMaker.make(
+                PredicateFunctionOccurs(
+                    ObligationState(ObligationStateName.Violation, 'delivery'),
+                    Never()
+                )
             ),
             BUYER,
             SELLER,
-            None,
-            PFContract('Terminated')
+            PropMaker.make_default(),
+            PFContract(PFContractName.Terminated)
         )
     } 
 )

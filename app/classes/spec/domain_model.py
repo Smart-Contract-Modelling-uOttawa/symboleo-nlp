@@ -1,4 +1,3 @@
-from app.classes.spec.helpers import VariableDotExpression
 from app.classes.spec.sym_event import VariableEvent
 
 class DomainProp:
@@ -16,7 +15,7 @@ class Role:
         self.props = props
 
     def to_obj(self):
-        return VariableDotExpression(self.name)
+        return self.name
     
     def to_sym(self):
         result = f'{self.name}\n'
@@ -31,6 +30,9 @@ class Asset:
         self.name = name
         self.parent = parent
         self.props = props
+    
+    def to_obj(self):
+        return self.name
 
     def to_sym(self):
         result = f'{self.name} ({self.parent})\n'

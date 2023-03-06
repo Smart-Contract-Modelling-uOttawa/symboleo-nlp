@@ -10,6 +10,6 @@ until_event_tests = [
             DomainEventNameNode('e', 4, 'payment')
         ],
         'until payment has been completed',
-        'pow_suspend_test_id: Happens(payment) -> P(buyer, seller, true, Suspended(obligations.test_id))'
+        'pow_suspend_test_id: Happens(payment) -> P(buyer, seller, T, Suspended(obligations.test_id))'
     ),
 ]

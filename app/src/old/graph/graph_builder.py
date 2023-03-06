@@ -3,6 +3,7 @@ from app.classes.graph.digraph import Digraph
 
 # Note: Any class that is needed on the graph needs to be imported here
 from app.classes.spec.p_atoms import * 
+from app.classes.spec.point_function import *
 from app.classes.graph.graph_node import GraphNode
 
 class IBuildGraphs: # pragma: no cover

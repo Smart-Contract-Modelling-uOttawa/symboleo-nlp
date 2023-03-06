@@ -1,14 +1,12 @@
+from enum import Enum
+
 class SymEvent:
     def to_sym(self):
         raise NotImplementedError()
 
-# class EventVDE:
-#     def __init__(self, name: str = ''):
-#         self.name = name
-    
-#     def to_sym(self):
-#         return self.name
-
+# Note: I am trying to get rid of the VariableDotExpression in favour of specific dot expressions for each type
+## e.g. a VariableEvent, VarriablePoint, etc
+## This will keep the graph much cleaner, and should have no other impact
 class VariableEvent(SymEvent):
     def __init__(self, name: str):
         self.name = name
@@ -16,19 +14,18 @@ class VariableEvent(SymEvent):
     def to_sym(self):
         return f'{self.name}'
 
-# class VariableEvent(SymEvent):
-#     variable = VariableDotExpression()
-    
-#     def __init__(self, variable: VariableDotExpression):
-#         self.variable = variable
-
-#     def to_sym(self):
-#         return f'{self.variable.to_sym()}'
-
+class PowerEventName(Enum):
+    Triggered = 'Triggered'
+    Activated = 'Activated'
+    Suspended = 'Suspended'
+    Resumed = 'Resumed'
+    Exerted = 'Exerted'
+    Expired = 'Expired'
+    Terminated = 'Terminated'
 
 class PowerEvent(SymEvent):
-    def __init__(self, event_name: str = '', power_variable: str = ''):
-        self.event_name = event_name # 	'Triggered' | 'Activated' | 'Suspended' | 'Resumed' | 'Exerted' | 'Expired' | 'Terminated';
+    def __init__(self, event_name: PowerEventName = PowerEventName.Activated, power_variable: str = ''):
+        self.event_name = event_name
         self.power_variable = power_variable
 
     def __eq__(self, other):
@@ -38,12 +35,23 @@ class PowerEvent(SymEvent):
         return False
 
     def to_sym(self):
-        return f'{self.event_name}(powers.{self.power_variable})'
+        return f'{self.event_name.value}(powers.{self.power_variable})'
 
+
+class ObligationEventName(Enum):
+    Triggered = 'Triggered'
+    Activated = 'Activated'
+    Suspended = 'Suspended'
+    Resumed = 'Resumed'
+    Discharged = 'Exerted'
+    Expired = 'Expired'
+    Fulfilled = 'Fulfilled'
+    Violated = 'Violated'
+    Terminated = 'Terminated'
 
 class ObligationEvent(SymEvent):
-    def __init__(self, event_name: str = '', obligation_variable: str = ''):
-        self.event_name = event_name # 	'Triggered' | 'Activated' | 'Suspended' | 'Resumed' | 'Discharged' | 'Expired' | 'Fulfilled' | 'Violated' | 'Terminated';
+    def __init__(self, event_name: ObligationEventName = ObligationEventName.Activated, obligation_variable: str = ''):
+        self.event_name = event_name
         self.obligation_variable = obligation_variable
 
     def __eq__(self, other):
@@ -53,12 +61,22 @@ class ObligationEvent(SymEvent):
         return False
 
     def to_sym(self):
-        return f'{self.event_name}(obligations.{self.obligation_variable})'
+        return f'{self.event_name.value}(obligations.{self.obligation_variable})'
 
+
+class ContractEventName(Enum):
+    Activated = 'Activated'
+    Suspended = 'Suspended'
+    Resumed = 'Resumed'
+    FulfilledObligations = 'FulfilledObligations'
+    RevokedParty = 'RevokedParty'
+    AssignedParty = 'AssignedParty'
+    Terminated = 'Terminated'
+    Rescinded = 'Rescinded'
 
 class ContractEvent(SymEvent):
-    def __init__(self, event_name: str = ''):
-        self.event_name = event_name # 	'Activated' | 'Suspended' | 'Resumed' | 'FulfilledObligations' | 'RevokedParty' | 'AssignedParty' | 'Terminated' | 'Rescinded';
+    def __init__(self, event_name: ContractEventName = ContractEventName.Activated):
+        self.event_name = event_name
 
     def __eq__(self, other):
         if (isinstance(other, ContractEvent)):
@@ -66,4 +84,4 @@ class ContractEvent(SymEvent):
         return False
 
     def to_sym(self):
-        return f'{self.event_name}(self)'
+        return f'{self.event_name.value}(self)'

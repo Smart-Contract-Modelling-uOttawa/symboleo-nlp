@@ -1,7 +1,7 @@
 from app.classes.grammar.selected_node import SelectedNode, Basket
 from app.classes.grammar.node_type import NodeType
 
-from app.classes.spec.sym_point import PointFunction
+from app.classes.spec.point_function import PointFunction
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
 
 class WithinNode(SelectedNode):

@@ -12,7 +12,7 @@ within_timespan_event_tests = [
             ObligationEventActionNode('f', 6,'suspended')
         ],
         'within 3 days of the delivery obligation being suspended',
-        'WhappensBefore(test, Date.add(suspended(obligations.delivery), 3, days))'
+        'WhappensBefore(test, Date.Add(Suspended(obligations.delivery), 3, days))'
     ),
     Spec([
             RootNode('Root', 0),
@@ -23,7 +23,7 @@ within_timespan_event_tests = [
             ContractEventActionNode('e', 5, 'terminated')
         ],
         'within 2 weeks of the contract being terminated',
-        'WhappensBefore(test, Date.add(terminated(self), 2, weeks))'
+        'WhappensBefore(test, Date.Add(Terminated(self), 2, weeks))'
     ),
     ###...
 ]

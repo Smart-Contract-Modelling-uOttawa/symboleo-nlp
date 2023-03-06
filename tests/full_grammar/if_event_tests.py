@@ -21,7 +21,7 @@ if_event_tests = [
             ObligationEventActionNode('f', 5, 'suspended'),
         ],
         'if the delivery obligation has been suspended',
-        'Happens(suspended(obligations.delivery))'
+        'Happens(Suspended(obligations.delivery))'
     ),
     #...
 ]

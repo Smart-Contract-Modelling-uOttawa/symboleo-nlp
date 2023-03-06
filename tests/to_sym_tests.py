@@ -3,16 +3,16 @@ from app.src.helpers.template_getter import get_template
 
 test_suite = {
     'obligations': {
-        'delivery': 'delivery: O(seller, buyer, true, Happens(delivered))',
-        'payment': 'payment: O(buyer, seller, true, Happens(paid))',
-        'latePayment': 'latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, true, Happens(paidLate))',
-        'disclosure1': 'disclosure1: O(seller, buyer, true, not Happens(disclosed))',
-        'disclosure2': 'disclosure2: O(buyer, seller, true, not Happens(disclosed))'
+        'delivery': 'delivery: T -> O(seller, buyer, T, Happens(delivered))',
+        'payment': 'payment: T -> O(buyer, seller, T, Happens(paid))',
+        'latePayment': 'latePayment: Happens(Violated(obligations.payment)) -> O(buyer, seller, T, Happens(paidLate))',
+        'disclosure1': 'disclosure1: T -> O(seller, buyer, T, not Happens(disclosed))',
+        'disclosure2': 'disclosure2: T -> O(buyer, seller, T, not Happens(disclosed))'
     },
     'powers': {
-        'suspendDelivery': 'suspendDelivery: P(seller, buyer, true, Suspended(obligations.delivery))',
-        'resumeDelivery': 'resumeDelivery: Happens(NEVER) -> P(buyer, seller, true, Resumed(obligations.delivery))',
-        'terminateContract': 'terminateContract: Occurs(Violation(obligations.delivery), NEVER) -> P(buyer, seller, true, Terminated(self))'
+        'suspendDelivery': 'suspendDelivery: T -> P(seller, buyer, T, Suspended(obligations.delivery))',
+        'resumeDelivery': 'resumeDelivery: F -> P(buyer, seller, T, Resumed(obligations.delivery))',
+        'terminateContract': 'terminateContract: Occurs(Violation(obligations.delivery), NEVER) -> P(buyer, seller, T, Terminated(self))'
     }
 }
 

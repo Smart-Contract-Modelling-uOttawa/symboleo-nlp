@@ -1,28 +1,61 @@
+from enum import Enum
+
 class SymSituation:
     def to_sym(self):
         raise NotImplementedError()
 
+
+class ObligationStateName(Enum):
+    Create = 'Create'
+    Discharge = 'Discharge'
+    Active = 'Active'
+    InEffect = 'InEffect'
+    Suspension = 'Suspension'
+    Violation = 'Violation'
+    Fulfillment = 'Fulfillment'
+    UnsuccessfulTermination = 'UnsuccessfulTermination'
+
 class ObligationState(SymSituation):
-    def __init__(self, state_name:str, obligation_variable:str):
-        self.state_name = state_name # 	'Create' | 'Discharge' | 'Active' | 'InEffect' | 'Suspension' | 'Violation' | 'Fulfillment' | 'UnsuccessfulTermination';
+    def __init__(self, state_name:ObligationStateName, obligation_variable:str):
+        self.state_name = state_name
         self.obligation_variable = obligation_variable
     
     def to_sym(self):
-        return f'{self.state_name}(obligations.{self.obligation_variable})'
+        return f'{self.state_name.value}(obligations.{self.obligation_variable})'
+
+
+class PowerStateName(Enum):
+    Create = 'Create'
+    UnsuccessfulTermination = 'UnsuccessfulTermination'
+    Active = 'Active'
+    InEffect = 'InEffect'
+    Suspension = 'Suspension'
+    SuccessfulTermination = 'SuccessfulTermination'
 
 class PowerState(SymSituation):
-    def __init__(self, state_name:str, power_variable: str):
-        self.state_name = state_name # 	'Create' | 'UnsuccessfulTermination' | 'Active' | 'InEffect' | 'Suspension' | 'SuccessfulTermination';
+    def __init__(self, state_name:PowerStateName, power_variable: str):
+        self.state_name = state_name
         self.power_variable = power_variable
     
     def to_sym(self):
-        return f'{self.state_name}(powers.{self.power_variable})'
+        return f'{self.state_name.value}(powers.{self.power_variable})'
+
+
+class ContractStateName(Enum):
+    Form = 'Form'
+    UnAssign = 'UnAssign'
+    InEffect = 'InEffect'
+    Suspension = 'Suspension'
+    Rescission = 'Rescission'
+    SuccessfulTermination = 'SuccessfulTermination'
+    UnsuccessfulTermination = 'UnsuccessfulTermination'
+    Active = 'Active'
 
 class ContractState(SymSituation):
-    def __init__(self, state_name:str):
-        self.state_name = state_name # 	'Form' | 'UnAssign' | 'InEffect' | 'Suspension' | 'Rescission' | 'SuccessfulTermination' | 'UnsuccessfulTermination' | 'Active';
+    def __init__(self, state_name: ContractStateName):
+        self.state_name = state_name
     
     def to_sym(self):
-        return f'{self.state_name}(self)'
+        return f'{self.state_name.value}(self)'
     
 

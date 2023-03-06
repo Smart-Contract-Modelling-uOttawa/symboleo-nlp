@@ -1,9 +1,8 @@
-from app.classes.spec.helpers import TimeValueInt, TimeUnitStr, VariableDotExpression
 from app.classes.spec.proposition import PAnd, PEquality, PComparison, PNegAtom, Proposition
 from app.classes.spec.contract_spec import Obligation, Power
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
-from app.classes.spec.sym_event import ObligationEvent
+from app.classes.spec.sym_event import ObligationEvent, ObligationEventName
 from app.classes.spec.power_function import PFContract
 
 from app.classes.symboleo_contract import ContractSpec
@@ -20,7 +19,7 @@ PROVIDE_INVOICE_EVENT = dm.events['provideInvoice'].to_obj()
 PROVIDE_TERMINATION_NOTICE_EVENT = dm.events['provideTerminationNotice'].to_obj() 
 
 ##TODO: Add the link
-## https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/samples/MeatSaleContract.symboleo
+#TODO: Will need to redo all of this... Wait until I do it in XText...
 goods_sale_contract_spec_template = ContractSpec(
     obligations = {
         # sell: O(seller, customer, true, Happens(deliverGoods))
@@ -99,7 +98,7 @@ goods_sale_contract_spec_template = ContractSpec(
                             PNegAtom(
                                 PAtomPredicate(
                                     PredicateFunctionHappens(
-                                        ObligationEvent('Violated', 'O_payInvoice')
+                                        ObligationEvent(ObligationEventName.Violated, 'O_payInvoice')
                                     )
                                 )
                             )

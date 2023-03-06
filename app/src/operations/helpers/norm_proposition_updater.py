@@ -1,6 +1,7 @@
 import copy
 from app.classes.spec.proposition import PNegAtom, Proposition, PAnd, PEquality, PComparison
 from app.classes.spec.contract_spec import Norm
+from app.classes.spec.p_atoms import PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 
 class IUpdateNormPropositions:
     def update(self, norm: Norm, str_component: str, new_atom: PNegAtom) -> Norm:
@@ -12,19 +13,16 @@ class NormPropositionUpdater(IUpdateNormPropositions):
         new_norm = copy.deepcopy(norm)
         component: Proposition = getattr(new_norm, str_component)
 
+        # If it doesn't have a predicate, then create it
+        new_p_and = PAnd([PEquality(PComparison(new_atom))])
 
         # If non-existent, then create it
-        if component == None:
-            component = Proposition([PAnd([PEquality([PComparison([
-
-            ])])])])
-            component.p_ands[0].p_eqs[0].p_comps[0].p_atoms.append(new_atom)
+        if type(component) in [PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral]:
+            component = Proposition(p_ands = [ PAnd([]) ])
+            component.p_ands.append(new_p_and)
         
         # If one already exists, then need the PAnd
-        elif len(component.p_ands) > 0:
-            new_p_and = PAnd([PEquality([PComparison([
-                new_atom
-            ])])])
+        else:
             #component.p_ands.append(new_p_and) # Appends;
             component.p_ands = [new_p_and] # Replaces; rather than appends. May need a flag argument...
             

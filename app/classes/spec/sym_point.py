@@ -1,4 +1,3 @@
-from app.classes.spec.helpers import VariableDotExpression, TimeValue, TimeUnit
 from app.classes.spec.sym_event import ObligationEvent, ContractEvent, PowerEvent
 
 class SymPoint():
@@ -6,46 +5,23 @@ class SymPoint():
         raise NotImplementedError()
 
 class PointExpression():
+    # PointFunction | PointAtom
     def to_sym(self):
         raise NotImplementedError()
 
 class PointAtom(PointExpression):
+    # PointVDE | PointAtomObligationEvent | PointAtomPowerEvent | PointAtomContractEvent
     def to_sym(self):
         raise NotImplementedError()
 
-# Added in an effort to get rid of the main VDE
+
+# Note: Added this in an effort to get rid of the main VDE
 class PointVDE(PointAtom):
     def __init__(self, name: str = ''):
         self.name = name
     
     def to_sym(self):
         return self.name
-
-# Note: Changed the arg from PointExpression to PointAtom to avoid circular dependency
-class PointFunction(PointExpression):
-    arg = PointAtom()
-    value = TimeValue()
-    unit = TimeUnit() 
-    
-    def __init__(self, arg: PointAtom, value: TimeValue, time_unit: TimeUnit):
-        self.name = 'Date.add'
-        self.arg = arg
-        self.value = value
-        self.time_unit = time_unit
-
-    def to_sym(self):
-        return f'{self.name}({self.arg.to_sym()}, {self.value.to_sym()}, {self.time_unit.to_sym()})'
-
-
-# May be able to just replace this with the PointVDE, and make that inherit PointAtom...
-# class PointAtomParameterDotExpression(PointAtom):
-#     variable = PointVDE()
-
-#     def __init__(self, variable: PointVDE):
-#         self.variable = variable
-
-#     def to_sym(self):
-#         return self.variable.to_sym()
 
 
 class PointAtomObligationEvent(PointAtom):
@@ -86,12 +62,3 @@ class Point(SymPoint):
     
     def to_sym(self):
         return self.point_expression.to_sym()
-
-
-class Beginning(PointExpression):
-    def to_sym(self):
-        return 'MIN_DATE'
-
-class Ending(PointExpression):
-    def to_sym(self):
-        return 'MAX_DATE'
