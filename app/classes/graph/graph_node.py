@@ -38,9 +38,9 @@ class GraphNode:
         print(f'-- s: {s_list}')
         print(f'-- p: {p_list}')
         
-# TODO: Update this!
+
+# Need to keep this updated
 test_graph = {
-    ## ROOTS ##
     'PAtomPredicate': GraphNode(
         'PAtomPredicate',
         'ROOT',
@@ -58,8 +58,7 @@ test_graph = {
             'PredicateFunctionWHappensBeforeEvent',
             'PredicateFunctionSHappensBeforeEvent',
             'PredicateFunctionHappensAfter',
-            'PredicateFunctionOccurs',
-            ### more...
+            'PredicateFunctionOccurs'
         ],
         []
     ),

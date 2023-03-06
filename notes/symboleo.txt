@@ -1,0 +1,81 @@
+I've coded most of the Symboleo specification language from the XText spec into Python
+
+However, I had to make a few changes for the purpose of making the system easier to work with.
+
+In some cases this comes at a cost of certain types of flexibility
+
+Other cases are simply different ways of specifying essentially the same thing, and should have no impact on expressiveness
+
+One key goal was to have an acyclic rooted graph that represents the entire spec. 
+- We'll be imposing certain constraints on the NL that can bs of PAtomicExpression are now subclasses of PAtom 
+- The effect here is negligible (Im pretty sure...)
+
+I am mainly focusing on the PredicateFunctions 
+- there are a few other PAtoms that I could include, but have omitted for now
+- These are atoms that correspond to primitive types (strings, ints, dates, etc)
+- No need for these, but can easily be added in as needed
+
+
+PointFunction: 
+- A "point" object has a PointExpression property
+- PointExpression has two subclasses: PointFunction and PointAtom 
+- The PointFunction takes a PointExpression as an arg - e entered
+- These changes partly reflect that
+
+* May need to justify these changes a little more. In fact, I may not even need to get rid of the recursion, since im taking the pattern-based apporach
+- but as we add more NLP, we might start using statistical methods
+- Given text, we want to figure out the proper Symboleo
+- This has the potential to create loops 
+
+PAtom:
+- There is a class called PAtomicExpression, which has many subclasses
+- one subclass that will appear a lot is PNegAtom - this basically refers to a class that can optionally negate a predicate (adding a "not")
+-- it has an inner predicate object, and a boolean negation
+-- This inner object is another PAtomicExpression
+-- This can create circularity - 
+- The fix is to introduce a new class (PAtom), which will be the type of this inner object 
+- All the other classes that were once subclasseanother circular dependency
+- We change this arg to be a PointAtom
+- This means a PointFunction cannot take a PointFunction as an arg 
+- Impact again should be minimal - There is really only one type of PointFunction (Date.Add)
+- So it means we cant do "layers" of adding dates (e.g. Date.Add(Date.add(...)))
+- This should be negligible. Haven't encountered this yet 
+
+
+Other changes are simply cosmetic
+- getting rid of the generic VDE - VariableDotExpression
+- This is essentially a wrapper for a string, which can be used to represent arbitrary points and events
+- To keep the graph cleaner, I just made a separate class for a PointVDE and an EventVDE 
+
+
+Occurs
+- Originally thought this might be a candidate for refinement, but that isnt the case 
+- requires a situation and interval - nothing is more general than that 
+- So this one cannot be refined. 
+- Still may want to look into ways of capturing it in NL 
+-- since there may be cases where we want to capture an 'Occurs' inside a new trigger...
+
+
+HappensWithin 
+- the refinement is to go from Happens -> HappensWithin
+- this corresponds to adding an interval
+- This can be a basic "FROM POINT UNTIL POINT"
+- but Symboleo allows more ways of expressing this idea 
+-- Can use a PointFunction as an interval endpoint (NL example?)
+-- The interval can also be a SituationExpression (ob state, power state, contract state)
+- So I may need to come up with some NL patterns to express those as well - the situationExpression should be straightforward
+-- but the tough part will be complex interval endpoints - might have to kick that one out. 
+
+
+Thesis:
+- In the thesis, I've been differentiating between Predicaet and PredicateFunction. 
+-- Use the terminology Proposition and Predicate from now on... much clearer
+- Will likely need to do a breakdown of the Symboleo syntax with some examples in the preliminaries. 
+-- Focus mainly on predicates. And discuss points, events, intervals, and situations - these are the key building blocks 
+-- and can focus even more on points and events 
+-- situations are straightforward and intervals are essentially points 
+- Will want to show and explain a slice of the generated graph - show a small piece for illustrative purposes, and then can show the full thing in the appendix..?
+
+=== Questions ===
+- PredicateFunctionSHappensBefore vs PredicateFunctionWHappensBefore ??
+
