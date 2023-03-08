@@ -1,5 +1,5 @@
 from app.classes.symboleo_contract import ContractSpec
-from app.src.operations.configs import PredicateProcessorConfig
+from app.src.operations.configs import ParameterConfig
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.proposition import Proposition, PNegAtom
 from app.classes.spec.predicate_function import PredicateFunctionHappens
@@ -7,11 +7,11 @@ from app.classes.spec.p_atoms import PAtomPredicate, PAtom
 
 # Extracts a SymEvent from a 'Happens' predicate in a targeted norm component
 class IGetDefaultEvents:
-    def get(self, contract_spec: ContractSpec, config: PredicateProcessorConfig) -> SymEvent:
+    def get(self, contract_spec: ContractSpec, config: ParameterConfig) -> SymEvent:
         raise NotImplementedError()
 
 class DefaultEventGetter(IGetDefaultEvents):
-    def get(self, contract_spec: ContractSpec, config: PredicateProcessorConfig) -> SymEvent:
+    def get(self, contract_spec: ContractSpec, config: ParameterConfig) -> SymEvent:
         # Find the target norm inside the contract spec
         target_norm = contract_spec.__dict__[config.norm_type][config.norm_id]
 

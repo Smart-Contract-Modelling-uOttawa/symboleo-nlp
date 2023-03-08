@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.src.operations.helpers.norm_proposition_updater import IUpdateNormPropositions
 from app.src.operations.helpers.predicate_processor import PredicateProcessor
 
-from app.src.operations.configs import PredicateProcessorConfig
+from app.src.operations.configs import ParameterConfig
 from app.classes.symboleo_contract import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
@@ -25,7 +25,7 @@ class PredicateProcessorTests(unittest.TestCase):
         test_contract = get_test_contract()
         init_sym = test_contract.to_sym()
 
-        config = PredicateProcessorConfig('obligations', 'test_obligation', 'consequent')
+        config = ParameterConfig('obligations', 'test_obligation', 'consequent')
         result = self.sut.process(config, test_contract, None)
 
         self.assertEqual(result.contract_spec.obligations['test_obligation'].id, 'new_obligation')

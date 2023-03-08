@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.operations.configs import PredicateProcessorConfig
+from app.src.operations.configs import ParameterConfig
 from app.src.operations.helpers.predicate_processor import IProcessPredicates
 from app.src.operations.trigger_adder import TriggerAdder
 
@@ -17,7 +17,7 @@ class TriggerAdderTests(unittest.TestCase):
 
 
     def test_trigger_adder(self):
-        config = PredicateProcessorConfig('', '', '')
+        config = ParameterConfig('', '', '')
         result = self.sut.add(config, None, None)
         self.assertEqual(result.to_sym(), self.fake_contract.to_sym())
         self.assertEqual(self.fake_predicate_processor.process.call_count, 1)

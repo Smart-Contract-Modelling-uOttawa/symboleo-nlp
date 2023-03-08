@@ -12,18 +12,21 @@ def get_test_contract():
     return SymboleoContract(
         
         DomainModel(
+            id = 'test',
             roles = {
-                'test_role': Role('test_role')
+                'test_role': Role('test_role', [])
             },
+            enums = {},
             events = {
-                'test_event': DomainEvent('test_event')
+                'test_event': DomainEvent('test_event', [])
             },
             assets = {
-                'test_asset': Asset('test_asset')
-            }
+                'test_asset': Asset('test_asset', [])
+            },
         ),
         
         ContractSpec(
+            id = 'test',
             obligations = {
                 'test_obligation': Obligation(
                     'test_obligation', 
@@ -43,7 +46,13 @@ def get_test_contract():
                     PropMaker.make_default(),
                     FakeSym()
                 )
-            }
+            },
+            declarations={},
+            preconditions=[],
+            postconditions=[],
+            surviving_obligations={},
+            constraints=[],
+            parameters=[]
         ),
         
         None # Template strings...

@@ -8,7 +8,7 @@ using_instrument_tests = [
             InstrumentNode('c', 2, 'a van')
         ],
         'using a van',
-        'instrument (str): a van'
+        'instrument: str'
     ),
     #...
 ]

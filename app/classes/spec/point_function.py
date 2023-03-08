@@ -22,11 +22,11 @@ class PointFunction(PointExpression):
     # value: int = 0
     # unit: TimeUnit = None
     
-    def __init__(self, arg: PointAtom, value: int, time_unit: TimeUnit):
+    def __init__(self, arg: PointAtom, time_value: int, time_unit: TimeUnit):
         self.name: PointFunctionName = PointFunctionName.DateAdd # Can make this an arg if this type expands
         self.arg = arg
-        self.value = value
+        self.time_value = time_value
         self.time_unit = time_unit
 
     def to_sym(self):
-        return f'{self.name.value}({self.arg.to_sym()}, {self.value}, {self.time_unit.value})'
+        return f'{self.name.value}({self.arg.to_sym()}, {self.time_value}, {self.time_unit.value})'

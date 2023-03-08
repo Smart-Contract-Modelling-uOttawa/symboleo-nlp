@@ -76,6 +76,14 @@ Thesis:
 -- situations are straightforward and intervals are essentially points 
 - Will want to show and explain a slice of the generated graph - show a small piece for illustrative purposes, and then can show the full thing in the appendix..?
 
+Other parts of Symboleo spec
+- There are a few other contract components that I could add in 
+-- constraints, precon, postcon - these are all just propositions
+- The domain model characteriztion is slughtly different, but I think everything is essentially accounted for
+-- could add in enmums and aliases
+- The other big one is Declarations - this is about assigning variables - I think this one will be important
+-- but its use case hasnt been made obvious to me yet
+
 === Questions ===
 - PredicateFunctionSHappensBefore vs PredicateFunctionWHappensBefore ??
 

@@ -15,7 +15,7 @@ class GrammarGeneratorTests(unittest.TestCase):
         self.gg = GrammarGenerator()
 
     def test_grammar_generator(self):
-        contract_template = get_template('meat_sale')
+        contract_template = get_template('sample_raw')
         config = GrammarGeneratorConfig()
 
         root_node = self.gg.generate(contract_template, config)

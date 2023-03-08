@@ -21,6 +21,7 @@ DISCLOSED_EVENT = dm.events['disclosed'].to_obj()
 
 ## https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/samples/MeatSaleContract.symboleo
 meat_sale_contract_spec_template = ContractSpec(
+    'MeatSale',
     obligations = {
         # delivery: O(seller, buyer, true, Happens(delivered))
         'delivery': Obligation(

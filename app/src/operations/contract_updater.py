@@ -3,13 +3,12 @@ from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec import Norm
 from app.classes.spec.domain_model import DomainProp 
 
-from app.src.operations.configs import OpCode, PredicateProcessorConfig, DomainPropProcessorConfig
+from app.src.operations.configs import OpCode, ParameterConfig
 from app.src.operations.predicate_refiner import IRefinePredicates
 from app.src.operations.trigger_adder import IAddTriggers
 from app.src.operations.dm_prop_adder import IAddDomainProps
 from app.src.operations.norm_adder import IAddNorms
 
-ConfigType = PredicateProcessorConfig or DomainPropProcessorConfig
 UpdateObjType = PredicateFunction or Norm or DomainProp
 
 # A flexible orchestrator for all types of contract updates
@@ -31,7 +30,7 @@ class ContractUpdater:
             op_code: OpCode,
             contract: SymboleoContract, 
             update_obj: UpdateObjType,
-            config: ConfigType = None, 
+            config: ParameterConfig = None, 
         ) -> SymboleoContract:
             if op_code == OpCode.REFINE_PREDICATE:
                 return self.__predicate_refiner.refine(config, contract, update_obj)

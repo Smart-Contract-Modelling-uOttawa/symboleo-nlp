@@ -24,6 +24,13 @@ class PNegAtom(PAtomicExpression):
             result = f'not {result}'
         return result
 
+class PAtomStringLiteral(PAtomicExpression):
+    def __init__(self, value: str):
+        self.value = value
+    
+    def to_sym(self):
+        return self.value
+
 
 class PComparisonOp(Enum):
     GEq = '>='
@@ -66,7 +73,7 @@ class PAnd:
         self.p_eqs = p_eqs
     
     def to_sym(self):
-        return ' AND '.join([x.to_sym() for x in self.p_eqs])
+        return ' and '.join([x.to_sym() for x in self.p_eqs])
 
 
 class Proposition:

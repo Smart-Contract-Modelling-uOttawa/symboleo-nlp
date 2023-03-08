@@ -2,6 +2,7 @@ from app.classes.symboleo_contract import DomainModel
 from app.classes.spec.domain_model import Role, Asset, DomainEvent, DomainProp
 
 meat_sale_domain_model_template = DomainModel(
+    'MeatSaleDomain',
     roles = {
         'seller': Role('seller', [
             DomainProp('address', '123 Main street', 'str')

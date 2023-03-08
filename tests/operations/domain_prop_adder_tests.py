@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 
-from app.src.operations.configs import DomainPropProcessorConfig
+from app.src.operations.configs import ParameterConfig
 from app.src.operations.dm_prop_adder import DomainPropAdder
 
 from app.classes.symboleo_contract import SymboleoContract
@@ -17,7 +17,7 @@ class DomainPropAdderTests(unittest.TestCase):
 
     def test_domain_prop_adder(self):
         event_name = 'test_event' # Existing event on test contract
-        config = DomainPropProcessorConfig('events', event_name)
+        config = ParameterConfig('', '', '', 'events', event_name)
         new_prop = DomainProp('my_new_prop','test_value', 'str')
         contract = get_test_contract()
         init_sym = contract.to_sym()

@@ -32,7 +32,7 @@ class PAtomFunction(PAtom):
 
 class PAtomPredicateTrueLiteral(PAtom):
     def to_sym(self):
-        return 'T'
+        return 'true'
 
 class PAtomPredicateFalseLiteral(PAtom):
     def to_sym(self):
