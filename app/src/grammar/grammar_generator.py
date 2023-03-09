@@ -1,5 +1,6 @@
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
+from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
 from app.src.grammar.grammar_config import GrammarGeneratorConfig, OpCode
 
@@ -10,9 +11,9 @@ class IGenerateGrammar:
 class GrammarGenerator(IGenerateGrammar):
     def __init__(self):
         # Symboleo State - should be loaded in
-        self.__contract_actions = ['terminated', 'activated', 'suspended']
-        self.__obligation_actions = ['suspended', 'triggered', 'completed', 'terminated successfully']
-        self.__power_actions = []
+        self.__contract_actions = [x.value for x in ContractEventName]
+        self.__obligation_actions = [x.value for x in ObligationEventName]
+        self.__power_actions = [x.value for x in PowerEventName]
 
     # Pattern: Generator func, create the nodes, add to the node_dict
     def generate(self, contract: SymboleoContract, config: GrammarGeneratorConfig) -> RootNode:
@@ -64,7 +65,9 @@ class GrammarGenerator(IGenerateGrammar):
             'Event', 
             [obligation_event_node, contract_event_node, domain_event_node]
         )
-        
+
+        #timepoint_node 
+
         ## DATE ##
         date_node = DateNode('Date')
 

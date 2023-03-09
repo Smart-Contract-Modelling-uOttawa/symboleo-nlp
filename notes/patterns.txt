@@ -30,3 +30,8 @@ Do validation on the user input to ensure they enter something legit
 - then we may need to adjust the value depending on the frame or object, so we can use further nlp There
 - for now, lets try to use wordnet to get some sense of an "instrument"
 - would prefer to have it in one place - so we can centralize the NLP functionality - but that may not work out.
+
+== CANT HANDLE ==
+
+I should prob start making up a list of patterns found in contracts (with examples) that I CANNOT handle
+- explain why - could it be done in the future? estimate the complexity.
