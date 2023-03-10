@@ -10,11 +10,11 @@ from app.classes.symboleo_contract import SymboleoContract
 
 from app.templates.sample.t_raw.sample_domain import get_domain_model as get_sample_raw_dm
 from app.templates.sample.t_raw.sample_contract_spec import get_contract_spec as get_sample_raw_cs
-from app.templates.sample.t_raw.nl_template import nl_template as sample_raw_nl
+#from app.templates.sample.t_raw.nl_template import nl_template as sample_raw_nl
 
 from app.templates.sample.t.sample_domain import get_domain_model as get_sample_t_dm
 from app.templates.sample.t.sample_contract_spec import get_contract_spec as get_sample_t_cs
-from app.templates.sample.t.nl_template import nl_template as sample_t_nl
+from app.templates.sample.t.nl_template import sample_nl_template as sample_t_nl
 
 template_dict = {
 
@@ -31,7 +31,8 @@ template_dict = {
     'sample_raw': SymboleoContract(
         get_sample_raw_dm(),
         get_sample_raw_cs(),
-        sample_raw_nl
+        None
+        #sample_raw_nl
     ),
 
     'sample_t': SymboleoContract(

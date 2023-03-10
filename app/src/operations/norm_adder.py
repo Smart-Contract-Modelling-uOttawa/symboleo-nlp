@@ -16,4 +16,4 @@ class NormAdder(IAddNorms):
         new_spec.__dict__[norm_type][new_norm.id] = new_norm
 
         # Return the updated Symboleo Contract
-        return SymboleoContract(contract.domain_model, new_spec, contract.template_strings)
+        return SymboleoContract(contract.domain_model, new_spec, contract.nl_template)

@@ -16,4 +16,4 @@ class DomainPropAdder(IAddDomainProps):
         new_dm = copy.deepcopy(contract.domain_model)
         new_dm.__dict__[config.obj_type][config.obj_name].props.append(new_prop)
 
-        return SymboleoContract(new_dm, contract.contract_spec, contract.template_strings)
+        return SymboleoContract(new_dm, contract.contract_spec, contract.nl_template)

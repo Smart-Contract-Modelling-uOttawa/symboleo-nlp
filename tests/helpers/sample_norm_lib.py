@@ -8,7 +8,7 @@ class SampleNorms:
     def get_sample_norm(id='test_id') -> Norm:
         return Obligation(
             id,
-            PropMaker.make_default(),
+            None,
             'seller',
             'buyer',
             PropMaker.make_default(),

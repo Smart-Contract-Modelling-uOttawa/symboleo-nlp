@@ -17,8 +17,8 @@ class NormPropositionUpdater(IUpdateNormPropositions):
         new_p_and = PAnd([PEquality(PComparison(new_atom))])
 
         # If non-existent, then create it
-        if type(component) in [PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral]:
-            component = Proposition(p_ands = [ PAnd([]) ])
+        if not component or type(component) in [PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral]:
+            component = Proposition(p_ands = [])
             component.p_ands.append(new_p_and)
         
         # If one already exists, then need the PAnd

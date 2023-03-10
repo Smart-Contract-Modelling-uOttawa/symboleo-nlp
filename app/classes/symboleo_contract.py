@@ -4,6 +4,7 @@ from app.classes.spec.contract_spec import Obligation
 from app.classes.spec.contract_spec import Power
 from app.classes.spec.proposition import Proposition
 from app.classes.spec.contract_spec_other import SymVariable, ContractSpecParameter
+from app.classes.nl_template import NLTemplate
 
 class DomainModel:
     def __init__(
@@ -106,11 +107,25 @@ class SymboleoContract:
         self, 
         domain_model: DomainModel, 
         contract_spec: ContractSpec, 
-        template_strings # TODO: Standardize this
+        nl_template: NLTemplate
     ):
         self.domain_model = domain_model
         self.contract_spec = contract_spec
-        self.template_strings = template_strings
+        self.nl_template = nl_template
+
+    # Print the NL template strings and their corresponding symboleo norms
+    def print_all_strings(self):
+        for x in self.nl_template.template_dict:
+            val = self.nl_template.template_dict[x]
+            print(f'{x}: {val.str_val}')
+
+            mapping = val.mapping
+            for m in mapping:
+                t,v = m.split('.')
+                norm = self.contract_spec.__dict__[t][v]
+                print(f' - {norm.to_sym()}')
+            print('\n')
+    
     
     def to_sym(self):
         return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'

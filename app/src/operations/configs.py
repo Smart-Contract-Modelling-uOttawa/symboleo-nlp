@@ -8,7 +8,6 @@ class OpCode(Enum):
     ADD_TRIGGER = 3
     ADD_NORM = 4 
 
-
 class ParameterConfig:
     def __init__(self, norm_type, norm_id, norm_component, dm_obj_type='', dm_obj_name='', op_codes: List[OpCode] = [] ):
         self.norm_type = norm_type # obligations, powers 
@@ -20,3 +19,12 @@ class ParameterConfig:
         self.op_codes = op_codes
 
 
+class ParameterSpec:
+    def __init__(
+        self,
+        op_codes: List[OpCode],
+        configs: List[ParameterConfig]
+    ):
+        self.op_codes = op_codes
+        self.configs = configs
+        
