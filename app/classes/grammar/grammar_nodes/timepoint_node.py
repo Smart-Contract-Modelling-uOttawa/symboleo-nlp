@@ -5,10 +5,8 @@ from app.classes.grammar.node_type import NodeType
 class TimepointNode(AbstractNode):
     def __init__(self, id: str, children: List[AbstractNode] = []):
         super().__init__(id, children)
-        self.prompt = 'Choose a timepoint'
+        self.prompt = 'Specify a timepoint'
         self.node_type = NodeType.TIMEPOINT
 
-    # TODO: Will replace this with choosing an event...
     def get_value(self):
-        result = input('Enter timepoint: ')
-        return result
+        return None

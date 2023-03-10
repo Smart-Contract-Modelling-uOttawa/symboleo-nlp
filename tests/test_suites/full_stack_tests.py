@@ -20,7 +20,8 @@ all_args = [
         [
             RootNode('', 0),
             BeforeNode('', 0),
-            TimepointNode('', 0, 'delivered.delDueDate'),
+            TimepointNode('', 0),
+            DomainTimepointNode('', 0, 'delivered.delDueDate')
         ]
     ),
     FilledArg(
@@ -28,7 +29,8 @@ all_args = [
         [
             RootNode('', 0),
             BeforeNode('', 0),
-            TimepointNode('', 0, 'paid.payDueDate'),
+            TimepointNode('', 0),
+            DomainTimepointNode('', 0, 'paid.payDueDate')
         ]
     ),
     FilledArg(

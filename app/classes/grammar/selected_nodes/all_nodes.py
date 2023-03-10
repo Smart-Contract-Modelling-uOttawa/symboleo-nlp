@@ -21,6 +21,7 @@ from app.classes.grammar.selected_nodes.until_node import UntilNode
 from app.classes.grammar.selected_nodes.using_node import UsingNode
 from app.classes.grammar.selected_nodes.instrument_node import InstrumentNode
 from app.classes.grammar.selected_nodes.timepoint_node import TimepointNode
+from app.classes.grammar.selected_nodes.domain_timepoint_node import DomainTimepointNode
 
 
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
@@ -44,6 +45,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.UNTIL: UntilNode,
     NodeType.USING: UsingNode,
     NodeType.INSTRUMENT: InstrumentNode,
-    NodeType.TIMEPOINT: TimepointNode
+    NodeType.TIMEPOINT: TimepointNode,
+    NodeType.DOMAIN_TIMEPOINT: DomainTimepointNode
     ####...
 }

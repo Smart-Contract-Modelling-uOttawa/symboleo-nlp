@@ -39,7 +39,7 @@ class DomainObject:
 
     # This will be used for an initialized DomainObject
     def to_declaration(self, decl_type) -> SymVariable:
-        assnts = [Assignment(x.key, x.value) for x in self.props]
+        assnts = [Assignment(x.key, x.value,) for x in self.props]
         return SymVariable(self.name, decl_type, assnts)
     
 

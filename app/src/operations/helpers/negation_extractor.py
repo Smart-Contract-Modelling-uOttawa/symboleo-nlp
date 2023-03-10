@@ -5,7 +5,6 @@ class IExtractNegations:
     def extract(self, norm: Norm, component: str) -> bool:
         raise NotImplementedError()
 
-# TODO: Can we assume that we're replacing and not appending?? May need a flag argument
 class NegationExtractor(IExtractNegations):
     def extract(self, norm: Norm, component: str) -> bool:
         result = False

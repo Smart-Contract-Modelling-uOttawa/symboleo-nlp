@@ -1,7 +1,9 @@
+from typing import List
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.grammar.grammar_nodes.all_nodes import *
 from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
+from app.src.grammar.helpers.domain_timepoint_extractor import IExtractDomainTimePoints
 from app.src.grammar.grammar_config import GrammarGeneratorConfig, OpCode
 
 class IGenerateGrammar:
@@ -9,7 +11,12 @@ class IGenerateGrammar:
         raise NotImplementedError()
 
 class GrammarGenerator(IGenerateGrammar):
-    def __init__(self):
+    def __init__(
+        self,
+        domain_timepoint_extractor: IExtractDomainTimePoints
+    ):
+        self.__domain_timepoint_extractor = domain_timepoint_extractor
+
         # Symboleo State - should be loaded in
         self.__contract_actions = [x.value for x in ContractEventName]
         self.__obligation_actions = [x.value for x in ObligationEventName]
@@ -20,9 +27,14 @@ class GrammarGenerator(IGenerateGrammar):
         domain_model = contract.domain_model
         contract_spec = contract.contract_spec
 
+        # Event names
         domain_event_names = [x for x in domain_model.events]
-        obligation_names = [x for x in contract_spec.obligations]
-        # power names = ...
+        obligation_names = [x for x in contract_spec.obligations] # Need surviving obligtions as well...
+        power_names = [x for x in contract_spec.powers]
+
+        # Timepoints
+        ## TODO: Actually, should be getting this from the declarations; not the domain model...
+        domain_event_timepoints = self.__domain_timepoint_extractor.extract(contract)
 
         ## CONTRACT EVENTS ##
         # Contract Event Actions
@@ -66,8 +78,9 @@ class GrammarGenerator(IGenerateGrammar):
             [obligation_event_node, contract_event_node, domain_event_node]
         )
 
-        #timepoint_node 
-        timepoint_node = TimepointNode('Timepoint')
+        # timepoint_node 
+        domain_timepoint_nodes = [DomainTimepointNode('TimepointNode.{x}', [], x) for x in domain_event_timepoints]
+        timepoint_node = TimepointNode('Timepoint', domain_timepoint_nodes)
 
         ## DATE ##
         date_node = DateNode('Date')
@@ -115,3 +128,20 @@ class GrammarGenerator(IGenerateGrammar):
         root_node = RootNode('Root', root_children)
         
         return root_node
+
+    def _get_domain_timepoints(self, contract:SymboleoContract) -> List[str]:
+        results = []
+        all_events = contract.domain_model.events
+        print('LLL', len(all_events))
+
+        for dk in all_events:
+            domain_obj = all_events[dk]
+            date_props = [x for x in domain_obj.props if x.type == 'Date']
+            print(dk, len(date_props))
+
+            for dp in date_props:
+                next_val = f'{domain_obj.name}.{dp.key}'
+                print('---', next_val)
+                results.append(next_val)
+
+        return results
