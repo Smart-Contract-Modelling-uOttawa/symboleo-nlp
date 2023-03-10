@@ -8,6 +8,7 @@ from app.classes.frames.within_timespan_event_frame import WithinTimespanEventFr
 from app.classes.frames.if_event_frame import IfEventFrame
 from app.classes.frames.until_event_frame import UntilEventFrame
 from app.classes.frames.using_instrument_frame import UsingInstrumentFrame
+from app.classes.frames.before_timepoint_frame import BeforeTimePointFrame
 
 
 def get_all_frames() -> List[Frame]:
@@ -19,5 +20,6 @@ def get_all_frames() -> List[Frame]:
         AfterDateFrame(),
         AfterEventFrame(),
         UntilEventFrame(),
-        UsingInstrumentFrame()
+        UsingInstrumentFrame(),
+        BeforeTimePointFrame()
     ]

@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.src.operations.helpers.norm_proposition_updater import IUpdateNormPropositions
+from app.src.operations.helpers.negation_extractor import IExtractNegations
 from app.src.operations.helpers.predicate_processor import PredicateProcessor
 
 from app.src.operations.configs import ParameterConfig
@@ -17,8 +18,11 @@ class PredicateProcessorTests(unittest.TestCase):
         self.norm_updater = IUpdateNormPropositions()
         fake_norm = Obligation('new_obligation', None, None, None, None, None)
         self.norm_updater.update = MagicMock(return_value=fake_norm)
+
+        self.negation_extractor = IExtractNegations()
+        self.negation_extractor.extract = MagicMock(return_value=False)
         
-        self.sut = PredicateProcessor(self.norm_updater)
+        self.sut = PredicateProcessor(self.negation_extractor, self.norm_updater)
 
 
     def test_predicate_processor(self):
@@ -32,6 +36,7 @@ class PredicateProcessorTests(unittest.TestCase):
 
         self.assertEqual(type(result), SymboleoContract)
         self.assertEqual(self.norm_updater.update.call_count, 1)
+        self.assertEqual(self.negation_extractor.extract.call_count, 1)
 
         # Ensure init_contract has not changed
         self.assertEqual(test_contract.to_sym(), init_sym)

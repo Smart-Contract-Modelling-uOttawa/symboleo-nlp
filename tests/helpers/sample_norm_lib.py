@@ -16,12 +16,12 @@ class SampleNorms:
        )
     
     @staticmethod
-    def get_sample_obligation(id='test_id') -> Norm:
+    def get_sample_obligation(id='test_id', negation=False) -> Norm:
         return Obligation(
             id,
             PropMaker.make_default(),
             'seller',
             'buyer',
             PropMaker.make_default(),
-            PropMaker.make(PredicateFunctionHappens(VariableEvent('action')))
+            PropMaker.make(PredicateFunctionHappens(VariableEvent('action')),negation)
        )

@@ -69,6 +69,13 @@ class FrameTextTests(unittest.TestCase):
         ev = 'using a van'
         self.assertTrue(f.is_complete())
         self.assertEqual(ev, f.to_text())
+    
+    def test_before_timepoint_frame(self):
+        f = BeforeTimePointFrame()
+        f.timepoint = 'delivery.delDueD'
+        ev = 'before delivery.delDueD'
+        self.assertTrue(f.is_complete())
+        self.assertEqual(ev, f.to_text())
 
 if __name__ == '__main__':
     unittest.main()

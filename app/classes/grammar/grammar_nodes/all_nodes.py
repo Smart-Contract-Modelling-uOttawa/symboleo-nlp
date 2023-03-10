@@ -20,4 +20,5 @@ from app.classes.grammar.grammar_nodes.after_node import AfterNode
 from app.classes.grammar.grammar_nodes.until_node import UntilNode
 from app.classes.grammar.grammar_nodes.using_node import UsingNode
 from app.classes.grammar.grammar_nodes.instrument_node import InstrumentNode
+from app.classes.grammar.grammar_nodes.timepoint_node import TimepointNode
 

@@ -35,3 +35,23 @@ Do validation on the user input to ensure they enter something legit
 
 I should prob start making up a list of patterns found in contracts (with examples) that I CANNOT handle
 - explain why - could it be done in the future? estimate the complexity.
+
+there are a few from the sample contract that are challenging
+- disclosure text: 'Both Seller and Buyer must keep the contents of this contract confidential for [CONFIDENTIALITY_MONTHS] months following the termination of the contract'
+- the wording of this one ends up being a little awkward. The way its framed in the contract is that its an obligation that disclosure cannot happen
+- so we got from "keep the contents confidential" to "shall not disclose". Essentially these mean the same thing, so this is okay
+- It becomes a negation. 
+- It seems like the pattern "FOR TIMESPAN AFTER TIMEPOINT" really only works for negation
+- e.g. it wouldnt really make sense to say: The seller must disclose the contents for 6 months after...
+- It is framed as a "disclosing" event that must not happen.
+- Since this pattern has some ambiguity, we should probably exclude it - unfortunate
+- We can get away with using the WITHIN - it's a little more awkwardly worded, but its semantically sound
+
+Another challenge is the resumption:
+- If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed
+- Ideally I could take two parameters here: the trigger and the "until" phrase. 
+- But since the act of resuming the obligation is completely implicit here, the "until" phrase would be very difficult to unpack
+- "Until" can also be quite ambiguous in it usage. 
+- We therefore just avoid this case. 
+- We could potentially set up a separate operation for this case - and the "until" might be the only frame that's allowed for this type of parameter... 
+- It would be "UNTIL EVENT", and it would fill in the condition for resuming the obligation

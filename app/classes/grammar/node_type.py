@@ -21,4 +21,5 @@ class NodeType(Enum):
     UNTIL = 19,
     USING = 20,
     INSTRUMENT = 21,
+    TIMEPOINT = 22,
     # ....

@@ -15,4 +15,8 @@ class BeforeNode(SelectedNode):
             p = self.child.to_obj(basket)
             return PredicateFunctionWHappensBefore(basket.default_event, p)
 
+        elif self.child.node_type == NodeType.TIMEPOINT:
+            p = self.child.to_obj(basket)
+            return PredicateFunctionWHappensBefore(basket.default_event, p)
+
         raise NotImplementedError('Oops!')

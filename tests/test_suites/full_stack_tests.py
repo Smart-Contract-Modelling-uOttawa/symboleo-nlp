@@ -16,20 +16,75 @@ class FilledArg:
 # Eventually I want a NL -> Node list generator... Will replace this with that..
 all_args = [
     FilledArg(
-        'DELIVERY_REFINEMENT',
+'DELIVERY_REFINEMENT',
         [
             RootNode('', 0),
             BeforeNode('', 0),
-            DateNode('', 0, '2022/03/30'),
-        ])
+            TimepointNode('', 0, 'delivered.delDueDate'),
+        ]
+    ),
+    FilledArg(
+        'PAYMENT_REFINEMENT',
+        [
+            RootNode('', 0),
+            BeforeNode('', 0),
+            TimepointNode('', 0, 'paid.payDueDate'),
+        ]
+    ),
+    FilledArg(
+        'LATE_PAYMENT_CONDITION',
+        [
+            RootNode('', 0),
+            IfNode('', 0),
+            EventNode('', 0),
+            ObligationEventNode('',0),
+            ObligationEventVarNode('', 0, 'payment'),
+            ObligationEventActionNode('', 0, 'Violated')
+        ]
+    ),
+    FilledArg(
+        'CONFIDENTIALITY_REFINEMENT',
+        [
+            RootNode('', 0),
+            WithinNode('', 0),
+            TimespanNode('', 0, '6 months'),
+            EventNode('', 0),
+            ContractEventNode('',0),
+            ContractEventActionNode('', 0, 'Activated')
+        ]
+    ),
+    FilledArg(
+        'DELIVERY_SUSPENSION_CONDITION',
+        [
+            RootNode('', 0),
+            IfNode('', 0),
+            EventNode('', 0),
+            ObligationEventNode('',0),
+            ObligationEventVarNode('', 0, 'payment'),
+            ObligationEventActionNode('', 0, 'Violated')
+        ]
+    ),
+    FilledArg(
+        'TERMINATION_EXCEPTION',
+        [
+            RootNode('', 0),
+            IfNode('', 0),
+            EventNode('', 0),
+            ObligationEventNode('',0),
+            ObligationEventVarNode('', 0, 'delivery'),
+            ObligationEventActionNode('', 0, 'Violated')
+        ]
+    ),
+        
+        
 ]
+
 
 
 class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
         s = 0
 
-    @unittest.skip('in progress')
     def test_full_stack(self):
         contract = get_template('sample_t')
         expected_contract = get_template('sample_raw')

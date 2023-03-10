@@ -7,6 +7,7 @@ from app.classes.spec.power_function import *
 from app.classes.spec.contract_spec_other import ContractSpecParameter
 from app.classes.spec.other_function import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
+from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 
 from app.templates.sample.t.sample_domain import get_domain_model
 
@@ -160,7 +161,12 @@ def get_contract_spec():
             ),
             'resumeDelivery': Power(
                 'resumeDelivery',
-                None,
+                PropMaker.make(
+                    PredicateFunctionHappensWithin(
+                        PAID_LATE_EVENT,
+                        ObligationState(ObligationStateName.Suspension, 'delivery')
+                    )
+                ),
                 BUYER,
                 SELLER,
                 PropMaker.make_default(),

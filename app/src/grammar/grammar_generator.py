@@ -67,12 +67,13 @@ class GrammarGenerator(IGenerateGrammar):
         )
 
         #timepoint_node 
+        timepoint_node = TimepointNode('Timepoint')
 
         ## DATE ##
         date_node = DateNode('Date')
 
         ## BEFORE ##
-        before_node = BeforeNode('Before', [date_node, event_node])
+        before_node = BeforeNode('Before', [date_node, event_node, timepoint_node])
 
         ## AFTER ##
         after_node = AfterNode('After', [date_node, event_node])

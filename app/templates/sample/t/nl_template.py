@@ -22,8 +22,8 @@ sample_nl_template = NLTemplate(
             ['surviving_obligations.so1', 'surviving_obligations.so2']
         ),
         'suspendResumeDelivery': TemplateObj(
-            '[DELIVERY_SUSPENSION_CONDITION] the Seller may suspend performance of all of its obligations under the agreement [DELIVERY_RESUMPTION_TRIGGER]',
-            ['powers.suspendDelivery', 'powers.resumeDelivery']
+            '[DELIVERY_SUSPENSION_CONDITION] the Seller may suspend performance of all of its obligations under the agreement until payment is completed',
+            ['powers.suspendDelivery']
         ),
         'terminateContract': TemplateObj(
             'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract [TERMINATION_EXCEPTION]',
@@ -110,19 +110,6 @@ parameters: Dict[str, ParameterSpec] = {
             ParameterConfig(
                 norm_type = 'powers',
                 norm_id = 'suspendDelivery',
-                norm_component = 'trigger',
-                dm_obj_type='',
-                dm_obj_name=''
-            )
-        ]
-    ),
-
-    'DELIVERY_RESUMPTION_CONDITION': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER],
-        configs = [
-            ParameterConfig(
-                norm_type = 'powers',
-                norm_id = 'resumeDelivery',
                 norm_component = 'trigger',
                 dm_obj_type='',
                 dm_obj_name=''
