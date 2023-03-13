@@ -1,0 +1,10 @@
+todos 
+- figure out frequency 
+- generate the sym - ensure it works in XTEXT
+- play around with it a bit - generate raw from t - make a test 
+- figure out how to add multiple termination conditions
+
+Im coming up on some concrete use cases for NLP on events 
+- e.g. abandon property, provide notice to allow pets 
+- can start to think about how this would be handled.
+- because we want to assume these would NOT be in the domain model for t 

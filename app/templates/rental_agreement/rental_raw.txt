@@ -1,0 +1,70 @@
+This Agreement shall be effective on the date of signing this Agreement (hereinafter 
+referred to as the “Effective Date”) and will end on [END_DATE].
+
+The premises that are to be rented by the Landlord are located at (address) [PROPERTY_ADDRESS].
+
+The premises are to be used only for residential purposes and may be occupied only by the 
+registered occupants. 
+- prob just ignor this
+- could potentially do an event: use for non-residential purposes, then make a not obligation (double negative)
+
+The monthly rent to be paid by the Renter to the Landlord is [MONTHLY_RENT]. It is to be 
+paid by the Renter before the first day of every month, such that the first rent payment is due 
+on [FIRST_RENT_DUE_DATE].
+- Need a frequency....
+- There is an adjunct - we can potentially work with it (before the first day of every month)
+
+The method of payment preferred by both parties is [PAYMENT_METHOD].
+
+In the event of late payments made by the Renter, the Landlord is entitled to impose a 
+[LATE_FINE] fine as late fee. 
+- If violate payment obligation ==> impose a fine; this is similar to the meat sale sample 
+
+Prior to taking occupancy of the premises, the Renter will pay the Landlord an amount of 
+[SECURITY_DEPOSIT_AMOUNT] as a security deposit to cover the cost of any damages suffered by the 
+premises and cleaning. 
+- This is a good HappensBefore scenario; PRIOR TO EVENT, X ==> HappensBefore(X, EVENT)
+
+Such security deposit will be returned to the Renter upon the end of 
+this Agreement, provided the premises are left in the same condition as prior to the occupancy.
+- Upon the end of the agreement. This is a good antecedent case;
+- Could possibly incorporate multiple - same condition - can we frame this as an event?
+
+This Agreement may be terminated in the event that any of the following occurs:
+1. Immediately in the event that one of the Parties breaches this Agreement.
+2. At any given time by providing written notice to the other party [TERMINATION_NOTICE_DAYS] days 
+prior to terminating the Agreement.
+- Immediately [CONDITION] - good one 
+- At any given time [CONDITION] ... won't be replicated; but same idea. Good example 
+
+
+In the event that the Renter abandons the premises during the term of this Agreement, the 
+Landlord will be entitled to enter the Premises by any means without facing any liability and 
+the Landlord may terminate this Agreement.
+- another good one. Actually two separate ones here... 
+- Should this be framed as a power???
+
+The Landlord is entitled to enter the premises to inspect or repair the premises.
+- Is this a power? I dont know if this notion of power exists in symboleo...
+- could add a condition in this case 
+- Interesting note... there is a bit of an implied condition (if repairs are needed)
+
+Any dispute or difference whatsoever arising out of or in connection with this Agreement shall 
+be submitted to arbitration/mediation/negotiation (circle one) in accordance with, and subject 
+to the laws of [GOVERNING_LAW_REGION].
+- prob ignore this one 
+
+This Agreement shall be governed by and construed in accordance with the laws of 
+[GOVERNING_LAW_REGION].
+
+The Parties agree that the Renter will not keep any pets on the premises without obtaining 
+written prior consent from the Landlord. 
+- without/unless case... could try this one...
+- how to frame this one... is this a power?
+- O1: renter shall not keep pets
+- P1: gets notice -> Power to suspend O1
+
+In the event that any provision of this Agreement is found to be void and unenforceable by a 
+court of competent jurisdiction, then the remaining provisions will remain in force in 
+accordance with the Parties’ intention.
+- prob ignore this one 
