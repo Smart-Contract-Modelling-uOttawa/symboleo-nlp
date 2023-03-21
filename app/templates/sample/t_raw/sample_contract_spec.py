@@ -12,6 +12,7 @@ from app.classes.spec.contract_spec_other import ContractSpecParameter, SymVaria
 from app.classes.spec.other_function import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 
+from app.src.helpers.template_helpers import TemplateHelpers as TH
 from app.templates.sample.t_raw.sample_domain import get_domain_model
 
 def get_contract_spec():
@@ -35,35 +36,30 @@ def get_contract_spec():
     ]
 
     # Creating the objects
-    # TODO: May create a helper function for this...
-    goods = copy.deepcopy(dm.assets['Meat'])
-    goods.name = 'goods'
-    goods.set_prop('quantity', 'qnt')
-    goods.set_prop('quality', 'qlt')
+    goods = TH.create_declaration(dm, 'assets', 'Meat', 'goods', [
+        ('quantity', 'qnt'),
+        ('quality', 'qlt')
+    ])
+    evt_delivered = TH.create_declaration(dm, 'events', 'Delivered', 'delivered', [
+        ('item', 'goods'),
+        ('deliveryAddress', 'delAdd'),
+        ('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
+    ])
+    evt_paid_late = TH.create_declaration(dm, 'events', 'PaidLate', 'paidLate', [
+        ('amount', '(1 + interestRate / 100) * amt'),
+        ('currency', 'curr'),
+        ('from', 'buyer'),
+        ('to', 'seller')
+    ])
+    evt_paid = TH.create_declaration(dm, 'events', 'Paid', 'paid', [
+        ('amount', 'amt'),
+        ('currency', 'curr'),
+        ('from', 'buyer'),
+        ('to', 'seller'),
+        ('payDueDate', 'payDueDate')
+    ])
+    evt_disclosed = TH.create_declaration(dm, 'events', 'Disclosed', 'disclosed', [])
 
-    evt_delivered = copy.deepcopy(dm.events['Delivered'])
-    evt_delivered.name = 'delivered'
-    evt_delivered.set_prop('item', 'goods')
-    evt_delivered.set_prop('deliveryAddress', 'delAdd')
-    evt_delivered.set_prop('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
-
-    evt_paid_late = copy.deepcopy(dm.events['PaidLate'])
-    evt_paid_late.name = 'paidLate'
-    evt_paid_late.set_prop('amount', '(1 + interestRate / 100) * amt')
-    evt_paid_late.set_prop('currency', 'curr')
-    evt_paid_late.set_prop('from', 'buyer')
-    evt_paid_late.set_prop('to', 'seller')
-
-    evt_paid = copy.deepcopy(dm.events['Paid'])
-    evt_paid.name = 'paid'
-    evt_paid.set_prop('amount', 'amt')
-    evt_paid.set_prop('currency', 'curr')
-    evt_paid.set_prop('from', 'buyer')
-    evt_paid.set_prop('to', 'seller')
-    evt_paid.set_prop('payDueDate', 'payDueDate')
-
-    evt_disclosed = copy.deepcopy(dm.events['Disclosed'])
-    evt_disclosed.name = 'disclosed'
 
     # Declarations
     declarations = {

@@ -16,7 +16,7 @@ class FilledArg:
 # Eventually I want a NL -> Node list generator... Will replace this with that..
 all_args = [
     FilledArg(
-'DELIVERY_REFINEMENT',
+        'DELIVERY_REFINEMENT',
         [
             RootNode('', 0),
             BeforeNode('', 0),
@@ -101,7 +101,6 @@ class FullStackTests(unittest.TestCase):
                 contract = runner.update_contract(selection)
 
         result = contract.to_sym()
-        print(result)
         self.assertEqual(result, expected_sym)
         
 

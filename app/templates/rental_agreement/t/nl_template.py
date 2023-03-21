@@ -2,7 +2,7 @@ from typing import Dict, List
 from app.src.operations.configs import ParameterConfig, ParameterSpec, OpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
-sample_nl_template = NLTemplate(
+rental_nl_template = NLTemplate(
     template_dict = {
         'pay_rent': TemplateObj(
             'The monthly rent to be paid by the Renter to the Landlord is (monthly_rent). It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on (first_rent_due_date).',
@@ -24,7 +24,7 @@ sample_nl_template = NLTemplate(
         ),
         'no_pets': TemplateObj(
             'The Parties agree that the Renter will not keep any pets on the premises [PETS_UNLESS_CONDITION].',
-            ['obligations.no_pets', 'powers.allow_pets'] # Does this make sense...?
+            ['obligations.no_pets'] # Does this make sense...?
         ),
         
         # Its almost as if all of the termination conditions could be grouped somehow...

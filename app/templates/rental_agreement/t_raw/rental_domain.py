@@ -78,6 +78,13 @@ def get_domain_model():
                 props = [
                     DomainProp('grantor', '', 'Role')
                 ]
+            ),
+            # Placeholder until I figure out frequency...
+            'DatePasses': DomainEvent(
+                name = 'DatePasses',
+                props = [
+                    DomainProp('date', '', 'Date')
+                ]
             )
         },
         assets = {
@@ -91,7 +98,6 @@ def get_domain_model():
     )
     
     # Add aliases
-    # perishableGood = domain_model.assets['PerishableGood']
-    # domain_model.assets['Meat'] = Asset('Meat', [], perishableGood)
+    # ...
 
     return domain_model

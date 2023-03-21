@@ -2,7 +2,7 @@ from typing import Dict, List
 from app.src.operations.configs import ParameterConfig, ParameterSpec, OpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
-sample_nl_template = NLTemplate(
+rental_nl_template = NLTemplate(
     template_dict = {
         'pay_rent': TemplateObj(
             'The monthly rent to be paid by the Renter to the Landlord is (monthly_rent). It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on (first_rent_due_date).',

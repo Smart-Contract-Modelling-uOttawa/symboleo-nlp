@@ -1,10 +1,62 @@
 todos 
+- Role type for event props (may check with Aidin)
 - figure out frequency 
-- generate the sym - ensure it works in XTEXT
-- play around with it a bit - generate raw from t - make a test 
 - figure out how to add multiple termination conditions
+- NLP stuff 
 
-Im coming up on some concrete use cases for NLP on events 
-- e.g. abandon property, provide notice to allow pets 
-- can start to think about how this would be handled.
-- because we want to assume these would NOT be in the domain model for t 
+frequency
+- use a trigger and event... if date passes
+- the rent2own contract has structures that I dont see in the XText spec. may need clarification here
+- for now I'll put a dummy placeholder event, and just use a HappensBefore... but this needs to be addressed 
+
+Symboleo spec role
+- Getting an xtext error when I want a Role as a type on an event property. Is there a problem with allowing that?
+-- I can see it being an issue since it could allow one to assign the same party to multiple roles...
+
+termination
+- in some cases, broadening the contract will yield identical broad norms - a common one is the power to terminate the contract 
+-- therefore it makes sense to have a workflow in the application that simply allows the user to create a termination power
+-- then we can just remove those from the template T 
+-- select the termination workflow; then select the party with the power; 
+-- then enter the event (trigger/ante) using the same methods as usual
+- will need to add this as a separate workflow 
+- this is the beginning of creating completely new norms from scratch... not a bad thing?
+-- we initially note that we dont want to do this. But this is a new development
+- for the raw contract, leave as is. Will deal with it when making the template
+
+
+Refinements
+- LATE_PAYMENT_CONDITION: just need to add a violation obligation on pay_rent
+- SECURITY_DEPOSIT_REFINEMENT: Requires a TakeOccupancy event; then its a happensBefore refinement - NLP
+- RETURN_DEPOSIT_REFINEMENT: needs an upon contract termination
+- PETS_UNLESS_CONDITION: Need a new event - unless consent to keep pets is obtained from the landlord - NLP 
+- TERMINATION_CONDITIONS
+-- provide written notice - NLP
+-- abandons property - NLP
+-- breach of agreement (by either party) x2 - NLP 
+
+NLP stuff
+- there are some cases where we need to add new events 
+- Want to make sure they are valid events... maybe can use framenet for some 
+- There are some that could probably be added as "common contract events"
+-- provide written notice, breach of agreement 
+-- We could build these in, and add a node for selecting these common contract-related events
+-- this library could be expanded upon 
+- others are more domain-specifics
+-- take occupancy, abandon property, getting consent to keep pets 
+-- this would require a custom event... This is where framenet comes in 
+
+Example: take occupancy
+- Need: BEFORE EVENT 
+- EVENT: The renter occupies the property 
+- Start with the verb: occupy
+-- ensure its a valid verb 
+- decide on the arguments: agent, location 
+-- prompt the user for them 
+-- if an agent, then may enforce a role 
+-- would be very hard to enforce that the location is a property. Maybe they can pick from the declarations, or add a new one...
+
+** looks like there is lots to work with in framenet...
+
+Need the verb 
+- then need to decide the r
