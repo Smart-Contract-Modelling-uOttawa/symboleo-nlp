@@ -27,19 +27,19 @@ rental_nl_template = NLTemplate(
             ['obligations.no_pets'] # Does this make sense...?
         ),
         
-        # Its almost as if all of the termination conditions could be grouped somehow...
-        'terminate_breach': TemplateObj(
-            'This Agreement may be terminated in the event that any of the following occurs: 1. Immediately [TERMINATION_CONDITION1]',
-            ['powers.terminate_breach1', 'powers.terminate_breach2']
-        ),
-        'terminate_notice': TemplateObj(
-            'This Agreement may be terminated in the event that any of the following occurs: 2. At any given time [TERMINATION_CONDITION2]',
-            ['powers.terminate_notice']
-        ),
-        'terminate_abandon': TemplateObj(
-            '[TERMINATION_CONDITION3], the Landlord will be entitled to enter the Premises by any means without facing any liability and the Landlord may terminate this Agreement.',
-            ['powers.terminate_abandon']
-        )
+        ## Remove all absolute termination powers
+        # 'terminate_breach': TemplateObj(
+        #     'This Agreement may be terminated in the event that any of the following occurs: 1. Immediately [TERMINATION_CONDITION1]',
+        #     ['powers.terminate_breach1', 'powers.terminate_breach2']
+        # ),
+        # 'terminate_notice': TemplateObj(
+        #     'This Agreement may be terminated in the event that any of the following occurs: 2. At any given time [TERMINATION_CONDITION2]',
+        #     ['powers.terminate_notice']
+        # ),
+        # 'terminate_abandon': TemplateObj(
+        #     '[TERMINATION_CONDITION3], the Landlord will be entitled to enter the Premises by any means without facing any liability and the Landlord may terminate this Agreement.',
+        #     ['powers.terminate_abandon']
+        # )
     }
 )
 

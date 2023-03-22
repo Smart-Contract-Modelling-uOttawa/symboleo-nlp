@@ -2,6 +2,7 @@ from app.classes.grammar.selected_node import SelectedNode, Basket
 from app.classes.grammar.node_type import NodeType
 from app.classes.spec.domain_model import DomainProp
 
+# TODO: Probably get rid of this one for now...
 class UsingNode(SelectedNode):
     node_type = NodeType.USING
 
@@ -10,7 +11,8 @@ class UsingNode(SelectedNode):
         # Adds a norm -> Creates a power to suspend the initial norm 
         if self.child.node_type == NodeType.INSTRUMENT:
             instrument = self.child.to_obj(basket) # Just get the object text...
-            new_dm = DomainProp('instrument', instrument, 'str')
+            # Likely would need to be declaration
+            new_dm = DomainProp('instrument', 'str')
             return new_dm
 
         raise NotImplementedError('Oops!')

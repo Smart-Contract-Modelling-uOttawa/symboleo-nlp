@@ -10,11 +10,11 @@ from app.classes.spec.sym_event import VariableEvent, ObligationEvent, Obligatio
 from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.contract_spec_other import ContractSpecParameter, SymVariable, Assignment
+from app.classes.spec.contract_spec_other import ContractSpecParameter
+from app.src.helpers.declarer import Declarer
 from app.classes.spec.other_function import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 
-from app.src.helpers.template_helpers import TemplateHelpers as TH
 from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model
 
 
@@ -38,84 +38,84 @@ def get_contract_spec():
     ]
 
     # Declarations
-    the_property = TH.create_declaration(dm, 'assets', 'RentalProperty', 'property', [
+    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'property', [
         ('address', 'the_address')
     ])
-    evt_date_passes = TH.create_declaration(dm, 'events', 'DatePasses', 'datePasses', [
+    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'datePasses', [
         ('date', 'X')
     ])
-    evt_pay_rent = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_rent', [
+    evt_pay_rent = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_rent', [
         ('amount', 'the_rent_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_pay_late_fine = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_late_fine', [
+    evt_pay_late_fine = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_late_fine', [
         ('amount', 'the_late_fine'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_pay_deposit = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_deposit', [
+    evt_pay_deposit = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_deposit', [
         ('amount', 'the_deposit_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_return_deposit = TH.create_declaration(dm, 'events', 'Paid', 'evt_return_deposit', [
+    evt_return_deposit = Declarer.declare(dm, 'events', 'Paid', 'evt_return_deposit', [
         ('amount', 'the_deposit_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'landlord'),
         ('to', 'renter')
     ])
-    evt_take_occupancy = TH.create_declaration(dm, 'events', 'TakeOccupancy', 'evt_take_occupancy', [
+    evt_take_occupancy = Declarer.declare(dm, 'events', 'TakeOccupancy', 'evt_take_occupancy', [
         ('agent', 'renter')
     ])
-    evt_renter_breach = TH.create_declaration(dm, 'events', 'BreachAgreement', 'evt_renter_breach', [
+    evt_renter_breach = Declarer.declare(dm, 'events', 'BreachAgreement', 'evt_renter_breach', [
         ('agent', 'renter')
     ])
-    evt_landlord_breach = TH.create_declaration(dm, 'events', 'BreachAgreement', 'evt_landlord_breach', [
+    evt_landlord_breach = Declarer.declare(dm, 'events', 'BreachAgreement', 'evt_landlord_breach', [
         ('agent', 'landlord')
     ])
-    evt_provides_written_notice = TH.create_declaration(dm, 'events', 'ProvideWrittenNotice', 'evt_provides_written_notice', [
+    evt_provides_written_notice = Declarer.declare(dm, 'events', 'ProvideWrittenNotice', 'evt_provides_written_notice', [
         ('agent', 'landlord'),
         ('daysInAdvance', 'days_in_advance'),
     ])
-    evt_abandons = TH.create_declaration(dm, 'events', 'Abandons', 'evt_abandons', [
+    evt_abandons = Declarer.declare(dm, 'events', 'Abandons', 'evt_abandons', [
         ('agent', 'renter'),
         ('property', 'the_property'),
     ])
-    evt_enters = TH.create_declaration(dm, 'events', 'Enters', 'evt_enters', [
+    evt_enters = Declarer.declare(dm, 'events', 'Enters', 'evt_enters', [
         ('agent', 'landlord'),
         ('property', 'the_property'),
     ])
-    evt_keep_pets = TH.create_declaration(dm, 'events', 'KeepPets', 'evt_keep_pets', [
+    evt_keep_pets = Declarer.declare(dm, 'events', 'KeepPets', 'evt_keep_pets', [
         ('agent', 'renter')
     ])
-    evt_provide_pet_permission = TH.create_declaration(dm, 'events', 'ProvidePetPermission', 'evt_provide_pet_permission', [
+    evt_provide_pet_permission = Declarer.declare(dm, 'events', 'ProvidePetPermission', 'evt_provide_pet_permission', [
         ('grantor', 'landlord')
     ])
 
 
     # Declarations -  figure this out...
     declarations = {
-        'evt_date_passes': evt_date_passes.to_declaration('DatePasses'),
-        'evt_pay_rent': evt_pay_rent.to_declaration('Paid'),
-        'evt_pay_late_fine': evt_pay_late_fine.to_declaration('Paid'),
-        'evt_pay_deposit': evt_pay_deposit.to_declaration('Paid'),
-        'evt_return_deposit': evt_return_deposit.to_declaration('Paid'),
-        'evt_take_occupancy': evt_take_occupancy.to_declaration('TakeOccupancy'),
-        'evt_renter_breach': evt_renter_breach.to_declaration('BreachAgreement'),
-        'evt_landlord_breach': evt_landlord_breach.to_declaration('BreachAgreement'),
-        'evt_provides_written_notice': evt_provides_written_notice.to_declaration('ProvideWrittenNotice'),
-        'evt_abandons': evt_abandons.to_declaration('Abandons'),
-        'evt_enters': evt_enters.to_declaration('Enters'),
-        'evt_keep_pets': evt_keep_pets.to_declaration('KeepPets'),
-        'evt_provide_pet_permission': evt_provide_pet_permission.to_declaration('ProvidePetPermission')
+        'evt_date_passes': evt_date_passes,
+        'evt_pay_rent': evt_pay_rent,
+        'evt_pay_late_fine': evt_pay_late_fine,
+        'evt_pay_deposit': evt_pay_deposit,
+        'evt_return_deposit': evt_return_deposit,
+        'evt_take_occupancy': evt_take_occupancy,
+        'evt_renter_breach': evt_renter_breach,
+        'evt_landlord_breach': evt_landlord_breach,
+        'evt_provides_written_notice': evt_provides_written_notice,
+        'evt_abandons': evt_abandons,
+        'evt_enters': evt_enters,
+        'evt_keep_pets': evt_keep_pets,
+        'evt_provide_pet_permission': evt_provide_pet_permission,
 
     }
 
@@ -185,7 +185,7 @@ def get_contract_spec():
             'return_deposit': Obligation(
                 'return_deposit',
                 PropMaker.make(
-                    PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated) )
+                    PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated))
                 ),
                 LANDLORD,
                 RENTER,

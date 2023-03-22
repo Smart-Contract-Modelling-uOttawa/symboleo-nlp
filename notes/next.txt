@@ -1,9 +1,9 @@
 Next todos:
-- Dig deep into Wordnet - how will I inject it into the gramar/node system
-- Update the templates - probably merge the meat sale and goods sale into one template
-- Will also need to think about how instantiation of the contract will work here... 
-
-First, need to figure out exactly what I want out of the NLP work 
-- Then I need to decide how to technically integrate it smoothly with the rest of the application
-- I don't want to inject it into every node...
-- It will likely need to originate from the Selection object somehow
+- Add standard contract events 
+- When building declarations (declare_input), show possibilities
+- Strongly type the domain object types
+- Bulk up tests 
+- Finish up the rental contract - full-stack test 
+- some initial validation on the verb entry 
+- cleaner user experience - better messages, etc. 
+- clean up the demo - hide some more of the functionality. Start anticipating a web flow

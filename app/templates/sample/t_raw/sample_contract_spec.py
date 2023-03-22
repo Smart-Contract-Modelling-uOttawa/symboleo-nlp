@@ -8,11 +8,11 @@ from app.classes.spec.sym_event import VariableEvent, ObligationEvent, Obligatio
 from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.contract_spec_other import ContractSpecParameter, SymVariable, Assignment
+from app.classes.spec.contract_spec_other import ContractSpecParameter
 from app.classes.spec.other_function import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
+from app.src.helpers.declarer import Declarer
 
-from app.src.helpers.template_helpers import TemplateHelpers as TH
 from app.templates.sample.t_raw.sample_domain import get_domain_model
 
 def get_contract_spec():
@@ -36,45 +36,46 @@ def get_contract_spec():
     ]
 
     # Creating the objects
-    goods = TH.create_declaration(dm, 'assets', 'Meat', 'goods', [
+    goods = Declarer.declare(dm, 'assets', 'Meat', 'goods', [
         ('quantity', 'qnt'),
         ('quality', 'qlt')
     ])
-    evt_delivered = TH.create_declaration(dm, 'events', 'Delivered', 'delivered', [
+    evt_delivered = Declarer.declare(dm, 'events', 'Delivered', 'delivered', [
         ('item', 'goods'),
         ('deliveryAddress', 'delAdd'),
         ('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
     ])
-    evt_paid_late = TH.create_declaration(dm, 'events', 'PaidLate', 'paidLate', [
+    evt_paid_late = Declarer.declare(dm, 'events', 'PaidLate', 'paidLate', [
         ('amount', '(1 + interestRate / 100) * amt'),
         ('currency', 'curr'),
         ('from', 'buyer'),
         ('to', 'seller')
     ])
-    evt_paid = TH.create_declaration(dm, 'events', 'Paid', 'paid', [
+    evt_paid = Declarer.declare(dm, 'events', 'Paid', 'paid', [
         ('amount', 'amt'),
         ('currency', 'curr'),
         ('from', 'buyer'),
         ('to', 'seller'),
         ('payDueDate', 'payDueDate')
     ])
-    evt_disclosed = TH.create_declaration(dm, 'events', 'Disclosed', 'disclosed', [])
-
+    evt_disclosed = Declarer.declare(dm, 'events', 'Disclosed', 'disclosed', [])
 
     # Declarations
     declarations = {
-        'goods': goods.to_declaration('Meat'),
-        'delivered': evt_delivered.to_declaration('Delivered'),
-        'paidLate': evt_paid_late.to_declaration('PaidLate'),
-        'paid': evt_paid.to_declaration('Paid'),
-        'disclosed': evt_disclosed.to_declaration('Disclosed')
+        'goods': goods,
+        'delivered': evt_delivered,
+        'paidLate': evt_paid_late,
+        'paid': evt_paid,
+        'disclosed': evt_disclosed
     }
 
     # Variables to use
+    GOODS = goods.to_obj()
     DELIVERED_EVENT = evt_delivered.to_obj()
     PAID_EVENT = evt_paid.to_obj()
     PAID_LATE_EVENT = evt_paid_late.to_obj()
     DISCLOSED_EVENT = evt_disclosed.to_obj()
+
 
     # Contract Spec
     contract_spec = ContractSpec(
@@ -83,13 +84,13 @@ def get_contract_spec():
         declarations = declarations,
         preconditions = [
             Proposition([PAnd([PEquality(PComparison(PNegAtom(
-                PredicateFunctionIsOwner('goods', 'seller')
+                PredicateFunctionIsOwner(GOODS, 'seller')
             )))])])
         ],
         postconditions = [
             Proposition([PAnd([
-                PEquality(PComparison(PNegAtom(PredicateFunctionIsOwner('goods', 'buyer')))),
-                PEquality(PComparison(PNegAtom(PredicateFunctionIsOwner('goods', 'seller'), negation=True)))
+                PEquality(PComparison(PNegAtom(PredicateFunctionIsOwner(GOODS, 'buyer')))),
+                PEquality(PComparison(PNegAtom(PredicateFunctionIsOwner(GOODS, 'seller'), negation=True)))
             ])])
         ],
         obligations = {

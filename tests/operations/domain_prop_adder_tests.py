@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
 
-
 from app.src.operations.configs import ParameterConfig
 from app.src.operations.dm_prop_adder import DomainPropAdder
 
@@ -18,14 +17,13 @@ class DomainPropAdderTests(unittest.TestCase):
     def test_domain_prop_adder(self):
         event_name = 'test_event' # Existing event on test contract
         config = ParameterConfig('', '', '', 'events', event_name)
-        new_prop = DomainProp('my_new_prop','test_value', 'str')
+        new_prop = DomainProp('my_new_prop', 'str')
         contract = get_test_contract()
         init_sym = contract.to_sym()
 
         result = self.sut.add(config, contract, new_prop)
         target_prop = result.domain_model.events['test_event'].props[0]
         self.assertEqual(target_prop.key, 'my_new_prop')
-        self.assertEqual(target_prop.value, 'test_value')
 
         self.assertEqual(type(result), SymboleoContract)
 

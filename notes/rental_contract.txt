@@ -26,14 +26,14 @@ termination
 
 
 Refinements
-- LATE_PAYMENT_CONDITION: just need to add a violation obligation on pay_rent
-- SECURITY_DEPOSIT_REFINEMENT: Requires a TakeOccupancy event; then its a happensBefore refinement - NLP
-- RETURN_DEPOSIT_REFINEMENT: needs an upon contract termination
-- PETS_UNLESS_CONDITION: Need a new event - unless consent to keep pets is obtained from the landlord - NLP 
-- TERMINATION_CONDITIONS
--- provide written notice - NLP
--- abandons property - NLP
--- breach of agreement (by either party) x2 - NLP 
+# - LATE_PAYMENT_CONDITION: just need to add a violation obligation on pay_rent - easy
+# - SECURITY_DEPOSIT_REFINEMENT: Requires a TakeOccupancy event; then its a happensBefore refinement - frame
+# - RETURN_DEPOSIT_REFINEMENT: needs an upon contract termination - easy
+# - PETS_UNLESS_CONDITION: Need a new event - unless consent to keep pets is obtained from the landlord - custom event 
+# - TERMINATION_CONDITIONS
+# -- provide written notice - standard contract
+# -- abandons property - frame
+# -- breach of agreement (by either party) x2 - standard contract
 
 NLP stuff
 - there are some cases where we need to add new events 

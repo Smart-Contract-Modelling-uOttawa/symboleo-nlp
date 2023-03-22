@@ -1,20 +1,13 @@
-import copy
-from typing import List
-from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
+from app.classes.symboleo_contract import ContractSpec
 from app.classes.spec.domain_model import DomainObject
 from app.classes.spec.contract_spec import Norm, Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
-from app.classes.spec.sym_event import VariableEvent, ObligationEvent, ObligationEventName, ContractEvent, ContractEventName
-from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
-from app.classes.spec.point_function import PointFunction, TimeUnit
-from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.contract_spec_other import ContractSpecParameter, SymVariable, Assignment
+from app.classes.spec.contract_spec_other import ContractSpecParameter
+from app.src.helpers.declarer import Declarer
 from app.classes.spec.other_function import *
-from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 
-from app.src.helpers.template_helpers import TemplateHelpers as TH
 from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model
 
 
@@ -33,90 +26,55 @@ def get_contract_spec():
         ContractSpecParameter('the_payment_method', 'PaymentMethod'),
         ContractSpecParameter('the_late_fine', 'Number'),
         ContractSpecParameter('the_deposit_amount', 'Number'),
-        #ContractSpecParameter('days_in_advance', 'Number'),
         ContractSpecParameter('X', 'Date'),
     ]
 
     # Declarations
-    the_property = TH.create_declaration(dm, 'assets', 'RentalProperty', 'property', [
+    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'property', [
         ('address', 'the_address')
     ])
-    evt_date_passes = TH.create_declaration(dm, 'events', 'DatePasses', 'datePasses', [
+    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'datePasses', [
         ('date', 'X')
     ])
-    evt_pay_rent = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_rent', [
+    evt_pay_rent = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_rent', [
         ('amount', 'the_rent_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_pay_late_fine = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_late_fine', [
+    evt_pay_late_fine = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_late_fine', [
         ('amount', 'the_late_fine'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_pay_deposit = TH.create_declaration(dm, 'events', 'Paid', 'evt_pay_deposit', [
+    evt_pay_deposit = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_deposit', [
         ('amount', 'the_deposit_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'renter'),
         ('to', 'landlord')
     ])
-    evt_return_deposit = TH.create_declaration(dm, 'events', 'Paid', 'evt_return_deposit', [
+    evt_return_deposit = Declarer.declare(dm, 'events', 'Paid', 'evt_return_deposit', [
         ('amount', 'the_deposit_amount'),
         ('currency', 'the_currency'),
         ('paymentMethod', 'the_payment_method'),
         ('from', 'landlord'),
         ('to', 'renter')
     ])
-    # evt_take_occupancy = TH.create_declaration(dm, 'events', 'TakeOccupancy', 'evt_take_occupancy', [
-    #     ('agent', 'renter')
-    # ])
-    # evt_renter_breach = TH.create_declaration(dm, 'events', 'BreachAgreement', 'evt_renter_breach', [
-    #     ('agent', 'renter')
-    # ])
-    # evt_landlord_breach = TH.create_declaration(dm, 'events', 'BreachAgreement', 'evt_landlord_breach', [
-    #     ('agent', 'landlord')
-    # ])
-    # evt_provides_written_notice = TH.create_declaration(dm, 'events', 'ProvideWrittenNotice', 'evt_provides_written_notice', [
-    #     ('agent', 'landlord'),
-    #     ('daysInAdvance', 'days_in_advance'),
-    # ])
-    # evt_abandons = TH.create_declaration(dm, 'events', 'Abandons', 'evt_abandons', [
-    #     ('agent', 'renter'),
-    #     ('property', 'the_property'),
-    # ])
-    # evt_enters = TH.create_declaration(dm, 'events', 'Enters', 'evt_enters', [
-    #     ('agent', 'landlord'),
-    #     ('property', 'the_property'),
-    # ])
-    evt_keep_pets = TH.create_declaration(dm, 'events', 'KeepPets', 'evt_keep_pets', [
+    evt_keep_pets = Declarer.declare(dm, 'events', 'KeepPets', 'evt_keep_pets', [
         ('agent', 'renter')
     ])
-    # evt_provide_pet_permission = TH.create_declaration(dm, 'events', 'ProvidePetPermission', 'evt_provide_pet_permission', [
-    #     ('grantor', 'landlord')
-    # ])
 
-
-    # Declarations -  figure this out...
     declarations = {
-        'evt_date_passes': evt_date_passes.to_declaration('DatePasses'),
-        'evt_pay_rent': evt_pay_rent.to_declaration('Paid'),
-        'evt_pay_late_fine': evt_pay_late_fine.to_declaration('Paid'),
-        'evt_pay_deposit': evt_pay_deposit.to_declaration('Paid'),
-        'evt_return_deposit': evt_return_deposit.to_declaration('Paid'),
-        #'evt_take_occupancy': evt_take_occupancy.to_declaration('TakeOccupancy'),
-        #'evt_renter_breach': evt_renter_breach.to_declaration('BreachAgreement'),
-        #'evt_landlord_breach': evt_landlord_breach.to_declaration('BreachAgreement'),
-        #'evt_provides_written_notice': evt_provides_written_notice.to_declaration('ProvideWrittenNotice'),
-        #'evt_abandons': evt_abandons.to_declaration('Abandons'),
-        #'evt_enters': evt_enters.to_declaration('Enters'),
-        'evt_keep_pets': evt_keep_pets.to_declaration('KeepPets'),
-        #'evt_provide_pet_permission': evt_provide_pet_permission.to_declaration('ProvidePetPermission')
-
+        'evt_date_passes': evt_date_passes,
+        'evt_pay_rent': evt_pay_rent,
+        'evt_pay_late_fine': evt_pay_late_fine,
+        'evt_pay_deposit': evt_pay_deposit,
+        'evt_return_deposit': evt_return_deposit,
+        'evt_keep_pets': evt_keep_pets,
     }
 
     # Variables to use
@@ -125,14 +83,7 @@ def get_contract_spec():
     PAY_LATE_FINE = evt_pay_late_fine.to_obj()
     PAY_DEPOSIT = evt_pay_deposit.to_obj()
     RETURN_DEPOSIT = evt_return_deposit.to_obj()
-    # TAKE_OCCUPANCY = evt_take_occupancy.to_obj()
-    # RENTER_BREACH = evt_renter_breach.to_obj()
-    # LANDLORD_BREACH = evt_landlord_breach.to_obj()
-    # PROVIDE_WRITTEN_NOTICE = evt_provides_written_notice.to_obj()
-    # ABANDONS = evt_abandons.to_obj()
-    # ENTERS = evt_enters.to_obj()
     KEEP_PETS = evt_keep_pets.to_obj()
-    #PROVIDE_PET_PERMISSION = evt_provide_pet_permission.to_obj()
 
     # Contract Spec
     contract_spec = ContractSpec(
@@ -205,46 +156,6 @@ def get_contract_spec():
         },
         
         powers = {
-            'terminate_breach1': Power(
-                'terminate_breach1',
-                None,
-                LANDLORD,
-                RENTER,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
-            'terminate_breach2': Power(
-                'terminate_breach2',
-                None,
-                RENTER,
-                LANDLORD,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
-            'terminate_notice': Power(
-                'terminate_notice',
-                None,
-                RENTER,
-                LANDLORD,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
-            # 'allow_pets': Power(
-            #     'allow_pets',
-            #     None,
-            #     RENTER,
-            #     LANDLORD,
-            #     PropMaker.make_default(),
-            #     PFObligation(PFObligationName.Suspended, 'no_pets')
-            # ),
-            'terminate_abandon': Power(
-                'terminate_abandon',
-                None,
-                LANDLORD,
-                RENTER,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
         },
         constraints = [
             ###...

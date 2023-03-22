@@ -11,7 +11,8 @@ from app.src.operations.norm_adder import IAddNorms
 
 UpdateObjType = PredicateFunction or Norm or DomainProp
 
-# A flexible orchestrator for all types of contract updates
+# A flexible orchestrator for all types of parameter-based contract updates
+## Might rename this to reflect that this is for parameter-based norm updates
 class ContractUpdater:
     def __init__(
             self,

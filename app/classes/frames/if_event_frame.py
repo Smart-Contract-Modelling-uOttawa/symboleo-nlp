@@ -13,4 +13,6 @@ class IfEventFrame(Frame):
 
     def to_text(self):
         # Will add NLP in here to ensure verb tense, etc
+        # Will need lots of processing here... Depends on type of verb, etc.
+        
         return f'if {self.subject} has been {self.verb}'

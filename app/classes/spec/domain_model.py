@@ -2,12 +2,10 @@ from __future__ import annotations
 import copy
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.contract_spec_other import SymVariable, Assignment
 
 class DomainProp:
-    def __init__(self, key, value, type):
+    def __init__(self, key, type):
         self.key = key
-        self.value = value
         self.type = type
     
     def to_sym(self):
@@ -28,21 +26,7 @@ class DomainObject:
     
     def to_obj(self):
         return self.name
-
-    def set_prop(self, prop_key, value):
-        props = [x for x in self.props if x.key == prop_key]
-        if len(props) != 1:
-            raise KeyError(f'property {prop_key} not found')
-
-        props[0].value = value
     
-
-    # This will be used for an initialized DomainObject
-    def to_declaration(self, decl_type) -> SymVariable:
-        assnts = [Assignment(x.key, x.value,) for x in self.props]
-        return SymVariable(self.name, decl_type, assnts)
-    
-
     def to_sym(self):
         if self.is_alias:
             return f'{self.name} isA {self.base_type_name};'

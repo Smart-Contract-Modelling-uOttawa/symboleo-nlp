@@ -8,17 +8,13 @@ class IExtractDomainTimePoints:
 class DomainTimepointExtractor(IExtractDomainTimePoints):
     def extract(self, contract: SymboleoContract) -> List[str]:
         results = []
-        all_events = contract.domain_model.events
-        print('LLL', len(all_events))
+        all_events = [x for x in contract.contract_spec.declarations.values() if x.base_type == 'events']
 
-        for dk in all_events:
-            domain_obj = all_events[dk]
-            date_props = [x for x in domain_obj.props if x.type == 'Date']
-            print(dk, len(date_props))
+        for event_decl in all_events:
+            date_props = [x for x in event_decl.props if x.type == 'Date']
 
             for dp in date_props:
-                next_val = f'{domain_obj.name}.{dp.key}'
-                print('---', next_val)
+                next_val = f'{event_decl.name}.{dp.key}'
                 results.append(next_val)
 
         return results

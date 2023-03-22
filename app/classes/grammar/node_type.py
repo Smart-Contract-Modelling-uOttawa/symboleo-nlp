@@ -22,5 +22,5 @@ class NodeType(Enum):
     USING = 20,
     INSTRUMENT = 21,
     TIMEPOINT = 22,
-    DOMAIN_TIMEPOINT = 23,
+    DOMAIN_TIMEPOINT = 23
     # ....

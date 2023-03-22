@@ -8,14 +8,14 @@ def get_domain_model():
             'Seller': Role(
                 name = 'Seller',
                 props = [
-                    DomainProp('returnAddress', '', 'String'),
-                    DomainProp('name', '', 'String'),
+                    DomainProp('returnAddress', 'String'),
+                    DomainProp('name', 'String'),
                 ]
             ),
             'Buyer': Role(
                 name = 'Buyer',
                 props = [
-                    DomainProp('warehouse', '', 'String')
+                    DomainProp('warehouse', 'String')
                 ]
             )
         },
@@ -27,28 +27,28 @@ def get_domain_model():
             'Delivered': DomainEvent(
                 name = 'Delivered',
                 props = [
-                    DomainProp('item', '', 'Meat'),
-                    DomainProp('deliveryAddress', '', 'String'),
-                    DomainProp('delDueDate', '', 'Date')
+                    DomainProp('item', 'Meat'),
+                    DomainProp('deliveryAddress', 'String'),
+                    DomainProp('delDueDate', 'Date')
                 ]
             ),
             'Paid': DomainEvent(
                 name = 'Paid',
                 props = [
-                    DomainProp('amount', '', 'Number'),
-                    DomainProp('currency', '', 'Currency'),
-                    DomainProp('from', '', 'Buyer'),
-                    DomainProp('to', '', 'Seller'),
-                    DomainProp('payDueDate', '', 'Date')
+                    DomainProp('amount', 'Number'),
+                    DomainProp('currency', 'Currency'),
+                    DomainProp('from', 'Buyer'),
+                    DomainProp('to', 'Seller'),
+                    DomainProp('payDueDate', 'Date')
                 ]
             ),
             'PaidLate': DomainEvent(
                 name = 'PaidLate',
                 props = [
-                    DomainProp('amount', '', 'Number'),
-                    DomainProp('currency', '', 'Currency'),
-                    DomainProp('from', '', 'Buyer'),
-                    DomainProp('to', '', 'Seller')
+                    DomainProp('amount', 'Number'),
+                    DomainProp('currency', 'Currency'),
+                    DomainProp('from', 'Buyer'),
+                    DomainProp('to', 'Seller')
                 ]
             ),
             'Disclosed': DomainEvent(
@@ -60,8 +60,8 @@ def get_domain_model():
             'PerishableGood': Asset(
                 name = 'PerishableGood',
                 props = [
-                    DomainProp('quantity', '', 'Number'),
-                    DomainProp('quality', '', 'MeatQuality')
+                    DomainProp('quantity', 'Number'),
+                    DomainProp('quality', 'MeatQuality')
                 ]
             )
         }   

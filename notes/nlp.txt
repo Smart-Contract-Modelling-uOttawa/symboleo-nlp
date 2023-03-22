@@ -1,0 +1,22 @@
+The NLP requirements are becoming very clear now
+- execution of it will be harder
+
+sample use case 
+- if the renter abandons the property...
+- the event of abandoning the property does not yet exist
+
+- so they add a trigger 
+- then they select a custom event
+- then they enter the following:
+-- verb: occupy
+--- looks it up on framenet, finds the frame elements: resident and location 
+-- these are filled by the user 
+-- Then it creates the event 
+
+Idea: lets not allow custom events 
+- The user must first CREATE an event in the domain;
+- and THEN, they can use it in obligations...
+- Keeps it a little bit cleaner 
+
+Therefore we need a new operation: Creating a domain event 
+- everything else is the same process - e.g. w.r.t framenet 

@@ -1,9 +1,10 @@
 from typing import Dict, List
-from app.classes.spec.domain_model import Role, DomainEvent, Asset, DomainEnum
+from app.classes.spec.domain_model import Role, DomainEvent, Asset, DomainEnum, DomainObject
 from app.classes.spec.contract_spec import Obligation
 from app.classes.spec.contract_spec import Power
 from app.classes.spec.proposition import Proposition
-from app.classes.spec.contract_spec_other import SymVariable, ContractSpecParameter
+from app.classes.spec.contract_spec_other import ContractSpecParameter
+from app.classes.spec.declaration import Declaration
 from app.classes.nl_template import NLTemplate
 
 class DomainModel:
@@ -46,7 +47,7 @@ class ContractSpec:
         self, 
         id: str,
         parameters: List[ContractSpecParameter],
-        declarations: Dict[str, SymVariable],
+        declarations: Dict[str, Declaration],
         preconditions: List[Proposition],
         postconditions: List[Proposition],
         obligations: Dict[str, Obligation], 

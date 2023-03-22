@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.symboleo_contract import SymboleoContract
+from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainEvent
 from app.classes.grammar.grammar_nodes.all_nodes import *
 from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
@@ -28,13 +28,15 @@ class GrammarGenerator(IGenerateGrammar):
         contract_spec = contract.contract_spec
 
         # Event names
-        domain_event_names = [x for x in domain_model.events]
-        obligation_names = [x for x in contract_spec.obligations] # Need surviving obligtions as well...
+        #domain_event_names = [x for x in domain_model.events] 
+        domain_event_names = self._get_domain_event_names(contract_spec)
+
+        obligation_names = [x for x in contract_spec.obligations] # TODO: Need surviving obligtions as well...
         power_names = [x for x in contract_spec.powers]
 
         # Timepoints
         ## TODO: Actually, should be getting this from the declarations; not the domain model...
-        domain_event_timepoints = self.__domain_timepoint_extractor.extract(contract)
+        decl_event_timepoints = self.__domain_timepoint_extractor.extract(contract)
 
         ## CONTRACT EVENTS ##
         # Contract Event Actions
@@ -79,7 +81,7 @@ class GrammarGenerator(IGenerateGrammar):
         )
 
         # timepoint_node 
-        domain_timepoint_nodes = [DomainTimepointNode('TimepointNode.{x}', [], x) for x in domain_event_timepoints]
+        domain_timepoint_nodes = [DomainTimepointNode('TimepointNode.{x}', [], x) for x in decl_event_timepoints]
         timepoint_node = TimepointNode('Timepoint', domain_timepoint_nodes)
 
         ## DATE ##
@@ -132,16 +134,16 @@ class GrammarGenerator(IGenerateGrammar):
     def _get_domain_timepoints(self, contract:SymboleoContract) -> List[str]:
         results = []
         all_events = contract.domain_model.events
-        print('LLL', len(all_events))
 
         for dk in all_events:
             domain_obj = all_events[dk]
             date_props = [x for x in domain_obj.props if x.type == 'Date']
-            print(dk, len(date_props))
 
             for dp in date_props:
                 next_val = f'{domain_obj.name}.{dp.key}'
-                print('---', next_val)
                 results.append(next_val)
 
         return results
+
+    def _get_domain_event_names(self, contract_spec: ContractSpec) -> List[str]:
+        return [x.name for x in list(contract_spec.declarations.values()) if x.base_type == 'events']
