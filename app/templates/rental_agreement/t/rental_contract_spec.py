@@ -69,6 +69,7 @@ def get_contract_spec():
     ])
 
     declarations = {
+        'property': the_property,
         'evt_date_passes': evt_date_passes,
         'evt_pay_rent': evt_pay_rent,
         'evt_pay_late_fine': evt_pay_late_fine,

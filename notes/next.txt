@@ -1,9 +1,11 @@
 Next todos:
-- Add standard contract events 
-- When building declarations (declare_input), show possibilities
-- Strongly type the domain object types
+- Add standard contract events - done
+- When building declarations (declare_input), show possibilities - done 
+- Strongly type the domain object types - maybe?
 - Bulk up tests 
-- Finish up the rental contract - full-stack test 
+- Finish up the rental contract - full-stack test: t--> raw
 - some initial validation on the verb entry 
 - cleaner user experience - better messages, etc. 
 - clean up the demo - hide some more of the functionality. Start anticipating a web flow
+- Framenet: Should stress-test this a bit more. Might make a wrapper and a bunch of tests around it
+- option to simply declare a new event (easy - already handling it - just make it an operation)

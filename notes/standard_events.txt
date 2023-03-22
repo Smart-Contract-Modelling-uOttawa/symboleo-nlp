@@ -1,0 +1,5 @@
+There are some common events that are seen in contracts 
+- instead of creating a new custom event, we should have a store of these 
+- basically a blueprint that can be expanded on 
+
+- Have some DomainEvents - basically copy it, and allow the user to customize

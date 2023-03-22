@@ -1,3 +1,4 @@
+import copy
 from typing import Dict, List
 from app.classes.symboleo_contract import DomainModel
 from app.classes.spec.domain_model import DomainProp, DomainEvent
@@ -5,8 +6,10 @@ from app.classes.spec.domain_model import DomainProp, DomainEvent
 import nltk
 from nltk.corpus.reader.framenet import FramenetCorpusReader, AttrDict, PrettyDict
 
+from app.src.nlp.standard_events import standard_event_dict
 # May need a wrapper for framenet
 
+# TODO: Will need to split this all up and clean up the framenet stuff
 class ICreateDomainEvents:
     def create(self) -> DomainEvent:
         raise NotImplementedError()
@@ -17,8 +20,40 @@ class DomainEventCreator(ICreateDomainEvents):
         self.__dm = domain_model
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
         self.__fn = fn
-    
+
     def create(self) -> DomainEvent:
+        print('Creating a new event.')
+        print('1 - Choose from standard contract events')
+        print('2 - Create a custom event')
+
+        user_k = int(input('Select #: '))
+
+        if user_k == 1:
+            return self.create_standard()
+        elif user_k == 2:
+            return self.create_custom()
+        else:
+            raise ValueError('Oops!')
+    
+    def create_standard(self) -> DomainEvent:
+        print('\nCreating standard Contract event.')
+        for k in standard_event_dict:
+            print(f'{k}: {standard_event_dict[k].description}')
+
+        print('\n')
+        kl = list(standard_event_dict.keys())
+        for i,k in enumerate(kl):
+            print(f'{i+1}: {k}')
+        
+        user_k = int(input('Selection #: '))
+        sel_k = kl[user_k - 1]
+
+        domain_event = standard_event_dict[sel_k].domain_event
+        new_event = copy.deepcopy(domain_event)
+        return new_event
+
+
+    def create_custom(self) -> DomainEvent:
         verb = self._get_verb()
         frame = self._get_frame(verb)
 
