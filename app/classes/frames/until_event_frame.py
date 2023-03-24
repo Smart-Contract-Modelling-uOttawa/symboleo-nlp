@@ -1,10 +1,10 @@
 from app.classes.frames.frame import Frame
 from app.classes.grammar.node_type import NodeType
-from app.src.operations.configs import OpCode
+from app.src.operations.parm_operations.configs import ParmOpCode
 
 class UntilEventFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.UNTIL, NodeType.EVENT]
-    op_code = OpCode.ADD_NORM
+    op_code = ParmOpCode.ADD_NORM
     subject: str = ''
     verb: str = ''
 

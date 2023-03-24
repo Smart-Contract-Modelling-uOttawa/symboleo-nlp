@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.operations.configs import ParameterConfig
-from app.src.operations.dm_prop_adder import DomainPropAdder
+from app.src.operations.parm_operations.configs import ParameterConfig
+from app.src.operations.parm_operations.dm_prop_adder import DomainPropAdder
 
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainProp

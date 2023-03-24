@@ -1,5 +1,5 @@
 from typing import Dict, List
-from app.src.operations.configs import ParameterConfig, ParameterSpec, OpCode
+from app.src.operations.parm_operations.configs import ParameterConfig, ParameterSpec, ParmOpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
 # TODO: Might include the parameters in this object as well...
@@ -38,7 +38,7 @@ parameters: Dict[str, ParameterSpec] = {
     # BEFORE DOMAIN_DATE(delivery.delDueD)
     # TODO: Requires a BEFORE TIMEPOINT frame
     'DELIVERY_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.REFINE_PREDICATE, OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.REFINE_PREDICATE, ParmOpCode.ADD_TRIGGER],
         configs= [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -53,7 +53,7 @@ parameters: Dict[str, ParameterSpec] = {
     # before [PAYMENT_DUE_DATE]
     # BEFORE DOMAIN_DATE(payment.payDueDate)
     'PAYMENT_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.REFINE_PREDICATE, OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.REFINE_PREDICATE, ParmOpCode.ADD_TRIGGER],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -68,7 +68,7 @@ parameters: Dict[str, ParameterSpec] = {
     # In the event of late payment of the amount owed due
     # IF EVENT(violate payment obligation)
     'LATE_PAYMENT_CONDITION': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.ADD_TRIGGER],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -85,7 +85,7 @@ parameters: Dict[str, ParameterSpec] = {
     # Can likely get away with using WITHIN
     # Also, this affects TWO norms... Maybe this needs to be a list of ParameterConfigs...
     'CONFIDENTIALITY_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER, OpCode.REFINE_PREDICATE],
+        op_codes = [ParmOpCode.ADD_TRIGGER, ParmOpCode.REFINE_PREDICATE],
         configs = [
             ParameterConfig(
                 norm_type = 'surviving_obligations',
@@ -105,7 +105,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'DELIVERY_SUSPENSION_CONDITION': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.ADD_TRIGGER],
         configs = [
             ParameterConfig(
                 norm_type = 'powers',
@@ -118,7 +118,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'TERMINATION_EXCEPTION': ParameterSpec(
-        op_codes = [OpCode.ADD_NORM],
+        op_codes = [ParmOpCode.ADD_NORM],
         configs = [
             ParameterConfig(
                 norm_type = 'powers',

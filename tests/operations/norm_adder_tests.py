@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.operations.norm_adder import NormAdder
+from app.src.operations.parm_operations.norm_adder import NormAdder
 
 from tests.helpers.sample_norm_lib import SampleNorms
 from tests.helpers.test_contract import get_test_contract

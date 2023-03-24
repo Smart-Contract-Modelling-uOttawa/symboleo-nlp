@@ -1,5 +1,5 @@
 from app.classes.symboleo_contract import SymboleoContract
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 from app.classes.grammar.grammar_nodes.root_node import RootNode
 from app.classes.spec.sym_event import SymEvent
 from app.classes.frames.frame import Frame
@@ -8,7 +8,7 @@ from app.classes.grammar.selected_node import Basket
 from app.src.grammar.selection import Selection
 from app.src.operations.helpers.default_event_getter import DefaultEventGetter
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
-from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
+from app.src.operations.parm_operations.parameter_updater_builder import ParameterUpdaterBuilder
 
 class Runner:
     def __init__(self, contract: SymboleoContract, parm_config: ParameterConfig):
@@ -24,7 +24,7 @@ class Runner:
         basket.initial_norm = self.contract.contract_spec.__dict__[self.parm_config.norm_type][self.parm_config.norm_id]
         symboleo_obj = selection.to_obj(basket)
 
-        contract_updater = ContractUpdaterBuilder.build()
+        contract_updater = ParameterUpdaterBuilder.build()
         updated_contract = contract_updater.update(frame.op_code, self.contract, symboleo_obj, self.parm_config)
         return updated_contract
 

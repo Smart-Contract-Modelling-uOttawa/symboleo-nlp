@@ -1,5 +1,5 @@
 from typing import Dict, List
-from app.src.operations.configs import ParameterConfig, ParameterSpec, OpCode
+from app.src.operations.parm_operations.configs import ParameterConfig, ParameterSpec, ParmOpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
 rental_nl_template = NLTemplate(

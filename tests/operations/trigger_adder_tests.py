@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 from app.src.operations.helpers.predicate_processor import IProcessPredicates
-from app.src.operations.trigger_adder import TriggerAdder
+from app.src.operations.parm_operations.trigger_adder import TriggerAdder
 
 from tests.helpers.test_contract import get_test_contract
 

@@ -1,5 +1,5 @@
 from app.classes.symboleo_contract import ContractSpec
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.proposition import Proposition, PNegAtom
 from app.classes.spec.predicate_function import PredicateFunctionHappens

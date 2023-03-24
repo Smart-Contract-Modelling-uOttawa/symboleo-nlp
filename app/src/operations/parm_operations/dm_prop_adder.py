@@ -1,7 +1,7 @@
 import copy
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainProp
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 
 class IAddDomainProps:
     def add(self, config: ParameterConfig, contract: SymboleoContract, new_prop: DomainProp) -> SymboleoContract:

@@ -4,7 +4,7 @@ from app.classes.symboleo_contract import SymboleoContract
 from app.classes.spec.contract_spec import Norm
 from app.classes.spec.proposition import PNegAtom, Proposition
 from app.classes.spec.p_atoms import PAtomPredicate
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 from app.src.operations.helpers.norm_proposition_updater import IUpdateNormPropositions
 from app.src.operations.helpers.negation_extractor import IExtractNegations
 

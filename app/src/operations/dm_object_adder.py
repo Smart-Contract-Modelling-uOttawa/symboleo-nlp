@@ -1,7 +1,6 @@
 import copy
 from app.classes.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainObject
-from app.src.operations.configs import ParameterConfig
 
 class IAddDomainObjects:
     def add(self, obj_type: str, contract: SymboleoContract, new_obj: DomainObject) -> SymboleoContract:

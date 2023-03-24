@@ -4,7 +4,7 @@ from app.classes.grammar.grammar_nodes.all_nodes import *
 from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
 from app.src.grammar.helpers.domain_timepoint_extractor import IExtractDomainTimePoints
-from app.src.grammar.grammar_config import GrammarGeneratorConfig, OpCode
+from app.src.grammar.grammar_config import GrammarGeneratorConfig, ParmOpCode
 
 class IGenerateGrammar:
     def generate(self, contract: SymboleoContract) -> RootNode:
@@ -113,18 +113,18 @@ class GrammarGenerator(IGenerateGrammar):
 
         ## ROOT ##
         root_children = []
-        if OpCode.ADD_TRIGGER in config.op_codes:
+        if ParmOpCode.ADD_TRIGGER in config.op_codes:
             root_children.append(if_node)
         
-        if OpCode.REFINE_PREDICATE in config.op_codes:
+        if ParmOpCode.REFINE_PREDICATE in config.op_codes:
             root_children.append(before_node)
             root_children.append(after_node)
             root_children.append(within_node)
         
-        if OpCode.ADD_NORM in config.op_codes:
+        if ParmOpCode.ADD_NORM in config.op_codes:
             root_children.append(until_node)
         
-        if OpCode.ADD_DM_PROP in config.op_codes:
+        if ParmOpCode.ADD_DM_PROP in config.op_codes:
             root_children.append(using_node)
 
         root_node = RootNode('Root', root_children)

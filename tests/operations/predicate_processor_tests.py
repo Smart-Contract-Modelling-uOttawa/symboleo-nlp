@@ -5,7 +5,7 @@ from app.src.operations.helpers.norm_proposition_updater import IUpdateNormPropo
 from app.src.operations.helpers.negation_extractor import IExtractNegations
 from app.src.operations.helpers.predicate_processor import PredicateProcessor
 
-from app.src.operations.configs import ParameterConfig
+from app.src.operations.parm_operations.configs import ParameterConfig
 from app.classes.symboleo_contract import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens

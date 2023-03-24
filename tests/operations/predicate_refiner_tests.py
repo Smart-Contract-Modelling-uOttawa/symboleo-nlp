@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.src.operations.helpers.predicate_processor import IProcessPredicates
-from app.src.operations.predicate_refiner import PredicateRefiner
+from app.src.operations.parm_operations.predicate_refiner import PredicateRefiner
 
 from tests.helpers.test_contract import get_test_contract
 

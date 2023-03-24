@@ -2,6 +2,7 @@ Next todos:
 - Add standard contract events - done
 - When building declarations (declare_input), show possibilities - done 
 - Strongly type the domain object types - maybe?
+- Ensure the NL aligns properly - verb tenses, etc.
 - Bulk up tests 
 - Finish up the rental contract - full-stack test: t--> raw
 - some initial validation on the verb entry 

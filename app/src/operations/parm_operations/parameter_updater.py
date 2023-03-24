@@ -3,17 +3,15 @@ from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec import Norm
 from app.classes.spec.domain_model import DomainProp 
 
-from app.src.operations.configs import OpCode, ParameterConfig
-from app.src.operations.predicate_refiner import IRefinePredicates
-from app.src.operations.trigger_adder import IAddTriggers
-from app.src.operations.dm_prop_adder import IAddDomainProps
-from app.src.operations.norm_adder import IAddNorms
+from app.src.operations.parm_operations.configs import ParmOpCode, ParameterConfig
+from app.src.operations.parm_operations.predicate_refiner import IRefinePredicates
+from app.src.operations.parm_operations.trigger_adder import IAddTriggers
+from app.src.operations.parm_operations.dm_prop_adder import IAddDomainProps
+from app.src.operations.parm_operations.norm_adder import IAddNorms
 
 UpdateObjType = PredicateFunction or Norm or DomainProp
 
-# A flexible orchestrator for all types of parameter-based contract updates
-## Might rename this to reflect that this is for parameter-based norm updates
-class ContractUpdater:
+class ParameterUpdater:
     def __init__(
             self,
             predicate_refiner: IRefinePredicates,
@@ -28,21 +26,21 @@ class ContractUpdater:
 
     def update(
             self, 
-            op_code: OpCode,
+            op_code: ParmOpCode,
             contract: SymboleoContract, 
             update_obj: UpdateObjType,
             config: ParameterConfig = None, 
         ) -> SymboleoContract:
-            if op_code == OpCode.REFINE_PREDICATE:
+            if op_code == ParmOpCode.REFINE_PREDICATE:
                 return self.__predicate_refiner.refine(config, contract, update_obj)
             
-            elif op_code == OpCode.ADD_TRIGGER:
+            elif op_code == ParmOpCode.ADD_TRIGGER:
                 return self.__trigger_adder.add(config, contract, update_obj)
             
-            elif op_code == OpCode.ADD_DM_PROP:
+            elif op_code == ParmOpCode.ADD_DM_PROP:
                 return self.__dm_prop_adder.add(config, contract, update_obj)
             
-            elif op_code == OpCode.ADD_NORM:
+            elif op_code == ParmOpCode.ADD_NORM:
                 return self.__norm_adder.add(contract, update_obj)
 
             else:

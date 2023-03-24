@@ -1,9 +1,5 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.proposition import PNegAtom
-from app.classes.spec.p_atoms import PAtomPredicate
-from app.classes.spec.predicate_function import PredicateFunctionHappens
-from app.classes.spec.sym_event import VariableEvent
 
 from app.src.operations.helpers.negation_extractor import NegationExtractor
 

@@ -2,11 +2,11 @@ from __future__ import annotations
 from typing import List
 import copy
 from app.classes.grammar.node_type import NodeType
-from app.src.operations.configs import OpCode
+from app.src.operations.parm_operations.configs import ParmOpCode
 
 class Frame:
     pattern: List[NodeType]
-    op_code: OpCode
+    op_code: ParmOpCode
 
     def to_text(self) -> str:
         raise NotImplementedError()
@@ -21,7 +21,7 @@ class Frame:
 
 class DummyFrame(Frame):
     pattern = [NodeType.ROOT]
-    op_code = OpCode.REFINE_PREDICATE
+    op_code = ParmOpCode.REFINE_PREDICATE
     test_value: str = ''
 
     def is_complete(self):

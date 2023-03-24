@@ -1,5 +1,5 @@
 from typing import Dict, List
-from app.src.operations.configs import ParameterConfig, ParameterSpec, OpCode
+from app.src.operations.parm_operations.configs import ParameterConfig, ParameterSpec, ParmOpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
 rental_nl_template = NLTemplate(
@@ -46,7 +46,7 @@ rental_nl_template = NLTemplate(
 # Needs to be a list; since a parameter can have multiple impacts
 parameters: Dict[str, ParameterSpec] = {
     'PAY_RENT_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.REFINE_PREDICATE],
+        op_codes = [ParmOpCode.REFINE_PREDICATE],
         configs= [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -59,7 +59,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'LATE_PAYMENT_CONDITION': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.ADD_TRIGGER],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -72,7 +72,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'SECURITY_DEPOSIT_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER, OpCode.REFINE_PREDICATE],
+        op_codes = [ParmOpCode.ADD_TRIGGER, ParmOpCode.REFINE_PREDICATE],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -85,7 +85,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'RETURN_DEPOSIT_REFINEMENT': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER, OpCode.REFINE_PREDICATE],
+        op_codes = [ParmOpCode.ADD_TRIGGER, ParmOpCode.REFINE_PREDICATE],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -98,7 +98,7 @@ parameters: Dict[str, ParameterSpec] = {
     ),
 
     'PETS_UNLESS_CONDITION': ParameterSpec(
-        op_codes = [OpCode.ADD_NORM],
+        op_codes = [ParmOpCode.ADD_NORM],
         configs = [
             ParameterConfig(
                 norm_type = 'obligations',
@@ -114,7 +114,7 @@ parameters: Dict[str, ParameterSpec] = {
     ## In broad form, they are basically the same
     # So we'd want to list a bunch of options... maybe add in disjuncts
     'TERMINATION_CONDITION1': ParameterSpec(
-        op_codes = [OpCode.ADD_TRIGGER],
+        op_codes = [ParmOpCode.ADD_TRIGGER],
         configs = [
             ParameterConfig(
                 norm_type = 'powers',

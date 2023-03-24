@@ -1,10 +1,10 @@
 from app.classes.frames.frame import Frame
 from app.classes.grammar.node_type import NodeType
-from app.src.operations.configs import OpCode
+from app.src.operations.parm_operations.configs import ParmOpCode
 
 class IfEventFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.IF, NodeType.EVENT]
-    op_code = OpCode.ADD_TRIGGER
+    op_code = ParmOpCode.ADD_TRIGGER
     subject: str = ''
     verb: str = ''
 
