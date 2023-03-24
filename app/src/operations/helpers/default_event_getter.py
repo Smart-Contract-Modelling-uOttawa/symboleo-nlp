@@ -14,6 +14,9 @@ class IGetDefaultEvents:
 class DefaultEventGetter(IGetDefaultEvents):
     def get(self, contract_spec: ContractSpec, config: ParameterConfig) -> SymEvent:
         # Find the target norm inside the contract spec
+        if config.norm_id not in contract_spec.__dict__[config.norm_type]:
+            return None
+         
         target_norm = contract_spec.__dict__[config.norm_type][config.norm_id]
 
         # Get the component

@@ -39,6 +39,13 @@ def get_domain_model():
                 props = [
                     DomainProp('agent', 'Role')
                 ]
+            ),
+            # Placeholder until I figure out frequency...
+            'DatePasses': DomainEvent(
+                name = 'DatePasses',
+                props = [
+                    DomainProp('date', 'Date')
+                ]
             )
         },
         assets = {

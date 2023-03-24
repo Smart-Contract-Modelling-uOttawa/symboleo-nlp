@@ -29,12 +29,12 @@ class ContractUpdater(IUpdateContracts):
         self, 
         parm_updater: IUpdateContractOp,
         tp_adder: IUpdateContractOp,
-        do_adder: IUpdateContractOp
+        domain_updater: IUpdateContractOp
     ):
         self.__op_dict: Dict[OpCode, IUpdateContractOp] = {
             OpCode.UPDATE_PARM: parm_updater,
             OpCode.ADD_TERMINATION_POWER: tp_adder,
-            OpCode.ADD_DOMAIN_OBJECT: do_adder
+            OpCode.ADD_DOMAIN_OBJECT: domain_updater
         }
 
 

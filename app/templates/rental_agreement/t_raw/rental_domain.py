@@ -34,37 +34,25 @@ def get_domain_model():
                     DomainProp('to', 'Role'),
                 ]
             ),
-            'TakeOccupancy': DomainEvent(
-                name = 'TakeOccupancy',
+            'Occupy': DomainEvent(
+                name = 'Occupy',
                 props = [
-                    DomainProp('agent', 'Role')
+                    DomainProp('agent', 'Role'),
+                    DomainProp('property', 'RentalProperty')
                 ]
             ),
-            'BreachAgreement': DomainEvent(
-                name = 'BreachAgreement',
-                props = [
-                    DomainProp('agent', 'Role')
-                ]
-            ),
-            'ProvideWrittenNotice': DomainEvent(
-                name = 'ProvideWrittenNotice',
+            'ProvideTerminationNotice': DomainEvent(
+                name = 'ProvideTerminationNotice',
                 props = [
                     DomainProp('agent', 'Role'),
                     DomainProp('daysInAdvance', 'Number')
                 ]
             ),
-            'Abandons': DomainEvent(
-                name = 'Abandons',
+            'Abandon': DomainEvent(
+                name = 'Abandon',
                 props = [
                     DomainProp('agent', 'Role'),
-                    DomainProp('property', 'Property')
-                ]
-            ),
-            'Enters': DomainEvent(
-                name = 'Enters',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('property', 'Property')
+                    DomainProp('property', 'RentalProperty')
                 ]
             ),
             'KeepPets': DomainEvent(
@@ -73,8 +61,8 @@ def get_domain_model():
                     DomainProp('agent', 'Role')
                 ]
             ),
-            'ProvidePetPermission': DomainEvent(
-                name = 'ProvidePetPermission',
+            'AllowPets': DomainEvent(
+                name = 'AllowPets',
                 props = [
                     DomainProp('grantor', 'Role')
                 ]

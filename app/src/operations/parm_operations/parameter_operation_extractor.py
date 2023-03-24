@@ -28,7 +28,9 @@ class ParameterOperationExtractor(IExtractParameterOperation):
     
         basket = Basket()
         basket.default_event = self.__default_event_getter.get(contract.contract_spec, parm_config)
-        basket.initial_norm = contract.contract_spec.__dict__[parm_config.norm_type][parm_config.norm_id]
+        if parm_config.norm_id in contract.contract_spec.__dict__[parm_config.norm_type]: ## MAYBE...
+            basket.initial_norm = contract.contract_spec.__dict__[parm_config.norm_type][parm_config.norm_id]
+
         update_obj = selection.to_obj(basket)
 
         return ParameterOperation(frame.op_code, parm_config, update_obj)

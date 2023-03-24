@@ -7,6 +7,10 @@ from app.classes.spec.contract_spec_other import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.nl_template import NLTemplate
 
+def _sd(x):
+    return dict(sorted(x.items()))
+
+
 class DomainModel:
     def __init__(
         self, 
@@ -17,11 +21,11 @@ class DomainModel:
         assets: Dict[str, Asset]
     ):
         self.id = id
-        self.roles = roles
-        self.enums = enums
-        self.events = events
+        self.roles = _sd(roles)
+        self.enums = sorted(enums, key=lambda x: x.name)
+        self.events = _sd(events)
         #self.aliases = aliases
-        self.assets = assets
+        self.assets = _sd(assets)
     
     def to_sym(self):
         result = f'Domain {self.id}\n'
@@ -56,13 +60,13 @@ class ContractSpec:
         constraints: List[Proposition]
     ):
         self.id = id
-        self.parameters = parameters
-        self.declarations = declarations
+        self.parameters = sorted(parameters, key=lambda x: x.name)
+        self.declarations = _sd(declarations)
         self.preconditions = preconditions
         self.postconditions = postconditions
-        self.obligations = obligations
-        self.surviving_obligations = surviving_obligations
-        self.powers = powers
+        self.obligations = _sd(obligations)
+        self.surviving_obligations = _sd(surviving_obligations)
+        self.powers = _sd(powers)
         self.constraints = constraints
     
     def to_sym(self):
@@ -129,5 +133,18 @@ class SymboleoContract:
     
     
     def to_sym(self):
+        self._sort()
         return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'
 
+
+    def _sort(self):
+        self.contract_spec.obligations = _sd(self.contract_spec.obligations)
+        self.contract_spec.powers = _sd(self.contract_spec.powers)
+        self.contract_spec.declarations = _sd(self.contract_spec.declarations)
+        self.contract_spec.parameters = sorted(self.contract_spec.parameters, key=lambda x: x.name)
+        self.contract_spec.surviving_obligations = _sd(self.contract_spec.surviving_obligations)
+
+        self.domain_model.roles = _sd(self.domain_model.roles)
+        self.domain_model.events = _sd(self.domain_model.events)
+        self.domain_model.assets = _sd(self.domain_model.assets)
+        self.domain_model.enums = sorted(self.domain_model.enums, key=lambda x: x.name)

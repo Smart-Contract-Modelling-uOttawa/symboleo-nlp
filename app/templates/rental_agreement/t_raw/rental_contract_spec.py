@@ -33,15 +33,15 @@ def get_contract_spec():
         ContractSpecParameter('the_payment_method', 'PaymentMethod'),
         ContractSpecParameter('the_late_fine', 'Number'),
         ContractSpecParameter('the_deposit_amount', 'Number'),
-        ContractSpecParameter('days_in_advance', 'Number'),
+        ContractSpecParameter('var_daysInAdvance', 'Number'),
         ContractSpecParameter('X', 'Date'),
     ]
 
     # Declarations
-    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'property', [
+    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'the_property', [
         ('address', 'the_address')
     ])
-    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'datePasses', [
+    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'evt_date_passes', [
         ('date', 'X')
     ])
     evt_pay_rent = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_rent', [
@@ -72,31 +72,22 @@ def get_contract_spec():
         ('from', 'landlord'),
         ('to', 'renter')
     ])
-    evt_take_occupancy = Declarer.declare(dm, 'events', 'TakeOccupancy', 'evt_take_occupancy', [
-        ('agent', 'renter')
-    ])
-    evt_renter_breach = Declarer.declare(dm, 'events', 'BreachAgreement', 'evt_renter_breach', [
-        ('agent', 'renter')
-    ])
-    evt_landlord_breach = Declarer.declare(dm, 'events', 'BreachAgreement', 'evt_landlord_breach', [
-        ('agent', 'landlord')
-    ])
-    evt_provides_written_notice = Declarer.declare(dm, 'events', 'ProvideWrittenNotice', 'evt_provides_written_notice', [
-        ('agent', 'landlord'),
-        ('daysInAdvance', 'days_in_advance'),
-    ])
-    evt_abandons = Declarer.declare(dm, 'events', 'Abandons', 'evt_abandons', [
+    evt_take_occupancy = Declarer.declare(dm, 'events', 'Occupy', 'evt_occupy', [
         ('agent', 'renter'),
         ('property', 'the_property'),
     ])
-    evt_enters = Declarer.declare(dm, 'events', 'Enters', 'evt_enters', [
+    evt_provides_written_notice = Declarer.declare(dm, 'events', 'ProvideTerminationNotice', 'evt_provideTerminationNotice', [
         ('agent', 'landlord'),
+        ('daysInAdvance', 'var_daysInAdvance'),
+    ])
+    evt_abandons = Declarer.declare(dm, 'events', 'Abandon', 'evt_abandon', [
+        ('agent', 'renter'),
         ('property', 'the_property'),
     ])
     evt_keep_pets = Declarer.declare(dm, 'events', 'KeepPets', 'evt_keep_pets', [
         ('agent', 'renter')
     ])
-    evt_provide_pet_permission = Declarer.declare(dm, 'events', 'ProvidePetPermission', 'evt_provide_pet_permission', [
+    evt_provide_pet_permission = Declarer.declare(dm, 'events', 'AllowPets', 'evt_allowPets', [
         ('grantor', 'landlord')
     ])
 
@@ -108,14 +99,12 @@ def get_contract_spec():
         'evt_pay_late_fine': evt_pay_late_fine,
         'evt_pay_deposit': evt_pay_deposit,
         'evt_return_deposit': evt_return_deposit,
-        'evt_take_occupancy': evt_take_occupancy,
-        'evt_renter_breach': evt_renter_breach,
-        'evt_landlord_breach': evt_landlord_breach,
-        'evt_provides_written_notice': evt_provides_written_notice,
-        'evt_abandons': evt_abandons,
-        'evt_enters': evt_enters,
+        'evt_occupy': evt_take_occupancy,
+        'evt_provideTerminationNotice': evt_provides_written_notice,
+        'evt_abandon': evt_abandons,
         'evt_keep_pets': evt_keep_pets,
-        'evt_provide_pet_permission': evt_provide_pet_permission,
+        'evt_allowPets': evt_provide_pet_permission,
+        'the_property': the_property
 
     }
 
@@ -126,11 +115,8 @@ def get_contract_spec():
     PAY_DEPOSIT = evt_pay_deposit.to_obj()
     RETURN_DEPOSIT = evt_return_deposit.to_obj()
     TAKE_OCCUPANCY = evt_take_occupancy.to_obj()
-    RENTER_BREACH = evt_renter_breach.to_obj()
-    LANDLORD_BREACH = evt_landlord_breach.to_obj()
     PROVIDE_WRITTEN_NOTICE = evt_provides_written_notice.to_obj()
     ABANDONS = evt_abandons.to_obj()
-    ENTERS = evt_enters.to_obj()
     KEEP_PETS = evt_keep_pets.to_obj()
     PROVIDE_PET_PERMISSION = evt_provide_pet_permission.to_obj()
 
@@ -211,28 +197,8 @@ def get_contract_spec():
         },
         
         powers = {
-            'terminate_breach1': Power(
-                'terminate_breach1',
-                PropMaker.make(
-                    PredicateFunctionHappens(RENTER_BREACH)
-                ),
-                LANDLORD,
-                RENTER,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
-            'terminate_breach2': Power(
-                'terminate_breach2',
-                PropMaker.make(
-                    PredicateFunctionHappens(LANDLORD_BREACH)
-                ),
-                RENTER,
-                LANDLORD,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            ),
-            'terminate_notice': Power(
-                'terminate_notice',
+            'pow_termination_written': Power(
+                'pow_termination_written',
                 PropMaker.make(
                     PredicateFunctionHappens(PROVIDE_WRITTEN_NOTICE)
                 ),
@@ -241,18 +207,18 @@ def get_contract_spec():
                 PropMaker.make_default(),
                 PFContract(PFContractName.Terminated)
             ),
-            'allow_pets': Power(
-                'allow_pets',
+            'pow_suspend_no_pets': Power(
+                'pow_suspend_no_pets',
                 PropMaker.make(
                     PredicateFunctionHappens(PROVIDE_PET_PERMISSION)
                 ),
-                RENTER,
                 LANDLORD,
+                RENTER,
                 PropMaker.make_default(),
                 PFObligation(PFObligationName.Suspended, 'no_pets')
             ),
-            'terminate_abandon': Power(
-                'terminate_abandon',
+            'pow_termination_abandon': Power(
+                'pow_termination_abandon',
                 PropMaker.make(
                     PredicateFunctionHappens(ABANDONS)
                 ),

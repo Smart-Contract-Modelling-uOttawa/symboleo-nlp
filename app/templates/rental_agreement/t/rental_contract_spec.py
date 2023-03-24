@@ -30,10 +30,10 @@ def get_contract_spec():
     ]
 
     # Declarations
-    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'property', [
+    the_property = Declarer.declare(dm, 'assets', 'RentalProperty', 'the_property', [
         ('address', 'the_address')
     ])
-    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'datePasses', [
+    evt_date_passes = Declarer.declare(dm, 'events', 'DatePasses', 'evt_date_passes', [
         ('date', 'X')
     ])
     evt_pay_rent = Declarer.declare(dm, 'events', 'Paid', 'evt_pay_rent', [
@@ -69,7 +69,7 @@ def get_contract_spec():
     ])
 
     declarations = {
-        'property': the_property,
+        'the_property': the_property,
         'evt_date_passes': evt_date_passes,
         'evt_pay_rent': evt_pay_rent,
         'evt_pay_late_fine': evt_pay_late_fine,
