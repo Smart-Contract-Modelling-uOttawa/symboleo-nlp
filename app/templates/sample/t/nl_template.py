@@ -1,5 +1,6 @@
 from typing import Dict, List
-from app.src.operations.parm_operations.configs import ParameterConfig, ParameterSpec, ParmOpCode
+from app.src.operations.parm_operations.configs import ParameterConfig, ParameterSpec
+from app.src.operations.parm_operations.parameter_updater import ParmOpCode
 from app.classes.nl_template import NLTemplate, TemplateObj
 
 # TODO: Might include the parameters in this object as well...

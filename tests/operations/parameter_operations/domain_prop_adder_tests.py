@@ -21,7 +21,7 @@ class DomainPropAdderTests(unittest.TestCase):
         contract = get_test_contract()
         init_sym = contract.to_sym()
 
-        result = self.sut.add(config, contract, new_prop)
+        result = self.sut.update(contract, config, new_prop)
         target_prop = result.domain_model.events['test_event'].props[0]
         self.assertEqual(target_prop.key, 'my_new_prop')
 

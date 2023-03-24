@@ -5,7 +5,7 @@ from app.src.frames.inner_frame_checker import IInnerFrameChecker
 from app.src.frames.frame_builder import IBuildFrames
 
 class ICheckFrames:
-    def check_frames(self, node_list: List[SelectedNode]):
+    def check_all_frames(self, node_list: List[SelectedNode]) -> List[Frame]:
         raise NotImplementedError()
 
 

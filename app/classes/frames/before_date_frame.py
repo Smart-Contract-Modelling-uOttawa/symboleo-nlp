@@ -1,6 +1,6 @@
 from app.classes.frames.frame import Frame
 from app.classes.grammar.node_type import NodeType
-from app.src.operations.parm_operations.configs import ParmOpCode
+from app.src.operations.parm_operations.parameter_updater import ParmOpCode
 
 # Maybe date should be a subclass of Timepoint...?
 class BeforeDateFrame(Frame):

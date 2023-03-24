@@ -16,7 +16,7 @@ class NormAdderTests(unittest.TestCase):
         contract = get_test_contract()
         new_norm = SampleNorms.get_sample_obligation('my_new_ob')
 
-        result = self.sut.add(contract, new_norm)
+        result = self.sut.update(contract, None, new_norm)
 
         found_norm = result.contract_spec.obligations['my_new_ob']
 

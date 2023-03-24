@@ -1,5 +1,5 @@
 from typing import List
-from app.src.operations.parm_operations.configs import ParmOpCode
+from app.src.operations.parm_operations.parameter_updater import ParmOpCode
 
 class GrammarGeneratorConfig:
     def __init__(self, op_codes: List[ParmOpCode] = None):
