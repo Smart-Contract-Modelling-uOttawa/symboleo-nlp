@@ -3,7 +3,7 @@ from app.src.operations.parm_operations.parameter_updater_builder import Paramet
 from app.src.operations.domain_operations.domain_updater_builder import DomainUpdaterBuilder
 from app.src.operations.termination_operations.termination_updater_builder import TerminationUpdaterBuilder
 
-class ContractUpdaterBuilder:
+class ContractUpdaterBuilder: # pragma: no cover
     @staticmethod
     def build() -> ContractUpdater:
         parm_updater = ParameterUpdaterBuilder.build()

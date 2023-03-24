@@ -131,19 +131,5 @@ class GrammarGenerator(IGenerateGrammar):
         
         return root_node
 
-    def _get_domain_timepoints(self, contract:SymboleoContract) -> List[str]:
-        results = []
-        all_events = contract.domain_model.events
-
-        for dk in all_events:
-            domain_obj = all_events[dk]
-            date_props = [x for x in domain_obj.props if x.type == 'Date']
-
-            for dp in date_props:
-                next_val = f'{domain_obj.name}.{dp.key}'
-                results.append(next_val)
-
-        return results
-
     def _get_domain_event_names(self, contract_spec: ContractSpec) -> List[str]:
         return [x.name for x in list(contract_spec.declarations.values()) if x.base_type == 'events']

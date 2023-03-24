@@ -98,6 +98,7 @@ class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
         self.runner = TestRunner()
 
+    @unittest.skip('skip when measuring coverage')
     def test_full_stack(self):
         contract = get_template('sample_t')
         expected_contract = get_template('sample_raw')

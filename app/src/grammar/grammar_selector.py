@@ -1,11 +1,13 @@
 from app.classes.grammar.abstract_node import AbstractNode
 from app.src.grammar.selection import Selection
-from app.src.grammar.manual_node_selector import ISelectGrammarNodes
 
 class ISelectGrammar:
     def select(self, root: AbstractNode) -> Selection:
         raise NotImplementedError()
 
+class ISelectGrammarNodes:
+    def select(self, target: AbstractNode) -> AbstractNode:
+        raise NotImplementedError()
 
 class GrammarSelector(ISelectGrammar):
     def __init__(self, node_selector: ISelectGrammarNodes):

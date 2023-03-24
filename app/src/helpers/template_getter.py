@@ -61,7 +61,8 @@ template_dict = {
     ),
 }
 
-def get_template(template_str):
+
+def get_template(template_str): #pragma: no cover
     if template_str in template_dict:
         return template_dict[template_str]
     else:

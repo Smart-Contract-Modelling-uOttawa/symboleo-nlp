@@ -4,22 +4,16 @@ from app.classes.symboleo_contract import DomainModel
 from app.classes.spec.domain_model import DomainProp, DomainEvent
 
 import nltk
+from nltk.corpus import framenet as fn
 from nltk.corpus.reader.framenet import FramenetCorpusReader, AttrDict, PrettyDict
 
 from app.src.nlp.standard_events import standard_event_dict
-# May need a wrapper for framenet
+from app.src.nlp.framenet_extractor import FramenetExtractor
 
-# TODO: Will need to split this all up and clean up the framenet stuff
-class ICreateDomainEvents:
-    def create(self) -> DomainEvent:
-        raise NotImplementedError()
-    
-class DomainEventCreator(ICreateDomainEvents):
-    def __init__(self, fn: FramenetCorpusReader, domain_model: DomainModel):
-        #nltk.download('framenet_v17')
-        self.__dm = domain_model
+class DomainEventCreator:
+    def __init__(self, domain_model: DomainModel):
+        self.__fn_extractor = FramenetExtractor(fn)
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
-        self.__fn = fn
 
     def create(self) -> DomainEvent:
         print('Creating a new event.')
@@ -29,13 +23,14 @@ class DomainEventCreator(ICreateDomainEvents):
         user_k = int(input('Select #: '))
 
         if user_k == 1:
-            return self.create_standard()
+            return self.create_from_standard()
         elif user_k == 2:
-            return self.create_custom()
+            return self.create_from_frame()
         else:
             raise ValueError('Oops!')
+        
     
-    def create_standard(self) -> DomainEvent:
+    def create_from_standard(self) -> DomainEvent:
         print('\nCreating standard Contract event.')
         for k in standard_event_dict:
             print(f'{k}: {standard_event_dict[k].description}')
@@ -53,65 +48,59 @@ class DomainEventCreator(ICreateDomainEvents):
         return new_event
 
 
-    def create_custom(self) -> DomainEvent:
-        verb = self._get_verb()
-        frame = self._get_frame(verb)
+    def create_from_frame(self) -> DomainEvent:
+        my_verb = input('enter verb:') 
+        # TODO: Validation? Will add a class to support this
+    
+        frame = self._get_frame(my_verb)
 
         if frame is None:
             event_props = self._handle_custom_frame()
         else:
-            frame_elements = self._get_frame_elements(frame)
-            event_props = self._get_event_props(frame_elements)
+            event_props = self._handle_found_frame()
 
-        event_name = f'{verb.capitalize()}'
+        event_name = f'{my_verb.capitalize()}'
         return DomainEvent(event_name, event_props)
 
-    
-    def _get_verb(self) -> str:
-        my_verb = input('enter verb:')
-        # TODO: Validation?
-        # Formatting... e.g. snake-case etc
-        return my_verb
 
-    def _get_frame(self, my_verb:str) -> AttrDict:
-        regex_string = r'^' + my_verb
-        frame_lus = self.__fn.lus(regex_string)
+    def _get_frame(self, verb: str) -> AttrDict:
+        flus = self.__fn_extractor.extract_flus_from_verb(verb)
 
-        verb_flus = [f for f in frame_lus if f.POS == 'V']
-
-        if len(verb_flus) == 0:
+        if len(flus) == 0:
             return None
 
-        for i, flu in enumerate(verb_flus):
+        # Select the desired frame based on the definition
+        for i, flu in enumerate(flus):
             print(f'{i+1}: {flu.name} - {flu.definition}')
-        
         f_key = input('select the desired definition # (or leave blank for custom): ')
 
+        # If user enters blank, then build a custom frame
         if not f_key:
             return None
+    
+        # Extract the frame
+        frame = flus[int(f_key)-1].frame
 
-        target_flu = verb_flus[int(f_key)-1]
+        return frame
 
-        return target_flu.frame
+
+    def _handle_found_frame(self, frame: AttrDict):
+        frame_elements = self.__fn_extractor.extract_core_fes(frame)
+
+        results: List[DomainProp] = []
+
+        frame_props = self._get_props_from_frames(frame_elements)
+        results.extend(frame_props)
+        
+        custom_props = self._get_custom_props()
+        results.extend(custom_props)
+        
+        return results
+
 
     def _handle_custom_frame(self):
         return self._get_custom_props()
 
-    def _get_frame_elements(self, frame: AttrDict) -> Dict[str, AttrDict]:
-        all_fes: PrettyDict = frame.FE
-        core_keys = [k for k in all_fes if all_fes[k].coreType == 'Core']
-        target_fes = {k: all_fes[k] for k in core_keys}
-        return target_fes
-    
-    def _get_event_props(self, frame_elements) -> List[DomainProp]:
-        results: List[DomainProp] = []
-        
-        props1 = self._get_props_from_frames(frame_elements)
-        results.extend(props1)
-        props2 = self._get_custom_props()
-        results.extend(props2)
-        
-        return results
 
     def _get_props_from_frames(self, frame_elements) -> List[DomainProp]:
         results: List[DomainProp] = []
@@ -132,9 +121,9 @@ class DomainEventCreator(ICreateDomainEvents):
             results.append(next_prop)
         
         return results
+    
 
-
-    def _get_custom_props(self) -> List[DomainProp]:
+    def _get_custom_props(self):
         results: List[DomainProp] = []
 
         while (True):
@@ -148,7 +137,8 @@ class DomainEventCreator(ICreateDomainEvents):
 
         return results
     
-    def _select_type(self):
+
+    def _select_types(self):
         print('Select the property type:')
         for i, pt in enumerate(self.__prop_types):
             print(f'{i+1}: {pt}')
@@ -157,5 +147,4 @@ class DomainEventCreator(ICreateDomainEvents):
         prop_type = self.__prop_types[int(pt_key) - 1]
 
         return prop_type
-
-
+    

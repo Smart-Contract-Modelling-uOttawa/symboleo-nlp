@@ -1,8 +1,5 @@
 from app.classes.grammar.abstract_node import AbstractNode
-
-class ISelectGrammarNodes:
-    def select(self, target: AbstractNode) -> AbstractNode:
-        raise NotImplementedError()
+from app.src.grammar.grammar_selector import ISelectGrammarNodes
 
 class ManualGrammarNodeSelector(ISelectGrammarNodes):
     def select(self, target: AbstractNode) -> AbstractNode:

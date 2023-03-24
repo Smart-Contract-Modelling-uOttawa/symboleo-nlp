@@ -31,9 +31,9 @@ Refinements
 # - RETURN_DEPOSIT_REFINEMENT: needs an upon contract termination - easy
 # - PETS_UNLESS_CONDITION: Need a new event - unless consent to keep pets is obtained from the landlord - custom event 
 # - TERMINATION_CONDITIONS
-# -- provide written notice - standard contract
-# -- abandons property - frame
-# -- breach of agreement (by either party) x2 - standard contract
+# -- provide written notice - standard contract; create event first 
+# -- abandons property - frame; create event first 
+# -- breach of agreement (by either party) x2 - standard contract. Lets forget this one...
 
 NLP stuff
 - there are some cases where we need to add new events 

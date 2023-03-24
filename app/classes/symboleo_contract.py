@@ -21,11 +21,11 @@ class DomainModel:
         assets: Dict[str, Asset]
     ):
         self.id = id
-        self.roles = _sd(roles)
-        self.enums = sorted(enums, key=lambda x: x.name)
-        self.events = _sd(events)
+        self.roles: Dict[str, Role] = _sd(roles)
+        self.enums: List[DomainEnum] = sorted(enums, key=lambda x: x.name)
+        self.events: Dict[str, DomainEvent] = _sd(events)
         #self.aliases = aliases
-        self.assets = _sd(assets)
+        self.assets: Dict[str, Asset] = _sd(assets)
     
     def to_sym(self):
         result = f'Domain {self.id}\n'

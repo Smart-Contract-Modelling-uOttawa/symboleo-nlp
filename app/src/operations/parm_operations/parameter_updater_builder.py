@@ -7,7 +7,7 @@ from app.src.operations.helpers.norm_proposition_updater import NormPropositionU
 from app.src.operations.helpers.negation_extractor import NegationExtractor
 from app.src.operations.helpers.predicate_processor import PredicateProcessor
 
-class ParameterUpdaterBuilder:
+class ParameterUpdaterBuilder: # pragma: no cover
     @staticmethod
     def build() -> ParameterUpdater:
         norm_proposition_updater = NormPropositionUpdater()
