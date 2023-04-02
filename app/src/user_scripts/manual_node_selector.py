@@ -10,6 +10,8 @@ class ManualGrammarNodeSelector(ISelectGrammarNodes):
         for ci in children_dict:
             cn = children_dict[ci]
             print('-', ci, cn.prompt)
+
+        print('\n')
         
         # Get the value. Sometimes auto, sometimes from user
         k = input("Enter target id: ")

@@ -25,6 +25,9 @@ class ParameterOperationExtractor(IExtractParameterOperation):
     def extract(self, contract: SymboleoContract, parm_config: ParameterConfig, selection: Selection) -> ParameterOperation:
         frames = self.__frame_checker.check_all_frames(selection.nodes)
         frame = frames[0]
+
+        frame_text = frame.to_text()
+        print(f'\nNL: {frame_text}\n')
     
         basket = Basket()
         basket.default_event = self.__default_event_getter.get(contract.contract_spec, parm_config)

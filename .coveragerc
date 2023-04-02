@@ -16,4 +16,5 @@ omit =
     app\src\graph\graph_visualizer.py
     app\src\sentence_summarizer.py
     app\src\user_scripts\*.py
+    app\src\nlp\standard_events.py
 

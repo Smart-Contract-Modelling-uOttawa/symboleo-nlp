@@ -5,14 +5,15 @@ from app.classes.spec.domain_model import DomainProp, DomainEvent
 
 import nltk
 from nltk.corpus import framenet as fn
-from nltk.corpus.reader.framenet import FramenetCorpusReader, AttrDict, PrettyDict
+from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
 
 from app.src.nlp.standard_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
 
 class DomainEventCreator:
     def __init__(self, domain_model: DomainModel):
-        self.__fn_extractor = FramenetExtractor(fn)
+        my_framenet = MyFramenet(fn)
+        self.__fn_extractor = FramenetExtractor(my_framenet)
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
 
     def create(self) -> DomainEvent:
@@ -57,13 +58,13 @@ class DomainEventCreator:
         if frame is None:
             event_props = self._handle_custom_frame()
         else:
-            event_props = self._handle_found_frame()
+            event_props = self._handle_found_frame(frame)
 
         event_name = f'{my_verb.capitalize()}'
         return DomainEvent(event_name, event_props)
 
 
-    def _get_frame(self, verb: str) -> AttrDict:
+    def _get_frame(self, verb: str) -> MyFrame:
         flus = self.__fn_extractor.extract_flus_from_verb(verb)
 
         if len(flus) == 0:
@@ -84,7 +85,7 @@ class DomainEventCreator:
         return frame
 
 
-    def _handle_found_frame(self, frame: AttrDict):
+    def _handle_found_frame(self, frame: MyFrame):
         frame_elements = self.__fn_extractor.extract_core_fes(frame)
 
         results: List[DomainProp] = []
@@ -102,7 +103,7 @@ class DomainEventCreator:
         return self._get_custom_props()
 
 
-    def _get_props_from_frames(self, frame_elements) -> List[DomainProp]:
+    def _get_props_from_frames(self, frame_elements:Dict[str, MyFrameElement]) -> List[DomainProp]:
         results: List[DomainProp] = []
         
         for k in frame_elements:
@@ -115,7 +116,7 @@ class DomainEventCreator:
                 continue
 
             prop_name = input(f'Enter new prop name (or leave blank if \'{fe.name}\' is okay: ') or fe.name
-            prop_type = self._select_type()
+            prop_type = self._select_types()
 
             next_prop = DomainProp(prop_name, prop_type)
             results.append(next_prop)
@@ -131,7 +132,7 @@ class DomainEventCreator:
             if not next_prop_name:
                 break
             
-            prop_type = self._select_type()
+            prop_type = self._select_types()
             new_prop = DomainProp(next_prop_name, prop_type)
             results.append(new_prop)
 

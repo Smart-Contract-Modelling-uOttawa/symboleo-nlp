@@ -20,3 +20,23 @@ Idea: lets not allow custom events
 
 Therefore we need a new operation: Creating a domain event 
 - everything else is the same process - e.g. w.r.t framenet 
+
+
+What about adding assets?
+deliver meat [with prime quality] -> add asset prop  
+deliver meat [before tuesday] -> change the predicate
+deliver meat [in a truck] -> add event prop
+
+attachment ambiguity: deliver meat with prime quality 
+- does it refer to delivery or the meat 
+- this is an interesting problem 
+
+
+Another thing
+- when we are transforming an obligation reference
+-- e.g "if the late_payment obligation has been Violated"
+- We may actually want to represent the text better
+-- for example, we could parse out the debtor and the event
+-- if buyer fails to complete payment (synonymous)
+
+- Just another  thing to think about. Would probably be valuable

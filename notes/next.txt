@@ -1,12 +1,38 @@
-Next todos:
-- Add standard contract events - done
-- When building declarations (declare_input), show possibilities - done 
-- Strongly type the domain object types - maybe?
+done
+- finished the rental contract
+- organized the process around a sequence of operations - much more testable
+- split out the NLP stuff
+- Separated out the user scripts for the various operations
+
+Next todos (April):
+- Make the contract updates into methods on the SymboleoContract object 
 - Ensure the NL aligns properly - verb tenses, etc.
-- Bulk up tests 
-- Finish up the rental contract - full-stack test: t--> raw
+- Make sure that the customizations are updating the nl_parameters
+- Get tests up to 95% coverage 
 - some initial validation on the verb entry 
-- cleaner user experience - better messages, etc. 
-- clean up the demo - hide some more of the functionality. Start anticipating a web flow
+- clean up demo, better messages, etc.
 - Framenet: Should stress-test this a bit more. Might make a wrapper and a bunch of tests around it
 - option to simply declare a new event (easy - already handling it - just make it an operation)
+- New contract... 
+- Try the frames for adding props again - maybe go for generic properties (e.g. with PROP QUALITY)
+- clean out old code and organize folders 
+
+May: 
+- Another contract - full-stack test 
+- tests up to 98%
+- Maybe start web UI 
+- wrap up any other NLP 
+- start with user string and convert to node list
+
+Jun
+- Last contract
+- Make a web ui
+- work on autocomplete
+
+** Im thinking that it would make more sense for the contract operations to be class methods...
+- would keep things a bit more organized, and honestly makes more sense 
+- they are straightforward mutations...
+- add_domain_obj, add_norm, update_norm, add_decl... all very doable. That's what I should do...
+-- This can be a job for April. So dont worry about those operation tests for now. They'll be moved
+- Would need to move the spec into a folder so that it is properly tested. Need to do this with some other thigns as well...
+

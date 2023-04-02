@@ -1,7 +1,7 @@
 from typing import Dict
 from app.classes.spec.domain_model import DomainEvent, DomainProp
 
-class StandardEvent:
+class StandardEvent: 
     def __init__(self, domain_event:DomainEvent, description:str):
         self.domain_event = domain_event
         self.description = description
