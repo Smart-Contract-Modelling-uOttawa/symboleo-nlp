@@ -4,7 +4,9 @@ from app.src.helpers.template_getter import get_template
 from app.src.grammar.selection import Selection, SelectedNode
 from app.classes.grammar.selected_nodes.all_nodes import *
 from app.src.operations.contract_updater import OpCode
-from tests.test_suites.test_runner import TestConfig, TestRunner
+
+from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
+from app.src.operations.contract_updater_config import UpdateConfig
 
 from app.templates.sample.t.nl_template import parameters
 
@@ -12,7 +14,7 @@ from app.templates.sample.t.nl_template import parameters
 # Eventually I want a NL -> Node list generator... Will replace this with that..
 
 all_ops = [
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -22,7 +24,7 @@ all_ops = [
         ]),
         parm_config = parameters['DELIVERY_REFINEMENT'].configs[0]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -32,7 +34,7 @@ all_ops = [
         ]),
         parm_config = parameters['PAYMENT_REFINEMENT'].configs[0]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -44,7 +46,7 @@ all_ops = [
         ]),
         parm_config = parameters['LATE_PAYMENT_CONDITION'].configs[0]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -56,7 +58,7 @@ all_ops = [
         ]),
         parm_config = parameters['CONFIDENTIALITY_REFINEMENT'].configs[0]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -68,7 +70,7 @@ all_ops = [
         ]),
         parm_config = parameters['CONFIDENTIALITY_REFINEMENT'].configs[1]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -80,7 +82,7 @@ all_ops = [
         ]),
         parm_config = parameters['DELIVERY_SUSPENSION_CONDITION'].configs[0]
     ),
-    TestConfig(
+    UpdateConfig(
         OpCode.UPDATE_PARM,
         selection = Selection.from_nodes([
             RootNode('', 0),
@@ -96,16 +98,16 @@ all_ops = [
 
 class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.runner = TestRunner()
+        self.sut = ContractUpdaterBuilder.build()
 
-    #@unittest.skip('skip when measuring coverage')
+    @unittest.skip('skip when measuring coverage')
     def test_full_stack(self):
         contract = get_template('sample_t')
         expected_contract = get_template('sample_raw')
         expected_sym = expected_contract.to_sym()
 
         for test_config in all_ops:
-            contract = self.runner.update_contract(contract, test_config)
+            self.sut.update(contract, test_config.op_code, test_config)
 
         result = contract.to_sym()
         self.assertEqual(result, expected_sym)

@@ -1,7 +1,6 @@
 from typing import List
 from enum import Enum
 
-# class syntax
 class ParmOpCode(Enum):
     ADD_DM_PROP = 1 # TODO: May actually remove this one...
     REFINE_PREDICATE = 2

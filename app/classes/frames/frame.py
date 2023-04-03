@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import List
 import copy
 from app.classes.grammar.node_type import NodeType
-from app.src.operations.parm_operations.parameter_updater import ParmOpCode
+from app.src.operations.parm_configs import ParmOpCode
 
 class Frame:
     pattern: List[NodeType]

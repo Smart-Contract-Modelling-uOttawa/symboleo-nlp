@@ -1,11 +1,15 @@
 from typing import Dict, List
-from app.classes.spec.domain_model import Role, DomainEvent, Asset, DomainEnum, DomainObject
+from app.classes.spec.domain_model import Role, DomainEvent, Asset, DomainEnum, DomainObject, DomainProp
 from app.classes.spec.contract_spec import Obligation
 from app.classes.spec.contract_spec import Power
-from app.classes.spec.proposition import Proposition
+from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
+from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
+from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_other import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.nl_template import NLTemplate
+
+from app.classes.spec.contract_spec import Norm
 
 def _sd(x):
     return dict(sorted(x.items()))
@@ -137,6 +141,44 @@ class SymboleoContract:
         return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'
 
 
+    def add_declaration(self, declaration: Declaration):
+        # Add the declaration
+        self.contract_spec.declarations[declaration.name] = declaration
+
+        # Add any new parameters as well
+        parm_names = [x.name for x in self.contract_spec.parameters]
+        decl_keys = [x for x in self.contract_spec.declarations]
+        for dp in declaration.props:
+            if dp.value not in parm_names and dp.value not in decl_keys:
+                new_parm = ContractSpecParameter(dp.value, dp.type)
+                self.contract_spec.parameters.append(new_parm)
+
+
+    def add_norm(self, norm: Norm):
+        norm_type = 'obligations' if type(norm) == Obligation else 'powers'
+        self.contract_spec.__dict__[norm_type][norm.id] = norm
+    
+
+    def add_dm_object(self, dmo: DomainObject):
+        dm_dict = {
+            DomainEvent: 'events',
+            Asset: 'assets',
+            Role: 'roles'
+        }
+        obj_type = dm_dict[type(dmo)]
+        self.domain_model.__dict__[obj_type][dmo.name] = dmo
+
+    # Need domain prop updater...Might need to treat this differently
+    def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):
+        self.domain_model.__dict__[obj_type][obj_key].props.append(domain_prop)
+
+
+    def get_norm(self, norm_id: str, norm_type:str):
+        result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
+        return result
+    
+
+    # TODO: Might get rid of this... better ways to handle ...
     def _sort(self):
         self.contract_spec.obligations = _sd(self.contract_spec.obligations)
         self.contract_spec.powers = _sd(self.contract_spec.powers)

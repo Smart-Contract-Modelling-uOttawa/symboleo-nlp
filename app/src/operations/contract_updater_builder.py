@@ -1,14 +1,16 @@
 from app.src.operations.contract_updater import ContractUpdater
-from app.src.operations.parm_operations.parameter_updater_builder import ParameterUpdaterBuilder
-from app.src.operations.domain_operations.domain_updater_builder import DomainUpdaterBuilder
-from app.src.operations.termination_operations.termination_updater_builder import TerminationUpdaterBuilder
+from app.src.operations.parameter_refiner import ParameterRefiner
+from app.src.operations.domain_updater import DomainUpdater
+from app.src.operations.termination_updater import TerminationUpdater
+
+from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 
 class ContractUpdaterBuilder: # pragma: no cover
     @staticmethod
     def build() -> ContractUpdater:
-        parm_updater = ParameterUpdaterBuilder.build()
-        tp_adder = TerminationUpdaterBuilder.build()
-        do_adder = DomainUpdaterBuilder.build()
+        frame_checker = FrameCheckerConstructor.construct()
+        parm_refiner = ParameterRefiner(frame_checker)
+        tp_adder = TerminationUpdater(parm_refiner)
+        do_adder = DomainUpdater()
 
-        result = ContractUpdater(parm_updater, tp_adder, do_adder)
-        return result
+        return ContractUpdater(parm_refiner, tp_adder, do_adder)

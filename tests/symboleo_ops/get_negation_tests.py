@@ -1,25 +1,20 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.operations.helpers.negation_extractor import NegationExtractor
-
 from tests.helpers.sample_norm_lib import SampleNorms
 
 
 class NegationExtractorTests(unittest.TestCase):
-    def setUp(self):
-        self.sut = NegationExtractor()
-
 
     def test_true(self):
         norm = SampleNorms.get_sample_obligation('test_id', True)
-        result = self.sut.extract(norm, 'consequent')
+        result = norm.get_negation('consequent')
         self.assertTrue(result)
     
 
     def test_false(self):
         norm = SampleNorms.get_sample_obligation()
-        result = self.sut.extract(norm, 'consequent')
+        result = norm.get_negation('consequent')
         self.assertFalse(result)
 
   

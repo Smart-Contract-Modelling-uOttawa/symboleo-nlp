@@ -1,43 +1,37 @@
-from enum import Enum
-from typing import Dict
 from app.classes.symboleo_contract import SymboleoContract
 
-class OpCode(Enum):
-    UPDATE_PARM = 1
-    ADD_TERMINATION_POWER = 2
-    ADD_DOMAIN_OBJECT = 3
+from app.src.operations.parameter_refiner import IRefineParameter, ParameterOperation
+from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
+from app.src.operations.termination_updater import IAddPower, TerminationOperation
+from app.src.operations.contract_updater_config import UpdateConfig, OpCode
 
 
-class ContractOperation:
-    def __init__(self, op_code: OpCode, update_obj: any):
-        self.op_code = op_code
-        self.update_obj = update_obj # May need to type this more strongly
-
-
-class IUpdateContractOp:
-    def update(self, contract: SymboleoContract, update_obj: any) -> SymboleoContract:
-        raise NotImplementedError()
-
-
-class IUpdateContracts:
-    def update(self, contract: SymboleoContract, operation: ContractOperation) -> SymboleoContract:
-       raise NotImplementedError()
-
-
-class ContractUpdater(IUpdateContracts):
+# Could potentially move to be a method on the SymboleoContract...
+# contract.update(...)... then handle the parsing
+class ContractUpdater:
     def __init__(
         self, 
-        parm_updater: IUpdateContractOp,
-        tp_adder: IUpdateContractOp,
-        domain_updater: IUpdateContractOp
+        parm_refiner: IRefineParameter,
+        tp_adder: IAddPower,
+        domain_updater: IUpdateDomain
     ):
-        self.__op_dict: Dict[OpCode, IUpdateContractOp] = {
-            OpCode.UPDATE_PARM: parm_updater,
-            OpCode.ADD_TERMINATION_POWER: tp_adder,
-            OpCode.ADD_DOMAIN_OBJECT: domain_updater
-        }
+        self.__parm_refiner = parm_refiner
+        self.__domain_updater = domain_updater
+        self.__tp_adder = tp_adder
 
 
-    def update(self, contract: SymboleoContract, operation: ContractOperation):
-        op = self.__op_dict[operation.op_code]
-        return op.update(contract, operation.update_obj)
+    def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
+        if op_code == OpCode.UPDATE_PARM:
+            parm_op = ParameterOperation(config.parm_config, config.selection)
+            self.__parm_refiner.refine(contract, parm_op)
+        
+        elif op_code == OpCode.ADD_DOMAIN_OBJECT:
+            domain_op = DomainOperation(config.domain_object, config.declaration)
+            self.__domain_updater.update(contract, domain_op)
+
+        elif op_code == OpCode.ADD_TERMINATION_POWER:
+            term_op = TerminationOperation(config.norm_id, config.debtor, config.creditor, config.selection)
+            self.__tp_adder.update(contract, term_op)
+
+        else:
+            raise ValueError('Invalid operation requested.')

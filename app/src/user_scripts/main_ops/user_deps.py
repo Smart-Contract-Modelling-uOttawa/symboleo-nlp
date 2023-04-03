@@ -5,21 +5,27 @@ from app.src.grammar.grammar_selector import GrammarSelector
 from app.src.grammar.helpers.domain_timepoint_extractor import DomainTimepointExtractor
 from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
 
-from app.src.operations.parm_operations.parameter_updater import ParmOpCode, ParameterConfig
-from app.src.operations.parm_operations.parameter_operation_extractor import ParameterOperationExtractor
+from app.src.operations.parameter_refiner import ParameterRefiner
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
-from app.src.operations.helpers.default_event_getter import DefaultEventGetter
+from app.src.operations.termination_updater import TerminationUpdater
+from app.src.operations.domain_updater import DomainUpdater
+
 
 class UserDependencies:
     def __init__(
             self,
             grammar_generator: GrammarGenerator,
             grammar_selector: GrammarSelector,
-            parm_op_extractor: ParameterOperationExtractor
+            parm_refiner: ParameterRefiner,
+            tp_adder: TerminationUpdater,
+            domain_updater: DomainUpdater,
     ):
         self.gg = grammar_generator
         self.gs = grammar_selector
-        self.poe = parm_op_extractor
+        self.parm_refiner = parm_refiner
+        self.tp_adder = tp_adder
+        self.domain_updater = domain_updater
+       
 
 def get_dependencies() -> UserDependencies:
     domain_timepoint_extractor = DomainTimepointExtractor()
@@ -29,9 +35,10 @@ def get_dependencies() -> UserDependencies:
     gs = GrammarSelector(inner_selector)
 
     frame_checker = FrameCheckerConstructor.construct()
-    deg = DefaultEventGetter()
-    poe = ParameterOperationExtractor(frame_checker, deg)
+    parm_refiner = ParameterRefiner(frame_checker)
+    tp_adder = TerminationUpdater(parm_refiner)
+    domain_updater = DomainUpdater()
 
-    return UserDependencies(gg, gs, poe)
+    return UserDependencies(gg, gs, parm_refiner, tp_adder, domain_updater)
 
 
