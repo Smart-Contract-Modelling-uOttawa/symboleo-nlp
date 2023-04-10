@@ -3,7 +3,7 @@ from typing import List
 from app.src.helpers.template_getter import get_template
 from app.src.grammar.selection import Selection, SelectedNode
 from app.classes.grammar.selected_nodes.all_nodes import *
-from app.src.operations.contract_updater import OpCode
+from app.src.operations.op_code import OpCode
 
 from app.classes.spec.domain_model import DomainEvent, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
@@ -13,7 +13,6 @@ from app.src.operations.parm_configs import ParameterConfig
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.contract_updater_config import UpdateConfig
 
-from app.templates.rental_agreement.t.nl_template import parameters
 
 all_ops = [
     UpdateConfig(
@@ -23,10 +22,10 @@ all_ops = [
             IfNode('', 0),
             EventNode('', 0),
             ObligationEventNode('',0),
-            ObligationEventVarNode('', 0, 'pay_rent'),
+            ObligationEventVarNode('', 0, 'ob_pay_rent'),
             ObligationEventActionNode('', 0, 'Violated')
         ]),
-        parm_config = parameters['LATE_PAYMENT_CONDITION'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_late_payment', '')
     ),
     UpdateConfig(
         OpCode.ADD_DOMAIN_OBJECT,
@@ -49,7 +48,7 @@ all_ops = [
             DomainEventNode('',0),
             DomainEventNameNode('', 0, 'evt_occupy')
         ]),
-        parm_config = parameters['SECURITY_DEPOSIT_REFINEMENT'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_pay_security_deposit', '')
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -60,7 +59,7 @@ all_ops = [
             ContractEventNode('', 0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = parameters['RETURN_DEPOSIT_REFINEMENT'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_return_deposit', '')
     ),
     UpdateConfig(
         OpCode.ADD_DOMAIN_OBJECT,
@@ -68,7 +67,7 @@ all_ops = [
         domain_object = DomainEvent('AllowPets', [
             DomainProp('grantor', 'Role')
         ]),
-        declaration = Declaration('evt_allowPets', 'AllowPets', 'events', [
+        declaration = Declaration('evt_allow_pets', 'AllowPets', 'events', [
             DeclarationProp('grantor', 'landlord', 'Role')
         ])
     ),
@@ -79,9 +78,9 @@ all_ops = [
             UntilNode('', 0), # TODO: Need an Unless node
             EventNode('', 0),
             DomainEventNode('', 0),
-            DomainEventNameNode('', 0, 'evt_allowPets')
+            DomainEventNameNode('', 0, 'evt_allow_pets')
         ]),
-        parm_config = parameters['PETS_UNLESS_CONDITION'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_no_pets', '')
     ),
 
     UpdateConfig(
@@ -91,7 +90,7 @@ all_ops = [
             DomainProp('agent', 'Role'),
             DomainProp('daysInAdvance', 'Number')
         ]),
-        declaration = Declaration('evt_provideTerminationNotice', 'ProvideTerminationNotice', 'events', [
+        declaration = Declaration('evt_provide_termination_notice', 'ProvideTerminationNotice', 'events', [
             DeclarationProp('agent', 'landlord', 'Role'),
             DeclarationProp('daysInAdvance', 'var_daysInAdvance', 'Number')
         ])
@@ -103,7 +102,7 @@ all_ops = [
             IfNode('', 0), 
             EventNode('', 0),
             DomainEventNode('', 0),
-            DomainEventNameNode('', 0, 'evt_provideTerminationNotice')
+            DomainEventNameNode('', 0, 'evt_provide_termination_notice')
         ]),
         parm_config = ParameterConfig('powers', 'pow_termination_written', 'trigger'),
         norm_id = 'pow_termination_written',
@@ -143,7 +142,7 @@ class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
         self.sut = ContractUpdaterBuilder.build()
 
-    @unittest.skip('skip when measuring coverage')
+    #@unittest.skip('skip when measuring coverage')
     def test_full_stack(self):
         contract = get_template('rental_t')
         expected_contract = get_template('rental_raw')
@@ -153,6 +152,9 @@ class FullStackTests(unittest.TestCase):
             self.sut.update(contract, test_config.op_code, test_config)
 
         result = contract.to_sym()
+
+        # with open('tests/test_suites/sample_target.txt', 'w') as f:
+        #     f.write(result)
         
         self.assertEqual(result, expected_sym)
         

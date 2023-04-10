@@ -10,3 +10,10 @@ Todos
 - Create T and parms 
 - try demo
 - try tests 
+
+# TODO: May set it up so that ANY obligation can have a refinement...could be a condition or a refinement
+## Would depend on the frame induced by the CNL
+## User selects an obligation instead of a parameter. No need for parameters
+## Would need something that keeps track of all of it. Actually wouldnt be too hard.
+## Might even allow me to get rid of the parameter config...
+## This requires the assumption of a 1-1 correspondence between sentences and norms. Not trivial!

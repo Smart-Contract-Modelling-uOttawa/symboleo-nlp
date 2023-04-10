@@ -1,9 +1,10 @@
 from app.classes.symboleo_contract import SymboleoContract
+from app.src.operations.op_code import OpCode
 
 from app.src.operations.parameter_refiner import IRefineParameter, ParameterOperation
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
-from app.src.operations.contract_updater_config import UpdateConfig, OpCode
+from app.src.operations.contract_updater_config import UpdateConfig
 
 
 # Could potentially move to be a method on the SymboleoContract...

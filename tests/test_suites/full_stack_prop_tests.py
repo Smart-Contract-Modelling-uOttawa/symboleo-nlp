@@ -3,7 +3,7 @@ from typing import List
 from app.src.helpers.template_getter import get_template
 from app.src.grammar.selection import Selection, SelectedNode
 from app.classes.grammar.selected_nodes.all_nodes import *
-from app.src.operations.contract_updater import OpCode
+from app.src.operations.op_code import OpCode
 
 from app.classes.spec.domain_model import DomainEvent, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
@@ -12,8 +12,6 @@ from app.src.operations.parm_configs import ParameterConfig
 
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.contract_updater_config import UpdateConfig
-
-from app.templates.prop_mgmt.t.nl_template import parameters
 
 all_ops = [
     # Add events
@@ -62,7 +60,7 @@ all_ops = [
             DomainEventNode('',0),
             DomainEventNameNode('', 0, 'evt_legal_proceedings_necessary')
         ]),
-        parm_config = parameters['CONDITION_A'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_legal_proceedings', '')
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -73,7 +71,7 @@ all_ops = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = parameters['CONDITION_B'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_disburse_termination', '')
     ),
 
     ## Temporal refinements
@@ -84,10 +82,10 @@ all_ops = [
             WithinNode('', 0),
             TimespanNode('', 0, '3 days'),
             EventNode('', 0),
-            ContractEventNode('',0),
+            ContractEventNode('', 0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = parameters['REFINEMENT_A'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_disburse_termination', '')
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -99,7 +97,7 @@ all_ops = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = parameters['REFINEMENT_B'].configs[0]
+        parm_config = ParameterConfig('obligations', 'ob_reimburse_termination', '')
     ),
 
     ## Termination power

@@ -76,7 +76,7 @@ def get_contract_spec():
         ('agent', 'renter'),
         ('property', 'the_property'),
     ])
-    evt_provides_written_notice = Declarer.declare(dm, 'events', 'ProvideTerminationNotice', 'evt_provideTerminationNotice', [
+    evt_provides_written_notice = Declarer.declare(dm, 'events', 'ProvideTerminationNotice', 'evt_provide_termination_notice', [
         ('agent', 'landlord'),
         ('daysInAdvance', 'var_daysInAdvance'),
     ])
@@ -87,7 +87,7 @@ def get_contract_spec():
     evt_keep_pets = Declarer.declare(dm, 'events', 'KeepPets', 'evt_keep_pets', [
         ('agent', 'renter')
     ])
-    evt_provide_pet_permission = Declarer.declare(dm, 'events', 'AllowPets', 'evt_allowPets', [
+    evt_provide_pet_permission = Declarer.declare(dm, 'events', 'AllowPets', 'evt_allow_pets', [
         ('grantor', 'landlord')
     ])
 
@@ -132,8 +132,8 @@ def get_contract_spec():
             ###
         ],
         obligations = {
-            'pay_rent': Obligation(
-                'pay_rent',
+            'ob_pay_rent': Obligation(
+                'ob_pay_rent',
                 PropMaker.make(
                     PredicateFunctionHappens(DATE_PASSES)
                 ),
@@ -144,10 +144,10 @@ def get_contract_spec():
                     PredicateFunctionHappens(PAY_RENT)
                 )
             ),
-            'late_payment': Obligation(
-                'late_payment',
+            'ob_late_payment': Obligation(
+                'ob_late_payment',
                 PropMaker.make(
-                    PredicateFunctionHappens(ObligationEvent(ObligationEventName.Violated, 'pay_rent')) 
+                    PredicateFunctionHappens(ObligationEvent(ObligationEventName.Violated, 'ob_pay_rent')) 
                 ),
                 RENTER,
                 LANDLORD,
@@ -158,8 +158,8 @@ def get_contract_spec():
                     )
                 )
             ),
-            'pay_security_deposit': Obligation(
-                'pay_security_deposit',
+            'ob_pay_security_deposit': Obligation(
+                'ob_pay_security_deposit',
                 None,
                 RENTER,
                 LANDLORD,
@@ -168,8 +168,8 @@ def get_contract_spec():
                     PredicateFunctionWHappensBeforeEvent(PAY_DEPOSIT, TAKE_OCCUPANCY)
                 )
             ),
-            'return_deposit': Obligation(
-                'return_deposit',
+            'ob_return_deposit': Obligation(
+                'ob_return_deposit',
                 PropMaker.make(
                     PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated))
                 ),
@@ -180,8 +180,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(RETURN_DEPOSIT)
                 )
             ),
-            'no_pets': Obligation(
-                'no_pets',
+            'ob_no_pets': Obligation(
+                'ob_no_pets',
                 None,
                 RENTER,
                 LANDLORD,
@@ -207,15 +207,15 @@ def get_contract_spec():
                 PropMaker.make_default(),
                 PFContract(PFContractName.Terminated)
             ),
-            'pow_suspend_no_pets': Power(
-                'pow_suspend_no_pets',
+            'pow_suspend_ob_no_pets': Power(
+                'pow_suspend_ob_no_pets',
                 PropMaker.make(
                     PredicateFunctionHappens(PROVIDE_PET_PERMISSION)
                 ),
                 LANDLORD,
                 RENTER,
                 PropMaker.make_default(),
-                PFObligation(PFObligationName.Suspended, 'no_pets')
+                PFObligation(PFObligationName.Suspended, 'ob_no_pets')
             ),
             'pow_termination_abandon': Power(
                 'pow_termination_abandon',

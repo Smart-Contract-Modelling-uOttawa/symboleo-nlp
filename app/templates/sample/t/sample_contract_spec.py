@@ -1,4 +1,3 @@
-import copy
 from app.classes.symboleo_contract import ContractSpec
 from app.classes.spec.contract_spec import Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
@@ -37,33 +36,33 @@ def get_contract_spec():
         ('quantity', 'qnt'),
         ('quality', 'qlt')
     ])
-    evt_delivered = Declarer.declare(dm, 'events', 'Delivered', 'delivered', [
+    evt_delivered = Declarer.declare(dm, 'events', 'Delivered', 'evt_delivered', [
         ('item', 'goods'),
         ('deliveryAddress', 'delAdd'),
         ('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
     ])
-    evt_paid_late = Declarer.declare(dm, 'events', 'PaidLate', 'paidLate', [
+    evt_paid_late = Declarer.declare(dm, 'events', 'PaidLate', 'evt_paid_late', [
         ('amount', '(1 + interestRate / 100) * amt'),
         ('currency', 'curr'),
         ('from', 'buyer'),
         ('to', 'seller')
     ])
-    evt_paid = Declarer.declare(dm, 'events', 'Paid', 'paid', [
+    evt_paid = Declarer.declare(dm, 'events', 'Paid', 'evt_paid', [
         ('amount', 'amt'),
         ('currency', 'curr'),
         ('from', 'buyer'),
         ('to', 'seller'),
         ('payDueDate', 'payDueDate')
     ])
-    evt_disclosed = Declarer.declare(dm, 'events', 'Disclosed', 'disclosed', [])
+    evt_disclosed = Declarer.declare(dm, 'events', 'Disclosed', 'evt_disclosed', [])
 
     # Declarations
     declarations = {
         'goods': goods,
-        'delivered': evt_delivered,
-        'paidLate': evt_paid_late,
-        'paid': evt_paid,
-        'disclosed': evt_disclosed
+        'evt_delivered': evt_delivered,
+        'evt_paid_late': evt_paid_late,
+        'evt_paid': evt_paid,
+        'evt_disclosed': evt_disclosed
     }
 
     # Variables to use
@@ -90,8 +89,8 @@ def get_contract_spec():
             ])])
         ],
         obligations = {
-            'delivery': Obligation(
-                'delivery',
+            'ob_delivery': Obligation(
+                'ob_delivery',
                 None,
                 SELLER,
                 BUYER,
@@ -100,8 +99,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(DELIVERED_EVENT)
                 )
             ),
-            'payment': Obligation(
-                'payment',
+            'ob_payment': Obligation(
+                'ob_payment',
                 None,
                 BUYER,
                 SELLER,
@@ -110,8 +109,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(PAID_EVENT)
                 )
             ),
-            'latePayment': Obligation(
-                'latePayment',
+            'ob_late_payment': Obligation(
+                'ob_late_payment',
                 None,
                 BUYER,
                 SELLER,
@@ -147,35 +146,14 @@ def get_contract_spec():
             ) 
         },
         powers = {
-            'suspendDelivery': Power(
-                'suspendDelivery',
+            'pow_suspend_delivery': Power(
+                'pow_suspend_delivery',
                 None,
                 SELLER,
                 BUYER,
                 PropMaker.make_default(),
-                PFObligation(PFObligationName.Suspended, 'delivery')
+                PFObligation(PFObligationName.Suspended, 'ob_delivery')
             ),
-            'resumeDelivery': Power(
-                'resumeDelivery',
-                PropMaker.make(
-                    PredicateFunctionHappensWithin(
-                        PAID_LATE_EVENT,
-                        ObligationState(ObligationStateName.Suspension, 'delivery')
-                    )
-                ),
-                BUYER,
-                SELLER,
-                PropMaker.make_default(),
-                PFObligation(PFObligationName.Resumed, 'delivery')
-            ),
-            'terminateContract': Power(
-                'terminateContract',
-                None,
-                BUYER,
-                SELLER,
-                PropMaker.make_default(),
-                PFContract(PFContractName.Terminated)
-            )
         },
         constraints = [
             Proposition([PAnd([PEquality(PComparison(PNegAtom(

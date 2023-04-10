@@ -1,8 +1,10 @@
 from enum import Enum
+from typing import List
 from app.classes.spec.power_function import PowerFunction
 from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
+from app.src.operations.parm_configs import ParmOpCode
 # XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
 
 class NormType(Enum):
@@ -83,6 +85,23 @@ class Norm:
             result = False
 
         return result
+    
+    
+    def get_op_codes(self) -> List[ParmOpCode]:
+        results = []
+        if not self.trigger:
+            results.append(ParmOpCode.ADD_TRIGGER)
+        
+        pneg: PNegAtom = self.consequent.p_ands[0].p_eqs[0].curr.curr
+        patom_pred: PAtomPredicate = pneg.atom
+        
+        if type(patom_pred.predicate_function) == PredicateFunctionHappens:
+            results.append(ParmOpCode.REFINE_PREDICATE)
+
+        # TODO: Will eventually need a condition on this...
+        results.append(ParmOpCode.ADD_NORM)
+
+        return results
 
 
     def to_sym(self):

@@ -43,7 +43,7 @@ nl_template = NLTemplate(
             ['obligations.ob_repair_invoice']
         ),
         'legal_proceedings': TemplateObj(
-            '[CONDITION_A] The Manager shall handle all legal proceedings.',
+            'The Manager shall handle all legal proceedings.',
             ['obligations.ob_legal_proceedings']
         ),
         # 'termination_notice': TemplateObj(
@@ -54,74 +54,13 @@ nl_template = NLTemplate(
         #     ]
         # ),
         'disburse_termination': TemplateObj(
-            '[CONDITION_B] the Manager shall disburse to the Owner any monies in the Manager\'s possession due and owing to the Owner [REFINEMENT_A]. ',
+            'the Manager shall disburse to the Owner any monies in the Manager\'s possession due and owing to the Owner',
             ['obligations.ob_disburse_termination']
         ),
         # TODO: We have a case of "prior to" that isnt used as a refinement
         'reimburse_termination': TemplateObj(
-            'The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination [REFINEMENT_B].',
+            'The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination',
             ['obligations.ob_reimburse_termination']
         )
     }
 )
-
-# TODO: May set it up so that ANY obligation can have a refinement...could be a condition or a refinement
-## Would depend on the frame induced by the CNL
-## User selects an obligation instead of a parameter. No need for parameters
-## Would need something that keeps track of all of it. Actually wouldnt be too hard.
-## Might even allow me to get rid of the parameter config...
-
-
-parameters: Dict[str, ParameterSpec] = {
-    'CONDITION_A': ParameterSpec(
-        op_codes = [ParmOpCode.ADD_TRIGGER],
-        configs= [
-            ParameterConfig(
-                norm_type = 'obligations',
-                norm_id = 'ob_legal_proceedings',
-                norm_component = 'trigger',
-                dm_obj_type='',
-                dm_obj_name='',
-            )
-        ]
-    ),
-
-    'CONDITION_B': ParameterSpec(
-        op_codes = [ParmOpCode.ADD_TRIGGER],
-        configs = [
-            ParameterConfig(
-                norm_type = 'obligations',
-                norm_id = 'ob_disburse_termination',
-                norm_component = 'trigger',
-                dm_obj_type='',
-                dm_obj_name='',
-            )
-        ]
-    ),
-
-    'REFINEMENT_A': ParameterSpec(
-        op_codes = [ParmOpCode.REFINE_PREDICATE],
-        configs = [
-            ParameterConfig(
-                norm_type = 'obligations',
-                norm_id = 'ob_disburse_termination',
-                norm_component = 'consequent',
-                dm_obj_type='events',
-                dm_obj_name='evt_disburse_termination'
-            )
-        ]
-    ),
-
-    'REFINEMENT_B': ParameterSpec(
-        op_codes = [ParmOpCode.REFINE_PREDICATE],
-        configs = [
-            ParameterConfig(
-                norm_type = 'obligations',
-                norm_id = 'ob_reimburse_termination',
-                norm_component = 'consequent',
-                dm_obj_type='events',
-                dm_obj_name='evt_reimburse_termination'
-            )
-        ]
-    )
-}

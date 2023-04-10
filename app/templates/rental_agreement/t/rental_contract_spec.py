@@ -98,8 +98,8 @@ def get_contract_spec():
             ###
         ],
         obligations = {
-            'pay_rent': Obligation(
-                'pay_rent',
+            'ob_pay_rent': Obligation(
+                'ob_pay_rent',
                 PropMaker.make(
                     PredicateFunctionHappens(DATE_PASSES)
                 ),
@@ -110,8 +110,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(PAY_RENT)
                 )
             ),
-            'late_payment': Obligation(
-                'late_payment',
+            'ob_late_payment': Obligation(
+                'ob_late_payment',
                 None,
                 RENTER,
                 LANDLORD,
@@ -120,8 +120,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(PAY_LATE_FINE)
                 )
             ),
-            'pay_security_deposit': Obligation(
-                'pay_security_deposit',
+            'ob_pay_security_deposit': Obligation(
+                'ob_pay_security_deposit',
                 None,
                 RENTER,
                 LANDLORD,
@@ -130,8 +130,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(PAY_DEPOSIT)
                 )
             ),
-            'return_deposit': Obligation(
-                'return_deposit',
+            'ob_return_deposit': Obligation(
+                'ob_return_deposit',
                 None,
                 LANDLORD,
                 RENTER,
@@ -140,8 +140,8 @@ def get_contract_spec():
                     PredicateFunctionHappens(RETURN_DEPOSIT)
                 )
             ),
-            'no_pets': Obligation(
-                'no_pets',
+            'ob_no_pets': Obligation(
+                'ob_no_pets',
                 None,
                 RENTER,
                 LANDLORD,

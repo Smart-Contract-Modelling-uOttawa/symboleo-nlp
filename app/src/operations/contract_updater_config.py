@@ -1,16 +1,10 @@
-from enum import Enum
+from app.src.operations.op_code import OpCode
 
 from app.src.operations.parm_configs import ParameterConfig
 from app.src.grammar.selection import Selection
 
 from app.classes.spec.domain_model import DomainObject
 from app.classes.spec.declaration import Declaration
-
-class OpCode(Enum):
-    UPDATE_PARM = 1
-    ADD_TERMINATION_POWER = 2
-    ADD_DOMAIN_OBJECT = 3
-
 
 class UpdateConfig:
     def __init__(
@@ -19,6 +13,7 @@ class UpdateConfig:
 
             # Parm update
             selection: Selection = None, 
+            norm_nl_key: str = '',
             parm_config: ParameterConfig = None,
             
             # DM Update
@@ -42,3 +37,4 @@ class UpdateConfig:
         self.norm_id = norm_id
         self.debtor = debtor
         self.creditor = creditor
+
