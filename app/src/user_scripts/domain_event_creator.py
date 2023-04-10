@@ -10,9 +10,12 @@ from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
 from app.src.nlp.standard_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
 
+from app.src.helpers.string_to_class import CaseConverter
+
 class DomainEventCreator:
     def __init__(self, domain_model: DomainModel):
         my_framenet = MyFramenet(fn)
+        self.__dm = domain_model
         self.__fn_extractor = FramenetExtractor(my_framenet)
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
 
@@ -20,6 +23,8 @@ class DomainEventCreator:
         print('Creating a new event.')
         print('1 - Choose from standard contract events')
         print('2 - Create a custom event')
+        print('3 - Statement')
+        print('4 - Declaration only')
 
         user_k = int(input('Select #: '))
 
@@ -27,10 +32,52 @@ class DomainEventCreator:
             return self.create_from_standard()
         elif user_k == 2:
             return self.create_from_frame()
+        elif user_k == 3:
+            return self.create_statement()
+        elif user_k == 4:
+            return self.get_existing()
         else:
             raise ValueError('Oops!')
         
+    def get_existing(self):
+        print('\Choosing existing event.') 
+
+        print('\n')
+        kl = list(self.__dm.events.keys())
+        for i,k in enumerate(kl):
+            print(f'{i+1}: {k}')
+
+        user_k = int(input('Selection #: '))
+        sel_k = kl[user_k - 1]
+        return copy.deepcopy(self.__dm.events[sel_k])
+        
     
+    def create_statement(self) -> DomainEvent:
+        print('\nCreating Statement event.')
+        user_input = input('Enter statement (a is b): ')
+
+        # Verify that it is a proper statement (NLP...)
+        ## e.g. legal proceedings become necessary
+        linking_verbs = ['become', 'is', 'are']
+
+        subj = None
+        pred = None
+        for x in linking_verbs:
+            if x in user_input:
+                subj,pred = user_input.split(x)
+        
+        if not subj:
+            raise ValueError('Invalid event')
+        
+        subj = subj.strip()
+        pred = pred.strip()
+        event_name = CaseConverter.to_pascal(f'{subj} {pred}')
+    
+        custom_props = self._get_custom_props()
+
+        return DomainEvent(event_name, custom_props)
+
+
     def create_from_standard(self) -> DomainEvent:
         print('\nCreating standard Contract event.')
         for k in standard_event_dict:

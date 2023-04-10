@@ -5,6 +5,7 @@ from app.src.operations.parm_configs import ParmOpCode
 from app.src.operations.termination_updater import TerminationOperation
 
 # Adding a new termination power
+# TODO: Want to change this to just adding ANY power. Since Powers can be fully defined by the domain model
 def add_term(deps: UserDependencies, contract: SymboleoContract):
     print('\nAdding termination condition...\n')
 

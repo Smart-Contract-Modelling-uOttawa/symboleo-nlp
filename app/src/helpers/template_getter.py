@@ -1,13 +1,6 @@
 from app.classes.symboleo_contract import SymboleoContract
 
-#from app.templates.meat_sale.symboleo.contract_spec_template import meat_sale_contract_spec_template
-#from app.templates.meat_sale.symboleo.domain_model_template import meat_sale_domain_model_template
-#from app.templates.meat_sale.nl_template import nl_template as meat_sale_nl_template
-
-#from app.templates.goods_sale.symboleo.contract_spec_template import goods_sale_contract_spec_template
-#from app.templates.goods_sale.symboleo.domain_model_template import goods_sale_domain_model_template
-#from app.templates.goods_sale.nl_template import nl_template as goods_sale_nl_template
-
+## SAMPLE (MEAT SALE)
 from app.templates.sample.t_raw.sample_domain import get_domain_model as get_sample_raw_dm
 from app.templates.sample.t_raw.sample_contract_spec import get_contract_spec as get_sample_raw_cs
 from app.templates.sample.t_raw.nl_template import sample_nl_template as sample_raw_nl
@@ -16,6 +9,8 @@ from app.templates.sample.t.sample_domain import get_domain_model as get_sample_
 from app.templates.sample.t.sample_contract_spec import get_contract_spec as get_sample_t_cs
 from app.templates.sample.t.nl_template import sample_nl_template as sample_t_nl
 
+
+## RENTAL AGREEMENT
 from app.templates.rental_agreement.t.rental_domain import get_domain_model as get_rental_t_dm
 from app.templates.rental_agreement.t.rental_contract_spec import get_contract_spec as get_rental_t_cs
 from app.templates.rental_agreement.t.nl_template import rental_nl_template as rental_t_nl
@@ -23,6 +18,15 @@ from app.templates.rental_agreement.t.nl_template import rental_nl_template as r
 from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model as get_rental_raw_dm
 from app.templates.rental_agreement.t_raw.rental_contract_spec import get_contract_spec as get_rental_raw_cs
 from app.templates.rental_agreement.t_raw.nl_template import rental_nl_template as rental_raw_nl
+
+## PROP MGMT
+from app.templates.prop_mgmt.t.domain_model import get_domain_model as get_prop_t_dm
+from app.templates.prop_mgmt.t.contract_spec import get_contract_spec as get_prop_t_cs
+from app.templates.prop_mgmt.t.nl_template import nl_template as prop_t_nl
+
+from app.templates.prop_mgmt.t_raw.domain_model import get_domain_model as get_prop_raw_dm
+from app.templates.prop_mgmt.t_raw.contract_spec import get_contract_spec as get_prop_raw_cs
+from app.templates.prop_mgmt.t_raw.nl_template import nl_template as prop_raw_nl
 
 template_dict = {
 
@@ -59,6 +63,18 @@ template_dict = {
         get_sample_t_cs(),
         sample_t_nl
     ),
+
+    'prop_raw': SymboleoContract(
+        get_prop_raw_dm(),
+        get_prop_raw_cs(),
+        prop_raw_nl
+    ),
+
+    'prop_t': SymboleoContract(
+        get_prop_t_dm(),
+        get_prop_t_cs(),
+        prop_t_nl
+    ),
 }
 
 
@@ -66,4 +82,4 @@ def get_template(template_str): #pragma: no cover
     if template_str in template_dict:
         return template_dict[template_str]
     else:
-        raise f'Template {template_str} not found'
+        raise ValueError(f'Template {template_str} not found')

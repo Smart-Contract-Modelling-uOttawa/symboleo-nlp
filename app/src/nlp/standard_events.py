@@ -7,6 +7,7 @@ class StandardEvent:
         self.description = description
 
 
+# To build up this list, should do a verb search on the cuad set to find the most common verbs
 standard_event_dict: Dict[str, StandardEvent] = {
     'breach_agreement': StandardEvent(
         DomainEvent('BreachAgreement', [
@@ -15,6 +16,7 @@ standard_event_dict: Dict[str, StandardEvent] = {
         'Event when one party (breacher) fails to complete any obligation.'
     ),
 
+    # TODO: args should use a timespan: time_unit and time_value
     'provide_termination_notice': StandardEvent(
         DomainEvent('ProvideTerminationNotice', [
             DomainProp('agent', 'Role'),

@@ -35,7 +35,8 @@ def get_test_contract():
                     'creditor',
                     PropMaker.make_default(),
                     FakeSym()
-                )
+                ),
+                
             },
             powers = {
                 'test_power': Power(

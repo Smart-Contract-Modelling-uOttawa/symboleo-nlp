@@ -166,7 +166,10 @@ class SymboleoContract:
             Role: 'roles'
         }
         obj_type = dm_dict[type(dmo)]
-        self.domain_model.__dict__[obj_type][dmo.name] = dmo
+
+        # Check to make sure it doesnt already exist...
+        if dmo.name not in self.domain_model.__dict__[obj_type]:
+            self.domain_model.__dict__[obj_type][dmo.name] = dmo
 
     # Need domain prop updater...Might need to treat this differently
     def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):

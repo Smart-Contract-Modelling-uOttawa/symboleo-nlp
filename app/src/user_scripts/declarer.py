@@ -2,12 +2,14 @@ from typing import List
 from app.classes.symboleo_contract import SymboleoContract, DomainModel
 from app.classes.spec.domain_model import DomainObject
 from app.classes.spec.declaration import Declaration, DeclarationProp
-
+from app.src.helpers.string_to_class import CaseConverter
 
 class ManualDeclarer:
     @staticmethod
     def declare_input(contract: SymboleoContract, domain_obj: DomainObject, base_type: str) -> Declaration:
-        new_name = 'evt_' + domain_obj.name[0].lower() + domain_obj.name[1:]
+        snake = CaseConverter.to_snake(domain_obj.name)
+        new_name = 'evt_' + snake
+        print('SNAKE', new_name)
 
         props: List[DeclarationProp] = []
 

@@ -1,0 +1,12 @@
+mgmt agreement between owner and manager
+
+Will probably pare down some of the obs - focus on the interesting ones
+
+Todos
+- convert to sym and verify xtext
+-- the Role thing will likely still be an issue
+-- verify anything else though
+- broaden it to get S(T)
+- Create T and parms 
+- try demo
+- try tests 

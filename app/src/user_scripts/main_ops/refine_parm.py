@@ -5,6 +5,7 @@ from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.symboleo_contract import SymboleoContract
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
 
+# TODO: Goal is to get rid of parameters. Choose an obligation to refine instead
 def refine_parm(deps: UserDependencies, contract: SymboleoContract, parameters: Dict[str, ParameterSpec]):
     # Gather the required input
     pki_dict = {i+1: pk for i,pk in enumerate(parameters)}
