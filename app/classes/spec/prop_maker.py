@@ -1,6 +1,6 @@
 from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PComparison, PEquality
 from app.classes.spec.p_atoms import PredicateFunction, PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral, PAtomPredicate
-from app.classes.spec.other_function import PredicateFunctionCannotBeAssigned
+from app.classes.spec.other_predicates import PredicateFunctionCannotBeAssigned
 
 # Convenience methods for creating Propositions
 class PropMaker:

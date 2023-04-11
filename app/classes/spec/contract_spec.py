@@ -1,163 +1,69 @@
-from enum import Enum
-from typing import List
-from app.classes.spec.power_function import PowerFunction
-from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
-from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
-from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
-from app.src.operations.parm_configs import ParmOpCode
-# XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
-
-class NormType(Enum):
-    Obligation = 'Obligation'
-    Power = 'Power'
-    SurvivingObligation = 'SO'
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
+from app.classes.spec.declaration import Declaration
+from app.classes.spec.norm import Obligation, Power
+from app.classes.spec.proposition import Proposition
+from app.classes.spec._sd import _sd
 
 
-class Norm:
+from typing import Dict, List
+
+
+class ContractSpec:
     def __init__(
         self,
         id: str,
-        trigger: Proposition,
-        debtor: str,
-        creditor: str,
-        antecedent: Proposition,
-        consequent: Proposition,
-        norm_type: NormType
+        parameters: List[ContractSpecParameter],
+        declarations: Dict[str, Declaration],
+        preconditions: List[Proposition],
+        postconditions: List[Proposition],
+        obligations: Dict[str, Obligation],
+        surviving_obligations: Dict[str, Obligation],
+        powers: Dict[str,Power],
+        constraints: List[Proposition]
     ):
         self.id = id
-        self.trigger = trigger
-        self.debtor = debtor
-        self.creditor = creditor
-        self.antecedent = antecedent
-        self.consequent = consequent
-        self.norm_type = norm_type
-    
+        self.parameters = sorted(parameters, key=lambda x: x.name)
+        self.declarations = _sd(declarations)
+        self.preconditions = preconditions
+        self.postconditions = postconditions
+        self.obligations = _sd(obligations)
+        self.surviving_obligations = _sd(surviving_obligations)
+        self.powers = _sd(powers)
+        self.constraints = constraints
 
-    def update(self, str_component: str, predicate: PredicateFunction):
-        negation = self.get_negation(str_component)
-        
-        new_atom = PNegAtom(PAtomPredicate(predicate), negation)
-        new_p_and = PAnd([PEquality(PComparison(new_atom))])
-
-        component: Proposition = getattr(self, str_component)
-
-        # If non-existent, then create it
-        if not component or type(component) in [PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral]:
-            component = Proposition(p_ands = [])
-            component.p_ands.append(new_p_and)
-        
-        # If one already exists, then need the PAnd
-        else:
-            #component.p_ands.append(new_p_and) # Appends;
-            component.p_ands = [new_p_and] # Replaces; rather than appends. May need a flag argument...
-        
-        setattr(self, str_component, component)
+    def to_sym(self):
+        result = f'Contract {self.id}'
+        parms_sym = ', '.join([x.to_sym() for x in self.parameters])
+        result += f'( {parms_sym} )\n'
 
 
-    def get_default_event(self, str_component:str):
-        component: Proposition = getattr(self, str_component)
+        result += '\nDeclarations\n'
+        for x in self.declarations:
+            result += f'  {self.declarations[x].to_sym()}\n'
 
-        if not component or type(component) in [PAtomPredicateTrueLiteral, PAtomPredicateFalseLiteral]:
-            return None
+        result += '\nPreconditions\n'
+        for x in self.preconditions:
+            result += f'  {x.to_sym()};\n'
 
-        # Get the PAtom
-        p_neg_atom = component.p_ands[0].p_eqs[0].curr.curr        
-        if isinstance(p_neg_atom, PNegAtom):
-            p_atom = p_neg_atom.atom
-            if isinstance (p_atom, PAtomPredicate):
-                predicate_function = p_atom.predicate_function
-                if isinstance(predicate_function, PredicateFunctionHappens):
-                    return predicate_function.event
+        result += '\nPostconditions\n'
+        for x in self.postconditions:
+            result += f'  {x.to_sym()};\n'
 
-        raise NotImplementedError('Default event not found!')
+        result += '\nObligations\n'
+        for x in self.obligations:
+            result += f'  {self.obligations[x].to_sym()}\n'
 
+        result += '\nSurviving Obligations\n'
+        for x in self.surviving_obligations:
+            result += f'  {self.surviving_obligations[x].to_sym()}\n'
 
-    def get_negation(self, str_component: str) -> bool:
-        result = False
+        result += '\nPowers\n'
+        for x in self.powers:
+            result += f'  {self.powers[x].to_sym()}\n'
 
-        component: Proposition = getattr(self, str_component)
+        result += '\nConstraints\n'
+        for x in self.constraints:
+            result += f'  {x.to_sym()};\n'
 
-        # If its non-empty
-        try:
-            pneg: PNegAtom = component.p_ands[0].p_eqs[0].curr.curr
-            result = pneg.negation 
-        except Exception as e:
-            result = False
-
+        result += '\nendContract'
         return result
-    
-    
-    def get_op_codes(self) -> List[ParmOpCode]:
-        results = []
-        if not self.trigger:
-            results.append(ParmOpCode.ADD_TRIGGER)
-        
-        pneg: PNegAtom = self.consequent.p_ands[0].p_eqs[0].curr.curr
-        patom_pred: PAtomPredicate = pneg.atom
-        
-        if type(patom_pred.predicate_function) == PredicateFunctionHappens:
-            results.append(ParmOpCode.REFINE_PREDICATE)
-
-        # TODO: Will eventually need a condition on this...
-        results.append(ParmOpCode.ADD_NORM)
-
-        return results
-
-
-    def to_sym(self):
-        trigger_text = ''
-        if self.trigger:
-            trigger_text = self.trigger.to_sym() + ' -> '
-
-        deb_text = self.debtor
-        cred_text = self.creditor
-        ant_text = self.antecedent.to_sym()        
-        con_text = self.consequent.to_sym()
-
-        return f'{self.id}: {trigger_text}{self.norm_type.value}({deb_text}, {cred_text}, {ant_text}, {con_text});'
-
-class Obligation(Norm):
-    def __init__(
-        self, 
-        id: str, 
-        trigger: Proposition, 
-        debtor: str, 
-        creditor: str, 
-        antecedent: Proposition, 
-        consequent: Proposition
-    ):
-        super().__init__(
-            id, 
-            trigger, 
-            debtor, 
-            creditor, 
-            antecedent, 
-            consequent, 
-            NormType.Obligation)
-    
-    def to_sym(self):
-        return super().to_sym()
-
-
-class Power(Norm):
-    def __init__(
-        self, 
-        id: str, 
-        trigger: Proposition, 
-        debtor: str, 
-        creditor: str, 
-        antecedent: Proposition, 
-        consequent: PowerFunction
-    ):
-        super().__init__(
-            id, 
-            trigger, 
-            debtor, 
-            creditor, 
-            antecedent, 
-            None, 
-            NormType.Power)
-        self.consequent = consequent 
-    
-    def to_sym(self):
-        return super().to_sym()

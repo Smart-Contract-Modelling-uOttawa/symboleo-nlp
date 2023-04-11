@@ -1,8 +1,10 @@
 import copy
 from typing import List
-from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
-from app.classes.spec.domain_model import DomainObject
-from app.classes.spec.contract_spec import Norm, Obligation, Power
+from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.spec.contract_spec import ContractSpec
+from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.domain_object import DomainObject
+from app.classes.spec.norm import Norm, Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
@@ -10,9 +12,9 @@ from app.classes.spec.sym_event import VariableEvent, ObligationEvent, Obligatio
 from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.contract_spec_other import ContractSpecParameter
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.src.helpers.declarer import Declarer
-from app.classes.spec.other_function import *
+from app.classes.spec.other_predicates import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 
 from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model

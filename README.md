@@ -78,9 +78,11 @@ Currently, the code be interactively run and debugged using a Jupyter notebook.
 The project is intended to be test-driven. The goal is to define a set of valid test cases for converting NL customizations to Symboleo specifications, and explore how we can get these tests to pass. 
 The tests are written with the unittest module and can be run as follows: `python -m unittest tests/file_to_test.py`
 
+To run the full-stack test suites: `python -m unittest tests/run_test_suites.py`. These are not part of regular test coverage
+
 To run all unit tests: `python -m unittest discover -s 'tests/' -p '*_tests.py'`
 
-Test coverage is done using the coverage library. To use it simply replace the `python` part of the test command with `coverage run`. For example: `coverage run --source=app/src -m unittest discover -s 'tests/' -p '*_tests.py'`. You can then use the `coverage report` command to view a coverage report or `coverage html` to generate a more detailed report that can be viewed in a browser. 
+Test coverage is done using the coverage library. To use it simply replace the `python` part of the test command with `coverage run`. For example: `coverage run --source=app -m unittest discover -s 'tests/' -p '*_tests.py'`. You can then use the `coverage report` command to view a coverage report or `coverage html` to generate a more detailed report that can be viewed in a browser. 
 
 ## Process
 

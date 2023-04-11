@@ -1,4 +1,4 @@
-from app.classes.spec.contract_spec import Obligation, Power
+from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionOccurs, PredicateFunctionHappensWithin
 from app.classes.spec.sym_event import ContractEvent, VariableEvent, ObligationEvent, ObligationEventName
 from app.classes.spec.sym_interval import Interval, SituationExpression, Never, IntervalFunction
@@ -8,7 +8,7 @@ from app.classes.spec.point_function import PointFunction
 from app.classes.spec.power_function import PFObligation, PFContract, PFObligationName, PFContractName
 from app.classes.spec.prop_maker import PropMaker
 
-from app.classes.symboleo_contract import ContractSpec
+from app.classes.spec.symboleo_contract import ContractSpec
 from app.templates.meat_sale.symboleo.domain_model_template import meat_sale_domain_model_template as dm
 
 SELLER = dm.roles['seller'].to_obj()

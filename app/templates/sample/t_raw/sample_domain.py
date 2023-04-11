@@ -1,5 +1,5 @@
-from app.classes.symboleo_contract import DomainModel
-from app.classes.spec.domain_model import DomainEvent, DomainProp, Role, Asset, DomainEnum
+from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.domain_object import DomainEvent, DomainProp, Role, Asset, DomainEnum
 
 def get_domain_model():
     domain_model = DomainModel(

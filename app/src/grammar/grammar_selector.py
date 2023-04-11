@@ -1,4 +1,4 @@
-from app.classes.grammar.abstract_node import AbstractNode
+from app.classes.tokens.abstract_node import AbstractNode
 from app.src.grammar.selection import Selection
 
 class ISelectGrammar:

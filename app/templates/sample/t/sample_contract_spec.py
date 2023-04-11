@@ -1,10 +1,10 @@
-from app.classes.symboleo_contract import ContractSpec
-from app.classes.spec.contract_spec import Obligation, Power
+from app.classes.spec.symboleo_contract import ContractSpec
+from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
-from app.classes.spec.contract_spec_other import ContractSpecParameter
-from app.classes.spec.other_function import *
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
+from app.classes.spec.other_predicates import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.src.helpers.declarer import Declarer

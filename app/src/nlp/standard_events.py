@@ -1,5 +1,5 @@
 from typing import Dict
-from app.classes.spec.domain_model import DomainEvent, DomainProp
+from app.classes.spec.domain_object import DomainEvent, DomainProp
 
 class StandardEvent: 
     def __init__(self, domain_event:DomainEvent, description:str):

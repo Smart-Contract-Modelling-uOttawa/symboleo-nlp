@@ -1,6 +1,6 @@
 from typing import List
-from app.classes.symboleo_contract import SymboleoContract, DomainModel
-from app.classes.spec.domain_model import DomainObject
+from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration, DeclarationProp
 
 # Could potentially be a method on the symboleo contract...

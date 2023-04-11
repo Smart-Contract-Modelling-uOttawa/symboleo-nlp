@@ -1,5 +1,5 @@
 from tests.full_grammar.full_grammar_test_spec import FullGrammarTestSpec as Spec
-from app.classes.grammar.selected_nodes.all_nodes import *
+from app.classes.selection.all_nodes import *
 
 if_event_tests = [
     Spec([

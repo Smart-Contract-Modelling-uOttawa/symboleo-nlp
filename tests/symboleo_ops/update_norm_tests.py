@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.spec.contract_spec import Obligation
+from app.classes.spec.norm import Obligation
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionSHappensBefore
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.sym_event import VariableEvent

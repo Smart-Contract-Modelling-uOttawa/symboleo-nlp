@@ -4,9 +4,9 @@ from unittest.mock import MagicMock
 from typing import List
 from app.classes.frames.all_frames import *
 from app.classes.frames.frame import DummyFrame
-from app.classes.grammar.node_type import NodeType
-from app.classes.grammar.selected_node import SelectedNode
-from app.classes.grammar.selected_nodes.all_nodes import *
+from app.classes.tokens.node_type import NodeType
+from app.classes.selection.selected_node import SelectedNode
+from app.classes.selection.all_nodes import *
 from app.src.frames.frame_checker import FrameChecker
 from app.src.frames.inner_frame_checker import IInnerFrameChecker
 from app.src.frames.frame_builder import IBuildFrames 

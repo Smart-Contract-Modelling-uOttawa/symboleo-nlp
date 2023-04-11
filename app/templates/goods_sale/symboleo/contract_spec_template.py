@@ -1,11 +1,11 @@
 from app.classes.spec.proposition import PAnd, PEquality, PComparison, PNegAtom, Proposition
-from app.classes.spec.contract_spec import Obligation, Power
+from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore, PredicateFunctionOccurs
 from app.classes.spec.sym_event import ObligationEvent, ObligationEventName
 from app.classes.spec.power_function import PFContract
 
-from app.classes.symboleo_contract import ContractSpec
+from app.classes.spec.symboleo_contract import ContractSpec
 from app.templates.goods_sale.symboleo.domain_model_template import goods_sale_domain_model_template as dm
 
 SELLER = dm.roles['seller'].to_obj()

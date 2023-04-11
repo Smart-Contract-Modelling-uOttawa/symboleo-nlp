@@ -1,6 +1,6 @@
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.contract_spec import Norm, Obligation
+from app.classes.spec.norm import Norm, Obligation
 from app.classes.spec.prop_maker import PropMaker
 
 class SampleNorms:

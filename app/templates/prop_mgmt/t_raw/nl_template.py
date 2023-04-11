@@ -1,4 +1,4 @@
-from app.classes.nl_template import NLTemplate, TemplateObj
+from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
 nl_template = NLTemplate(
     template_dict = {

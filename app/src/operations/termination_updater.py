@@ -1,6 +1,6 @@
-from app.classes.symboleo_contract import SymboleoContract
+from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.classes.spec.contract_spec import Power
+from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PowerFunction, PFContract, PFContractName
 

@@ -3,9 +3,9 @@ from unittest.mock import MagicMock
 
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.grammar.selected_node import SelectedNode, Basket
+from app.classes.selection.selected_node import SelectedNode, Basket
 from app.src.grammar.selection import Selection
-from app.classes.grammar.selected_nodes.all_nodes import *
+from app.classes.selection.all_nodes import *
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 
 from tests.helpers.sample_norm_lib import SampleNorms

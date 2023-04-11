@@ -1,6 +1,6 @@
 from app.classes.spec.proposition import PAtom
 from app.classes.spec.predicate_function import PredicateFunction
-from app.classes.spec.other_function import OtherFunction
+from app.classes.spec.other_predicates import OtherFunction
 
 # In Symboleo, PAtomicExpression has many subclasses, which allow for recursive specification
 # I am limiting recursion in this implementation

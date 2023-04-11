@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.domain_model import DomainEvent, DomainProp
+from app.classes.spec.domain_object import DomainEvent, DomainProp
 from tests.helpers.test_contract import get_test_contract
 
 class AddDomainObjectTests(unittest.TestCase):

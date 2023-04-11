@@ -1,9 +1,10 @@
 from typing import List
-from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainEvent
-from app.classes.grammar.grammar_nodes.all_nodes import *
+from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.spec.contract_spec import ContractSpec
+from app.classes.tokens.all_nodes import *
 from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
-from app.src.grammar.helpers.domain_timepoint_extractor import IExtractDomainTimePoints
+from app.src.grammar.domain_timepoint_extractor import IExtractDomainTimePoints
 from app.src.grammar.grammar_config import GrammarGeneratorConfig, ParmOpCode
 
 class IGenerateGrammar:

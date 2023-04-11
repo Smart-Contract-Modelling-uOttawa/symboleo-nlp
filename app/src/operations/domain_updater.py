@@ -1,6 +1,6 @@
-from app.classes.symboleo_contract import SymboleoContract
+from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.classes.spec.domain_model import DomainObject
+from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
 
 class DomainOperation:

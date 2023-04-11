@@ -3,8 +3,6 @@ from app.classes.spec.sym_point import SymPoint
 from app.classes.spec.sym_interval import SymInterval
 from app.classes.spec.sym_situation import SymSituation
 
-# TODO: Difference between SHappens and WHappens - Strong vs Weak... check Ali Reza's paper
-
 class PredicateFunction:
     def to_sym(self):
         raise NotImplementedError()

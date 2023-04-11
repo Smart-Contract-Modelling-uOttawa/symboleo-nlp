@@ -1,8 +1,8 @@
-from app.classes.symboleo_contract import SymboleoContract
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.operations.parm_configs import ParameterConfig, ParmOpCode
 from app.src.grammar.selection import Selection
 
-from app.classes.grammar.selected_node import Basket
+from app.classes.selection.selected_node import Basket
 from app.src.grammar.selection import Selection
 from app.src.frames.frame_checker import ICheckFrames
 

@@ -1,5 +1,5 @@
 from app.src.user_scripts.main_ops.user_deps import UserDependencies
-from app.classes.symboleo_contract import SymboleoContract
+from app.classes.spec.symboleo_contract import SymboleoContract
 
 from app.src.user_scripts.domain_event_creator import DomainEventCreator
 from app.src.user_scripts.declarer import ManualDeclarer

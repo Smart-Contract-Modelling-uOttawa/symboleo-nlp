@@ -1,12 +1,11 @@
-from app.classes.symboleo_contract import ContractSpec
-from app.classes.spec.domain_model import DomainObject
-from app.classes.spec.contract_spec import Norm, Obligation, Power
+from app.classes.spec.contract_spec import ContractSpec
+from app.classes.spec.norm import Norm, Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
-from app.classes.spec.contract_spec_other import ContractSpecParameter
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.src.helpers.declarer import Declarer
-from app.classes.spec.other_function import *
+from app.classes.spec.other_predicates import *
 
 from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model
 

@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.grammar.abstract_node import DummyNode as DummyGrammarNode
-from app.classes.grammar.grammar_nodes.root_node import RootNode
+from app.classes.tokens.abstract_node import DummyNode as DummyGrammarNode
+from app.classes.tokens.root_node import RootNode
 from app.src.grammar.selection import Selection
 
 class SelectionTests(unittest.TestCase):

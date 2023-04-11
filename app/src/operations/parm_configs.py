@@ -8,23 +8,7 @@ class ParmOpCode(Enum):
     ADD_NORM = 4 
 
 class ParameterConfig:
-    def __init__(self, norm_type, norm_id, norm_component, dm_obj_type='', dm_obj_name='', op_codes: List[ParmOpCode] = [] ):
+    def __init__(self, norm_type: str, norm_id: str, norm_component: str = ''):
         self.norm_type = norm_type # obligations, powers 
-        self.norm_id = norm_id # e.g. delivery
-        self.norm_component = norm_component # consequent, antecedent, ...
-
-        # Might not actually need these...
-        self.obj_type = dm_obj_type # role, asset, event
-        self.obj_name = dm_obj_name # e.g. evt_payment
-        self.op_codes = op_codes
-
-
-class ParameterSpec:
-    def __init__(
-        self,
-        op_codes: List[ParmOpCode],
-        configs: List[ParameterConfig]
-    ):
-        self.op_codes = op_codes
-        self.configs = configs
-        
+        self.norm_id = norm_id # e.g. ob_delivery
+        self.norm_component = norm_component # consequent, antecedent, trigger

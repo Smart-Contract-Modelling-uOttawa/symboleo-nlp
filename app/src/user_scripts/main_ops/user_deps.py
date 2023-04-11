@@ -2,7 +2,7 @@
 from app.src.grammar.grammar_generator import GrammarGenerator
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
 from app.src.grammar.grammar_selector import GrammarSelector
-from app.src.grammar.helpers.domain_timepoint_extractor import DomainTimepointExtractor
+from app.src.grammar.domain_timepoint_extractor import DomainTimepointExtractor
 from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
 
 from app.src.operations.parameter_refiner import ParameterRefiner

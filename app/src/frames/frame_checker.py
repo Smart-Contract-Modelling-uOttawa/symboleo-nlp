@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.grammar.selected_node import SelectedNode
+from app.classes.selection.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
 from app.src.frames.inner_frame_checker import IInnerFrameChecker
 from app.src.frames.frame_builder import IBuildFrames

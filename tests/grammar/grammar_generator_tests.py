@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.grammar.node_type import NodeType
+from app.classes.tokens.node_type import NodeType
 from app.src.helpers.template_getter import get_template
 from app.src.grammar.grammar_generator import GrammarGenerator
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
-from app.src.grammar.helpers.domain_timepoint_extractor import IExtractDomainTimePoints
+from app.src.grammar.domain_timepoint_extractor import IExtractDomainTimePoints
 from app.src.operations.parm_configs import ParmOpCode
 
 # I can write some more tests that parse through this in much more detail, but not a priority

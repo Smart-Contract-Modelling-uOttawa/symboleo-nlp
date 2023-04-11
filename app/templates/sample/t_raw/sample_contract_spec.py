@@ -1,5 +1,5 @@
-from app.classes.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
-from app.classes.spec.contract_spec import Norm, Obligation, Power
+from app.classes.spec.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
+from app.classes.spec.norm import Norm, Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
@@ -7,8 +7,8 @@ from app.classes.spec.sym_event import VariableEvent, ObligationEvent, Obligatio
 from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.contract_spec_other import ContractSpecParameter
-from app.classes.spec.other_function import *
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
+from app.classes.spec.other_predicates import *
 from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 from app.src.helpers.declarer import Declarer
 

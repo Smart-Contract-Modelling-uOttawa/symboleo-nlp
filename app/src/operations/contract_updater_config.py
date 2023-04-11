@@ -3,7 +3,7 @@ from app.src.operations.op_code import OpCode
 from app.src.operations.parm_configs import ParameterConfig
 from app.src.grammar.selection import Selection
 
-from app.classes.spec.domain_model import DomainObject
+from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
 
 class UpdateConfig:
@@ -13,7 +13,6 @@ class UpdateConfig:
 
             # Parm update
             selection: Selection = None, 
-            norm_nl_key: str = '',
             parm_config: ParameterConfig = None,
             
             # DM Update

@@ -1,6 +1,4 @@
-from typing import Dict, List
-from app.src.operations.parm_configs import ParameterConfig, ParameterSpec, ParmOpCode
-from app.classes.nl_template import NLTemplate, TemplateObj
+from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
 nl_template = NLTemplate(
     template_dict = {

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import List
 from app.classes.spec.predicate_function import PredicateFunction
-from app.classes.grammar.abstract_node import AbstractNode
-from app.classes.grammar.selected_node import SelectedNode
-from app.classes.grammar.selected_nodes.all_nodes import node_type_to_class
+from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.selection.selected_node import SelectedNode
+from app.classes.selection.all_nodes import node_type_to_class
 
 # This class handles the selection process
 # It is fairly bulky and ill-defined - will need to trim it down as the program develops

@@ -1,7 +1,7 @@
 import copy
 from typing import Dict, List
-from app.classes.symboleo_contract import DomainModel
-from app.classes.spec.domain_model import DomainProp, DomainEvent
+from app.classes.spec.symboleo_contract import DomainModel
+from app.classes.spec.domain_object import DomainProp, DomainEvent
 
 import nltk
 from nltk.corpus import framenet as fn

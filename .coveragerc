@@ -13,6 +13,7 @@ exclude_lines =
     raise NotImplementedError
 
 omit =
+    app\templates\*
     app\src\graph\graph_visualizer.py
     app\src\sentence_summarizer.py
     app\src\user_scripts\*.py

@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.grammar.selected_node import SelectedNode
+from app.classes.selection.selected_node import SelectedNode
 
 class FullGrammarTestSpec:
     def __init__(

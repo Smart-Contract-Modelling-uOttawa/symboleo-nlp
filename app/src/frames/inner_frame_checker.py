@@ -1,6 +1,6 @@
 from typing import List
-from app.classes.grammar.selected_node import SelectedNode
-from app.classes.grammar.node_type import NodeType
+from app.classes.selection.selected_node import SelectedNode
+from app.classes.tokens.node_type import NodeType
 
 class IInnerFrameChecker:
     def check_frame(self, node_list: List[SelectedNode]):
