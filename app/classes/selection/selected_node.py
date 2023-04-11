@@ -3,13 +3,14 @@ from app.classes.tokens.node_type import NodeType
 from app.classes.frames.frame import Frame
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.norm import Norm
+
 # TODO: Might be able to get rid of this..
 # class in which we can pass objects that are needed for constructing new objects 
 class Basket:
     default_event: SymEvent
     initial_norm: Norm
 
-class SelectedNode:
+class SelectedNode: # pragma: no cover
     node_type: NodeType = None
     parent: SelectedNode = None
     child: SelectedNode = None

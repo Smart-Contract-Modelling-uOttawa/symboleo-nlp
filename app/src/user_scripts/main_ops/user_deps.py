@@ -5,7 +5,7 @@ from app.src.grammar.grammar_selector import GrammarSelector
 from app.src.grammar.domain_timepoint_extractor import DomainTimepointExtractor
 from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
 
-from app.src.operations.parameter_refiner import ParameterRefiner
+from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater

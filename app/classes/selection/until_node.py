@@ -12,6 +12,9 @@ class UntilNode(SelectedNode):
     def to_obj(self, basket: Basket):
 
         # Adds a norm -> Creates a power to suspend the initial norm 
+        # TODO: This shows the NLP dilemma...
+        ## Do we inject the norm builder or keep it static
+        ## Proper way would be to inject it...
         if self.child.node_type == NodeType.EVENT:
             evt = self.child.to_obj(basket)
             new_power = NormBuilder.build(basket.initial_norm, evt)

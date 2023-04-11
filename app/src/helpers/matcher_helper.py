@@ -1,5 +1,6 @@
 from spacy.matcher import Matcher
 
+# TODO: Remove this
 class IGetMatches:
     def match(self, pattern, doc): # returns a span
         raise NotImplementedError()

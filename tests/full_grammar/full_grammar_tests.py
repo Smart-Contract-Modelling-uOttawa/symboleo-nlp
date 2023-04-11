@@ -43,7 +43,8 @@ class FullGrammarBeforeTests(unittest.TestCase):
             exp_sym = x.exp_sym
 
             selection = Selection.from_nodes(selected_nodes)
-            frames = self.frame_checker.check_all_frames(selection.nodes)
+            nodes = selection.get_nodes()
+            frames = self.frame_checker.check_all_frames(nodes)
             nl_result = frames[0].to_text()
 
             basket = Basket()

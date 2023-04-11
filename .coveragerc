@@ -18,4 +18,5 @@ omit =
     app\src\sentence_summarizer.py
     app\src\user_scripts\*.py
     app\src\nlp\standard_events.py
+    app\src\operations\contract_updater_builder.py
 

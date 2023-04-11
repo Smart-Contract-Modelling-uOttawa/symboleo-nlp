@@ -1,5 +1,5 @@
 import unittest
-from app.src.helpers.template_getter import get_template
+from app.templates.template_getter import get_template
 
 from app.src.helpers.declarer import Declarer
 

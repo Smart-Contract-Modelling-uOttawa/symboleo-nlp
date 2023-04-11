@@ -3,7 +3,8 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration, DeclarationProp
 
-# Could potentially be a method on the symboleo contract...
+# TODO: Make this a method on the symboleo contract
+## Or more likely jsut a declaration_buidler
 class Declarer:
     @staticmethod
     def declare(dm: DomainModel, obj_type: str, obj_name: str, obj_key: str, props: List = []) -> Declaration:

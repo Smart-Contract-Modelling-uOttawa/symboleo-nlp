@@ -10,8 +10,14 @@ class DeclarationProp:
     def to_sym(self):
         return f'{self.key} := {self.value}'
 
+class IDeclaration:
+    def to_obj(self):
+        raise NotImplementedError()
+    def to_sym(self):
+        raise NotImplementedError()
+
 # May eventually need to subtype this: Event, Role, Asset...
-class Declaration:
+class Declaration(IDeclaration):
     def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp]):
         self.name = name
         self.type = type

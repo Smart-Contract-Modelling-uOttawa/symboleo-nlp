@@ -1,11 +1,11 @@
 from app.src.operations.contract_updater import ContractUpdater
-from app.src.operations.parameter_refiner import ParameterRefiner
+from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
 from app.src.operations.domain_updater import DomainUpdater
 from app.src.operations.termination_updater import TerminationUpdater
 
 from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 
-class ContractUpdaterBuilder: # pragma: no cover
+class ContractUpdaterBuilder:
     @staticmethod
     def build() -> ContractUpdater:
         frame_checker = FrameCheckerConstructor.construct()

@@ -1,6 +1,6 @@
 from typing import Dict
 from app.src.operations.parm_configs import ParameterConfig
-from app.src.operations.parameter_refiner import ParameterOperation
+from app.src.operations.refine_parameter.parameter_refiner import ParameterOperation
 from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.spec.symboleo_contract import SymboleoContract, Norm
 from app.src.grammar.grammar_config import GrammarGeneratorConfig

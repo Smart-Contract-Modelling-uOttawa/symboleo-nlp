@@ -13,6 +13,19 @@ class NormType(Enum):
     SurvivingObligation = 'SO'
 
 
+class INorm:
+    def update(self, str_component: str, predicate: PredicateFunction):
+        raise NotImplementedError()
+    def get_default_event(self, str_component:str):
+        raise NotImplementedError()
+    def get_negation(self, str_component: str) -> bool:
+        raise NotImplementedError()
+    def get_op_codes(self) -> List[ParmOpCode]:
+        raise NotImplementedError()
+    def to_sym(self):
+        raise NotImplementedError()
+    
+
 class Norm:
     def __init__(
         self,
@@ -115,6 +128,7 @@ class Norm:
         con_text = self.consequent.to_sym()
 
         return f'{self.id}: {trigger_text}{self.norm_type.value}({deb_text}, {cred_text}, {ant_text}, {con_text});'
+
 
 class Obligation(Norm):
     def __init__(

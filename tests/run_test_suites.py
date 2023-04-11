@@ -1,5 +1,5 @@
 import unittest
-from app.src.helpers.template_getter import get_template, get_test_suite
+from app.templates.template_getter import get_template, get_test_suite
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
 class FullStackTests(unittest.TestCase):

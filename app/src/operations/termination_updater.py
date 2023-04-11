@@ -5,7 +5,7 @@ from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PowerFunction, PFContract, PFContractName
 
 from app.src.grammar.selection import Selection
-from app.src.operations.parameter_refiner import ParameterRefiner, ParameterConfig, ParameterOperation
+from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner, ParameterConfig, ParameterOperation
 
 
 class TerminationOperation:

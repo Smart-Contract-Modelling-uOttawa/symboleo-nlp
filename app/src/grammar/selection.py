@@ -3,34 +3,46 @@ from typing import List
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.tokens.abstract_node import AbstractNode
 from app.classes.selection.selected_node import SelectedNode
+from app.classes.selection.selected_node import Basket
 from app.classes.selection.all_nodes import node_type_to_class
 
-# This class handles the selection process
-# It is fairly bulky and ill-defined - will need to trim it down as the program develops
-class Selection:
-    def __init__(self):
-        self.nodes: List[SelectedNode] = []
+class ISelection:
+    def get_nodes(self) -> List[SelectedNode]:
+        raise NotImplementedError()
+    # May end up just passing a Norm instead of basket
+    def to_obj(self, basket: Basket):
+        raise NotImplementedError()
+    def add_node(self, grammar_node: AbstractNode, value = None):
+        raise NotImplementedError()
+    def add_selected_node(self, node: SelectedNode, ind: int):
+        raise NotImplementedError()
+    
 
-    def to_obj(self, default_event: PredicateFunction):
-        # How do we handle the default event?
-        ## Can pass it in as an optional parm to every to_obj func. May end up being important
-        ## Can add it in after
-        ## Probably best to add it as a parm - most things won't use it, but it may end up being useful...
-        return self.nodes[0].to_obj(default_event)
+class Selection(ISelection):
+    def __init__(self):
+        # Should make this private and expose a function
+        self.__nodes: List[SelectedNode] = []
+
+    def get_nodes(self) -> List[SelectedNode]:
+        return self.__nodes
+
+    def to_obj(self, basket: Basket):
+        return self.__nodes[0].to_obj(basket)
+
 
     def add_node(self, grammar_node: AbstractNode, value = None):
         # Set up the new node
         new_class = node_type_to_class[grammar_node.node_type]
-        ind = len(self.nodes)
+        ind = len(self.__nodes)
         node = new_class(grammar_node.id, ind, value)
         self.add_selected_node(node, ind)
         
     
     def add_selected_node(self, node: SelectedNode, ind: int):
-        self.nodes.append(node)
+        self.__nodes.append(node)
         # Set parent and child. This seems wrong...
         if ind > 0:
-            node.parent = self.nodes[ind-1]
+            node.parent = self.__nodes[ind-1]
             node.parent.child = node
     
 

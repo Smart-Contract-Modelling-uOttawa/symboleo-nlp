@@ -4,7 +4,7 @@ import copy
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.parm_configs import ParmOpCode
 
-class Frame:
+class Frame: # pragma: no cover
     pattern: List[NodeType]
     op_code: ParmOpCode
 

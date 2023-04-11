@@ -12,7 +12,24 @@ from app.classes.spec.nl_template import NLTemplate
 
 from app.classes.spec.norm import Norm
 
-class SymboleoContract:
+class ISymboleoContract:
+    def to_sym(self):
+        raise NotImplementedError()
+    def add_declaration(self, declaration: Declaration):
+        raise NotImplementedError()
+    def add_norm(self, norm: Norm):
+        raise NotImplementedError()
+    def add_dm_object(self, dmo: DomainObject):
+        raise NotImplementedError()
+    def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):
+        raise NotImplementedError()
+    def get_norm(self, norm_id: str, norm_type:str) -> Norm:
+        raise NotImplementedError()
+        
+
+
+
+class SymboleoContract(ISymboleoContract):
     def __init__(
         self, 
         domain_model: DomainModel, 
@@ -77,7 +94,7 @@ class SymboleoContract:
         self.domain_model.__dict__[obj_type][obj_key].props.append(domain_prop)
 
 
-    def get_norm(self, norm_id: str, norm_type:str):
+    def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
         return result
     

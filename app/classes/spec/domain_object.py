@@ -12,7 +12,15 @@ class DomainProp:
         return f'{self.key}: {self.type}'
 
 
-class DomainObject:
+class IDomainObject:
+    def to_obj(self):
+        raise NotImplementedError()
+    def to_sym(self):
+        raise NotImplementedError()
+    
+
+
+class DomainObject(IDomainObject):
     def __init__(self, desc:str, name: str, props: List[DomainProp], base_type: DomainObject = None):
         self.name = name
         self.is_alias = (base_type is not None)

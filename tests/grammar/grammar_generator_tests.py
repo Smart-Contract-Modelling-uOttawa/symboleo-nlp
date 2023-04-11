@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.tokens.node_type import NodeType
-from app.src.helpers.template_getter import get_template
+from app.templates.template_getter import get_template
 from app.src.grammar.grammar_generator import GrammarGenerator
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
 from app.src.grammar.domain_timepoint_extractor import IExtractDomainTimePoints
