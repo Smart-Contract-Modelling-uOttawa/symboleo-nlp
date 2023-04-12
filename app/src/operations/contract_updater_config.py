@@ -1,6 +1,6 @@
 from app.src.operations.op_code import OpCode
 
-from app.src.operations.parm_configs import ParameterConfig
+from app.src.operations.refine_parameter.parm_configs import ParameterConfig
 from app.src.grammar.selection import Selection
 
 from app.classes.spec.domain_object import DomainObject

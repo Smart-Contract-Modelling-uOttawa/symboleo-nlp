@@ -1,6 +1,5 @@
 from app.classes.selection.selected_node import SelectedNode, Basket
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.build_norm import NormBuilder
 from app.classes.spec.predicate_function import PredicateFunctionHappensWithin
 from app.classes.spec.sym_event import ContractEvent
 from app.classes.spec.sym_interval import Interval, IntervalFunction
@@ -10,14 +9,10 @@ class UntilNode(SelectedNode):
     node_type = NodeType.UNTIL
 
     def to_obj(self, basket: Basket):
-
         # Adds a norm -> Creates a power to suspend the initial norm 
-        # TODO: This shows the NLP dilemma...
-        ## Do we inject the norm builder or keep it static
-        ## Proper way would be to inject it...
         if self.child.node_type == NodeType.EVENT:
             evt = self.child.to_obj(basket)
-            new_power = NormBuilder.build(basket.initial_norm, evt)
+            new_power = self.tools.norm_builder.build(basket.initial_norm, evt)
             return new_power
 
         # Refines to HappensWithin

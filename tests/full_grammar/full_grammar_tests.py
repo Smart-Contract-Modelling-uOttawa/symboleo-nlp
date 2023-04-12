@@ -19,7 +19,7 @@ from tests.full_grammar.after_date_tests import after_date_tests
 from tests.full_grammar.until_event_tests import until_event_tests
 from tests.full_grammar.using_instrument_tests import using_instrument_tests
 
-class FullGrammarBeforeTests(unittest.TestCase):
+class FullGrammarTests(unittest.TestCase):
     def setUp(self) -> None:
         self.frame_checker = FrameCheckerConstructor.construct()
         self.default_event = VariableEvent('test')

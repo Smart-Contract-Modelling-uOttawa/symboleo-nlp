@@ -1,5 +1,5 @@
 from typing import Dict
-from app.src.operations.parm_configs import ParameterConfig
+from app.src.operations.refine_parameter.parm_configs import ParameterConfig
 from app.src.operations.refine_parameter.parameter_refiner import ParameterOperation
 from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.spec.symboleo_contract import SymboleoContract, Norm

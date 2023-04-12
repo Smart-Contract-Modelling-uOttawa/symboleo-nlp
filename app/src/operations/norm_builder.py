@@ -4,16 +4,17 @@ from app.classes.spec.predicate_function import PredicateFunction, PredicateFunc
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.prop_maker import PropMaker
 
-# TODO: This should be in src somewhere... 
-## Will likely have more like this
-## But actually, maybe all selectedNodes need to go there...
-class NormBuilder:
-    @staticmethod
-    def build(norm1: Norm, event: SymEvent):
+# May be better to rename to suspensive norm builder or something like that
+class IBuildNorms:
+    def build(self, norm1: Norm, event: SymEvent) -> Norm:
+        raise NotImplementedError()
+
+
+class NormBuilder(IBuildNorms):
+    def build(self, norm1: Norm, event: SymEvent) -> Norm:
         # Need to do some checks in here...
         ## If the initial norm involves a suspension, then we need to make a 'Resume'
-
-        x = NormBuilder.get_suspension_info(norm1)
+        x = self._get_suspension_info(norm1)
         if x:
             pow_name = f'pow_resume_{x}'
             new_cons = PFObligation(PFObligationName.Resumed, x)
@@ -30,8 +31,8 @@ class NormBuilder:
             new_cons
         )
     
-    @staticmethod
-    def get_suspension_info(norm: Norm):
+    
+    def _get_suspension_info(self, norm: Norm):
         cons = norm.consequent
         if type(cons) == PFObligation:
             if cons.name == PFObligationName.Suspended:

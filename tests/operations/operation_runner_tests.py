@@ -5,7 +5,7 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.norm import INorm
 from app.classes.spec.predicate_function import PredicateFunction
 
-from app.src.operations.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 from app.src.operations.refine_parameter.operation_runner import RefinementOperationRunner, RefinementOperation
 
 class RefinementOperationRunnerTests(unittest.TestCase):

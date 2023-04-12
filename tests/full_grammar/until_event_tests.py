@@ -4,7 +4,7 @@ from app.classes.selection.all_nodes import *
 until_event_tests = [
     Spec([
             RootNode('Root',0 , None),
-            UntilNode('a', 1),
+            UntilNode('b', 1),
             EventNode('c', 2, None),
             DomainEventNode('d', 3, None),
             DomainEventNameNode('e', 4, 'payment')

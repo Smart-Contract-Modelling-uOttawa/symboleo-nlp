@@ -5,6 +5,7 @@ from app.classes.tokens.abstract_node import AbstractNode
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.selected_node import Basket
 from app.classes.selection.all_nodes import node_type_to_class
+from app.classes.selection.selection_tools import SelectionTools
 
 class ISelection:
     def get_nodes(self) -> List[SelectedNode]:
@@ -19,9 +20,11 @@ class ISelection:
     
 
 class Selection(ISelection):
-    def __init__(self):
-        # Should make this private and expose a function
+    def __init__(
+        self
+    ):
         self.__nodes: List[SelectedNode] = []
+        self.__selection_tools = SelectionTools.build()
 
     def get_nodes(self) -> List[SelectedNode]:
         return self.__nodes
@@ -34,7 +37,7 @@ class Selection(ISelection):
         # Set up the new node
         new_class = node_type_to_class[grammar_node.node_type]
         ind = len(self.__nodes)
-        node = new_class(grammar_node.id, ind, value)
+        node = new_class(grammar_node.id, ind, value, self.__selection_tools)
         self.add_selected_node(node, ind)
         
     

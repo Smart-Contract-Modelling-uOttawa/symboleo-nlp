@@ -1,5 +1,5 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.operations.parm_configs import ParameterConfig, ParmOpCode
+from app.src.operations.refine_parameter.parm_configs import ParameterConfig, ParmOpCode
 from app.src.grammar.selection import ISelection
 
 from app.classes.selection.selected_node import Basket
@@ -42,6 +42,7 @@ class ParameterRefiner(IRefineParameter):
         # print(f'\nNL: {frame_text}\n')
 
         basket = Basket()
+        norm_component = None
 
         try:
             # TODO: Should just be passing the norm right in.. or maybe shoudl stick with id/type

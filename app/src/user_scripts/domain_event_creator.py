@@ -6,6 +6,7 @@ from app.classes.spec.domain_object import DomainProp, DomainEvent
 import nltk
 from nltk.corpus import framenet as fn
 from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
+from app.src.nlp.statement_extractor import IExtractStatements, StatementExtractor
 
 from app.src.nlp.standard_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
@@ -13,17 +14,20 @@ from app.src.nlp.framenet_extractor import FramenetExtractor
 from app.src.helpers.string_to_class import CaseConverter
 
 class DomainEventCreator:
-    def __init__(self, domain_model: DomainModel):
+    def __init__(self, domain_model: DomainModel, nlp):
         my_framenet = MyFramenet(fn)
         self.__dm = domain_model
         self.__fn_extractor = FramenetExtractor(my_framenet)
+        self.__statement_extractor = StatementExtractor(nlp)
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
 
+    # TODO: Need to decide if a 'Statement' is actually an event, or maybe more of a "situation"
+    ## May not matter to the user...
     def create(self) -> DomainEvent:
         print('Creating a new event.')
         print('1 - Choose from standard contract events')
         print('2 - Create a custom event')
-        print('3 - Statement')
+        print('3 - Statement') 
         print('4 - Declaration only')
 
         user_k = int(input('Select #: '))
@@ -39,6 +43,7 @@ class DomainEventCreator:
         else:
             raise ValueError('Oops!')
         
+    # Will return an existing event, so that user can just create a declaration
     def get_existing(self):
         print('\Choosing existing event.') 
 
@@ -56,22 +61,10 @@ class DomainEventCreator:
         print('\nCreating Statement event.')
         user_input = input('Enter statement (a is b): ')
 
-        # Verify that it is a proper statement (NLP...)
-        ## e.g. legal proceedings become necessary
-        linking_verbs = ['become', 'is', 'are']
+        # Will need to handle invalid events
+        statement = self.__statement_extractor.extract(user_input)
 
-        subj = None
-        pred = None
-        for x in linking_verbs:
-            if x in user_input:
-                subj,pred = user_input.split(x)
-        
-        if not subj:
-            raise ValueError('Invalid event')
-        
-        subj = subj.strip()
-        pred = pred.strip()
-        event_name = CaseConverter.to_pascal(f'{subj} {pred}')
+        event_name = CaseConverter.to_pascal(f'{statement.subj} {statement.pred}')
     
         custom_props = self._get_custom_props()
 

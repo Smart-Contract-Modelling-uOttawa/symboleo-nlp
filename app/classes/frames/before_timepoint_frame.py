@@ -1,6 +1,6 @@
 from app.classes.frames.frame import Frame
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class BeforeTimePointFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.TIMEPOINT]
