@@ -8,7 +8,7 @@ from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral,
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
-from app.classes.spec.nl_template import NLTemplate
+from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
 from app.classes.spec.norm import Norm
 
@@ -17,7 +17,9 @@ class ISymboleoContract:
         raise NotImplementedError()
     def add_declaration(self, declaration: Declaration):
         raise NotImplementedError()
-    def add_norm(self, norm: Norm):
+    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
+        raise NotImplementedError()
+    def update_norm(self, norm: Norm, norm_component: str, pred: PredicateFunction, key: str, nl: str):
         raise NotImplementedError()
     def add_dm_object(self, dmo: DomainObject):
         raise NotImplementedError()
@@ -72,9 +74,32 @@ class SymboleoContract(ISymboleoContract):
                 self.contract_spec.parameters.append(new_parm)
 
 
-    def add_norm(self, norm: Norm):
+    def update_norm(self, norm: Norm, norm_component: str, pred: PredicateFunction, key: str, nl: str):
+        norm.update(norm_component, pred)
+
+        t = self.nl_template.template_dict
+        old_str = t[key].str_val
+        
+        if norm_component == 'trigger':
+            new_nl = nl + ' ' + old_str
+        else:
+            new_nl = old_str + ' ' + nl
+        
+        t[key].str_val =  new_nl
+        
+
+    # May eventually just add a norm.nl property that corresponds to the nl
+    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
         norm_type = 'obligations' if type(norm) == Obligation else 'powers'
         self.contract_spec.__dict__[norm_type][norm.id] = norm
+
+        t = self.nl_template.template_dict
+        next_mapping = f'{norm_type}.{norm.id}'
+        if norm_key in t:
+            t[norm_key].mapping.append(next_mapping)
+            t[norm_key].str_val += norm_nl # This will require some finessing...
+        else:
+            t[norm_key] = TemplateObj(norm_nl, [next_mapping])
     
 
     def add_dm_object(self, dmo: DomainObject):

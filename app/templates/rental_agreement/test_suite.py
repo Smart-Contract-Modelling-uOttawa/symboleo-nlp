@@ -17,7 +17,8 @@ test_suite = [
             ObligationEventVarNode('', 0, 'ob_pay_rent'),
             ObligationEventActionNode('', 0, 'Violated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_late_payment')
+        parm_config = ParameterConfig('obligations', 'ob_late_payment'),
+        parm_key='late_payment'
     ),
     UpdateConfig(
         OpCode.ADD_DOMAIN_OBJECT,
@@ -40,7 +41,8 @@ test_suite = [
             DomainEventNode('',0),
             DomainEventNameNode('', 0, 'evt_occupy')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_pay_security_deposit')
+        parm_config = ParameterConfig('obligations', 'ob_pay_security_deposit'),
+        parm_key='pay_security_deposit'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -51,7 +53,8 @@ test_suite = [
             ContractEventNode('', 0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_return_deposit')
+        parm_config = ParameterConfig('obligations', 'ob_return_deposit'),
+        parm_key='return_deposit'
     ),
     UpdateConfig(
         OpCode.ADD_DOMAIN_OBJECT,
@@ -72,7 +75,8 @@ test_suite = [
             DomainEventNode('', 0),
             DomainEventNameNode('', 0, 'evt_allow_pets')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_no_pets')
+        parm_config = ParameterConfig('obligations', 'ob_no_pets'),
+        parm_key= 'no_pets'
     ),
 
     UpdateConfig(

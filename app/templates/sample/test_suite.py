@@ -16,7 +16,8 @@ test_suite = [
             TimepointNode('', 0),
             DomainTimepointNode('', 0, 'evt_delivered.delDueDate')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_delivery')
+        parm_config = ParameterConfig('obligations', 'ob_delivery'),
+        parm_key='delivery'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -26,7 +27,8 @@ test_suite = [
             TimepointNode('', 0),
             DomainTimepointNode('', 0, 'evt_paid.payDueDate')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_payment')
+        parm_config = ParameterConfig('obligations', 'ob_payment'),
+        parm_key='payment'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -38,7 +40,8 @@ test_suite = [
             ObligationEventVarNode('', 0, 'ob_payment'),
             ObligationEventActionNode('', 0, 'Violated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_late_payment')
+        parm_config = ParameterConfig('obligations', 'ob_late_payment'),
+        parm_key='latePayment'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -50,7 +53,8 @@ test_suite = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Activated')
         ]),
-        parm_config = ParameterConfig('surviving_obligations', 'so1')
+        parm_config = ParameterConfig('surviving_obligations', 'so1'),
+        parm_key='disclosure'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -62,7 +66,8 @@ test_suite = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Activated')
         ]),
-        parm_config = ParameterConfig('surviving_obligations', 'so2')
+        parm_config = ParameterConfig('surviving_obligations', 'so2'),
+        parm_key='disclosure'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -74,7 +79,8 @@ test_suite = [
             ObligationEventVarNode('', 0, 'ob_payment'),
             ObligationEventActionNode('', 0, 'Violated')
         ]),
-        parm_config = ParameterConfig('powers', 'pow_suspend_delivery')
+        parm_config = ParameterConfig('powers', 'pow_suspend_delivery'),
+        parm_key='suspendDelivery'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -86,7 +92,8 @@ test_suite = [
             ObligationEventVarNode('', 0, 'ob_late_payment'),
             ObligationEventActionNode('', 0, 'Fulfilled')
         ]),
-        parm_config = ParameterConfig('powers', 'pow_suspend_delivery')
+        parm_config = ParameterConfig('powers', 'pow_suspend_delivery'),
+        parm_key='suspendDelivery'
     ),
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,

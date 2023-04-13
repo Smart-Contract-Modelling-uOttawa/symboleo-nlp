@@ -1,9 +1,12 @@
 import unittest
 from unittest.mock import MagicMock
 
+from tests.helpers.test_contract import get_test_contract
+
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.norm import INorm
 from app.classes.spec.predicate_function import PredicateFunction
+from app.classes.frames.frame import Frame
 
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 from app.src.operations.refine_parameter.operation_runner import RefinementOperationRunner, RefinementOperation
@@ -11,13 +14,18 @@ from app.src.operations.refine_parameter.operation_runner import RefinementOpera
 class RefinementOperationRunnerTests(unittest.TestCase):
     def setUp(self):
         self.contract = ISymboleoContract()
+        self.frame = Frame()
+        self.frame.to_text = MagicMock(return_value='test')
         self.sut = RefinementOperationRunner()
 
     def test_runner_add_norm(self):
         self.contract.add_norm = MagicMock(return_value=None)
         fake_norm = INorm()
+        self.frame.op_code = ParmOpCode.ADD_NORM
+
         op = RefinementOperation(
-            ParmOpCode.ADD_NORM,
+            key = 'x',
+            frame = self.frame,
             contract = self.contract,
             update_obj = fake_norm
         )
@@ -27,34 +35,44 @@ class RefinementOperationRunnerTests(unittest.TestCase):
 
     def test_runner_add_trigger(self):
         fake_norm = INorm()
-        fake_norm.update = MagicMock(return_value=None)
+        self.contract.update_norm = MagicMock(return_value=None)
         fake_pred = PredicateFunction()
+
+        self.frame.op_code = ParmOpCode.ADD_TRIGGER
         op = RefinementOperation(
-            ParmOpCode.ADD_TRIGGER,
-            norm=fake_norm,
+            key = 'x',
+            frame = self.frame,
+            contract = self.contract,
+            norm = fake_norm,
             update_obj = fake_pred
         )
         self.sut.run(op)
-        self.assertEqual(fake_norm.update.call_count, 1)
+        self.assertEqual(self.contract.update_norm.call_count, 1)
     
 
     def test_runner_refine_predicate(self):
         fake_norm = INorm()
-        fake_norm.update = MagicMock(return_value=None)
+        self.contract.update_norm = MagicMock(return_value=None)
         fake_pred = PredicateFunction()
+        self.frame.op_code = ParmOpCode.REFINE_PREDICATE
 
         op = RefinementOperation(
-            ParmOpCode.REFINE_PREDICATE,
+            key = 'x',
+            frame = self.frame,
+            contract = self.contract,
             norm = fake_norm,
             norm_component = 'X',
             update_obj = fake_pred
         )
         self.sut.run(op) 
-        self.assertEqual(fake_norm.update.call_count, 1)
+        self.assertEqual(self.contract.update_norm.call_count, 1)
+
 
     def test_fail(self):
+        self.frame.op_code = None
         op = RefinementOperation(
-            None,
+            'x',
+            self.frame,
         )
         with self.assertRaises(Exception) as context:
             self.sut.run(op)

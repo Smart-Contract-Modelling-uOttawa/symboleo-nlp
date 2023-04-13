@@ -3,7 +3,7 @@ from app.src.operations.op_code import OpCode
 
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter, ParameterOperation
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
-from app.src.operations.termination_updater import IAddPower, TerminationOperation
+from app.src.operations.add_power.termination_updater import IAddPower, TerminationOperation
 from app.src.operations.contract_updater_config import UpdateConfig
 
 
@@ -23,7 +23,7 @@ class ContractUpdater:
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
         if op_code == OpCode.UPDATE_PARM:
-            parm_op = ParameterOperation(config.parm_config, config.selection)
+            parm_op = ParameterOperation(config.parm_config, config.selection, config.parm_key)
             self.__parm_refiner.refine(contract, parm_op)
         
         elif op_code == OpCode.ADD_DOMAIN_OBJECT:

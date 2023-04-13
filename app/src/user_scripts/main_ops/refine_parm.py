@@ -14,7 +14,8 @@ def refine_parm(deps: UserDependencies, contract: SymboleoContract):
         print(f'{i+1}: {k}')
 
     sel_k = int(input('\nSelect the text # to refine: '))
-    parm = nd[kl[sel_k-1]]
+    key = kl[sel_k-1]
+    parm = nd[key]
 
     # Get the norm and op_codes
     norm: Norm = contract.contract_spec.obligations[parm.mapping[0].split('.')[1]]
@@ -28,5 +29,5 @@ def refine_parm(deps: UserDependencies, contract: SymboleoContract):
         'obligations',
         norm.id
     )
-    parm_op = ParameterOperation(parm_config, selection)
+    parm_op = ParameterOperation(parm_config, selection, key)
     deps.parm_refiner.refine(contract, parm_op)

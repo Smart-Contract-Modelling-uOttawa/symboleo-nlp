@@ -11,7 +11,7 @@ from app.src.operations.refine_parameter.parm_configs import ParameterConfig
 from app.src.operations.op_code import OpCode
 from app.src.operations.contract_updater_config import UpdateConfig
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
-from app.src.operations.termination_updater import IAddPower
+from app.src.operations.add_power.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
 from app.src.operations.contract_updater import ContractUpdater
 
@@ -36,7 +36,8 @@ class ContractUpdaterTests(unittest.TestCase):
         config = UpdateConfig(
             op_code = None,
             parm_config = ParameterConfig('a', 'b'),
-            selection = ISelection()
+            selection = ISelection(),
+            parm_key='a'
         )
         self.sut.update(self.contract, OpCode.UPDATE_PARM, config)
 

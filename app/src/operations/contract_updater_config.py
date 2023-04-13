@@ -14,6 +14,7 @@ class UpdateConfig:
             # Parm update
             selection: Selection = None, 
             parm_config: ParameterConfig = None,
+            parm_key: str = None,
             
             # DM Update
             dm_obj_type: str = '',
@@ -28,6 +29,7 @@ class UpdateConfig:
         self.op_code = op_code
         self.selection: Selection = selection
         self.parm_config: ParameterConfig = parm_config
+        self.parm_key = parm_key
         
         self.dm_obj_type = dm_obj_type
         self.domain_object = domain_object

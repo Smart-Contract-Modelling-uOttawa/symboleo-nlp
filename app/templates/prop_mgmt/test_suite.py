@@ -53,7 +53,8 @@ test_suite = [
             DomainEventNode('',0),
             DomainEventNameNode('', 0, 'evt_legal_proceedings_necessary')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_legal_proceedings')
+        parm_config = ParameterConfig('obligations', 'ob_legal_proceedings'),
+        parm_key='legal_proceedings'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -64,7 +65,8 @@ test_suite = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_disburse_termination')
+        parm_config = ParameterConfig('obligations', 'ob_disburse_termination'),
+        parm_key='disburse_termination'
     ),
 
     ## Temporal refinements
@@ -78,7 +80,8 @@ test_suite = [
             ContractEventNode('', 0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_disburse_termination')
+        parm_config = ParameterConfig('obligations', 'ob_disburse_termination'),
+        parm_key='disburse_termination'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -90,7 +93,8 @@ test_suite = [
             ContractEventNode('',0),
             ContractEventActionNode('', 0, 'Terminated')
         ]),
-        parm_config = ParameterConfig('obligations', 'ob_reimburse_termination')
+        parm_config = ParameterConfig('obligations', 'ob_reimburse_termination'),
+        parm_key='reimburse_termination'
     ),
 
     ## Termination power

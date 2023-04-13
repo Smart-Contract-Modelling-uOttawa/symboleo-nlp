@@ -4,7 +4,8 @@ sample_nl_template = NLTemplate(
     template_dict = {
         'delivery': TemplateObj(
             'The Seller shall deliver the Order in one delivery to the Buyer',
-            ['obligations.ob_delivery']
+            ['obligations.ob_delivery'],
+
         ),
         'payment': TemplateObj(
             'The Buyer shall pay (payment_amount) to the Seller',

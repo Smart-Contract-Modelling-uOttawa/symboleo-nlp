@@ -19,7 +19,7 @@ class UpdateNormTests(unittest.TestCase):
         pred1 = PredicateFunctionHappens(VariableEvent('test_event'))
         prop1 = PropMaker.make(pred1, True)
         ob1 = Obligation('new_ob', None, 'debtor', 'credit', PAtomPredicateTrueLiteral(), prop1)
-        contract.add_norm(ob1)
+        contract.add_norm(ob1, 'new_ob', 'this is a test')
 
         self.assertEqual(len(contract.contract_spec.obligations), n1+1) 
 

@@ -34,7 +34,7 @@ class ParameterRefinerTests(unittest.TestCase):
         selection.to_obj = MagicMock(return_value = None)
         selection.get_nodes = MagicMock(return_value=[])
         parm_config = ParameterConfig('a', 'b')
-        op = ParameterOperation(parm_config, selection)
+        op = ParameterOperation(parm_config, selection, '')
         
         self.sut.refine(contract, op)
         
@@ -52,7 +52,7 @@ class ParameterRefinerTests(unittest.TestCase):
         selection.to_obj = MagicMock(return_value = None)
         selection.get_nodes = MagicMock(return_value=[])
         parm_config = ParameterConfig('a', 'b')
-        op = ParameterOperation(parm_config, selection)
+        op = ParameterOperation(parm_config, selection, '')
         
         self.sut.refine(contract, op)
         

@@ -4,6 +4,7 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset
 from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
+from app.classes.spec.nl_template import NLTemplate
 
 class FakeSym:
     def to_sym(self):
@@ -57,6 +58,5 @@ def get_test_contract():
             constraints=[],
             parameters=[]
         ),
-        
-        None # Template strings...
+        nl_template = NLTemplate({})
     )

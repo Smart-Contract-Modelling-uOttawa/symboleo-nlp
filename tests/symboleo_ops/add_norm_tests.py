@@ -10,11 +10,14 @@ class NormAdderTests(unittest.TestCase):
         contract = get_test_contract()
         new_norm = SampleNorms.get_sample_obligation('my_new_ob')
 
-        contract.add_norm(new_norm)
+        contract.add_norm(new_norm, 'new_norm', 'this is a new norm')
 
         found_norm = contract.contract_spec.obligations['my_new_ob']
+        found_nl = contract.nl_template.template_dict['new_norm']
 
         self.assertEqual(new_norm.to_sym(), found_norm.to_sym())
+        self.assertEqual(found_nl.str_val, 'this is a new norm')
+        self.assertEqual(found_nl.mapping[0], 'obligations.my_new_ob')
 
 
 

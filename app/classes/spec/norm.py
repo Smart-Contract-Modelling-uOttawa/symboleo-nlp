@@ -67,6 +67,7 @@ class Norm:
         setattr(self, str_component, component)
 
 
+
     def get_default_event(self, str_component:str):
         component: Proposition = getattr(self, str_component)
 
