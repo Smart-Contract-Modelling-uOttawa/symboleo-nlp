@@ -5,7 +5,6 @@ from typing import List
 from app.classes.frames.all_frames import *
 from app.classes.frames.frame import DummyFrame
 from app.classes.tokens.node_type import NodeType
-from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.all_nodes import *
 from app.src.frames.frame_checker import FrameChecker
 from app.src.frames.inner_frame_checker import IInnerFrameChecker
@@ -29,18 +28,30 @@ class InnerFrameCheckerTests(unittest.TestCase):
             DummyFrame(),
             fake_full_frame
         ])
+
         self.sut = FrameChecker(frame_list, self.fake_inner, self.fake_builder)
+
     
 
+    # def test_frame_checker(self):
+    #     node_list: List[SelectedNode] = [SelectedNode('', 0, '')]
+    #     result = self.sut.get_frame(node_list)
+
+    #     self.assertEqual(self.fake_inner.check_frame.call_count, 3)
+    #     self.assertEqual(self.fake_builder.build.call_count, 2)
+    #     self.assertEqual(result.to_text(), 'DUMMY: test')
+
+    
     def test_frame_checker(self):
-        node_list: List[SelectedNode] = [SelectedNode('', 0, '')]
-        result = self.sut.check_all_frames(node_list)
+        node_list: List[SelectedNode] = [
+            BeforeNode(),
+            DateNode(value='2020/02/22')    
+        ]
+        result = self.sut.get_frame(node_list)
 
         self.assertEqual(self.fake_inner.check_frame.call_count, 3)
         self.assertEqual(self.fake_builder.build.call_count, 2)
-        self.assertEqual(result[0].to_text(), 'DUMMY: test')
-        self.assertEqual(len(result), 1)
-
+        self.assertEqual(result.to_text(), 'DUMMY: test')
     
 
 

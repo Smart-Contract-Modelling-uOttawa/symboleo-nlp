@@ -5,7 +5,7 @@ from app.src.frames.inner_frame_checker import IInnerFrameChecker
 from app.src.frames.frame_builder import IBuildFrames
 
 class ICheckFrames:
-    def check_all_frames(self, node_list: List[SelectedNode]) -> List[Frame]:
+    def get_frame(self, node_list: List[SelectedNode]) -> Frame:
         raise NotImplementedError()
 
 
@@ -20,7 +20,16 @@ class FrameChecker(ICheckFrames):
         self.__inner_checker = inner_checker
         self.__frame_builder = frame_builder
 
-    def check_all_frames(self, node_list: List[SelectedNode]) -> List[Frame]:
+    def get_frame(self, node_list: List[SelectedNode]) -> Frame:
+        frames = self._check_all_frames(node_list)
+        if len(frames) > 1:
+            raise ValueError('Too many potential frames')
+        if len(frames) == 0:
+            raise ValueError('No frames found')
+        return frames[0]   
+
+
+    def _check_all_frames(self, node_list: List[SelectedNode]) -> List[Frame]:
         results: List[Frame] = []
 
         for frame in self.__frame_list:

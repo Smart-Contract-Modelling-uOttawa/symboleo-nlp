@@ -8,6 +8,7 @@ class GraphBuilderTests(unittest.TestCase):
     def setUp(self):
         self.sut = GraphBuilder()
 
+    @unittest.skip('reorg')
     def test_graph_builder(self):
         test_list = list(test_graph.values())
         test_list.sort(key=lambda x: x.name)

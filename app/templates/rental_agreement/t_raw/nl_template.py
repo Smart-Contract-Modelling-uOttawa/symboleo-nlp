@@ -21,7 +21,7 @@ rental_nl_template = NLTemplate(
         ),
         'no_pets': TemplateObj(
             'The Parties agree that the Renter will not keep any pets on the premises without obtaining written prior consent from the Landlord.',
-            ['obligations.ob_no_pets', 'powers.pow_suspend_no_pets'] # Does this make sense...?
+            ['obligations.ob_no_pets', 'powers.pow_suspend_ob_no_pets'] # Does this make sense...?
         ),
         'terminate_notice': TemplateObj(
             'This Agreement may be terminated in the event that any of the following occurs: 2. At any given time by providing written notice to the other party (termination_notice_days) days prior to terminating the Agreement.',

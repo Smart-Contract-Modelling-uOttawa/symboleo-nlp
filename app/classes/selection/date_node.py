@@ -1,9 +1,7 @@
-from app.classes.selection.selected_node import SelectedNode, Basket
+from app.classes.selection.selected_node import SelectedNode
 from app.classes.tokens.node_type import NodeType
 from app.classes.frames.frame import Frame
 from app.classes.frames.all_frames import *
-
-from app.classes.spec.sym_point import PointVDE
 
 class DateNode(SelectedNode):
     node_type = NodeType.DATE
@@ -16,7 +14,3 @@ class DateNode(SelectedNode):
             new_frame.date_text = self.value
         
         return new_frame
-
-
-    def to_obj(self, basket: Basket):
-        return PointVDE(self.value)

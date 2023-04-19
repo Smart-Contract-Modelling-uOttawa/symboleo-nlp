@@ -4,7 +4,7 @@ from app.classes.spec.power_function import PowerFunction
 from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 # XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
 
 class NormType(Enum):
@@ -14,6 +14,9 @@ class NormType(Enum):
 
 
 class INorm:
+    id: str
+    norm_type: NormType # Strongly type this
+
     def update(self, str_component: str, predicate: PredicateFunction):
         raise NotImplementedError()
     def get_default_event(self, str_component:str):
@@ -149,7 +152,31 @@ class Obligation(Norm):
             antecedent, 
             consequent, 
             NormType.Obligation)
+        
     
+    def to_sym(self):
+        return super().to_sym()
+
+
+class SurvivingObligation(Norm):
+    def __init__(
+        self, 
+        id: str, 
+        trigger: Proposition, 
+        debtor: str, 
+        creditor: str, 
+        antecedent: Proposition, 
+        consequent: Proposition
+    ):
+        super().__init__(
+            id, 
+            trigger, 
+            debtor, 
+            creditor, 
+            antecedent, 
+            consequent, 
+            NormType.SurvivingObligation)
+         
     def to_sym(self):
         return super().to_sym()
 

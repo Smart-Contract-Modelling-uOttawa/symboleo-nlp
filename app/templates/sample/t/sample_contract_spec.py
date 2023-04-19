@@ -1,5 +1,5 @@
 from app.classes.spec.symboleo_contract import ContractSpec
-from app.classes.spec.norm import Obligation, Power
+from app.classes.spec.norm import Obligation, Power, SurvivingObligation
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
@@ -122,7 +122,7 @@ def get_contract_spec():
         },
 
         surviving_obligations = {
-            'so1': Obligation(
+            'so1': SurvivingObligation(
                 'so1',
                 None,
                 SELLER,
@@ -133,7 +133,7 @@ def get_contract_spec():
                     negation = True
                 )
             ),
-            'so2': Obligation(
+            'so2': SurvivingObligation(
                 'so2',
                 None,
                 BUYER,

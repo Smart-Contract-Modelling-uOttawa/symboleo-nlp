@@ -1,16 +1,17 @@
 from app.classes.frames.frame import Frame
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
+from app.classes.other.frame_event import FrameEvent
 
+# TODO: Will likely be replaced by "Unless"
 class UntilEventFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.UNTIL, NodeType.EVENT]
     op_code = ParmOpCode.ADD_NORM
-    subject: str = ''
-    verb: str = ''
-
+    frame_event = FrameEvent()
+    
     def is_complete(self):
-        return self.subject != '' and self.verb != '' 
+        return self.frame_event.is_complete()
 
     def to_text(self):
-        # Will add NLP in here to ensure verb tense, etc
-        return f'until {self.subject} has been {self.verb}'
+        event_nl = f'{self.frame_event.to_text()}'
+        return f'until {event_nl}'

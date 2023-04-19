@@ -9,11 +9,14 @@ class AbstractNode: # pragma: no cover
     sn_type: Type[SelectedNode] = SelectedNode # The type that it will convert to when selected
     node_type: NodeType = None
     prompt: str = None
-    children: List[AbstractNode] = []
+    children: List[Type[SelectedNode]] = []
+    needs_value = False
+    init_value = ''
+    # options??
     
-    def __init__(self, id: str, children: List[AbstractNode] = []):
-        self.id = id
-        self.children = children
+    # def __init__(self, id: str = '', children: List[AbstractNode] = []):
+    #     self.id = id
+    #     self.children = children
     
     def get_value(self):
         raise NotImplementedError()

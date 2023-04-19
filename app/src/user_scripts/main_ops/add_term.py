@@ -1,7 +1,7 @@
 from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 from app.src.operations.add_power.termination_updater import TerminationOperation
 
 # Adding a new termination power

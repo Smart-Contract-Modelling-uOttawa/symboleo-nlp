@@ -58,9 +58,13 @@ class Asset(DomainObject):
     def __init__(self, name: str, props: List[DomainProp], base_type: Asset = None):
         super().__init__('isAn Asset', name, props, base_type)
     
+# event_text may need to be a more complex type (e.g. to allow for conjugation)
+## May need this on declaration as well. Or maybe ONLY on declaration...
+## Or perhaps the event_text here acts as a template...
 class DomainEvent(DomainObject):
-    def __init__(self, name: str, props: List[DomainProp]):
+    def __init__(self, name: str, props: List[DomainProp], event_text: str = ''):
         super().__init__('isAn Event', name, props)
+        self.event_text = event_text
     
     def to_obj(self):
         return VariableEvent(self.name)

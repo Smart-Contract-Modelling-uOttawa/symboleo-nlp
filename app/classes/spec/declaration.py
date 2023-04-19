@@ -17,12 +17,14 @@ class IDeclaration:
         raise NotImplementedError()
 
 # May eventually need to subtype this: Event, Role, Asset...
+# nl_text - may need a more complex object for conjugation...
 class Declaration(IDeclaration):
-    def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp]):
+    def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp], nl_text: str = ''):
         self.name = name
         self.type = type
         self.base_type = base_type # events, roles, assets 
         self.props = props
+        self.nl_text = nl_text
     
     def to_obj(self):
         if self.base_type == 'events':

@@ -1,11 +1,12 @@
+from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 
 from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PowerFunction, PFContract, PFContractName
+from app.classes.selection.selected_node import SelectedNode
 
-from app.src.grammar.selection import Selection
-from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner, ParameterConfig, ParameterOperation
+from app.src.operations.refine_parameter2.parameter_refiner import ParameterRefiner, ParameterOperation
 
 
 class TerminationOperation:
@@ -14,12 +15,12 @@ class TerminationOperation:
         norm_id: str,
         debtor: str,
         creditor: str,
-        selection: Selection
+        node_list: List[SelectedNode],
         ):
         self.norm_id = norm_id
         self.debtor = debtor 
         self.creditor = creditor
-        self.selection = selection
+        self.node_list = node_list
         
 class IAddPower:
     def update(self, contract: SymboleoContract, operation: TerminationOperation):
@@ -42,6 +43,5 @@ class TerminationUpdater(IAddPower):
         contract.add_norm(new_power, operation.norm_id, power_string)
 
         # Add the condition
-        parm_config = ParameterConfig('powers', operation.norm_id, 'trigger')
-        parm_op = ParameterOperation(parm_config, operation.selection, operation.norm_id)
+        parm_op = ParameterOperation(operation.norm_id, operation.node_list)
         self.__parm_refiner.refine(contract, parm_op)

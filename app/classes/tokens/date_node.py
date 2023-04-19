@@ -1,13 +1,10 @@
-from typing import List
 from app.classes.tokens.abstract_node import AbstractNode
 from app.classes.tokens.node_type import NodeType
 
-class DateNode(AbstractNode):
-    def __init__(self, id: str, children: List[AbstractNode] = []):
-        super().__init__(id, children)
-        self.prompt = 'Enter a date'
-        self.node_type = NodeType.DATE
+from app.classes.selection.date_node import DateNode as Target
 
-    def get_value(self):
-        result = input('Enter a date (yyyy/mm/dd): ')
-        return result
+class DateNode(AbstractNode):
+    node_type = NodeType.DATE
+    sn_type = Target
+    prompt = 'Enter a date'
+    needs_value = True

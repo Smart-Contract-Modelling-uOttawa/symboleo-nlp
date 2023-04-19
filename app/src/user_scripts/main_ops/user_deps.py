@@ -1,13 +1,11 @@
 # Common dependencies - move to a script
-from app.src.grammar.grammar_generator import GrammarGenerator
-from app.src.grammar.grammar_config import GrammarGeneratorConfig
+from app.src.grammar.grammar_graph import GrammarGraph
+from app.src.grammar.value_getter import ValueGetter
 from app.src.grammar.grammar_selector import GrammarSelector
-from app.src.grammar.domain_timepoint_extractor import DomainTimepointExtractor
 from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
 
-from app.src.operations.refine_parameter.operation_runner import RefinementOperationRunner
-from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
-from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
+from app.src.operations.refine_parameter2.parameter_refiner_constructor import ParameterRefinerConstructor
+from app.src.operations.refine_parameter2.parameter_refiner import ParameterRefiner
 from app.src.operations.add_power.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater
 
@@ -15,13 +13,11 @@ from app.src.operations.domain_updater import DomainUpdater
 class UserDependencies:
     def __init__(
             self,
-            grammar_generator: GrammarGenerator,
             grammar_selector: GrammarSelector,
             parm_refiner: ParameterRefiner,
             tp_adder: TerminationUpdater,
             domain_updater: DomainUpdater,
     ):
-        self.gg = grammar_generator
         self.gs = grammar_selector
         self.parm_refiner = parm_refiner
         self.tp_adder = tp_adder
@@ -29,18 +25,19 @@ class UserDependencies:
        
 
 def get_dependencies() -> UserDependencies:
-    domain_timepoint_extractor = DomainTimepointExtractor()
-    gg = GrammarGenerator(domain_timepoint_extractor)
-
+    # Not in use.. Will need this somewhere...
+    #domain_timepoint_extractor = DomainTimepointExtractor()
+    
+    grammar_graph = GrammarGraph()
+    value_getter = ValueGetter()
     inner_selector = ManualGrammarNodeSelector()
-    gs = GrammarSelector(inner_selector)
 
-    frame_checker = FrameCheckerConstructor.construct()
-    refinement_runner = RefinementOperationRunner()
-    parm_refiner = ParameterRefiner(frame_checker, refinement_runner)
+    gs = GrammarSelector(grammar_graph, value_getter, inner_selector)
+
+    parm_refiner = ParameterRefinerConstructor.construct()
     tp_adder = TerminationUpdater(parm_refiner)
     domain_updater = DomainUpdater()
 
-    return UserDependencies(gg, gs, parm_refiner, tp_adder, domain_updater)
+    return UserDependencies(gs, parm_refiner, tp_adder, domain_updater)
 
 

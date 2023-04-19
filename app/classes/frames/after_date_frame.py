@@ -1,10 +1,10 @@
 from app.classes.frames.frame import Frame
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 
 class AfterDateFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.DATE]
-    op_code = ParmOpCode.REFINE_PREDICATE
+    op_code = ParmOpCode.REFINE_PREDICATE # TODO: Can hopefully remove the opcode
     date_text: str = ''
 
     def is_complete(self):

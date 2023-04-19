@@ -6,7 +6,7 @@ from app.templates.template_getter import get_template
 from app.src.grammar.grammar_generator import GrammarGenerator
 from app.src.grammar.grammar_config import GrammarGeneratorConfig
 from app.src.grammar.domain_timepoint_extractor import IExtractDomainTimePoints
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 
 # I can write some more tests that parse through this in much more detail, but not a priority
 # In that case, I may also just build my own test contract and verify the proper values

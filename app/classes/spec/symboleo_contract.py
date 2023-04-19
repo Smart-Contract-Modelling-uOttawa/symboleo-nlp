@@ -2,13 +2,15 @@ from app.classes.spec._sd import _sd
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
-from app.classes.spec.norm import Obligation
+from app.classes.spec.norm import INorm, Obligation
 from app.classes.spec.proposition import PNegAtom, PAnd
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
-from app.classes.spec.predicate_function import PredicateFunction
+from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
+
+from app.classes.other.contract_update_obj import ContractUpdateObj
 
 from app.classes.spec.norm import Norm
 
@@ -27,6 +29,13 @@ class ISymboleoContract:
         raise NotImplementedError()
     def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         raise NotImplementedError()
+    
+    def get_norm_by_key(self, key:str):
+        raise NotImplementedError()
+    def run_updates(self, update: ContractUpdateObj):
+        raise NotImplementedError()
+    def update_nl(self, key, nl):
+        raise NotImplementedError()
         
 
 
@@ -41,6 +50,43 @@ class SymboleoContract(ISymboleoContract):
         self.domain_model = domain_model
         self.contract_spec = contract_spec
         self.nl_template = nl_template
+
+    def _get_type_key(self, type_str):
+        d = {
+            'Obligation': 'obligations',
+            'Power': 'powers',
+            'SO': 'surviving_obligations'
+        }
+
+        return d[type_str]
+    
+
+    def get_norm_by_key(self, key:str) -> INorm:
+        mapping = self.nl_template.template_dict[key].mapping[0]
+        norm_type, norm_id = mapping.split('.')
+        result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
+        return result
+    
+    def run_updates(self, update: ContractUpdateObj):
+        for x in update.domain_objects:
+            self.add_dm_object(x) # Might make this internal
+
+        for x in update.declarations:
+            self.add_declaration(x) # Might make this internal
+
+        for x in update.norms:
+            self._update_norm(x)
+
+    def _update_norm(self, norm: INorm):
+        type_key = self._get_type_key(norm.norm_type.value)
+        self.contract_spec.__dict__[type_key][norm.id] = norm
+
+    def update_nl(self, key, nl): # Might include component check...
+        t = self.nl_template.template_dict
+        old_str = t[key].str_val
+        new_nl = old_str + ' ' + nl
+        t[key].str_val =  new_nl
+
 
     # Print the NL template strings and their corresponding symboleo norms
     def print_all_strings(self):
@@ -111,8 +157,10 @@ class SymboleoContract(ISymboleoContract):
         obj_type = dm_dict[type(dmo)]
 
         # Check to make sure it doesnt already exist...
+        # If it exists, then maybe we just replace it ???
         if dmo.name not in self.domain_model.__dict__[obj_type]:
             self.domain_model.__dict__[obj_type][dmo.name] = dmo
+
 
     # Need domain prop updater...Might need to treat this differently
     def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):

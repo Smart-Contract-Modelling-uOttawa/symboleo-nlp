@@ -1,12 +1,17 @@
 from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.contract_spec import ContractSpec
+from app.classes.spec.declaration import Declaration
 from app.classes.tokens.all_nodes import *
 from app.classes.spec.sym_event import ContractEventName, ObligationEventName, PowerEventName
 
 from app.src.grammar.domain_timepoint_extractor import IExtractDomainTimePoints
 from app.src.grammar.grammar_config import GrammarGeneratorConfig, ParmOpCode
 
+
+# Will probably remove this. 
+## Children will be generated upon selection... Since it can be infinite...
 class IGenerateGrammar:
     def generate(self, contract: SymboleoContract) -> RootNode:
         raise NotImplementedError()
@@ -25,60 +30,23 @@ class GrammarGenerator(IGenerateGrammar):
 
     # Pattern: Generator func, create the nodes, add to the node_dict
     def generate(self, contract: SymboleoContract, config: GrammarGeneratorConfig) -> RootNode:
-        domain_model = contract.domain_model
-        contract_spec = contract.contract_spec
-
-        # Event names
-        #domain_event_names = [x for x in domain_model.events] 
-        domain_event_names = self._get_domain_event_names(contract_spec)
-
-        obligation_names = [x for x in contract_spec.obligations] # TODO: Need surviving obligtions as well...
-        power_names = [x for x in contract_spec.powers]
 
         # Timepoints
         ## TODO: Actually, should be getting this from the declarations; not the domain model...
         decl_event_timepoints = self.__domain_timepoint_extractor.extract(contract)
 
-        ## CONTRACT EVENTS ##
-        # Contract Event Actions
-        contract_event_action_nodes = [
-            ContractEventActionNode(f'ContractEvent.event_name.{x}', [], x) 
-            for x in self.__contract_actions
-        ]
+        ## NEW EVENT ###
+        new_event_node = NewEventNode('new_event', [])
 
-        # ContractEvent
-        contract_event_node = ContractEventNode('ContractEvent', contract_event_action_nodes)
+        ## STANDARD EVENT ##
+        standard_event_node = StandardEventNode('StandardEvent', [])
 
-        ## DOMAIN EVENTS ##
-        ## Domain Event Action
-        domain_event_name_nodes = [
-            DomainEventNameNode(f'DomainEvent.event_name.{x}', [], x)
-            for x in domain_event_names
-        ]
-
-        # Domain Event
-        domain_event_node = DomainEventNode('DomainEvent', domain_event_name_nodes)
-
-        ## OBLIGATION EVENTS ##
-        # Obligation Event Action
-        obligation_action_nodes = [
-            ObligationEventActionNode(f'ObligationEvent.event_name.{x}', [], x)
-            for x in self.__obligation_actions
-        ]
-
-        # Obligation Variable Name
-        obligation_name_nodes = [
-            ObligationEventVarNode(f'ObligationEvent.ob_var.{x}', obligation_action_nodes, x)
-            for x in obligation_names
-        ]
-
-        # ObligationEvent
-        obligation_event_node = ObligationEventNode('ObligationEvent', obligation_name_nodes)
-        
         ## EVENT ##
+        ### Would like to join the contract/ob/power events - and maybe even the standard ones as well
+        ### Then the "domain" event just becomes a custom one - results in a new domain object...
         event_node = EventNode(
             'Event', 
-            [obligation_event_node, contract_event_node, domain_event_node]
+            [standard_event_node, new_event_node]
         )
 
         # timepoint_node 
@@ -107,11 +75,6 @@ class GrammarGenerator(IGenerateGrammar):
         ## UNTIL ##
         until_node = UntilNode('Until', [event_node])
 
-        ## USING ##
-        instrument_node = InstrumentNode('Instrument')
-
-        using_node = UsingNode('Using', [instrument_node])
-
         ## ROOT ##
         root_children = []
         if ParmOpCode.ADD_TRIGGER in config.op_codes:
@@ -124,13 +87,12 @@ class GrammarGenerator(IGenerateGrammar):
         
         if ParmOpCode.ADD_NORM in config.op_codes:
             root_children.append(until_node)
-        
-        if ParmOpCode.ADD_DM_PROP in config.op_codes:
-            root_children.append(using_node)
 
         root_node = RootNode('Root', root_children)
         
         return root_node
 
-    def _get_domain_event_names(self, contract_spec: ContractSpec) -> List[str]:
-        return [x.name for x in list(contract_spec.declarations.values()) if x.base_type == 'events']
+
+    def _get_domain_events(self, contract_spec: ContractSpec) -> List[Declaration]:
+        result =  [x for x in list(contract_spec.declarations.values()) if x.base_type == 'events'] 
+        return result

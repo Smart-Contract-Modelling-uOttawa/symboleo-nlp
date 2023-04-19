@@ -19,7 +19,7 @@ class GrammarSelectorTests(unittest.TestCase):
         fake_grammar = TestGrammar.get_grammar()
         result = self.sut.select(fake_grammar)
 
-        self.assertEqual(result.to_obj(None), 'dummy')
+        self.assertEqual(result.get_update_obj(), 'dummy')
         self.assertEqual(self.fake_node_selector.select.call_count, 2)
 
 

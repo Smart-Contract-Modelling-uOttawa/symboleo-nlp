@@ -1,17 +1,17 @@
 from app.classes.frames.frame import Frame
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
+from app.classes.other.frame_event import FrameEvent
 
 class WithinTimespanEventFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.WITHIN, NodeType.TIMESPAN, NodeType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
     timespan: str = ''
-    subject: str = ''
-    verb: str = ''
+    frame_event = FrameEvent()
 
     def is_complete(self):
-        return self.subject != '' and self.verb != '' and self.timespan != ''
+        return self.frame_event.is_complete() and self.timespan != ''
 
     def to_text(self):
-        return f'within {self.timespan} of {self.subject} being {self.verb}'
+        return f'within {self.timespan} of {self.frame_event.to_text()}'
 

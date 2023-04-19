@@ -1,12 +1,15 @@
-from typing import List
 from app.classes.tokens.abstract_node import AbstractNode
 from app.classes.tokens.node_type import NodeType
 
-class RootNode(AbstractNode):
-    def __init__(self, id: str, children: List[AbstractNode] = []):
-        super().__init__(id, children)
-        self.prompt = None
-        self.node_type = NodeType.ROOT
+from app.classes.tokens.if_node import IfNode
+from app.classes.tokens.before_node import BeforeNode
+from app.classes.tokens.until_node import UntilNode
+from app.classes.tokens.within_node import WithinNode
+from app.classes.tokens.after_node import AfterNode
 
-    def get_value(self):
-        return None
+from app.classes.selection.root_node import RootNode as Target
+
+class RootNode(AbstractNode):
+    node_type = NodeType.ROOT
+    sn_type = Target
+    children = [IfNode, BeforeNode, UntilNode, WithinNode, AfterNode]

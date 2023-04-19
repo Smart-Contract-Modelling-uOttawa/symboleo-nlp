@@ -2,11 +2,11 @@ from __future__ import annotations
 from typing import List
 import copy
 from app.classes.tokens.node_type import NodeType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 
 class Frame: # pragma: no cover
     pattern: List[NodeType]
-    op_code: ParmOpCode
+    op_code: ParmOpCode # TODO: Want to remove this
 
     def to_text(self) -> str:
         raise NotImplementedError()

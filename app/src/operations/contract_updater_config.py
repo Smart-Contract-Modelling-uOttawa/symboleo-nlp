@@ -1,7 +1,7 @@
+from typing import List
 from app.src.operations.op_code import OpCode
 
-from app.src.operations.refine_parameter.parm_configs import ParameterConfig
-from app.src.grammar.selection import Selection
+from app.classes.selection.selected_node import SelectedNode
 
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
@@ -12,8 +12,9 @@ class UpdateConfig:
             op_code: OpCode, 
 
             # Parm update
-            selection: Selection = None, 
-            parm_config: ParameterConfig = None,
+            node_list: List[SelectedNode] = None,
+            #selection: Selection = None, 
+            #parm_config: ParameterConfig = None,
             parm_key: str = None,
             
             # DM Update
@@ -27,8 +28,9 @@ class UpdateConfig:
             creditor: str = ''
         ):
         self.op_code = op_code
-        self.selection: Selection = selection
-        self.parm_config: ParameterConfig = parm_config
+        self.node_list = node_list
+        #self.selection = selection
+        #self.parm_config: ParameterConfig = parm_config
         self.parm_key = parm_key
         
         self.dm_obj_type = dm_obj_type

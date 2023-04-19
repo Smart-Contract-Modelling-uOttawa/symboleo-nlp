@@ -14,15 +14,16 @@ class FrameBuilderTests(unittest.TestCase):
         self.sut = FrameBuilder()
     
 
-    def test_frame_Builder(self):
+    def test_frame_builder(self):
         node_list: List[SelectedNode] = [
-            BeforeNode('a', 0, 'xxx'),
-            DateNode('b', 1, '2020/02/22')    
+            BeforeNode(),
+            DateNode(value='2020/02/22')    
         ]
         result = self.sut.build(BeforeDateFrame(), node_list)
 
         self.assertTrue(result.is_complete())
         self.assertEqual(result.to_text(), 'before 2020/02/22')
+
 
 
 

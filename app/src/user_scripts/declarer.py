@@ -9,7 +9,6 @@ class ManualDeclarer:
     def declare_input(contract: SymboleoContract, domain_obj: DomainObject, base_type: str) -> Declaration:
         snake = CaseConverter.to_snake(domain_obj.name)
         new_name = 'evt_' + snake
-        print('SNAKE', new_name)
 
         props: List[DeclarationProp] = []
 
