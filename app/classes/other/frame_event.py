@@ -3,6 +3,9 @@ from typing import List
 from enum import Enum
 from app.classes.other.subject import Subject
 from app.classes.other.verb import Verb, VerbType
+from app.classes.other.dobject import DObject
+from app.classes.other.predicate import Predicate
+from app.classes.other.adverb import Adverb
 from app.classes.other.prep_phrase import PrepPhrase
 
 class ConjType(Enum):
@@ -20,12 +23,12 @@ class FrameEvent:
     # Add types to all of these
     subj: Subject = None
     verb: Verb = None
-    adverb: str = None
-    dobj: str = None
-    predicate: str = None
+    adverb: Adverb = None
+    dobj: DObject = None
+    predicate: Predicate = None
     pps: List[PrepPhrase] = None
 
-    def __init__(self, subj: Subject = None, verb: Verb = None, adverb: str = None, dobj: str = None, predicate: str = None, pps:List[PrepPhrase] = None):
+    def __init__(self, subj: Subject = None, verb: Verb = None, adverb: Adverb = None, dobj: DObject = None, predicate: Predicate = None, pps:List[PrepPhrase] = None):
         self.subj = subj
         self.verb = verb
         self.adverb = adverb
@@ -54,18 +57,21 @@ class FrameEvent:
 
         if VerbType.TRANSITIVE in self.verb.verb_types:
             if self.dobj:
-                result = f'{subj} {verb} {self.dobj}'
+                dobj = self.dobj.to_text()
+                result = f'{subj} {verb} {dobj}'
         
         if VerbType.INTRANSITIVE in self.verb.verb_types:
             result = f'{subj} {verb}'
         
         if VerbType.LINKING in self.verb.verb_types:
             if self.predicate:
-                result = f'{subj} {verb} {self.predicate}'
+                pred = self.predicate.to_text()
+                result = f'{subj} {verb} {pred}'
         
         # Add the adverb
         if self.adverb:
-            result = f'{result} {self.adverb}'
+            adverb = self.adverb.to_text()
+            result = f'{result} {adverb}'
         
         # Add prepositional phrases
         if self.pps:
@@ -96,8 +102,8 @@ class FrameEvent:
     def get_event_name(self): #Pascal case
         result = f'{self.verb.lemma.title()}' # PascalCase: VerbAdverb ?
 
-        adverb: str = self.adverb
+        adverb = self.adverb
         if adverb:
-            result += f'{adverb.title()}'\
+            result += f'{adverb.adverb_str.title()}'\
         
         return result

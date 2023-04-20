@@ -26,11 +26,14 @@ class FullStackTests(unittest.TestCase):
             result = contract.to_sym()
             result_nl = contract.nl_template.stringify()
             
-            with open('tests/sample_target.txt', 'w') as f:
+            with open(f'tests/sample_target_{k}.txt', 'w') as f:
                 f.write(result)
 
-            with open('tests/sample_target_nl.txt', 'w') as f:
-                f.write(result_nl)
+
+            nl_summary = f'==ACTUAL==\n{result_nl}\n\n==EXPECTED==\n{expected_nl}\n'
+
+            with open(f'tests/sample_target_nl_{k}.txt', 'w') as f:
+                f.write(nl_summary)
 
             # Verify Symboleo
             self.assertEqual(result, expected_sym)

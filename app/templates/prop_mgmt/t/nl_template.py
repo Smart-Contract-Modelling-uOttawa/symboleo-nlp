@@ -4,44 +4,44 @@ nl_template = NLTemplate(
     template_dict = {
         # Could break this up...
         'advertise': TemplateObj(
-            'The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s).',
+            'The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s)',
             ['obligations.ob_advertise']
         ),
         'reimburse': TemplateObj(
-            'The Owner shall reimburse the Manager for all expenses related to such Advertising. ',
+            'The Owner shall reimburse the Manager for all expenses related to such Advertising',
             ['obligations.ob_reimburse']
         ),
         # TODO: "in advance" denotes something temporal...
         'notify_expense': TemplateObj(
-            'The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising.',
+            'The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising',
             ['obligations.ob_notify_expense']
         ),
         'collect_rent': TemplateObj(
-            'The Manager shall be responsible for all collection of Rent earned on the Property.',
+            'The Manager shall be responsible for all collection of Rent earned on the Property',
             ['obligations.ob_collect_rent']
         ),
         'disbursement': TemplateObj(
-            'The Manager shall then be responsible for disbursement of those proceeds to the Owner.',
+            'The Manager shall then be responsible for disbursement of those proceeds to the Owner',
             ['obligations.ob_disbursement']
         ),
         'accounting': TemplateObj(
-            'The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements.',
+            'The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements',
             ['obligations.ob_accounting']
         ),
         'repair': TemplateObj(
-            'The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property. ',
+            'The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property',
             ['obligations.ob_repair']
         ),
         'reimburse_maintenance': TemplateObj(
-            'The Owner shall reimburse the Manager for the cost of all such maintenance and repairs. ',
+            'The Owner shall reimburse the Manager for the cost of all such maintenance and repairs',
             ['obligations.ob_reimburse_maintenance']
         ),
         'repair_invoice': TemplateObj(
-            'The Manager shall provide the Owner invoices of the actual costs.',
+            'The Manager shall provide the Owner invoices of the actual costs',
             ['obligations.ob_repair_invoice']
         ),
         'legal_proceedings': TemplateObj(
-            'The Manager shall handle all legal proceedings.',
+            'The Manager shall handle all such legal proceedings',
             ['obligations.ob_legal_proceedings']
         ),
         # 'termination_notice': TemplateObj(

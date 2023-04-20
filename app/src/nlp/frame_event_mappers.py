@@ -15,9 +15,9 @@ class DomainEventMapper(IMapEventToDomain):
         
         domain_event_name = f'{verb.verb_str.title()}' # PascalCase: VerbAdverb ?
 
-        adverb: str = frame_event.adverb
+        adverb = frame_event.adverb
         if adverb:
-            domain_event_name += f'{adverb.title()}'
+            domain_event_name += f'{adverb.adverb_str.title()}'
 
         # This is the interesting part...
         props: List[DomainProp] = [
@@ -48,7 +48,7 @@ class DeclarationEventMapper(IMapEventToDeclaration):
         ]
 
         if fe.dobj is not None:
-            props.append(DeclarationProp('dobj', fe.dobj, 'String'))
+            props.append(DeclarationProp('dobj', fe.dobj.subj_str, 'String'))
         
         if frame_event.pps:
             for i, x in enumerate(frame_event.pps):

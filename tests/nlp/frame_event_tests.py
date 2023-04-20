@@ -40,8 +40,8 @@ test_set = [
     (
         FrameEvent(
             subj = Subject('legal proceedings', 'proceedings', True, adjs = ['legal']),
-            verb = Verb('become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming')),
-            predicate='necessary'
+            verb = Verb('become', 'become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming')),
+            predicate=Predicate('necessary')
         ),
         'legal proceedings become necessary',
         'legal proceedings becoming necessary'
@@ -49,9 +49,9 @@ test_set = [
     (
         FrameEvent(
             subj = Subject('seller', 'seller', False),
-            verb = Verb('pay', [VerbType.TRANSITIVE], VerbConjugations('pay', 'pays', 'paid', 'paying')),
-            dobj = '$100',
-            pps = [PrepPhrase('to the buyer')]
+            verb = Verb('pays', 'pay', [VerbType.TRANSITIVE], VerbConjugations('pay', 'pays', 'paid', 'paying')),
+            dobj = DObject('$100', '$100', False),
+            pps = [PrepPhrase('to the buyer', 'to', 'the buyer')]
         ),
         'seller pays $100 to the buyer',
         'seller paying $100 to the buyer'
@@ -59,10 +59,10 @@ test_set = [
     (
         FrameEvent(
             subj = Subject('Bob', 'Bob', False),
-            verb = Verb('eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating')),
-            dobj = 'Apple pie',
-            adverb = 'noisily',
-            pps = [PrepPhrase('with Mary')]
+            verb = Verb('eats', 'eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating')),
+            dobj = DObject('Apple pie', 'pie', False, None, ['Apple']),
+            adverb = Adverb('noisily'),
+            pps = [PrepPhrase('with Mary', 'with', 'Mary')]
         ),
         'Bob eats Apple pie noisily with Mary',
         'Bob eating Apple pie noisily with Mary'
@@ -70,11 +70,11 @@ test_set = [
     (
         FrameEvent(
             subj = Subject('The renter', 'renter', False),
-            verb = Verb('occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying')),
-            dobj = 'the property'
+            verb = Verb('occupies', 'occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying')),
+            dobj = DObject('the property', 'property', False, 'the')
         ),
-        'renter occupies the property',
-        'renter occupying the property'
+        'renter occupies property',
+        'renter occupying property'
     ),
 
 ]
