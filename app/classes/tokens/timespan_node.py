@@ -7,6 +7,7 @@ from app.classes.tokens.event_node import EventNode
 from app.classes.selection.timespan_node import TimespanNode as Target
 
 class TimespanNode(AbstractNode):
+    node_type = NodeType.TIMESPAN
     sn_type = Target
     prompt = 'Enter a timespan'
     needs_value = True

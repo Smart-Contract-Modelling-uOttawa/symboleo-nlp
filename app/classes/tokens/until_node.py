@@ -7,6 +7,7 @@ from app.classes.tokens.event_node import EventNode
 from app.classes.selection.until_node import UntilNode as Target
 
 class UntilNode(AbstractNode):
+    node_type = NodeType.UNTIL
     sn_type = Target
     prompt = 'Until'
     init_value = 'until'

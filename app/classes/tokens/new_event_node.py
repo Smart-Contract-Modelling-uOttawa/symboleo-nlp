@@ -11,27 +11,27 @@ from app.classes.selection.new_event_nodes import SubjectNode as SubjectTarget, 
 
 
 class PrepNode(AbstractNode):
-    #node_type = NodeType.PREPOSITION
+    node_type = NodeType.PREP_PHRASE
     sn_type = PrepTarget
     prompt = 'Preposition'
     needs_value = True
 
 class AdverbNode(AbstractNode):
-    #node_type = NodeType.ADVERB
+    node_type = NodeType.ADVERB
     sn_type = AdverbTarget
     prompt = 'Adverb'
     children = [PrepNode]
     needs_value = True
 
 class PredicateNode(AbstractNode):
-    #node_type = NodeType.PREDICATE
+    node_type = NodeType.PREDICATE
     sn_type = PredicateTarget
     prompt = 'Predicate'
     children = [AdverbNode]
     needs_value = True
 
 class DobjNode(AbstractNode):
-    #node_type = NodeType.DOBJ
+    node_type = NodeType.DOBJ
     sn_type = DobjTarget
     prompt = 'Direct Object'
     children = [AdverbNode]

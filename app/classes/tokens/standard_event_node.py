@@ -11,6 +11,7 @@ from app.classes.selection.standard_event_node import StandardEventNode as Targe
  ## The point is that they have predictable/pre-determined NL structures
 
 class StandardEventNode(AbstractNode):
+    node_type = NodeType.STANDARD_EVENT
     sn_type = Target
     prompt = 'Standard Contract Event'
     children = [ContractSubjectNode]

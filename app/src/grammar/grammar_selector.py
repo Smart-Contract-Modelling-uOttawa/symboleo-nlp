@@ -4,6 +4,7 @@ from app.classes.selection.selected_node import SelectedNode
 from app.classes.tokens.node_type import NodeType
 from app.classes.tokens.abstract_node import AbstractNode
 
+from app.src.operations.input_converter import IConvertInput
 from app.classes.tokens.root_node import RootNode
 
 from app.src.grammar.grammar_graph import IGrammarGraph
@@ -27,10 +28,12 @@ class GrammarSelector(ISelectGrammar):
         self, 
         graph: IGrammarGraph,
         value_getter: IGetValues,
+        input_converter: IConvertInput,
         inner_selector: ISelectGrammarNodes
     ):
         self.__graph = graph
         self.__value_getter = value_getter
+        self.__input_converter = input_converter
         self.__inner_selector = inner_selector
 
     def select(self, contract: ISymboleoContract) -> List[SelectedNode]:
@@ -48,14 +51,7 @@ class GrammarSelector(ISelectGrammar):
             curr = self.__inner_selector.select(next_set)
             
             value = self.__value_getter.get(curr)
-
-            # This is where we could potentially add some validation
-            ## would need a Dict[NodeType, IValidateInput]. 
-            ## e.g. could have a verb validator validate and clean the verb input
-            ## Then we can set the Selected Node with the value accordingly
-            ## However, if we set it with a Verb object, then the tests will be thrown off
-            
-            next_result = curr.sn_type(value=value)
+            next_result = self.__input_converter.convert([value])[0]
             
             results.append(next_result)
             
