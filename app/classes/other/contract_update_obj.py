@@ -42,6 +42,7 @@ class ContractUpdateObj:
 
 
 # TODO: Want to strongly type the child_obj... but probably cant.
+# Can potentially add the frame to this as well
 class UpdatePackage:
     def __init__(self, update_obj: ContractUpdateObj = None, new_value: any = None):
         self.update_obj = update_obj

@@ -1,13 +1,12 @@
-from app.classes.frames.frame import Frame
+from app.classes.frames.frame import Frame, EventFrame
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 
 from app.classes.other.frame_event import FrameEvent
 
-class BeforeEventFrame(Frame):
+class BeforeEventFrame(EventFrame):
     pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
-    frame_event: FrameEvent = FrameEvent()
     
     def is_complete(self):
         return self.frame_event.is_complete()

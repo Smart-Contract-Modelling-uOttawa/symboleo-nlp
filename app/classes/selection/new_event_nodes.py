@@ -1,61 +1,24 @@
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.frames.all_frames import *
-from app.classes.other.frame_event import FrameEvent
+from app.classes.tokens.node_type import NodeType
 
-class PrepNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.pps.append(self.value)
-        
-        return new_frame
+from app.classes.other.verb import Verb
+from app.classes.other.subject import Subject
+from app.classes.other.prep_phrase import PrepPhrase
 
+class PrepNode(SelectedNode[PrepPhrase]):
+    node_type = NodeType.PREP_PHRASE
 
-class AdverbNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.adverb = self.value
-        
-        return new_frame
+class AdverbNode(SelectedNode[str]):
+    node_type = NodeType.ADVERB
     
-
-class PredicateNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.predicate = self.value
-        
-        return new_frame
+class PredicateNode(SelectedNode[str]):
+    node_type = NodeType.PREDICATE
     
+class DobjNode(SelectedNode[str]):
+    node_type = NodeType.DOBJ
 
-class DobjNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.dobj = self.value
-        
-        return new_frame
+class VerbNode(SelectedNode[Verb]):
+    node_type = NodeType.VERB
 
-
-class VerbNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.verb = self.value
-        
-        return new_frame
-
-class SubjectNode(SelectedNode):
-    def build_frame(self, frame: Frame) -> Frame:
-        new_frame = Frame.copy(frame)
-        if is_event_frame(new_frame):
-            fe: FrameEvent = new_frame.frame_event 
-            fe.subj = self.value
-        
-        return new_frame
+class SubjectNode(SelectedNode[Subject]):
+    node_type = NodeType.SUBJECT

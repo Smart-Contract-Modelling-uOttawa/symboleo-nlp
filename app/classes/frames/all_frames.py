@@ -9,17 +9,7 @@ from app.classes.frames.if_event_frame import IfEventFrame
 from app.classes.frames.until_event_frame import UntilEventFrame
 from app.classes.frames.before_timepoint_frame import BeforeTimePointFrame
 
-# TODO: Make these helper functions
-
-# Maybe a helper...
-def is_event_frame(frame: Frame) -> bool:
-    return isinstance(frame, BeforeEventFrame) or \
-        isinstance(frame, AfterEventFrame) or \
-        isinstance(frame, WithinTimespanEventFrame) or \
-        isinstance(frame, IfEventFrame) or \
-        isinstance(frame, UntilEventFrame)
-
-
+# Kill... its in helpers...
 def get_all_frames() -> List[Frame]:
     return [
         BeforeEventFrame(),

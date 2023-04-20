@@ -4,7 +4,7 @@ from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
 class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = ContractUpdaterBuilder.build()
+        self.updater = ContractUpdaterBuilder.build()
 
     def test_full_stack(self):
         target_keys = [
@@ -19,9 +19,9 @@ class FullStackTests(unittest.TestCase):
             expected_sym = expected_contract.to_sym()
             expected_nl = expected_contract.nl_template.stringify()
 
-            for i,test_config in enumerate(all_ops):
+            for i, test_config in enumerate(all_ops):
                 print(i)
-                self.sut.update(contract, test_config.op_code, test_config)
+                self.updater.update(contract, test_config.op_code, test_config)
 
             result = contract.to_sym()
             result_nl = contract.nl_template.stringify()

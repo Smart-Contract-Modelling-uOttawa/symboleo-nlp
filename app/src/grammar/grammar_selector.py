@@ -38,6 +38,9 @@ class GrammarSelector(ISelectGrammar):
         results: List[SelectedNode] = [curr.sn_type()]
 
         while (True):
+            # Getting the children will be a much more complex function if we want it done properly
+            # For example, depending on the verb type, we may only want to show one type of child
+            # Would require some validation on the input. Doable.
             next_set = self.__graph.get_children(curr) # May pass in contract
             if len(next_set) == 0: 
                 break
@@ -45,6 +48,12 @@ class GrammarSelector(ISelectGrammar):
             curr = self.__inner_selector.select(next_set)
             
             value = self.__value_getter.get(curr)
+
+            # This is where we could potentially add some validation
+            ## would need a Dict[NodeType, IValidateInput]. 
+            ## e.g. could have a verb validator validate and clean the verb input
+            ## Then we can set the Selected Node with the value accordingly
+            ## However, if we set it with a Verb object, then the tests will be thrown off
             
             next_result = curr.sn_type(value=value)
             

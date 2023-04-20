@@ -1,4 +1,5 @@
-from typing import Dict, Type
+from typing import DefaultDict, Type
+from collections import defaultdict
 from app.classes.selection.selected_node import SelectedNode
 from app.src.updaters.iupdate_package import IUpdatePackage, DefaultUpdater
 from app.classes.selection.all_nodes import *
@@ -20,35 +21,36 @@ from app.src.updaters.new_event_nodes import *
 from app.src.nlp.frame_event_mappers import DomainEventMapper, DeclarationEventMapper
 from app.src.operations.norm_builder import NormBuilder
 
+# Can think of this as the SymboleoUpdater
 class UpdaterDictConstructor:
+    # Passing in dependencies..
     @staticmethod
-    def build() -> Dict[Type[SelectedNode], IUpdatePackage]:
+    def build(deps) -> DefaultDict[Type[SelectedNode], IUpdatePackage]:
         # Set up injection
         decl_mapper = DeclarationEventMapper()
         domain_mapper = DomainEventMapper()
-
         norm_builder = NormBuilder()
 
-        # Can make a defaultdict as well with Defaultupdater...
-        return {
-            RootNode: RootNodeUpdater(),
-            BeforeNode: BeforeNodeUpdater(),
-            IfNode: IfNodeUpdater(),
-            EventNode: DefaultUpdater(),
-            NewEventNode: NewEventNodeUpdater(decl_mapper, domain_mapper),
-            SubjectNode: SubjectUpdater(),
-            VerbNode: VerbUpdater(),
-            AdverbNode: AdverbUpdater(),
-            PrepNode: PPUpdater(),
-            DobjNode: DobjUpdater(),
-            PredicateNode: PredicateUpdater(),
-            StandardEventNode: StandardEventNodeUpdater(),
-            ContractActionNode: ContractActionNodeUpdater(),
-            ContractSubjectNode: ContractSubjectNodeUpdater(),
-            DateNode: DateNodeUpdater(),
-            DomainTimepointNode: DomainTimePointNodeUpdater(),
-            TimepointNode: DefaultUpdater(),
-            TimespanNode: TimespanNodeUpdater(),
-            WithinNode: WithinNodeUpdater(),
-            UntilNode: UntilNodeUpdater(norm_builder)
-        }
+
+        d = defaultdict(lambda: DefaultUpdater())
+
+        d[RootNode] = RootNodeUpdater()
+        d[BeforeNode] = BeforeNodeUpdater()
+        d[IfNode] = IfNodeUpdater()
+        d[NewEventNode] = NewEventNodeUpdater(decl_mapper, domain_mapper)
+        d[SubjectNode] = SubjectUpdater()
+        d[VerbNode] = VerbUpdater()
+        d[AdverbNode] = AdverbUpdater()
+        d[PrepNode] = PPUpdater()
+        d[DobjNode] = DobjUpdater()
+        d[PredicateNode] = PredicateUpdater()
+        d[StandardEventNode] = StandardEventNodeUpdater()
+        d[ContractActionNode] = ContractActionNodeUpdater()
+        d[ContractSubjectNode] = ContractSubjectNodeUpdater()
+        d[DateNode] = DateNodeUpdater()
+        d[DomainTimepointNode] = DomainTimePointNodeUpdater()
+        d[TimespanNode] = TimespanNodeUpdater()
+        d[WithinNode] = WithinNodeUpdater()
+        d[UntilNode] = UntilNodeUpdater(norm_builder)
+
+        return d

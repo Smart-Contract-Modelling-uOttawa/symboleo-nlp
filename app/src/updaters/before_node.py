@@ -9,7 +9,7 @@ from app.src.updaters.iupdate_package import IUpdatePackage
 
 
 class BeforeNodeUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode,  value: any) -> UpdatePackage:
+    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
         if isinstance(value, SymEvent):
             init_event = norm.get_default_event('consequent') # Need to get consequent?
             updated_predicate = PredicateFunctionWHappensBeforeEvent(init_event, value)

@@ -2,17 +2,18 @@ from app.classes.selection.all_nodes import *
 from app.src.operations.contract_updater_config import UpdateConfig
 from app.src.operations.op_code import OpCode
 #from app.src.operations.refine_parameter.parm_configs import ParameterConfig
+from app.classes.other.user_input import UserInput, NodeType
 
 test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            RootNode(),
-            IfNode(),
-            EventNode(),
-            StandardEventNode(),
-            ContractSubjectNode(value='ob_pay_rent obligation'),
-            ContractActionNode(value = 'Violated')
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.IF),
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.STANDARD_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT, 'ob_pay_rent obligation'),
+            UserInput(NodeType.CONTRACT_ACTION, 'Violated'),
         ],
         parm_key='late_payment'
     ),
@@ -32,25 +33,25 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            RootNode(),
-            BeforeNode(),
-            EventNode(),
-            NewEventNode(),
-            SubjectNode(value='renter'),
-            VerbNode(value='occupies'),
-            DobjNode(value='the_property')
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.BEFORE),
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.SUBJECT, 'renter'),
+            UserInput(NodeType.VERB, 'occupies'),
+            UserInput(NodeType.DOBJ, 'the_property'),
         ],
         parm_key='pay_security_deposit'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            RootNode(),
-            IfNode(),
-            EventNode(),
-            StandardEventNode(),
-            ContractSubjectNode(value='contract'),
-            ContractActionNode(value='Terminated')
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.IF),
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.STANDARD_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
         ],
         parm_key='return_deposit'
     ),
@@ -67,13 +68,13 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            RootNode(),
-            UntilNode(), # TODO: Need an Unless node
-            EventNode(),
-            NewEventNode(),
-            SubjectNode(value='landlor'),
-            VerbNode(value='allows'),
-            DobjNode(value='pets')
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.UNTIL), # Need unless
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.SUBJECT, 'landlord'),
+            UserInput(NodeType.VERB, 'allows'),
+            UserInput(NodeType.DOBJ, 'pets'),
         ],
         parm_key= 'no_pets'
     ),
@@ -93,14 +94,14 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            RootNode(),
-            IfNode(),
-            EventNode(),
-            NewEventNode(), # This may be a standard event..
-            SubjectNode(value='landlord'),
-            VerbNode(value='provides'),
-            DobjNode(value='termination notice'),
-            AdverbNode(value='3 days in advance') ## Need to figure this one out
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.IF),
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.NEW_EVENT),# might be a standard event
+            UserInput(NodeType.SUBJECT, 'landlord'),
+            UserInput(NodeType.VERB, 'provides'),
+            UserInput(NodeType.DOBJ, 'termination notice'),
+            UserInput(NodeType.ADVERB, '3 days in advance'), # Improve this
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_written', 'trigger'),
         norm_id = 'pow_termination_written',
@@ -123,13 +124,13 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            RootNode(),
-            IfNode(),
-            EventNode(),
-            NewEventNode(),
-            SubjectNode(value='renter'),
-            VerbNode(value='abandons'),
-            DobjNode(value='the_property')
+            UserInput(NodeType.ROOT),
+            UserInput(NodeType.IF),
+            UserInput(NodeType.EVENT),
+            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.SUBJECT, 'renter'),
+            UserInput(NodeType.VERB, 'abandons'),
+            UserInput(NodeType.DOBJ, 'the_property')
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_abandon', 'trigger'),
         norm_id = 'pow_termination_abandon',

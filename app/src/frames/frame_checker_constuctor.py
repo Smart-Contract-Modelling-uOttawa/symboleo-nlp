@@ -2,7 +2,7 @@ from app.src.frames.frame_checker import FrameChecker
 from app.src.frames.inner_frame_checker import InnerFrameChecker
 from app.src.frames.frame_builder import FrameBuilder
 from app.classes.frames.all_frames import get_all_frames
-
+# Kill this
 class FrameCheckerConstructor:
     @staticmethod
     def construct() -> FrameChecker:

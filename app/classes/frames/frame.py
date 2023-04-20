@@ -3,6 +3,7 @@ from typing import List
 import copy
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
+from app.classes.other.frame_event import FrameEvent
 
 class Frame: # pragma: no cover
     pattern: List[NodeType]
@@ -17,7 +18,11 @@ class Frame: # pragma: no cover
     @staticmethod
     def copy(frame: Frame):
         return copy.deepcopy(frame)
-    
+
+
+class EventFrame(Frame):
+    frame_event = FrameEvent()
+
 
 class DummyFrame(Frame):
     pattern = [NodeType.ROOT]

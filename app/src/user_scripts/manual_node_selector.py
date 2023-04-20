@@ -4,6 +4,9 @@ from app.src.grammar.grammar_selector import ISelectGrammarNodes
 
 class ManualGrammarNodeSelector(ISelectGrammarNodes):
     def select(self, node_set: List[AbstractNode]) -> AbstractNode:
+        if len(node_set) == 1:
+            return node_set[0]
+        
         print('\nChoose an option:')
         node_dict = {i+1: node_set[i] for i in range(0, len(node_set))}
 

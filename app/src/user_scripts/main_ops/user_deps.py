@@ -22,9 +22,15 @@ class UserDependencies:
         self.parm_refiner = parm_refiner
         self.tp_adder = tp_adder
         self.domain_updater = domain_updater
-       
 
-def get_dependencies() -> UserDependencies:
+class InnerDeps:
+    def __init__(self, nlp):
+        self.nlp = nlp
+
+# Need NLP
+def get_dependencies(nlp) -> UserDependencies:
+    inner_deps = InnerDeps(nlp)
+    
     # Not in use.. Will need this somewhere...
     #domain_timepoint_extractor = DomainTimepointExtractor()
     
@@ -34,7 +40,7 @@ def get_dependencies() -> UserDependencies:
 
     gs = GrammarSelector(grammar_graph, value_getter, inner_selector)
 
-    parm_refiner = ParameterRefinerConstructor.construct()
+    parm_refiner = ParameterRefinerConstructor.construct(inner_deps)
     tp_adder = TerminationUpdater(parm_refiner)
     domain_updater = DomainUpdater()
 

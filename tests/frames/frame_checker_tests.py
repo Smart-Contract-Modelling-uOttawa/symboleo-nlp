@@ -6,11 +6,14 @@ from app.classes.frames.all_frames import *
 from app.classes.frames.frame import DummyFrame
 from app.classes.tokens.node_type import NodeType
 from app.classes.selection.all_nodes import *
+from app.src.frames.frame_checker_constuctor import FrameCheckerConstructor
 from app.src.frames.frame_checker import FrameChecker
 from app.src.frames.inner_frame_checker import IInnerFrameChecker
 from app.src.frames.frame_builder import IBuildFrames 
 
 from app.classes.frames.all_frames import BeforeDateFrame, BeforeEventFrame
+
+
 
 class InnerFrameCheckerTests(unittest.TestCase):
     def setUp(self):

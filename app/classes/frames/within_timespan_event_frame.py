@@ -1,13 +1,12 @@
-from app.classes.frames.frame import Frame
+from app.classes.frames.frame import Frame, EventFrame
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
 from app.classes.other.frame_event import FrameEvent
 
-class WithinTimespanEventFrame(Frame):
+class WithinTimespanEventFrame(EventFrame):
     pattern = [NodeType.ROOT, NodeType.WITHIN, NodeType.TIMESPAN, NodeType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
     timespan: str = ''
-    frame_event = FrameEvent()
 
     def is_complete(self):
         return self.frame_event.is_complete() and self.timespan != ''

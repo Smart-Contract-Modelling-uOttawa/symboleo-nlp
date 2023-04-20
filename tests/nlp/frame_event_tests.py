@@ -1,45 +1,100 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.frame_event import FrameEvent, FrameEventProp
-from app.src.nlp.verb_extractor import Verb
+from app.classes.selection.all_nodes import *
+from app.classes.other.frame_event import FrameEvent, ConjType 
+from app.classes.other.subject import Subject
+from app.classes.other.verb import Verb, VerbConjugations, VerbType
+from app.classes.other.prep_phrase import PrepPhrase
+
+# test_set = [
+#     (
+#         FrameEvent('buyer', Verb('pay'), '100', [
+#             FrameEventProp('currency', 'CAD', 'Currency'),
+#             FrameEventProp('to', 'seller', 'Role'),
+#             FrameEventProp('payDueDate', 'March 15, 2024', 'Date')
+#         ]),
+#         'buyer pays 100 in CAD to seller by March 15, 2024'
+#     ),
+#     (
+#         FrameEvent('buyer', Verb('pay', 'late'), '10%', [
+#             FrameEventProp('currency', 'CAD', 'Currency'),
+#             FrameEventProp('to', 'seller', 'Role'),
+            
+#         ]),
+#         'buyer pays 10% in CAD to seller late'
+#     ),
+#     (
+#         FrameEvent('renter', Verb('pay'), '500', [
+#             FrameEventProp('currency', 'CAD', 'Currency'),
+#             FrameEventProp('to', 'landlord', 'Role'),
+#             FrameEventProp('paymentMethod', 'credit card', 'PaymentMethod'),
+#         ]),
+#         'renter pays 500 in CAD to landlord with credit card'
+#     )
+
+# ]
+
 
 test_set = [
     (
-        FrameEvent('buyer', Verb('pay'), '100', [
-            FrameEventProp('currency', 'CAD', 'Currency'),
-            FrameEventProp('to', 'seller', 'Role'),
-            FrameEventProp('payDueDate', 'March 15, 2024', 'Date')
-        ]),
-        'buyer pays 100 in CAD to seller by March 15, 2024'
+        FrameEvent(
+            subj = Subject('legal proceedings', 'proceedings', True, adjs = ['legal']),
+            verb = Verb('become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming')),
+            predicate='necessary'
+        ),
+        'legal proceedings become necessary',
+        'legal proceedings becoming necessary'
     ),
     (
-        FrameEvent('buyer', Verb('pay', 'late'), '10%', [
-            FrameEventProp('currency', 'CAD', 'Currency'),
-            FrameEventProp('to', 'seller', 'Role'),
-            
-        ]),
-        'buyer pays 10% in CAD to seller late'
+        FrameEvent(
+            subj = Subject('seller', 'seller', False),
+            verb = Verb('pay', [VerbType.TRANSITIVE], VerbConjugations('pay', 'pays', 'paid', 'paying')),
+            dobj = '$100',
+            pps = [PrepPhrase('to the buyer')]
+        ),
+        'seller pays $100 to the buyer',
+        'seller paying $100 to the buyer'
     ),
     (
-        FrameEvent('renter', Verb('pay'), '500', [
-            FrameEventProp('currency', 'CAD', 'Currency'),
-            FrameEventProp('to', 'landlord', 'Role'),
-            FrameEventProp('paymentMethod', 'credit card', 'PaymentMethod'),
-        ]),
-        'renter pays 500 in CAD to landlord with credit card'
-    )
+        FrameEvent(
+            subj = Subject('Bob', 'Bob', False),
+            verb = Verb('eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating')),
+            dobj = 'Apple pie',
+            adverb = 'noisily',
+            pps = [PrepPhrase('with Mary')]
+        ),
+        'Bob eats Apple pie noisily with Mary',
+        'Bob eating Apple pie noisily with Mary'
+    ),
+    (
+        FrameEvent(
+            subj = Subject('The renter', 'renter', False),
+            verb = Verb('occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying')),
+            dobj = 'the property'
+        ),
+        'renter occupies the property',
+        'renter occupying the property'
+    ),
 
 ]
 
+
+
+
 class FrameEventTests(unittest.TestCase):
+    def setUp(self) -> None:
+        x = 0
+    
+    def test_frame_event_to_text(self):
+        
+        for f, p, c in test_set:
+            res_p = f.to_text(ConjType.PRESENT)
+            res_c = f.to_text(ConjType.CONTINUOUS)
 
-    def test_frame_events(self):
-        for f, expected in test_set:
-            f: FrameEvent = f
-            result = f.to_text()
+            self.assertEqual(res_p, p)
+            self.assertEqual(res_c, c)
 
-            self.assertEqual(result, expected)
     
 if __name__ == '__main__':
     unittest.main()

@@ -12,14 +12,14 @@ class StandardEventNodeUpdater(IUpdatePackage):
         # Will likely have a separate event here (StandardEvent...) to take care of this
         ## Dont want to re-parse thigns out. Will have a separate thing...
         if type(value) == FrameEvent:
-            if value.subj == 'contract':
-                c_event_name = ContractEventName[str(value.verb).capitalize()]
+            if value.subj.subj_str == 'contract':
+                c_event_name = ContractEventName[str(value.verb.verb_str).capitalize()]
                 new_value = ContractEvent(c_event_name)
 
-            elif 'obligation' in value.subj.lower():
-                o_event_name = ObligationEventName[str(value.verb).capitalize()]
+            elif 'obligation' in value.subj.subj_str.lower():
+                o_event_name = ObligationEventName[str(value.verb.verb_str).capitalize()]
                 # Will clean this up
-                o_name = value.subj.lower().split(' ')[0]
+                o_name = value.subj.subj_str.lower().split(' ')[0]
                 new_value = ObligationEvent(o_event_name, o_name)
 
             return UpdatePackage(new_value = new_value)

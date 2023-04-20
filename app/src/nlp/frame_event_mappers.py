@@ -11,9 +11,9 @@ class IMapEventToDomain:
 
 class DomainEventMapper(IMapEventToDomain):
     def map(self, frame_event: FrameEvent) -> IDomainObject:
-        verb: str = frame_event.verb # Will be more complex
+        verb = frame_event.verb # Will be more complex
         
-        domain_event_name = f'{verb.title()}' # PascalCase: VerbAdverb ?
+        domain_event_name = f'{verb.verb_str.title()}' # PascalCase: VerbAdverb ?
 
         adverb: str = frame_event.adverb
         if adverb:
@@ -25,8 +25,9 @@ class DomainEventMapper(IMapEventToDomain):
             DomainProp('dobj', 'String')
         ]
         
-        for i, x in enumerate(frame_event.pps):
-            props.append(DomainProp(f'prep_{i+1}', 'String'))
+        if frame_event.pps:
+            for i, x in enumerate(frame_event.pps):
+                props.append(DomainProp(f'prep_{i+1}', 'String'))
         
         # Actually probably no event_text on the domain model
         return DomainEvent(domain_event_name, props, '')
@@ -42,15 +43,16 @@ class DeclarationEventMapper(IMapEventToDeclaration):
 
         # This is the interesting part...
         props: List[DeclarationProp] = [
-            DeclarationProp('subj', fe.subj, 'String'),
+            DeclarationProp('subj', fe.subj.subj_str, 'String'),
             #DeclarationProp('dobj', fe.dobj, 'String') # Only if transitive...
         ]
 
         if fe.dobj is not None:
             props.append(DeclarationProp('dobj', fe.dobj, 'String'))
         
-        for i, x in enumerate(frame_event.pps):
-            props.append(DeclarationProp(f'prep_{i+1}', x, 'String'))
+        if frame_event.pps:
+            for i, x in enumerate(frame_event.pps):
+                props.append(DeclarationProp(f'prep_{i+1}', x.pp_str, 'String'))
         
         event_text = frame_event.to_text()
 

@@ -18,7 +18,9 @@ from app.classes.selection.contract_action_node import ContractActionNode
 from app.classes.selection.contract_subject_node import ContractSubjectNode
 from app.classes.selection.new_event_nodes import *
 
-# TODO: May not need this. Might combine the Token and SelectedNode
+# Might just define all of them in here
+# TODO: Still might be able to get rid of the NodeType.. We'll see
+## Change the UserInput to use the type directly instead of NodeType.
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.ROOT: RootNode,
     NodeType.DATE: DateNode,
@@ -33,6 +35,15 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.TIMEPOINT: TimepointNode,
     NodeType.DOMAIN_TIMEPOINT: DomainTimepointNode,
     NodeType.NEW_EVENT: NewEventNode,
-    NodeType.STANDARD_EVENT: StandardEventNode
+    NodeType.STANDARD_EVENT: StandardEventNode,
+    NodeType.ADVERB: AdverbNode,
+    NodeType.CONTRACT_ACTION: ContractActionNode,
+    NodeType.CONTRACT_SUBJECT: ContractSubjectNode,
+    NodeType.STANDARD_EVENT: StandardEventNode,
+    NodeType.VERB: VerbNode,
+    NodeType.SUBJECT: SubjectNode,
+    NodeType.DOBJ: DobjNode,
+    NodeType.PREDICATE: PredicateNode,
+    NodeType.PREP_PHRASE: PrepNode
     ####...
 }

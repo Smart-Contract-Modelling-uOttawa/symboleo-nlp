@@ -2,25 +2,15 @@ from enum import Enum
 
 class NodeType(Enum):
     ROOT = 1,
-    CONTRACT_EVENT_ACTION = 3,
-    CONTRACT_EVENT = 4,
-    DOMAIN_EVENT_NAME = 5,
-    DOMAIN_EVENT = 6,
-    OBLIGATION_EVENT_ACTION = 7,
-    OBLIGATION_EVENT_VAR = 8,
-    OBLIGATION_EVENT = 9,
     EVENT = 10,
     DATE = 11,
     BEFORE = 12,
     TIMESPAN = 13,
     WITHIN = 14,
     IF = 15,
-    STATE = 16,
     DUMMY = 17,
     AFTER = 18,
     UNTIL = 19,
-    USING = 20,
-    INSTRUMENT = 21,
     TIMEPOINT = 22,
     DOMAIN_TIMEPOINT = 23,
     SUBJECT = 24,
@@ -28,5 +18,9 @@ class NodeType(Enum):
     NEW_EVENT = 26,
     STANDARD_EVENT = 27,
     CONTRACT_SUBJECT = 28,
-    CONTRACT_ACTION = 29
+    CONTRACT_ACTION = 29,
+    PREDICATE = 30,
+    ADVERB = 31,
+    DOBJ = 32,
+    PREP_PHRASE = 33
     # ....

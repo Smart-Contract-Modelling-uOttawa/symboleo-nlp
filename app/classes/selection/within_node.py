@@ -3,4 +3,3 @@ from app.classes.tokens.node_type import NodeType
 
 class WithinNode(SelectedNode):
     node_type = NodeType.WITHIN
-    prompt = 'Within'
