@@ -1,14 +1,16 @@
+from app.classes.other.noun_phrase import NounPhrase
+
 class PrepPhrase:
     def __init__(
         self, 
         pp_str: str,
-        prepsition: str,
-        pobj: str    
+        preposition: str,
+        pobj: NounPhrase    
     ):
         self.pp_str = pp_str
-        self.preposition = prepsition
+        self.preposition = preposition
         self.pobj = pobj
     
     def to_text(self):
-        return self.pp_str
+        return f'{self.preposition} {self.pobj.to_text()}'
     

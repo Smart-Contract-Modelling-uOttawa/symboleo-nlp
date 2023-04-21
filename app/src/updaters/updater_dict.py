@@ -18,7 +18,9 @@ from app.src.updaters.until_node import UntilNodeUpdater
 from app.src.updaters.date_node import DateNodeUpdater
 from app.src.updaters.new_event_nodes import *
 
-from app.src.nlp.frame_event_mappers import DomainEventMapper, DeclarationEventMapper
+# Ok for now, but if deps become shared, then will need to split it up
+from app.src.updaters.new_event_node_updater_builder import NewEventNodeUpdaterBuilder
+
 from app.src.operations.norm_builder import NormBuilder
 
 # Can think of this as the SymboleoUpdater
@@ -26,18 +28,15 @@ class UpdaterDictConstructor:
     # Passing in dependencies..
     @staticmethod
     def build(deps) -> DefaultDict[Type[SelectedNode], IUpdatePackage]:
-        # Set up injection
-        decl_mapper = DeclarationEventMapper()
-        domain_mapper = DomainEventMapper()
+        # Set up injection... Will probably pull this out into the deps...
         norm_builder = NormBuilder()
-
 
         d = defaultdict(lambda: DefaultUpdater())
 
         d[RootNode] = RootNodeUpdater()
         d[BeforeNode] = BeforeNodeUpdater()
         d[IfNode] = IfNodeUpdater()
-        d[NewEventNode] = NewEventNodeUpdater(decl_mapper, domain_mapper)
+        d[NewEventNode] = NewEventNodeUpdaterBuilder.build()
         d[SubjectNode] = SubjectUpdater()
         d[VerbNode] = VerbUpdater()
         d[AdverbNode] = AdverbUpdater()

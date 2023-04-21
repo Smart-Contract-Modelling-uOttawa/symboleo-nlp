@@ -6,7 +6,6 @@ from app.classes.spec.domain_object import DomainProp, DomainEvent
 import nltk
 from nltk.corpus import framenet as fn
 from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
-from app.src.nlp.statement_extractor import IExtractStatements, StatementExtractor
 
 from app.src.nlp.standard_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
@@ -18,7 +17,7 @@ class DomainEventCreator:
         my_framenet = MyFramenet(fn)
         self.__dm = domain_model
         self.__fn_extractor = FramenetExtractor(my_framenet)
-        self.__statement_extractor = StatementExtractor(nlp)
+        #self.__statement_extractor = StatementExtractor(nlp)
         self.__prop_types = list(domain_model.assets.keys()) + list(domain_model.roles.keys()) + ['String', 'Number', 'Date', 'Role', 'Asset']
 
     # TODO: Need to decide if a 'Statement' is actually an event, or maybe more of a "situation"
@@ -58,17 +57,18 @@ class DomainEventCreator:
         
     
     def create_statement(self) -> DomainEvent:
-        print('\nCreating Statement event.')
-        user_input = input('Enter statement (a is b): ')
+        raise NotImplementedError('dead')
+        # print('\nCreating Statement event.')
+        # user_input = input('Enter statement (a is b): ')
 
-        # Will need to handle invalid events
-        statement = self.__statement_extractor.extract(user_input)
+        # # Will need to handle invalid events
+        # statement = self.__statement_extractor.extract(user_input)
 
-        event_name = CaseConverter.to_pascal(f'{statement.subj} {statement.pred}')
+        # event_name = CaseConverter.to_pascal(f'{statement.subj} {statement.pred}')
     
-        custom_props = self._get_custom_props()
+        # custom_props = self._get_custom_props()
 
-        return DomainEvent(event_name, custom_props)
+        # return DomainEvent(event_name, custom_props)
 
 
     def create_from_standard(self) -> DomainEvent:

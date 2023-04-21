@@ -2,6 +2,7 @@ from __future__ import annotations
 import copy
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.helpers import SpecHelpers
 
 class DomainProp:
     def __init__(self, key, type):
@@ -10,6 +11,9 @@ class DomainProp:
     
     def to_sym(self):
         return f'{self.key}: {self.type}'
+    
+    def __eq__(self, other: DomainProp) -> bool:
+        return self.key == other.key and self.type == other.type
 
 
 class IDomainObject:
@@ -48,6 +52,10 @@ class DomainObject(IDomainObject):
         result += ';'
 
         return result
+    
+    def __eq__(self, other: DomainObject) -> bool:
+        return self.name == other.name and \
+            SpecHelpers.lists_eq(self.props, other.props, 'key')
 
 
 class Role(DomainObject):
@@ -68,6 +76,7 @@ class DomainEvent(DomainObject):
     
     def to_obj(self):
         return VariableEvent(self.name)
+    
 
 class DomainEnum:
     def __init__(self, name:str, enum_items: List[str]):

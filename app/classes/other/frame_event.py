@@ -1,9 +1,8 @@
 from __future__ import annotations
 from typing import List
 from enum import Enum
-from app.classes.other.subject import Subject
+from app.classes.other.noun_phrase import NounPhrase
 from app.classes.other.verb import Verb, VerbType
-from app.classes.other.dobject import DObject
 from app.classes.other.predicate import Predicate
 from app.classes.other.adverb import Adverb
 from app.classes.other.prep_phrase import PrepPhrase
@@ -21,14 +20,14 @@ class ConjType(Enum):
 
 class FrameEvent:
     # Add types to all of these
-    subj: Subject = None
+    subj: NounPhrase = None
     verb: Verb = None
     adverb: Adverb = None
-    dobj: DObject = None
+    dobj: NounPhrase = None
     predicate: Predicate = None
     pps: List[PrepPhrase] = None
 
-    def __init__(self, subj: Subject = None, verb: Verb = None, adverb: Adverb = None, dobj: DObject = None, predicate: Predicate = None, pps:List[PrepPhrase] = None):
+    def __init__(self, subj: NounPhrase = None, verb: Verb = None, adverb: Adverb = None, dobj: NounPhrase = None, predicate: Predicate = None, pps:List[PrepPhrase] = None):
         self.subj = subj
         self.verb = verb
         self.adverb = adverb

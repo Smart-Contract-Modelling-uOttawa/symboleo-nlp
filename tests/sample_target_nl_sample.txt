@@ -1,0 +1,17 @@
+==ACTUAL==
+delivery: The Seller shall deliver the Order in one delivery to the Buyer before evt_delivered.delDueDate
+payment: The Buyer shall pay (payment_amount) to the Seller before evt_paid.payDueDate
+latePayment: The Buyer shall pay interests equal to (interest_amount) percent of the payment amount if obligation violates
+disclosure: Both Seller and Buyer must keep the contents of this contract confidential within 6 months of contract activating
+suspendDelivery: The Seller may suspend performance of all of its obligations under the agreement if obligation violates until obligation fulfiles
+pow_terminate_contract: buyer may terminate the contract. if ob_delivery violates
+
+
+==EXPECTED==
+delivery: The Seller shall deliver the Order in one delivery to the Buyer before (delivery_due_date).
+payment: The Buyer shall pay (payment_amount) to the Seller before (payment_due_date).
+latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to (interest_amount) percent of the payment amount.
+disclosure: Both Seller and Buyer must keep the contents of this contract confidential for (confidentiality_months) months following the termination of the contract.
+suspendDelivery: If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
+terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless delivery of goods is not completed.
+

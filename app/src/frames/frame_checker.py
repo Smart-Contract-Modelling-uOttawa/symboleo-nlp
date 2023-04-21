@@ -23,7 +23,6 @@ class FrameChecker(ICheckFrames):
     def get_frame(self, node_list: List[SelectedNode]) -> Frame:
         frames = self._check_all_frames(node_list)
         if len(frames) > 1:
-            print(frames)
             raise ValueError('Too many potential frames')
         if len(frames) == 0:
             raise ValueError('No frames found')

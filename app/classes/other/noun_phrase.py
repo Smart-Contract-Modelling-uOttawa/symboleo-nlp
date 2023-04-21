@@ -1,11 +1,22 @@
 from typing import List 
 
 # May have a special flag to denote if the subject is a role...
-class DObject:
-    def __init__(self, dobj_str: str, head:str, is_plural: bool, det: str = None, adjs: List[str] = None):
-        self.subj_str = dobj_str
+class NounPhrase:
+    def __init__(
+        self, 
+        str_val:str, 
+        head:str, 
+        is_plural: bool = False,
+        is_role: bool = False,
+        is_asset: bool = False,
+        det: str = None, 
+        adjs: List[str] = None
+    ):
+        self.str_val = str_val
         self.head = head
         self.is_plural = is_plural
+        self.is_role = is_role
+        self.is_asset = is_asset
         self.det = det
         self.adjs = adjs
     
@@ -16,7 +27,8 @@ class DObject:
         print(f'det: {self.det}')
 
 
-    def to_text(self):
+    # types: basic, head, original - make this an enum...
+    def to_text(self, type='basic'):
         result = self.head
         if self.adjs and len(self.adjs) > 0:
             result = f'{self.adjs[-1]} {result}'

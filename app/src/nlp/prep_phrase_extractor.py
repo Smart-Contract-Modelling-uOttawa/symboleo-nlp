@@ -1,6 +1,8 @@
 from app.classes.other.prep_phrase import PrepPhrase
 
-class IExtractSubjectPrepPhrase:
+from app.src.nlp.noun_phrase_extractor import IExtractNounPhrase
+
+class IExtractPrepPhrase:
     def extract(self, pp_str: str) -> PrepPhrase:
         raise NotImplementedError()
 
@@ -11,9 +13,10 @@ class IExtractSubjectPrepPhrase:
 ## could treat the pobj as a NP and use the subject extractor
 ## Would generalize the subjExtractor to be a NP Extractor
 ## Definitely possible without too much trouble. Can add as a feature later on
-class PrepPhraseExtractor:    
-    def __init__(self, nlp):
+class PrepPhraseExtractor(IExtractPrepPhrase):    
+    def __init__(self, nlp, np_extractor: IExtractNounPhrase):
         self.__nlp = nlp
+        self.__np_extractor = np_extractor
 
     def extract(self, pp_str: str) -> PrepPhrase:
         # First identify the preposition and the pobj
@@ -26,7 +29,7 @@ class PrepPhraseExtractor:
         spl = pp_str.split(' ')
 
         preposition = spl[0]
-        pobj = ' '.join(spl[1:])
-
+        pobj_str = ' '.join(spl[1:])
+        pobj = self.__np_extractor.extract(pobj_str)
 
         return PrepPhrase(pp_str, preposition, pobj)

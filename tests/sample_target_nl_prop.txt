@@ -1,0 +1,32 @@
+==ACTUAL==
+advertise: The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s)
+reimburse: The Owner shall reimburse the Manager for all expenses related to such Advertising
+notify_expense: The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising
+collect_rent: The Manager shall be responsible for all collection of Rent earned on the Property
+disbursement: The Manager shall then be responsible for disbursement of those proceeds to the Owner
+accounting: The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements
+repair: The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property
+reimburse_maintenance: The Owner shall reimburse the Manager for the cost of all such maintenance and repairs
+repair_invoice: The Manager shall provide the Owner invoices of the actual costs
+legal_proceedings: The Manager shall handle all such legal proceedings if legal proceedings become necessary
+disburse_termination: the Manager shall disburse to the Owner any monies in the Manager's possession due and owing to the Owner if contract terminates within 3 days of contract terminating
+reimburse_termination: The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within 10 days of contract terminating
+pow_terminate_notice_manager: manager may terminate the contract. if manager provides notice x days in advance
+pow_terminate_notice_owner: owner may terminate the contract. if owner provides notice x days in advance
+
+
+==EXPECTED==
+advertise: The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s).
+reimburse: The Owner shall reimburse the Manager for all expenses related to such Advertising. 
+notify_expense: The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising.
+collect_rent: The Manager shall be responsible for all collection of Rent earned on the Property.
+disbursement: The Manager shall then be responsible for disbursement of those proceeds to the Owner.
+accounting: The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements.
+repair: The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property. 
+reimburse_maintenance: The Owner shall reimburse the Manager for the cost of all such maintenance and repairs. 
+repair_invoice: The Manager shall provide the Owner invoices of the actual costs.
+legal_proceedings: In the event that collection and/or legal proceedings become necessary with regard to the rental of the Property, The Manager shall handle all such proceedings.
+termination_notice: This Agreement may be terminated at any time by either Party upon X days written notice to the other Party. 
+disburse_termination: Upon termination, the Manager shall disburse to the Owner any monies in the Manager's possession due and owing to the Owner within {DISBURSEMENT_DAYS=3-} days from the date of termination. 
+reimburse_termination: The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within {REIMBURSEMENT_DAYS} days from the date of termination.
+
