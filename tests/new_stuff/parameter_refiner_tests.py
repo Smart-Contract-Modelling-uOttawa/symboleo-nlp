@@ -4,11 +4,11 @@ from unittest.mock import MagicMock
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.norm import INorm
 from app.classes.frames.frame import Frame
-from app.classes.other.contract_update_obj import ContractUpdateObj
+from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 from app.src.frames.frame_checker import ICheckFrames
-from app.src.operations.refine_parameter2.update_extractor import IExtractUpdates
-from app.src.operations.refine_parameter2.parameter_refiner import ParameterRefiner, ParameterOperation
+from app.src.sym_updaters.update_extractor import IExtractUpdates
+from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner, ParameterOperation
 
 class ParameterRefinerTests(unittest.TestCase):
     def setUp(self):

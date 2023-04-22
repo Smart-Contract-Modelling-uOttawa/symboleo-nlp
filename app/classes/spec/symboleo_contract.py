@@ -2,7 +2,7 @@ from app.classes.spec._sd import _sd
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
-from app.classes.spec.norm import INorm, Obligation
+from app.classes.spec.norm import INorm, Obligation, Norm
 from app.classes.spec.proposition import PNegAtom, PAnd
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
@@ -10,9 +10,11 @@ from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
-from app.classes.other.contract_update_obj import ContractUpdateObj
+from app.classes.operations.contract_update_obj import ContractUpdateObj
 
-from app.classes.spec.norm import Norm
+
+# XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
+
 
 class ISymboleoContract:
     def to_sym(self):

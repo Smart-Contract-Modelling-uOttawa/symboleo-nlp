@@ -29,17 +29,3 @@ class FrameGetter(IGetFrame):
         if len(frames) == 0:
             raise ValueError('No frames found')
         return frames[0]   
-
-    # Kill
-    # def _check_all_frames(self, node_list: List[SelectedNode]) -> List[Frame]:
-    #     results: List[Frame] = []
-
-    #     for frame in self.__frame_list:
-    #         if self.__inner_checker.check_frame(node_list, frame.pattern):
-    #             next_frame = self.__frame_builder.build(frame, node_list)
-
-    #             if next_frame.is_complete():
-    #                 results.append(next_frame)
-        
-    #     return results
-

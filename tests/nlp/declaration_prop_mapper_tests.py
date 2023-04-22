@@ -1,17 +1,16 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.other.noun_phrase import NounPhrase
+from app.classes.custom_event.noun_phrase import NounPhrase
 
 
 from app.classes.spec.declaration import Declaration, DeclarationProp
 from app.classes.spec.domain_object import Asset, DomainEvent, DomainProp
 
-from app.src.nlp.frame_event.declaration_prop_mapper import DeclarationPropMapper
-from app.src.nlp.frame_event.asset_type_extractor import IExtractAssetType
+from app.src.sym_updaters.custom_event.declaration_prop_mapper import DeclarationPropMapper
+from app.src.sym_updaters.custom_event.asset_type_extractor import IExtractAssetType
 
-
-from tests.nlp.test_objects import FrameEvents
+from tests.nlp.test_objects import CustomEvents
 
 class DeclarationPropMapperTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -19,7 +18,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
         self.sut = DeclarationPropMapper(self.type_extractor)
 
     def test_declaration_prop_mapper_subject(self):
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         self.type_extractor.extract = MagicMock(return_value = None)
 
         exp_subj_prop = DeclarationProp('paying_agent', 'buyer', 'Role')
@@ -30,7 +29,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
 
     
     def test_declaration_prop_mapper_dobject(self):
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         self.type_extractor.extract = MagicMock(return_value = 'Amount')
 
         # This should be an amount, which may be another asset
@@ -42,7 +41,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
     
 
     def test_declaration_prop_mapper_pp1(self):
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         self.type_extractor.extract = MagicMock(return_value = None)
 
         # This should be an amount, which may be another asset
@@ -54,7 +53,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
     
 
     def test_declaration_prop_mapper_pp2(self):
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         self.type_extractor.extract = MagicMock(return_value = 'Method')
 
         # This should be an amount, which may be another asset

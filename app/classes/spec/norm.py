@@ -4,8 +4,8 @@ from app.classes.spec.power_function import PowerFunction
 from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
-from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
-# XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
+
+from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class NormType(Enum):
     Obligation = 'Obligation'

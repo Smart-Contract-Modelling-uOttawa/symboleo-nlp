@@ -1,11 +1,11 @@
 from app.classes.spec.domain_object import Asset
 from app.classes.spec.declaration import Declaration
-from app.classes.other.noun_phrase import NounPhrase
-from app.classes.other.prep_phrase import PrepPhrase
-from app.classes.other.verb import Verb, VerbConjugations, VerbType
-from app.classes.other.frame_event import FrameEvent
-from app.classes.other.predicate import Predicate
-from app.classes.other.adverb import Adverb
+from app.classes.custom_event.noun_phrase import NounPhrase
+from app.classes.custom_event.prep_phrase import PrepPhrase
+from app.classes.custom_event.verb import Verb, VerbConjugations, VerbType
+from app.classes.custom_event.custom_event import CustomEvent
+from app.classes.custom_event.predicate import Predicate
+from app.classes.custom_event.adverb import Adverb
 
 class NounPhrases:
     legal_proceedings = lambda: NounPhrase('legal proceedings', 'proceedings', is_plural=True, adjs=['legal'])
@@ -27,13 +27,13 @@ class Verbs:
     sues = lambda: Verb('sues', 'sue', [VerbType.TRANSITIVE], VerbConjugations('sue', 'sues', 'sued', 'suing'))
     eats = lambda: Verb('eats', 'eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating'))
 
-class FrameEvents:
-    legal_proceedings = lambda: FrameEvent(
+class CustomEvents:
+    legal_proceedings = lambda: CustomEvent(
         subj = NounPhrases.legal_proceedings(),
         verb = Verbs.become(),
         predicate = Predicate('necessary')
     )
-    paying = lambda: FrameEvent(
+    paying = lambda: CustomEvent(
         subj = NounPhrases.buyer(),
         verb = Verbs.pays(),
         dobj = NounPhrases.hundred_dollars(),
@@ -42,7 +42,7 @@ class FrameEvents:
             PrepPhrase('with a credit card', 'with', NounPhrases.credit_card())
         ]
     )
-    legal_pie = lambda: FrameEvent(
+    legal_pie = lambda: CustomEvent(
         subj = NounPhrases.legal_pro(),
         verb = Verbs.sues(),
         dobj = NounPhrases.the_seller(),
@@ -51,7 +51,7 @@ class FrameEvents:
             PrepPhrase('in Canada', 'in', NounPhrases.canada())
         ]
     )
-    legal_proceedings_det = lambda: FrameEvent(
+    legal_proceedings_det = lambda: CustomEvent(
         subj=NounPhrases.legal_proceedings(),
         verb=Verbs.become(),
         predicate=Predicate('necessary'),
@@ -60,7 +60,7 @@ class FrameEvents:
             PrepPhrase('in Canada', 'in', NounPhrases.canada()),
         ]
     )
-    eating_pie = lambda: FrameEvent(
+    eating_pie = lambda: CustomEvent(
         subj = NounPhrases.bob(),
         verb = Verbs.eats(),
         dobj = NounPhrases.apple_pie(),

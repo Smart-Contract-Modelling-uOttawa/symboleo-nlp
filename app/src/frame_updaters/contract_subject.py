@@ -6,4 +6,4 @@ from app.src.frame_updaters.frame_updater import IUpdateFrame
 class ContractSubjectUpdater(IUpdateFrame):
     def update_frame(self, node: ContractSubjectNode, frame: Frame):
         if isinstance(frame, EventFrame):
-            frame.frame_event.subj = node.value
+            frame.event.subj = node.value

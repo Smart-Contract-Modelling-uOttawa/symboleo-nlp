@@ -1,8 +1,7 @@
-from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.grammar.grammar_config import GrammarGeneratorConfig
-from app.src.operations.refine_parameter2.parm_configs import ParmOpCode
-from app.src.operations.add_power.termination_updater import TerminationOperation
+
+from app.src.user_scripts.main_ops.user_deps import UserDependencies
+from app.src.operations.termination_updater import TerminationOperation
 
 # Adding a new termination power
 # TODO: Want to change this to just adding ANY power. Since Powers can be fully defined by the domain model
@@ -24,9 +23,7 @@ def add_term(deps: UserDependencies, contract: SymboleoContract):
     norm_id = f'termination_{user_id}'
 
     # Collect parameter info
-    grammar_config = GrammarGeneratorConfig([ParmOpCode.ADD_TRIGGER])
-    grammar_root = deps.gg.generate(contract, grammar_config)
-    selection = deps.gs.select(grammar_root)
+    selection = deps.gs.select(contract)
     
     op = TerminationOperation(norm_id, debtor, creditor, selection)
     deps.tp_adder.update(contract, op)

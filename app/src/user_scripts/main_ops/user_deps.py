@@ -1,16 +1,15 @@
-# Common dependencies - move to a script
+from app.classes.operations.dependencies import Dependencies
+
 from app.src.grammar.grammar_graph import GrammarGraph
 from app.src.grammar.value_getter import ValueGetter
 from app.src.grammar.grammar_selector import GrammarSelector
 from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
 
 from app.src.operations.input_converter_builder import InputConverterBuilder
-from app.src.operations.refine_parameter2.parameter_refiner_constructor import ParameterRefinerConstructor
-from app.src.operations.refine_parameter2.parameter_refiner import ParameterRefiner
-from app.src.operations.add_power.termination_updater import TerminationUpdater
+from app.src.operations.refine_parameter.parameter_refiner_constructor import ParameterRefinerConstructor
+from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
+from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater
-
-from app.src.operations.dependencies import Dependencies
 
 class UserDependencies:
     def __init__(

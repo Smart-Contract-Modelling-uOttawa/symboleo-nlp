@@ -1,11 +1,7 @@
 from app.classes.selection.all_nodes import *
-from app.classes.spec.declaration import Declaration, DeclarationProp
-from app.classes.spec.domain_object import DomainEvent, DomainProp
-from app.src.operations.contract_updater_config import UpdateConfig
-from app.src.operations.op_code import OpCode
-from app.src.operations.refine_parameter2.parm_configs import ParameterConfig
-
-from app.classes.other.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.contract_updater_config import UpdateConfig
+from app.classes.operations.op_code import OpCode
 
 test_suite = [
     # Add events
@@ -53,7 +49,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'legal proceedings'),
             UserInput(NodeType.VERB, 'become'),
             UserInput(NodeType.PREDICATE, 'necessary'),
@@ -108,7 +104,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'manager'),
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),
@@ -125,7 +121,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'owner'),
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),

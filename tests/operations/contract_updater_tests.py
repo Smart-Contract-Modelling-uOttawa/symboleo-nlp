@@ -8,10 +8,10 @@ from app.classes.spec.declaration import IDeclaration
 
 from app.src.grammar.selection import ISelection
 from app.src.operations.refine_parameter.parm_configs import ParameterConfig
-from app.src.operations.op_code import OpCode
+from app.classes.operations.op_code import OpCode
 from app.src.operations.contract_updater_config import UpdateConfig
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
-from app.src.operations.add_power.termination_updater import IAddPower
+from app.src.operations.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
 from app.src.operations.contract_updater import ContractUpdater
 

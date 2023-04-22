@@ -6,14 +6,12 @@ class IGrammarGraph:
     def get_children(self, node: AbstractNode) -> List[AbstractNode]:
         raise NotImplementedError()
 
+# TODO: This will be much more complex... Might pass in contract, previous value, etc...
+# For example, depending on the verb type, we may only want to show one type of child
+# Would require some validation on the input. Doable.
 class GrammarGraph(IGrammarGraph):
     def __init__(self, frames: List[Frame] = None):
         self.s = 0 
-        # Might want the contract though...
-        ## Or maybe thats passed in on get_children. Because it updates
-        # Graph construction...
-        # BUT - the frames are minimal... How do we move beyond that..
-        # May use it. May not.
 
     def get_children(self, node: AbstractNode) -> List[AbstractNode]:
         result = [x() for x in node.children]

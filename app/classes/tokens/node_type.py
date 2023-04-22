@@ -15,7 +15,7 @@ class NodeType(Enum):
     DOMAIN_TIMEPOINT = 23,
     SUBJECT = 24,
     VERB = 25,
-    NEW_EVENT = 26,
+    CUSTOM_EVENT = 26,
     STANDARD_EVENT = 27,
     CONTRACT_SUBJECT = 28,
     CONTRACT_ACTION = 29,

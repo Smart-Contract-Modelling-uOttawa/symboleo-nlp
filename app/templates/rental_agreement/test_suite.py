@@ -1,8 +1,7 @@
 from app.classes.selection.all_nodes import *
-from app.src.operations.contract_updater_config import UpdateConfig
-from app.src.operations.op_code import OpCode
-#from app.src.operations.refine_parameter.parm_configs import ParameterConfig
-from app.classes.other.user_input import UserInput, NodeType
+from app.classes.operations.contract_updater_config import UpdateConfig
+from app.classes.operations.op_code import OpCode
+from app.classes.operations.user_input import UserInput, NodeType
 
 test_suite = [
     UpdateConfig(
@@ -36,7 +35,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.BEFORE),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'occupies'),
             UserInput(NodeType.DOBJ, 'the_property'),
@@ -71,7 +70,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.UNTIL), # Need unless
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'landlord'),
             UserInput(NodeType.VERB, 'allows'),
             UserInput(NodeType.DOBJ, 'pets'),
@@ -97,7 +96,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),# might be a standard event
+            UserInput(NodeType.CUSTOM_EVENT),# might be a standard event
             UserInput(NodeType.SUBJECT, 'landlord'),
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),
@@ -127,7 +126,7 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
-            UserInput(NodeType.NEW_EVENT),
+            UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'abandons'),
             UserInput(NodeType.DOBJ, 'the_property')

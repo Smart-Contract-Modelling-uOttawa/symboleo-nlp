@@ -15,7 +15,7 @@ test_set = [
             RootNode(),
             BeforeNode(),
             EventNode(),
-            NewEventNode(),
+            CustomEventNode(),
             SubjectNode('Bob'),
             VerbNode('eats'),
             DobjNode('Apple pie'),
@@ -37,22 +37,6 @@ class FrameBuilderTests(unittest.TestCase):
             result = self.sut.build(f, node_list)
             print(result.to_text())
             
-
-
-
-    @unittest.skip('...')
-    def test_frame_builder_old(self):
-        node_list: List[SelectedNode] = [
-            BeforeNode(),
-            DateNode(value='2020/02/22')    
-        ]
-        result = self.sut.build(BeforeDateFrame(), node_list)
-
-        self.assertTrue(result.is_complete())
-        self.assertEqual(result.to_text(), 'before 2020/02/22')
-
-
-
 
 if __name__ == '__main__':
     unittest.main()

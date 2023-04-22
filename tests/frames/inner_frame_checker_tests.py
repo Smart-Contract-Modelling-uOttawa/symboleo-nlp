@@ -14,7 +14,7 @@ test_set = [
             RootNode(),
             BeforeNode(),
             EventNode(),
-            NewEventNode(),
+            CustomEventNode(),
             SubjectNode('Bob'),
             VerbNode('eats'),
             DobjNode('Apple pie'),
@@ -55,7 +55,7 @@ test_set = [
             WithinNode(),
             TimespanNode(),
             EventNode(),
-            NewEventNode()
+            CustomEventNode()
         ],
         WithinTimespanEventFrame(),
         True

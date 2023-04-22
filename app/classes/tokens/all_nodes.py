@@ -14,6 +14,6 @@ from app.classes.tokens.after_node import AfterNode
 from app.classes.tokens.until_node import UntilNode
 from app.classes.tokens.timepoint_node import TimepointNode
 from app.classes.tokens.domain_timepoint_node import DomainTimepointNode
-from app.classes.tokens.new_event_node import NewEventNode
+from app.classes.tokens.custom_event_node import *
 from app.classes.tokens.standard_event_node import StandardEventNode
 

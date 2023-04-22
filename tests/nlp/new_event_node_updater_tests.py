@@ -7,20 +7,20 @@ from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.domain_object import DomainEvent, Asset
 from app.classes.spec.declaration import Declaration
 
-from app.src.updaters.new_event_node import NewEventNodeUpdater
+from app.src.sym_updaters.custom_event.custom_event_node_updater import CustomEventNodeUpdater
 
-from app.src.nlp.frame_event.asset_declaration_mapper import IMapAssetDeclarations
-from app.src.nlp.frame_event.event_declaration_mapper import IMapEventToDeclaration
-from app.src.nlp.frame_event.domain_model_mapper import IMapDeclarationToDomain
+from app.src.sym_updaters.custom_event.asset_declaration_mapper import IMapAssetDeclarations
+from app.src.sym_updaters.custom_event.event_declaration_mapper import IMapEventToDeclaration
+from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
 
-from tests.nlp.test_objects import FrameEvents
+from tests.nlp.test_objects import CustomEvents
 
-class NewEventNodeUpdaterTests(unittest.TestCase):
+class CustomEventNodeUpdaterTests(unittest.TestCase):
     def setUp(self) -> None:
         self.asset_decl_mapper = IMapAssetDeclarations()
         self.event_decl_mapper = IMapEventToDeclaration()
         self.decl_domain_mapper = IMapDeclarationToDomain()
-        self.sut = NewEventNodeUpdater(
+        self.sut = CustomEventNodeUpdater(
             self.asset_decl_mapper,
             self.event_decl_mapper,
             self.decl_domain_mapper
@@ -29,8 +29,8 @@ class NewEventNodeUpdaterTests(unittest.TestCase):
 
     def test_updater(self):
         norm = INorm()
-        node = NewEventNode()
-        value = FrameEvents.paying()
+        node = CustomEventNode()
+        value = CustomEvents.paying()
 
         asset_decls = [
             Declaration('a1', 'A1', 'assets', []),

@@ -1,6 +1,7 @@
-from app.src.operations.refine_parameter2.parameter_refiner import ParameterOperation
-from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.classes.spec.symboleo_contract import SymboleoContract
+
+from app.src.operations.refine_parameter.parameter_refiner import ParameterOperation
+from app.src.user_scripts.main_ops.user_deps import UserDependencies
 
 def refine_parm(deps: UserDependencies, contract: SymboleoContract):
     nd = contract.nl_template.template_dict

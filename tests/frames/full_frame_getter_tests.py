@@ -5,7 +5,7 @@ from app.classes.frames.all_frames import *
 from app.classes.selection.all_nodes import *
 from app.src.frames.frame_getter import FrameGetter
 from app.src.frames.inner_frame_checker import InnerFrameChecker
-
+from app.src.frames.frame_helper import FrameHelper
 
 test_set = [
     (
@@ -13,7 +13,7 @@ test_set = [
             RootNode(),
             BeforeNode(),
             EventNode(),
-            NewEventNode()
+            CustomEventNode()
         ],
         BeforeEventFrame
     ),
@@ -22,7 +22,7 @@ test_set = [
 
 class FullFrameGetterTests(unittest.TestCase):
     def setUp(self):
-        frame_list = get_all_frames()
+        frame_list = FrameHelper.get_all_frames()
         self.inner = InnerFrameChecker()
         self.sut = FrameGetter(frame_list, self.inner)
 
@@ -36,7 +36,7 @@ class FullFrameGetterTests(unittest.TestCase):
         node_list = [
             BeforeNode(),
             EventNode(),
-            NewEventNode()
+            CustomEventNode()
         ]
 
         with self.assertRaises(ValueError) as context:

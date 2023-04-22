@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.frames.all_frames import *
 
-
+# TODO: Get these back up to date
 class FrameTextTests(unittest.TestCase):
     def setUp(self):
         x = 0
@@ -26,7 +26,7 @@ class FrameTextTests(unittest.TestCase):
     @unittest.skip('reorg')
     def test_within_timespan_event_frame(self):
         f = WithinTimespanEventFrame()
-        f.event_text = 'contract being terminated'
+        f.event = 'contract being terminated'
         f.timespan = '2 weeks'
         ev = 'within 2 weeks of contract being terminated'
         self.assertTrue(f.is_complete())

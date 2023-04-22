@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.other.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, NodeType
 from app.classes.selection.all_nodes import *
 
 from app.src.extractors.value_extractor import IExtractValue

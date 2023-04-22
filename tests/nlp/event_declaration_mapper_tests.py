@@ -4,24 +4,24 @@ from unittest.mock import MagicMock
 from app.classes.selection.all_nodes import *
 from app.classes.spec.domain_object import DomainEvent, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
-from app.classes.other.frame_event import FrameEvent, ConjType 
-from app.classes.other.noun_phrase import NounPhrase
-from app.classes.other.verb import Verb, VerbConjugations, VerbType
-from app.classes.other.prep_phrase import PrepPhrase
+from app.classes.custom_event.custom_event import CustomEvent, ConjType 
+from app.classes.custom_event.noun_phrase import NounPhrase
+from app.classes.custom_event.verb import Verb, VerbConjugations, VerbType
+from app.classes.custom_event.prep_phrase import PrepPhrase
 
-from app.src.nlp.frame_event.event_declaration_mapper import EventDeclarationMapper
-from app.src.nlp.frame_event.declaration_prop_mapper import IMapDeclarationProps
+from app.src.sym_updaters.custom_event.event_declaration_mapper import EventDeclarationMapper
+from app.src.sym_updaters.custom_event.declaration_prop_mapper import IMapDeclarationProps
 
-from tests.nlp.test_objects import FrameEvents
+from tests.nlp.test_objects import CustomEvents
 
-class FrameEventTests(unittest.TestCase):
+class CustomEventTests(unittest.TestCase):
     def setUp(self) -> None:
         self.prop_mapper = IMapDeclarationProps()
         self.sut = EventDeclarationMapper(self.prop_mapper)
 
 
     def test_evt_decl_mapping_linking(self):
-        evt = FrameEvents.legal_proceedings_det()
+        evt = CustomEvents.legal_proceedings_det()
 
         sp = DeclarationProp('sk', 'sv', 'st')
         dp = DeclarationProp('dk', 'dv', 'dt')
@@ -44,7 +44,7 @@ class FrameEventTests(unittest.TestCase):
     
     
     def test_evt_decl_transitive(self):
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
 
         sp = DeclarationProp('sk', 'sv', 'st')
         dp = DeclarationProp('dk', 'dv', 'dt')

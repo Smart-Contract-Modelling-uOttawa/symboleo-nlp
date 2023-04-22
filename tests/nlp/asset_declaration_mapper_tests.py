@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tests.nlp.test_objects import FrameEvents, AssetDeclarations
+from tests.nlp.test_objects import CustomEvents, AssetDeclarations
 
-from app.src.nlp.frame_event.asset_decl_extractor import IExtractAssetDeclarations
-from app.src.nlp.frame_event.asset_declaration_mapper import AssetDeclarationMapper
+from app.src.sym_updaters.custom_event.asset_decl_extractor import IExtractAssetDeclarations
+from app.src.sym_updaters.custom_event.asset_declaration_mapper import AssetDeclarationMapper
 
 class AssetDeclarationMapperTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -15,7 +15,7 @@ class AssetDeclarationMapperTests(unittest.TestCase):
         # subj: legal_proceedings (extract)
         # no dobj
         # no pps
-        evt = FrameEvents.legal_proceedings()
+        evt = CustomEvents.legal_proceedings()
         existing_assets = []
         fake_asset_decl = AssetDeclarations.legal_proceedings()
         self.extractor.extract = MagicMock(return_value=fake_asset_decl)
@@ -29,7 +29,7 @@ class AssetDeclarationMapperTests(unittest.TestCase):
         # subj: role
         # dobj: $100 (extract)
         # pps: role, asset
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         fake_asset_decl1 = AssetDeclarations.hundred_dollars()
         fake_asset_decl2 = AssetDeclarations.credit_card()
         self.extractor.extract = MagicMock(side_effect=[fake_asset_decl1, fake_asset_decl2])
@@ -43,7 +43,7 @@ class AssetDeclarationMapperTests(unittest.TestCase):
         # subj: role
         # dobj: asset
         # pps: role, asset
-        evt = FrameEvents.paying()
+        evt = CustomEvents.paying()
         existing_assets = [AssetDeclarations.hundred_dollars(), AssetDeclarations.credit_card()]
         self.extractor.extract = MagicMock(return_value=None)
         results = self.sut.map(evt, existing_assets)
@@ -55,7 +55,7 @@ class AssetDeclarationMapperTests(unittest.TestCase):
         # subj: proceedings(asset)
         # dobj: X
         # pps: property(asset), canada(extract)
-        evt = FrameEvents.legal_proceedings_det()
+        evt = CustomEvents.legal_proceedings_det()
         existing_assets = [AssetDeclarations.legal_proceedings(), AssetDeclarations.property()]
 
         fake_asset = AssetDeclarations.canada()

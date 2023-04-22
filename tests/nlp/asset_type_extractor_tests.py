@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from tests.nlp.test_objects import NounPhrases
 
-from app.src.nlp.frame_event.asset_type_extractor import AssetTypeExtractor
+from app.src.sym_updaters.custom_event.asset_type_extractor import AssetTypeExtractor
 
 
 test_set = [
@@ -30,7 +30,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
         self.sut = AssetTypeExtractor() # Will likely be injecting NLP/Framenet func in here
 
     def test_asset_extractor(self):
-        # Will likely also be passing in FrameEvent for more context
+        # Will likely also be passing in CustomEvent for more context
         for np, expected_type in test_set:
             result = self.sut.extract(np)
             self.assertEqual(result, expected_type)

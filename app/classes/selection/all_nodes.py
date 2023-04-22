@@ -12,15 +12,13 @@ from app.classes.selection.after_node import AfterNode
 from app.classes.selection.until_node import UntilNode
 from app.classes.selection.timepoint_node import TimepointNode
 from app.classes.selection.domain_timepoint_node import DomainTimepointNode
-from app.classes.selection.new_event_node import NewEventNode
+from app.classes.selection.custom_event_node import *
 from app.classes.selection.standard_event_node import StandardEventNode
 from app.classes.selection.contract_action_node import ContractActionNode
 from app.classes.selection.contract_subject_node import ContractSubjectNode
-from app.classes.selection.new_event_nodes import *
 
-# Might just define all of them in here
-# TODO: Still might be able to get rid of the NodeType.. We'll see
-## Change the UserInput to use the type directly instead of NodeType.
+# Might move all the nodes to this file
+
 node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.ROOT: RootNode,
     NodeType.DATE: DateNode,
@@ -34,7 +32,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.UNTIL: UntilNode,
     NodeType.TIMEPOINT: TimepointNode,
     NodeType.DOMAIN_TIMEPOINT: DomainTimepointNode,
-    NodeType.NEW_EVENT: NewEventNode,
+    NodeType.CUSTOM_EVENT: CustomEventNode,
     NodeType.STANDARD_EVENT: StandardEventNode,
     NodeType.ADVERB: AdverbNode,
     NodeType.CONTRACT_ACTION: ContractActionNode,

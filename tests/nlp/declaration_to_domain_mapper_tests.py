@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.spec.declaration import Declaration, DeclarationProp
 from app.classes.spec.domain_object import Asset, DomainEvent, DomainProp
-from app.src.nlp.frame_event.domain_model_mapper import DeclarationToDomainMapper
+from app.src.sym_updaters.custom_event.domain_model_mapper import DeclarationToDomainMapper
 
 class DeclarationToDomainMapperTests(unittest.TestCase):
     def setUp(self) -> None:

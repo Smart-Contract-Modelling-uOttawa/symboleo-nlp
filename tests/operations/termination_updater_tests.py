@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
 from app.src.grammar.selection import ISelection
-from app.src.operations.add_power.termination_updater import TerminationUpdater, TerminationOperation
+from app.src.operations.termination_updater import TerminationUpdater, TerminationOperation
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
 
 class TerminationUpdaterTests(unittest.TestCase):

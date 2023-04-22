@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.helpers import SpecHelpers
+from app.classes.other.helpers import ClassHelpers
 
 class DeclarationProp:
     def __init__(self, key, value, type):
@@ -40,7 +40,7 @@ class Declaration(IDeclaration):
         return self.base_type == other.base_type and \
             self.name == other.name and \
             self.type == other.type and \
-            SpecHelpers.lists_eq(self.props, other.props, 'key')
+            ClassHelpers.lists_eq(self.props, other.props, 'key')
 
     def to_obj(self):
         if self.base_type == 'events':

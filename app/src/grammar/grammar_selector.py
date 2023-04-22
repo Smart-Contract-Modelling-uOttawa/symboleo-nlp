@@ -10,10 +10,6 @@ from app.classes.tokens.root_node import RootNode
 from app.src.grammar.grammar_graph import IGrammarGraph
 from app.src.grammar.value_getter import IGetValues
 
-# Will alter this one
-## Needs to generate the appropriate child nodes on each selection
-## All we need then is to get the value 
-
 class ISelectGrammar:
     def select(self):
         raise NotImplementedError()
@@ -41,10 +37,7 @@ class GrammarSelector(ISelectGrammar):
         results: List[SelectedNode] = [curr.sn_type()]
 
         while (True):
-            # Getting the children will be a much more complex function if we want it done properly
-            # For example, depending on the verb type, we may only want to show one type of child
-            # Would require some validation on the input. Doable.
-            next_set = self.__graph.get_children(curr) # May pass in contract
+            next_set = self.__graph.get_children(curr)
             if len(next_set) == 0: 
                 break
 

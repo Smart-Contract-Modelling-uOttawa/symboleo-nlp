@@ -1,8 +1,8 @@
 # Want to have a test where we convert the sample_t into sample_raw
 # Eventually I want a NL -> Node list generator... Will replace this with that..
-from app.classes.other.user_input import UserInput, NodeType
-from app.src.operations.contract_updater_config import UpdateConfig
-from app.src.operations.op_code import OpCode
+from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.contract_updater_config import UpdateConfig
+from app.classes.operations.op_code import OpCode
 
 test_suite = [
     UpdateConfig(

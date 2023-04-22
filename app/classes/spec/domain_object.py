@@ -2,7 +2,7 @@ from __future__ import annotations
 import copy
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.helpers import SpecHelpers
+from app.classes.other.helpers import ClassHelpers
 
 class DomainProp:
     def __init__(self, key, type):
@@ -55,7 +55,7 @@ class DomainObject(IDomainObject):
     
     def __eq__(self, other: DomainObject) -> bool:
         return self.name == other.name and \
-            SpecHelpers.lists_eq(self.props, other.props, 'key')
+            ClassHelpers.lists_eq(self.props, other.props, 'key')
 
 
 class Role(DomainObject):
@@ -66,9 +66,7 @@ class Asset(DomainObject):
     def __init__(self, name: str, props: List[DomainProp], base_type: Asset = None):
         super().__init__('isAn Asset', name, props, base_type)
     
-# event_text may need to be a more complex type (e.g. to allow for conjugation)
-## May need this on declaration as well. Or maybe ONLY on declaration...
-## Or perhaps the event_text here acts as a template...
+# TODO: Will replace the event_text with a template object - used for building new event instances
 class DomainEvent(DomainObject):
     def __init__(self, name: str, props: List[DomainProp], event_text: str = ''):
         super().__init__('isAn Event', name, props)

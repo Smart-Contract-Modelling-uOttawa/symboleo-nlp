@@ -2,11 +2,11 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.src.nlp.verb.lemmatizer import ILemmatize
-from app.src.nlp.verb.conjugator import IConjugate
+from app.src.extractors.custom_event.verb.lemmatizer import ILemmatize
+from app.src.extractors.custom_event.verb.conjugator import IConjugate
 
-from app.classes.other.verb import VerbConjugations
-from app.src.nlp.verb.verb_extractor import VerbExtractor
+from app.classes.custom_event.verb import VerbConjugations
+from app.src.extractors.custom_event.verb.verb_extractor import VerbExtractor
 
 class VerbExtractorTests(unittest.TestCase):
     def setUp(self):

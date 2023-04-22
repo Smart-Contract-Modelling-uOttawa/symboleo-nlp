@@ -5,20 +5,20 @@ from app.classes.selection.all_nodes import *
 from app.classes.spec.norm import INorm
 from app.classes.spec.domain_object import DomainEvent, Asset, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
-from app.classes.spec.helpers import SpecHelpers
+from app.classes.other.helpers import ClassHelpers
 
-from app.src.updaters.new_event_node_updater_builder import NewEventNodeUpdaterBuilder
+from app.src.sym_updaters.custom_event.cenu_builder import CustomEventNodeUpdaterBuilder
 
-from tests.nlp.test_objects import FrameEvents
+from tests.nlp.test_objects import CustomEvents
 
-class FullNewEventNodeUpdaterTests(unittest.TestCase):
+class FullCustomEventNodeUpdaterTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = NewEventNodeUpdaterBuilder.build()
+        self.sut = CustomEventNodeUpdaterBuilder.build()
 
     def test_updater(self):
         norm = INorm()
-        node = NewEventNode()
-        value = FrameEvents.paying()
+        node = CustomEventNode()
+        value = CustomEvents.paying()
 
         result = self.sut.update_package(norm, node, value)
 
@@ -45,8 +45,8 @@ class FullNewEventNodeUpdaterTests(unittest.TestCase):
         ]
 
         self.assertEqual(result.new_value.name, 'evt_pay')
-        self.assertTrue(SpecHelpers.lists_eq(result.update_obj.declarations, expected_decls, 'name'))
-        self.assertTrue(SpecHelpers.lists_eq(result.update_obj.domain_objects, expected_dmos, 'name'))
+        self.assertTrue(ClassHelpers.lists_eq(result.update_obj.declarations, expected_decls, 'name'))
+        self.assertTrue(ClassHelpers.lists_eq(result.update_obj.domain_objects, expected_dmos, 'name'))
 
 
     

@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.other.noun_phrase import NounPhrase
+from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.spec.declaration import Declaration
 
-from app.src.nlp.frame_event.asset_decl_extractor import AssetDeclarationExtractor
-from app.src.nlp.frame_event.asset_type_extractor import IExtractAssetType
+from app.src.sym_updaters.custom_event.asset_decl_extractor import AssetDeclarationExtractor
+from app.src.sym_updaters.custom_event.asset_type_extractor import IExtractAssetType
 
 
 class AssetDeclarationExtractorTests(unittest.TestCase):

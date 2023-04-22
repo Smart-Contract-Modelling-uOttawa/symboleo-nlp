@@ -2,18 +2,16 @@ from typing import DefaultDict
 from collections import defaultdict
 from app.classes.tokens.node_type import *
 
-from app.src.nlp.verb.verb_extractor_builder import VerbExtractorBuilder
-from app.src.nlp.noun_phrase_extractor import NounPhraseExtractor
-from app.src.nlp.adverb.adverb_extractor import AdverbExtractor
-from app.src.nlp.predicate_extractor import PredicateExtractor
-from app.src.nlp.prep_phrase_extractor import PrepPhraseExtractor
+from app.src.extractors.custom_event.verb.verb_extractor_builder import VerbExtractorBuilder
+from app.src.extractors.custom_event.noun_phrase_extractor import NounPhraseExtractor
+from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
+from app.src.extractors.custom_event.predicate_extractor import PredicateExtractor
+from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
 
 from app.src.operations.dependencies import Dependencies
 
-# Might make this generic [T]
-# I Haven't actually strongly-typed the extractors yet
-# I may also bring in the contract as an input... could be optional
-## Useful for checking if something like a subject is a role
+# TODO: Need to strongly type the extractors - may use a generic [T]
+## May also need to bring in the contract as input
 class IExtractValue:
     def extract(self, str_val: str):
         raise NotImplementedError()
@@ -25,7 +23,6 @@ class DefaultExtractor(IExtractValue):
 class ValueExtractorDictBuilder:
     @staticmethod
     def build(deps: Dependencies) -> DefaultDict[NodeType, IExtractValue]:
-    
         np_extractor = NounPhraseExtractor(deps.nlp)
         verb_extractor = VerbExtractorBuilder.build(deps.nlp)
         predicate_extractor = PredicateExtractor()
