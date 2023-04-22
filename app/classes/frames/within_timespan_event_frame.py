@@ -1,6 +1,6 @@
 from app.classes.frames.frame import EventFrame
 from app.classes.tokens.node_type import NodeType
-from app.classes.custom_event.custom_event import ConjType
+from app.classes.custom_event.conj_type import ConjType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class WithinTimespanEventFrame(EventFrame):

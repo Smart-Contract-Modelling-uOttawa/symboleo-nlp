@@ -8,7 +8,9 @@ from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
 from app.src.extractors.custom_event.predicate_extractor import PredicateExtractor
 from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
 
-from app.src.operations.dependencies import Dependencies
+from app.src.extractors.contract_action_extractor import ContractActionExtractor
+
+from app.classes.operations.dependencies import Dependencies
 
 # TODO: Need to strongly type the extractors - may use a generic [T]
 ## May also need to bring in the contract as input
@@ -28,6 +30,8 @@ class ValueExtractorDictBuilder:
         predicate_extractor = PredicateExtractor()
         adverb_extractor = AdverbExtractor()
         pp_extractor = PrepPhraseExtractor(deps.nlp, np_extractor)
+        
+        contract_action_extractor = ContractActionExtractor() 
 
         d = defaultdict(lambda: DefaultExtractor())
 
@@ -38,11 +42,7 @@ class ValueExtractorDictBuilder:
         d[NodeType.DOBJ] = np_extractor
         d[NodeType.PREDICATE] = predicate_extractor
         
-        d[NodeType.CONTRACT_SUBJECT] = np_extractor
-        d[NodeType.CONTRACT_ACTION] = verb_extractor
+        d[NodeType.CONTRACT_ACTION] = contract_action_extractor
         ##...
         
-
         return d
-
-

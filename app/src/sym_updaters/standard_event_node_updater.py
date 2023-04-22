@@ -5,6 +5,7 @@ from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
 from app.classes.custom_event.custom_event import CustomEvent
 
+# May not need this one...
 class StandardEventNodeUpdater(IUpdatePackage):
     def update_package(self, norm: INorm, node: SelectedNode,  value: any) -> UpdatePackage:
         # Will likely have a separate event here (StandardEvent...) to take care of this
@@ -20,6 +21,8 @@ class StandardEventNodeUpdater(IUpdatePackage):
                 o_name = value.subj.str_val.lower().split(' ')[0]
                 new_value = ObligationEvent(o_event_name, o_name)
 
+            return UpdatePackage(new_value = new_value)
+        else:
             return UpdatePackage(new_value = new_value)
         
 

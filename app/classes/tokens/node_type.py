@@ -23,4 +23,10 @@ class NodeType(Enum):
     ADVERB = 31,
     DOBJ = 32,
     PREP_PHRASE = 33
+    CONTRACT_EVENT = 34,
+    NORM_EVENT = 35,
+    OBLIGATION_SUBJECT = 37
+    OBLIGATION_ACTION = 38,
+    POWER_SUBJECT = 39,
+    POWER_ACTION = 40
     # ....

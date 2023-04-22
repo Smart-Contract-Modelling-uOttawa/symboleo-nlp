@@ -1,15 +1,11 @@
 from app.classes.spec.norm import INorm
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.spec.sym_event import ContractEventName
+from app.classes.selection.standard_event_node import ContractActionNode
 from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
-from app.classes.custom_event.custom_event import CustomEvent
 
+# TODO: Could generalize this to a "leaf" updater
+## Since it just starts off the updater_package value
 class ContractActionNodeUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode,  value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.verb = node.value 
-            return UpdatePackage(new_value=value)
-        else:
-            new_value = CustomEvent()
-            new_value.verb = node.value
-            return UpdatePackage(new_value=new_value)
+    def update_package(self, norm: INorm, node: ContractActionNode, value: any) -> UpdatePackage:
+        return UpdatePackage(new_value=node.value)

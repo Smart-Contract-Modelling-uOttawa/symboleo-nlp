@@ -1,8 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
+from app.classes.custom_event.conj_type import ConjType
 
 from app.classes.selection.all_nodes import *
-from app.classes.custom_event.custom_event import CustomEvent, ConjType 
+from app.classes.custom_event.custom_event import CustomEvent 
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.custom_event.verb import Verb, VerbConjugations, VerbType
 from app.classes.custom_event.prep_phrase import PrepPhrase

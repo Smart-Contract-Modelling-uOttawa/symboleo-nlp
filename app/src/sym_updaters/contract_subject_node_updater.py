@@ -1,14 +1,12 @@
 from app.classes.spec.norm import INorm
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.spec.sym_event import ContractEventName, ContractEvent
+from app.classes.selection.standard_event_node import ContractSubjectNode
 from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
-from app.classes.custom_event.custom_event import CustomEvent
 
 class ContractSubjectNodeUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode,  value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.subj = node.value 
-            
-
-            return UpdatePackage(new_value=value)
+    def update_package(self, norm: INorm, node: ContractSubjectNode,  value: any) -> UpdatePackage:
+            if isinstance(value, ContractEventName):
+                new_value = ContractEvent(value)
+                return UpdatePackage(new_value=new_value)
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List
-from enum import Enum
+from app.classes.custom_event.conj_type import ConjType
 
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.custom_event.verb import Verb, VerbType
@@ -9,10 +9,6 @@ from app.classes.custom_event.adverb import Adverb
 from app.classes.custom_event.prep_phrase import PrepPhrase
 
 from app.classes.other.helpers import ClassHelpers
-
-class ConjType(Enum):
-    PRESENT = 'present',
-    CONTINUOUS = 'continuous'
 
 class CustomEvent:
     subj: NounPhrase = None
@@ -80,3 +76,4 @@ class CustomEvent:
     # TODO: Make this more complex
     def is_complete(self):
         return self.subj and self.verb
+

@@ -43,7 +43,7 @@ class UpdaterDictConstructor:
         d[PrepNode] = PPUpdater()
         d[DobjNode] = DobjUpdater()
         d[PredicateNode] = PredicateUpdater()
-        d[StandardEventNode] = StandardEventNodeUpdater()
+        #d[StandardEventNode] = StandardEventNodeUpdater()
         d[ContractActionNode] = ContractActionNodeUpdater()
         d[ContractSubjectNode] = ContractSubjectNodeUpdater()
         d[DateNode] = DateNodeUpdater()

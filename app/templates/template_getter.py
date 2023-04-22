@@ -1,6 +1,6 @@
 from typing import Dict, List
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.operations.contract_updater_config import UpdateConfig
+from app.classes.operations.contract_updater_config import UpdateConfig
 
 ## SAMPLE (MEAT SALE)
 from app.templates.sample.t_raw.sample_domain import get_domain_model as get_sample_raw_dm
