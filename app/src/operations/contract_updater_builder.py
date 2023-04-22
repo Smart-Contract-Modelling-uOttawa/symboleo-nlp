@@ -8,7 +8,7 @@ from app.src.operations.dependency_builder import DependencyBuilder
 class ContractUpdaterBuilder:
     @staticmethod
     def build() -> ContractUpdater:
-        deps = DependencyBuilder.build()
+        deps = DependencyBuilder.build(fake=True)
         input_converter = InputConverterBuilder.build(deps)
         parm_refiner = ParameterRefinerConstructor.construct(deps)
         tp_adder = TerminationUpdater(parm_refiner)

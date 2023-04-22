@@ -1,0 +1,69 @@
+Domain propMgmtDomain
+  Manager isA Role with name: String;
+  Owner isA Role with name: String;
+  Property isAn Asset;
+  String isAn Asset;
+  Accounting isAn Event with agent: Role, target: Role, object: String;
+  Advertise isAn Event with agent: Role, property: Property;
+  CollectRent isAn Event with agent: Role, property: Property;
+  Disburse isAn Event with from: Role, to: Role, amount: String;
+  HandleLegalProceedings isAn Event with agent: Role, property: Property;
+  LegalProceedingsNecessary isAn Event;
+  Notify isAn Event with agent: Role, target: Role, message: String;
+  ProvideInvoice isAn Event with agent: Role, target: Role, object: String;
+  ProvideX Days In Advance isAn Event with Other: String, provide_object: String;
+  Reimburse isAn Event with from: Role, to: Role, amount: String;
+  Repair isAn Event with agent: Role, property: Property;
+
+endDomain
+
+Contract PropMgmt( manager: Manager, owner: Owner, var_accounting_artifacts: String, var_ad_expenses: String, var_rent_proceeds: String, var_repair_costs: String, var_termination_disbursement: String, var_termination_reimbursement: String )
+
+Declarations
+  evt_accounting: Accounting with agent := manager, target := owner, object := var_accounting_artifacts;
+  evt_advertise: Advertise with agent := manager, property := the_property;
+  evt_collect_rent: CollectRent with agent := manager, property := the_property;
+  evt_disburse: Disburse with from := manager, to := owner, amount := var_rent_proceeds;
+  evt_disburse_termination: Disburse with from := manager, to := owner, amount := var_termination_deisbursement;
+  evt_handle_legal: HandleLegalProceedings with agent := manager, property := the_property;
+  evt_legal_proceedings_necessary: LegalProceedingsNecessary;
+  evt_notify_expenses: Notify with agent := manager, target := owner, message := var_ad_expenses;
+  evt_provide_x_days_in_advance: ProvideX Days In Advance with Other := owner, provide_object := termination notice;
+  evt_reimburse_advertisting: Reimburse with from := owner, to := manager, amount := var_ad_expenses;
+  evt_reimburse_maintenance: Reimburse with from := owner, to := manager, amount := var_repair_costs;
+  evt_reimburse_termination: Reimburse with from := owner, to := manager, amount := var_termination_reimbursement;
+  evt_repair: Repair with agent := manager, property := the_property;
+  evt_repair_invoice: ProvideInvoice with agent := manager, target := owner, object := var_repair_costs;
+  legal proceedings: String;
+  manager: String;
+  owner: String;
+  termination notice: String;
+  the_property: Property;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_accounting: Obligation(manager, owner, true, Happens(evt_accounting));
+  ob_advertise: Obligation(manager, owner, true, Happens(evt_advertise));
+  ob_collect_rent: Obligation(manager, owner, true, Happens(evt_collect_rent));
+  ob_disburse_termination: Happens(Terminated(self)) -> Obligation(manager, owner, true, WhappensBefore(evt_disburse_termination, Date.Add(Terminated(self), 3, days)));
+  ob_disbursement: Obligation(manager, owner, true, Happens(evt_disburse));
+  ob_legal_proceedings: Happens(evt_legal_proceedings_necessary) -> Obligation(manager, owner, true, Happens(evt_handle_legal));
+  ob_notify_expense: Obligation(manager, owner, true, Happens(evt_notify_expenses));
+  ob_reimburse: Obligation(owner, manager, true, Happens(evt_reimburse_advertisting));
+  ob_reimburse_maintenance: Obligation(owner, manager, true, Happens(evt_reimburse_maintenance));
+  ob_reimburse_termination: Obligation(owner, manager, true, WhappensBefore(evt_reimburse_termination, Date.Add(Terminated(self), 10, days)));
+  ob_repair: Obligation(manager, owner, true, Happens(evt_repair));
+  ob_repair_invoice: Obligation(manager, owner, true, Happens(evt_repair_invoice));
+
+Surviving Obligations
+
+Powers
+  pow_terminate_notice_manager: Happens(evt_provide_x_days_in_advance) -> Power(manager, owner, true, Terminated(self));
+  pow_terminate_notice_owner: Happens(evt_provide_x_days_in_advance) -> Power(owner, manager, true, Terminated(self));
+
+Constraints
+
+endContract

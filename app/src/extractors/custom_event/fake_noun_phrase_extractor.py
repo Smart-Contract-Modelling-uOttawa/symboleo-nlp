@@ -1,0 +1,27 @@
+from typing import List
+from app.classes.spec.domain_object import Role, Asset
+from app.classes.custom_event.noun_phrase import NounPhrase
+
+from app.src.extractors.custom_event.noun_phrase_extractor import IExtractNounPhrase
+
+from tests.nlp.test_objects import NounPhrases
+
+# So that we don't need to use nlp
+class FakeNounPhraseExtractor(IExtractNounPhrase):    
+    def __init__(self):
+        self.__dict = {
+            'apple pie': NounPhrases.apple_pie(),
+            'bob': NounPhrases.bob(),
+            'buyer': NounPhrases.buyer(),
+            'legal proceedings': NounPhrases.legal_proceedings(),
+            'pets': NounPhrases.pets(),
+            'credit card': NounPhrases.credit_card()
+        }
+
+    def extract(self, str_val: str) -> NounPhrase:
+        if str_val in self.__dict:
+            return self.__dict[str_val]
+        else:
+            print(f'{str_val} not found in fake NP extractor dict...Please add')
+            return NounPhrase(str_val, str_val)
+        

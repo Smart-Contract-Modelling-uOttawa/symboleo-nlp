@@ -26,7 +26,7 @@ from tests.helpers.sample_norm_lib import SampleNorms
 # This will grow into a full-tester
 class ContractEventTests(unittest.TestCase):
     def setUp(self):
-        deps = DependencyBuilder.build()
+        deps = DependencyBuilder.build(fake=True)
 
         self.input_converter = InputConverterBuilder.build(deps)
 

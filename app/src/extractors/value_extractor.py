@@ -4,6 +4,7 @@ from app.classes.tokens.node_type import *
 
 from app.src.extractors.custom_event.verb.verb_extractor_builder import VerbExtractorBuilder
 from app.src.extractors.custom_event.noun_phrase_extractor import NounPhraseExtractor
+from app.src.extractors.custom_event.fake_noun_phrase_extractor import FakeNounPhraseExtractor
 from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
 from app.src.extractors.custom_event.predicate_extractor import PredicateExtractor
 from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
@@ -25,8 +26,13 @@ class DefaultExtractor(IExtractValue):
 class ValueExtractorDictBuilder:
     @staticmethod
     def build(deps: Dependencies) -> DefaultDict[NodeType, IExtractValue]:
-        np_extractor = NounPhraseExtractor(deps.nlp)
-        verb_extractor = VerbExtractorBuilder.build(deps.nlp)
+        
+        if deps.fake:
+            np_extractor = FakeNounPhraseExtractor()
+        else:
+            np_extractor = NounPhraseExtractor(deps.nlp)
+    
+        verb_extractor = VerbExtractorBuilder.build(deps.nlp, deps.fake)
         predicate_extractor = PredicateExtractor()
         adverb_extractor = AdverbExtractor()
         pp_extractor = PrepPhraseExtractor(deps.nlp, np_extractor)

@@ -10,7 +10,7 @@ class IExtractNounPhrase:
 ## Likely add contract in as arg for getting role/asset info
 ## May re-add the is_asset info (or even more detail... e.g. link to the asset)
 # Also pull any NLP needs into separate interface
-class NounPhraseExtractor:    
+class NounPhraseExtractor(IExtractNounPhrase):
     def __init__(self, nlp):
         self.__nlp = nlp
 
