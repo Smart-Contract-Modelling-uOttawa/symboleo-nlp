@@ -44,6 +44,9 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.CONTRACT_ACTION: ContractActionNode,
     NodeType.CONTRACT_SUBJECT: ContractSubjectNode,
 
+    NodeType.NORM_EVENT: NormEventNode,
+    NodeType.OBLIGATION_SUBJECT: ObligationSubjectNode,
+    NodeType.OBLIGATION_ACTION: ObligationActionNode,
 
     ####...
 }

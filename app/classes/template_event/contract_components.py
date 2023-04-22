@@ -1,4 +1,4 @@
-from app.classes.spec.sym_event import ContractEventName
+from app.classes.spec.sym_event import ContractEventName, ObligationEventName
 from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
 from app.classes.custom_event.noun_phrase import NounPhrase
 
@@ -15,4 +15,7 @@ class ContractVerbs:
             lambda: Verb('activated', 'activate', [VerbType.INTRANSITIVE], VerbConjugations('activate', 'activated', 'activated', 'activating')),
     }
 
+class HelperVerbs:
+    verb_is = lambda: Verb('is', 'be', [VerbType.LINKING], VerbConjugations('is', 'are', 'was', 'is'))
+    
     

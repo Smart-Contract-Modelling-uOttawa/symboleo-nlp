@@ -10,6 +10,8 @@ from app.src.extractors.custom_event.predicate_extractor import PredicateExtract
 from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
 
 from app.src.extractors.contract_action_extractor import ContractActionExtractor
+from app.src.extractors.obligation_action_extractor import ObligationActionExtractor
+from app.src.extractors.obligation_subject_extractor import ObligationSubjectExtractor
 
 from app.classes.operations.dependencies import Dependencies
 
@@ -36,8 +38,6 @@ class ValueExtractorDictBuilder:
         predicate_extractor = PredicateExtractor()
         adverb_extractor = AdverbExtractor()
         pp_extractor = PrepPhraseExtractor(deps.nlp, np_extractor)
-        
-        contract_action_extractor = ContractActionExtractor() 
 
         d = defaultdict(lambda: DefaultExtractor())
 
@@ -48,7 +48,10 @@ class ValueExtractorDictBuilder:
         d[NodeType.DOBJ] = np_extractor
         d[NodeType.PREDICATE] = predicate_extractor
         
-        d[NodeType.CONTRACT_ACTION] = contract_action_extractor
+        d[NodeType.CONTRACT_ACTION] = ContractActionExtractor() 
+
+        d[NodeType.OBLIGATION_ACTION] = ObligationActionExtractor() 
+        d[NodeType.OBLIGATION_SUBJECT] = ObligationSubjectExtractor() 
         ##...
         
         return d

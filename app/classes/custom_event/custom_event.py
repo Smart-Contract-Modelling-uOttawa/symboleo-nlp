@@ -49,10 +49,15 @@ class CustomEvent:
             result = f'{subj} {verb}'
         
         if VerbType.LINKING in self.verb.verb_types:
+            if self.subj.is_plural:
+                verb = self.verb.conjugations.present_plural
+            else:
+                verb = self.verb.conjugations.present_singular
+            
             if self.predicate:
                 pred = self.predicate.to_text()
                 result = f'{subj} {verb} {pred}'
-        
+            
         if self.adverb:
             adverb = self.adverb.to_text()
             result = f'{result} {adverb}'

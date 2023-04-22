@@ -8,8 +8,8 @@ from app.src.sym_updaters.root_node_updater import RootNodeUpdater
 from app.src.sym_updaters.before_node_updater import BeforeNodeUpdater
 from app.src.sym_updaters.if_node_updater import IfNodeUpdater
 from app.src.sym_updaters.custom_event.custom_event_node_updater import CustomEventNodeUpdater
-from app.src.sym_updaters.contract_action_node_updater import ContractActionNodeUpdater
 from app.src.sym_updaters.contract_subject_node_updater import ContractSubjectNodeUpdater
+from app.src.sym_updaters.obligation_subject_node_updater import ObligationSubjectNodeUpdater
 from app.src.sym_updaters.standard_event_node_updater import StandardEventNodeUpdater
 from app.src.sym_updaters.domain_timepoint_node_updater import DomainTimePointNodeUpdater
 from app.src.sym_updaters.timespan_node_updater import TimespanNodeUpdater
@@ -17,6 +17,8 @@ from app.src.sym_updaters.within_node_updater import WithinNodeUpdater
 from app.src.sym_updaters.until_node_updater import UntilNodeUpdater
 from app.src.sym_updaters.date_node_updater import DateNodeUpdater
 from app.src.sym_updaters.custom_event.custom_event_component_updaters import *
+
+from app.src.sym_updaters.leaf_node_updater import LeafNodeUpdater
 
 # Ok for now, but if deps become shared, then will need to split it up
 from app.src.sym_updaters.custom_event.cenu_builder import CustomEventNodeUpdaterBuilder
@@ -44,12 +46,15 @@ class UpdaterDictConstructor:
         d[DobjNode] = DobjUpdater()
         d[PredicateNode] = PredicateUpdater()
         #d[StandardEventNode] = StandardEventNodeUpdater()
-        d[ContractActionNode] = ContractActionNodeUpdater()
-        d[ContractSubjectNode] = ContractSubjectNodeUpdater()
         d[DateNode] = DateNodeUpdater()
         d[DomainTimepointNode] = DomainTimePointNodeUpdater()
         d[TimespanNode] = TimespanNodeUpdater()
         d[WithinNode] = WithinNodeUpdater()
         d[UntilNode] = UntilNodeUpdater(norm_builder)
+
+        d[ContractActionNode] = LeafNodeUpdater()
+        d[ContractSubjectNode] = ContractSubjectNodeUpdater()
+        d[ObligationActionNode] = LeafNodeUpdater()
+        d[ObligationSubjectNode] = ObligationSubjectNodeUpdater()
 
         return d
