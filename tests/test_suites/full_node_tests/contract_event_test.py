@@ -24,6 +24,7 @@ from tests.helpers.sample_norm_lib import SampleNorms
 #from app.templates.template_getter import get_template
 
 # This will grow into a full-tester
+# Make a test suite: UserInput nodes, expected NL, expected UpdateObject
 class ContractEventTests(unittest.TestCase):
     def setUp(self):
         deps = DependencyBuilder.build(fake=True)
