@@ -18,7 +18,6 @@ PAY_LATE_EVENT = dm.events['payLate'].to_obj()
 PROVIDE_INVOICE_EVENT = dm.events['provideInvoice'].to_obj()
 PROVIDE_TERMINATION_NOTICE_EVENT = dm.events['provideTerminationNotice'].to_obj() 
 
-##TODO: Add the link
 #TODO: Will need to redo all of this... Wait until I do it in XText...
 goods_sale_contract_spec_template = ContractSpec(
     obligations = {

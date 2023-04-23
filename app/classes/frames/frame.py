@@ -9,7 +9,7 @@ from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class Frame: # pragma: no cover
     pattern: List[NodeType]
-    op_code: ParmOpCode # TODO: Want to remove this
+    op_code: ParmOpCode # TODO: May be able to remove this
 
     def to_text(self) -> str:
         raise NotImplementedError()

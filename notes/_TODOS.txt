@@ -36,3 +36,28 @@ Jun
 -- This can be a job for April. So dont worry about those operation tests for now. They'll be moved
 - Would need to move the spec into a folder so that it is properly tested. Need to do this with some other thigns as well...
 
+MAJOR TODOS:
+- General: Figure out the CommonEvents and templates
+- More handling on the trigger/consequent... Might require re-introducing parameters and parmConfig; trigger should add to start of NL for example.. 
+- Input: Add options to the AbstractNode where needed
+- NounPhrase: More work on noun phrase extractor; interfaces for the nlp functionality...
+- PrepPhrase: More work on the extractor. Lots of NLP functionality 
+- Input: Figure out mechanism for getting children after selecting a node - will be complex. Will also include StandardEvent
+- CustomEvent: Intransitive EventDeclarationMapper
+- Powers: Do we want to allow user to add ANY power - could be constructed... may be too much
+- NL issues: How will we handle coreferences?
+
+
+TODOS:
+- CustomEvent: more options/parms for custom_events to_text()
+- CustomEvent: Make the is_complete() function more complex
+- NounPhrase: Add more types and complexity to the to_text() 
+- Verb: Negation flag on the verb
+- General: Remove OpCode from Frame
+- Grammar: Replace the Until with Unless
+- UpdatePackage: alias/type the update package new_value..
+- Contract Spec: Get rid of the awkward sorting functionality. Will require new eq func on SymboleoContract
+- StandardEvent: Finish adding all the contract components
+- NLP: Make a Fake NLP once I have everything figured out. Or more sophisticated interfaces
+- ParmOpCode: Do we still need ADD_DM_PROP... I dont think so
+

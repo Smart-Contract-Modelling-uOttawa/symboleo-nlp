@@ -26,7 +26,7 @@ class CustomEvent:
         self.predicate = predicate
         self.pps = pps
 
-    # TODO: Will likely have more processing in here.. may have other parameters
+    # TODO: This will be more complex. Will need to split it out, potentially into static functions. Need tests
     def to_text(self, conjugation: ConjType = ConjType.PRESENT):
         result = ''
 
@@ -68,8 +68,6 @@ class CustomEvent:
 
         return result
 
-
-    # TODO: override eq for all the components
     def __eq__(self, other: CustomEvent) -> bool:
         return self.subj == other.subj and \
             self.dobj == other.dobj and \

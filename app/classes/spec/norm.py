@@ -23,8 +23,6 @@ class INorm:
         raise NotImplementedError()
     def get_negation(self, str_component: str) -> bool:
         raise NotImplementedError()
-    def get_op_codes(self) -> List[ParmOpCode]:
-        raise NotImplementedError()
     def to_sym(self):
         raise NotImplementedError()
     
@@ -102,23 +100,6 @@ class Norm:
             result = False
 
         return result
-    
-    
-    def get_op_codes(self) -> List[ParmOpCode]:
-        results = []
-        if not self.trigger:
-            results.append(ParmOpCode.ADD_TRIGGER)
-        
-        pneg: PNegAtom = self.consequent.p_ands[0].p_eqs[0].curr.curr
-        patom_pred: PAtomPredicate = pneg.atom
-        
-        if type(patom_pred.predicate_function) == PredicateFunctionHappens:
-            results.append(ParmOpCode.REFINE_PREDICATE)
-
-        # TODO: Will eventually need a condition on this...
-        results.append(ParmOpCode.ADD_NORM)
-
-        return results
 
 
     def to_sym(self):

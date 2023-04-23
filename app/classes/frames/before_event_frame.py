@@ -9,7 +9,6 @@ class BeforeEventFrame(EventFrame):
     def is_complete(self):
         return self.event.is_complete()
 
-    # TODO: The NL will likely not be a string - will be a more complex NL object that can be conjugated as needed.
     def to_text(self):
         event_nl = f'{self.event.to_text()}'
         return f'before {event_nl}'

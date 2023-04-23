@@ -173,8 +173,6 @@ class SymboleoContract(ISymboleoContract):
         result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
         return result
     
-
-    # TODO: Might get rid of this... better ways to handle ...
     def _sort(self):
         self.contract_spec.obligations = _sd(self.contract_spec.obligations)
         self.contract_spec.powers = _sd(self.contract_spec.powers)

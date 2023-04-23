@@ -4,7 +4,7 @@ from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class AfterDateFrame(Frame):
     pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.DATE]
-    op_code = ParmOpCode.REFINE_PREDICATE # TODO: Can hopefully remove the opcode
+    op_code = ParmOpCode.REFINE_PREDICATE
     date_text: str = ''
 
     def is_complete(self):
