@@ -1,8 +1,8 @@
-from app.src.frames.inner_frame_checker import InnerFrameChecker
-from app.src.frames.frame_getter import FrameGetter
-from app.src.frames.frame_helper import FrameHelper
+from app.src.frame_updaters.inner_frame_checker import InnerFrameChecker
+from app.src.frame_updaters.frame_getter import FrameGetter
+from app.src.frame_updaters.frame_helper import FrameHelper
 from app.src.frame_updaters.updater_dict import UpdaterDictConstructor
-from app.src.frames.frame_builder import FrameBuilder
+from app.src.frame_updaters.frame_builder import FrameBuilder
 
 # Sorry about the name...
 class FrameBuilderBuilder:

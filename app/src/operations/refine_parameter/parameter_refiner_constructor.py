@@ -1,7 +1,7 @@
 from app.classes.operations.dependencies import Dependencies
 
 from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
-from app.src.frames.frame_builder_builder import FrameBuilderBuilder
+from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
 from app.src.sym_updaters.updater_dict import UpdaterDictConstructor
 from app.src.sym_updaters.update_extractor import UpdateExtractor
 

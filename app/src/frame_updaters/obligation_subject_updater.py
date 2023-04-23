@@ -5,11 +5,10 @@ from app.classes.custom_event.noun_phrase import NounPhrase
 from app.src.frame_updaters.frame_updater import IUpdateFrame 
 
 class ObligationSubjectUpdater(IUpdateFrame):
-    def update_frame(self, node: ObligationSubjectNode, frame: Frame):
-        if isinstance(frame, EventFrame):
-            # May potentially make an ObligationNounPhrase that inherits from NounPhrase...
-            subj = NounPhrase(
-                str_val = node.value.to_text(),
-                head = node.value.to_text()
-            )
-            frame.event.subj = subj
+    def update_frame(self, node: ObligationSubjectNode, frame: EventFrame):
+        # May potentially make an ObligationNounPhrase that inherits from NounPhrase...
+        subj = NounPhrase(
+            str_val = node.value.to_text(),
+            head = node.value.to_text()
+        )
+        frame.event.subj = subj

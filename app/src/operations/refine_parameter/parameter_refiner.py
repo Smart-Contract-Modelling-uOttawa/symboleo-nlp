@@ -2,7 +2,7 @@ from typing import List
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.selection.selected_node import SelectedNode
 
-from app.src.frames.frame_builder import IBuildFrames
+from app.src.frame_updaters.frame_builder import IBuildFrames
 from app.src.sym_updaters.update_extractor import IExtractUpdates
 
 # Will likely need to specify the norm_component...

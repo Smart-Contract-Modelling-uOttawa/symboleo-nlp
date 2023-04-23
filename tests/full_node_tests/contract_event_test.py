@@ -14,7 +14,7 @@ from app.src.operations.dependency_builder import DependencyBuilder
 from app.src.sym_updaters.updater_dict import UpdaterDictConstructor
 from app.src.sym_updaters.update_extractor import UpdateExtractor
 
-from app.src.frames.frame_builder_builder import FrameBuilderBuilder
+from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
 
 from app.src.operations.input_converter_builder import InputConverterBuilder
 

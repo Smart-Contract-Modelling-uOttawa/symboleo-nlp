@@ -18,6 +18,9 @@ class ClassHelpers:
 
     @staticmethod
     def simple_lists_eq(list1:list, list2:list):
+        if not list1 and not list2:
+            return True
+        
         if len(list1) != len(list2):
             return False
         

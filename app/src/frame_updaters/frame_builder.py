@@ -2,7 +2,7 @@ from typing import List, Dict, Type
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
 
-from app.src.frames.frame_getter import IGetFrame
+from app.src.frame_updaters.frame_getter import IGetFrame
 from app.src.frame_updaters.frame_updater import IUpdateFrame
 
 class IBuildFrames:

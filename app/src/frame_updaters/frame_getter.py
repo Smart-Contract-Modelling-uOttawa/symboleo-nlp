@@ -1,7 +1,7 @@
 from typing import List
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
-from app.src.frames.inner_frame_checker import IInnerFrameChecker
+from app.src.frame_updaters.inner_frame_checker import IInnerFrameChecker
 
 class IGetFrame:
     def get_frame(self, node_list: List[SelectedNode]) -> Frame:

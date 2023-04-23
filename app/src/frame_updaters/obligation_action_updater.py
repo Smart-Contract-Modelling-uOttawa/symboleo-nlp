@@ -6,8 +6,7 @@ from app.classes.template_event.contract_components import HelperVerbs
 from app.src.frame_updaters.frame_updater import IUpdateFrame 
 
 class ObligationActionUpdater(IUpdateFrame):
-    def update_frame(self, node: ObligationActionNode, frame: Frame):
-        if isinstance(frame, EventFrame):
-            str_val = str(node.value.value).lower()
-            frame.event.predicate = Predicate(str_val)
-            frame.event.verb = HelperVerbs.verb_is()
+    def update_frame(self, node: ObligationActionNode, frame: EventFrame):
+        str_val = str(node.value.value).lower()
+        frame.event.predicate = Predicate(str_val)
+        frame.event.verb = HelperVerbs.verb_is()

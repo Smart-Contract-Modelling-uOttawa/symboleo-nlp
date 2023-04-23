@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 from app.classes.frames.all_frames import *
 from app.classes.frames.frame import DummyFrame
 from app.classes.selection.all_nodes import *
-from app.src.frames.frame_getter import FrameGetter
-from app.src.frames.inner_frame_checker import IInnerFrameChecker
+from app.src.frame_updaters.frame_getter import FrameGetter
+from app.src.frame_updaters.inner_frame_checker import IInnerFrameChecker
 from app.classes.frames.all_frames import BeforeDateFrame
 
 
