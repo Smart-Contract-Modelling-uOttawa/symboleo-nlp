@@ -1,16 +1,13 @@
 from typing import List
 from app.classes.spec.domain_object import Role, Asset
 from app.classes.custom_event.noun_phrase import NounPhrase
-
-class IExtractNounPhrase:
-    def extract(self, str_val: str) -> NounPhrase:
-        raise NotImplementedError()
+from app.src.extractors.value_extractor import IExtractValue
 
 # TODO: More work on this
 ## Likely add contract in as arg for getting role/asset info
 ## May re-add the is_asset info (or even more detail... e.g. link to the asset)
 # Also pull any NLP needs into separate interface
-class NounPhraseExtractor(IExtractNounPhrase):
+class NounPhraseExtractor(IExtractValue[NounPhrase]):
     def __init__(self, nlp):
         self.__nlp = nlp
 

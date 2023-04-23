@@ -1,4 +1,5 @@
 from typing import List 
+from app.classes.other.helpers import ClassHelpers
 
 class NounPhrase:
     def __init__(
@@ -17,6 +18,15 @@ class NounPhrase:
         self.det = det
         self.adjs = adjs
 
+
+    def __eq__(self, __value: object) -> bool:
+        return self.str_val == __value.str_val and \
+        self.head == __value.head and \
+        self.is_plural == __value.is_plural and \
+        self.is_role == __value.is_role and \
+        self.det == __value.det and \
+        ClassHelpers.simple_lists_eq(self.adjs, __value.adjs)
+        
 
     # TODO: Will likely add more types - might make an enum: basic, original, full
     def to_text(self, type='basic'):

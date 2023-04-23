@@ -1,20 +1,17 @@
 from app.classes.custom_event.adverb import Adverb, AdverbDict
+from app.src.extractors.value_extractor import IExtractValue
 
-class IExtractAdverb:
-    def extract(self, adverb_str: str) -> Adverb:
-        raise NotImplementedError()
-
-
-class AdverbExtractor:
+class AdverbExtractor(IExtractValue[Adverb]):
     def __init__(
         self
     ):
         self.s = 0
     
-    def extract(self, adverb_str: str) -> Adverb:
-        adverb_types = self._get_types(adverb_str)
+    def extract(self, str_val: str) -> Adverb:
+        adverb_types = self._get_types(str_val)
      
-        return Adverb(adverb_str, adverb_types)
+        return Adverb(str_val, adverb_types)
+
 
     def _get_types(self, s: str):
         result = []

@@ -21,6 +21,7 @@ class VerbExtractor:
 
         lemma = self.__lemmatizer.lemmatize(verb_str)
 
+        # May pull this out if needed
         verb_types = self._get_verb_types(lemma)
 
         conjugations = self.__conjugator.conjugate(lemma)        

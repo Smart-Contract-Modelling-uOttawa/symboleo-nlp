@@ -7,7 +7,7 @@ import nltk
 from nltk.corpus import framenet as fn
 from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
 
-from app.src.nlp.standard_events import standard_event_dict
+from app.classes.template_event.common_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
 
 from app.src.helpers.string_to_class import CaseConverter

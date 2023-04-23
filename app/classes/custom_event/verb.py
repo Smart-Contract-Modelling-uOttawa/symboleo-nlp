@@ -15,6 +15,12 @@ class VerbConjugations:
         self.present_plural = present_plural
         self.past = past
         self.continuous = continuous
+    
+    def __eq__(self, __value: VerbConjugations) -> bool:
+        return self.present_plural == __value.present_plural and \
+            self.present_singular == __value.present_singular and \
+            self.continuous == __value.continuous and \
+            self.past == __value.past
 
 class Verb:
     # TODO: Might add a negation flag to support negation. Would need to parse it out though
@@ -31,10 +37,12 @@ class Verb:
         self.conjugations = conjugations
     
     def __eq__(self, other: Verb) -> bool:
+        vt1 = [x.name for x in self.verb_types]
+        vt2 = [x.name for x in other.verb_types]
         return self.verb_str == other.verb_str and \
             self.lemma == other.lemma and \
             self.conjugations == other.conjugations and \
-            ClassHelpers.simple_lists_eq(self.verb_types, other.verb_types)
+            ClassHelpers.simple_lists_eq(vt1, vt2)
 
 
 

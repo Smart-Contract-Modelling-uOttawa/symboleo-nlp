@@ -1,13 +1,9 @@
 from app.classes.custom_event.predicate import Predicate
+from app.src.extractors.value_extractor import IExtractValue
 
-class IExtractPredicate:
-    def extract(self, pred_str: str) -> Predicate:
-        raise NotImplementedError()
-
-
-class PredicateExtractor:    
+class PredicateExtractor(IExtractValue[Predicate]):    
     def __init__(self):
         self.__nlp = None
 
-    def extract(self, pred_str: str) -> Predicate:
-        return Predicate(pred_str)
+    def extract(self, str_val: str) -> Predicate:
+        return Predicate(str_val)

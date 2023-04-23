@@ -1,13 +1,10 @@
-from typing import List
-from app.classes.spec.domain_object import Role, Asset
 from app.classes.custom_event.noun_phrase import NounPhrase
-
-from app.src.extractors.custom_event.noun_phrase_extractor import IExtractNounPhrase
+from app.src.extractors.value_extractor import IExtractValue
 
 from tests.nlp.test_objects import NounPhrases
 
 # So that we don't need to use nlp
-class FakeNounPhraseExtractor(IExtractNounPhrase):    
+class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):    
     def __init__(self):
         self.__dict = {
             'apple pie': NounPhrases.apple_pie(),

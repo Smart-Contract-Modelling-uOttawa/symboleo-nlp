@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import List
 
+from app.classes.other.helpers import ClassHelpers
+
 class AdverbType(Enum):
     TIME = 'time',
     FREQUENCY = 'frequency',
@@ -21,6 +23,10 @@ class Adverb:
         self.adverb_str = adverb_str
         self.adverb_types = adverb_types
     
+    def __eq__(self, __value: object) -> bool:
+        return self.adverb_str == __value.adverb_str and \
+            ClassHelpers.simple_lists_eq(self.adverb_types, __value.adverb_types)
+
     def to_text(self):
         return self.adverb_str
     
