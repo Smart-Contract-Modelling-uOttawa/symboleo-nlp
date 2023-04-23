@@ -13,7 +13,7 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 from app.src.sym_updaters.custom_event.event_declaration_mapper import EventDeclarationMapper
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import IMapDeclarationProps
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 class CustomEventTests(unittest.TestCase):
     def setUp(self) -> None:

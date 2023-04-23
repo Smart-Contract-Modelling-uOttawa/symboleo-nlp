@@ -7,7 +7,7 @@ from app.classes.selection.standard_event_node import ContractSubjectNode
 
 from app.src.sym_updaters.contract_subject_node_updater import ContractSubjectNodeUpdater
 
-class ContractActionNodeUpdaterTests(unittest.TestCase):
+class ContractSubjectNodeUpdaterTests(unittest.TestCase):
     def setUp(self):
         self.sut = ContractSubjectNodeUpdater()
 

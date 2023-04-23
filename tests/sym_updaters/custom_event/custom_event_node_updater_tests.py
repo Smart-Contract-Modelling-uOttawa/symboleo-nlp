@@ -13,7 +13,7 @@ from app.src.sym_updaters.custom_event.asset_declaration_mapper import IMapAsset
 from app.src.sym_updaters.custom_event.event_declaration_mapper import IMapEventToDeclaration
 from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 class CustomEventNodeUpdaterTests(unittest.TestCase):
     def setUp(self) -> None:

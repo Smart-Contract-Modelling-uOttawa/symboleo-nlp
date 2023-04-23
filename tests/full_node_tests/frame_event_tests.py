@@ -8,7 +8,7 @@ from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.custom_event.verb import Verb, VerbConjugations, VerbType
 from app.classes.custom_event.prep_phrase import PrepPhrase
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 test_set = [
     (

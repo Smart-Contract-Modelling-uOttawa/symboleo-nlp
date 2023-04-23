@@ -9,7 +9,7 @@ from app.classes.other.helpers import ClassHelpers
 
 from app.src.sym_updaters.custom_event.cenu_builder import CustomEventNodeUpdaterBuilder
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 class FullCustomEventNodeUpdaterTests(unittest.TestCase):
     def setUp(self) -> None:

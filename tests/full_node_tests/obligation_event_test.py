@@ -11,7 +11,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.other.helpers import ClassHelpers
 
 from app.src.operations.dependency_builder import DependencyBuilder
-from app.src.sym_updaters.updater_dict import UpdaterDictConstructor
+from app.src.sym_updaters.sym_updater_dict import SymUpdaterDictConstructor
 from app.src.sym_updaters.update_extractor import UpdateExtractor
 
 from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
@@ -30,7 +30,7 @@ class ObligationEventTests(unittest.TestCase):
 
         self.input_converter = InputConverterBuilder.build(deps)
 
-        updater_dict = UpdaterDictConstructor.build(deps)
+        updater_dict = SymUpdaterDictConstructor.build(deps)
         self.sym_updater = UpdateExtractor(updater_dict)
 
         self.frame_builder = FrameBuilderBuilder.build()

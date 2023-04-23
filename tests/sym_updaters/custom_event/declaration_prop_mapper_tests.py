@@ -10,7 +10,7 @@ from app.classes.spec.domain_object import Asset, DomainEvent, DomainProp
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import DeclarationPropMapper
 from app.src.sym_updaters.custom_event.asset_type_extractor import IExtractAssetType
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 class DeclarationPropMapperTests(unittest.TestCase):
     def setUp(self) -> None:

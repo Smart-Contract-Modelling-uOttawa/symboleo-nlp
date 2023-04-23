@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tests.nlp.test_objects import NounPhrases
+from tests.helpers.test_objects import NounPhrases
 
 from app.src.sym_updaters.custom_event.asset_type_extractor import AssetTypeExtractor
 

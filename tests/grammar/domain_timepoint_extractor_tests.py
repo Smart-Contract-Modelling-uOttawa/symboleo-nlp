@@ -13,7 +13,6 @@ class DomainTimepointExtractorTests(unittest.TestCase):
         contract = get_template('sample_t')
         results = self.sut.extract(contract)
 
-        print(results)
         self.assertEqual(len(results),2)
 
 

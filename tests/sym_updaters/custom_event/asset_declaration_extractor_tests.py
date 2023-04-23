@@ -20,7 +20,6 @@ class AssetDeclarationExtractorTests(unittest.TestCase):
         result = self.sut.extract(np)
         self.assertEqual(result, expected_value)
 
-
     
 if __name__ == '__main__':
     unittest.main()

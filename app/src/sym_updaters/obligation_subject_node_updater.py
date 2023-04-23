@@ -6,6 +6,6 @@ from app.src.sym_updaters.package_updater import IUpdatePackage
 
 class ObligationSubjectNodeUpdater(IUpdatePackage):
     def update_package(self, norm: INorm, node: ObligationSubjectNode, value: any) -> UpdatePackage:
-            if isinstance(value, ObligationEventName):
-                new_value = ObligationEvent(value, node.value.str_val)
-                return UpdatePackage(new_value=new_value)
+        if isinstance(value, ObligationEventName):
+            new_value = ObligationEvent(value, node.value.str_val)
+            return UpdatePackage(new_value=new_value)

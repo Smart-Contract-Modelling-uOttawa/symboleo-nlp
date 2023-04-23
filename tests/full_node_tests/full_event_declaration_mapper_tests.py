@@ -14,7 +14,7 @@ from app.src.sym_updaters.custom_event.asset_type_extractor import AssetTypeExtr
 from app.src.sym_updaters.custom_event.event_declaration_mapper import EventDeclarationMapper
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import DeclarationPropMapper
 
-from tests.nlp.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents
 
 test_set = [
     (

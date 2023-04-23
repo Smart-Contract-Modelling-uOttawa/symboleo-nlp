@@ -26,7 +26,7 @@ from app.src.sym_updaters.custom_event.cenu_builder import CustomEventNodeUpdate
 from app.src.operations.norm_builder import NormBuilder
 
 # Can think of this as the SymboleoUpdater
-class UpdaterDictConstructor:
+class SymUpdaterDictConstructor:
     # Passing in dependencies..
     @staticmethod
     def build(deps) -> DefaultDict[Type[SelectedNode], IUpdatePackage]:

@@ -1,7 +1,7 @@
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.src.extractors.value_extractor import IExtractValue
 
-from tests.nlp.test_objects import NounPhrases
+from tests.helpers.test_objects import NounPhrases
 
 # So that we don't need to use nlp
 class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):    

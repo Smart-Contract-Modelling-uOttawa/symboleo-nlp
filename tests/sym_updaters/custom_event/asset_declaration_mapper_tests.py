@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tests.nlp.test_objects import CustomEvents, AssetDeclarations
+from tests.helpers.test_objects import CustomEvents, AssetDeclarations
 
 from app.src.sym_updaters.custom_event.asset_decl_extractor import IExtractAssetDeclarations
 from app.src.sym_updaters.custom_event.asset_declaration_mapper import AssetDeclarationMapper

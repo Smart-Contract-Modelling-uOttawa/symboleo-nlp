@@ -14,7 +14,7 @@ from app.src.frame_updaters.domain_timepoint_node import DomainTimepointUpdater
 from app.src.frame_updaters.timespan_node import TimespanUpdater
 from app.src.frame_updaters.custom_event_nodes import *
 
-class UpdaterDictConstructor:
+class FrameUpdaterDictConstructor:
     @staticmethod
     def build() -> DefaultDict[Type[SelectedNode], IUpdateFrame]:
         d = defaultdict(lambda: DefaultFrameUpdater())
