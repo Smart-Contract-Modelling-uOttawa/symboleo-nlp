@@ -8,9 +8,9 @@ accounting: The Manager shall further prepare and provide to the Owner a detaile
 repair: The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property
 reimburse_maintenance: The Owner shall reimburse the Manager for the cost of all such maintenance and repairs
 repair_invoice: The Manager shall provide the Owner invoices of the actual costs
-legal_proceedings: The Manager shall handle all such legal proceedings if legal proceedings become necessary
-disburse_termination: the Manager shall disburse to the Owner any monies in the Manager's possession due and owing to the Owner if contract terminates within 3 days of contract terminating
-reimburse_termination: The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within 10 days of contract terminating
+legal_proceedings: The Manager shall handle all such legal proceedings if legal proceedings becomes necessary 3 days in advance
+disburse_termination: the Manager shall disburse to the Owner any monies in the Manager's possession due and owing to the Owner if contract terminates 3 days in advance within 3 days of contract terminating 3 days in advance
+reimburse_termination: The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within 10 days of contract terminating 3 days in advance
 pow_terminate_notice_manager: manager may terminate the contract. if manager provides termination notice x days in advance
 pow_terminate_notice_owner: owner may terminate the contract. if owner provides termination notice x days in advance
 

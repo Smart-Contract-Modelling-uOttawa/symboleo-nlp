@@ -11,8 +11,9 @@ test_suite = [
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT, 'ob_pay_rent obligation'),
-            UserInput(NodeType.CONTRACT_ACTION, 'Violated'),
+            UserInput(NodeType.NORM_EVENT),
+            UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_pay_rent'),
+            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
         ],
         parm_key='late_payment'
     ),
@@ -49,7 +50,8 @@ test_suite = [
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(NodeType.CONTRACT_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
         ],
         parm_key='return_deposit'

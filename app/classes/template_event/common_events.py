@@ -6,7 +6,6 @@ from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
 from app.classes.custom_event.adverb import Adverb
 from app.classes.template_event.EventMapping import EventMapping
 
-from app.src.extractors.custom_event.noun_phrase_extractor import IExtractNounPhrase
 
 from string import Template
 

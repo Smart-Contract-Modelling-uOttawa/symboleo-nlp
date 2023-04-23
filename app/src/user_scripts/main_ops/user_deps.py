@@ -26,9 +26,7 @@ class UserDependencies:
 
 
 # Need NLP
-def get_dependencies(nlp) -> UserDependencies:
-    deps = Dependencies(nlp)
-    
+def get_dependencies(deps: Dependencies) -> UserDependencies:
     # Not in use.. Will need this somewhere...
     #domain_timepoint_extractor = DomainTimepointExtractor()
     

@@ -5,7 +5,6 @@ from app.classes.template_event.common_events import CommonCustomEvents
 
 from typing import Dict
 
-
 # Next we need to know how we build the value_set
 ## I think this is a get_children thing
 class DomainEventToCustomEvent:

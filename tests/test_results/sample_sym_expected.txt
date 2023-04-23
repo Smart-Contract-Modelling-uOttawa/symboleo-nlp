@@ -1,0 +1,54 @@
+Domain meatSaleDomain
+  Buyer isA Role with warehouse: String;
+  Seller isA Role with returnAddress: String, name: String;
+  Currency isAn Enumeration(CAD, USD, EUR);
+  MeatQuality isAn Enumeration(PRIME, AAA, AA, A);
+  Meat isA PerishableGood;
+  PerishableGood isAn Asset with quantity: Number, quality: MeatQuality;
+  Delivered isAn Event with item: Meat, deliveryAddress: String, delDueDate: Date;
+  Disclosed isAn Event;
+  Paid isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller, payDueDate: Date;
+  PaidLate isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
+
+endDomain
+
+Contract MeatSale( amt: Number, buyer: Buyer, curr: Currency, delAdd: String, delDueDateDays: Number, effDate: Date, interestRate: Number, payDueDate: Date, qlt: MeatQuality, qnt: Number, seller: Seller )
+
+Declarations
+  evt_delivered: Delivered with item := goods, deliveryAddress := delAdd, delDueDate := Date.add(effDate, delDueDateDays, days);
+  evt_disclosed: Disclosed;
+  evt_paid: Paid with amount := amt, currency := curr, from := buyer, to := seller, payDueDate := payDueDate;
+  evt_paid_late: PaidLate with amount := (1 + interestRate / 100) * amt, currency := curr, from := buyer, to := seller;
+  goods: Meat with quantity := qnt, quality := qlt;
+
+Preconditions
+  IsOwner(goods, seller);
+
+Postconditions
+  IsOwner(goods, buyer) and not IsOwner(goods, seller);
+
+Obligations
+  ob_delivery: Obligation(seller, buyer, true, WhappensBefore(evt_delivered, evt_delivered.delDueDate));
+  ob_late_payment: Happens(Violated(obligations.ob_payment)) -> Obligation(buyer, seller, true, Happens(evt_paid_late));
+  ob_payment: Obligation(buyer, seller, true, WhappensBefore(evt_paid, evt_paid.payDueDate));
+
+Surviving Obligations
+  so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Activated(self), 6, months)));
+  so2: SO(buyer, seller, true, not WhappensBefore(evt_disclosed, Date.Add(Activated(self), 6, months)));
+
+Powers
+  pow_resume_ob_delivery: Happens(Fulfilled(obligations.ob_late_payment)) -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));
+  pow_suspend_delivery: Happens(Violated(obligations.ob_payment)) -> Power(seller, buyer, true, Suspended(obligations.ob_delivery));
+  pow_terminate_contract: Happens(Violated(obligations.ob_delivery)) -> Power(buyer, seller, true, Terminated(self));
+
+Constraints
+  not IsEqual(buyer, seller);
+  CannotBeAssigned(suspendDelivery);
+  CannotBeAssigned(resumeDelivery);
+  CannotBeAssigned(terminateContract);
+  CannotBeAssigned(delivery);
+  CannotBeAssigned(payment);
+  CannotBeAssigned(latePayment);
+  delivered.delDueDate < paid.payDueDate;
+
+endContract

@@ -63,7 +63,8 @@ test_suite = [
             UserInput(NodeType.IF),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(NodeType.CONTRACT_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
         ],
         parm_key='disburse_termination'
@@ -78,7 +79,8 @@ test_suite = [
             UserInput(NodeType.TIMESPAN, '3 days'),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(NodeType.CONTRACT_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
         ],
         parm_key='disburse_termination'
@@ -91,7 +93,8 @@ test_suite = [
             UserInput(NodeType.TIMESPAN, '10 days'),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(NodeType.CONTRACT_EVENT),
+            UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
         ],
         parm_key='reimburse_termination'
@@ -115,6 +118,7 @@ test_suite = [
         debtor = 'manager',
         creditor = 'owner'
     ),
+    #TODO: Make this use a CommonEvent... Start from a TDD approach. What should this suite look like?
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [

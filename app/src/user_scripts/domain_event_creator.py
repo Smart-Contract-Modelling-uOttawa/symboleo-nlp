@@ -12,6 +12,7 @@ from app.src.nlp.framenet_extractor import FramenetExtractor
 
 from app.src.helpers.string_to_class import CaseConverter
 
+# Might kill this...
 class DomainEventCreator:
     def __init__(self, domain_model: DomainModel, nlp):
         my_framenet = MyFramenet(fn)
