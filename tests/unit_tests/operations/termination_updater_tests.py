@@ -3,7 +3,6 @@ from unittest.mock import MagicMock
 
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
-from app.src.grammar.selection import ISelection
 from app.src.operations.termination_updater import TerminationUpdater, TerminationOperation
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
 
@@ -17,8 +16,7 @@ class TerminationUpdaterTests(unittest.TestCase):
         contract = ISymboleoContract()
         contract.add_norm = MagicMock(return_value = None)
 
-        selection = ISelection()
-        op = TerminationOperation('a', 'b', 'c', selection)    
+        op = TerminationOperation('a', 'b', 'c', [])    
 
         self.sut.update(contract, op)
         

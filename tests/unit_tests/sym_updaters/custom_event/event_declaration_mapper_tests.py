@@ -1,14 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.custom_event.conj_type import ConjType
 
 from app.classes.selection.all_nodes import *
-from app.classes.spec.domain_object import DomainEvent, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
-from app.classes.custom_event.custom_event import CustomEvent 
-from app.classes.custom_event.noun_phrase import NounPhrase
-from app.classes.custom_event.verb import Verb, VerbConjugations, VerbType
-from app.classes.custom_event.prep_phrase import PrepPhrase
 
 from app.src.sym_updaters.custom_event.event_declaration_mapper import EventDeclarationMapper
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import IMapDeclarationProps

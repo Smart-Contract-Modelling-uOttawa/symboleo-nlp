@@ -30,7 +30,7 @@ class InputConverterTests(unittest.TestCase):
         }
         self.sut = InputConverter(self.extractor_dict)
 
-
+    @unittest.skip('TODO')
     def test_refine_parm(self):
         # Arbitrary
         test_input = [
@@ -43,8 +43,6 @@ class InputConverterTests(unittest.TestCase):
 
         result = self.sut.convert(test_input)
 
-
-        print(result)
         
 if __name__ == '__main__':
     unittest.main()

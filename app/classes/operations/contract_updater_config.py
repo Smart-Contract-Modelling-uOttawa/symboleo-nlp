@@ -7,7 +7,7 @@ from app.classes.spec.declaration import Declaration
 class UpdateConfig:
     def __init__(
             self, 
-            op_code: OpCode, 
+            op_code: OpCode = None, 
 
             # Parm update
             node_list: List[SelectedNode] = None,
