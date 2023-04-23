@@ -28,5 +28,6 @@ class NodeType(Enum):
     OBLIGATION_SUBJECT = 37
     OBLIGATION_ACTION = 38,
     POWER_SUBJECT = 39,
-    POWER_ACTION = 40
+    POWER_ACTION = 40,
+    COMMON_EVENT = 41
     # ....
