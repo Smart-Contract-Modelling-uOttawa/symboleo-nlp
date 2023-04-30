@@ -1,15 +1,12 @@
 from app.classes.operations.dependencies import Dependencies
 
-from app.src.grammar.grammar_graph import GrammarGraph
-from app.src.grammar.value_getter import ValueGetter
-from app.src.grammar.grammar_selector import GrammarSelector
-from app.src.user_scripts.manual_node_selector import ManualGrammarNodeSelector
-
-from app.src.operations.input_converter_builder import InputConverterBuilder
 from app.src.operations.refine_parameter.parameter_refiner_constructor import ParameterRefinerConstructor
 from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
 from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater
+
+from app.src.grammar.grammar_selector_builder import GrammarSelectorBuilder
+from app.src.grammar.grammar_selector2 import GrammarSelector
 
 class UserDependencies:
     def __init__(
@@ -25,20 +22,13 @@ class UserDependencies:
         self.domain_updater = domain_updater
 
 
-# Need NLP
 def get_dependencies(deps: Dependencies) -> UserDependencies:
-    # Not in use.. Will need this somewhere...
-    #domain_timepoint_extractor = DomainTimepointExtractor()
-    
-    grammar_graph = GrammarGraph()
-    value_getter = ValueGetter()
-    input_converter = InputConverterBuilder.build(deps)
-    inner_selector = ManualGrammarNodeSelector()
-
-    gs = GrammarSelector(grammar_graph, value_getter, input_converter, inner_selector)
+    gs = GrammarSelectorBuilder.build(deps)
 
     parm_refiner = ParameterRefinerConstructor.construct(deps)
+    
     tp_adder = TerminationUpdater(parm_refiner)
+    
     domain_updater = DomainUpdater()
 
     return UserDependencies(gs, parm_refiner, tp_adder, domain_updater)

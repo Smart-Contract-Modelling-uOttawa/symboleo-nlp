@@ -17,9 +17,9 @@ from app.src.operations.domain_updater import IUpdateDomain
 from app.src.operations.contract_updater import ContractUpdater
 
 from app.src.extractors.value_extractor import IExtractValue
-from app.src.operations.input_converter import InputConverter
+from app.src.grammar.input_converter import InputConverter
 
-
+# TODO: ...
 class InputConverterTests(unittest.TestCase):
     def setUp(self):
         self.extractor1 = IExtractValue()

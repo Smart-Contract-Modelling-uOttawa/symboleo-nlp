@@ -5,7 +5,7 @@ from app.classes.operations.op_code import OpCode
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter, ParameterOperation
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
-from app.src.operations.input_converter import IConvertInput
+from app.src.grammar.input_converter import IConvertInput
 
 class ContractUpdater:
     def __init__(

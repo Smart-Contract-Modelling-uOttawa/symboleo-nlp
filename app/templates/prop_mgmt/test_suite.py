@@ -53,6 +53,7 @@ test_suite = [
             UserInput(NodeType.SUBJECT, 'legal proceedings'),
             UserInput(NodeType.VERB, 'become'),
             UserInput(NodeType.PREDICATE, 'necessary'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='legal_proceedings'
     ),
@@ -66,6 +67,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='disburse_termination'
     ),
@@ -82,6 +84,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='disburse_termination'
     ),
@@ -96,6 +99,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='reimburse_termination'
     ),
@@ -112,6 +116,7 @@ test_suite = [
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),
             UserInput(NodeType.ADVERB, 'x days in advance'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_terminate_notice_manager', 'trigger'),
         norm_id = 'pow_terminate_notice_manager',
@@ -130,6 +135,7 @@ test_suite = [
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),
             UserInput(NodeType.ADVERB, 'x days in advance'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_terminate_notice_owner', 'trigger'),
         norm_id = 'pow_terminate_notice_owner',

@@ -5,54 +5,36 @@ from app.src.sym_updaters.package_updater import IUpdatePackage
 from app.classes.custom_event.custom_event import CustomEvent
 
 class SubjectUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.subj = node.value 
-            return UpdatePackage(new_value=value)
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        value.subj = node.value 
+        return UpdatePackage(new_value=value)
     
 class VerbUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.verb = node.value
-            return UpdatePackage(new_value=value)
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        value.verb = node.value
+        return UpdatePackage(new_value=value)
 
 class DobjUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.dobj = node.value 
-            return UpdatePackage(new_value=value)
-        else:
-            new_value = CustomEvent()
-            new_value.dobj = node.value
-            return UpdatePackage(new_value=new_value)
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        value.dobj = node.value 
+        return UpdatePackage(new_value=value)
 
 class PredicateUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.predicate = node.value 
-            return UpdatePackage(new_value=value)
-        else:
-            new_value = CustomEvent()
-            new_value.predicate = node.value
-            return UpdatePackage(new_value=new_value)
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        value.predicate = node.value 
+        return UpdatePackage(new_value=value)
 
 class AdverbUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            value.adverb = node.value 
-            return UpdatePackage(new_value=value)
-        else:
-            new_value = CustomEvent()
-            new_value.adverb = node.value
-            return UpdatePackage(new_value=new_value)
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        value.adverb = node.value 
+        return UpdatePackage(new_value=value)
 
 
 class PPUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
+    def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
+        if value.pps:
             value.pps.append(node.value) 
-            return UpdatePackage(new_value=value)
         else:
-            new_value = CustomEvent()
-            new_value.pps = [node.value]
-            return UpdatePackage(new_value=new_value)
+            value.pps = [node.value]
+        return UpdatePackage(new_value=value)
+        

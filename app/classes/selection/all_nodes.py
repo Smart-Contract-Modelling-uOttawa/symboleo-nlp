@@ -14,6 +14,7 @@ from app.classes.selection.timepoint_node import TimepointNode
 from app.classes.selection.domain_timepoint_node import DomainTimepointNode
 from app.classes.selection.custom_event_node import *
 from app.classes.selection.standard_event_node import *
+from app.classes.selection.final_node import *
 
 # Might move all the nodes to this file
 
@@ -40,6 +41,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.PREP_PHRASE: PrepNode,
 
     NodeType.STANDARD_EVENT: StandardEventNode,
+    NodeType.COMMON_EVENT: CommonEventNode,
     NodeType.CONTRACT_EVENT: ContractEventNode,
     NodeType.CONTRACT_ACTION: ContractActionNode,
     NodeType.CONTRACT_SUBJECT: ContractSubjectNode,
@@ -47,6 +49,8 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.NORM_EVENT: NormEventNode,
     NodeType.OBLIGATION_SUBJECT: ObligationSubjectNode,
     NodeType.OBLIGATION_ACTION: ObligationActionNode,
+
+    NodeType.FINAL_NODE: FinalNode
 
     ####...
 }

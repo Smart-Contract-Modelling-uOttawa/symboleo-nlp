@@ -10,7 +10,7 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
 from app.src.operations.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
-from app.src.operations.input_converter import IConvertInput
+from app.src.grammar.input_converter import IConvertInput
 
 from app.src.operations.contract_updater import ContractUpdater
 

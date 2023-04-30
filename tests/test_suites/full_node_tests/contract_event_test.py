@@ -16,7 +16,7 @@ from app.src.sym_updaters.update_extractor import UpdateExtractor
 
 from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
 
-from app.src.operations.input_converter_builder import InputConverterBuilder
+from app.src.grammar.input_converter_builder import InputConverterBuilder
 
 from tests.helpers.sample_norm_lib import SampleNorms
 

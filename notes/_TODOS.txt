@@ -1,54 +1,42 @@
-done
-- finished the rental contract
-- organized the process around a sequence of operations - much more testable
-- split out the NLP stuff
-- Separated out the user scripts for the various operations
+Next todos:
+- May 1-7: Focus on Symboleo: parm and parm config, handling multiple norms in one request... Also a new contract template
+- May 8-14: NLP work: improve extractors (add contract), make wider use of spacy and framenet - write a lot of NLP-specific tests
+- May 15-21: Metrics standardization in the code
+- May 22-28: Web UI 
 
-Next todos (April):
-- Make the contract updates into methods on the SymboleoContract object 
-- Ensure the NL aligns properly - verb tenses, etc.
-- Make sure that the customizations are updating the nl_parameters
-- Get tests up to 95% coverage 
-- some initial validation on the verb entry 
-- clean up demo, better messages, etc.
-- Framenet: Should stress-test this a bit more. Might make a wrapper and a bunch of tests around it
-- option to simply declare a new event (easy - already handling it - just make it an operation)
-- New contract... 
-- Try the frames for adding props again - maybe go for generic properties (e.g. with PROP QUALITY)
-- clean out old code and organize folders 
+GOALS FOR MAY
+- New contract template 
+- SYMBOLEO: re-add parm and parm config; handle multiple norms in one request; More convenience methods; more tests on the spec
+- NLP: Improve extractors (add contract), Better use of spacy and framenet, Have a separate NLP test suite (spacy, MLConjug, Framenet)
+- Metrics Standardization: Have a process that runs the test suites and gives some more detailed metric-related information
+- Clean code: Do some renaming (AbstractNode = Token, etc.); clean out older code; unit tests up to 70%
 
-May: 
-- Another contract - full-stack test 
-- tests up to 98%
-- Maybe start web UI 
-- wrap up any other NLP 
-- start with user string and convert to node list
 
-Jun
-- Last contract
+JUNE
+- Final contract template
 - Make a web ui
-- work on autocomplete
+- Unit tests at 80%
 
-** Im thinking that it would make more sense for the contract operations to be class methods...
-- would keep things a bit more organized, and honestly makes more sense 
-- they are straightforward mutations...
-- add_domain_obj, add_norm, update_norm, add_decl... all very doable. That's what I should do...
--- This can be a job for April. So dont worry about those operation tests for now. They'll be moved
-- Would need to move the spec into a folder so that it is properly tested. Need to do this with some other thigns as well...
+JULY
+- Review all templates
+- Unit tests at 90%
+- autocomplete/suggestion functionality and string -> nodes
+
+AUGUST
+- Unit tests at full coverage
+
 
 MAJOR TODOS:
-- General: Figure out the CommonEvents and templates
 - More handling on the trigger/consequent... Might require re-introducing parameters and parmConfig; trigger should add to start of NL for example.. 
-- Input: Add options to the AbstractNode where needed
 - NounPhrase: More work on noun phrase extractor; interfaces for the nlp functionality...
 - PrepPhrase: More work on the extractor. Lots of NLP functionality 
-- Input: Figure out mechanism for getting children after selecting a node - will be complex. Will also include StandardEvent
+- Handling the cases where we reference TWO norms (e.g. "either buyer or seller"...)
 - CustomEvent: Intransitive EventDeclarationMapper
 - Powers: Do we want to allow user to add ANY power - could be constructed... may be too much
 - NL issues: How will we handle coreferences?
 
 
-TODOS:
+OTHER TODOS:
 - CustomEvent: more options/parms for custom_events to_text()
 - CustomEvent: Make the is_complete() function more complex
 - NounPhrase: Add more types and complexity to the to_text() 
@@ -60,4 +48,3 @@ TODOS:
 - StandardEvent: Finish adding all the contract components
 - NLP: Make a Fake NLP once I have everything figured out. Or more sophisticated interfaces
 - ParmOpCode: Do we still need ADD_DM_PROP... I dont think so
-

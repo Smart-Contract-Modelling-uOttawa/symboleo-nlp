@@ -2,6 +2,7 @@ from app.classes.template_event.templated_event import TemplatedEvent
 from app.classes.custom_event.conj_type import ConjType
 from app.classes.custom_event.verb import Verb
 
+# Kill?
 class ContractEventTemplate(TemplatedEvent):
     contract_verb: Verb 
 

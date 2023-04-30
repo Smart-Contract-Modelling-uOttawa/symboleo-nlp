@@ -1,5 +1,6 @@
 from app.classes.tokens.abstract_node import AbstractNode
 from app.classes.tokens.node_type import NodeType
+from app.classes.tokens.final_node import FinalNode
 
 from app.classes.selection.custom_event_node import CustomEventNode as CustomEventNodeTarget
 from app.classes.selection.custom_event_node import SubjectNode as SubjectTarget, \
@@ -15,33 +16,34 @@ class PrepNode(AbstractNode):
     sn_type = PrepTarget
     prompt = 'Preposition'
     needs_value = True
+    children = [FinalNode]
 
 class AdverbNode(AbstractNode):
     node_type = NodeType.ADVERB
     sn_type = AdverbTarget
     prompt = 'Adverb'
-    children = [PrepNode]
+    children = [PrepNode, FinalNode]
     needs_value = True
 
 class PredicateNode(AbstractNode):
     node_type = NodeType.PREDICATE
     sn_type = PredicateTarget
     prompt = 'Predicate'
-    children = [AdverbNode]
+    children = [AdverbNode, FinalNode]
     needs_value = True
 
 class DobjNode(AbstractNode):
     node_type = NodeType.DOBJ
     sn_type = DobjTarget
     prompt = 'Direct Object'
-    children = [AdverbNode]
+    children = [AdverbNode, FinalNode]
     needs_value = True
 
 class VerbNode(AbstractNode):
     node_type = NodeType.VERB
     sn_type = VerbTarget
     prompt = 'Verb'
-    children = [DobjNode, AdverbNode, PredicateNode]
+    children = [DobjNode, AdverbNode, PredicateNode, FinalNode]
     needs_value = True
 
 class SubjectNode(AbstractNode):

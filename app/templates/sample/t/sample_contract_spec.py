@@ -32,6 +32,8 @@ def get_contract_spec():
     ]
 
     # Creating the objects
+    seller = Declarer.declare(dm, 'roles', 'Seller', 'seller') # Need to add the props
+    buyer = Declarer.declare(dm, 'roles', 'Buyer', 'buyer') # Need to add the props
     goods = Declarer.declare(dm, 'assets', 'Meat', 'goods', [
         ('quantity', 'qnt'),
         ('quality', 'qlt')
@@ -58,6 +60,8 @@ def get_contract_spec():
 
     # Declarations
     declarations = {
+        'seller': seller,
+        'buyer': buyer,
         'goods': goods,
         'evt_delivered': evt_delivered,
         'evt_paid_late': evt_paid_late,

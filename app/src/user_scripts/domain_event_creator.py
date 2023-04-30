@@ -7,7 +7,6 @@ import nltk
 from nltk.corpus import framenet as fn
 from app.src.nlp.framenet import MyFrame, MyLU, MyFrameElement, MyFramenet
 
-from app.classes.template_event.common_events import standard_event_dict
 from app.src.nlp.framenet_extractor import FramenetExtractor
 
 from app.src.helpers.string_to_class import CaseConverter
@@ -72,22 +71,22 @@ class DomainEventCreator:
         # return DomainEvent(event_name, custom_props)
 
 
-    def create_from_standard(self) -> DomainEvent:
-        print('\nCreating standard Contract event.')
-        for k in standard_event_dict:
-            print(f'{k}: {standard_event_dict[k].description}')
+    # def create_from_standard(self) -> DomainEvent:
+    #     print('\nCreating standard Contract event.')
+    #     for k in standard_event_dict:
+    #         print(f'{k}: {standard_event_dict[k].description}')
 
-        print('\n')
-        kl = list(standard_event_dict.keys())
-        for i,k in enumerate(kl):
-            print(f'{i+1}: {k}')
+    #     print('\n')
+    #     kl = list(standard_event_dict.keys())
+    #     for i,k in enumerate(kl):
+    #         print(f'{i+1}: {k}')
         
-        user_k = int(input('Selection #: '))
-        sel_k = kl[user_k - 1]
+    #     user_k = int(input('Selection #: '))
+    #     sel_k = kl[user_k - 1]
 
-        domain_event = standard_event_dict[sel_k].domain_event
-        new_event = copy.deepcopy(domain_event)
-        return new_event
+    #     domain_event = standard_event_dict[sel_k].domain_event
+    #     new_event = copy.deepcopy(domain_event)
+    #     return new_event
 
 
     def create_from_frame(self) -> DomainEvent:

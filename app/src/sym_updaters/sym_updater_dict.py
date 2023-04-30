@@ -17,6 +17,7 @@ from app.src.sym_updaters.within_node_updater import WithinNodeUpdater
 from app.src.sym_updaters.until_node_updater import UntilNodeUpdater
 from app.src.sym_updaters.date_node_updater import DateNodeUpdater
 from app.src.sym_updaters.custom_event.custom_event_component_updaters import *
+from app.src.sym_updaters.common_event_node_updater import CommonEventNodeUpdater
 
 from app.src.sym_updaters.leaf_node_updater import LeafNodeUpdater
 
@@ -24,6 +25,9 @@ from app.src.sym_updaters.leaf_node_updater import LeafNodeUpdater
 from app.src.sym_updaters.custom_event.cenu_builder import CustomEventNodeUpdaterBuilder
 
 from app.src.operations.norm_builder import NormBuilder
+from app.src.sym_updaters.custom_event.domain_model_mapper import DeclarationToDomainMapper
+from app.src.sym_updaters.common_event.common_event_mapper_dict import CommonEventMapperDictConstructor
+
 
 # Can think of this as the SymboleoUpdater
 class SymUpdaterDictConstructor:
@@ -32,6 +36,8 @@ class SymUpdaterDictConstructor:
     def build(deps) -> DefaultDict[Type[SelectedNode], IUpdatePackage]:
         # Set up injection... Will probably pull this out into the deps...
         norm_builder = NormBuilder()
+        common_event_mapper_dict = CommonEventMapperDictConstructor.build()
+        domain_mapper = DeclarationToDomainMapper()
 
         d = defaultdict(lambda: DefaultUpdater())
 
@@ -56,5 +62,8 @@ class SymUpdaterDictConstructor:
         d[ContractSubjectNode] = ContractSubjectNodeUpdater()
         d[ObligationActionNode] = LeafNodeUpdater()
         d[ObligationSubjectNode] = ObligationSubjectNodeUpdater()
+        d[CommonEventNode] = CommonEventNodeUpdater(common_event_mapper_dict, domain_mapper)
+
+        d[FinalNode] = LeafNodeUpdater()
 
         return d

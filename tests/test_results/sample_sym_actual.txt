@@ -15,11 +15,13 @@ endDomain
 Contract MeatSale( amt: Number, buyer: Buyer, curr: Currency, delAdd: String, delDueDateDays: Number, effDate: Date, interestRate: Number, payDueDate: Date, qlt: MeatQuality, qnt: Number, seller: Seller )
 
 Declarations
+  buyer: Buyer;
   evt_delivered: Delivered with item := goods, deliveryAddress := delAdd, delDueDate := Date.add(effDate, delDueDateDays, days);
   evt_disclosed: Disclosed;
   evt_paid: Paid with amount := amt, currency := curr, from := buyer, to := seller, payDueDate := payDueDate;
   evt_paid_late: PaidLate with amount := (1 + interestRate / 100) * amt, currency := curr, from := buyer, to := seller;
   goods: Meat with quantity := qnt, quality := qlt;
+  seller: Seller;
 
 Preconditions
   IsOwner(goods, seller);

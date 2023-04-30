@@ -11,22 +11,19 @@ class AbstractNode: # pragma: no cover
     children: List[Type[SelectedNode]] = []
     needs_value = False
     init_value = ''
+    options: List[str] = None
     # TODO: options...
     
-    # def __init__(self, id: str = '', children: List[AbstractNode] = []):
-    #     self.id = id
-    #     self.children = children
+    def __init__(self, options: List[str] = None):
+        self.options = options 
     
+    def __eq__(self, other: AbstractNode) -> bool:
+        return self.node_type == other.node_type # more here?
+
     def get_value(self):
         raise NotImplementedError()
     
 
 class DummyNode(AbstractNode):
-    def __init__(self, id: str, children: List[AbstractNode] = []):
-        super().__init__(id, children)
-        self.prompt = 'dummy'
-        self.node_type = NodeType.DUMMY
-
-    def get_value(self):
-        result = 'dummy'   
-        return result
+    prompt = 'dummy'
+    node_type = NodeType.DUMMY

@@ -14,6 +14,7 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_pay_rent'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='late_payment'
     ),
@@ -40,6 +41,7 @@ test_suite = [
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'occupies'),
             UserInput(NodeType.DOBJ, 'the_property'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='pay_security_deposit'
     ),
@@ -53,6 +55,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='return_deposit'
     ),
@@ -76,6 +79,7 @@ test_suite = [
             UserInput(NodeType.SUBJECT, 'landlord'),
             UserInput(NodeType.VERB, 'allows'),
             UserInput(NodeType.DOBJ, 'pets'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key= 'no_pets'
     ),
@@ -103,6 +107,7 @@ test_suite = [
             UserInput(NodeType.VERB, 'provides'),
             UserInput(NodeType.DOBJ, 'termination notice'),
             UserInput(NodeType.ADVERB, '3 days in advance'), # Improve this
+            UserInput(NodeType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_written', 'trigger'),
         norm_id = 'pow_termination_written',
@@ -131,7 +136,8 @@ test_suite = [
             UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'abandons'),
-            UserInput(NodeType.DOBJ, 'the_property')
+            UserInput(NodeType.DOBJ, 'the_property'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_abandon', 'trigger'),
         norm_id = 'pow_termination_abandon',

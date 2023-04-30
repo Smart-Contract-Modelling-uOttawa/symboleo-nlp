@@ -22,25 +22,24 @@ class CustomEventNodeUpdater(IUpdatePackage):
         self.__domain_mapper = domain_mapper
 
 
-    def update_package(self, norm: INorm, node: SelectedNode,  value: any) -> UpdatePackage:
-        if type(value) == CustomEvent:
-            # May need to pass in existing declarations from the contract
-            decls = self.__asset_decl_mapper.map(value)
+    def update_package(self, norm: INorm, node: SelectedNode,  value: CustomEvent) -> UpdatePackage:
+        # May need to pass in existing declarations from the contract
+        decls = self.__asset_decl_mapper.map(value)
 
-            # Might then be passing asset_decls into this
-            # Any Noun phrase should be an asset by this point... I think...
-            event_decl = self.__event_decl_mapper.map(value)
-            
-            decls.append(event_decl)
-            dmos = [self.__domain_mapper.map(x) for x in decls]
+        # Might then be passing asset_decls into this
+        # Any Noun phrase should be an asset by this point... I think...
+        event_decl = self.__event_decl_mapper.map(value)
+        
+        decls.append(event_decl)
+        dmos = [self.__domain_mapper.map(x) for x in decls]
 
-            new_value = VariableEvent(event_decl.name)
-            
-            update_obj = ContractUpdateObj(
-                domain_objects=dmos,
-                declarations=decls
-            )
+        new_value = VariableEvent(event_decl.name)
+        
+        update_obj = ContractUpdateObj(
+            domain_objects=dmos,
+            declarations=decls
+        )
 
-            return UpdatePackage(update_obj, new_value)
+        return UpdatePackage(update_obj, new_value)
         
 

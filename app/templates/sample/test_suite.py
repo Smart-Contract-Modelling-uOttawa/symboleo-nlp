@@ -11,7 +11,8 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.BEFORE),
             UserInput(NodeType.TIMEPOINT),
-            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_delivered.delDueDate')
+            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_delivered.delDueDate'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='delivery'
     ),
@@ -21,7 +22,8 @@ test_suite = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.BEFORE),
             UserInput(NodeType.TIMEPOINT),
-            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_paid.payDueDate')
+            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_paid.payDueDate'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='payment'
     ),
@@ -35,6 +37,7 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_payment'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='latePayment'
     ),
@@ -51,6 +54,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
             UserInput(NodeType.CONTRACT_ACTION, 'Activated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='disclosure'
     ),
@@ -80,7 +84,8 @@ test_suite = [
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_payment'),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Violated')
+            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='suspendDelivery'
     ),
@@ -93,7 +98,8 @@ test_suite = [
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_late_payment'),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Fulfilled')
+            UserInput(NodeType.OBLIGATION_ACTION, 'Fulfilled'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         parm_key='suspendDelivery'
     ),
@@ -106,7 +112,8 @@ test_suite = [
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_delivery'),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Violated')
+            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(NodeType.FINAL_NODE)
         ],
         norm_id = 'pow_terminate_contract',
         debtor = 'buyer',

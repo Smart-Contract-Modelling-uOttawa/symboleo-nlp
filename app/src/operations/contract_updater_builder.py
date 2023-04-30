@@ -2,7 +2,7 @@ from app.src.operations.contract_updater import ContractUpdater
 from app.src.operations.domain_updater import DomainUpdater
 from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.refine_parameter.parameter_refiner_constructor import ParameterRefinerConstructor
-from app.src.operations.input_converter_builder import InputConverterBuilder
+from app.src.grammar.input_converter_builder import InputConverterBuilder
 from app.src.operations.dependency_builder import DependencyBuilder
 
 class ContractUpdaterBuilder:

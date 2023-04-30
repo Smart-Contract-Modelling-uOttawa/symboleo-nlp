@@ -12,6 +12,8 @@ from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtr
 from app.src.extractors.custom_event.verb.verb_extractor_builder import VerbExtractorBuilder
 from app.src.extractors.obligation_action_extractor import ObligationActionExtractor
 from app.src.extractors.obligation_subject_extractor import ObligationSubjectExtractor
+from app.src.extractors.common_event_extractor import CommonEventExtractor
+from app.src.extractors.final_extractor import FinalExtractor
 from app.src.extractors.value_extractor import DefaultExtractor, IExtractValue
 
 
@@ -39,9 +41,11 @@ class ValueExtractorDictBuilder:
         d[NodeType.PREDICATE] = predicate_extractor
 
         d[NodeType.CONTRACT_ACTION] = ContractActionExtractor()
-
         d[NodeType.OBLIGATION_ACTION] = ObligationActionExtractor()
         d[NodeType.OBLIGATION_SUBJECT] = ObligationSubjectExtractor()
-        ##...
+        
+        d[NodeType.COMMON_EVENT] = CommonEventExtractor()
+
+        d[NodeType.FINAL_NODE] = FinalExtractor()
 
         return d

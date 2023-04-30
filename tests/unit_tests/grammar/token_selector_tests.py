@@ -1,0 +1,47 @@
+import unittest
+from unittest.mock import MagicMock
+from app.classes.tokens.abstract_node import AbstractNode, DummyNode
+from app.classes.tokens.final_node import FinalNode as FinalToken
+
+from app.src.grammar.token_selector import TokenSelector
+from app.src.grammar.token_selector_set import ISelectTokenFromSet
+from app.src.child_getters.child_getter import IGetNodeChildren
+
+class TokenSelectorTests(unittest.TestCase):
+    def setUp(self):
+
+        self.fake_child_getter = IGetNodeChildren()
+
+        self.fake_dict = {
+            AbstractNode: self.fake_child_getter
+        }
+
+        self.inner_selector = ISelectTokenFromSet()
+        self.inner_selector.select = MagicMock(return_value = DummyNode())
+
+        self.sut = TokenSelector(self.fake_dict, self.inner_selector)
+    
+
+    def test_token_selector(self):
+        self.fake_child_getter.get = MagicMock(return_value=[DummyNode()])
+        
+        token = AbstractNode()
+        result = self.sut.select(token, None, None)
+
+        self.assertEqual(result.prompt, 'dummy')
+        self.assertEqual(self.fake_child_getter.get.call_count, 1)
+        self.assertEqual(self.inner_selector.select.call_count, 1)
+    
+    def test_token_selector_empty(self):
+        self.fake_child_getter.get = MagicMock(return_value=[])
+        
+        token = AbstractNode()
+        result = self.sut.select(token, None, None)
+
+        self.assertEqual(type(result), FinalToken)
+        self.assertEqual(self.fake_child_getter.get.call_count, 1)
+        self.assertEqual(self.inner_selector.select.call_count, 0)
+
+
+if __name__ == '__main__':
+    unittest.main()

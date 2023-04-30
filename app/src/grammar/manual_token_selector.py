@@ -1,8 +1,8 @@
 from typing import List
 from app.classes.tokens.abstract_node import AbstractNode
-from app.src.grammar.grammar_selector import ISelectGrammarNodes
+from app.src.grammar.token_selector_set import ISelectTokenFromSet
 
-class ManualGrammarNodeSelector(ISelectGrammarNodes):
+class ManualTokenSelector(ISelectTokenFromSet):
     def select(self, node_set: List[AbstractNode]) -> AbstractNode:
         if len(node_set) == 1:
             return node_set[0]

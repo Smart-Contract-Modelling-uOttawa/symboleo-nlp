@@ -1,5 +1,6 @@
 from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.spec.declaration import Declaration
 
 class IExtractDomainTimePoints:
     def extract(self, contract: SymboleoContract) -> List[str]:
@@ -8,7 +9,8 @@ class IExtractDomainTimePoints:
 class DomainTimepointExtractor(IExtractDomainTimePoints):
     def extract(self, contract: SymboleoContract) -> List[str]:
         results = []
-        all_events = [x for x in contract.contract_spec.declarations.values() if x.base_type == 'events']
+        all_declarations: List[Declaration] = [x for x in contract.contract_spec.declarations.values()]
+        all_events = [x for x in all_declarations if x.base_type == 'events']
 
         for event_decl in all_events:
             date_props = [x for x in event_decl.props if x.type == 'Date']
