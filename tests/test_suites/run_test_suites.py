@@ -11,6 +11,7 @@ class FullStackTests(unittest.TestCase):
             'sample',
             'rental',
             'prop',
+            'gridiron'
         ]
         for k in target_keys:
             contract = get_template(f'{k}_t')

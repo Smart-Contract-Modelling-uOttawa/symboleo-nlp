@@ -1,0 +1,61 @@
+Domain gridironDomain
+  Buyer isA Role with name: String;
+  Seller isA Role with name: String;
+  ThirdParty isA Role with name: String;
+  Biomass isAn Asset with quantity: Number, cannabidiol_percent: Number, thc_percent: Number;
+  Delivery isAn Event with from: Role, to: Role, product: Biomass, location: String;
+  DeterminesAnalysis isAn Event with agent: Role;
+  DiscloseInfo isAn Event with agent: Role;
+  LegalClaim isAn Event with agent: Role, target: Role;
+  LegalNotice isAn Event with agent: Role, receiver: Role;
+  Payment isAn Event with agent: Role, receiver: Role, amount: Number, currency: Currency;
+  Quarantine isAn Event with product: Biomass;
+  ReturnInfo isAn Event with agent: Role, receiver: Role;
+
+endDomain
+
+Contract Gridiron( buyer: Buyer, seller: Seller, third_party: ThirdParty, v_cannabidiol_percent: Number, v_currency: Currency, v_quantity: Number, v_shipping_location: String, v_thc_percent: Number )
+
+Declarations
+  biomass: Biomass with quantity := v_quantity, cannabidiol_percent := v_cannabidiol_percent, thc_percent := v_thc_percent;
+  buyer: Buyer with name := Gridiron;
+  evt_delivery_lab: Delivery with from := seller, to := buyer, product := biomass, location := lab specified by Gridiron;
+  evt_delivery_processor: Delivery with from := seller, to := buyer, product := biomass, location := processor;
+  evt_determines_analysis: DeterminesAnalysis with agent := buyer;
+  evt_disclose_info_buyer: DiscloseInfo with agent := buyer;
+  evt_disclose_info_seller: DiscloseInfo with agent := seller;
+  evt_legal_claim_buyer: LegalClaim with agent := third_party, target := buyer;
+  evt_legal_claim_seller: LegalClaim with agent := third_party, target := seller;
+  evt_legal_notice_buyer: LegalNotice with agent := third_party, receiver := buyer;
+  evt_legal_notice_seller: LegalNotice with agent := third_party, receiver := seller;
+  evt_payment: Payment with agent := buyer, receiver := seller, amount := v_amount, currency := v_currency;
+  evt_quarantine: Quarantine with product := biomass;
+  evt_return_info_buyer: ReturnInfo with agent := buyer, receiver := seller;
+  evt_return_info_seller: ReturnInfo with agent := seller, receiver := buyer;
+  seller: Seller with name := Shi Farms;
+  third_party: ThirdParty with name := Legal Third Party;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_delivery_lab: Happens(evt_determines_analysis) -> Obligation(seller, buyer, true, Happens(evt_delivery_lab));
+  ob_delivery_processor: Obligation(seller, buyer, true, Happens(evt_delivery_processor));
+  ob_legal_proceeding_buyer: Happens(evt_legal_claim_buyer) -> Obligation(third_party, buyer, true, Happens(evt_legal_notice_buyer));
+  ob_legal_proceeding_seller: Happens(evt_legal_claim_seller) -> Obligation(third_party, seller, true, Happens(evt_legal_notice_seller));
+  ob_payment: Happens(Activated(self)) -> Obligation(buyer, seller, true, Happens(evt_payment));
+  ob_return_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, Happens(evt_return_info_buyer));
+  ob_return_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, Happens(evt_return_info_buyer));
+
+Surviving Obligations
+  ob_disclose_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, not Happens(evt_disclose_info_buyer));
+  ob_disclose_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, not Happens(evt_disclose_info_seller));
+
+Powers
+  pow_termination_buyer: Power(buyer, seller, true, Terminated(self));
+  pow_termination_seller: Power(seller, buyer, true, Terminated(self));
+
+Constraints
+
+endContract

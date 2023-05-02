@@ -33,6 +33,21 @@ from app.templates.prop_mgmt.t_raw.contract_spec import get_contract_spec as get
 from app.templates.prop_mgmt.t_raw.nl_template import nl_template as prop_raw_nl
 from app.templates.prop_mgmt.test_suite import test_suite as prop_test_suite
 
+## Gridiron
+from app.templates.gridiron.t.domain_model import get_domain_model as get_gridiron_t_dm
+from app.templates.gridiron.t.contract_spec import get_contract_spec as get_gridiron_t_cs
+from app.templates.gridiron.t.nl_template import nl_template as gridiron_t_nl
+
+from app.templates.gridiron.t_raw.domain_model import get_domain_model as get_gridiron_raw_dm
+from app.templates.gridiron.t_raw.contract_spec import get_contract_spec as get_gridiron_raw_cs
+from app.templates.gridiron.t_raw.nl_template import nl_template as gridiron_raw_nl
+
+from app.templates.gridiron.test_suite import test_suite as gridiron_test_suite
+
+
+
+
+
 template_dict: Dict[str, SymboleoContract] = {
 
     # 'meat_sale':  SymboleoContract(
@@ -50,7 +65,6 @@ template_dict: Dict[str, SymboleoContract] = {
         get_rental_raw_cs(),
         rental_raw_nl
     ),
-
     'rental_t': SymboleoContract(
         get_rental_t_dm(),
         get_rental_t_cs(),
@@ -62,7 +76,6 @@ template_dict: Dict[str, SymboleoContract] = {
         get_sample_raw_cs(),
         sample_raw_nl
     ),
-
     'sample_t': SymboleoContract(
         get_sample_t_dm(),
         get_sample_t_cs(),
@@ -74,11 +87,22 @@ template_dict: Dict[str, SymboleoContract] = {
         get_prop_raw_cs(),
         prop_raw_nl
     ),
-
     'prop_t': SymboleoContract(
         get_prop_t_dm(),
         get_prop_t_cs(),
         prop_t_nl
+    ),
+
+    'gridiron_raw': SymboleoContract(
+        get_gridiron_raw_dm(),
+        get_gridiron_raw_cs(),
+        gridiron_raw_nl
+    ),
+
+    'gridiron_t': SymboleoContract(
+        get_gridiron_t_dm(),
+        get_gridiron_t_cs(),
+        gridiron_t_nl
     ),
 }
 
@@ -86,6 +110,7 @@ test_suite_dict: Dict[str, List[UpdateConfig]] = {
     'sample': sample_test_suite,
     'rental': rental_test_suite,
     'prop': prop_test_suite,
+    'gridiron': gridiron_test_suite,
 }
 
 
