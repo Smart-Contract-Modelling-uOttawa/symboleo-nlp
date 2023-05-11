@@ -55,7 +55,8 @@ test_suite = [
             UserInput(NodeType.PREDICATE, 'necessary'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='legal_proceedings'
+        nl_key='legal_proceedings',
+        parm_key='P1'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -69,7 +70,8 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='disburse_termination'
+        nl_key='disburse_termination',
+        parm_key='P1'
     ),
 
     ## Temporal refinements
@@ -86,7 +88,8 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='disburse_termination'
+        nl_key='disburse_termination',
+        parm_key='P2'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -101,7 +104,8 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='reimburse_termination'
+        nl_key='reimburse_termination',
+        parm_key='P2'
     ),
 
     ## Termination power

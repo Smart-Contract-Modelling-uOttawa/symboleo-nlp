@@ -35,7 +35,7 @@ Obligations
   ob_payment: Obligation(buyer, seller, true, WhappensBefore(evt_paid, evt_paid.payDueDate));
 
 Surviving Obligations
-  so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Activated(self), 6, months)));
+  so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Terminated(self), 6, months)));
   so2: SO(buyer, seller, true, not Happens(evt_disclosed));
 
 Powers

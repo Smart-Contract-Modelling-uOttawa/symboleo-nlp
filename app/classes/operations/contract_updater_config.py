@@ -13,6 +13,7 @@ class UpdateConfig:
             node_list: List[SelectedNode] = None,
             #selection: Selection = None, 
             #parm_config: ParameterConfig = None,
+            nl_key: str = None,
             parm_key: str = None,
             
             # DM Update
@@ -29,6 +30,7 @@ class UpdateConfig:
         self.node_list = node_list
         #self.selection = selection
         #self.parm_config: ParameterConfig = parm_config
+        self.nl_key = nl_key
         self.parm_key = parm_key
         
         self.dm_obj_type = dm_obj_type

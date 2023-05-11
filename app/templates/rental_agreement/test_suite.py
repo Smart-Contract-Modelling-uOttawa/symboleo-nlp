@@ -16,7 +16,8 @@ test_suite = [
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='late_payment'
+        nl_key='late_payment',
+        parm_key = 'P1'
     ),
 
     # UpdateConfig(
@@ -43,7 +44,8 @@ test_suite = [
             UserInput(NodeType.DOBJ, 'the_property'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='pay_security_deposit'
+        nl_key='pay_security_deposit',
+        parm_key = 'P2'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -57,7 +59,8 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='return_deposit'
+        nl_key='return_deposit',
+        parm_key = 'P1'
     ),
     # UpdateConfig(
     #     OpCode.ADD_DOMAIN_OBJECT,
@@ -81,7 +84,8 @@ test_suite = [
             UserInput(NodeType.DOBJ, 'pets'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key= 'no_pets'
+        nl_key= 'no_pets',
+        parm_key = 'P2'
     ),
 
     # UpdateConfig(

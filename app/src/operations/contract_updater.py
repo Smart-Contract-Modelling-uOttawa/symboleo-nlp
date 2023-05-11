@@ -25,7 +25,7 @@ class ContractUpdater:
         node_list = self.__input_converter.convert(config.node_list)
 
         if op_code == OpCode.UPDATE_PARM:
-            parm_op = ParameterOperation(config.parm_key, node_list)
+            parm_op = ParameterOperation(config.nl_key, config.parm_key, node_list)
             self.__parm_refiner.refine(contract, parm_op)
         
         elif op_code == OpCode.ADD_DOMAIN_OBJECT:

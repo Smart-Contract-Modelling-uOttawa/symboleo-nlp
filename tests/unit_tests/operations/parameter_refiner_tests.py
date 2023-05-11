@@ -30,7 +30,7 @@ class ParameterRefinerTests(unittest.TestCase):
 
         # Run refinement
         node_list = []
-        op = ParameterOperation(node_list, '')
+        op = ParameterOperation('', '', node_list)
         self.sut.refine(contract, op)
 
         self.assertEqual(contract.get_norm_by_key.call_count, 1)

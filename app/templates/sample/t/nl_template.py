@@ -1,27 +1,49 @@
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
+from app.classes.spec.parameter_config import ParameterConfig
 
 sample_nl_template = NLTemplate(
     template_dict = {
         'delivery': TemplateObj(
-            'The Seller shall deliver the Order in one delivery to the Buyer',
-            ['obligations.ob_delivery'],
-
-        ),
+            '[P1] The Seller shall deliver the Order in one delivery to the Buyer [P2]',
+            {
+                'P1': [ParameterConfig('obligations', 'ob_delivery', 'trigger')],
+                'P2': [ParameterConfig('obligations', 'ob_delivery', 'consequent')]
+            }
+        )
+        ,
         'payment': TemplateObj(
-            'The Buyer shall pay (payment_amount) to the Seller',
-            ['obligations.ob_payment']
+            '[P1] The Buyer shall pay (payment_amount) to the Seller [P2]',
+            {
+                'P1': [ParameterConfig('obligations', 'ob_payment', 'trigger')],
+                'P2': [ParameterConfig('obligations', 'ob_payment', 'consequent')]
+            }
         ),
         'latePayment': TemplateObj(
-            'The Buyer shall pay interests equal to (interest_amount) percent of the payment amount',
-            ['obligations.ob_late_payment']
+            '[P1] The Buyer shall pay interests equal to (interest_amount) percent of the payment amount [P2]',
+            {
+                'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')],
+                'P2': [ParameterConfig('obligations', 'ob_late_payment', 'consequent')]
+            }
         ),
         'disclosure': TemplateObj(
-            'Both Seller and Buyer must keep the contents of this contract confidential',
-            ['surviving_obligations.so1', 'surviving_obligations.so2']
+            '[P1] Both Seller and Buyer must keep the contents of this contract confidential [P2]',
+            {
+                'P1': [
+                    ParameterConfig('surviving_obligations', 'so1', 'trigger'),
+                    ParameterConfig('surviving_obligations', 'so2', 'trigger')
+                ],
+                'P2': [
+                    ParameterConfig('surviving_obligations', 'so1', 'consequent'),
+                    ParameterConfig('surviving_obligations', 'so2', 'consequent')
+                ]
+            }
         ),
         'suspendDelivery': TemplateObj(
-            'The Seller may suspend performance of all of its obligations under the agreement',
-            ['powers.pow_suspend_delivery']
+            '[P1] The Seller may suspend performance of all of its obligations under the agreement [P2]',
+            {
+                'P1': [ParameterConfig('powers', 'pow_suspend_delivery', 'trigger')],
+                'P2': [ParameterConfig('powers', 'pow_suspend_delivery', 'consequent')]
+            }
         ),
     }
 )

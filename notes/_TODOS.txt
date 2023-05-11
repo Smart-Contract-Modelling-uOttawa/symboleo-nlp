@@ -31,7 +31,7 @@ MAJOR TODOS:
 - NounPhrase: More work on noun phrase extractor; interfaces for the nlp functionality...
 - PrepPhrase: More work on the extractor. Lots of NLP functionality 
 - Handling the cases where we reference TWO norms (e.g. "either buyer or seller"...)
-- CustomEvent: Intransitive EventDeclarationMapper
+- obligation-related events - would be better to use the event rather than ob_payment obligaton is violated (for example) - tough one...
 - Powers: Do we want to allow user to add ANY power - could be constructed... may be too much
 - NL issues: How will we handle coreferences?
 

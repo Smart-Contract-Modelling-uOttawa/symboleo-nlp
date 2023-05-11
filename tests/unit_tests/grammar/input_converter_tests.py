@@ -8,7 +8,6 @@ from app.classes.spec.declaration import IDeclaration
 from app.classes.tokens.node_type import NodeType
 from app.classes.operations.user_input import UserInput
 
-from app.src.operations.refine_parameter.parm_configs import ParameterConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter

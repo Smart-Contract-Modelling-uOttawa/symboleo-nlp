@@ -9,6 +9,7 @@ from app.classes.spec.predicate_function import PredicateFunction, PredicateFunc
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
+from app.classes.spec.parameter_config import ParameterConfig
 
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
@@ -32,11 +33,11 @@ class ISymboleoContract:
     def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         raise NotImplementedError()
     
-    def get_norm_by_key(self, key:str):
+    def get_norm_by_key(self, nl_key:str, parm_key:str) -> INorm:
         raise NotImplementedError()
     def run_updates(self, update: ContractUpdateObj):
         raise NotImplementedError()
-    def update_nl(self, key, nl):
+    def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):
         raise NotImplementedError()
         
 
@@ -63,9 +64,11 @@ class SymboleoContract(ISymboleoContract):
         return d[type_str]
     
 
-    def get_norm_by_key(self, key:str) -> INorm:
-        mapping = self.nl_template.template_dict[key].mapping[0]
-        norm_type, norm_id = mapping.split('.')
+    def get_norm_by_key(self, nl_key:str, parm_key:str) -> INorm:
+        parm_config = self.nl_template.template_dict[nl_key].parameters[parm_key][0] # the indexing is not great...
+
+        norm_type = parm_config.norm_type
+        norm_id = parm_config.norm_id
         result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
         return result
     
@@ -83,11 +86,13 @@ class SymboleoContract(ISymboleoContract):
         type_key = self._get_type_key(norm.norm_type.value)
         self.contract_spec.__dict__[type_key][norm.id] = norm
 
-    def update_nl(self, key, nl): # Might include component check...
+
+    # Need the nl_key (e.g. delivery) and the parm_key (e.g P1)
+    def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):        
         t = self.nl_template.template_dict
-        old_str = t[key].str_val
-        new_nl = old_str + ' ' + nl
-        t[key].str_val =  new_nl
+        old_str = t[nl_key].str_val
+        t[nl_key].str_val = old_str.replace(f'[{parm_key}]', nl_refinement)
+
 
 
     # Print the NL template strings and their corresponding symboleo norms
@@ -96,11 +101,12 @@ class SymboleoContract(ISymboleoContract):
             val = self.nl_template.template_dict[x]
             print(f'{x}: {val.str_val}')
 
-            mapping = val.mapping
-            for m in mapping:
-                t,v = m.split('.')
-                norm = self.contract_spec.__dict__[t][v]
-                print(f' - {norm.to_sym()}')
+            # TODO: Might get rid of mapping - use the parms...
+            # mapping = val.mapping
+            # for m in mapping:
+            #     t,v = m.split('.')
+            #     norm = self.contract_spec.__dict__[t][v]
+            #     print(f' - {norm.to_sym()}')
             print('\n')
     
     
@@ -142,12 +148,14 @@ class SymboleoContract(ISymboleoContract):
         self.contract_spec.__dict__[norm_type][norm.id] = norm
 
         t = self.nl_template.template_dict
-        next_mapping = f'{norm_type}.{norm.id}'
-        if norm_key in t:
-            t[norm_key].mapping.append(next_mapping)
-            t[norm_key].str_val += norm_nl # This will require some finessing...
+        if norm_key in t: # Does this ever happen...?
+            t[norm_key].str_val += norm_nl # This will also require some finessing...
         else:
-            t[norm_key] = TemplateObj(norm_nl, [next_mapping])
+            parms = {
+                'P1': [ParameterConfig(norm_type, norm.id, 'trigger')]
+                # This will require some finessing.
+            }
+            t[norm_key] = TemplateObj(norm_nl, parms)
     
 
     def add_dm_object(self, dmo: DomainObject):

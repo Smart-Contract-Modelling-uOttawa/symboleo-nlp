@@ -1,9 +1,10 @@
 from typing import Dict, List
+from app.classes.spec.parameter_config import ParameterConfig
 
 class TemplateObj:
-    def __init__(self, str_val:str, mapping: List[str]):
+    def __init__(self, str_val:str, parameters: Dict[str, List[ParameterConfig]] = None):
         self.str_val = str_val
-        self.mapping = mapping
+        self.parameters = parameters
     
 class NLTemplate:
     def __init__(

@@ -36,10 +36,11 @@ class TerminationUpdater(IAddPower):
 
     def update(self, contract: SymboleoContract, operation: TerminationOperation) -> SymboleoContract:
         # Add the blank termination power
+        parm_key = 'P1'
         new_power = Power(operation.norm_id, None, operation.debtor, operation.creditor, PAtomPredicateTrueLiteral(), PFContract(PFContractName.Terminated))
-        power_string = f'{operation.debtor} may terminate the contract.'
+        power_string = f'[{parm_key}] {operation.debtor} may terminate the contract.'
         contract.add_norm(new_power, operation.norm_id, power_string)
 
         # Add the condition
-        parm_op = ParameterOperation(operation.norm_id, operation.node_list)
+        parm_op = ParameterOperation(operation.norm_id, parm_key, operation.node_list)
         self.__parm_refiner.refine(contract, parm_op)

@@ -14,7 +14,8 @@ test_suite = [
             UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_delivered.delDueDate'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='delivery'
+        nl_key='delivery',
+        parm_key='P2'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -25,7 +26,8 @@ test_suite = [
             UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_paid.payDueDate'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='payment'
+        nl_key='payment',
+        parm_key='P2'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -39,7 +41,8 @@ test_suite = [
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='latePayment'
+        nl_key='latePayment',
+        parm_key='P1'
     ),
 
 
@@ -53,10 +56,11 @@ test_suite = [
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.CONTRACT_EVENT),
             UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Activated'),
+            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='disclosure'
+        nl_key='disclosure',
+        parm_key='P2'
     ),
 
 
@@ -87,7 +91,8 @@ test_suite = [
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='suspendDelivery'
+        nl_key='suspendDelivery',
+        parm_key='P1'
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
@@ -101,8 +106,10 @@ test_suite = [
             UserInput(NodeType.OBLIGATION_ACTION, 'Fulfilled'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='suspendDelivery'
+        nl_key='suspendDelivery',
+        parm_key = 'P2'
     ),
+    
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [

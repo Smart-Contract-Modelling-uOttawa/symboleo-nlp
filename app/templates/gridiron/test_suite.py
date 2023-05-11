@@ -16,7 +16,8 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Activated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='payment'
+        nl_key='payment',
+        parm_key='P1'
     ),
 
     # if Gridiron determines that third party analysis of the Biomass is required for processing
@@ -32,7 +33,8 @@ test_suite = [
             UserInput(NodeType.DOBJ, 'that third party analysis of the Biomass is required for processing'), # Improve...
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='delivery_location'
+        nl_key='delivery_location',
+        parm_key='P1'
     ),
 
     # If any claim or legal proceeding is filed by a third party
@@ -49,7 +51,8 @@ test_suite = [
             # Prep phrase: Against buyer/seller?
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='legal_proceeding'
+        nl_key='legal_proceeding',
+        parm_key='P1'
     ),
 
     # When the Agreement ends
@@ -65,6 +68,7 @@ test_suite = [
             UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
             UserInput(NodeType.FINAL_NODE)
         ],
-        parm_key='return_disclose_info'
+        nl_key='return_disclose_info',
+        parm_key='P1'
     )
 ]
