@@ -4,34 +4,27 @@ from app.classes.spec.parameter_config import ParameterConfig
 sample_nl_template = NLTemplate(
     template_dict = {
         'delivery': TemplateObj(
-            '[P1] The Seller shall deliver the Order in one delivery to the Buyer [P2]',
+            'The Seller shall deliver the Order in one delivery to the Buyer [P2]',
             {
-                'P1': [ParameterConfig('obligations', 'ob_delivery', 'trigger')],
                 'P2': [ParameterConfig('obligations', 'ob_delivery', 'consequent')]
             }
         )
         ,
         'payment': TemplateObj(
-            '[P1] The Buyer shall pay (payment_amount) to the Seller [P2]',
+            'The Buyer shall pay (payment_amount) to the Seller [P2]',
             {
-                'P1': [ParameterConfig('obligations', 'ob_payment', 'trigger')],
                 'P2': [ParameterConfig('obligations', 'ob_payment', 'consequent')]
             }
         ),
         'latePayment': TemplateObj(
-            '[P1] The Buyer shall pay interests equal to (interest_amount) percent of the payment amount [P2]',
+            '[P1] The Buyer shall pay interests equal to (interest_amount) percent of the payment amount',
             {
-                'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')],
-                'P2': [ParameterConfig('obligations', 'ob_late_payment', 'consequent')]
+                'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')]
             }
         ),
         'disclosure': TemplateObj(
-            '[P1] Both Seller and Buyer must keep the contents of this contract confidential [P2]',
+            'Both Seller and Buyer must keep the contents of this contract confidential [P2]',
             {
-                'P1': [
-                    ParameterConfig('surviving_obligations', 'so1', 'trigger'),
-                    ParameterConfig('surviving_obligations', 'so2', 'trigger')
-                ],
                 'P2': [
                     ParameterConfig('surviving_obligations', 'so1', 'consequent'),
                     ParameterConfig('surviving_obligations', 'so2', 'consequent')

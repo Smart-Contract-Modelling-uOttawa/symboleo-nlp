@@ -4,6 +4,35 @@ Next todos:
 - May 15-21: Metrics standardization in the code
 - May 22-28: Web UI 
 
+TODOS this weekend
+- Review the symboleo diffs; make a todo list
+- NL FIXES:
+- fix the X days in advance issue
+- clean the domain timepoint parameters
+- better variables
+- replace until with unless
+- look at event to_text - try to get slight improvement at least
+- add comma after an if..
+- basically everything except for the obligation fulfilled. Thats the big one
+- OTHERS:
+
+
+NL TODOS
+- domain timepoints should turn into cleaner-looking parameters, e.g. [del_due_date]
+- fulfilled and violated obligations should make use of their event (consequent) 
+-- this will require lots of work, including a Declaration -> CustomEvent mapper
+- fix the event to_text - getting some strange results on the rental one
+- after an if, might add a comma, and also lower-case the next word
+- replace "until" with "unless"
+- fix the days in advance on the standard event... - likely a tough one
+- rental: pow_termination_abandon - just way off...?
+- why 3 days in advance...? popping up all over the prop contract.Some static variable issue maybe
+- prop: legal proceedings [ON THE PROPERTY??]
+- prop: replace 10 with variable...
+- grid: if buyer determinee necessary ...
+- 
+
+
 GOALS FOR MAY
 - New contract template 
 - SYMBOLEO: re-add parm and parm config; handle multiple norms in one request; More convenience methods; more tests on the spec

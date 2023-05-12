@@ -1,8 +1,8 @@
 ==ACTUAL==
-delivery: [P1] The Seller shall deliver the Order in one delivery to the Buyer before evt_delivered.delDueDate
-payment: [P1] The Buyer shall pay (payment_amount) to the Seller before evt_paid.payDueDate
-latePayment: if ob_payment obligation is violated The Buyer shall pay interests equal to (interest_amount) percent of the payment amount [P2]
-disclosure: [P1] Both Seller and Buyer must keep the contents of this contract confidential within 6 months of contract terminating
+delivery: The Seller shall deliver the Order in one delivery to the Buyer before evt_delivered.delDueDate
+payment: The Buyer shall pay (payment_amount) to the Seller before evt_paid.payDueDate
+latePayment: if ob_payment obligation is violated The Buyer shall pay interests equal to (interest_amount) percent of the payment amount
+disclosure: Both Seller and Buyer must keep the contents of this contract confidential within 6 months of contract terminating
 suspendDelivery: if ob_payment obligation is violated The Seller may suspend performance of all of its obligations under the agreement until ob_late_payment obligation is fulfilled
 pow_terminate_contract: if ob_delivery obligation is violated buyer may terminate the contract.
 

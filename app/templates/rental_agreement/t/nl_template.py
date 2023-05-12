@@ -9,18 +9,16 @@ rental_nl_template = NLTemplate(
             # Will probably add a refinement here... need to figure out frequency
         ),
         'late_payment': TemplateObj(
-            '[P1] The Landlord is entitled to impose a (late_fine) fine as late fee [P2]',
+            '[P1] The Landlord is entitled to impose a (late_fine) fine as late fee',
             #['obligations.ob_late_payment']
             {
-                'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')],
-                'P2': [ParameterConfig('obligations', 'ob_late_payment', 'consequent')]
+                'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')]
             }
         ),
         'pay_security_deposit': TemplateObj(
-            '[P1] The Renter will pay the Landlord an amount of (security_deposit_amount) as a security deposit to cover the cost of any damages suffered by the premises and cleaning [P2]',
+            'The Renter will pay the Landlord an amount of (security_deposit_amount) as a security deposit to cover the cost of any damages suffered by the premises and cleaning [P2]',
             #['obligations.ob_pay_security_deposit']
             {
-                'P1': [ParameterConfig('obligations', 'ob_pay_security_deposit', 'trigger')],
                 'P2': [ParameterConfig('obligations', 'ob_pay_security_deposit', 'consequent')]
             }
         ),

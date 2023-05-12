@@ -28,7 +28,7 @@ nl_template = NLTemplate(
             #[]
         ),
         'payment': TemplateObj(
-            '[P1] Both Parties agree that once the Parties have agreed to transaction which includes the purchase and sale of the Product that the Buyer will remit payment [PARAMETER]',
+            '[P1] Both Parties agree that once the Parties have agreed to transaction which includes the purchase and sale of the Product that the Buyer will remit payment',
             #['obligations.ob_payment']
             {
                 'P1': [ParameterConfig('obligations', 'ob_payment', 'trigger')],
