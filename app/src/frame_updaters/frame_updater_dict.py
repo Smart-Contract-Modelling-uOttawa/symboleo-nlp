@@ -12,6 +12,7 @@ from app.src.frame_updaters.obligation_subject_updater import ObligationSubjectU
 from app.src.frame_updaters.date_node import DateUpdater
 from app.src.frame_updaters.domain_timepoint_node import DomainTimepointUpdater
 from app.src.frame_updaters.timespan_node import TimespanUpdater
+from app.src.frame_updaters.after_node import AfterUpdater
 from app.src.frame_updaters.custom_event_nodes import *
 
 class FrameUpdaterDictConstructor:
@@ -19,6 +20,8 @@ class FrameUpdaterDictConstructor:
     def build() -> DefaultDict[Type[SelectedNode], IUpdateFrame]:
         d = defaultdict(lambda: DefaultFrameUpdater())
         
+        d[AfterNode] = AfterUpdater()
+
         d[DateNode] = DateUpdater()
         d[DomainTimepointNode] = DomainTimepointUpdater()
         d[TimespanNode] = TimespanUpdater()

@@ -44,11 +44,13 @@ Postconditions
 Obligations
   ob_delivery_lab: Happens(evt_determines) -> Obligation(seller, buyer, true, Happens(evt_delivery_lab));
   ob_delivery_processor: Obligation(seller, buyer, true, Happens(evt_delivery_processor));
+  ob_disclose_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, not Happens(evt_disclose_info_buyer));
+  ob_disclose_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, not Happens(evt_disclose_info_seller));
   ob_legal_proceeding_buyer: Happens(evt_files) -> Obligation(third_party, buyer, true, Happens(evt_legal_notice_buyer));
-  ob_legal_proceeding_seller: Obligation(third_party, seller, true, Happens(evt_legal_notice_seller));
+  ob_legal_proceeding_seller: Happens(evt_files) -> Obligation(third_party, seller, true, Happens(evt_legal_notice_seller));
   ob_payment: Happens(Activated(self)) -> Obligation(buyer, seller, true, Happens(evt_payment));
   ob_return_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, Happens(evt_return_info_buyer));
-  ob_return_info_seller: Obligation(seller, buyer, true, Happens(evt_return_info_buyer));
+  ob_return_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, Happens(evt_return_info_buyer));
 
 Surviving Obligations
   ob_disclose_info_buyer: Obligation(buyer, seller, true, not Happens(evt_disclose_info_buyer));

@@ -31,16 +31,18 @@ class ParameterRefiner(IRefineParameter):
 
     def refine(self, contract: ISymboleoContract, op: ParameterOperation):
         # Get the norm
-        norm = contract.get_norm_by_key(op.nl_key, op.parm_key)
+        norms = contract.get_norms_by_key(op.nl_key, op.parm_key)
 
         # Build frame from node_list to get the NL text
         frame = self.__frame_builder.build(op.node_list)
 
-        # Extract all the required updates
-        update_set = self.__update_extractor.extract(norm, op.node_list)
 
-        # Run the Symboleo updates
-        contract.run_updates(update_set)
+        for norm in norms:
+            # Extract all the required updates
+            update_set = self.__update_extractor.extract(norm, op.node_list)
+
+            # Run the Symboleo updates
+            contract.run_updates(update_set)
 
         # Run the NL Update... Likely need the component here as well
         contract.update_nl(op.nl_key, op.parm_key, frame.to_text())

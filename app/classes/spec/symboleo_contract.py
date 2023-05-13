@@ -1,3 +1,4 @@
+from typing import List
 from app.classes.spec._sd import _sd
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
@@ -33,7 +34,7 @@ class ISymboleoContract:
     def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         raise NotImplementedError()
     
-    def get_norm_by_key(self, nl_key:str, parm_key:str) -> INorm:
+    def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
         raise NotImplementedError()
     def run_updates(self, update: ContractUpdateObj):
         raise NotImplementedError()
@@ -64,13 +65,17 @@ class SymboleoContract(ISymboleoContract):
         return d[type_str]
     
 
-    def get_norm_by_key(self, nl_key:str, parm_key:str) -> INorm:
-        parm_config = self.nl_template.template_dict[nl_key].parameters[parm_key][0] # the indexing is not great...
+    def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
+        parm_configs = self.nl_template.template_dict[nl_key].parameters[parm_key]
 
-        norm_type = parm_config.norm_type
-        norm_id = parm_config.norm_id
-        result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
-        return result
+        results = []
+        for x in parm_configs:
+            norm_type = x.norm_type
+            norm_id = x.norm_id
+            next_norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
+            results.append(next_norm)
+        
+        return results
     
     def run_updates(self, update: ContractUpdateObj):
         for x in update.domain_objects:

@@ -23,7 +23,7 @@ class ParameterRefinerTests(unittest.TestCase):
     def test_parameter_refiner(self):
         # Set up contract
         contract = ISymboleoContract()
-        contract.get_norm_by_key = MagicMock(return_value = INorm())
+        contract.get_norms_by_key = MagicMock(return_value = [INorm()])
         contract.update_nl = MagicMock(return_value = None)
         contract.run_updates = MagicMock(return_value = None)
 
@@ -33,7 +33,7 @@ class ParameterRefinerTests(unittest.TestCase):
         op = ParameterOperation('', '', node_list)
         self.sut.refine(contract, op)
 
-        self.assertEqual(contract.get_norm_by_key.call_count, 1)
+        self.assertEqual(contract.get_norms_by_key.call_count, 1)
         self.assertEqual(contract.run_updates.call_count, 1)
         self.assertEqual(contract.update_nl.call_count, 1)
         

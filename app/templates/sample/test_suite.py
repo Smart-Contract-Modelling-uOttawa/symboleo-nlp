@@ -10,8 +10,7 @@ test_suite = [
         node_list = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.BEFORE),
-            UserInput(NodeType.TIMEPOINT),
-            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_delivered.delDueDate'),
+            UserInput(NodeType.DATE, 'March 18, 2024'),
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='delivery',
@@ -22,8 +21,7 @@ test_suite = [
         node_list = [
             UserInput(NodeType.ROOT),
             UserInput(NodeType.BEFORE),
-            UserInput(NodeType.TIMEPOINT),
-            UserInput(NodeType.DOMAIN_TIMEPOINT, 'evt_paid.payDueDate'),
+            UserInput(NodeType.DATE, 'March 30, 2024'),
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='payment',
@@ -45,13 +43,13 @@ test_suite = [
         parm_key='P1'
     ),
 
-
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
             UserInput(NodeType.ROOT),
-            UserInput(NodeType.WITHIN),
+            UserInput(NodeType.UNTIL),
             UserInput(NodeType.TIMESPAN, '6 months'),
+            UserInput(NodeType.AFTER),
             UserInput(NodeType.EVENT),
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.CONTRACT_EVENT),
@@ -62,22 +60,6 @@ test_suite = [
         nl_key='disclosure',
         parm_key='P2'
     ),
-
-
-    # UpdateConfig(
-    #     OpCode.UPDATE_PARM,
-    #     node_list = [
-    #         RootNode(),
-    #         WithinNode(),
-    #         TimespanNode(value = '6 months'),
-    #         EventNode(),
-    #         StandardEventNode(),
-    #         ContractSubjectNode(value='contract'),
-    #         ContractActionNode(value='Activated')
-    #     ],
-    #     parm_key='disclosure'
-    # ),
-
 
     UpdateConfig(
         OpCode.UPDATE_PARM,

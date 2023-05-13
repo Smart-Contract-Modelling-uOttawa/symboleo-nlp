@@ -35,8 +35,8 @@ Obligations
   ob_payment: Obligation(buyer, seller, true, WhappensBefore(evt_paid, evt_paid.payDueDate));
 
 Surviving Obligations
-  so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Activated(self), 6, months)));
-  so2: SO(buyer, seller, true, not WhappensBefore(evt_disclosed, Date.Add(Activated(self), 6, months)));
+  so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Terminated(self), 6, months)));
+  so2: SO(buyer, seller, true, not WhappensBefore(evt_disclosed, Date.Add(Terminated(self), 6, months)));
 
 Powers
   pow_resume_ob_delivery: Happens(Fulfilled(obligations.ob_late_payment)) -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));

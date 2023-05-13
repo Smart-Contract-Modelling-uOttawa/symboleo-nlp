@@ -16,5 +16,6 @@ class AllFramesGetter(IGetAllFrames):
             AfterDateFrame(),
             AfterEventFrame(),
             UntilEventFrame(),
-            BeforeTimePointFrame()
+            BeforeTimePointFrame(),
+            UntilTimespanFrame()
         ]

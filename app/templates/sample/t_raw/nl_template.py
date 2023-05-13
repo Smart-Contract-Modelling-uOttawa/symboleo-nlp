@@ -3,16 +3,16 @@ from app.classes.spec.nl_template import NLTemplate, TemplateObj
 sample_nl_template = NLTemplate(
     template_dict = {
         'delivery': TemplateObj(
-            'The Seller shall deliver the Order in one delivery to the Buyer before (delivery_due_date).',
+            'The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024.',
         ),
         'payment': TemplateObj(
-            'The Buyer shall pay (payment_amount) to the Seller before (payment_due_date).',
+            'The Buyer shall pay $100 CAD to the Seller before March 30, 2024.',
         ),
         'latePayment': TemplateObj(
-            'In the event of late payment of the amount owed due, the Buyer shall pay interests equal to (interest_amount) percent of the payment amount.',
+            'In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.',
         ),
         'disclosure': TemplateObj(
-            'Both Seller and Buyer must keep the contents of this contract confidential for (confidentiality_months) months following the termination of the contract.',
+            'Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.',
         ),
         # Tough one...
         'suspendDelivery': TemplateObj(

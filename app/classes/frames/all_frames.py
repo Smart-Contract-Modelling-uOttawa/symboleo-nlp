@@ -8,3 +8,4 @@ from app.classes.frames.within_timespan_event_frame import WithinTimespanEventFr
 from app.classes.frames.if_event_frame import IfEventFrame
 from app.classes.frames.until_event_frame import UntilEventFrame
 from app.classes.frames.before_timepoint_frame import BeforeTimePointFrame
+from app.classes.frames.until_timespan_frame import UntilTimespanFrame

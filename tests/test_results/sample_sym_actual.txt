@@ -5,9 +5,9 @@ Domain meatSaleDomain
   MeatQuality isAn Enumeration(PRIME, AAA, AA, A);
   Meat isA PerishableGood;
   PerishableGood isAn Asset with quantity: Number, quality: MeatQuality;
-  Delivered isAn Event with item: Meat, deliveryAddress: String, delDueDate: Date;
+  Delivered isAn Event with item: Meat;
   Disclosed isAn Event;
-  Paid isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller, payDueDate: Date;
+  Paid isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
   PaidLate isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
 
 endDomain
@@ -16,9 +16,9 @@ Contract MeatSale( amt: Number, buyer: Buyer, curr: Currency, delAdd: String, de
 
 Declarations
   buyer: Buyer;
-  evt_delivered: Delivered with item := goods, deliveryAddress := delAdd, delDueDate := Date.add(effDate, delDueDateDays, days);
+  evt_delivered: Delivered with item := goods;
   evt_disclosed: Disclosed;
-  evt_paid: Paid with amount := amt, currency := curr, from := buyer, to := seller, payDueDate := payDueDate;
+  evt_paid: Paid with amount := amt, currency := curr, from := buyer, to := seller;
   evt_paid_late: PaidLate with amount := (1 + interestRate / 100) * amt, currency := curr, from := buyer, to := seller;
   goods: Meat with quantity := qnt, quality := qlt;
   seller: Seller;
@@ -30,13 +30,13 @@ Postconditions
   IsOwner(goods, buyer) and not IsOwner(goods, seller);
 
 Obligations
-  ob_delivery: Obligation(seller, buyer, true, WhappensBefore(evt_delivered, evt_delivered.delDueDate));
+  ob_delivery: Obligation(seller, buyer, true, WhappensBefore(evt_delivered, March 18, 2024));
   ob_late_payment: Happens(Violated(obligations.ob_payment)) -> Obligation(buyer, seller, true, Happens(evt_paid_late));
-  ob_payment: Obligation(buyer, seller, true, WhappensBefore(evt_paid, evt_paid.payDueDate));
+  ob_payment: Obligation(buyer, seller, true, WhappensBefore(evt_paid, March 30, 2024));
 
 Surviving Obligations
   so1: SO(seller, buyer, true, not WhappensBefore(evt_disclosed, Date.Add(Terminated(self), 6, months)));
-  so2: SO(buyer, seller, true, not Happens(evt_disclosed));
+  so2: SO(buyer, seller, true, not WhappensBefore(evt_disclosed, Date.Add(Terminated(self), 6, months)));
 
 Powers
   pow_resume_ob_delivery: Happens(Fulfilled(obligations.ob_late_payment)) -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));

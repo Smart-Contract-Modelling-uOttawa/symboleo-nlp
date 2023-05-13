@@ -150,7 +150,7 @@ def get_contract_spec():
                     PredicateFunctionWHappensBefore(
                         DISCLOSED_EVENT, 
                         PointFunction(
-                            PointAtomContractEvent(ContractEvent(ContractEventName.Activated)),
+                            PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
                             6, 
                             TimeUnit.Months
                         )
@@ -168,7 +168,7 @@ def get_contract_spec():
                     PredicateFunctionWHappensBefore(
                         DISCLOSED_EVENT, 
                         PointFunction(
-                            PointAtomContractEvent(ContractEvent(ContractEventName.Activated)),
+                            PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
                             6, 
                             TimeUnit.Months
                         )

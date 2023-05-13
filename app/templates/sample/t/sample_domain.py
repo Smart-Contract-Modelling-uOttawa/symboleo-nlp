@@ -28,8 +28,8 @@ def get_domain_model():
                 name = 'Delivered',
                 props = [
                     DomainProp('item', 'Meat'),
-                    DomainProp('deliveryAddress', 'String'),
-                    DomainProp('delDueDate', 'Date')
+                    #DomainProp('deliveryAddress', 'String'),
+                    #DomainProp('delDueDate', 'Date')
                 ]
             ),
             'Paid': DomainEvent(
@@ -39,7 +39,7 @@ def get_domain_model():
                     DomainProp('currency', 'Currency'),
                     DomainProp('from', 'Buyer'),
                     DomainProp('to', 'Seller'),
-                    DomainProp('payDueDate', 'Date')
+                    #DomainProp('payDueDate', 'Date')
                 ]
             ),
             'PaidLate': DomainEvent(

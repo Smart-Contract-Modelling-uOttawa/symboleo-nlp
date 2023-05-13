@@ -40,8 +40,8 @@ def get_contract_spec():
     ])
     evt_delivered = Declarer.declare(dm, 'events', 'Delivered', 'evt_delivered', [
         ('item', 'goods'),
-        ('deliveryAddress', 'delAdd'),
-        ('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
+        #('deliveryAddress', 'delAdd'),
+        #('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
     ])
     evt_paid_late = Declarer.declare(dm, 'events', 'PaidLate', 'evt_paid_late', [
         ('amount', '(1 + interestRate / 100) * amt'),
@@ -54,7 +54,7 @@ def get_contract_spec():
         ('currency', 'curr'),
         ('from', 'buyer'),
         ('to', 'seller'),
-        ('payDueDate', 'payDueDate')
+        #('payDueDate', 'payDueDate')
     ])
     evt_disclosed = Declarer.declare(dm, 'events', 'Disclosed', 'evt_disclosed', [])
 

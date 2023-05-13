@@ -11,13 +11,13 @@ sample_nl_template = NLTemplate(
         )
         ,
         'payment': TemplateObj(
-            'The Buyer shall pay (payment_amount) to the Seller [P2]',
+            'The Buyer shall pay $100 to the Seller [P2]',
             {
                 'P2': [ParameterConfig('obligations', 'ob_payment', 'consequent')]
             }
         ),
         'latePayment': TemplateObj(
-            '[P1] The Buyer shall pay interests equal to (interest_amount) percent of the payment amount',
+            '[P1] The Buyer shall pay interests equal to 8 percent of the payment amount',
             {
                 'P1': [ParameterConfig('obligations', 'ob_late_payment', 'trigger')]
             }
