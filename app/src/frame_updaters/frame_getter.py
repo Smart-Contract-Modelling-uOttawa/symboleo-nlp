@@ -1,6 +1,7 @@
 from typing import List
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.frames.frame import Frame
+from app.src.frame_updaters.all_frames_getter import IGetAllFrames
 from app.src.frame_updaters.inner_frame_checker import IInnerFrameChecker
 
 class IGetFrame:
@@ -10,15 +11,16 @@ class IGetFrame:
 class FrameGetter(IGetFrame):
     def __init__(
             self, 
-            frame_list: List[Frame],
+            all_frames_getter: IGetAllFrames,
             inner_checker: IInnerFrameChecker,
         ):
-        self.__frame_list = frame_list
+        self.__all_frames_getters = all_frames_getter
         self.__inner_checker = inner_checker
 
     def get_frame(self, node_list: List[SelectedNode]) -> Frame:
         frames = []
-        for f in self.__frame_list:
+        all_frames = self.__all_frames_getters.get()
+        for f in all_frames:
             res = self.__inner_checker.check_frame(node_list, f.pattern)
             if res:
                 frames.append(f)

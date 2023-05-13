@@ -19,19 +19,6 @@ test_suite = [
         nl_key='late_payment',
         parm_key = 'P1'
     ),
-
-    # UpdateConfig(
-    #     OpCode.ADD_DOMAIN_OBJECT,
-    #     dm_obj_type = 'events',
-    #     domain_object = DomainEvent('Occupy', [
-    #         DomainProp('agent', 'Role'),
-    #         DomainProp('property', 'RentalProperty')
-    #     ]),
-    #     declaration = Declaration('evt_occupy', 'Occupy', 'events', [
-    #         DeclarationProp('agent', 'renter', 'Role'),
-    #         DeclarationProp('property', 'the_property', 'RentalProperty'),
-    #     ])
-    # ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
@@ -62,16 +49,6 @@ test_suite = [
         nl_key='return_deposit',
         parm_key = 'P1'
     ),
-    # UpdateConfig(
-    #     OpCode.ADD_DOMAIN_OBJECT,
-    #     dm_obj_type = 'events',
-    #     domain_object = DomainEvent('AllowPets', [
-    #         DomainProp('grantor', 'Role')
-    #     ]),
-    #     declaration = Declaration('evt_allow_pets', 'AllowPets', 'events', [
-    #         DeclarationProp('grantor', 'landlord', 'Role')
-    #     ])
-    # ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
@@ -87,19 +64,6 @@ test_suite = [
         nl_key= 'no_pets',
         parm_key = 'P2'
     ),
-
-    # UpdateConfig(
-    #     OpCode.ADD_DOMAIN_OBJECT,
-    #     dm_obj_type = 'events',
-    #     domain_object = DomainEvent('ProvideTerminationNotice', [
-    #         DomainProp('agent', 'Role'),
-    #         DomainProp('daysInAdvance', 'Number')
-    #     ]),
-    #     declaration = Declaration('evt_provide_termination_notice', 'ProvideTerminationNotice', 'events', [
-    #         DeclarationProp('agent', 'landlord', 'Role'),
-    #         DeclarationProp('daysInAdvance', 'var_daysInAdvance', 'Number')
-    #     ])
-    # ),
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
@@ -119,18 +83,6 @@ test_suite = [
         creditor = 'landlord'
     ),
 
-    # UpdateConfig(
-    #     OpCode.ADD_DOMAIN_OBJECT,
-    #     dm_obj_type = 'events',
-    #     domain_object = DomainEvent('Abandon', [
-    #         DomainProp('agent', 'Role'),
-    #         DomainProp('property', 'RentalProperty')
-    #     ]),
-    #     declaration = Declaration('evt_abandon', 'Abandon', 'events', [
-    #         DeclarationProp('agent', 'renter', 'Role'),
-    #         DeclarationProp('property', 'the_property', 'RentalProperty')
-    #     ])
-    # ),
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [

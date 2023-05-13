@@ -23,7 +23,8 @@ class Frame: # pragma: no cover
 
 
 class EventFrame(Frame):
-    event = CustomEvent()
+    def __init__(self) -> None:
+        self.event = CustomEvent()
 
 
 class DummyFrame(Frame):

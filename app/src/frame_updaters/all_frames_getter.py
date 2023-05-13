@@ -1,8 +1,13 @@
+from typing import Type
 from app.classes.frames.all_frames import *
+from app.classes.frames.all_frames import Frame, List
 
-class FrameHelper:
-    @staticmethod
-    def get_all_frames():
+class IGetAllFrames:
+    def get(self) -> List[Frame]:
+        raise NotImplementedError()
+
+class AllFramesGetter(IGetAllFrames):
+    def get(self) -> List[Frame]:
         return [
             BeforeEventFrame(),
             BeforeDateFrame(),
