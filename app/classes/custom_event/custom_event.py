@@ -40,15 +40,14 @@ class CustomEvent:
         elif conjugation == ConjType.CONTINUOUS:
             verb = self.verb.conjugations.continuous
 
-        if VerbType.TRANSITIVE in self.verb.verb_types:
-            if self.dobj:
-                dobj = self.dobj.to_text()
-                result = f'{subj} {verb} {dobj}'
-        
-        if VerbType.INTRANSITIVE in self.verb.verb_types:
+        if self.dobj and VerbType.TRANSITIVE in self.verb.verb_types:
+            dobj = self.dobj.to_text()
+            result = f'{subj} {verb} {dobj}'
+
+        elif VerbType.INTRANSITIVE in self.verb.verb_types:
             result = f'{subj} {verb}'
         
-        if VerbType.LINKING in self.verb.verb_types:
+        elif VerbType.LINKING in self.verb.verb_types:
             if self.subj.is_plural:
                 verb = self.verb.conjugations.present_plural
             else:

@@ -4,7 +4,10 @@ class FakeLemmatizer(ILemmatize):
     def __init__(self):
         self.__dict = {
             'become': 'become',
-            'provides': 'provide'
+            'provides': 'provide',
+            'abandons': 'abandon',
+            'occupies': 'occupy',
+            'allows': 'allow'
         }
 
     def lemmatize(self, s: str) -> str:

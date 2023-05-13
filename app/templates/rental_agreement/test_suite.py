@@ -28,7 +28,7 @@ test_suite = [
             UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'occupies'),
-            UserInput(NodeType.DOBJ, 'the_property'),
+            UserInput(NodeType.DOBJ, 'the property'),
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='pay_security_deposit',
@@ -92,7 +92,7 @@ test_suite = [
             UserInput(NodeType.CUSTOM_EVENT),
             UserInput(NodeType.SUBJECT, 'renter'),
             UserInput(NodeType.VERB, 'abandons'),
-            UserInput(NodeType.DOBJ, 'the_property'),
+            UserInput(NodeType.DOBJ, 'the property'),
             UserInput(NodeType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_abandon', 'trigger'),

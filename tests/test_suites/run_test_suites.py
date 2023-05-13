@@ -1,4 +1,5 @@
 import unittest
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.templates.template_getter import get_template, get_test_suite
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
@@ -32,8 +33,7 @@ class FullStackTests(unittest.TestCase):
             with open(f'tests/test_results/{k}_sym_expected.txt', 'w') as f:
                 f.write(expected_sym)
 
-
-            nl_summary = f'==ACTUAL==\n{result_nl}\n\n==EXPECTED==\n{expected_nl}\n'
+            nl_summary = self._build_nl_summary(contract, expected_contract)
             with open(f'tests/test_results/{k}_nl.txt', 'w') as f:
                 f.write(nl_summary)
 
@@ -43,7 +43,26 @@ class FullStackTests(unittest.TestCase):
             # Verify NL
             #self.assertEqual(result_nl, expected_nl)
 
+    
+    def _build_nl_summary(self, contract: SymboleoContract, expected_contract: SymboleoContract):
+        nl_summary = ''
+        #nl_summary = f'==ACTUAL==\n{result_nl}\n\n==EXPECTED==\n{expected_nl}\n'
+        for xk in contract.nl_template.template_dict:
+            act_x = contract.nl_template.template_dict[xk].str_val
+            
+            if xk in expected_contract.nl_template.template_dict:
+                exp_x = expected_contract.nl_template.template_dict[xk].str_val
+            else:
+                exp_x = ''
+            nl_summary += f'A - {xk}: {act_x}\nE - {xk}: {exp_x}\n\n'
         
+        for xk in expected_contract.nl_template.template_dict:
+            act_x = ''
+            if xk not in contract.nl_template.template_dict:
+                exp_x = expected_contract.nl_template.template_dict[xk].str_val
+                nl_summary += f'A - {xk}: {act_x}\nE - {xk}: {exp_x}\n\n'
+            
+        return nl_summary
 
 if __name__ == '__main__':
     unittest.main()

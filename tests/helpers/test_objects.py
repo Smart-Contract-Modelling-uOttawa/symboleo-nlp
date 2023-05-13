@@ -19,6 +19,7 @@ class NounPhrases:
     canada = lambda: NounPhrase('Canada', 'Canada')
     property = lambda: NounPhrase('property', 'property', det='the')
     bob = lambda: NounPhrase('Bob', 'Bob', is_role=True)
+    renter = lambda: NounPhrase('Renter', 'renter', is_role=True)
 
 class Verbs:
     become = lambda: Verb('become', 'become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming'))
@@ -26,6 +27,7 @@ class Verbs:
     buys = lambda: Verb('buys', 'buy', [VerbType.TRANSITIVE], VerbConjugations('buy', 'buys', 'bought', 'buying'))
     sues = lambda: Verb('sues', 'sue', [VerbType.TRANSITIVE], VerbConjugations('sue', 'sues', 'sued', 'suing'))
     eats = lambda: Verb('eats', 'eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating'))
+    abandons = lambda: Verb('abandons', 'abandon', [VerbType.TRANSITIVE], VerbConjugations('abandon', 'abandons', 'abandonned', 'abandonning'))
 
 class CustomEvents:
     legal_proceedings = lambda: CustomEvent(
@@ -66,6 +68,11 @@ class CustomEvents:
         dobj = NounPhrases.apple_pie(),
         adverb = Adverb('noisily'),
         pps = [PrepPhrase('with the seller', 'with', NounPhrases.the_seller())]
+    )
+    abandon_property = lambda: CustomEvent(
+        subj = NounPhrases.renter(),
+        verb = Verbs.abandons(),
+        dobj = NounPhrases.property()
     )
 
 class Assets:

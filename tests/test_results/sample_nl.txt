@@ -1,17 +1,21 @@
-==ACTUAL==
-delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024
-payment: The Buyer shall pay $100 to the Seller before March 30, 2024
-latePayment: if ob_payment obligation is violated The Buyer shall pay interests equal to 8 percent of the payment amount
-disclosure: Both Seller and Buyer must keep the contents of this contract confidential until 6 months after contract terminating
-suspendDelivery: if ob_payment obligation is violated The Seller may suspend performance of all of its obligations under the agreement until ob_late_payment obligation is fulfilled
-pow_terminate_contract: if ob_delivery obligation is violated buyer may terminate the contract.
+A - delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024
+E - delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024.
 
+A - payment: The Buyer shall pay $100 to the Seller before March 30, 2024
+E - payment: The Buyer shall pay $100 CAD to the Seller before March 30, 2024.
 
-==EXPECTED==
-delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024.
-payment: The Buyer shall pay $100 CAD to the Seller before March 30, 2024.
-latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
-disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
-suspendDelivery: If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
-terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless delivery of goods is not completed.
+A - latePayment: if ob_payment obligation is violated The Buyer shall pay interests equal to 8 percent of the payment amount
+E - latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
+
+A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential until 6 months after contract terminating
+E - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
+
+A - suspendDelivery: if ob_payment obligation is violated The Seller may suspend performance of all of its obligations under the agreement until ob_late_payment obligation is fulfilled
+E - suspendDelivery: If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
+
+A - pow_terminate_contract: if ob_delivery obligation is violated buyer may terminate the contract.
+E - pow_terminate_contract: 
+
+A - terminateContract: 
+E - terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless delivery of goods is not completed.
 
