@@ -33,3 +33,20 @@ class ClassHelpers:
                 return False
         
         return True
+
+
+    def dicts_eq(dict1:dict, dict2:dict) -> bool:
+        k1 = sorted(list(dict1.keys()))
+        k2 = sorted(list(dict2.keys()))
+
+        if not ClassHelpers.simple_lists_eq(k1, k2):
+            return False
+
+        for x in dict1:
+            if x not in dict2:
+                return False
+            
+            if dict1[x] != dict2[x]:
+                return False
+        
+        return True

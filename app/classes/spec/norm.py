@@ -1,11 +1,9 @@
+from __future__ import annotations
 from enum import Enum
-from typing import List
 from app.classes.spec.power_function import PowerFunction
 from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
-
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class NormType(Enum):
     Obligation = 'Obligation'
@@ -46,6 +44,16 @@ class Norm:
         self.consequent = consequent
         self.norm_type = norm_type
     
+
+    def __eq__(self, other: Norm) -> bool:
+        return self.id == other.id and \
+            self.trigger == other.trigger and \
+            self.debtor == other.debtor and \
+            self.creditor == other.creditor and \
+            self.antecedent == other.antecedent and \
+            self.consequent == other.consequent and \
+            self.norm_type == other.norm_type
+
 
     def update(self, str_component: str, predicate: PredicateFunction):
         negation = self.get_negation(str_component)

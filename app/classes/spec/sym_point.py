@@ -1,3 +1,4 @@
+from __future__ import annotations
 from app.classes.spec.sym_event import ObligationEvent, ContractEvent, PowerEvent
 
 class SymPoint():
@@ -20,6 +21,9 @@ class PointVDE(PointAtom):
     def __init__(self, name: str = ''):
         self.name = name
     
+    def __eq__(self, other: PointVDE) -> bool:
+        return self.name == other.name
+
     def to_sym(self):
         return self.name
 
@@ -29,6 +33,9 @@ class PointAtomObligationEvent(PointAtom):
 
     def __init__(self, obligation_event: ObligationEvent):
         self.obligation_event = obligation_event
+
+    def __eq__(self, other: PointAtomObligationEvent) -> bool:
+        return self.obligation_event == other.obligation_event
 
     def to_sym(self):
         return self.obligation_event.to_sym()
@@ -40,6 +47,9 @@ class PointAtomPowerEvent(PointAtom):
     def __init__(self, power_event: PowerEvent):
         self.power_event = power_event
 
+    def __eq__(self, other: PointAtomPowerEvent) -> bool:
+        return self.power_event == other.power_event
+
     def to_sym(self):
         return self.power_event.to_sym()
 
@@ -50,6 +60,9 @@ class PointAtomContractEvent(PointAtom):
     def __init__(self, contract_event: ContractEvent):
         self.contract_event = contract_event
 
+    def  __eq__(self, other: PointAtomContractEvent) -> bool:
+        return self.contract_event == other.contract_event
+
     def to_sym(self):
         return self.contract_event.to_sym()
 
@@ -59,6 +72,9 @@ class Point(SymPoint):
 
     def __init__(self, point_expression: PointExpression):
         self.point_expression = point_expression
+    
+    def  __eq__(self, other: Point) -> bool:
+        return self.point_expression == other.point_expression
     
     def to_sym(self):
         return self.point_expression.to_sym()

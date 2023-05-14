@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 
 class SymEvent:
@@ -10,6 +11,9 @@ class SymEvent:
 class VariableEvent(SymEvent):
     def __init__(self, name: str):
         self.name = name
+
+    def __eq__(self, other: VariableEvent) -> bool:
+        return self.name == other.name
 
     def to_sym(self):
         return f'{self.name}'
@@ -28,11 +32,9 @@ class PowerEvent(SymEvent):
         self.event_name = event_name
         self.power_variable = power_variable
 
-    def __eq__(self, other):
-        if (isinstance(other, PowerEvent)):
-            return self.event_name == other.event_name and \
-                   self.power_variable == other.power_variable
-        return False
+    def __eq__(self, other: PowerEvent) -> bool:
+        return self.event_name == other.event_name and \
+            self.power_variable == other.power_variable
 
     def to_sym(self):
         return f'{self.event_name.value}(powers.{self.power_variable})'
@@ -54,11 +56,9 @@ class ObligationEvent(SymEvent):
         self.event_name = event_name
         self.obligation_variable = obligation_variable
 
-    def __eq__(self, other):
-        if (isinstance(other, ObligationEvent)):
-            return self.event_name == other.event_name and \
-                   self.obligation_variable == other.obligation_variable
-        return False
+    def __eq__(self, other: ObligationEvent) -> bool:
+        return self.event_name == other.event_name and \
+            self.obligation_variable == other.obligation_variable
 
     def to_sym(self):
         return f'{self.event_name.value}(obligations.{self.obligation_variable})'
@@ -78,10 +78,8 @@ class ContractEvent(SymEvent):
     def __init__(self, event_name: ContractEventName = ContractEventName.Activated):
         self.event_name = event_name
 
-    def __eq__(self, other):
-        if (isinstance(other, ContractEvent)):
-            return self.event_name == other.event_name
-        return False
+    def __eq__(self, other: ContractEvent) -> bool:
+        return self.event_name == other.event_name
 
     def to_sym(self):
         return f'{self.event_name.value}(self)'

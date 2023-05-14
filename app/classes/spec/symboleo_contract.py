@@ -1,12 +1,10 @@
+from __future__ import annotations
 from typing import List
-from app.classes.spec._sd import _sd
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
 from app.classes.spec.norm import INorm, Obligation, Norm
-from app.classes.spec.proposition import PNegAtom, PAnd
-from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
-from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
+from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
@@ -33,7 +31,6 @@ class ISymboleoContract:
         raise NotImplementedError()
     def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         raise NotImplementedError()
-    
     def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
         raise NotImplementedError()
     def run_updates(self, update: ContractUpdateObj):
@@ -55,13 +52,18 @@ class SymboleoContract(ISymboleoContract):
         self.contract_spec = contract_spec
         self.nl_template = nl_template
 
+
+    def __eq__(self, other: SymboleoContract) -> bool:
+        return self.domain_model == other.domain_model and \
+            self.contract_spec == other.contract_spec
+
+
     def _get_type_key(self, type_str):
         d = {
             'Obligation': 'obligations',
             'Power': 'powers',
             'SO': 'surviving_obligations'
         }
-
         return d[type_str]
     
 
@@ -87,17 +89,16 @@ class SymboleoContract(ISymboleoContract):
         for x in update.norms:
             self._update_norm(x)
 
+
     def _update_norm(self, norm: INorm):
         type_key = self._get_type_key(norm.norm_type.value)
         self.contract_spec.__dict__[type_key][norm.id] = norm
 
 
-    # Need the nl_key (e.g. delivery) and the parm_key (e.g P1)
     def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):        
         t = self.nl_template.template_dict
         old_str = t[nl_key].str_val
         t[nl_key].str_val = old_str.replace(f'[{parm_key}]', nl_refinement)
-
 
 
     # Print the NL template strings and their corresponding symboleo norms
@@ -116,7 +117,6 @@ class SymboleoContract(ISymboleoContract):
     
     
     def to_sym(self):
-        self._sort()
         return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'
 
 
@@ -186,14 +186,3 @@ class SymboleoContract(ISymboleoContract):
         result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
         return result
     
-    def _sort(self):
-        self.contract_spec.obligations = _sd(self.contract_spec.obligations)
-        self.contract_spec.powers = _sd(self.contract_spec.powers)
-        self.contract_spec.declarations = _sd(self.contract_spec.declarations)
-        self.contract_spec.parameters = sorted(self.contract_spec.parameters, key=lambda x: x.name)
-        self.contract_spec.surviving_obligations = _sd(self.contract_spec.surviving_obligations)
-
-        self.domain_model.roles = _sd(self.domain_model.roles)
-        self.domain_model.events = _sd(self.domain_model.events)
-        self.domain_model.assets = _sd(self.domain_model.assets)
-        self.domain_model.enums = sorted(self.domain_model.enums, key=lambda x: x.name)

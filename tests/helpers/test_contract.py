@@ -3,6 +3,7 @@ from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset
 from app.classes.spec.norm import Obligation, Power
+from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.nl_template import NLTemplate
 
@@ -37,7 +38,7 @@ def get_test_contract():
                     'debtor',
                     'creditor',
                     PropMaker.make_default(),
-                    FakeSym()
+                    PropMaker.make(PredicateFunctionHappens('event_x'))
                 ),
                 
             },
@@ -48,7 +49,7 @@ def get_test_contract():
                     'debtor',
                     'creditor', 
                     PropMaker.make_default(),
-                    FakeSym()
+                    PropMaker.make(PredicateFunctionHappens('event_y'))
                 )
             },
             declarations={},

@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 
 class SymSituation:
@@ -20,6 +21,9 @@ class ObligationState(SymSituation):
         self.state_name = state_name
         self.obligation_variable = obligation_variable
     
+    def __eq__(self, other: ObligationState) -> bool:
+        return self.state_name == other.state_name and self.obligation_variable and other.obligation_variable
+    
     def to_sym(self):
         return f'{self.state_name.value}(obligations.{self.obligation_variable})'
 
@@ -36,6 +40,9 @@ class PowerState(SymSituation):
     def __init__(self, state_name:PowerStateName, power_variable: str):
         self.state_name = state_name
         self.power_variable = power_variable
+    
+    def __eq__(self, other: PowerState) -> bool:
+        return self.state_name == other.state_name and self.power_variable and other.power_variable
     
     def to_sym(self):
         return f'{self.state_name.value}(powers.{self.power_variable})'
@@ -55,6 +62,9 @@ class ContractState(SymSituation):
     def __init__(self, state_name: ContractStateName):
         self.state_name = state_name
     
+    def __eq__(self, other: ContractState) -> bool:
+        return self.state_name == other.state_name
+
     def to_sym(self):
         return f'{self.state_name.value}(self)'
     

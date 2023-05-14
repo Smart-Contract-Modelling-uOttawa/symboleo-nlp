@@ -37,6 +37,10 @@ class DomainObject(IDomainObject):
             self.desc = desc
             self.props = props
     
+    def __eq__(self, other: DomainObject) -> bool:
+        return self.name == other.name and \
+            ClassHelpers.lists_eq(self.props, other.props, 'key')
+    
     def to_obj(self):
         return self.name
     
@@ -53,10 +57,6 @@ class DomainObject(IDomainObject):
         result += ';'
 
         return result
-    
-    def __eq__(self, other: DomainObject) -> bool:
-        return self.name == other.name and \
-            ClassHelpers.lists_eq(self.props, other.props, 'key')
 
 
 class Role(DomainObject):

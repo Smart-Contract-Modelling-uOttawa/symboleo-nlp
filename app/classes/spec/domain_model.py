@@ -1,9 +1,7 @@
-from app.classes.spec.domain_object import Asset, DomainEnum, DomainEvent, Role
-from app.classes.spec._sd import _sd
-
-
+from __future__ import annotations
 from typing import Dict, List
-
+from app.classes.spec.domain_object import Asset, DomainEnum, DomainEvent, Role
+from app.classes.other.helpers import ClassHelpers
 
 class DomainModel:
     def __init__(
@@ -15,11 +13,19 @@ class DomainModel:
         assets: Dict[str, Asset]
     ):
         self.id = id
-        self.roles: Dict[str, Role] = _sd(roles)
-        self.enums: List[DomainEnum] = sorted(enums, key=lambda x: x.name)
-        self.events: Dict[str, DomainEvent] = _sd(events)
+        self.roles: Dict[str, Role] = roles
+        self.enums: List[DomainEnum] = enums
+        self.events: Dict[str, DomainEvent] = events
         #self.aliases = aliases
-        self.assets: Dict[str, Asset] = _sd(assets)
+        self.assets: Dict[str, Asset] = assets
+
+    def __eq__(self, other: DomainModel) -> bool:
+        return self.id == other.id and \
+            ClassHelpers.dicts_eq(self.roles, other.roles) and \
+            ClassHelpers.dicts_eq(self.events, other.events) and \
+            ClassHelpers.dicts_eq(self.assets, other.assets) and \
+            ClassHelpers.lists_eq(self.enums, other.enums, 'name')
+        
 
     def to_sym(self):
         result = f'Domain {self.id}\n'

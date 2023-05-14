@@ -1,12 +1,10 @@
+from __future__ import annotations
+from typing import Dict, List
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.proposition import Proposition
-from app.classes.spec._sd import _sd
-
-
-from typing import Dict, List
-
+from app.classes.other.helpers import ClassHelpers
 
 class ContractSpec:
     def __init__(
@@ -22,20 +20,31 @@ class ContractSpec:
         constraints: List[Proposition]
     ):
         self.id = id
-        self.parameters = sorted(parameters, key=lambda x: x.name)
-        self.declarations = _sd(declarations)
+        self.parameters = parameters
+        self.declarations = declarations
         self.preconditions = preconditions
         self.postconditions = postconditions
-        self.obligations = _sd(obligations)
-        self.surviving_obligations = _sd(surviving_obligations)
-        self.powers = _sd(powers)
+        self.obligations = obligations
+        self.surviving_obligations = surviving_obligations
+        self.powers = powers
         self.constraints = constraints
 
+    def __eq__(self, other: ContractSpec) -> bool:
+        return self.id == other.id and \
+            ClassHelpers.lists_eq(self.parameters, other.parameters, 'name') and \
+            ClassHelpers.dicts_eq(self.declarations, other.declarations) and \
+            ClassHelpers.dicts_eq(self.obligations, other.obligations) and \
+            ClassHelpers.dicts_eq(self.surviving_obligations, other.surviving_obligations) and \
+            ClassHelpers.dicts_eq(self.powers, other.powers)
+            #ClassHelpers.lists_eq(self.preconditions, other.preconditions, 'name') and \
+            #ClassHelpers.lists_eq(self.postconditions, other.postconditions, 'name') and \
+            #ClassHelpers.lists_eq(self.constraints, other.constraints, 'name') and \
+            
+            
     def to_sym(self):
         result = f'Contract {self.id}'
         parms_sym = ', '.join([x.to_sym() for x in self.parameters])
         result += f'( {parms_sym} )\n'
-
 
         result += '\nDeclarations\n'
         for x in self.declarations:

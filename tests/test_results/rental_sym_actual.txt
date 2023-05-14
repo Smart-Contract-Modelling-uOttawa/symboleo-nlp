@@ -5,53 +5,53 @@ Domain propertyRentalDomain
   PaymentMethod isAn Enumeration(Cash, Cheque, ETransfer);
   RentalProperty isAn Asset with address: String;
   String isAn Asset;
-  Abandon isAn Event with Other: String, abandon_object: String;
-  Allow isAn Event with Other: String, allow_object: String;
-  DatePasses isAn Event with date: Date;
-  KeepPets isAn Event with agent: Role;
-  Occupy isAn Event with Other: String, occupy_object: String;
   Paid isAn Event with amount: Number, currency: Currency, paymentMethod: PaymentMethod, from: Role, to: Role;
+  KeepPets isAn Event with agent: Role;
+  DatePasses isAn Event with date: Date;
+  Occupy isAn Event with Other: String, occupy_object: String;
+  Allow isAn Event with Other: String, allow_object: String;
   Provide3 Days In Advance isAn Event with Other: String, provide_object: String;
+  Abandon isAn Event with Other: String, abandon_object: String;
 
 endDomain
 
-Contract PropertyRental( X: Date, landlord: Landlord, renter: Renter, the_address: String, the_currency: Currency, the_deposit_amount: Number, the_late_fine: Number, the_payment_method: PaymentMethod, the_rent_amount: Number )
+Contract PropertyRental( landlord: Landlord, renter: Renter, the_address: String, the_currency: Currency, the_rent_amount: Number, the_payment_method: PaymentMethod, the_late_fine: Number, the_deposit_amount: Number, X: Date )
 
 Declarations
-  evt_abandon: Abandon with Other := renter, abandon_object := property;
-  evt_allow: Allow with Other := landlord, allow_object := pets;
+  the_property: RentalProperty with address := the_address;
   evt_date_passes: DatePasses with date := X;
-  evt_keep_pets: KeepPets with agent := renter;
-  evt_occupy: Occupy with Other := renter, occupy_object := property;
-  evt_pay_deposit: Paid with amount := the_deposit_amount, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
-  evt_pay_late_fine: Paid with amount := the_late_fine, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
   evt_pay_rent: Paid with amount := the_rent_amount, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
-  evt_provide3_days_in_advance: Provide3 Days In Advance with Other := landlord, provide_object := termination notice;
+  evt_pay_late_fine: Paid with amount := the_late_fine, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
+  evt_pay_deposit: Paid with amount := the_deposit_amount, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
   evt_return_deposit: Paid with amount := the_deposit_amount, currency := the_currency, paymentMethod := the_payment_method, from := landlord, to := renter;
+  evt_keep_pets: KeepPets with agent := renter;
+  renter: String;
+  property: String;
+  evt_occupy: Occupy with Other := renter, occupy_object := property;
   landlord: String;
   pets: String;
-  property: String;
-  renter: String;
+  evt_allow: Allow with Other := landlord, allow_object := pets;
   termination notice: String;
-  the_property: RentalProperty with address := the_address;
+  evt_provide3_days_in_advance: Provide3 Days In Advance with Other := landlord, provide_object := termination notice;
+  evt_abandon: Abandon with Other := renter, abandon_object := property;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_late_payment: Happens(Violated(obligations.ob_pay_rent)) -> Obligation(renter, landlord, true, Happens(evt_pay_late_fine));
-  ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pets));
   ob_pay_rent: Happens(evt_date_passes) -> Obligation(renter, landlord, true, Happens(evt_pay_rent));
+  ob_late_payment: Happens(Violated(obligations.ob_pay_rent)) -> Obligation(renter, landlord, true, Happens(evt_pay_late_fine));
   ob_pay_security_deposit: Obligation(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy));
   ob_return_deposit: Happens(Terminated(self)) -> Obligation(landlord, renter, true, Happens(evt_return_deposit));
+  ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pets));
 
 Surviving Obligations
 
 Powers
   pow_suspend_ob_no_pets: Happens(evt_allow) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
-  pow_termination_abandon: Happens(evt_abandon) -> Power(landlord, renter, true, Terminated(self));
   pow_termination_written: Happens(evt_provide3_days_in_advance) -> Power(renter, landlord, true, Terminated(self));
+  pow_termination_abandon: Happens(evt_abandon) -> Power(landlord, renter, true, Terminated(self));
 
 Constraints
 
