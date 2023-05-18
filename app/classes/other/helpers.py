@@ -9,6 +9,14 @@ class ClassHelpers:
         # Problem is they aren't sorted...
         s1 = sorted(list1, key=operator.attrgetter(key))
         s2 = sorted(list2, key=operator.attrgetter(key))
+        
+        # for s in s1:
+        #     print('1')
+        #     s.print_me()
+
+        # for s in s2:
+        #     print('2')
+        #     s.print_me()
 
         for i in range(len(s1)):
             if s1[i] != s2[i]:

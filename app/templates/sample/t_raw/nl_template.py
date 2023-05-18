@@ -20,7 +20,7 @@ sample_nl_template = NLTemplate(
             #['powers.pow_suspend_delivery', 'powers.pow_resume_ob_delivery']
         ),
         'terminateContract': TemplateObj(
-            'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless delivery of goods is not completed.',
+            'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless such delay exceeds 10 days.',
         ),
     }
 )

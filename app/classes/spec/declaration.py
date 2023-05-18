@@ -12,6 +12,9 @@ class DeclarationProp:
     def __eq__(self, other: DeclarationProp) -> bool:
         return self.key == other.key and self.value == other.value and self.type == other.type
     
+    def print_me(self):
+        print(f'-- {self.key} ({self.type}): {self.value}')
+
     def to_string(self):
         return f'{self.key} ({self.type}): {self.value}'
 
@@ -22,6 +25,8 @@ class IDeclaration:
     name:str = None
 
     def to_obj(self):
+        raise NotImplementedError()
+    def print_me(self):
         raise NotImplementedError()
     def to_sym(self):
         raise NotImplementedError()
@@ -47,6 +52,13 @@ class Declaration(IDeclaration):
             return VariableEvent(self.name)
         
         return self.name
+
+    def print_me(self):
+        print(f'\n- name: {self.name}')
+        print(f'- type: {self.type}')
+        print(f'- base_type: {self.base_type}')
+        for x in self.props:
+            x.print_me()
 
     def to_sym(self):
         result = f'{self.name}: {self.type}'

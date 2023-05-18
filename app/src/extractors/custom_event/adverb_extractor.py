@@ -1,3 +1,4 @@
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.custom_event.adverb import Adverb, AdverbDict
 from app.src.extractors.value_extractor import IExtractValue
 
@@ -7,7 +8,7 @@ class AdverbExtractor(IExtractValue[Adverb]):
     ):
         self.s = 0
     
-    def extract(self, str_val: str) -> Adverb:
+    def extract(self, str_val: str, contract: SymboleoContract = None) -> Adverb:
         adverb_types = self._get_types(str_val)
      
         return Adverb(str_val, adverb_types)

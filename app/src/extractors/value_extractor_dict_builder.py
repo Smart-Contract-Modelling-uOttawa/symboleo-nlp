@@ -5,8 +5,8 @@ from app.classes.operations.dependencies import Dependencies
 from app.classes.tokens.node_type import NodeType
 from app.src.extractors.contract_action_extractor import ContractActionExtractor
 from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
-from app.src.extractors.custom_event.fake_noun_phrase_extractor import FakeNounPhraseExtractor
-from app.src.extractors.custom_event.noun_phrase_extractor import NounPhraseExtractor
+from app.src.extractors.custom_event.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor
+from app.src.extractors.custom_event.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
 from app.src.extractors.custom_event.predicate_extractor import PredicateExtractor
 from app.src.extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
 from app.src.extractors.custom_event.verb.verb_extractor_builder import VerbExtractorBuilder
@@ -16,15 +16,19 @@ from app.src.extractors.common_event_extractor import CommonEventExtractor
 from app.src.extractors.final_extractor import FinalExtractor
 from app.src.extractors.value_extractor import DefaultExtractor, IExtractValue
 
+from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
+
 
 class ValueExtractorDictBuilder:
     @staticmethod
     def build(deps: Dependencies) -> DefaultDict[NodeType, IExtractValue]:
+        
 
         if deps.fake:
             np_extractor = FakeNounPhraseExtractor()
         else:
-            np_extractor = NounPhraseExtractor(deps.nlp)
+            asset_type_extractor = AssetTypeExtractor(deps.nlp)
+            np_extractor = NounPhraseExtractor(deps.nlp, asset_type_extractor)
 
         verb_extractor = VerbExtractorBuilder.build(deps.nlp, deps.fake)
         predicate_extractor = PredicateExtractor()

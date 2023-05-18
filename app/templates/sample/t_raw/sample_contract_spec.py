@@ -139,6 +139,8 @@ def get_contract_spec():
             )
         },
 
+        # TODO: I think this should be a HappensWithin
+        # HappensWithin(Terminated, Interval(START, Date.add(6, months, terminated)))
         surviving_obligations = {
             'so1': SurvivingObligation(
                 'so1',

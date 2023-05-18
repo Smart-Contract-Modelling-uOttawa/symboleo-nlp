@@ -2,7 +2,8 @@ Domain propMgmtDomain
   Owner isA Role with name: String;
   Manager isA Role with name: String;
   Property isAn Asset;
-  String isAn Asset;
+  Other isAn Asset;
+  None isAn Asset;
   Advertise isAn Event with agent: Role, property: Property;
   Disburse isAn Event with from: Role, to: Role, amount: String;
   Reimburse isAn Event with from: Role, to: Role, amount: String;
@@ -13,7 +14,7 @@ Domain propMgmtDomain
   ProvideInvoice isAn Event with agent: Role, target: Role, object: String;
   HandleLegalProceedings isAn Event with agent: Role, property: Property;
   LegalProceedingsNecessary isAn Event;
-  ProvideX Days In Advance isAn Event with Other: String, provide_object: String;
+  ProvideX Days In Advance isAn Event with None: None, provided_object: None;
 
 endDomain
 
@@ -33,12 +34,12 @@ Declarations
   evt_handle_legal: HandleLegalProceedings with agent := manager, property := the_property;
   evt_disburse_termination: Disburse with from := manager, to := owner, amount := var_termination_deisbursement;
   evt_reimburse_termination: Reimburse with from := owner, to := manager, amount := var_termination_reimbursement;
-  legal proceedings: String;
+  legal proceedings: Other;
   evt_legal_proceedings_necessary: LegalProceedingsNecessary;
-  manager: String;
-  termination notice: String;
-  evt_provide_x_days_in_advance: ProvideX Days In Advance with Other := owner, provide_object := termination notice;
-  owner: String;
+  manager: None;
+  termination notice: None;
+  evt_provide_x_days_in_advance: ProvideX Days In Advance with None := owner, provided_object := termination notice;
+  owner: None;
 
 Preconditions
 

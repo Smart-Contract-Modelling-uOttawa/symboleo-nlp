@@ -5,7 +5,6 @@ from app.classes.spec.declaration import IDeclaration, Declaration, DeclarationP
 from app.classes.custom_event.verb import VerbType
 
 from app.src.helpers.string_to_class import CaseConverter
-
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import IMapDeclarationProps
 
 
@@ -16,7 +15,6 @@ class IMapEventToDeclaration:
 class EventDeclarationMapper(IMapEventToDeclaration):
     def __init__(self, prop_mapper: IMapDeclarationProps):
         self.__prop_mapper = prop_mapper
-
 
     def map(self, evt: CustomEvent) -> IDeclaration:
         verb = evt.verb
@@ -34,7 +32,6 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         return result
     
 
-    # TODO: This needs to take assets and pps into account
     def _map_linking(self, evt: CustomEvent) -> IDeclaration:
         subj = evt.subj
         pred = evt.predicate

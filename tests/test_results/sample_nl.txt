@@ -17,5 +17,5 @@ A - pow_terminate_contract: if ob_delivery obligation is violated buyer may term
 E - pow_terminate_contract: 
 
 A - terminateContract: 
-E - terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless delivery of goods is not completed.
+E - terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless such delay exceeds 10 days.
 

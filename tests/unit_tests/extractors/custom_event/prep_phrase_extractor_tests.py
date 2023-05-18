@@ -17,7 +17,7 @@ class PrepPhraseExtractorTests(unittest.TestCase):
         fake_np = NounPhrase('credit card', 'card', adjs=['credit'])
         self.np_extractor.extract = MagicMock(return_value=fake_np)
 
-        result = self.sut.extract(str_val)
+        result = self.sut.extract(str_val, None)
 
         expected = PrepPhrase(str_val, 'with', fake_np)
         self.assertEqual(result, expected)

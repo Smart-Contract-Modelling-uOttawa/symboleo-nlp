@@ -1,5 +1,5 @@
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.extractors.value_extractor import IExtractValue
-
 from app.classes.custom_event.custom_event import CustomEvent
 
 # This is where we may want to add the contract in
@@ -8,5 +8,5 @@ from app.classes.custom_event.custom_event import CustomEvent
 # e.g. may have FinalEventNode, or FinalDateNode for example...
 # That makes sense actually. Add it when it comes up
 class FinalExtractor(IExtractValue[any]):    
-    def extract(self, str_val: str) -> any:
+    def extract(self, str_val: str, contract: SymboleoContract = None) -> any:
         return CustomEvent()

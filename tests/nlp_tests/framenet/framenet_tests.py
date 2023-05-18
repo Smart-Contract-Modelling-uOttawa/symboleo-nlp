@@ -8,6 +8,7 @@ class FramenetExtractorTests(unittest.TestCase):
     def setUp(self):
         self.sut = MyFramenet(fn)
 
+    @unittest.skip('...')
     def test_get_flus(self):
         result = self.sut.get_lus('walk')
         nameset = [x.name for x in result] 

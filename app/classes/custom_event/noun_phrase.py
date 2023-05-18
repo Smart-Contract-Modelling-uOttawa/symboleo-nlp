@@ -1,5 +1,12 @@
+from __future__ import annotations
+from enum import Enum
 from typing import List 
 from app.classes.other.helpers import ClassHelpers
+
+class NPTextType(Enum):
+    ORIGINAL = 'original',
+    HEAD = 'head'
+    BASIC = 'basic'
 
 class NounPhrase:
     def __init__(
@@ -9,7 +16,8 @@ class NounPhrase:
         is_plural: bool = False,
         is_role: bool = False,
         det: str = None, 
-        adjs: List[str] = None
+        adjs: List[str] = None,
+        asset_type: str = None
     ):
         self.str_val = str_val
         self.head = head
@@ -17,21 +25,36 @@ class NounPhrase:
         self.is_role = is_role
         self.det = det
         self.adjs = adjs
+        self.asset_type = asset_type
+        if self.adjs is None:
+            self.adjs = []
 
 
-    def __eq__(self, __value: object) -> bool:
-        return self.str_val == __value.str_val and \
-        self.head == __value.head and \
-        self.is_plural == __value.is_plural and \
-        self.is_role == __value.is_role and \
-        self.det == __value.det and \
-        ClassHelpers.simple_lists_eq(self.adjs, __value.adjs)
+    def __eq__(self, other: NounPhrase) -> bool:
+        return self.str_val == other.str_val and \
+            self.head == other.head and \
+            self.is_plural == other.is_plural and \
+            self.is_role == other.is_role and \
+            self.det == other.det and \
+            self.asset_type == other.asset_type and \
+            ClassHelpers.simple_lists_eq(self.adjs, other.adjs)
         
+    def print_me(self):
+        print(f'- {self.str_val}')
+        print(f'- {self.head}')
+        print(f'- {self.is_plural}')
+        print(f'- {self.is_role}')
+        print(f'- {self.det}')
+        print(f'- {self.asset_type}')
+        print(f'- {self.adjs}')
 
-    # TODO: Will likely add more types - might make an enum: basic, original, full
-    def to_text(self, type='basic'):
-        result = self.head
-        if self.adjs and len(self.adjs) > 0:
-            result = f'{self.adjs[-1]} {result}'
-
-        return result
+    def to_text(self, text_type: NPTextType = NPTextType.ORIGINAL):
+        if text_type == NPTextType.ORIGINAL:
+            return self.str_val
+        elif text_type == NPTextType.HEAD:
+            return self.head
+        else: # BASIC
+            result = self.head
+            if self.adjs and len(self.adjs) > 0:
+                result = f'{self.adjs[-1]} {result}'
+            return result

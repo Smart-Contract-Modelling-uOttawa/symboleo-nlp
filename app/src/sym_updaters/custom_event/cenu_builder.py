@@ -1,5 +1,4 @@
 from app.src.sym_updaters.custom_event.custom_event_node_updater import CustomEventNodeUpdater
-from app.src.sym_updaters.custom_event.asset_type_extractor import AssetTypeExtractor
 from app.src.sym_updaters.custom_event.asset_decl_extractor import AssetDeclarationExtractor
 from app.src.sym_updaters.custom_event.asset_declaration_mapper import AssetDeclarationMapper
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import DeclarationPropMapper
@@ -10,11 +9,10 @@ class CustomEventNodeUpdaterBuilder:
     @staticmethod
     def build() -> CustomEventNodeUpdater:
         
-        asset_type_extractor = AssetTypeExtractor()
-        asset_extractor = AssetDeclarationExtractor(asset_type_extractor)
+        asset_extractor = AssetDeclarationExtractor()
         asset_decl_mapper = AssetDeclarationMapper(asset_extractor) 
 
-        prop_mapper = DeclarationPropMapper(asset_type_extractor)
+        prop_mapper = DeclarationPropMapper()
         event_decl_mapper = EventDeclarationMapper(prop_mapper)
 
         domain_mapper = DeclarationToDomainMapper()

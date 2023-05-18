@@ -8,18 +8,18 @@ from app.classes.custom_event.predicate import Predicate
 from app.classes.custom_event.adverb import Adverb
 
 class NounPhrases:
-    legal_proceedings = lambda: NounPhrase('legal proceedings', 'proceedings', is_plural=True, adjs=['legal'])
-    credit_card = lambda: NounPhrase('credit card', 'card', adjs=['credit'])
-    apple_pie =  lambda: NounPhrase('apple pie', 'pie', adjs=['apple'])
-    pets =  lambda: NounPhrase('pets', 'pets', is_plural=True)
-    the_seller = lambda: NounPhrase('the seller', 'seller', is_role=True, det = 'the')
-    buyer = lambda: NounPhrase('buyer', 'buyer', is_role=True)
-    hundred_dollars = lambda: NounPhrase('$100', '$100')
-    legal_pro = lambda: NounPhrase('a legal professional', 'professional', det='a', adjs=['legal'])
-    canada = lambda: NounPhrase('Canada', 'Canada')
-    property = lambda: NounPhrase('property', 'property', det='the')
-    bob = lambda: NounPhrase('Bob', 'Bob', is_role=True)
-    renter = lambda: NounPhrase('Renter', 'renter', is_role=True)
+    legal_proceedings = lambda: NounPhrase('legal proceedings', 'proceedings', is_plural=True, adjs=['legal'], asset_type='Other')
+    credit_card = lambda: NounPhrase('credit card', 'card', adjs=['credit'], asset_type='PaymentMethod')
+    apple_pie =  lambda: NounPhrase('apple pie', 'pie', adjs=['apple'], asset_type='Other')
+    pets =  lambda: NounPhrase('pets', 'pets', is_plural=True, asset_type='Other')
+    the_seller = lambda: NounPhrase('the seller', 'seller', is_role=True, det = 'the', asset_type='Role')
+    buyer = lambda: NounPhrase('buyer', 'buyer', is_role=True, asset_type='Role')
+    hundred_dollars = lambda: NounPhrase('$100', '$100', asset_type='Money')
+    legal_pro = lambda: NounPhrase('a legal professional', 'professional', det='a', adjs=['legal'], asset_type='Other')
+    canada = lambda: NounPhrase('Canada', 'Canada', asset_type='Location')
+    property = lambda: NounPhrase('property', 'property', asset_type='Property')
+    bob = lambda: NounPhrase('Bob', 'Bob', is_role=True, asset_type='Role')
+    renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
 
 class Verbs:
     become = lambda: Verb('become', 'become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming'))
@@ -28,6 +28,7 @@ class Verbs:
     sues = lambda: Verb('sues', 'sue', [VerbType.TRANSITIVE], VerbConjugations('sue', 'sues', 'sued', 'suing'))
     eats = lambda: Verb('eats', 'eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating'))
     abandons = lambda: Verb('abandons', 'abandon', [VerbType.TRANSITIVE], VerbConjugations('abandon', 'abandons', 'abandonned', 'abandonning'))
+    occupies = lambda: Verb('occupies', 'occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying'))
 
 class CustomEvents:
     legal_proceedings = lambda: CustomEvent(
@@ -72,6 +73,11 @@ class CustomEvents:
     abandon_property = lambda: CustomEvent(
         subj = NounPhrases.renter(),
         verb = Verbs.abandons(),
+        dobj = NounPhrases.property()
+    )
+    occupy_property = lambda: CustomEvent(
+        subj = NounPhrases.renter(),
+        verb = Verbs.occupies(),
         dobj = NounPhrases.property()
     )
 

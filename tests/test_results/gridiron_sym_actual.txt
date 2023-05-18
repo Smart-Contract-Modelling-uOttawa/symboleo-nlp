@@ -3,15 +3,15 @@ Domain gridironDomain
   Buyer isA Role with name: String;
   ThirdParty isA Role with name: String;
   Biomass isAn Asset with quantity: Number, cannabidiol_percent: Number, thc_percent: Number;
-  String isAn Asset;
+  None isAn Asset;
   Payment isAn Event with agent: Role, receiver: Role, amount: Number, currency: Currency;
   Quarantine isAn Event with product: Biomass;
   Delivery isAn Event with from: Role, to: Role, product: Biomass, location: String;
   LegalNotice isAn Event with agent: Role, receiver: Role;
   ReturnInfo isAn Event with agent: Role, receiver: Role;
   DiscloseInfo isAn Event with agent: Role;
-  Determines isAn Event with determineing_agent: Role, determines_object: String;
-  Files isAn Event with Other: String, files_object: String;
+  Determines isAn Event with determineing_agent: Role, determineed_object: None;
+  Files isAn Event with None: None, fileed_object: None;
 
 endDomain
 
@@ -31,11 +31,11 @@ Declarations
   evt_return_info_seller: ReturnInfo with agent := seller, receiver := buyer;
   evt_disclose_info_buyer: DiscloseInfo with agent := buyer;
   evt_disclose_info_seller: DiscloseInfo with agent := seller;
-  that third party analysis of the Biomass is required for processing: String;
-  evt_determines: Determines with determineing_agent := buyer, determines_object := that third party analysis of the Biomass is required for processing;
-  third party: String;
-  claim: String;
-  evt_files: Files with Other := third party, files_object := claim;
+  that third party analysis of the Biomass is required for processing: None;
+  evt_determines: Determines with determineing_agent := buyer, determineed_object := that third party analysis of the Biomass is required for processing;
+  third party: None;
+  claim: None;
+  evt_files: Files with None := third party, fileed_object := claim;
 
 Preconditions
 

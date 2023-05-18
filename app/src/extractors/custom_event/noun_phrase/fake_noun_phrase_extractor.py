@@ -1,3 +1,4 @@
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.src.extractors.value_extractor import IExtractValue
 
@@ -16,7 +17,7 @@ class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):
             'the property': NounPhrases.property()
         }
 
-    def extract(self, str_val: str) -> NounPhrase:
+    def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:
         if str_val in self.__dict:
             return self.__dict[str_val]
         else:

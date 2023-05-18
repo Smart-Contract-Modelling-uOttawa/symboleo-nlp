@@ -4,14 +4,16 @@ Domain propertyRentalDomain
   Currency isAn Enumeration(CAD, USD, EUR);
   PaymentMethod isAn Enumeration(Cash, Cheque, ETransfer);
   RentalProperty isAn Asset with address: String;
-  String isAn Asset;
+  None isAn Asset;
+  Property isAn Asset;
+  Other isAn Asset;
   Paid isAn Event with amount: Number, currency: Currency, paymentMethod: PaymentMethod, from: Role, to: Role;
   KeepPets isAn Event with agent: Role;
   DatePasses isAn Event with date: Date;
-  Occupy isAn Event with Other: String, occupy_object: String;
-  Allow isAn Event with Other: String, allow_object: String;
-  Provide3 Days In Advance isAn Event with Other: String, provide_object: String;
-  Abandon isAn Event with Other: String, abandon_object: String;
+  Occupy isAn Event with None: None, occupied_object: Property;
+  Allow isAn Event with None: None, allowed_object: Other;
+  Provide3 Days In Advance isAn Event with None: None, provided_object: None;
+  Abandon isAn Event with None: None, abandoned_object: Property;
 
 endDomain
 
@@ -25,15 +27,15 @@ Declarations
   evt_pay_deposit: Paid with amount := the_deposit_amount, currency := the_currency, paymentMethod := the_payment_method, from := renter, to := landlord;
   evt_return_deposit: Paid with amount := the_deposit_amount, currency := the_currency, paymentMethod := the_payment_method, from := landlord, to := renter;
   evt_keep_pets: KeepPets with agent := renter;
-  renter: String;
-  property: String;
-  evt_occupy: Occupy with Other := renter, occupy_object := property;
-  landlord: String;
-  pets: String;
-  evt_allow: Allow with Other := landlord, allow_object := pets;
-  termination notice: String;
-  evt_provide3_days_in_advance: Provide3 Days In Advance with Other := landlord, provide_object := termination notice;
-  evt_abandon: Abandon with Other := renter, abandon_object := property;
+  renter: None;
+  property: Property;
+  evt_occupy: Occupy with None := renter, occupied_object := property;
+  landlord: None;
+  pets: Other;
+  evt_allow: Allow with None := landlord, allowed_object := pets;
+  termination notice: None;
+  evt_provide3_days_in_advance: Provide3 Days In Advance with None := landlord, provided_object := termination notice;
+  evt_abandon: Abandon with None := renter, abandoned_object := property;
 
 Preconditions
 

@@ -1,13 +1,13 @@
 from app.classes.custom_event.verb import Verb, VerbType, VerbLists
 
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.extractors.custom_event.verb.lemmatizer import ILemmatize
 from app.src.extractors.custom_event.verb.conjugator import IConjugate
 
-class IExtractVerb:
-    def extract(self, verb_str: str) -> Verb:
-        raise NotImplementedError()
+from app.src.extractors.value_extractor import IExtractValue
 
-class VerbExtractor:
+
+class VerbExtractor(IExtractValue[Verb]):
     def __init__(
         self, 
         lemmatizer: ILemmatize,
@@ -16,17 +16,17 @@ class VerbExtractor:
         self.__lemmatizer = lemmatizer
         self.__conjugator = conjugator
     
-    def extract(self, verb_str: str) -> Verb:
-        self._validate(verb_str)
+    def extract(self, str_val: str, contract: SymboleoContract = None) -> Verb:
+        self._validate(str_val)
 
-        lemma = self.__lemmatizer.lemmatize(verb_str)
+        lemma = self.__lemmatizer.lemmatize(str_val)
 
         # May pull this out if needed
         verb_types = self._get_verb_types(lemma)
 
         conjugations = self.__conjugator.conjugate(lemma)        
 
-        return Verb(verb_str, lemma, verb_types, conjugations)
+        return Verb(str_val, lemma, verb_types, conjugations)
 
 
     def _validate(self, verb_str: str):
