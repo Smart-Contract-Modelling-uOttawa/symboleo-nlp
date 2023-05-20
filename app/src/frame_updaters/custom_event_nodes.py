@@ -29,6 +29,9 @@ class VerbUpdater(IUpdateFrame):
     def update_frame(self, node: VerbNode, frame: EventFrame):
         frame.event.verb = node.value
 
+class FailsToUpdater(IUpdateFrame):
+    def update_frame(self, node: FailsToNode, frame: EventFrame):
+        frame.event.negation = True
 
 class SubjectUpdater(IUpdateFrame):
     def update_frame(self, node: SubjectNode, frame: EventFrame):

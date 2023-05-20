@@ -35,6 +35,7 @@ class ObligationEventTests(unittest.TestCase):
 
         self.frame_builder = FrameBuilderBuilder.build()
 
+
     def test_contract_event(self):
         #contract = get_template('sample_t')
         ob_key = 'ob_test'
@@ -46,23 +47,34 @@ class ObligationEventTests(unittest.TestCase):
             UserInput(NodeType.STANDARD_EVENT),
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, ob_key),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Violated')
+            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(NodeType.SUBJECT, 'buyer'),
+            UserInput(NodeType.FAILS_TO),
+            UserInput(NodeType.VERB, 'pay'),
+            UserInput(NodeType.DOBJ, '$100'),
+            UserInput(NodeType.PREP_PHRASE, 'in CAD'),
+            UserInput(NodeType.PREP_PHRASE, 'to seller'),
+            UserInput(NodeType.PREP_PHRASE, 'by March 30, 2024'),
+            UserInput(NodeType.FINAL_NODE)
         ]
 
         node_list = self.input_converter.convert(user_input)
 
-        exp_node_list = [
-            RootNode(),
-            IfNode(),
-            EventNode(),
-            StandardEventNode(),
-            NormEventNode(),
-            ObligationSubjectNode(ObligationSubject(ob_key)),
-            ObligationActionNode(ObligationEventName.Violated)
-        ]
+        for x in node_list:
+            print(x)
 
-        # Is this acceptable??? OR should it be more explicit
-        exp_nl = 'if ob_test obligation is violated'
+        # exp_node_list = [
+        #     RootNode(),
+        #     IfNode(),
+        #     EventNode(),
+        #     StandardEventNode(),
+        #     NormEventNode(),
+        #     ObligationSubjectNode(ObligationSubject(ob_key)),
+        #     ObligationActionNode(ObligationEventName.Violated)
+        # ]
+
+        exp_nl = 'if buyer fails to pay $100 in CAD to seller by March 30, 2024'
 
         norm = SampleNorms.get_sample_norm()
         expected_norm = copy.deepcopy(norm)
@@ -74,8 +86,10 @@ class ObligationEventTests(unittest.TestCase):
         )
 
         frame_result = self.frame_builder.build(node_list)  
+        
         sym_result = self.sym_updater.extract(norm, node_list)
         norm_results = sym_result.norms
+        print(norm_results[0].to_sym())
         
         # Expected result
         self.assertEqual(exp_nl, frame_result.to_text())

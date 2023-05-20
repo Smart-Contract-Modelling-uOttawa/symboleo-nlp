@@ -1,8 +1,24 @@
-Next todos:
-- May 1-7: Focus on Symboleo: parm and parm config, handling multiple norms in one request... Also a new contract template
-- May 8-14: NLP work: improve extractors (add contract), make wider use of spacy and framenet - write a lot of NLP-specific tests
-- May 15-21: Metrics standardization in the code
-- May 22-28: Web UI 
+NL TODOS
+- General
+-- obligation fulfilled and violated events
+-- Capitalization and punctuation
+-- figure out "providing X days notice" event
+
+- Sample
+-- need to work in the 'unless such delay exceeds 10 days' to the template...
+
+- Rental
+-- until landlord allows pets should be "unless" - would want to make it written notice as well...
+-- termination notice event - figure it out
+
+SYM TODOS
+- General
+-- parameters and dates 
+
+- Sample
+
+- Rental
+
 
 
 NL TODOS

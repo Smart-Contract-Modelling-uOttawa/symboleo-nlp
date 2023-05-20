@@ -37,6 +37,16 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_payment'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+            ## We assume this will be generated when user selects ob_payment + Violated
+            ## Will need to handle that separately. Falls under input tree management
+            #UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(NodeType.SUBJECT, 'buyer'),
+            UserInput(NodeType.FAILS_TO),
+            UserInput(NodeType.VERB, 'pay'),
+            UserInput(NodeType.DOBJ, '$100'),
+            UserInput(NodeType.PREP_PHRASE, 'in CAD'),
+            UserInput(NodeType.PREP_PHRASE, 'to seller'),
+            UserInput(NodeType.PREP_PHRASE, 'by March 30, 2024'),
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='latePayment',
@@ -71,6 +81,15 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_payment'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+
+            #UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(NodeType.SUBJECT, 'buyer'),
+            UserInput(NodeType.FAILS_TO),
+            UserInput(NodeType.VERB, 'pay'),
+            UserInput(NodeType.DOBJ, '$100'),
+            UserInput(NodeType.PREP_PHRASE, 'in CAD'),
+            UserInput(NodeType.PREP_PHRASE, 'to seller'),
+            UserInput(NodeType.PREP_PHRASE, 'by March 30, 2024'),
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='suspendDelivery',
@@ -86,6 +105,14 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_late_payment'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Fulfilled'),
+
+            #UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(NodeType.SUBJECT, 'buyer'),
+            UserInput(NodeType.VERB, 'pay'),
+            UserInput(NodeType.DOBJ, '(interest amount)'),
+            UserInput(NodeType.PREP_PHRASE, 'in CAD'),
+            UserInput(NodeType.PREP_PHRASE, 'to seller'),
+            UserInput(NodeType.PREP_PHRASE, 'by March 30, 2024'), # late payment due date?
             UserInput(NodeType.FINAL_NODE)
         ],
         nl_key='suspendDelivery',
@@ -102,6 +129,14 @@ test_suite = [
             UserInput(NodeType.NORM_EVENT),
             UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_delivery'),
             UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
+
+            #UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(NodeType.SUBJECT, 'buyer'),
+            UserInput(NodeType.FAILS_TO),
+            UserInput(NodeType.VERB, 'deliver'),
+            UserInput(NodeType.DOBJ, 'goods'),
+            UserInput(NodeType.PREP_PHRASE, 'to delAdd'),
+            UserInput(NodeType.PREP_PHRASE, 'by delDueDate'), 
             UserInput(NodeType.FINAL_NODE)
         ],
         norm_id = 'pow_terminate_contract',

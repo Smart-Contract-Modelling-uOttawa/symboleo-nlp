@@ -11,41 +11,67 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 from app.classes.other.helpers import ClassHelpers
 
 class CustomEvent:
-    subj: NounPhrase = None
-    verb: Verb = None
-    adverb: Adverb = None
-    dobj: NounPhrase = None
-    predicate: Predicate = None
-    pps: List[PrepPhrase] = None
+    # subj: NounPhrase = None
+    # verb: Verb = None
+    # adverb: Adverb = None
+    # dobj: NounPhrase = None
+    # predicate: Predicate = None
+    # pps: List[PrepPhrase] = None
+    # negation: bool = False
 
-    def __init__(self, subj: NounPhrase = None, verb: Verb = None, adverb: Adverb = None, dobj: NounPhrase = None, predicate: Predicate = None, pps:List[PrepPhrase] = None):
+    def __init__(
+        self, 
+        subj: NounPhrase = None, 
+        verb: Verb = None, 
+        adverb: Adverb = None, 
+        dobj: NounPhrase = None, 
+        predicate: Predicate = None, 
+        pps:List[PrepPhrase] = None,
+        negation:bool = False
+    ):
         self.subj = subj
         self.verb = verb
         self.adverb = adverb
         self.dobj = dobj
         self.predicate = predicate
         self.pps = pps
+        self.negation = negation
 
     # TODO: This will be more complex. Will need to split it out, potentially into static functions. Need tests
+    # Need to incorporate negation
     def to_text(self, conjugation: ConjType = ConjType.PRESENT):
-        result = ''
-
         subj = self.subj.to_text()
+        result = subj
+
+        # Some of this may get pushed to the input as well
+        ## e.g. maybe we enforce "fails to" vs "fail to" on the input, rather than handling here
+        ## Would probably make more sense
+
+        # Will depend on the conjugation type as well...
+        # And on plurality...
+        if self.negation:
+            if self.subj.is_plural:
+                result += ' fail to'
+            else:
+                result += ' fails to'
 
         if conjugation == ConjType.PRESENT:
             if self.subj.is_plural:
                 verb = self.verb.conjugations.present_singular
             else:
-                verb = self.verb.conjugations.present_plural
+                if self.negation:
+                    verb = self.verb.conjugations.present_singular
+                else:
+                    verb = self.verb.conjugations.present_plural
         elif conjugation == ConjType.CONTINUOUS:
             verb = self.verb.conjugations.continuous
 
         if self.dobj and VerbType.TRANSITIVE in self.verb.verb_types:
             dobj = self.dobj.to_text()
-            result = f'{subj} {verb} {dobj}'
+            result += f' {verb} {dobj}'
 
         elif VerbType.INTRANSITIVE in self.verb.verb_types:
-            result = f'{subj} {verb}'
+            result += f' {verb}'
         
         elif VerbType.LINKING in self.verb.verb_types:
             if self.subj.is_plural:
@@ -55,7 +81,7 @@ class CustomEvent:
             
             if self.predicate:
                 pred = self.predicate.to_text()
-                result = f'{subj} {verb} {pred}'
+                result += f' {verb} {pred}'
             
         if self.adverb:
             adverb = self.adverb.to_text()

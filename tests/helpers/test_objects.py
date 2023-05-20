@@ -80,6 +80,12 @@ class CustomEvents:
         verb = Verbs.occupies(),
         dobj = NounPhrases.property()
     )
+    fails_occupy_property = lambda: CustomEvent(
+        subj = NounPhrases.renter(),
+        verb = Verbs.occupies(),
+        dobj = NounPhrases.property(),
+        negation=True
+    )
 
 class Assets:
     legal_proceedings = lambda: Asset('LegalProceedings', [])

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import List
 from app.classes.spec.sym_event import VariableEvent
+from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.other.helpers import ClassHelpers
 
 class DeclarationProp:
@@ -31,15 +32,16 @@ class IDeclaration:
     def to_sym(self):
         raise NotImplementedError()
 
-# May eventually need to subtype this: Event, Role, Asset...
-# nl_text - may need a more complex object for conjugation...
+# TODO: Subclass the declaration types (assets, events, roles)
+# TODO: Add evt init onto all Declaration constructors
 class Declaration(IDeclaration):
-    def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp], nl_text: str = ''):
+    def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp], evt: CustomEvent = None):
         self.name = name
         self.type = type
         self.base_type = base_type # events, roles, assets 
         self.props = props
-        self.nl_text = nl_text
+        self.evt = evt # Will only appear on the events one
+        # The evt will be needed for obligation events (e.g. fulfilling/violatin obligation)
     
     def __eq__(self, other: Declaration) -> bool:
         return self.base_type == other.base_type and \
@@ -47,11 +49,13 @@ class Declaration(IDeclaration):
             self.type == other.type and \
             ClassHelpers.lists_eq(self.props, other.props, 'key')
 
+    # TODO: Where is this used... need to extend it..
     def to_obj(self):
         if self.base_type == 'events':
             return VariableEvent(self.name)
         
         return self.name
+
 
     def print_me(self):
         print(f'\n- name: {self.name}')
@@ -59,6 +63,7 @@ class Declaration(IDeclaration):
         print(f'- base_type: {self.base_type}')
         for x in self.props:
             x.print_me()
+
 
     def to_sym(self):
         result = f'{self.name}: {self.type}'

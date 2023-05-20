@@ -4,16 +4,16 @@ E - delivery: The Seller shall deliver the Order in one delivery to the Buyer be
 A - payment: The Buyer shall pay $100 to the Seller before March 30, 2024
 E - payment: The Buyer shall pay $100 CAD to the Seller before March 30, 2024.
 
-A - latePayment: if ob_payment obligation is violated The Buyer shall pay interests equal to 8 percent of the payment amount
+A - latePayment: if buyer fails to pay $100 in CAD to seller by March 30, 2024 The Buyer shall pay interests equal to 8 percent of the payment amount
 E - latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
 
 A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential until 6 months after contract terminating
 E - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
 
-A - suspendDelivery: if ob_payment obligation is violated The Seller may suspend performance of all of its obligations under the agreement until ob_late_payment obligation is fulfilled
+A - suspendDelivery: if buyer fails to pay $100 in CAD to seller by March 30, 2024 The Seller may suspend performance of all of its obligations under the agreement until buyer pays (interest amount) in CAD to seller by March 30, 2024
 E - suspendDelivery: If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
 
-A - pow_terminate_contract: if ob_delivery obligation is violated buyer may terminate the contract.
+A - pow_terminate_contract: if buyer fails to deliver goods to delAdd by delDueDate buyer may terminate the contract.
 E - pow_terminate_contract: 
 
 A - terminateContract: 

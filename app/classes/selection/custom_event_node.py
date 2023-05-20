@@ -21,6 +21,9 @@ class DobjNode(SelectedNode[NounPhrase]):
 class VerbNode(SelectedNode[Verb]):
     node_type = NodeType.VERB
 
+class FailsToNode(SelectedNode):
+    node_type = NodeType.FAILS_TO
+
 class SubjectNode(SelectedNode[NounPhrase]):
     node_type = NodeType.SUBJECT
 

@@ -19,6 +19,8 @@ class VerbExtractor(IExtractValue[Verb]):
     def extract(self, str_val: str, contract: SymboleoContract = None) -> Verb:
         self._validate(str_val)
 
+        # Check for negation?
+
         lemma = self.__lemmatizer.lemmatize(str_val)
 
         # May pull this out if needed
@@ -31,6 +33,7 @@ class VerbExtractor(IExtractValue[Verb]):
 
     def _validate(self, verb_str: str):
         # Only allow single word (Limitation)
+
         if len(verb_str.split(' ')) > 1:
             raise ValueError('Verb can only be one word...for now')
 

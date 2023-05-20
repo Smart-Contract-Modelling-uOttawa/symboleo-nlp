@@ -31,4 +31,5 @@ class NodeType(Enum):
     POWER_ACTION = 40,
     COMMON_EVENT = 41,
     FINAL_NODE = 42,
+    FAILS_TO = 43,
     # ....

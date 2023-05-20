@@ -34,6 +34,7 @@ node_type_to_class: Dict[NodeType, Type[SelectedNode]] = {
     NodeType.CUSTOM_EVENT: CustomEventNode,
     NodeType.ADVERB: AdverbNode,
     NodeType.STANDARD_EVENT: StandardEventNode,
+    NodeType.FAILS_TO: FailsToNode,
     NodeType.VERB: VerbNode,
     NodeType.SUBJECT: SubjectNode,
     NodeType.DOBJ: DobjNode,

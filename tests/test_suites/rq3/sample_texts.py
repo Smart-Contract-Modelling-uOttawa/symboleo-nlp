@@ -151,6 +151,10 @@ class SampleText:
 
 'During the Term and any renewal terms of the Agreement, and for a period of one (1) year following the expiration or earlier termination thereof, Customer agrees not to work with, directly or indirectly, any Third-Party that Customer comes to know through disclosure by Kubient as part of the Services'
 
+'for a period of one (1) year following the expiration or earlier termination thereof, Customer agrees not to work with, directly or indirectly, any Third-Party that Customer comes to know through disclosure by Kubient'
+
+'For a period of five (5) years after termination of this Agreement, the parties shall treat as confidential all information'
+
 ## Happens After is hard 
 
 

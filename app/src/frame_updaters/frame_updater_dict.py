@@ -28,6 +28,7 @@ class FrameUpdaterDictConstructor:
 
         d[SubjectNode] = SubjectUpdater()
         d[VerbNode] = VerbUpdater()
+        d[FailsToNode] = FailsToUpdater()
         d[PredicateNode] = PredicateUpdater()
         d[DobjNode] = DobjUpdater()
         d[AdverbNode] = AdverbUpdater()
