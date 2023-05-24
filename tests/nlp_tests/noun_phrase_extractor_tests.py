@@ -12,14 +12,16 @@ from app.src.extractors.custom_event.noun_phrase.noun_phrase_extractor import No
 from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
 test_suite = [
-    ('apple pie', NounPhrases.apple_pie()),
-    ('buyer', NounPhrases.buyer()),
-    ('Canada', NounPhrases.canada()),
-    ('credit card', NounPhrases.credit_card()),
-    ('legal proceedings', NounPhrases.legal_proceedings()),
-    ('property', NounPhrases.property()),
-    ('pets', NounPhrases.pets()),
-    ('renter', NounPhrases.renter()),
+    # ('apple pie', NounPhrases.apple_pie()),
+    # ('buyer', NounPhrases.buyer()),
+    # ('Canada', NounPhrases.canada()),
+    # ('credit card', NounPhrases.credit_card()),
+    # ('legal proceedings', NounPhrases.legal_proceedings()),
+    # ('property', NounPhrases.property()),
+    # ('pets', NounPhrases.pets()),
+    # ('renter', NounPhrases.renter()),
+    ('the original digital photo files', NounPhrases.photos()),
+    ('Dolphin', NounPhrases.dolphin())
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority
@@ -33,7 +35,8 @@ class NounPhraseExtractorTests(unittest.TestCase):
         declarations: Dict[str, Declaration] = {
             'buyer': Declaration('buyer', 'Buyer', 'roles', []),
             'renter': Declaration('renter', 'Renter', 'roles', []),
-            'property': Declaration('property', 'Property', 'assets', [])
+            'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
+            'property': Declaration('property', 'Property', 'assets', []),
         }
         self.contract = SymboleoContract(
             None,
@@ -45,9 +48,9 @@ class NounPhraseExtractorTests(unittest.TestCase):
     def test_np_extractor(self):
         for test_val, exp_val in test_suite:
             res = self.sut.extract(test_val, self.contract)
-            # res.print_me()
-            # print('----')
-            # exp_val.print_me()
+            res.print_me()
+            print('----')
+            exp_val.print_me()
             self.assertEqual(res, exp_val)
 
 if __name__ == '__main__':

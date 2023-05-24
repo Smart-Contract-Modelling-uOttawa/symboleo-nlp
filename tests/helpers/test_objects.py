@@ -20,6 +20,8 @@ class NounPhrases:
     property = lambda: NounPhrase('property', 'property', asset_type='Property')
     bob = lambda: NounPhrase('Bob', 'Bob', is_role=True, asset_type='Role')
     renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
+    photos = lambda: NounPhrase('the original digital photo files', 'files', True, False, 'the', ['original', 'digital', 'photo'], 'Files')
+    dolphin = lambda: NounPhrase('Dolphin', 'Dolphin', False, True, asset_type='Role')
 
 class Verbs:
     become = lambda: Verb('become', 'become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming'))

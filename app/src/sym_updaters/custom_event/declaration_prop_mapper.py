@@ -1,8 +1,8 @@
 from app.classes.spec.declaration import DeclarationProp
 from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.custom_event.noun_phrase import NounPhrase
+from app.classes.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.custom_event.prep_phrase import PrepPhrase
-
+from app.src.helpers.string_to_class import CaseConverter
 
 class IMapDeclarationProps:
     def map_subject(self, subject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
@@ -25,7 +25,11 @@ class DeclarationPropMapper(IMapDeclarationProps):
 
     def map_subject(self, subject: NounPhrase, evt: CustomEvent) -> DeclarationProp:
         the_type = subject.asset_type
-        the_value = subject.to_text() # Will prob pass in a "text_type" here (e.g. "basic")
+        if subject.is_role:
+            the_value = subject.str_val
+        else:
+            the_value = subject.to_text(NPTextType.BASIC)
+            the_value = CaseConverter.to_snake(the_value)
         
         if subject.is_role:
             the_key = f'{evt.verb.conjugations.continuous}_agent'
@@ -41,7 +45,8 @@ class DeclarationPropMapper(IMapDeclarationProps):
 
     def map_dobject(self, dobject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         the_type = dobject.asset_type
-        the_value = dobject.to_text() # Will prob pass in a "text_type" here (e.g. "basic")
+        the_value = dobject.to_text(NPTextType.BASIC)
+        the_value = CaseConverter.to_snake(the_value)
 
         if dobject.is_role:
             the_key = f'{evt.verb.conjugations.continuous}_target' 

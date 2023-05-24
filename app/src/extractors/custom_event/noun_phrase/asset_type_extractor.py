@@ -1,7 +1,7 @@
 import re
 
 class IExtractAssetType:
-    def extract(self, str_val: str) -> str:
+    def extract(self, str_val: str, head:str) -> str:
         raise NotImplementedError()
 
 class AssetTypeExtractor(IExtractAssetType):
@@ -25,7 +25,7 @@ class AssetTypeExtractor(IExtractAssetType):
         self.__str_dict = s
 
     # Will have a barrage of different potential extractors here 
-    def extract(self, str_val: str) -> str:
+    def extract(self, str_val: str, head:str) -> str:
         # Money Amount
         money = re.search('\$\d+(?:\.\d+)?', str_val)
         if money:
@@ -43,5 +43,6 @@ class AssetTypeExtractor(IExtractAssetType):
                 return self.__ent_dict[label]
         
         # Default value
-        return 'Other'
+        return head.capitalize()
+        #return 'Other'
     

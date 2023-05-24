@@ -124,13 +124,13 @@ class SymboleoContract(ISymboleoContract):
         # Add the declaration
         self.contract_spec.declarations[declaration.name] = declaration
 
-        # Add any new parameters as well
-        parm_names = [x.name for x in self.contract_spec.parameters]
-        decl_keys = [x for x in self.contract_spec.declarations]
-        for dp in declaration.props:
-            if dp.value not in parm_names and dp.value not in decl_keys:
-                new_parm = ContractSpecParameter(dp.value, dp.type)
-                self.contract_spec.parameters.append(new_parm)
+        # TODO: Add any new parameters as well
+        # parm_names = [x.name for x in self.contract_spec.parameters]
+        # decl_keys = [x for x in self.contract_spec.declarations]
+        # for dp in declaration.props:
+        #     if dp.value not in parm_names and dp.value not in decl_keys:
+        #         new_parm = ContractSpecParameter(dp.value, dp.type)
+        #         self.contract_spec.parameters.append(new_parm)
 
 
     def update_norm(self, norm: Norm, norm_component: str, pred: PredicateFunction, key: str, nl: str):

@@ -31,6 +31,7 @@ class CustomEventNodeUpdater(IUpdatePackage):
         event_decl = self.__event_decl_mapper.map(value)
         
         decls.append(event_decl)
+
         dmos = [self.__domain_mapper.map(x) for x in decls]
 
         new_value = VariableEvent(event_decl.name)

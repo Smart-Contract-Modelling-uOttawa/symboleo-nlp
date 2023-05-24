@@ -2,6 +2,7 @@ import copy
 from app.classes.spec.norm import INorm
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.spec.point_function import PointFunction
+from app.classes.spec.sym_point import Point
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
 from app.classes.operations.update_package import UpdatePackage
 from app.classes.operations.contract_update_obj import ContractUpdateObj
@@ -14,7 +15,7 @@ class WithinNodeUpdater(IUpdatePackage):
         event2 = value['event']
 
         init_event = norm.get_default_event('consequent')
-        point_function = PointFunction(event2, time_value, time_unit)
+        point_function = Point(PointFunction(event2, time_value, time_unit))
         updated_predicate =  PredicateFunctionWHappensBefore(init_event, point_function)
         
         new_norm = copy.deepcopy(norm)

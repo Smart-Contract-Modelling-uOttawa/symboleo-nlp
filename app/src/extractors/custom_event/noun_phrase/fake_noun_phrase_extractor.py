@@ -14,7 +14,9 @@ class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):
             'legal proceedings': NounPhrases.legal_proceedings(),
             'pets': NounPhrases.pets(),
             'credit card': NounPhrases.credit_card(),
-            'the property': NounPhrases.property()
+            'the property': NounPhrases.property(),
+            'the original digital photo files': NounPhrases.photos(),
+            'Dolphin': NounPhrases.dolphin()
         }
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:

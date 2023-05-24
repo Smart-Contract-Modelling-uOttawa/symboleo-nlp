@@ -1,3 +1,14 @@
+May 22-28:
+- Go through RQ3 samples - organize them. Make a few sample ones in a test suite 
+- Set up the rest of the samples - try to get at least 25. Eventually maybe get to 50
+- Try out some specific metrics 
+
+May 29-Jun 4:
+- New and final sample contract
+- clean out all the sample contracts 
+- organize test suites (especially the ob fulfilled/violated stuff)
+
+
 NL TODOS
 - General
 -- obligation fulfilled and violated events

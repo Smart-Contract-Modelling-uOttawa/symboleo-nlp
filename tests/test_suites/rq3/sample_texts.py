@@ -101,7 +101,7 @@ class SampleText:
 # AFTER EVENT
 
 ## AFTER
-'ITS will deliver working systems no later than 30 days after a hard           copy purchase order is received from COMWARE'
+'ITS will deliver working systems no later than 30 days after a hard copy purchase order is received from COMWARE'
 ### "no later than" ~ "within 30 days of"... note this
 
 ### Many cases include within TIMESPAN after - these are false positives. Need to filter them out
@@ -208,7 +208,7 @@ class SampleText:
 
 'If the Fund\'s Net Investment Income on any day is below zero, the Investment  Adviser shall waive its Advisory Fee or reimburse the Fund an amount (defined as "Expense Waiver") sufficient to produce a Net  Investment Income of zero'
 
-'If the Investment Adviser is required to reimburse the Fund, the Investment Adviser shall make such payment within 30 days  after each month-end in the amount due the Fund as of each month'
+'If the Investment Adviser is required to reimburse the Fund, the Investment Adviser shall make such payment within 30 days after each month-end in the amount due the Fund as of each month'
 
 'If Porex begins to perform services under a work order that has not been formally agreed in writing, then Porex shall bear the costs of any expenses incurred prior to formal written agreement of the Statement of Work'
 

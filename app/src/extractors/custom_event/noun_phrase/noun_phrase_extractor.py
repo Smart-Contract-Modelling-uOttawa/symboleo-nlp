@@ -49,7 +49,7 @@ class NounPhraseExtractor(IExtractValue[NounPhrase]):
         if contract:
             decls = contract.contract_spec.declarations
             is_role = self._check_role(str_val, decls)
-            asset_type = self._get_asset_type(str_val, decls)
+            asset_type = self._get_asset_type(str_val, decls, head.text)
             
             if is_role:
                 asset_type = 'Role'
@@ -69,14 +69,23 @@ class NounPhraseExtractor(IExtractValue[NounPhrase]):
         if str_val in declarations:
             decl = declarations[str_val]
             return decl.base_type == 'roles'
+    
+        # Can probably clean this up...
+        # for dk in declarations:
+        #     decl = declarations[dk]
+        #     if decl.base_type == 'roles':
+        #         for p in declarations[dk].props:
+        #             if p.key == 'name' and p.value.lower() == str_val.lower():
+        #                 return True
+
         return False
 
 
-    def _get_asset_type(self, str_val:str, declarations: Dict[str, Declaration]):
+    def _get_asset_type(self, str_val:str, declarations: Dict[str, Declaration], head_text: str):
         if str_val in declarations:
             decl = declarations[str_val]
             if decl.base_type == 'assets':
                 return decl.type
         
-        return self.__asset_type_extractor.extract(str_val)
+        return self.__asset_type_extractor.extract(str_val, head_text)
 

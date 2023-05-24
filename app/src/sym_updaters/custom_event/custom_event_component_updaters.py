@@ -4,6 +4,11 @@ from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
 from app.classes.custom_event.custom_event import CustomEvent
 
+# TODO: Id actually like to get rid of these. Would ideally just pass along the entire Event object
+## Rather than passing along all the components. Would make things so much easier I think..
+## And shouldnt be too hard to implement...
+## Would get rid of all the SelectedNodes related to custom event potentially...
+
 class SubjectUpdater(IUpdatePackage):
     def update_package(self, norm: INorm, node: SelectedNode, value: CustomEvent) -> UpdatePackage:
         value.subj = node.value 
