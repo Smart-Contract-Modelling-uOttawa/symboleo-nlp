@@ -1,9 +1,22 @@
 import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.templates.template_getter import get_template, get_test_suite
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
-from tests.test_suites.rq3.test_cases import test_suite
+from tests.test_suites.rq3.dolphin import dolphin_test_case
+from tests.test_suites.rq3.maimon import maimon_test_case
+from tests.test_suites.rq3.franchise import franchise_test_case
+from tests.test_suites.rq3.fox import fox_test_case
+from tests.test_suites.rq3.letter import letter_test_case
+
+
+test_suite = [
+    dolphin_test_case,
+    maimon_test_case,
+    franchise_test_case,
+    fox_test_case,
+    letter_test_case
+]
+
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:

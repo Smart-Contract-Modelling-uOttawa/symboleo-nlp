@@ -1,0 +1,3 @@
+A - nl_key: if contract terminates Maimon agrees to return immediately to the Company all written Confidential Information
+E - nl_key: If contract terminates, Maimon agrees to return immediately to the Company all written Confidential Information
+

@@ -9,6 +9,8 @@ class SampleText:
         self.sym = ''
 
 
+
+
 # BEFORE DATE
 'the Franchise Fee shall be paid to Grantor on or before March 31, 2017.'
 
@@ -224,7 +226,7 @@ class SampleText:
 
 ' If Cano fails to make any  payment when required by this Agreement, the Company shall have the option of canceling this Agreement following the passage of ten  (10) days after having given Cano written notice of its default'
 
-'If Lucent determines that mPhase\'s Goods are no longer maintained at          the current level of quality, Lucent shall so notify mPhase, in          writing, and Lucent shall have the right to terminate this Agreement'
+'If Lucent determines that mPhase\'s Goods are no longer maintained at the current level of quality, Lucent shall so notify mPhase, in writing, and Lucent shall have the right to terminate this Agreement'
 
 'If the solvency of the Society becomes impaired, you may be required to make an extra payment'
 
@@ -259,7 +261,7 @@ class SampleText:
 
 'Such reimbursements shall be made by the Operating Company to EmployeeCo in advance or immediately upon such costs being incurred'
 
-'Upon termination of this Agreement, Maimon agrees to return immediately to the Company all written Confidential Information '
+'Upon termination of this Agreement, Maimon agrees to return immediately to the Company all written Confidential Information'
 
 'Upon reasonable request, copies of any such books and records shall be provided promptly by FASC to the Account or the Account\'s owners or authorized representatives.'
 

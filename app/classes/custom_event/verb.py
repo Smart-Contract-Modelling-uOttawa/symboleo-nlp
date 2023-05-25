@@ -15,6 +15,12 @@ class VerbConjugations:
         self.present_plural = present_plural
         self.past = past
         self.continuous = continuous
+
+    def to_string(self):
+        return f'- present singular: {self.present_singular}\n' + \
+            f'- present plural: {self.present_plural}\n' + \
+            f'- preterite: {self.past}\n' + \
+            f'- continuous: {self.continuous}\n'
     
     def __eq__(self, __value: VerbConjugations) -> bool:
         return self.present_plural == __value.present_plural and \
@@ -36,6 +42,14 @@ class Verb:
         self.verb_types = verb_types # This is a list because sometimes we cannot be certain
         self.conjugations = conjugations
     
+    def print_me(self):
+        print(f'Verb String: {self.verb_str}')
+        print(f'Lemma: {self.lemma}')
+        print(f'Verb Types: {", ".join([x.name for x in self.verb_types])}')
+        conj_str = self.conjugations.to_string()
+        print(f'Conjugations:\n{conj_str}')
+
+
     def __eq__(self, other: Verb) -> bool:
         vt1 = [x.name for x in self.verb_types]
         vt2 = [x.name for x in other.verb_types]
