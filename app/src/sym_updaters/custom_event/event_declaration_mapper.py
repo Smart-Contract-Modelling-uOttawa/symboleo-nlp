@@ -18,6 +18,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
 
     def map(self, evt: CustomEvent) -> IDeclaration:
         verb = evt.verb
+        result = None
 
         # Linking verb
         if VerbType.LINKING in verb.verb_types and len(verb.verb_types) == 1:
@@ -28,6 +29,8 @@ class EventDeclarationMapper(IMapEventToDeclaration):
             result = self._map_transitive(evt)
 
         # TODO: Intransitive
+        
+
 
         return result
     

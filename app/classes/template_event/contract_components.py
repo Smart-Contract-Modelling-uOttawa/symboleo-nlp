@@ -4,7 +4,7 @@ from app.classes.custom_event.noun_phrase import NounPhrase
 
 
 class ContractNouns:
-    contract = lambda: NounPhrase('contract', 'contract')
+    contract = lambda: NounPhrase('contract', 'contract', asset_type='Contract')
 
 # TODO: Finish this 
 class ContractVerbs:

@@ -1,5 +1,7 @@
 from __future__ import annotations
 from typing import List
+from app.classes.other.event import Event
+from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
 from app.classes.custom_event.conj_type import ConjType
 
 from app.classes.custom_event.noun_phrase import NounPhrase
@@ -10,15 +12,7 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 
 from app.classes.other.helpers import ClassHelpers
 
-class CustomEvent:
-    # subj: NounPhrase = None
-    # verb: Verb = None
-    # adverb: Adverb = None
-    # dobj: NounPhrase = None
-    # predicate: Predicate = None
-    # pps: List[PrepPhrase] = None
-    # negation: bool = False
-
+class CustomEvent(Event):
     def __init__(
         self, 
         subj: NounPhrase = None, 
@@ -36,6 +30,18 @@ class CustomEvent:
         self.predicate = predicate
         self.pps = pps
         self.negation = negation
+        self.event_type = ''
+
+    def to_sym_event(self):
+        if self.event_type == 'contract':
+            return ContractEvent(ContractEventName[self.verb.verb_str.capitalize()])
+        else:
+            return VariableEvent(self.get_declaration_name())
+
+    # TODO: Will be more complex...
+    def get_declaration_name(self):
+        p = self.verb.lemma.lower()
+        return f'evt_{p}'
 
     # TODO: This will be more complex. Will need to split it out, potentially into static functions. Need tests
     # Need to incorporate negation
@@ -103,5 +109,6 @@ class CustomEvent:
 
     # TODO: Make this more complex
     def is_complete(self):
-        return self.subj and self.verb
+        return True
+        #return self.subj and self.verb
 

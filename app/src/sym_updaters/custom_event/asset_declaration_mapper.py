@@ -43,9 +43,15 @@ class AssetDeclarationMapper(IMapAssetDeclarations):
         return results
 
 
+    # Make this a bit clearer...
     def _is_decl(self, np: NounPhrase):
+        # Dont add assets that are contract nouns
+        if np.asset_type == 'Contract': 
+            return True
+        
         if not self.__asset_decls:
             return False
+
         
         # Will it be str_val or to_text...?
         ## If we're choosing from a list of options, then probably str_val...

@@ -13,7 +13,7 @@ from app.src.grammar.token_processor import IProcessToken
 class ISelectGrammar:
     def select(self):
         raise NotImplementedError()
-
+# Kill this
 class ISelectGrammarNodes:
     def select(self, node_set: List[AbstractNode]) -> AbstractNode:
         raise NotImplementedError()

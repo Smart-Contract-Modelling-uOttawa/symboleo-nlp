@@ -1,5 +1,6 @@
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.tokens.node_type import NodeType
+from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.custom_event.verb import Verb
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.custom_event.prep_phrase import PrepPhrase
@@ -27,5 +28,5 @@ class FailsToNode(SelectedNode):
 class SubjectNode(SelectedNode[NounPhrase]):
     node_type = NodeType.SUBJECT
 
-class CustomEventNode(SelectedNode):
+class CustomEventNode(SelectedNode[CustomEvent]):
     node_type = NodeType.CUSTOM_EVENT

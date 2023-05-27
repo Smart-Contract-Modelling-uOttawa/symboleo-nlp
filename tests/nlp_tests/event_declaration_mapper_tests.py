@@ -35,7 +35,7 @@ test_suite = [
         CustomEvents.eating_pie(),
         Declaration('evt_eat_noisily', 'EatNoisily', 'events', [
             DeclarationProp('eating_agent', 'Bob', 'Role'),
-            DeclarationProp('ate_object', 'apple pie', 'Other'),
+            DeclarationProp('ate_object', 'apple_pie', 'Pie'),
             DeclarationProp('eating_co_agent', 'the seller', 'Role'),
         ])
     ),
@@ -61,8 +61,8 @@ class EventDeclarationMapperFullTests(unittest.TestCase):
         for evt, exp_res in test_suite:
             res = self.sut.map(evt)
 
-            # res.print_me()
-            # exp_res.print_me()
+            res.print_me()
+            exp_res.print_me()
 
             self.assertEqual(exp_res, res )
     

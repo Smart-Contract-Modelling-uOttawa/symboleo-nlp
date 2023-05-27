@@ -1,0 +1,33 @@
+import unittest
+from unittest.mock import MagicMock
+from app.classes.frames.frame import Frame
+from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+
+from app.classes.spec.norm import INorm
+
+from app.src.update_processor.norm_update_extractor import NormUpdateExtractor
+from app.src.update_processor.pattern_handlers.pattern_handler import IHandlePatterns
+
+from tests.helpers.test_objects import CustomEvents
+
+class NormUpdateExtractorTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.fake_handler = IHandlePatterns()
+        self.fake_handler.handle = MagicMock(return_value = [INorm()])
+        handler_dict = {Frame: self.fake_handler }
+        self.sut = NormUpdateExtractor(
+            handler_dict
+        )
+
+    def test_norm_update_extractor(self):
+        frame = Frame()
+        handle_obj = HandleObject(INorm())
+
+        result = self.sut.extract(frame, handle_obj)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(self.fake_handler.handle.call_count, 1)
+
+
+if __name__ == '__main__':
+    unittest.main()

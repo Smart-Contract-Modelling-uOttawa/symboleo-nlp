@@ -121,10 +121,10 @@ maimon_test_case = TestCase(
             obligations = {
                 'ob_return_info': Obligation(
                     'ob_return_info', 
-                    PropMaker.make(PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated))), 
+                    None,
                     'Maimon', 
                     'company', 
-                    PropMaker.make_default(), 
+                    PropMaker.make(PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated))),
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_return_info')))
                 )
             },

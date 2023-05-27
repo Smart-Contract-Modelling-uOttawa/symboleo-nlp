@@ -1,3 +1,3 @@
-A - parm: Dolphin agrees to complete its photo-editing services within 14 days of Dolphin receiving the original digital photo files
+A - parm: Dolphin agrees to complete its photo-editing services TODO
 E - parm: Dolphin agrees to complete its photo-editing services within 14 days of receiving the original digital photo files
 

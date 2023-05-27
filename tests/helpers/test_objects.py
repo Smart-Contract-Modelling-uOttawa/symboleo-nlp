@@ -8,14 +8,14 @@ from app.classes.custom_event.predicate import Predicate
 from app.classes.custom_event.adverb import Adverb
 
 class NounPhrases:
-    legal_proceedings = lambda: NounPhrase('legal proceedings', 'proceedings', is_plural=True, adjs=['legal'], asset_type='Other')
+    legal_proceedings = lambda: NounPhrase('legal proceedings', 'proceedings', is_plural=True, adjs=['legal'], asset_type='Proceedings')
     credit_card = lambda: NounPhrase('credit card', 'card', adjs=['credit'], asset_type='PaymentMethod')
-    apple_pie =  lambda: NounPhrase('apple pie', 'pie', adjs=['apple'], asset_type='Other')
-    pets =  lambda: NounPhrase('pets', 'pets', is_plural=True, asset_type='Other')
+    apple_pie =  lambda: NounPhrase('apple pie', 'pie', adjs=['apple'], asset_type='Pie')
+    pets =  lambda: NounPhrase('pets', 'pets', is_plural=True, asset_type='Pets')
     the_seller = lambda: NounPhrase('the seller', 'seller', is_role=True, det = 'the', asset_type='Role')
     buyer = lambda: NounPhrase('buyer', 'buyer', is_role=True, asset_type='Role')
     hundred_dollars = lambda: NounPhrase('$100', '$100', asset_type='Money')
-    legal_pro = lambda: NounPhrase('a legal professional', 'professional', det='a', adjs=['legal'], asset_type='Other')
+    legal_pro = lambda: NounPhrase('a legal professional', 'professional', det='a', adjs=['legal'], asset_type='Professional')
     canada = lambda: NounPhrase('Canada', 'Canada', asset_type='Location')
     property = lambda: NounPhrase('property', 'property', asset_type='Property')
     bob = lambda: NounPhrase('Bob', 'Bob', is_role=True, asset_type='Role')

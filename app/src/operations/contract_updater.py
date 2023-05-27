@@ -23,7 +23,6 @@ class ContractUpdater:
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
         node_list = self.__input_converter.convert(config.node_list)
-
         if op_code == OpCode.UPDATE_PARM:
             parm_op = ParameterOperation(config.nl_key, config.parm_key, node_list)
             self.__parm_refiner.refine(contract, parm_op)

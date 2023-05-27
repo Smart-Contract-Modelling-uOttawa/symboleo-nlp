@@ -5,10 +5,10 @@ from tests.helpers.test_nlp import TestNLP
 from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
 test_suite = [
-    ('$100', 'Money'),
-    ('credit card', 'PaymentMethod'),
-    ('Canada', 'Location'),
-    ('pie', 'Other')
+    ('$100', '$100', 'Money'),
+    ('credit card', 'card', 'PaymentMethod'),
+    ('Canada', 'Canada', 'Location'),
+    ('pie', 'pie', 'Pie')
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority
@@ -21,11 +21,10 @@ class AssetTypeExtractorFullTests(unittest.TestCase):
         self.sut = AssetTypeExtractor(nlp)
 
     def test_asset_type_extractor(self):
-        for test_val, exp_val in test_suite:
-            res = self.sut.extract(test_val)
-            # res.print_me()
-            # print('----')
-            # exp_val.print_me()
+        for test_val, head, exp_val in test_suite:
+            res = self.sut.extract(test_val, head)
+            #print(res, exp_val)
+            
             self.assertEqual(res, exp_val)
 
 if __name__ == '__main__':
