@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import DefaultDict
 
 from app.classes.operations.dependencies import Dependencies
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.src.extractors.contract_action_extractor import ContractActionExtractor
 from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
 from app.src.extractors.custom_event.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor

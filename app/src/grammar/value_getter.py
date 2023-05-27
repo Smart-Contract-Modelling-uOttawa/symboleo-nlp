@@ -1,13 +1,13 @@
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.input_unit import InputUnit
 from app.classes.operations.user_input import UserInput
 
 # May move this to user_scripts... its an I/O concern
 class IGetValues:
-    def get(self, node: AbstractNode) -> UserInput:
+    def get(self, node: InputUnit) -> UserInput:
         raise NotImplementedError()
 
 class ValueGetter(IGetValues):
-    def get(self, node: AbstractNode) -> str:
+    def get(self, node: InputUnit) -> str:
         if not node.needs_value:
             str_val = node.init_value
         else:

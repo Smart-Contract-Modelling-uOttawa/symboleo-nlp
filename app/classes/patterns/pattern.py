@@ -3,7 +3,7 @@ from typing import List
 import copy
 
 from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class Pattern: # pragma: no cover

@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
 class IInnerPatternChecker:
     def check_pattern(self, node_list: List[SelectedNode], pattern_sequence: List[NodeType]) -> bool:

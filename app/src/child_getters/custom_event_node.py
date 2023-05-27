@@ -2,15 +2,15 @@ from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.sym_event import ObligationEventName
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.input_unit import InputUnit
 from app.classes.selection.selected_node import SelectedNode
 
-from app.classes.tokens.all_nodes import CustomEventNode, SubjectNode
+from app.classes.units.all_nodes import CustomEventNode, SubjectNode
 
 from app.src.child_getters.child_getter import IGetNodeChildren
 
 class CustomEventNodeCG(IGetNodeChildren):
-    def get(self, parent_node: CustomEventNode, contract: SymboleoContract, prev_value: SelectedNode) -> List[AbstractNode]:
+    def get(self, parent_node: CustomEventNode, contract: SymboleoContract, prev_value: SelectedNode) -> List[InputUnit]:
         opts = [str(x.value).lower() for x in ObligationEventName]
             
         decls: List[Declaration] = contract.contract_spec.declarations.values()

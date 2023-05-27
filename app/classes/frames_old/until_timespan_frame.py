@@ -1,5 +1,5 @@
 from app.classes.patterns.pattern import EventPattern
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 from app.classes.custom_event.conj_type import ConjType
 

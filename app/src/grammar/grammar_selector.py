@@ -1,13 +1,13 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.node_type import NodeType
+from app.classes.units.input_unit import InputUnit
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.template_event.common_event import CommonEvent
 
 from app.src.grammar.input_converter import IConvertInput
-from app.classes.tokens.root_node import RootNode
+from app.classes.units.root_node import RootNode
 
 from app.src.child_getters.child_getter import IGetNodeChildren
 from app.src.grammar.value_getter import IGetValues
@@ -24,14 +24,14 @@ class ISelectGrammar:
         raise NotImplementedError()
 
 class ISelectGrammarNodes:
-    def select(self, node_set: List[AbstractNode]) -> AbstractNode:
+    def select(self, node_set: List[InputUnit]) -> InputUnit:
         raise NotImplementedError()
 
 
 class GrammarSelector(ISelectGrammar):
     def __init__(
         self, 
-        child_getter_dict: Dict[Type[AbstractNode], IGetNodeChildren],
+        child_getter_dict: Dict[Type[InputUnit], IGetNodeChildren],
         value_getter: IGetValues,
         input_converter: IConvertInput,
         inner_selector: ISelectGrammarNodes
@@ -75,7 +75,7 @@ class GrammarSelector(ISelectGrammar):
         return results
 
 
-    def _handle_common_event(self, evt: CommonEvent, curr: AbstractNode):
+    def _handle_common_event(self, evt: CommonEvent, curr: InputUnit):
         if curr.node_type == NodeType.SUBJECT:
             if evt.subj:
                 return SubjectNode(evt.subj)

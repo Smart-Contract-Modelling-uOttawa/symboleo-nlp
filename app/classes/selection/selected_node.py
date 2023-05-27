@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import TypeVar, Generic
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
 T = TypeVar('T')
 

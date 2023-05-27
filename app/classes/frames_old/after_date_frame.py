@@ -1,5 +1,5 @@
 from app.classes.patterns.pattern import Pattern
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class AfterDateFrame(Pattern):

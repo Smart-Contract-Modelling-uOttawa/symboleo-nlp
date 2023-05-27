@@ -1,9 +1,10 @@
-from app.classes.tokens.abstract_node import AbstractNode
-from app.classes.tokens.node_type import NodeType
+
+from app.classes.units.input_unit import InputUnit
+from app.classes.units.node_type import NodeType
 
 from app.classes.selection.timepoint_node import TimepointNode as Target
 
-class TimepointNode(AbstractNode):
+class TimepointNode(InputUnit):
     node_type = NodeType.TIMEPOINT
     sn_type = Target
     prompt = 'Specify a timepoint'

@@ -51,7 +51,7 @@ GOALS FOR MAY
 - SYMBOLEO: re-add parm and parm config; handle multiple norms in one request; More convenience methods; more tests on the spec
 - NLP: Improve extractors (add contract), Better use of spacy and framenet, Have a separate NLP test suite (spacy, MLConjug, Framenet)
 - Metrics Standardization: Have a process that runs the test suites and gives some more detailed metric-related information
-- Clean code: Do some renaming (AbstractNode = Token, etc.); clean out older code; unit tests up to 70%
+- Clean code: Do some renaming (InputUnit = Token, etc.); clean out older code; unit tests up to 70%
 
 
 JUNE

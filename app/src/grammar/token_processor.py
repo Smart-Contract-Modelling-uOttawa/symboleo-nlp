@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.tokens.node_type import NodeType
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.node_type import NodeType
+from app.classes.units.input_unit import InputUnit
 from app.classes.selection.selected_node import SelectedNode
 
 from app.classes.template_event.common_event import CommonEvent
@@ -8,7 +8,7 @@ from app.classes.template_event.common_event import CommonEvent
 from app.src.grammar.common_event_handler import IHandleCommonEvents
 
 class IProcessToken:
-    def process(self, token: AbstractNode, contract: ISymboleoContract) -> SelectedNode:
+    def process(self, token: InputUnit, contract: ISymboleoContract) -> SelectedNode:
         raise NotImplementedError()
 
 
@@ -23,7 +23,7 @@ class CommonTokenProcessor(IProcessToken):
         self.__common_event_handler = common_event_handler
         
 
-    def process(self, token: AbstractNode, contract: ISymboleoContract) -> SelectedNode:
+    def process(self, token: InputUnit, contract: ISymboleoContract) -> SelectedNode:
         result = None
         fetched_val = None
 

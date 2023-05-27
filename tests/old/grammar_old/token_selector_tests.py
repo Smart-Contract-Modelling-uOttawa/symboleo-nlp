@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.tokens.abstract_node import AbstractNode, DummyNode
-from app.classes.tokens.final_node import FinalNode as FinalToken
+from app.classes.units.input_unit import InputUnit, DummyNode
+from app.classes.units.final_node import FinalNode as FinalToken
 
 from app.src.grammar.token_selector import TokenSelector
 from app.src.grammar.token_selector_set import ISelectTokenFromSet
@@ -13,7 +13,7 @@ class TokenSelectorTests(unittest.TestCase):
         self.fake_child_getter = IGetNodeChildren()
 
         self.fake_dict = {
-            AbstractNode: self.fake_child_getter
+            InputUnit: self.fake_child_getter
         }
 
         self.inner_selector = ISelectTokenFromSet()
@@ -25,7 +25,7 @@ class TokenSelectorTests(unittest.TestCase):
     def test_token_selector(self):
         self.fake_child_getter.get = MagicMock(return_value=[DummyNode()])
         
-        token = AbstractNode()
+        token = InputUnit()
         result = self.sut.select(token, None, None)
 
         self.assertEqual(result.prompt, 'dummy')
@@ -35,7 +35,7 @@ class TokenSelectorTests(unittest.TestCase):
     def test_token_selector_empty(self):
         self.fake_child_getter.get = MagicMock(return_value=[])
         
-        token = AbstractNode()
+        token = InputUnit()
         result = self.sut.select(token, None, None)
 
         self.assertEqual(type(result), FinalToken)

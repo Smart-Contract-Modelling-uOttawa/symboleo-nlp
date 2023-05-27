@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import List, Type
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
-class AbstractNode: # pragma: no cover
+class InputUnit: # pragma: no cover
     id: str = None
     sn_type: Type[SelectedNode] = SelectedNode # Might be able to remove this
     node_type: NodeType = None
@@ -17,13 +17,13 @@ class AbstractNode: # pragma: no cover
     def __init__(self, options: List[str] = None):
         self.options = options 
     
-    def __eq__(self, other: AbstractNode) -> bool:
+    def __eq__(self, other: InputUnit) -> bool:
         return self.node_type == other.node_type # more here?
 
     def get_value(self):
         raise NotImplementedError()
     
 
-class DummyNode(AbstractNode):
+class DummyNode(InputUnit):
     prompt = 'dummy'
     node_type = NodeType.DUMMY

@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.input_unit import InputUnit
 
 from app.src.grammar.token_processor import IProcessToken
 
@@ -17,7 +17,7 @@ class SimpleTokenProcessor(IProcessToken):
         self.__input_converter = input_converter
 
 
-    def process(self, token: AbstractNode, contract: ISymboleoContract) -> SelectedNode:
+    def process(self, token: InputUnit, contract: ISymboleoContract) -> SelectedNode:
         user_input = self.__value_getter.get(token) # pass in contract...
         result = self.__input_converter.convert([user_input])[0]
         return result

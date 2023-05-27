@@ -1,8 +1,8 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.tokens.node_type import NodeType
-from app.classes.tokens.abstract_node import AbstractNode
-from app.classes.tokens.root_node import RootNode as RootToken
+from app.classes.units.node_type import NodeType
+from app.classes.units.input_unit import InputUnit
+from app.classes.units.root_node import RootNode as RootToken
 
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.root_node import RootNode
@@ -15,7 +15,7 @@ class ISelectGrammar:
         raise NotImplementedError()
 # Kill this
 class ISelectGrammarNodes:
-    def select(self, node_set: List[AbstractNode]) -> AbstractNode:
+    def select(self, node_set: List[InputUnit]) -> InputUnit:
         raise NotImplementedError()
 
 class GrammarSelector(ISelectGrammar):

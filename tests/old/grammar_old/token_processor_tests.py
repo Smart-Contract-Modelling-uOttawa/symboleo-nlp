@@ -1,6 +1,7 @@
+
 import unittest
 from unittest.mock import MagicMock
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.input_unit import InputUnit
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.standard_event_node import CommonEventNode
 from app.classes.template_event.common_event import CommonEvent
@@ -26,7 +27,7 @@ class TokenProcessorTests(unittest.TestCase):
         sample_event = CommonEvent()
         self.sut.toggle_common(sample_event)
 
-        token = AbstractNode()
+        token = InputUnit()
         result = self.sut.process(token, None)
 
         self.assertEqual(result.value, 'test')
@@ -37,7 +38,7 @@ class TokenProcessorTests(unittest.TestCase):
         self.evt_handler.handle = MagicMock(return_value=None)
         self.inner_processor.process = MagicMock(return_value = SelectedNode('test'))
 
-        token = AbstractNode()
+        token = InputUnit()
         result = self.sut.process(token, None)
 
         has_common = self.sut.has_common()
@@ -53,7 +54,7 @@ class TokenProcessorTests(unittest.TestCase):
         self.evt_handler.handle = MagicMock(return_value=None)
         self.inner_processor.process = MagicMock(return_value = CommonEventNode(CommonEvent(common_event_key='test_key')))
 
-        token = AbstractNode()
+        token = InputUnit()
         result = self.sut.process(token, None)
 
         has_common = self.sut.has_common()

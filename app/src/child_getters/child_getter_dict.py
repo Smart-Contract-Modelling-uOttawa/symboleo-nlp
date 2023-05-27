@@ -1,8 +1,8 @@
 from typing import List, Type, DefaultDict
 from collections import defaultdict
-from app.classes.tokens.abstract_node import AbstractNode
-from app.classes.tokens.node_type import NodeType
-from app.classes.tokens.all_nodes import *
+from app.classes.units.input_unit import InputUnit
+from app.classes.units.node_type import NodeType
+from app.classes.units.all_nodes import *
 
 from app.src.child_getters.child_getter import IGetNodeChildren, DefaultChildGetter
 
@@ -18,7 +18,7 @@ from app.src.child_getters.domain_timepoint_extractor import DomainTimepointExtr
 
 class ChildGetterDictConstructor:
     @staticmethod
-    def build() -> DefaultDict[Type[AbstractNode], IGetNodeChildren]:
+    def build() -> DefaultDict[Type[InputUnit], IGetNodeChildren]:
         # Injection...?
         dtp_extractor = DomainTimepointExtractor()
         

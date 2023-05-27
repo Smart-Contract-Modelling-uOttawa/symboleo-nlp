@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.tokens.root_node import RootNode as RootToken
+from app.classes.units.root_node import RootNode as RootToken
 
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.final_node import FinalNode

@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.patterns.all_patterns import *
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.classes.selection.all_nodes import *
 from app.src.pattern_updaters.inner_pattern_checker import InnerPatternChecker
 

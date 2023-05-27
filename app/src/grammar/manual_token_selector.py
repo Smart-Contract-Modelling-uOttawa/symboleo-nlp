@@ -1,9 +1,9 @@
 from typing import List
-from app.classes.tokens.abstract_node import AbstractNode
+from app.classes.units.input_unit import InputUnit
 from app.src.grammar.token_selector_set import ISelectTokenFromSet
 
 class ManualTokenSelector(ISelectTokenFromSet):
-    def select(self, node_set: List[AbstractNode]) -> AbstractNode:
+    def select(self, node_set: List[InputUnit]) -> InputUnit:
         if len(node_set) == 1:
             return node_set[0]
         

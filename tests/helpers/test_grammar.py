@@ -1,5 +1,5 @@
-from app.classes.tokens.abstract_node import DummyNode
-from app.classes.tokens.root_node import RootNode
+from app.classes.units.input_unit import DummyNode
+from app.classes.units.root_node import RootNode
 
 class TestGrammar:
     @staticmethod

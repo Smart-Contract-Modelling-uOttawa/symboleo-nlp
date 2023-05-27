@@ -1,11 +1,11 @@
-from app.classes.tokens.abstract_node import AbstractNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.input_unit import InputUnit
+from app.classes.units.node_type import NodeType
 
-from app.classes.tokens.timespan_node import TimespanNode
+from app.classes.units.timespan_node import TimespanNode
 
 from app.classes.selection.within_node import WithinNode as Target
 
-class WithinNode(AbstractNode):
+class WithinNode(InputUnit):
     node_type = NodeType.WITHIN
     sn_type = Target
     prompt = 'Within'

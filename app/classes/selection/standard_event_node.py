@@ -2,7 +2,7 @@ from app.classes.spec.sym_event import ObligationEventName, ContractEventName
 from app.classes.template_event.common_event import CommonEvent
 from app.classes.template_event.obligation_subject import ObligationSubject
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
 class ObligationActionNode(SelectedNode[ObligationEventName]):
     node_type = NodeType.CONTRACT_ACTION

@@ -1,5 +1,5 @@
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
 # Final node needs to give initial value... e.g. date, CustomEvent, CommonEvent...
 # TODO: May want to type/alias this

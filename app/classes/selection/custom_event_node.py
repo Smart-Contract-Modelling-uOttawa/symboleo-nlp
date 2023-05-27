@@ -1,5 +1,5 @@
 from app.classes.selection.selected_node import SelectedNode
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.custom_event.verb import Verb
 from app.classes.custom_event.noun_phrase import NounPhrase

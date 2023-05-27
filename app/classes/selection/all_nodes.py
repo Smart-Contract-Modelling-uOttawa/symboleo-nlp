@@ -1,5 +1,5 @@
 from typing import Dict, Type
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.classes.selection.selected_node import SelectedNode, DummyNode
 from app.classes.selection.before_node import BeforeNode
 from app.classes.selection.date_node import DateNode

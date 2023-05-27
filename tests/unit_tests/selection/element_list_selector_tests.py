@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
-from app.classes.tokens.abstract_node import AbstractNode
-from app.classes.tokens.final_node import FinalNode as FinalToken
+from app.classes.units.input_unit import InputUnit
+from app.classes.units.final_node import FinalNode as FinalToken
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.selection.final_node import FinalNode
 
@@ -19,13 +19,13 @@ class ElementListSelectorTests(unittest.TestCase):
     def setUp(self):
         self.fake_child_getter = IGetChildren()
         self.fake_child_getter.get = MagicMock(side_effect = [
-            [AbstractNode(), AbstractNode()],
-            [AbstractNode()],
+            [InputUnit(), InputUnit()],
+            [InputUnit()],
             [],
         ])
         
         self.fake_child_selector = ISelectTokenFromSet()
-        self.fake_child_selector.select = MagicMock(return_value = AbstractNode())
+        self.fake_child_selector.select = MagicMock(return_value = InputUnit())
 
         self.fake_input_value_getter = IGetValues()
         self.fake_input_value_getter.get = MagicMock(side_effect = [

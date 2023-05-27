@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.operations.user_input import UserInput
-from app.classes.tokens.node_type import NodeType
+from app.classes.units.node_type import NodeType
 
 from app.src.grammar.input_converter import InputConverter
 from app.src.extractors.value_extractor import IExtractValue 
