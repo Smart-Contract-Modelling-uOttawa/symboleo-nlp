@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.frame import EventFrame, Frame
+from app.classes.patterns.pattern import EventPattern, Pattern
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
 
@@ -25,8 +25,8 @@ class DomainUpdateExtractorTests(unittest.TestCase):
 
 
     def test_domain_update_extractor(self):
-        frame = EventFrame()
-        frame.event = CustomEvents.paying()
+        pattern = EventPattern()
+        pattern.event = CustomEvents.paying()
 
         asset_decls = [
             Declaration('a1', 'A1', 'assets', []),
@@ -40,7 +40,7 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         domain_obj = DomainObject('a', 'b', [])
         self.domain_mapper.map = MagicMock(return_value=domain_obj)
 
-        result = self.sut.extract(frame)
+        result = self.sut.extract(pattern)
 
         self.assertEqual(len(result.declarations), 3)
         self.assertEqual(len(result.domain_objects), 3)
@@ -51,12 +51,12 @@ class DomainUpdateExtractorTests(unittest.TestCase):
 
 
     def test_domain_update_extractor_empty(self):
-        frame = Frame()
+        pattern = Pattern()
         self.asset_decl_mapper.map = MagicMock(return_value=None)
         self.event_decl_mapper.map = MagicMock(return_value=None)
         self.domain_mapper.map = MagicMock(return_value=None)
 
-        result = self.sut.extract(frame)
+        result = self.sut.extract(pattern)
 
         self.assertEqual(len(result.declarations), 0)
         self.assertEqual(len(result.domain_objects), 0)

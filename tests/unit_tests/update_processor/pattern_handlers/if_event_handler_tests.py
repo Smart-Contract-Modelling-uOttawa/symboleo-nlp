@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.if_event_frame import IfEventFrame
+from app.classes.patterns.if_event import IfEvent
 from app.classes.spec.norm import Norm, NormType
 from app.classes.spec.prop_maker import PropMaker
 
@@ -21,14 +21,14 @@ class IfEventHandlerTests(unittest.TestCase):
         norm = Norm('test', None, 'partyA', 'partyB', PropMaker.make_default(),
             PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_a'))), NormType.Obligation)
         
-        frame = IfEventFrame()
-        frame.event = CustomEvents.paying()
+        pattern = IfEvent()
+        pattern.event = CustomEvents.paying()
 
         handle_object = HandleObject(
             norm = norm
         )
 
-        result = self.sut.handle(frame, handle_object)
+        result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
         # TODO: Want a cleaner way of inspecting the consequent - convenience method...
         ## Maybe norm.get_predicate...

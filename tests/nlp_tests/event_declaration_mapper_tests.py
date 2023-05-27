@@ -61,8 +61,8 @@ class EventDeclarationMapperFullTests(unittest.TestCase):
         for evt, exp_res in test_suite:
             res = self.sut.map(evt)
 
-            res.print_me()
-            exp_res.print_me()
+            #res.print_me()
+            #exp_res.print_me()
 
             self.assertEqual(exp_res, res )
     

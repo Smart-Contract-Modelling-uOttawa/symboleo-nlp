@@ -1,9 +1,9 @@
-from app.classes.frames.frame import Frame, EventFrame
+from app.classes.patterns.pattern import EventPattern
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
-class AfterEventFrame(EventFrame):
-    pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.EVENT]
+class BeforeEvent(EventPattern):
+    sequence = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
     
     def is_complete(self):
@@ -11,5 +11,5 @@ class AfterEventFrame(EventFrame):
 
     def to_text(self):
         event_nl = f'{self.event.to_text()}'
-        return f'after {event_nl}'
+        return f'before {event_nl}'
     

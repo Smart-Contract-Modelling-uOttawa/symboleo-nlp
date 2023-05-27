@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.frames.frame import Frame, EventFrame
+from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
@@ -17,7 +17,7 @@ class DomainUpdates:
         self.domain_objects = domain_objects
 
 class IExtractDomainUpdates:
-    def extract(self, frame: Frame) -> DomainUpdates:
+    def extract(self, pattern: Pattern) -> DomainUpdates:
         raise NotImplementedError()
     
 class DomainUpdateExtractor(IExtractDomainUpdates):
@@ -31,12 +31,12 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         self.__event_decl_mapper = event_decl_mapper
         self.__domain_mapper = domain_mapper
     
-    def extract(self, frame: Frame) -> DomainUpdates:
+    def extract(self, pattern: Pattern) -> DomainUpdates:
         declarations = []
         domain_objects = []
 
-        if isinstance(frame, EventFrame):
-            evt = frame.event
+        if isinstance(pattern, EventPattern):
+            evt = pattern.event
 
             # May need to pass in existing declarations from the contract
             asset_decls = self.__asset_decl_mapper.map(evt)

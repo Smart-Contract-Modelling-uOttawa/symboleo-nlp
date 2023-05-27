@@ -1,10 +1,7 @@
 from app.classes.operations.dependencies import Dependencies
 
-#from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
 from app.src.operations.refine_parameter.parameter_refiner_new import ParameterRefiner
-from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
-from app.src.sym_updaters.sym_updater_dict import SymUpdaterDictConstructor
-from app.src.sym_updaters.update_extractor import UpdateExtractor
+from app.src.pattern_updaters.pattern_builder_builder import PatternBuilderBuilder
 
 from app.src.sym_updaters.custom_event.asset_decl_extractor import AssetDeclarationExtractor
 from app.src.sym_updaters.custom_event.asset_declaration_mapper import AssetDeclarationMapper
@@ -19,9 +16,7 @@ from app.src.update_processor.update_processor import UpdateProcessor
 class ParameterRefinerConstructor:
     @staticmethod
     def construct(deps: Dependencies) -> ParameterRefiner:
-        frame_builder = FrameBuilderBuilder.build()
-        #updater_dict = SymUpdaterDictConstructor.build(deps)
-        #update_extractor = UpdateExtractor(updater_dict)
+        pattern_builder = PatternBuilderBuilder.build()
 
         asset_extractor = AssetDeclarationExtractor()
         asset_declaration_mapper = AssetDeclarationMapper(asset_extractor)
@@ -33,4 +28,4 @@ class ParameterRefinerConstructor:
         norm_update_extractor = NormUpdateExtractor(handler_dict)
         update_processor = UpdateProcessor(declaration_extractor, norm_update_extractor)
 
-        return ParameterRefiner(frame_builder, update_processor)
+        return ParameterRefiner(pattern_builder, update_processor)

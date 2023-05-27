@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
 from app.src.operations.termination_updater import TerminationUpdater, TerminationOperation
-from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
+from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter
 
 class TerminationUpdaterTests(unittest.TestCase):
     def setUp(self):

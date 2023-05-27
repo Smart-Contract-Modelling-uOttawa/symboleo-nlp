@@ -7,7 +7,7 @@ from app.classes.spec.declaration import IDeclaration
 
 from app.classes.operations.op_code import OpCode
 from app.classes.operations.contract_updater_config import UpdateConfig
-from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter
+from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter
 from app.src.operations.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
 from app.src.grammar.input_converter import IConvertInput

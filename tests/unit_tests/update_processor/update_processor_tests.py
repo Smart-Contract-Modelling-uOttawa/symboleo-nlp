@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.frame import Frame
+from app.classes.patterns.pattern import Pattern
 
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.declaration import Declaration
@@ -33,9 +33,9 @@ class UpdateProcessorTests(unittest.TestCase):
 
     def test_update_processor(self):
         norm = INorm()
-        frame = Frame()
+        pattern = Pattern()
 
-        result = self.sut.process(norm, frame)
+        result = self.sut.process(norm, pattern)
 
         self.assertTrue(isinstance(result, ContractUpdateObj))
         self.assertEqual(len(result.declarations), 1)

@@ -1,75 +1,75 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.sym_event import ContractEventName
-from app.classes.frames.frame import EventFrame
+from app.classes.patterns.pattern import EventPattern
 from app.classes.selection.custom_event_node import *
 
-from app.src.frame_updaters.contract_subject import ContractSubjectUpdater
+from app.src.pattern_updaters.contract_subject import ContractSubjectUpdater
 
 from app.classes.template_event.contract_components import ContractNouns
 
-from app.src.frame_updaters.custom_event_nodes import *
+from app.src.pattern_updaters.custom_event_nodes import *
 
 class CustomEventNodeUpdaterTests(unittest.TestCase):
 
     def test_prep_phrase_updater(self):
         prep_phrase = PrepPhrase('test', 'test', NounPhrase('a', 'b'))
         node = PrepNode(prep_phrase)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = PrepPhraseUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.pps[0], prep_phrase)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.pps[0], prep_phrase)
     
 
     def test_adverb_updater(self):
         adv = Adverb('test')
         node = AdverbNode(adv)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = AdverbUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.adverb, adv)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.adverb, adv)
     
 
     def test_dobj_updater(self):
         np = NounPhrase('test', 'test')
         node = DobjNode(np)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = DobjUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.dobj, np)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.dobj, np)
     
 
     def test_predicate_updater(self):
         pred = Predicate('test')
         node = PredicateNode(pred)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = PredicateUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.predicate, pred)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.predicate, pred)
 
 
     def test_verb_updater(self):
         verb = Verb('test', 'test', [], None)
         node = VerbNode(verb)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = VerbUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.verb, verb)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.verb, verb)
     
 
     def test_subj_updater(self):
         np = NounPhrase('test', 'test')
         node = SubjectNode(np)
-        frame = EventFrame()
+        pattern = EventPattern()
 
         sut = SubjectUpdater()
-        sut.update_frame(node, frame)
-        self.assertEqual(frame.event.subj, np)
+        sut.update(node, pattern)
+        self.assertEqual(pattern.event.subj, np)
 
 if __name__ == '__main__':
     unittest.main()

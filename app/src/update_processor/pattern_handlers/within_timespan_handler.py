@@ -1,5 +1,5 @@
 import copy
-from app.classes.frames.within_timespan_event_frame import WithinTimespanEventFrame
+from app.classes.patterns.within_timespan_event import WithinTimespanEvent
 from app.classes.spec.norm import Norm
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
 from app.classes.spec.sym_event import VariableEvent
@@ -11,10 +11,10 @@ from app.src.update_processor.pattern_handlers.pattern_handler import HandleObje
 
 
 class WithinTimespanHandler(IHandlePatterns):
-    def handle(self, frame: WithinTimespanEventFrame, handle_object: HandleObject):
+    def handle(self, pattern: WithinTimespanEvent, handle_object: HandleObject):
         norm: Norm = handle_object.norm
-        evt = frame.event.to_sym_event()
-        timespan = frame.timespan
+        evt = pattern.event.to_sym_event()
+        timespan = pattern.timespan
 
         init_event = norm.get_default_event('consequent') # Need to get consequent?
         point_func = Point(PointFunction(evt, timespan.time_value, timespan.time_unit))

@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.frames.frame import Frame
+from app.classes.patterns.pattern import Pattern
 from app.classes.selection.selected_node import SelectedNode
 from app.classes.spec.norm import Norm
 from app.classes.operations.contract_update_obj import ContractUpdateObj
@@ -9,7 +9,7 @@ from app.src.update_processor.domain_update_extractor import IExtractDomainUpdat
 from app.src.update_processor.norm_update_extractor import IExtractNormUpdates
 
 class IProcessUpdates:
-    def process(self, norm: Norm, frame: Frame):
+    def process(self, norm: Norm, pattern: Pattern):
         raise NotImplementedError()
 
 
@@ -23,9 +23,9 @@ class UpdateProcessor(IProcessUpdates):
         self.__norm_update_extractor = norm_update_extractor
 
     
-    def process(self, norm: Norm, frame: Frame) -> ContractUpdateObj:
+    def process(self, norm: Norm, pattern: Pattern) -> ContractUpdateObj:
         # Extract domain and declaration updates
-        domain_updates = self.__domain_update_extractor.extract(frame)
+        domain_updates = self.__domain_update_extractor.extract(pattern)
 
         # Interesting... We could run these updates on the contract first...
         # Maybe not though. 
@@ -37,7 +37,7 @@ class UpdateProcessor(IProcessUpdates):
         handle_object = HandleObject(norm)
 
         # This will require a bundle of arguments: Norm, contract, domain_objects, declarations, etc. 
-        norms = self.__norm_update_extractor.extract(frame, handle_object)
+        norms = self.__norm_update_extractor.extract(pattern, handle_object)
 
         update_obj = ContractUpdateObj(norms, domain_updates.domain_objects, domain_updates.declarations)
 

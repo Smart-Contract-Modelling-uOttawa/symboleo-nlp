@@ -1,9 +1,9 @@
-from app.classes.frames.frame import EventFrame
+from app.classes.patterns.pattern import EventPattern
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
-class IfEventFrame(EventFrame):
-    pattern = [NodeType.ROOT, NodeType.IF, NodeType.EVENT]
+class IfEvent(EventPattern):
+    sequence = [NodeType.ROOT, NodeType.IF, NodeType.EVENT]
     op_code = ParmOpCode.ADD_TRIGGER
     
     def is_complete(self):

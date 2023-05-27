@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.before_date_frame import BeforeDateFrame
+from app.classes.patterns.before_date import BeforeDate
 from app.classes.spec.norm import Norm, NormType
 from app.classes.spec.prop_maker import PropMaker
 
@@ -21,14 +21,14 @@ class BeforeDateHandlerTests(unittest.TestCase):
         norm = Norm('test', None, 'partyA', 'partyB', PropMaker.make_default(),
             PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_a'))), NormType.Obligation)
         
-        frame = BeforeDateFrame()
-        frame.date_text = 'March 31, 2024'
+        pattern = BeforeDate()
+        pattern.date_text = 'March 31, 2024'
 
         handle_object = HandleObject(
             norm = norm
         )
 
-        result = self.sut.handle(frame, handle_object)
+        result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
         # TODO: Want a cleaner way of inspecting the consequent - convenience method...
         ## Maybe norm.get_predicate...

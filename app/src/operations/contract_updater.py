@@ -2,7 +2,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 
-from app.src.operations.refine_parameter.parameter_refiner import IRefineParameter, ParameterOperation
+from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter, ParameterOperation
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
 from app.src.grammar.input_converter import IConvertInput

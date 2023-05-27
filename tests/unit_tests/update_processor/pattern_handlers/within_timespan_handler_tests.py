@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.within_timespan_event_frame import WithinTimespanEventFrame
+from app.classes.patterns.within_timespan_event import WithinTimespanEvent
 from app.classes.spec.norm import Norm, NormType
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.other.timespan import Timespan
@@ -22,15 +22,15 @@ class WithinTimespanHandlerTests(unittest.TestCase):
         norm = Norm('test', None, 'partyA', 'partyB', PropMaker.make_default(),
             PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_a'))), NormType.Obligation)
         
-        frame = WithinTimespanEventFrame()
-        frame.event = CustomEvents.paying()
-        frame.timespan = Timespan('2', TimeUnit.Days)
+        pattern = WithinTimespanEvent()
+        pattern.event = CustomEvents.paying()
+        pattern.timespan = Timespan('2', TimeUnit.Days)
 
         handle_object = HandleObject(
             norm = norm
         )
 
-        result = self.sut.handle(frame, handle_object)
+        result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
         exp_res = 'test: Obligation(partyA, partyB, true, WhappensBefore(evt_a, Date.Add(evt_pay, 2, days)));'
         

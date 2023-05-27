@@ -14,7 +14,7 @@ from app.src.operations.dependency_builder import DependencyBuilder
 from app.src.sym_updaters.sym_updater_dict import SymUpdaterDictConstructor
 from app.src.sym_updaters.update_extractor import UpdateExtractor
 
-from app.src.frame_updaters.frame_builder_builder import FrameBuilderBuilder
+from app.src.pattern_updaters.pattern_builder_builder import PatternBuilderBuilder
 
 from app.src.grammar.input_converter_builder import InputConverterBuilder
 
@@ -34,7 +34,7 @@ class ContractEventTests(unittest.TestCase):
         updater_dict = SymUpdaterDictConstructor.build(deps)
         self.sym_updater = UpdateExtractor(updater_dict)
 
-        self.frame_builder = FrameBuilderBuilder.build()
+        self.pattern_builder = PatternBuilderBuilder.build()
 
     def test_contract_event(self):
         #contract = get_template('sample_t')
@@ -72,12 +72,12 @@ class ContractEventTests(unittest.TestCase):
             )
         )
 
-        frame_result = self.frame_builder.build(node_list_result)  
+        pattern_result = self.pattern_builder.build(node_list_result)  
         sym_result = self.sym_updater.extract(norm, node_list_result)
         norm_results = sym_result.norms
         
         # Expected result
-        self.assertEqual(exp_nl, frame_result.to_text())
+        self.assertEqual(exp_nl, pattern_result.to_text())
         self.assertEqual(len(norm_results), 1)
         self.assertEqual(norm_results[0].to_sym(), expected_norm.to_sym())
 

@@ -1,11 +1,11 @@
 from app.classes.selection.standard_event_node import ObligationSubjectNode
-from app.classes.frames.frame import Frame, EventFrame
+from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.custom_event.noun_phrase import NounPhrase
 
-from app.src.frame_updaters.frame_updater import IUpdateFrame 
+from app.src.pattern_updaters.pattern_updater import IUpdatePattern 
 
-class ObligationSubjectUpdater(IUpdateFrame):
-    def update_frame(self, node: ObligationSubjectNode, frame: EventFrame):
+class ObligationSubjectUpdater(IUpdatePattern):
+    def update(self, node: ObligationSubjectNode, pattern: EventPattern):
         # May potentially make an ObligationNounPhrase that inherits from NounPhrase...
 
         # TODO: Ok, this is where it will get tricky... Need to extract the event from here...
@@ -28,4 +28,4 @@ class ObligationSubjectUpdater(IUpdateFrame):
             str_val = node.value.to_text(),
             head = node.value.to_text()
         )
-        frame.event.subj = subj
+        pattern.event.subj = subj

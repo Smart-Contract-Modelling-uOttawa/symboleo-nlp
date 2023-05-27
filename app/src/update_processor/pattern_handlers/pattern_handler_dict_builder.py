@@ -1,12 +1,11 @@
 from collections import defaultdict
 from typing import DefaultDict, Dict, Type
 
-from app.classes.frames.all_frames import *
+from app.classes.patterns.all_patterns import *
 from app.src.update_processor.pattern_handlers.pattern_handler import IHandlePatterns
 
 from app.src.update_processor.pattern_handlers.before_date_handler import BeforeDateHandler
 from app.src.update_processor.pattern_handlers.before_event_handler import BeforeEventHandler
-from app.src.update_processor.pattern_handlers.before_pf_handler import BeforePfHandler
 from app.src.update_processor.pattern_handlers.if_event_handler import IfEventHandler
 from app.src.update_processor.pattern_handlers.within_timespan_handler import WithinTimespanHandler
 
@@ -19,11 +18,10 @@ class PatternHandlerDictBuilder:
     def build() -> Dict[Type, IHandlePatterns]:
         d = {}
         #before_pf_handler = BeforePfHandler()
-        # Will replace pasttern_key with the frame type...
-        d[BeforeEventFrame] = BeforeEventHandler()
-        d[BeforeDateFrame] = BeforeDateHandler()
-        d[WithinTimespanEventFrame] = WithinTimespanHandler()
+        d[BeforeEvent] = BeforeEventHandler()
+        d[BeforeDate] = BeforeDateHandler()
+        d[WithinTimespanEvent] = WithinTimespanHandler()
         #d['BEFORE_PF'] = before_pf_handler
-        d[IfEventFrame] = IfEventHandler()
+        d[IfEvent] = IfEventHandler()
 
         return d

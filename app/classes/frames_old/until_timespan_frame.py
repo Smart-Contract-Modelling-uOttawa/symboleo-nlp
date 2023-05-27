@@ -1,11 +1,11 @@
-from app.classes.frames.frame import EventFrame
+from app.classes.patterns.pattern import EventPattern
 from app.classes.tokens.node_type import NodeType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 from app.classes.custom_event.conj_type import ConjType
 
 # TODO: Will be a bit of a special case
 ## e.g. for "situation"-like events that are negated
-class UntilTimespanFrame(EventFrame):
+class UntilTimespanFrame(EventPattern):
     pattern = [NodeType.ROOT, NodeType.UNTIL, NodeType.TIMESPAN]
     op_code = ParmOpCode.REFINE_PREDICATE
 

@@ -1,34 +1,35 @@
+
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.frames.all_frames import *
+from app.classes.patterns.all_patterns import *
 from app.classes.tokens.node_type import NodeType
 from app.classes.selection.all_nodes import *
-from app.src.frame_updaters.inner_frame_checker import InnerFrameChecker
+from app.src.pattern_updaters.inner_pattern_checker import InnerPatternChecker
 
-class InnerFrameCheckerTests(unittest.TestCase):
+class InnerPatternCheckerTests(unittest.TestCase):
     def setUp(self):
-        self.sut = InnerFrameChecker()
+        self.sut = InnerPatternChecker()
     
-    def test_inner_frame_checker1(self):
+    def test_inner_pattern_checker1(self):
         node_list = [RootNode(), BeforeNode(), EventNode(), CustomEventNode()]
-        frame_pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
+        pattern_sequence = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
 
-        result = self.sut.check_frame(node_list, frame_pattern)
+        result = self.sut.check_pattern(node_list, pattern_sequence)
         self.assertTrue(result)
     
-    def test_inner_frame_checker2(self):
+    def test_inner_pattern_checker2(self):
         node_list = [RootNode(), BeforeNode()]
-        frame_pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
+        pattern_pattern = [NodeType.ROOT, NodeType.BEFORE, NodeType.EVENT]
 
-        result = self.sut.check_frame(node_list, frame_pattern)
+        result = self.sut.check_pattern(node_list, pattern_pattern)
         self.assertFalse(result)
 
-    def test_inner_frame_checker1(self):
+    def test_inner_pattern_checker1(self):
         node_list = [RootNode(), BeforeNode(), EventNode(), CustomEventNode()]
-        frame_pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.EVENT]
+        pattern_pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.EVENT]
 
-        result = self.sut.check_frame(node_list, frame_pattern)
+        result = self.sut.check_pattern(node_list, pattern_pattern)
         self.assertFalse(result)
 
 
