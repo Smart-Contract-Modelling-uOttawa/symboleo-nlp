@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.operations.op_code import OpCode
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
 
@@ -10,7 +10,7 @@ class UpdateConfig:
             op_code: OpCode = None, 
 
             # Parm update
-            node_list: List[SelectedNode] = None,
+            node_list: List[Element] = None,
             #selection: Selection = None, 
             #parm_config: ParameterConfig = None,
             nl_key: str = None,

@@ -1,6 +1,6 @@
 from app.classes.spec.norm import INorm
 from app.classes.spec.sym_event import ObligationEventName, ObligationEvent
-from app.classes.selection.standard_event_node import ObligationSubjectNode
+from app.classes.elements.standard_event_node import ObligationSubjectNode
 from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
 

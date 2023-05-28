@@ -4,11 +4,11 @@ from app.classes.units.node_type import NodeType
 
 T = TypeVar('T')
 
-class SelectedNode(Generic[T]): # pragma: no cover
+class Element(Generic[T]): # pragma: no cover
     node_type: NodeType = None
 
     def __init__(self, value: T = None):
         self.value = value
 
-class DummyNode(SelectedNode):
+class DummyNode(Element):
     node_type = NodeType.DUMMY

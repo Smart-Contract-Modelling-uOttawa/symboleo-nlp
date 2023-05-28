@@ -1,18 +1,18 @@
 from typing import List
 from app.classes.operations.user_input import UserInput, NodeType
-from app.classes.selection.all_nodes import *
+from app.classes.elements.all_nodes import *
 
 from app.src.extractors.value_extractor import IExtractValue
 
 class IConvertInput:
-    def convert(self, input: List[UserInput]) -> List[SelectedNode]:
+    def convert(self, input: List[UserInput]) -> List[Element]:
         raise NotImplementedError()
 
 class InputConverter(IConvertInput):
     def __init__(self, extractor_dict: Dict[NodeType, IExtractValue]):
         self.__dict = extractor_dict
 
-    def convert(self, input: List[UserInput]) -> List[SelectedNode]:
+    def convert(self, input: List[UserInput]) -> List[Element]:
         results = []
 
         for x in input:

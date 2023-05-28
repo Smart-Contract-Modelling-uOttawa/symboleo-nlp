@@ -2,9 +2,9 @@ from typing import List
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.root_node import RootNode as RootToken
 
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.final_node import FinalNode
-from app.classes.selection.root_node import RootNode
+from app.classes.elements.element import Element
+from app.classes.elements.final_node import FinalNode
+from app.classes.elements.root_node import RootNode
 
 from app.src.grammar.child_getter import IGetChildren
 from app.src.grammar.token_selector_set import ISelectTokenFromSet
@@ -14,7 +14,7 @@ from app.src.grammar.input_converter import IConvertInput # Change to IExtractEl
 # This should replace the grammar_selectors and all that...
 # Will need to integrate the CommonEvent handling stuff in though...
 class ISelectElementList:
-    def select(self, contract: ISymboleoContract) -> List[SelectedNode]:
+    def select(self, contract: ISymboleoContract) -> List[Element]:
         raise NotImplementedError()
     
 class ElementListSelector(ISelectElementList):
@@ -30,9 +30,9 @@ class ElementListSelector(ISelectElementList):
         self.__value_getter = input_value_getter
         self.__element_extractor = element_extractor
 
-    def select(self, contract: ISymboleoContract) -> List[SelectedNode]:
+    def select(self, contract: ISymboleoContract) -> List[Element]:
         node = RootToken()
-        results: List[SelectedNode] = [RootNode()]
+        results: List[Element] = [RootNode()]
         element = None
 
         while (True):

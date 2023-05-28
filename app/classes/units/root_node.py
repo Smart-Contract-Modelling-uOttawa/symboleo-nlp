@@ -7,7 +7,7 @@ from app.classes.units.until_node import UntilNode
 from app.classes.units.within_node import WithinNode
 from app.classes.units.after_node import AfterNode
 
-from app.classes.selection.root_node import RootNode as Target
+from app.classes.elements.root_node import RootNode as Target
 
 class RootNode(InputUnit):
     node_type = NodeType.ROOT

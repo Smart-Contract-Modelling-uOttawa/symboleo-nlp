@@ -2,8 +2,8 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.standard_event_node import CommonEventNode
+from app.classes.elements.element import Element
+from app.classes.elements.standard_event_node import CommonEventNode
 from app.classes.template_event.common_event import CommonEvent
 
 from app.src.grammar.token_processor import CommonTokenProcessor, IProcessToken
@@ -21,7 +21,7 @@ class TokenProcessorTests(unittest.TestCase):
     
 
     def test_token_processor_common(self):
-        self.evt_handler.handle = MagicMock(return_value=SelectedNode('test'))
+        self.evt_handler.handle = MagicMock(return_value=Element('test'))
         self.inner_processor.process = MagicMock(return_value = None)
 
         sample_event = CommonEvent()
@@ -36,7 +36,7 @@ class TokenProcessorTests(unittest.TestCase):
     
     def test_token_processor_regular(self):
         self.evt_handler.handle = MagicMock(return_value=None)
-        self.inner_processor.process = MagicMock(return_value = SelectedNode('test'))
+        self.inner_processor.process = MagicMock(return_value = Element('test'))
 
         token = InputUnit()
         result = self.sut.process(token, None)

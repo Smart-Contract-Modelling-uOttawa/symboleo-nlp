@@ -5,7 +5,7 @@ from app.classes.units.node_type import NodeType
 
 from app.classes.units.event_node import EventNode
 
-from app.classes.selection.timespan_node import TimespanNode as Target
+from app.classes.elements.timespan_node import TimespanNode as Target
 
 class TimespanNode(InputUnit):
     node_type = NodeType.TIMESPAN

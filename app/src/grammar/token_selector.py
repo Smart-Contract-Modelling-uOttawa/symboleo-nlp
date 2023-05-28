@@ -1,7 +1,7 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.input_unit import InputUnit
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.units.final_node import FinalNode
 
 from app.src.child_getters.child_getter import IGetNodeChildren
@@ -13,7 +13,7 @@ class ISelectToken:
         self, 
         chosen_token: InputUnit, 
         contract: ISymboleoContract, 
-        prev_node: SelectedNode 
+        prev_node: Element 
     ) -> InputUnit:
         raise NotImplementedError()
 
@@ -27,7 +27,7 @@ class TokenSelector(ISelectToken):
         self.__child_getter_dict = child_getter_dict
         self.__inner_selector = inner_selector
 
-    def select(self, chosen_token: InputUnit, contract: ISymboleoContract, prev_node: SelectedNode) -> InputUnit: 
+    def select(self, chosen_token: InputUnit, contract: ISymboleoContract, prev_node: Element) -> InputUnit: 
             op = self.__child_getter_dict[type(chosen_token)]
             next_set = op.get(chosen_token, contract, prev_node)
             if len(next_set) == 0: 

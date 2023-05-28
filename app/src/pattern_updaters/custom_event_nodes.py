@@ -1,4 +1,4 @@
-from app.classes.selection.custom_event_node import *
+from app.classes.elements.custom_event_node import *
 from app.classes.patterns.pattern import EventPattern
 
 from app.src.pattern_updaters.pattern_updater import IUpdatePattern 

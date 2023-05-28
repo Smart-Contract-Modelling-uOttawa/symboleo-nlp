@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.norm import INorm
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_event import ContractEvent, ContractEventName
-from app.classes.selection.before_node import BeforeNode
+from app.classes.elements.before_node import BeforeNode
 
 from app.src.sym_updaters.before_node_updater import BeforeNodeUpdater
 

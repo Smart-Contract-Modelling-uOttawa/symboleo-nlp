@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.selection.before_node import BeforeNode
+from app.classes.elements.before_node import BeforeNode
 
 from app.src.sym_updaters.if_node_updater import IfNodeUpdater
 

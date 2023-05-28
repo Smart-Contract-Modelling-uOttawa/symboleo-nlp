@@ -93,7 +93,7 @@
 
 # ## Ok maybe were on to something
 # ## Select the commonEvent
-# ## Provides a list of SelectedNodes and their values that make up an event
+# ## Provides a list of Elements and their values that make up an event
 # ## This helps to build the child node, 
 
 # # For each of the input needs

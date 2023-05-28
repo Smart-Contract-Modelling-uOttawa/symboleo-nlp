@@ -2,7 +2,7 @@
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.node_type import NodeType
 
-from app.classes.selection.timepoint_node import TimepointNode as Target
+from app.classes.elements.timepoint_node import TimepointNode as Target
 
 class TimepointNode(InputUnit):
     node_type = NodeType.TIMEPOINT

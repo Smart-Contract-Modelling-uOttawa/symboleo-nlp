@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.patterns.pattern import Pattern
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.spec.norm import Norm
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 

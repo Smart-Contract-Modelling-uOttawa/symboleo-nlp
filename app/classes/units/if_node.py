@@ -3,7 +3,7 @@ from app.classes.units.node_type import NodeType
 
 from app.classes.units.event_node import EventNode
 
-from app.classes.selection.if_node import IfNode as Target
+from app.classes.elements.if_node import IfNode as Target
 
 class IfNode(InputUnit):
     node_type = NodeType.IF

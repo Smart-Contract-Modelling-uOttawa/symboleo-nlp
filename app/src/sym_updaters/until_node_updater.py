@@ -1,6 +1,6 @@
 import copy
 from app.classes.spec.norm import INorm
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.spec.sym_event import SymEvent
 from app.classes.operations.update_package import UpdatePackage
 from app.classes.operations.contract_update_obj import ContractUpdateObj
@@ -14,7 +14,7 @@ class UntilNodeUpdater(IUpdatePackage):
     def __init__(self, norm_builder: IBuildNorms):
         self.__norm_builder = norm_builder
 
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
+    def update_package(self, norm: INorm, node: Element, value: any) -> UpdatePackage:
         if isinstance(value, SymEvent):
             new_power = self.__norm_builder.build(norm, value)
             update_obj = ContractUpdateObj(norms=[new_power])

@@ -1,6 +1,6 @@
 from app.classes.spec.norm import INorm
 from app.classes.spec.sym_event import ContractEventName, ContractEvent
-from app.classes.selection.standard_event_node import ContractSubjectNode
+from app.classes.elements.standard_event_node import ContractSubjectNode
 from app.classes.operations.update_package import UpdatePackage
 from app.src.sym_updaters.package_updater import IUpdatePackage
 

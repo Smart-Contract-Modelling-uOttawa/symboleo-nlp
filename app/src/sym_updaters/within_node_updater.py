@@ -1,6 +1,6 @@
 import copy
 from app.classes.spec.norm import INorm
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.spec.point_function import PointFunction
 from app.classes.spec.sym_point import Point
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
@@ -9,7 +9,7 @@ from app.classes.operations.contract_update_obj import ContractUpdateObj
 from app.src.sym_updaters.package_updater import IUpdatePackage
 
 class WithinNodeUpdater(IUpdatePackage):
-    def update_package(self, norm: INorm, node: SelectedNode, value: any) -> UpdatePackage:
+    def update_package(self, norm: INorm, node: Element, value: any) -> UpdatePackage:
         time_unit = value['time_unit']
         time_value = value['time_value']
         event2 = value['event']

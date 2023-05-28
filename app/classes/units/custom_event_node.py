@@ -2,8 +2,8 @@ from app.classes.units.input_unit import InputUnit
 from app.classes.units.node_type import NodeType
 from app.classes.units.final_node import FinalNode
 
-from app.classes.selection.custom_event_node import CustomEventNode as CustomEventNodeTarget
-from app.classes.selection.custom_event_node import SubjectNode as SubjectTarget, \
+from app.classes.elements.custom_event_node import CustomEventNode as CustomEventNodeTarget
+from app.classes.elements.custom_event_node import SubjectNode as SubjectTarget, \
     VerbNode as VerbTarget, \
     PrepNode as PrepTarget, \
     AdverbNode as AdverbTarget, \

@@ -1,17 +1,17 @@
 from app.classes.units.node_type import NodeType
 from app.classes.units.input_unit import InputUnit
-from app.classes.selection.custom_event_node import *
-from app.classes.selection.final_node import FinalNode
+from app.classes.elements.custom_event_node import *
+from app.classes.elements.final_node import FinalNode
 
 from app.classes.template_event.common_event import CommonEvent
 
 class IHandleCommonEvents:
-    def handle(self, evt: CommonEvent, curr: InputUnit) -> SelectedNode:
+    def handle(self, evt: CommonEvent, curr: InputUnit) -> Element:
         raise NotImplementedError()
     
 
 class CommonEventHandler(IHandleCommonEvents):
-    def handle(self, evt: CommonEvent, curr: InputUnit) -> SelectedNode:
+    def handle(self, evt: CommonEvent, curr: InputUnit) -> Element:
         if curr.node_type == NodeType.SUBJECT:
             if evt.subj:
                 return SubjectNode(evt.subj)

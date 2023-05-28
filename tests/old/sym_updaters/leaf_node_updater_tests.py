@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.selection.selected_node import DummyNode
+from app.classes.elements.element import DummyNode
 
 from app.src.sym_updaters.leaf_node_updater import LeafNodeUpdater
 

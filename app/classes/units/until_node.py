@@ -4,7 +4,7 @@ from app.classes.units.node_type import NodeType
 
 from app.classes.units.event_node import EventNode
 
-from app.classes.selection.until_node import UntilNode as Target
+from app.classes.elements.until_node import UntilNode as Target
 
 class UntilNode(InputUnit):
     node_type = NodeType.UNTIL

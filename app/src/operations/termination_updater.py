@@ -3,7 +3,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PowerFunction, PFContract, PFContractName
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 
 from app.src.operations.refine_parameter.parameter_refiner_new import ParameterRefiner, ParameterOperation
 
@@ -13,7 +13,7 @@ class TerminationOperation:
         norm_id: str,
         debtor: str,
         creditor: str,
-        node_list: List[SelectedNode],
+        node_list: List[Element],
         ):
         self.norm_id = norm_id
         self.debtor = debtor 

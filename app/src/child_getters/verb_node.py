@@ -3,7 +3,7 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.input_unit import InputUnit
 from app.classes.custom_event.verb import Verb, VerbType
 from app.classes.units.custom_event_node import *
-from app.classes.selection.custom_event_node import VerbNode
+from app.classes.elements.custom_event_node import VerbNode
 
 from app.classes.units.all_nodes import VerbNode as VerbToken
 

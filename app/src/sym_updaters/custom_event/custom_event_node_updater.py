@@ -1,6 +1,6 @@
 from app.classes.spec.norm import INorm
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.operations.update_package import UpdatePackage
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 from app.classes.custom_event.custom_event import CustomEvent
@@ -22,7 +22,7 @@ class CustomEventNodeUpdater(IUpdatePackage):
         self.__domain_mapper = domain_mapper
 
 
-    def update_package(self, norm: INorm, node: SelectedNode,  value: CustomEvent) -> UpdatePackage:
+    def update_package(self, norm: INorm, node: Element,  value: CustomEvent) -> UpdatePackage:
         # May need to pass in existing declarations from the contract
         decls = self.__asset_decl_mapper.map(value)
 

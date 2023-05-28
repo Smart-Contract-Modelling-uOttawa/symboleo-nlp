@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.input_unit import InputUnit
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 
 from app.src.child_getters.child_getter import IGetNodeChildren
 from app.src.grammar.child_getter import ChildGetter
@@ -21,7 +21,7 @@ class ChildGetterTests(unittest.TestCase):
 
     def test_child_getter(self):
         contract = ISymboleoContract()
-        result = self.sut.get(InputUnit(), SelectedNode(), contract)
+        result = self.sut.get(InputUnit(), Element(), contract)
 
         self.assertEqual(len(result), 2) 
 

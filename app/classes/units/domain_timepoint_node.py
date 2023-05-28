@@ -2,7 +2,7 @@ from typing import List
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.node_type import NodeType
 
-from app.classes.selection.domain_timepoint_node import DomainTimepointNode as Target
+from app.classes.elements.domain_timepoint_node import DomainTimepointNode as Target
 
 class DomainTimepointNode(InputUnit):
     node_type = NodeType.DOMAIN_TIMEPOINT

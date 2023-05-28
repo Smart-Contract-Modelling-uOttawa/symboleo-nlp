@@ -1,4 +1,4 @@
-from app.classes.selection.standard_event_node import ObligationActionNode
+from app.classes.elements.standard_event_node import ObligationActionNode
 from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.custom_event.predicate import Predicate
 from app.classes.template_event.contract_components import HelperVerbs

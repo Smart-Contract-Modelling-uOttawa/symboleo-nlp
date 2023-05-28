@@ -1,4 +1,4 @@
-from app.classes.selection.timespan_node import TimespanNode
+from app.classes.elements.timespan_node import TimespanNode
 from app.classes.patterns.pattern import Pattern
 from app.classes.patterns.all_patterns import WithinTimespanEvent
 

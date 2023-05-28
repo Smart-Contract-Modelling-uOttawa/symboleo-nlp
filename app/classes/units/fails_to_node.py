@@ -3,7 +3,7 @@ from app.classes.units.node_type import NodeType
 
 from app.classes.units.custom_event_node import VerbNode
 
-from app.classes.selection.custom_event_node import FailsToNode as Target
+from app.classes.elements.custom_event_node import FailsToNode as Target
 
 class FailsToNode(InputUnit):
     node_type = NodeType.FAILS_TO

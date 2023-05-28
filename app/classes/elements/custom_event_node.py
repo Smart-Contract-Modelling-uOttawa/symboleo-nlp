@@ -1,4 +1,4 @@
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.units.node_type import NodeType
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.custom_event.verb import Verb
@@ -7,26 +7,26 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 from app.classes.custom_event.adverb import Adverb
 from app.classes.custom_event.predicate import Predicate
 
-class PrepNode(SelectedNode[PrepPhrase]):
+class PrepNode(Element[PrepPhrase]):
     node_type = NodeType.PREP_PHRASE
 
-class AdverbNode(SelectedNode[Adverb]):
+class AdverbNode(Element[Adverb]):
     node_type = NodeType.ADVERB
     
-class PredicateNode(SelectedNode[Predicate]):
+class PredicateNode(Element[Predicate]):
     node_type = NodeType.PREDICATE
     
-class DobjNode(SelectedNode[NounPhrase]):
+class DobjNode(Element[NounPhrase]):
     node_type = NodeType.DOBJ
 
-class VerbNode(SelectedNode[Verb]):
+class VerbNode(Element[Verb]):
     node_type = NodeType.VERB
 
-class FailsToNode(SelectedNode):
+class FailsToNode(Element):
     node_type = NodeType.FAILS_TO
 
-class SubjectNode(SelectedNode[NounPhrase]):
+class SubjectNode(Element[NounPhrase]):
     node_type = NodeType.SUBJECT
 
-class CustomEventNode(SelectedNode[CustomEvent]):
+class CustomEventNode(Element[CustomEvent]):
     node_type = NodeType.CUSTOM_EVENT

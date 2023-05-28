@@ -1,4 +1,4 @@
-from app.classes.selection.date_node import DateNode
+from app.classes.elements.date_node import DateNode
 from app.classes.patterns.pattern import Pattern
 from app.classes.patterns.all_patterns import BeforeDate
 

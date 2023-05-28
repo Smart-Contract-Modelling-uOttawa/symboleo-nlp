@@ -3,9 +3,9 @@ from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit, DummyNode
 from app.classes.units.all_nodes import *
 from app.classes.units.final_node import FinalNode as FinalToken
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.standard_event_node import CommonEventNode
-from app.classes.selection.final_node import FinalNode
+from app.classes.elements.element import Element
+from app.classes.elements.standard_event_node import CommonEventNode
+from app.classes.elements.final_node import FinalNode
 
 from app.classes.operations.user_input import UserInput
 
@@ -35,7 +35,7 @@ class TokenProcessorTests(unittest.TestCase):
 
     def test_token_processor_common(self):
         self.value_getter.get = MagicMock(return_value=UserInput(NodeType.DUMMY, 'test'))
-        self.input_converter.convert = MagicMock(return_value=[SelectedNode('test_value')])
+        self.input_converter.convert = MagicMock(return_value=[Element('test_value')])
 
         token = InputUnit()
         result = self.sut.process(token, None)

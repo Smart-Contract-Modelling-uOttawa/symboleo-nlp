@@ -1,4 +1,4 @@
-from app.classes.selection.standard_event_node import ObligationSubjectNode
+from app.classes.elements.standard_event_node import ObligationSubjectNode
 from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.custom_event.noun_phrase import NounPhrase
 

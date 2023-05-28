@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.final_node import FinalNode as FinalToken
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.final_node import FinalNode
+from app.classes.elements.element import Element
+from app.classes.elements.final_node import FinalNode
 
 from app.src.grammar.grammar_selector2 import GrammarSelector
 from app.src.grammar.token_selector import ISelectToken
@@ -16,7 +16,7 @@ class GrammarSelectorTests(unittest.TestCase):
         
         self.token_processor = IProcessToken()
         self.token_processor.process = MagicMock(side_effect = [
-            SelectedNode('test1'),
+            Element('test1'),
             FinalNode('test2')
         ])
 

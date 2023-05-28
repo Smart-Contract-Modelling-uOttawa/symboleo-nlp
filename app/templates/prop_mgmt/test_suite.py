@@ -1,4 +1,4 @@
-from app.classes.selection.all_nodes import *
+from app.classes.elements.all_nodes import *
 from app.classes.operations.user_input import UserInput, NodeType
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode

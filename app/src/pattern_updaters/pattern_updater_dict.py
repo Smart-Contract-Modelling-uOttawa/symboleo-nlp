@@ -1,7 +1,7 @@
 from typing import Type, DefaultDict
 from collections import defaultdict
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.all_nodes import *
+from app.classes.elements.element import Element
+from app.classes.elements.all_nodes import *
 
 
 from app.src.pattern_updaters.pattern_updater import IUpdatePattern, DefaultPatternUpdater
@@ -15,7 +15,7 @@ from app.src.pattern_updaters.custom_event_nodes import *
 
 class PatternUpdaterDictConstructor:
     @staticmethod
-    def build() -> DefaultDict[Type[SelectedNode], IUpdatePattern]:
+    def build() -> DefaultDict[Type[Element], IUpdatePattern]:
         d = defaultdict(lambda: DefaultPatternUpdater())
         
         #d[AfterNode] = AfterUpdater()

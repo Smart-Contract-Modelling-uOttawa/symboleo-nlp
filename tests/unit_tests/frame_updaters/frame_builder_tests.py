@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 from typing import List
 from app.classes.patterns.all_patterns import *
 from app.classes.patterns.pattern import DummyPattern
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.all_nodes import *
+from app.classes.elements.element import Element
+from app.classes.elements.all_nodes import *
 from app.src.pattern_updaters.pattern_builder import PatternBuilder 
 from app.src.pattern_updaters.pattern_getter import IGetPattern
 from app.src.pattern_updaters.pattern_updater import IUpdatePattern
@@ -20,7 +20,7 @@ class PatternBuilderTests(unittest.TestCase):
         self.updater = IUpdatePattern()
         self.updater.update = MagicMock(return_value=None)
         updater_dict = {
-            SelectedNode: self.updater
+            Element: self.updater
         }
 
         self.sut = PatternBuilder(self.pattern_getter, updater_dict)
@@ -28,7 +28,7 @@ class PatternBuilderTests(unittest.TestCase):
 
     def test_pattern_builder(self):
         node_list = [
-            SelectedNode()
+            Element()
         ]
 
         result = self.sut.build(node_list)

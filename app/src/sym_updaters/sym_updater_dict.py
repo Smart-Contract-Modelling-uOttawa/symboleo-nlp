@@ -1,8 +1,9 @@
+
 from typing import DefaultDict, Type
 from collections import defaultdict
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.src.sym_updaters.package_updater import IUpdatePackage, DefaultUpdater
-from app.classes.selection.all_nodes import *
+from app.classes.elements.all_nodes import *
 
 from app.src.sym_updaters.root_node_updater import RootNodeUpdater
 from app.src.sym_updaters.before_node_updater import BeforeNodeUpdater
@@ -33,7 +34,7 @@ from app.src.sym_updaters.common_event.common_event_mapper_dict import CommonEve
 class SymUpdaterDictConstructor:
     # Passing in dependencies..
     @staticmethod
-    def build(deps) -> DefaultDict[Type[SelectedNode], IUpdatePackage]:
+    def build(deps) -> DefaultDict[Type[Element], IUpdatePackage]:
         # Set up injection... Will probably pull this out into the deps...
         norm_builder = NormBuilder()
         common_event_mapper_dict = CommonEventMapperDictConstructor.build()

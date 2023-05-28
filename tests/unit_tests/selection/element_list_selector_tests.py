@@ -6,8 +6,8 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.final_node import FinalNode as FinalToken
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.final_node import FinalNode
+from app.classes.elements.element import Element
+from app.classes.elements.final_node import FinalNode
 
 from app.src.grammar.element_list_selector import ElementListSelector
 from app.src.grammar.child_getter import IGetChildren
@@ -35,8 +35,8 @@ class ElementListSelectorTests(unittest.TestCase):
 
         self.fake_element_extractor = IConvertInput()
         self.fake_element_extractor.convert = MagicMock(side_effect = [
-            [SelectedNode('test1')],
-            [SelectedNode('test2')]
+            [Element('test1')],
+            [Element('test2')]
         ])
 
         self.sut = ElementListSelector(

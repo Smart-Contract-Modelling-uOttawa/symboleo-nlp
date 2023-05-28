@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 
 from app.src.pattern_updaters.pattern_builder import IBuildPatterns
 from app.src.update_processor.update_processor import IProcessUpdates
@@ -8,7 +8,7 @@ from app.src.update_processor.update_processor import IProcessUpdates
 # Will likely need to specify the norm_component...
 # Instead of key, can I use the ParmConfig...?
 class ParameterOperation:
-    def __init__(self, nl_key:str, parm_key:str, node_list: List[SelectedNode]):
+    def __init__(self, nl_key:str, parm_key:str, node_list: List[Element]):
         self.nl_key = nl_key
         self.parm_key = parm_key
         self.node_list = node_list # elements list

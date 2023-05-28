@@ -1,4 +1,4 @@
-from app.classes.selection.standard_event_node import ContractActionNode
+from app.classes.elements.standard_event_node import ContractActionNode
 from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.template_event.contract_components import ContractVerbs
 

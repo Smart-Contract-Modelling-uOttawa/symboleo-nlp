@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.selection.custom_event_node import VerbNode
+from app.classes.elements.custom_event_node import VerbNode
 from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
 
 from app.src.child_getters.verb_node import VerbNodeCG

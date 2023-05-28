@@ -1,6 +1,6 @@
 import copy
 from app.classes.spec.norm import INorm
-from app.classes.selection.if_node import IfNode
+from app.classes.elements.if_node import IfNode
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.operations.contract_update_obj import ContractUpdateObj

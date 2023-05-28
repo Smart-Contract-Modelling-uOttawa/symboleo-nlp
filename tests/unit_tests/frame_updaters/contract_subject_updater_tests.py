@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.sym_event import ContractEventName
 from app.classes.patterns.pattern import EventPattern
-from app.classes.selection.standard_event_node import *
+from app.classes.elements.standard_event_node import *
 
 from app.src.pattern_updaters.contract_subject import ContractSubjectUpdater
 

@@ -1,6 +1,6 @@
 import copy
 from app.classes.spec.norm import INorm
-from app.classes.selection.before_node import BeforeNode
+from app.classes.elements.before_node import BeforeNode
 from app.classes.spec.sym_event import SymEvent
 from app.classes.spec.sym_point import SymPoint, Point, PointExpression
 from app.classes.spec.point_function import PointFunction

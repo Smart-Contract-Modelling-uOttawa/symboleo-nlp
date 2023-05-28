@@ -1,6 +1,6 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.units.node_type import NodeType
 from app.classes.units.input_unit import InputUnit
 from app.classes.custom_event.custom_event import CustomEvent
@@ -12,8 +12,8 @@ from app.classes.units.root_node import RootNode
 from app.src.child_getters.child_getter import IGetNodeChildren
 from app.src.grammar.value_getter import IGetValues
 
-from app.classes.selection.custom_event_node import *
-from app.classes.selection.final_node import FinalNode
+from app.classes.elements.custom_event_node import *
+from app.classes.elements.final_node import FinalNode
 #...
 
 from app.classes.template_event.common_event_dict import COMMON_EVENT_DICT
@@ -41,9 +41,9 @@ class GrammarSelector(ISelectGrammar):
         self.__input_converter = input_converter
         self.__inner_selector = inner_selector
 
-    def select(self, contract: ISymboleoContract) -> List[SelectedNode]:
+    def select(self, contract: ISymboleoContract) -> List[Element]:
         curr = RootNode()
-        results: List[SelectedNode] = [curr.sn_type()]
+        results: List[Element] = [curr.sn_type()]
         next_result = None
 
         common_event = None

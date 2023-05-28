@@ -1,14 +1,14 @@
 from __future__ import annotations
 from typing import List, Type
-from app.classes.selection.selected_node import SelectedNode
+from app.classes.elements.element import Element
 from app.classes.units.node_type import NodeType
 
 class InputUnit: # pragma: no cover
     id: str = None
-    sn_type: Type[SelectedNode] = SelectedNode # Might be able to remove this
+    sn_type: Type[Element] = Element # Might be able to remove this
     node_type: NodeType = None
     prompt: str = None
-    children: List[Type[SelectedNode]] = []
+    children: List[Type[Element]] = []
     needs_value = False
     init_value = ''
     options: List[str] = None

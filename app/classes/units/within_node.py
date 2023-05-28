@@ -3,7 +3,7 @@ from app.classes.units.node_type import NodeType
 
 from app.classes.units.timespan_node import TimespanNode
 
-from app.classes.selection.within_node import WithinNode as Target
+from app.classes.elements.within_node import WithinNode as Target
 
 class WithinNode(InputUnit):
     node_type = NodeType.WITHIN

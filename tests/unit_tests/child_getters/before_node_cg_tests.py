@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.selection.before_node import BeforeNode
+from app.classes.elements.before_node import BeforeNode
 from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
 
 from app.src.child_getters.before_node import BeforeNodeCG

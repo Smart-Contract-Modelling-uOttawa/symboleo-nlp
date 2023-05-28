@@ -4,8 +4,8 @@ from app.classes.units.node_type import NodeType
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.root_node import RootNode as RootToken
 
-from app.classes.selection.selected_node import SelectedNode
-from app.classes.selection.root_node import RootNode
+from app.classes.elements.element import Element
+from app.classes.elements.root_node import RootNode
 
 from app.src.grammar.token_selector import ISelectToken
 from app.src.grammar.token_processor import IProcessToken
@@ -27,9 +27,9 @@ class GrammarSelector(ISelectGrammar):
         self.__token_selector = token_selector
         self.__token_processor = token_processor
 
-    def select(self, contract: ISymboleoContract) -> List[SelectedNode]:
+    def select(self, contract: ISymboleoContract) -> List[Element]:
         chosen_token = RootToken()
-        results: List[SelectedNode] = [RootNode()]
+        results: List[Element] = [RootNode()]
         next_node = None
 
         while (True):
