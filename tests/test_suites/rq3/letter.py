@@ -14,7 +14,7 @@ from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionWHappensBefore
 
 from app.classes.spec.prop_maker import PropMaker
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_nodes import *
 
 from app.classes.operations.contract_updater_config import UpdateConfig
@@ -76,16 +76,16 @@ letter_test_case = TestCase(
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.WITHIN),
-            UserInput(NodeType.TIMESPAN, '30 days'),
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.WITHIN),
+            UserInput(UnitType.TIMESPAN, '30 days'),
             #TODO:Need the 'of'/'after'
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Activated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Activated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='nl_key',
         parm_key='PARAMETER'

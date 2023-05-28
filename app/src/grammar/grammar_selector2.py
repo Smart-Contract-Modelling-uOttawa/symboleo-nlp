@@ -1,6 +1,6 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.root_node import RootNode as RootToken
 
@@ -39,7 +39,7 @@ class GrammarSelector(ISelectGrammar):
 
             results.append(next_node)
 
-            if next_node.node_type == NodeType.FINAL_NODE:
+            if next_node.node_type == UnitType.FINAL_NODE:
                 break
             
         return results

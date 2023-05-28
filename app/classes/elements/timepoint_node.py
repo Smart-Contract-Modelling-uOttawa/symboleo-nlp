@@ -1,5 +1,6 @@
+
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 
 class TimepointNode(Element[str]):
-    node_type = NodeType.TIMEPOINT
+    node_type = UnitType.TIMEPOINT

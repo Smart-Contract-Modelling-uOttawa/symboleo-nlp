@@ -1,12 +1,12 @@
 from __future__ import annotations
 from typing import List, Type
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 
 class InputUnit: # pragma: no cover
     id: str = None
     sn_type: Type[Element] = Element # Might be able to remove this
-    node_type: NodeType = None
+    node_type: UnitType = None
     prompt: str = None
     children: List[Type[Element]] = []
     needs_value = False
@@ -26,4 +26,4 @@ class InputUnit: # pragma: no cover
 
 class DummyNode(InputUnit):
     prompt = 'dummy'
-    node_type = NodeType.DUMMY
+    node_type = UnitType.DUMMY

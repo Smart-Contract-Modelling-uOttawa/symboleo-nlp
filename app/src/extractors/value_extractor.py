@@ -1,6 +1,6 @@
 from typing import TypeVar, Generic
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.classes.units.node_type import *
+from app.classes.units.unit_type import *
 
 T = TypeVar('T')
 

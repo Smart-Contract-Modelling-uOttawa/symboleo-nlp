@@ -1,9 +1,9 @@
 from app.classes.patterns.pattern import Pattern, EventPattern
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class AfterEventPattern(EventPattern):
-    pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.EVENT]
+    pattern = [UnitType.ROOT, UnitType.AFTER, UnitType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
     
     def is_complete(self):

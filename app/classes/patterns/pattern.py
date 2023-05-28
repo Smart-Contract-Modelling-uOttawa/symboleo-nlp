@@ -3,11 +3,11 @@ from typing import List
 import copy
 
 from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class Pattern: # pragma: no cover
-    sequence: List[NodeType]
+    sequence: List[UnitType]
     op_code: ParmOpCode # TODO: May be able to remove this
 
     def to_text(self) -> str:
@@ -27,7 +27,7 @@ class EventPattern(Pattern):
 
 
 class DummyPattern(Pattern):
-    sequence = [NodeType.ROOT]
+    sequence = [UnitType.ROOT]
     op_code = ParmOpCode.REFINE_PREDICATE
     test_value: str = ''
 

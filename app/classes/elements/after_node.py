@@ -1,5 +1,5 @@
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 
 class AfterNode(Element):
-    node_type = NodeType.AFTER
+    node_type = UnitType.AFTER

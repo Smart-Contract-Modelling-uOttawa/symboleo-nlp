@@ -1,5 +1,5 @@
 from app.classes.elements.all_nodes import *
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 
@@ -46,14 +46,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'legal proceedings'),
-            UserInput(NodeType.VERB, 'become'),
-            UserInput(NodeType.PREDICATE, 'necessary'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'legal proceedings'),
+            UserInput(UnitType.VERB, 'become'),
+            UserInput(UnitType.PREDICATE, 'necessary'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='legal_proceedings',
         parm_key='P1'
@@ -61,14 +61,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='disburse_termination',
         parm_key='P1'
@@ -78,15 +78,15 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.WITHIN),
-            UserInput(NodeType.TIMESPAN, '3 days'),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.WITHIN),
+            UserInput(UnitType.TIMESPAN, '3 days'),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='disburse_termination',
         parm_key='P2'
@@ -94,15 +94,15 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.WITHIN),
-            UserInput(NodeType.TIMESPAN, '10 days'),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.WITHIN),
+            UserInput(UnitType.TIMESPAN, '10 days'),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='reimburse_termination',
         parm_key='P2'
@@ -112,15 +112,15 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'manager'),
-            UserInput(NodeType.VERB, 'provides'),
-            UserInput(NodeType.DOBJ, 'termination notice'),
-            UserInput(NodeType.ADVERB, 'x days in advance'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'manager'),
+            UserInput(UnitType.VERB, 'provides'),
+            UserInput(UnitType.DOBJ, 'termination notice'),
+            UserInput(UnitType.ADVERB, 'x days in advance'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_terminate_notice_manager', 'trigger'),
         norm_id = 'pow_terminate_notice_manager',
@@ -131,15 +131,15 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'owner'),
-            UserInput(NodeType.VERB, 'provides'),
-            UserInput(NodeType.DOBJ, 'termination notice'),
-            UserInput(NodeType.ADVERB, 'x days in advance'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'owner'),
+            UserInput(UnitType.VERB, 'provides'),
+            UserInput(UnitType.DOBJ, 'termination notice'),
+            UserInput(UnitType.ADVERB, 'x days in advance'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_terminate_notice_owner', 'trigger'),
         norm_id = 'pow_terminate_notice_owner',

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
 from app.classes.units.input_unit import InputUnit
@@ -53,7 +53,7 @@ class ElementListSelectorTests(unittest.TestCase):
         self.assertEqual(len(result), 4) # Add one for root and final
         self.assertEqual(result[1].value, 'test1')
         self.assertEqual(result[2].value, 'test2')
-        self.assertEqual(result[3].node_type, NodeType.FINAL_NODE)
+        self.assertEqual(result[3].node_type, UnitType.FINAL_NODE)
         self.assertEqual(self.fake_child_getter.get.call_count, 3)
         self.assertEqual(self.fake_child_selector.select.call_count, 1)
         self.assertEqual(self.fake_input_value_getter.get.call_count, 2)

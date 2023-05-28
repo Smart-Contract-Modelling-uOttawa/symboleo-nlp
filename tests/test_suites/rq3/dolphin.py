@@ -14,7 +14,7 @@ from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionWHappensBefore
 
 from app.classes.spec.prop_maker import PropMaker
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_nodes import *
 
 from app.classes.operations.contract_updater_config import UpdateConfig
@@ -70,16 +70,16 @@ dolphin_test_case = TestCase(
     update_config = UpdateConfig(
         node_list = [
             # This will be the list of user inputs...
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.WITHIN),
-            UserInput(NodeType.TIMESPAN, '14 days'),
-            #UserInput(NodeType.OF)
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'Dolphin'),
-            UserInput(NodeType.VERB, 'receiving'),
-            UserInput(NodeType.DOBJ, 'the original digital photo files'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.WITHIN),
+            UserInput(UnitType.TIMESPAN, '14 days'),
+            #UserInput(UnitType.OF)
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'Dolphin'),
+            UserInput(UnitType.VERB, 'receiving'),
+            UserInput(UnitType.DOBJ, 'the original digital photo files'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='parm',
         parm_key='PARM'

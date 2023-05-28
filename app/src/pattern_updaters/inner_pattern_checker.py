@@ -1,15 +1,15 @@
 from typing import List
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 
 class IInnerPatternChecker:
-    def check_pattern(self, node_list: List[Element], pattern_sequence: List[NodeType]) -> bool:
+    def check_pattern(self, node_list: List[Element], pattern_sequence: List[UnitType]) -> bool:
         raise NotImplementedError()
 
 class InnerPatternChecker(IInnerPatternChecker):
     # This function does NOT care about patterns that MAY still be possible. 
     ## If needed, that will be separate
-    def check_pattern(self, node_list: List[Element], pattern_sequence: List[NodeType]) -> bool:
+    def check_pattern(self, node_list: List[Element], pattern_sequence: List[UnitType]) -> bool:
         nt = [x.node_type for x in node_list]
 
         # If the pattern is longer than the node list, then we are not there yet

@@ -34,7 +34,7 @@ class TokenProcessorTests(unittest.TestCase):
     
 
     def test_token_processor_common(self):
-        self.value_getter.get = MagicMock(return_value=UserInput(NodeType.DUMMY, 'test'))
+        self.value_getter.get = MagicMock(return_value=UserInput(UnitType.DUMMY, 'test'))
         self.input_converter.convert = MagicMock(return_value=[Element('test_value')])
 
         token = InputUnit()

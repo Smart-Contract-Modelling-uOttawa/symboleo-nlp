@@ -41,22 +41,22 @@ class ObligationEventTests(unittest.TestCase):
         ob_key = 'ob_test'
         
         user_input = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.NORM_EVENT),
-            UserInput(NodeType.OBLIGATION_SUBJECT, ob_key),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
-            UserInput(NodeType.CUSTOM_EVENT), # May use a different node type here...?
-            UserInput(NodeType.SUBJECT, 'buyer'),
-            UserInput(NodeType.FAILS_TO),
-            UserInput(NodeType.VERB, 'pay'),
-            UserInput(NodeType.DOBJ, '$100'),
-            UserInput(NodeType.PREP_PHRASE, 'in CAD'),
-            UserInput(NodeType.PREP_PHRASE, 'to seller'),
-            UserInput(NodeType.PREP_PHRASE, 'by March 30, 2024'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, ob_key),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(UnitType.SUBJECT, 'buyer'),
+            UserInput(UnitType.FAILS_TO),
+            UserInput(UnitType.VERB, 'pay'),
+            UserInput(UnitType.DOBJ, '$100'),
+            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
+            UserInput(UnitType.PREP_PHRASE, 'to seller'),
+            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'),
+            UserInput(UnitType.FINAL_NODE)
         ]
 
         node_list = self.input_converter.convert(user_input)

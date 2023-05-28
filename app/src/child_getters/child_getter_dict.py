@@ -1,7 +1,7 @@
 from typing import List, Type, DefaultDict
 from collections import defaultdict
 from app.classes.units.input_unit import InputUnit
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.units.all_nodes import *
 
 from app.src.child_getters.child_getter import IGetNodeChildren, DefaultChildGetter

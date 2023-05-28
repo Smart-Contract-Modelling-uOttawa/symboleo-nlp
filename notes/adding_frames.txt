@@ -1,6 +1,6 @@
 Protocol for adding frames:
 - Add the frame (specify the grammar, etc)
-- Add the NodeType
+- Add the UnitType
 - Add to all_frames 
 - Add grammar Node (including all_nodes)
 - Add Selected Node

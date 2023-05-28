@@ -1,5 +1,5 @@
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 
 class UntilNode(Element):
-    node_type = NodeType.UNTIL
+    node_type = UnitType.UNTIL

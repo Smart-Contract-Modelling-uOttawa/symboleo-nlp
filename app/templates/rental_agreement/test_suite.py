@@ -1,20 +1,20 @@
 from app.classes.elements.all_nodes import *
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 
 test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.NORM_EVENT),
-            UserInput(NodeType.OBLIGATION_SUBJECT, 'ob_pay_rent'),
-            UserInput(NodeType.OBLIGATION_ACTION, 'Violated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_pay_rent'),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Violated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='late_payment',
         parm_key = 'P1'
@@ -22,14 +22,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.BEFORE),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'renter'),
-            UserInput(NodeType.VERB, 'occupies'),
-            UserInput(NodeType.DOBJ, 'the property'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.BEFORE),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'renter'),
+            UserInput(UnitType.VERB, 'occupies'),
+            UserInput(UnitType.DOBJ, 'the property'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='pay_security_deposit',
         parm_key = 'P2'
@@ -37,14 +37,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Terminated'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='return_deposit',
         parm_key = 'P1'
@@ -52,14 +52,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.UNTIL), # Need unless
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'landlord'),
-            UserInput(NodeType.VERB, 'allows'),
-            UserInput(NodeType.DOBJ, 'pets'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.UNTIL), # Need unless
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'landlord'),
+            UserInput(UnitType.VERB, 'allows'),
+            UserInput(UnitType.DOBJ, 'pets'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key= 'no_pets',
         parm_key = 'P2'
@@ -67,15 +67,15 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),# might be a standard event
-            UserInput(NodeType.SUBJECT, 'landlord'),
-            UserInput(NodeType.VERB, 'provides'),
-            UserInput(NodeType.DOBJ, 'termination notice'),
-            UserInput(NodeType.ADVERB, '3 days in advance'), # Improve this
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),# might be a standard event
+            UserInput(UnitType.SUBJECT, 'landlord'),
+            UserInput(UnitType.VERB, 'provides'),
+            UserInput(UnitType.DOBJ, 'termination notice'),
+            UserInput(UnitType.ADVERB, '3 days in advance'), # Improve this
+            UserInput(UnitType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_written', 'trigger'),
         norm_id = 'pow_termination_written',
@@ -86,14 +86,14 @@ test_suite = [
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.IF),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.CUSTOM_EVENT),
-            UserInput(NodeType.SUBJECT, 'renter'),
-            UserInput(NodeType.VERB, 'abandons'),
-            UserInput(NodeType.DOBJ, 'the property'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'renter'),
+            UserInput(UnitType.VERB, 'abandons'),
+            UserInput(UnitType.DOBJ, 'the property'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         #parm_config = ParameterConfig('powers', 'pow_termination_abandon', 'trigger'),
         norm_id = 'pow_termination_abandon',

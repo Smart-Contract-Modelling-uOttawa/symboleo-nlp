@@ -14,7 +14,7 @@ from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionSHappensBefore
 
 from app.classes.spec.prop_maker import PropMaker
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_nodes import *
 
 from app.classes.operations.contract_updater_config import UpdateConfig
@@ -74,10 +74,10 @@ fox_test_case = TestCase(
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
         node_list = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.BEFORE), # TODO: "prior to?"
-            UserInput(NodeType.DATE, 'January 1, 2007'),
-            UserInput(NodeType.FINAL_NODE)
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.BEFORE), # TODO: "prior to?"
+            UserInput(UnitType.DATE, 'January 1, 2007'),
+            UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='nl_key',
         parm_key='PARAMETER'

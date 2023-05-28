@@ -1,5 +1,5 @@
 from typing import Dict, Type
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.elements.element import Element, DummyNode
 from app.classes.elements.before_node import BeforeNode
 from app.classes.elements.date_node import DateNode
@@ -18,40 +18,40 @@ from app.classes.elements.final_node import *
 
 # Might move all the nodes to this file
 
-node_type_to_class: Dict[NodeType, Type[Element]] = {
-    NodeType.ROOT: RootNode,
-    NodeType.DATE: DateNode,
-    NodeType.EVENT: EventNode,
-    NodeType.TIMESPAN: TimespanNode,
-    NodeType.BEFORE: BeforeNode,
-    NodeType.WITHIN: WithinNode,
-    NodeType.IF: IfNode,
-    NodeType.DUMMY: DummyNode,
-    NodeType.AFTER: AfterNode,
-    NodeType.UNTIL: UntilNode,
-    NodeType.TIMEPOINT: TimepointNode,
-    NodeType.DOMAIN_TIMEPOINT: DomainTimepointNode,
-    NodeType.CUSTOM_EVENT: CustomEventNode,
-    NodeType.ADVERB: AdverbNode,
-    NodeType.STANDARD_EVENT: StandardEventNode,
-    NodeType.FAILS_TO: FailsToNode,
-    NodeType.VERB: VerbNode,
-    NodeType.SUBJECT: SubjectNode,
-    NodeType.DOBJ: DobjNode,
-    NodeType.PREDICATE: PredicateNode,
-    NodeType.PREP_PHRASE: PrepNode,
+node_type_to_class: Dict[UnitType, Type[Element]] = {
+    UnitType.ROOT: RootNode,
+    UnitType.DATE: DateNode,
+    UnitType.EVENT: EventNode,
+    UnitType.TIMESPAN: TimespanNode,
+    UnitType.BEFORE: BeforeNode,
+    UnitType.WITHIN: WithinNode,
+    UnitType.IF: IfNode,
+    UnitType.DUMMY: DummyNode,
+    UnitType.AFTER: AfterNode,
+    UnitType.UNTIL: UntilNode,
+    UnitType.TIMEPOINT: TimepointNode,
+    UnitType.DOMAIN_TIMEPOINT: DomainTimepointNode,
+    UnitType.CUSTOM_EVENT: CustomEventNode,
+    UnitType.ADVERB: AdverbNode,
+    UnitType.STANDARD_EVENT: StandardEventNode,
+    UnitType.FAILS_TO: FailsToNode,
+    UnitType.VERB: VerbNode,
+    UnitType.SUBJECT: SubjectNode,
+    UnitType.DOBJ: DobjNode,
+    UnitType.PREDICATE: PredicateNode,
+    UnitType.PREP_PHRASE: PrepNode,
 
-    NodeType.STANDARD_EVENT: StandardEventNode,
-    NodeType.COMMON_EVENT: CommonEventNode,
-    NodeType.CONTRACT_EVENT: ContractEventNode,
-    NodeType.CONTRACT_ACTION: ContractActionNode,
-    NodeType.CONTRACT_SUBJECT: ContractSubjectNode,
+    UnitType.STANDARD_EVENT: StandardEventNode,
+    UnitType.COMMON_EVENT: CommonEventNode,
+    UnitType.CONTRACT_EVENT: ContractEventNode,
+    UnitType.CONTRACT_ACTION: ContractActionNode,
+    UnitType.CONTRACT_SUBJECT: ContractSubjectNode,
 
-    NodeType.NORM_EVENT: NormEventNode,
-    NodeType.OBLIGATION_SUBJECT: ObligationSubjectNode,
-    NodeType.OBLIGATION_ACTION: ObligationActionNode,
+    UnitType.NORM_EVENT: NormEventNode,
+    UnitType.OBLIGATION_SUBJECT: ObligationSubjectNode,
+    UnitType.OBLIGATION_ACTION: ObligationActionNode,
 
-    NodeType.FINAL_NODE: FinalNode
+    UnitType.FINAL_NODE: FinalNode
 
     ####...
 }

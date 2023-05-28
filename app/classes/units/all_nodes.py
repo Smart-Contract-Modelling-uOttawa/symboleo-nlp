@@ -1,5 +1,5 @@
 from typing import Dict, Type
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.before_node import BeforeNode
 from app.classes.units.date_node import DateNode

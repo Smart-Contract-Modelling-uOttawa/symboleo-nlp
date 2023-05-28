@@ -1,7 +1,7 @@
 from typing import List, Dict, Type
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.elements.element import Element
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.template_event.common_event import CommonEvent
@@ -69,27 +69,27 @@ class GrammarSelector(ISelectGrammar):
             
             results.append(next_result)
 
-            if curr.node_type == NodeType.COMMON_EVENT:
+            if curr.node_type == UnitType.COMMON_EVENT:
                 common_event = COMMON_EVENT_DICT[user_input.value]
             
         return results
 
 
     def _handle_common_event(self, evt: CommonEvent, curr: InputUnit):
-        if curr.node_type == NodeType.SUBJECT:
+        if curr.node_type == UnitType.SUBJECT:
             if evt.subj:
                 return SubjectNode(evt.subj)
 
-        if curr.node_type == NodeType.VERB:
+        if curr.node_type == UnitType.VERB:
             return VerbNode(evt.verb)
 
-        if curr.node_type == NodeType.DOBJ:
+        if curr.node_type == UnitType.DOBJ:
             return DobjNode(evt.dobj)
         
-        if curr.node_type == NodeType.ADVERB:
+        if curr.node_type == UnitType.ADVERB:
             return AdverbNode(evt.adverb)
         
-        if curr.node_type == NodeType.FINAL_NODE:
+        if curr.node_type == UnitType.FINAL_NODE:
             return FinalNode(CommonEvent(common_event_key=evt.common_event_key))
         
         return None

@@ -6,7 +6,7 @@ from app.classes.spec.declaration import Declaration
 from app.classes.spec.norm import Obligation
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
-from app.classes.operations.user_input import UserInput, NodeType
+from app.classes.operations.user_input import UserInput, UnitType
 
 from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
 

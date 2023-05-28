@@ -1,9 +1,9 @@
 from app.classes.patterns.pattern import Pattern
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class AfterDateFrame(Pattern):
-    pattern = [NodeType.ROOT, NodeType.AFTER, NodeType.DATE]
+    pattern = [UnitType.ROOT, UnitType.AFTER, UnitType.DATE]
     op_code = ParmOpCode.REFINE_PREDICATE
     date_text: str = ''
 

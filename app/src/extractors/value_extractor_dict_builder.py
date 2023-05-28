@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import DefaultDict
 
 from app.classes.operations.dependencies import Dependencies
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.src.extractors.contract_action_extractor import ContractActionExtractor
 from app.src.extractors.custom_event.adverb_extractor import AdverbExtractor
 from app.src.extractors.custom_event.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor
@@ -23,7 +23,7 @@ from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import Ass
 
 class ValueExtractorDictBuilder:
     @staticmethod
-    def build(deps: Dependencies) -> DefaultDict[NodeType, IExtractValue]:
+    def build(deps: Dependencies) -> DefaultDict[UnitType, IExtractValue]:
         
 
         if deps.fake:
@@ -39,22 +39,22 @@ class ValueExtractorDictBuilder:
 
         d = defaultdict(lambda: DefaultExtractor())
 
-        d[NodeType.SUBJECT] = np_extractor
-        d[NodeType.VERB] = verb_extractor
-        d[NodeType.PREP_PHRASE] = pp_extractor
-        d[NodeType.ADVERB] = adverb_extractor
-        d[NodeType.DOBJ] = np_extractor
-        d[NodeType.PREDICATE] = predicate_extractor
+        d[UnitType.SUBJECT] = np_extractor
+        d[UnitType.VERB] = verb_extractor
+        d[UnitType.PREP_PHRASE] = pp_extractor
+        d[UnitType.ADVERB] = adverb_extractor
+        d[UnitType.DOBJ] = np_extractor
+        d[UnitType.PREDICATE] = predicate_extractor
 
-        d[NodeType.CONTRACT_SUBJECT] = ContractSubjectExtractor()
-        d[NodeType.CONTRACT_ACTION] = ContractActionExtractor()
-        d[NodeType.OBLIGATION_ACTION] = ObligationActionExtractor()
-        d[NodeType.OBLIGATION_SUBJECT] = ObligationSubjectExtractor()
+        d[UnitType.CONTRACT_SUBJECT] = ContractSubjectExtractor()
+        d[UnitType.CONTRACT_ACTION] = ContractActionExtractor()
+        d[UnitType.OBLIGATION_ACTION] = ObligationActionExtractor()
+        d[UnitType.OBLIGATION_SUBJECT] = ObligationSubjectExtractor()
         
-        d[NodeType.COMMON_EVENT] = CommonEventExtractor()
+        d[UnitType.COMMON_EVENT] = CommonEventExtractor()
 
-        d[NodeType.TIMESPAN] = TimespanExtractor()
+        d[UnitType.TIMESPAN] = TimespanExtractor()
 
-        #d[NodeType.FINAL_NODE] = FinalExtractor()
+        #d[UnitType.FINAL_NODE] = FinalExtractor()
 
         return d

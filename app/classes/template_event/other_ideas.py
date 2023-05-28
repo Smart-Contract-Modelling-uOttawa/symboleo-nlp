@@ -37,7 +37,7 @@
 #     def __init__(self, str_template: Template, evt_component:str, val_type:str):
 #         self.str_template = str_template
 #         self.evt_component = evt_component
-#         self.val_type = val_type # May even be a nodetype...
+#         self.val_type = val_type # May even be a UnitType...
 
 
 # # key is domain prop, value is template?

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class NodeType(Enum):
+class UnitType(Enum):
     ROOT = 1,
     EVENT = 10,
     DATE = 11,

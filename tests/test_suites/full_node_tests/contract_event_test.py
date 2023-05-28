@@ -40,13 +40,13 @@ class ContractEventTests(unittest.TestCase):
         #contract = get_template('sample_t')
         
         user_input = [
-            UserInput(NodeType.ROOT),
-            UserInput(NodeType.BEFORE),
-            UserInput(NodeType.EVENT),
-            UserInput(NodeType.STANDARD_EVENT),
-            UserInput(NodeType.CONTRACT_EVENT),
-            UserInput(NodeType.CONTRACT_SUBJECT),
-            UserInput(NodeType.CONTRACT_ACTION, 'Terminated')
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.BEFORE),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated')
         ]
 
         node_list_result = self.input_converter.convert(user_input)

@@ -1,11 +1,11 @@
 from app.classes.patterns.pattern import EventPattern
 from app.classes.other.timespan import Timespan
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.custom_event.conj_type import ConjType
 from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class WithinTimespanEvent(EventPattern):
-    sequence = [NodeType.ROOT, NodeType.WITHIN, NodeType.TIMESPAN, NodeType.EVENT]
+    sequence = [UnitType.ROOT, UnitType.WITHIN, UnitType.TIMESPAN, UnitType.EVENT]
     op_code = ParmOpCode.REFINE_PREDICATE
     timespan: Timespan
 

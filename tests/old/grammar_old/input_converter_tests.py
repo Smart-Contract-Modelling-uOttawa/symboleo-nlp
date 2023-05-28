@@ -5,7 +5,7 @@ from typing import Dict
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.domain_object import IDomainObject
 from app.classes.spec.declaration import IDeclaration
-from app.classes.units.node_type import NodeType
+from app.classes.units.unit_type import UnitType
 from app.classes.operations.user_input import UserInput
 
 from app.classes.operations.op_code import OpCode
@@ -23,9 +23,9 @@ class InputConverterTests(unittest.TestCase):
     def setUp(self):
         self.extractor1 = IExtractValue()
         self.extractor2 = IExtractValue()
-        self.extractor_dict: Dict[NodeType, IExtractValue] = {
-            NodeType.BEFORE: self.extractor1,
-            NodeType.CONTRACT_SUBJECT: self.extractor2
+        self.extractor_dict: Dict[UnitType, IExtractValue] = {
+            UnitType.BEFORE: self.extractor1,
+            UnitType.CONTRACT_SUBJECT: self.extractor2
         }
         self.sut = InputConverter(self.extractor_dict)
 
@@ -33,8 +33,8 @@ class InputConverterTests(unittest.TestCase):
     def test_refine_parm(self):
         # Arbitrary
         test_input = [
-            UserInput(NodeType.BEFORE),
-            UserInput(NodeType.CONTRACT_SUBJECT)
+            UserInput(UnitType.BEFORE),
+            UserInput(UnitType.CONTRACT_SUBJECT)
         ]
 
         self.extractor1.extract = MagicMock(return_value='Test')
