@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit, DummyNode
-from app.classes.units.all_nodes import *
-from app.classes.units.final_node import FinalNode as FinalToken
+from app.classes.units.all_units import *
+from app.classes.units.final_unit import FinalNode as FinalToken
 from app.classes.elements.element import Element
-from app.classes.elements.standard_event_node import CommonEventNode
+from app.classes.elements.standard_event_elements import CommonEventNode
 from app.classes.elements.final_node import FinalNode
 
 from app.classes.operations.user_input import UserInput

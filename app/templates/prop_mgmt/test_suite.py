@@ -1,4 +1,4 @@
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
@@ -45,7 +45,7 @@ test_suite = [
     ## Add conditions
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -60,7 +60,7 @@ test_suite = [
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -77,7 +77,7 @@ test_suite = [
     ## Temporal refinements
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '3 days'),
@@ -93,7 +93,7 @@ test_suite = [
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '10 days'),
@@ -111,7 +111,7 @@ test_suite = [
     ## Termination power
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -130,7 +130,7 @@ test_suite = [
     #TODO: Make this use a CommonEvent... Start from a TDD approach. What should this suite look like?
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),

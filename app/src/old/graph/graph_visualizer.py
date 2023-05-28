@@ -30,8 +30,8 @@ class GraphVisualizer:
         if len(x.subclasses) == 0 and len(x.props) == 0:
             color = 'green'
         else:
-            if x.node_type in self.__color_dict:
-                color = self.__color_dict[x.node_type]
+            if x.unit_type in self.__color_dict:
+                color = self.__color_dict[x.unit_type]
             else:
                 color = 'grey'
         

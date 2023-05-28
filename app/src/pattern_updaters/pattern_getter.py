@@ -5,7 +5,7 @@ from app.src.pattern_updaters.all_patterns_getter import IGetAllPatterns
 from app.src.pattern_updaters.inner_pattern_checker import IInnerPatternChecker
 
 class IGetPattern:
-    def get_pattern(self, node_list: List[Element]) -> Pattern:
+    def get_pattern(self, elements: List[Element]) -> Pattern:
         raise NotImplementedError()
 
 class PatternGetter(IGetPattern):
@@ -17,11 +17,11 @@ class PatternGetter(IGetPattern):
         self.__all_patterns_getters = all_patterns_getter
         self.__inner_checker = inner_checker
 
-    def get_pattern(self, node_list: List[Element]) -> Pattern:
+    def get_pattern(self, elements: List[Element]) -> Pattern:
         patterns = []
         all_patterns = self.__all_patterns_getters.get()
         for pattern in all_patterns:
-            res = self.__inner_checker.check_pattern(node_list, pattern.sequence)
+            res = self.__inner_checker.check_pattern(elements, pattern.sequence)
             if res:
                 patterns.append(pattern
                                 )

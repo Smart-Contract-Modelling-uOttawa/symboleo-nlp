@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit
 from app.classes.elements.element import Element
-from app.classes.elements.standard_event_node import CommonEventNode
+from app.classes.elements.standard_event_elements import CommonEventNode
 from app.classes.template_event.common_event import CommonEvent
 
 from app.src.grammar.token_processor import CommonTokenProcessor, IProcessToken

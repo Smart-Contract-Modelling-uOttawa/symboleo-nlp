@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 
 from app.classes.patterns.all_patterns import *
 from app.classes.units.unit_type import UnitType
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 from app.src.pattern_updaters.inner_pattern_checker import InnerPatternChecker
 
 class InnerPatternCheckerTests(unittest.TestCase):
@@ -12,24 +12,24 @@ class InnerPatternCheckerTests(unittest.TestCase):
         self.sut = InnerPatternChecker()
     
     def test_inner_pattern_checker1(self):
-        node_list = [RootNode(), BeforeNode(), EventNode(), CustomEventNode()]
+        elements = [RootElement(), BeforeElement(), EventElement(), CustomEventElement()]
         pattern_sequence = [UnitType.ROOT, UnitType.BEFORE, UnitType.EVENT]
 
-        result = self.sut.check_pattern(node_list, pattern_sequence)
+        result = self.sut.check_pattern(elements, pattern_sequence)
         self.assertTrue(result)
     
     def test_inner_pattern_checker2(self):
-        node_list = [RootNode(), BeforeNode()]
+        elements = [RootElement(), BeforeElement()]
         pattern_pattern = [UnitType.ROOT, UnitType.BEFORE, UnitType.EVENT]
 
-        result = self.sut.check_pattern(node_list, pattern_pattern)
+        result = self.sut.check_pattern(elements, pattern_pattern)
         self.assertFalse(result)
 
     def test_inner_pattern_checker1(self):
-        node_list = [RootNode(), BeforeNode(), EventNode(), CustomEventNode()]
+        elements = [RootElement(), BeforeElement(), EventElement(), CustomEventElement()]
         pattern_pattern = [UnitType.ROOT, UnitType.AFTER, UnitType.EVENT]
 
-        result = self.sut.check_pattern(node_list, pattern_pattern)
+        result = self.sut.check_pattern(elements, pattern_pattern)
         self.assertFalse(result)
 
 

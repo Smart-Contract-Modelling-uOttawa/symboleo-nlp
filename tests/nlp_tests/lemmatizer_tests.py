@@ -1,15 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from typing import Dict
-from app.classes.spec.domain_model import DomainModel, Role, Asset
-from app.classes.spec.symboleo_contract import SymboleoContract
-from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration
-from tests.helpers.test_objects import NounPhrases
 from tests.helpers.test_nlp import TestNLP
-from app.src.extractors.custom_event.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
-from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
 from app.src.extractors.custom_event.verb.lemmatizer import Lemmatizer
 

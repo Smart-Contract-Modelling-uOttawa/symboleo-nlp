@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 from app.classes.spec.declaration import DeclarationProp
 from app.src.sym_updaters.custom_event.declaration_prop_mapper import DeclarationPropMapper
 

@@ -22,9 +22,9 @@ class ContractUpdater:
 
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
-        node_list = self.__input_converter.convert(config.node_list)
+        elements = self.__input_converter.convert(config.user_inputs)
         if op_code == OpCode.UPDATE_PARM:
-            parm_op = ParameterOperation(config.nl_key, config.parm_key, node_list)
+            parm_op = ParameterOperation(config.nl_key, config.parm_key, elements)
             self.__parm_refiner.refine(contract, parm_op)
         
         elif op_code == OpCode.ADD_DOMAIN_OBJECT:
@@ -32,7 +32,7 @@ class ContractUpdater:
             self.__domain_updater.update(contract, domain_op)
 
         elif op_code == OpCode.ADD_TERMINATION_POWER:
-            term_op = TerminationOperation(config.norm_id, config.debtor, config.creditor, node_list)
+            term_op = TerminationOperation(config.norm_id, config.debtor, config.creditor, elements)
             self.__tp_adder.update(contract, term_op)
 
         else:

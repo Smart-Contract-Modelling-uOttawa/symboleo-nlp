@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.custom_event.conj_type import ConjType
 
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 from app.classes.spec.domain_object import DomainEvent, DomainProp
 from app.classes.spec.declaration import Declaration, DeclarationProp
 from app.classes.custom_event.custom_event import CustomEvent 

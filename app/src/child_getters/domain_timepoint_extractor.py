@@ -2,6 +2,7 @@ from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.declaration import Declaration
 
+#  TODO: This is kind of a help. Should it go elsewhere?
 class IExtractDomainTimePoints:
     def extract(self, contract: SymboleoContract) -> List[str]:
         raise NotImplementedError()

@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.norm import INorm
 from app.classes.template_event.obligation_subject import ObligationSubject
 from app.classes.spec.sym_event import ObligationEvent, ObligationEventName
-from app.classes.elements.standard_event_node import ObligationSubjectNode
+from app.classes.elements.standard_event_elements import ObligationSubjectNode
 
 from app.src.sym_updaters.obligation_subject_node_updater import ObligationSubjectNodeUpdater
 

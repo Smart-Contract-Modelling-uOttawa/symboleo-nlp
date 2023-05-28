@@ -35,7 +35,7 @@ class ContractUpdaterTests(unittest.TestCase):
         self.parm_refiner.refine = MagicMock(return_value=None)
 
         config = UpdateConfig(
-            node_list = [],
+            user_inputs = [],
             parm_key='a'
         )
         self.sut.update(self.contract, OpCode.UPDATE_PARM, config)
@@ -50,7 +50,7 @@ class ContractUpdaterTests(unittest.TestCase):
             norm_id = 'a',
             debtor = 'd',
             creditor = 'c',
-            node_list = []
+            user_inputs = []
         )
         self.sut.update(self.contract, OpCode.ADD_TERMINATION_POWER, config)
 

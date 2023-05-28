@@ -8,7 +8,7 @@ class DigraphTests(unittest.TestCase):
     @unittest.skip('reorg')
     def test_digraph(self):
         node_a = self.sut.get_node('a')
-        self.assertEqual(node_a.node_type, 'ROOT')
+        self.assertEqual(node_a.unit_type, 'ROOT')
         self.assertEqual(len(node_a.subclasses), 2)
         self.assertEqual(len(node_a.props), 0)
 

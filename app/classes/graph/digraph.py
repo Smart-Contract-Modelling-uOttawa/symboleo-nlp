@@ -40,7 +40,7 @@ class Digraph:
         G = nx.DiGraph()
     
         for x in self.nodes:
-            G.add_nodes_from([(x.name, {"node_type": x.node_type})])
+            G.add_nodes_from([(x.name, {"unit_type": x.unit_type})])
         
         for x in self.nodes:
             for y in x.subclasses:

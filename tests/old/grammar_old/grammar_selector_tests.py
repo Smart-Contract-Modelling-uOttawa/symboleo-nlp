@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit
-from app.classes.units.final_node import FinalNode as FinalToken
+from app.classes.units.final_unit import FinalNode as FinalToken
 from app.classes.elements.element import Element
 from app.classes.elements.final_node import FinalNode
 

@@ -7,7 +7,7 @@ from app.classes.operations.op_code import OpCode
 test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.BEFORE),
             UserInput(UnitType.DATE, 'March 18, 2024'),
@@ -18,7 +18,7 @@ test_suite = [
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.BEFORE),
             UserInput(UnitType.DATE, 'March 30, 2024'),
@@ -29,7 +29,7 @@ test_suite = [
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -55,7 +55,7 @@ test_suite = [
 
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.UNTIL),
             UserInput(UnitType.TIMESPAN, '6 months'),
@@ -73,7 +73,7 @@ test_suite = [
 
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -97,7 +97,7 @@ test_suite = [
     ),
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.UNTIL),
             UserInput(UnitType.EVENT),
@@ -121,7 +121,7 @@ test_suite = [
     
     UpdateConfig(
         OpCode.ADD_TERMINATION_POWER,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),

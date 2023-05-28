@@ -3,6 +3,7 @@ from app.classes.operations.op_code import OpCode
 from app.classes.elements.element import Element
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
+from app.classes.operations.user_input import UserInput
 
 class UpdateConfig:
     def __init__(
@@ -10,7 +11,7 @@ class UpdateConfig:
             op_code: OpCode = None, 
 
             # Parm update
-            node_list: List[Element] = None,
+            user_inputs: List[UserInput] = None,
             #selection: Selection = None, 
             #parm_config: ParameterConfig = None,
             nl_key: str = None,
@@ -27,7 +28,7 @@ class UpdateConfig:
             creditor: str = ''
         ):
         self.op_code = op_code
-        self.node_list = node_list
+        self.user_inputs = user_inputs
         #self.selection = selection
         #self.parm_config: ParameterConfig = parm_config
         self.nl_key = nl_key

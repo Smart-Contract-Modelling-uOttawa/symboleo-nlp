@@ -5,9 +5,7 @@ from app.classes.units.unit_type import UnitType
 from app.classes.spec.symboleo_contract import ISymboleoContract
 
 from app.classes.units.input_unit import InputUnit
-from app.classes.units.final_node import FinalNode as FinalToken
 from app.classes.elements.element import Element
-from app.classes.elements.final_node import FinalNode
 
 from app.src.grammar.element_list_selector import ElementListSelector
 from app.src.grammar.child_getter import IGetChildren
@@ -53,7 +51,7 @@ class ElementListSelectorTests(unittest.TestCase):
         self.assertEqual(len(result), 4) # Add one for root and final
         self.assertEqual(result[1].value, 'test1')
         self.assertEqual(result[2].value, 'test2')
-        self.assertEqual(result[3].node_type, UnitType.FINAL_NODE)
+        self.assertEqual(result[3].unit_type, UnitType.FINAL_NODE)
         self.assertEqual(self.fake_child_getter.get.call_count, 3)
         self.assertEqual(self.fake_child_selector.select.call_count, 1)
         self.assertEqual(self.fake_input_value_getter.get.call_count, 2)

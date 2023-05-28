@@ -6,7 +6,7 @@ test_suite = [
     # upon execution of this agreement
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -23,7 +23,7 @@ test_suite = [
     # if Gridiron determines that third party analysis of the Biomass is required for processing
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -40,7 +40,7 @@ test_suite = [
     # If any claim or legal proceeding is filed by a third party
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
@@ -58,7 +58,7 @@ test_suite = [
     # When the Agreement ends
     UpdateConfig(
         OpCode.UPDATE_PARM,
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF), # Want a "When" (indicates trigger)
             UserInput(UnitType.EVENT),

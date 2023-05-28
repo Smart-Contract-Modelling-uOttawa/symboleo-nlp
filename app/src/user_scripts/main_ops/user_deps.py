@@ -1,29 +1,29 @@
 from app.classes.operations.dependencies import Dependencies
 
 from app.src.operations.refine_parameter.parameter_refiner_constructor import ParameterRefinerConstructor
-from app.src.operations.refine_parameter.parameter_refiner import ParameterRefiner
+from app.src.operations.refine_parameter.parameter_refiner_new import ParameterRefiner
 from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater
 
-from app.src.grammar.grammar_selector_builder import GrammarSelectorBuilder
-from app.src.grammar.grammar_selector2 import GrammarSelector
+from app.src.grammar.element_list_selector_builder import ElementListSelectorBuilder
+from app.src.grammar.element_list_selector import ElementListSelector
 
 class UserDependencies:
     def __init__(
             self,
-            grammar_selector: GrammarSelector,
+            elements_selector: ElementListSelector,
             parm_refiner: ParameterRefiner,
             tp_adder: TerminationUpdater,
             domain_updater: DomainUpdater
     ):
-        self.gs = grammar_selector
+        self.gs = elements_selector
         self.parm_refiner = parm_refiner
         self.tp_adder = tp_adder
         self.domain_updater = domain_updater
 
 
 def get_dependencies(deps: Dependencies) -> UserDependencies:
-    gs = GrammarSelectorBuilder.build(deps)
+    gs = ElementListSelectorBuilder.build(deps)
 
     parm_refiner = ParameterRefinerConstructor.construct(deps)
     

@@ -5,13 +5,13 @@ SUBCLASS_TYPE = 'subclass'
 
 class GraphNode:
     name: str = ''
-    node_type: str = '' # subclass or prop
+    unit_type: str = '' # subclass or prop
     subclasses: list[str] = [] 
     props: list[str] = [] 
 
-    def __init__(self, name, node_type, subclasses, props):
+    def __init__(self, name, unit_type, subclasses, props):
         self.name = name
-        self.node_type = node_type
+        self.unit_type = unit_type
         self.subclasses = copy.deepcopy(subclasses)
         self.props = copy.deepcopy(props)
 
@@ -20,7 +20,7 @@ class GraphNode:
             return NotImplemented
 
         return self.name == other.name and \
-                self.node_type == other.node_type and \
+                self.unit_type == other.unit_type and \
                 self._eq_list(self.subclasses, other.subclasses) and \
                 self._eq_list(self.props, other.props)
     

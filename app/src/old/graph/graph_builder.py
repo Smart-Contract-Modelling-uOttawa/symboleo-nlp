@@ -26,7 +26,7 @@ class GraphBuilder(IBuildGraphs):
         nodes = self._traverse(root, 'ROOT', d=0)
         return Digraph(nodes)
 
-    def _traverse(self, C: type, node_type: str, d = 0) -> list[GraphNode]:
+    def _traverse(self, C: type, unit_type: str, d = 0) -> list[GraphNode]:
         name = C.__name__
 
         if name in self.main_list:
@@ -44,7 +44,7 @@ class GraphBuilder(IBuildGraphs):
         props_list = [type(m[1]).__name__ for m in props]
 
         result = []
-        curr_node = GraphNode(name, node_type, subclass_list, props_list)
+        curr_node = GraphNode(name, unit_type, subclass_list, props_list)
         result.append(curr_node)
         
         for x in subclasses:

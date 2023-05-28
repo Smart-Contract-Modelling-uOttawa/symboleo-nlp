@@ -6,7 +6,7 @@ from app.src.pattern_updaters.pattern_getter import IGetPattern
 from app.src.pattern_updaters.pattern_updater import IUpdatePattern
 
 class IBuildPatterns:
-    def build(self, node_list: List[Element]) -> Pattern:
+    def build(self, elements: List[Element]) -> Pattern:
         raise NotImplementedError()
 
 class PatternBuilder(IBuildPatterns):
@@ -19,11 +19,11 @@ class PatternBuilder(IBuildPatterns):
         self.__updater_dict = updater_dict
 
 
-    def build(self, node_list: List[Element]) -> Pattern:
-        pattern = self.__pattern_getter.get_pattern(node_list)
+    def build(self, elements: List[Element]) -> Pattern:
+        pattern = self.__pattern_getter.get_pattern(elements)
 
-        for node in node_list:
-            updater = self.__updater_dict[type(node)]
-            updater.update(node, pattern)
+        for element in elements:
+            updater = self.__updater_dict[type(element)]
+            updater.update(element, pattern)
         
         return pattern

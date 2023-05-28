@@ -5,8 +5,7 @@ from app.classes.units.unit_type import UnitType
 
 class InputUnit: # pragma: no cover
     id: str = None
-    sn_type: Type[Element] = Element # Might be able to remove this
-    node_type: UnitType = None
+    unit_type: UnitType = None
     prompt: str = None
     children: List[Type[Element]] = []
     needs_value = False
@@ -18,12 +17,12 @@ class InputUnit: # pragma: no cover
         self.options = options 
     
     def __eq__(self, other: InputUnit) -> bool:
-        return self.node_type == other.node_type # more here?
+        return self.unit_type == other.unit_type # more here?
 
     def get_value(self):
         raise NotImplementedError()
     
 
-class DummyNode(InputUnit):
+class DummyUnit(InputUnit):
     prompt = 'dummy'
-    node_type = UnitType.DUMMY
+    unit_type = UnitType.DUMMY

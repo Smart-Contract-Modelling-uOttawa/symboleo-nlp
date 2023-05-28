@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.units.input_unit import InputUnit, DummyNode
-from app.classes.units.final_node import FinalNode as FinalToken
+from app.classes.units.final_unit import FinalNode as FinalToken
 
 from app.src.grammar.token_selector import TokenSelector
 from app.src.grammar.token_selector_set import ISelectTokenFromSet

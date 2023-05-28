@@ -5,7 +5,7 @@ import copy
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBeforeEvent
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 from app.classes.custom_event.conj_type import ConjType
 from app.classes.operations.user_input import UserInput
 from app.classes.other.helpers import ClassHelpers

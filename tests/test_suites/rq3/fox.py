@@ -15,7 +15,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens, Predic
 
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
-from app.classes.units.all_nodes import *
+from app.classes.units.all_units import *
 
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
@@ -73,7 +73,7 @@ fox_test_case = TestCase(
     ),
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
-        node_list = [
+        user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.BEFORE), # TODO: "prior to?"
             UserInput(UnitType.DATE, 'January 1, 2007'),

@@ -13,12 +13,12 @@ class TerminationOperation:
         norm_id: str,
         debtor: str,
         creditor: str,
-        node_list: List[Element],
+        elements: List[Element],
         ):
         self.norm_id = norm_id
         self.debtor = debtor 
         self.creditor = creditor
-        self.node_list = node_list
+        self.elements = elements
         
 class IAddPower:
     def update(self, contract: SymboleoContract, operation: TerminationOperation):
@@ -42,5 +42,5 @@ class TerminationUpdater(IAddPower):
         contract.add_norm(new_power, operation.norm_id, power_string)
 
         # Add the condition
-        parm_op = ParameterOperation(operation.norm_id, parm_key, operation.node_list)
+        parm_op = ParameterOperation(operation.norm_id, parm_key, operation.elements)
         self.__parm_refiner.refine(contract, parm_op)

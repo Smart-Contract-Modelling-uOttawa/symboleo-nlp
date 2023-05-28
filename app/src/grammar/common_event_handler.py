@@ -1,9 +1,11 @@
 from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit
-from app.classes.elements.custom_event_node import *
-from app.classes.elements.final_node import FinalNode
+from app.classes.elements.custom_event_elements import *
+from app.classes.elements.static_elements import FinalElement
 
 from app.classes.template_event.common_event import CommonEvent
+
+# TODO: Re-integate this
 
 class IHandleCommonEvents:
     def handle(self, evt: CommonEvent, curr: InputUnit) -> Element:
@@ -12,20 +14,20 @@ class IHandleCommonEvents:
 
 class CommonEventHandler(IHandleCommonEvents):
     def handle(self, evt: CommonEvent, curr: InputUnit) -> Element:
-        if curr.node_type == UnitType.SUBJECT:
+        if curr.unit_type == UnitType.SUBJECT:
             if evt.subj:
-                return SubjectNode(evt.subj)
+                return SubjectElement(evt.subj)
 
-        if curr.node_type == UnitType.VERB:
-            return VerbNode(evt.verb)
+        if curr.unit_type == UnitType.VERB:
+            return VerbElement(evt.verb)
 
-        if curr.node_type == UnitType.DOBJ:
-            return DobjNode(evt.dobj)
+        if curr.unit_type == UnitType.DOBJ:
+            return DobjElement(evt.dobj)
         
-        if curr.node_type == UnitType.ADVERB:
-            return AdverbNode(evt.adverb)
+        if curr.unit_type == UnitType.ADVERB:
+            return AdverbElement(evt.adverb)
         
-        if curr.node_type == UnitType.FINAL_NODE:
-            return FinalNode(CommonEvent(common_event_key=evt.common_event_key))
+        if curr.unit_type == UnitType.FINAL_NODE:
+            return FinalElement(CommonEvent(common_event_key=evt.common_event_key))
         
         return None

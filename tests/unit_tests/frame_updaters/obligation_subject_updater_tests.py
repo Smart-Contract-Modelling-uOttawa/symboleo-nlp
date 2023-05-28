@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.patterns.pattern import EventPattern
-from app.classes.elements.standard_event_node import *
+from app.classes.elements.standard_event_elements import *
 from app.classes.template_event.obligation_subject import ObligationSubject
 from app.classes.custom_event.noun_phrase import NounPhrase
 
@@ -15,7 +15,7 @@ class ObligationSubjectUpdaterTests(unittest.TestCase):
 
     def test_obligation_subject_updater(self):
         val = ObligationSubject('test')
-        node = ObligationSubjectNode(val)
+        node = ObligationSubjectElement(val)
         pattern = EventPattern()
         self.sut.update(node, pattern)
 

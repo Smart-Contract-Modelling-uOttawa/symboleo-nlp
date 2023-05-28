@@ -8,10 +8,10 @@ from app.src.update_processor.update_processor import IProcessUpdates
 # Will likely need to specify the norm_component...
 # Instead of key, can I use the ParmConfig...?
 class ParameterOperation:
-    def __init__(self, nl_key:str, parm_key:str, node_list: List[Element]):
+    def __init__(self, nl_key:str, parm_key:str, elements: List[Element]):
         self.nl_key = nl_key
         self.parm_key = parm_key
-        self.node_list = node_list # elements list
+        self.elements = elements
 
 
 class IRefineParameter:
@@ -33,8 +33,8 @@ class ParameterRefiner(IRefineParameter):
         # Get the norm
         norms = contract.get_norms_by_key(op.nl_key, op.parm_key)
 
-        # Build pattern from node_list to get the NL text
-        pattern = self.__pattern_builder.build(op.node_list)
+        # Build pattern from elements to get the NL text
+        pattern = self.__pattern_builder.build(op.elements)
 
         for norm in norms:
             # Extract all the required updates

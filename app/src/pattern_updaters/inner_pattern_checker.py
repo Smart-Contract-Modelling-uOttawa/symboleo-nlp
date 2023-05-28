@@ -3,16 +3,16 @@ from app.classes.elements.element import Element
 from app.classes.units.unit_type import UnitType
 
 class IInnerPatternChecker:
-    def check_pattern(self, node_list: List[Element], pattern_sequence: List[UnitType]) -> bool:
+    def check_pattern(self, elements: List[Element], pattern_sequence: List[UnitType]) -> bool:
         raise NotImplementedError()
 
 class InnerPatternChecker(IInnerPatternChecker):
     # This function does NOT care about patterns that MAY still be possible. 
     ## If needed, that will be separate
-    def check_pattern(self, node_list: List[Element], pattern_sequence: List[UnitType]) -> bool:
-        nt = [x.node_type for x in node_list]
+    def check_pattern(self, elements: List[Element], pattern_sequence: List[UnitType]) -> bool:
+        nt = [x.unit_type for x in elements]
 
-        # If the pattern is longer than the node list, then we are not there yet
+        # If the pattern is longer than the list, then we are not there yet
         if len(pattern_sequence) > len(nt):
             return False
         

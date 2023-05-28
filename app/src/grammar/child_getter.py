@@ -3,14 +3,14 @@ from app.classes.units.input_unit import InputUnit
 from app.classes.elements.element import Element
 from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.src.child_getters.child_getter import IGetNodeChildren
+from app.src.child_getters.child_getter import IGetUnitChildren
 
 class IGetChildren:
     def get(self, unit: InputUnit, element: Element, contract: SymboleoContract) -> List[InputUnit]:
         raise NotImplementedError()
 
 class ChildGetter(IGetChildren):
-    def __init__(self, child_getter_dict: Dict[Type[InputUnit], IGetNodeChildren]):
+    def __init__(self, child_getter_dict: Dict[Type[InputUnit], IGetUnitChildren]):
         self.__dict = child_getter_dict
     
     def get(self, unit: InputUnit, element: Element, contract: SymboleoContract) -> List[InputUnit]:

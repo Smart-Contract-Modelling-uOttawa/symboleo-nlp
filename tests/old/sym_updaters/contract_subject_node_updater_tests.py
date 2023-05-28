@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.spec.norm import INorm
 from app.classes.spec.sym_event import ContractEvent, ContractEventName
-from app.classes.elements.standard_event_node import ContractSubjectNode
+from app.classes.elements.standard_event_elements import ContractSubjectNode
 
 from app.src.sym_updaters.contract_subject_node_updater import ContractSubjectNodeUpdater
 

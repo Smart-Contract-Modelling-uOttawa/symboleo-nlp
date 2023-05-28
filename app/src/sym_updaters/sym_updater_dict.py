@@ -3,7 +3,7 @@ from typing import DefaultDict, Type
 from collections import defaultdict
 from app.classes.elements.element import Element
 from app.src.sym_updaters.package_updater import IUpdatePackage, DefaultUpdater
-from app.classes.elements.all_nodes import *
+from app.classes.elements.all_elements import *
 
 from app.src.sym_updaters.root_node_updater import RootNodeUpdater
 from app.src.sym_updaters.before_node_updater import BeforeNodeUpdater
