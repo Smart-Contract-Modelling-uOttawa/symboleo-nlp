@@ -54,73 +54,74 @@ test_suite = [
         parm_key='P1'
     ),
 
-    # UpdateConfig(
-    #     OpCode.UPDATE_PARM,
-    #     user_inputs = [
-    #         UserInput(UnitType.ROOT),
-    #         UserInput(UnitType.UNTIL),
-    #         UserInput(UnitType.TIMESPAN, '6 months'),
-    #         UserInput(UnitType.AFTER),
-    #         UserInput(UnitType.EVENT),
-    #         UserInput(UnitType.STANDARD_EVENT),
-    #         UserInput(UnitType.CONTRACT_EVENT),
-    #         UserInput(UnitType.CONTRACT_SUBJECT),
-    #         UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
-    #         UserInput(UnitType.FINAL_NODE)
-    #     ],
-    #     nl_key='disclosure',
-    #     parm_key='P2'
-    # ),
+    UpdateConfig(
+        OpCode.UPDATE_PARM,
+        user_inputs = [
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.FOR),
+            UserInput(UnitType.TIMESPAN, '6 months'),
+            UserInput(UnitType.FOLLOWING),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT),
+            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.FINAL_NODE)
+        ],
+        nl_key='disclosure',
+        parm_key='P2'
+    ),
 
-    # UpdateConfig(
-    #     OpCode.UPDATE_PARM,
-    #     user_inputs = [
-    #         UserInput(UnitType.ROOT),
-    #         UserInput(UnitType.IF),
-    #         UserInput(UnitType.EVENT),
-    #         UserInput(UnitType.STANDARD_EVENT),
-    #         UserInput(UnitType.NORM_EVENT),
-    #         UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_payment'),
-    #         UserInput(UnitType.OBLIGATION_ACTION, 'Violated'),
+    UpdateConfig(
+        OpCode.UPDATE_PARM,
+        user_inputs = [
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.IF),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_payment'),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Violated'),
 
-    #         #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
-    #         UserInput(UnitType.SUBJECT, 'buyer'),
-    #         UserInput(UnitType.FAILS_TO),
-    #         UserInput(UnitType.VERB, 'pay'),
-    #         UserInput(UnitType.DOBJ, '$100'),
-    #         UserInput(UnitType.PREP_PHRASE, 'in CAD'),
-    #         UserInput(UnitType.PREP_PHRASE, 'to seller'),
-    #         UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'),
-    #         UserInput(UnitType.FINAL_NODE)
-    #     ],
-    #     nl_key='suspendDelivery',
-    #     parm_key='P1'
-    # ),
+            #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(UnitType.SUBJECT, 'buyer'),
+            UserInput(UnitType.FAILS_TO),
+            UserInput(UnitType.VERB, 'pay'),
+            UserInput(UnitType.DOBJ, '$100'),
+            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
+            UserInput(UnitType.PREP_PHRASE, 'to seller'),
+            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'),
+            UserInput(UnitType.FINAL_NODE)
+        ],
+        nl_key='suspendDelivery',
+        parm_key='P1'
+    ),
 
-    # UpdateConfig(
-    #     OpCode.UPDATE_PARM,
-    #     user_inputs = [
-    #         UserInput(UnitType.ROOT),
-    #         UserInput(UnitType.UNTIL),
-    #         UserInput(UnitType.EVENT),
-    #         UserInput(UnitType.STANDARD_EVENT),
-    #         UserInput(UnitType.NORM_EVENT),
-    #         UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_late_payment'),
-    #         UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
+    UpdateConfig(
+        OpCode.UPDATE_PARM,
+        user_inputs = [
+            UserInput(UnitType.ROOT),
+            UserInput(UnitType.UNLESS),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_late_payment'),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
 
-    #         #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
-    #         UserInput(UnitType.SUBJECT, 'buyer'),
-    #         UserInput(UnitType.VERB, 'pay'),
-    #         UserInput(UnitType.DOBJ, '(interest amount)'),
-    #         UserInput(UnitType.PREP_PHRASE, 'in CAD'),
-    #         UserInput(UnitType.PREP_PHRASE, 'to seller'),
-    #         UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'), # late payment due date?
-    #         UserInput(UnitType.FINAL_NODE)
-    #     ],
-    #     nl_key='suspendDelivery',
-    #     parm_key = 'P2'
-    # ),
+            #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
+            UserInput(UnitType.SUBJECT, 'buyer'),
+            UserInput(UnitType.VERB, 'pay'),
+            UserInput(UnitType.DOBJ, '(interest amount)'),
+            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
+            UserInput(UnitType.PREP_PHRASE, 'to seller'),
+            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'), # late payment due date?
+            UserInput(UnitType.FINAL_NODE)
+        ],
+        nl_key='suspendDelivery',
+        parm_key = 'P2'
+    ),
     
+    # TODO: Need to represent "unless delay exceeds 10 days". Probably will skip this one
     # UpdateConfig(
     #     OpCode.ADD_TERMINATION_POWER,
     #     user_inputs = [

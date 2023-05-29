@@ -174,14 +174,14 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 PropMaker.make_default(),
                 PFObligation(PFObligationName.Suspended, 'ob_delivery')
             ),
-            'pow_resume_ob_delivery': Power(
-                'pow_resume_ob_delivery',
-                PropMaker.make_default(False),
-                BUYER,
-                SELLER,
-                PropMaker.make_default(),
-                PFObligation(PFObligationName.Resumed, 'ob_delivery')
-            ),
+            # 'pow_resume_ob_delivery': Power(
+            #     'pow_resume_ob_delivery',
+            #     PropMaker.make_default(False),
+            #     BUYER,
+            #     SELLER,
+            #     PropMaker.make_default(),
+            #     PFObligation(PFObligationName.Resumed, 'ob_delivery')
+            # ),
             'pow_terminate_contract': Power(
                 'pow_terminate_contract',
                 None,

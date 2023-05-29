@@ -7,10 +7,10 @@ E - payment: The Buyer shall pay $100 CAD to the Seller before March 30, 2024.
 A - latePayment: TODO The Buyer shall pay interests equal to 8 percent of the payment amount
 E - latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
 
-A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential [P2]
+A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential TODO
 E - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
 
-A - suspendDelivery: [P1] The Seller may suspend performance of all of its obligations under the agreement [P2]
+A - suspendDelivery: TODO The Seller may suspend performance of all of its obligations under the agreement TODO
 E - suspendDelivery: 
 
 A - suspendResumeDelivery: 

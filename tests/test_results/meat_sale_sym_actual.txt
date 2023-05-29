@@ -35,13 +35,13 @@ Obligations
   ob_late_payment: Obligation(buyer, seller, Happens(Violated(obligations.ob_payment)), Happens(evt_pay_late));
 
 Surviving Obligations
-  so_disclosure_seller: SO(seller, buyer, true, not Happens(evt_disclose));
-  so_disclosure_buyer: SO(buyer, seller, true, not Happens(evt_disclose));
+  so_disclosure_seller: SO(seller, buyer, true, not HappensWithin(evt_disclose, Interval(START, Date.add(Terminated(self), 6, months)));
+  so_disclosure_buyer: SO(buyer, seller, true, not HappensWithin(evt_disclose, Interval(START, Date.add(Terminated(self), 6, months)));
 
 Powers
-  pow_suspend_delivery: Power(seller, buyer, true, Suspended(obligations.ob_delivery));
-  pow_resume_ob_delivery: F -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));
+  pow_suspend_delivery: Power(seller, buyer, Happens(Violated(obligations.ob_payment)), Suspended(obligations.ob_delivery));
   pow_terminate_contract: Power(buyer, seller, true, Terminated(self));
+  pow_resume_ob_delivery: Happens(Fulfilled(obligations.ob_late_payment)) -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));
 
 Constraints
   not IsEqual(buyer, seller);

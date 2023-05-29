@@ -19,6 +19,15 @@ class UntilElement(Element):
 class WithinElement(Element):
     unit_type = UnitType.WITHIN
 
+class ForElement(Element):
+    unit_type = UnitType.FOR
+
+class FollowingElement(Element):
+    unit_type = UnitType.FOLLOWING
+
+class UnlessElement(Element):
+    unit_type = UnitType.UNLESS
+
 
 # Final node needs to give initial value... e.g. date, CustomEvent, CommonEvent...
 # TODO: May want to type/alias this

@@ -19,6 +19,10 @@ unit_type_to_class: Dict[UnitType, Type[Element]] = {
     UnitType.DUMMY: DummyElement,
     UnitType.AFTER: AfterElement,
     UnitType.UNTIL: UntilElement,
+    UnitType.UNLESS: UnlessElement,
+    UnitType.FOR: ForElement,
+    UnitType.FOLLOWING: FollowingElement,
+
     UnitType.TIMEPOINT: TimepointElement,
     UnitType.DOMAIN_TIMEPOINT: DomainTimepointElement,
     UnitType.CUSTOM_EVENT: CustomEventElement,
@@ -42,6 +46,7 @@ unit_type_to_class: Dict[UnitType, Type[Element]] = {
     UnitType.OBLIGATION_ACTION: ObligationActionElement,
 
     UnitType.FINAL_NODE: FinalElement
+
 
     ####...
 }
