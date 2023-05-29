@@ -23,8 +23,7 @@ class PatternGetter(IGetPattern):
         for pattern in all_patterns:
             res = self.__inner_checker.check_pattern(elements, pattern.sequence)
             if res:
-                patterns.append(pattern
-                                )
+                patterns.append(pattern)
         
         if len(patterns) > 1:
             pattern_list = ','.join([str(type(x)) for x in patterns])

@@ -5,24 +5,24 @@ from app.classes.operations.op_code import OpCode
 from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter, ParameterOperation
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
-from app.src.grammar.input_converter import IConvertInput
+from app.src.grammar.element_extractor import IExtractElements
 
 class ContractUpdater:
     def __init__(
         self, 
-        input_converter: IConvertInput,
+        element_extractor: IExtractElements,
         parm_refiner: IRefineParameter,
         tp_adder: IAddPower,
         domain_updater: IUpdateDomain
     ):
-        self.__input_converter = input_converter
+        self.__element_extractor = element_extractor
         self.__parm_refiner = parm_refiner
         self.__domain_updater = domain_updater
         self.__tp_adder = tp_adder
 
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
-        elements = self.__input_converter.convert(config.user_inputs)
+        elements = self.__element_extractor.extract(config.user_inputs)
         if op_code == OpCode.UPDATE_PARM:
             parm_op = ParameterOperation(config.nl_key, config.parm_key, elements)
             self.__parm_refiner.refine(contract, parm_op)

@@ -7,7 +7,7 @@ from app.classes.elements.final_node import FinalNode
 
 from app.src.grammar.grammar_selector2 import GrammarSelector
 from app.src.grammar.token_selector import ISelectToken
-from app.src.grammar.token_processor import IProcessToken
+from app.src.grammar.todo.token_processor import IProcessToken
 
 class GrammarSelectorTests(unittest.TestCase):
     def setUp(self):

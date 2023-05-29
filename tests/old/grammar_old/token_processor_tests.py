@@ -6,8 +6,8 @@ from app.classes.elements.element import Element
 from app.classes.elements.standard_event_elements import CommonEventNode
 from app.classes.template_event.common_event import CommonEvent
 
-from app.src.grammar.token_processor import CommonTokenProcessor, IProcessToken
-from app.src.grammar.common_event_handler import IHandleCommonEvents
+from app.src.grammar.todo.token_processor import CommonTokenProcessor, IProcessToken
+from app.src.grammar.todo.common_event_handler import IHandleCommonEvents
 
 
 class TokenProcessorTests(unittest.TestCase):

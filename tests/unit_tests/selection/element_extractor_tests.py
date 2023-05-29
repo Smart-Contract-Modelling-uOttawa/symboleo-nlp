@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 
-from app.src.grammar.input_converter import InputConverter
+from app.src.grammar.element_extractor import ElementExtractor
 from app.src.extractors.value_extractor import IExtractValue 
 
 class ElementExtractorTests(unittest.TestCase):
@@ -14,12 +14,12 @@ class ElementExtractorTests(unittest.TestCase):
         self.fake_dict = {
             UnitType.DUMMY: self.fake_extractor
         }
-        self.sut = InputConverter(self.fake_dict)
+        self.sut = ElementExtractor(self.fake_dict)
     
 
     def test_element_extractor(self):
         user_input = [UserInput(UnitType.DUMMY, 'fake')]
-        result = self.sut.convert(user_input)
+        result = self.sut.extract(user_input)
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0].value, 'test')

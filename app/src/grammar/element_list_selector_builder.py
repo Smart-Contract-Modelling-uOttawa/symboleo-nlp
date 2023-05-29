@@ -1,8 +1,8 @@
 from app.classes.operations.dependencies import Dependencies
 
 from app.src.grammar.manual_token_selector import ManualTokenSelector
-from app.src.grammar.input_converter import InputConverter
-from app.src.grammar.value_getter import ValueGetter
+from app.src.grammar.element_extractor import ElementExtractor
+from app.src.grammar.input_value_getter import InputValueGetter
 
 from app.src.grammar.child_getter import ChildGetter
 from app.src.extractors.value_extractor_dict_builder import ValueExtractorDictBuilder
@@ -19,10 +19,10 @@ class ElementListSelectorBuilder:
 
         child_selector = ManualTokenSelector()
 
-        input_value_getter = ValueGetter()
+        input_value_getter = InputValueGetter()
 
         extractor_dict = ValueExtractorDictBuilder.build(deps)
-        element_extractor = InputConverter(extractor_dict)
+        element_extractor = ElementExtractor(extractor_dict)
         #common_event_handler = CommonEventHandler()
         
         return ElementListSelector(

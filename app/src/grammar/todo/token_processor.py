@@ -5,7 +5,7 @@ from app.classes.elements.element import Element
 
 from app.classes.template_event.common_event import CommonEvent
 
-from app.src.grammar.common_event_handler import IHandleCommonEvents
+from app.src.grammar.todo.common_event_handler import IHandleCommonEvents
 
 class IProcessToken:
     def process(self, token: InputUnit, contract: ISymboleoContract) -> Element:

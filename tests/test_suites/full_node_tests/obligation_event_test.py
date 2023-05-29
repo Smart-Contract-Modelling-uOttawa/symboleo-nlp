@@ -16,7 +16,7 @@ from app.src.sym_updaters.update_extractor import UpdateExtractor
 
 from app.src.pattern_updaters.pattern_builder_builder import PatternBuilderBuilder
 
-from app.src.grammar.input_converter_builder import InputConverterBuilder
+from app.src.grammar.element_extractor_builder import ElementExtractorBuilder
 
 from tests.helpers.sample_norm_lib import SampleNorms
 
@@ -28,7 +28,7 @@ class ObligationEventTests(unittest.TestCase):
     def setUp(self):
         deps = DependencyBuilder.build(fake=True)
 
-        self.input_converter = InputConverterBuilder.build(deps)
+        self.input_converter = ElementExtractorBuilder.build(deps)
 
         updater_dict = SymUpdaterDictConstructor.build(deps)
         self.sym_updater = UpdateExtractor(updater_dict)

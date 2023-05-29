@@ -10,8 +10,8 @@ from app.classes.elements.element import Element
 from app.src.grammar.element_list_selector import ElementListSelector
 from app.src.grammar.child_getter import IGetChildren
 from app.src.grammar.token_selector_set import ISelectTokenFromSet
-from app.src.grammar.value_getter import IGetValues
-from app.src.grammar.input_converter import IConvertInput
+from app.src.grammar.input_value_getter import IGetInputValues
+from app.src.grammar.element_extractor import IExtractElements
 
 class ElementListSelectorTests(unittest.TestCase):
     def setUp(self):
@@ -25,16 +25,16 @@ class ElementListSelectorTests(unittest.TestCase):
         self.fake_child_selector = ISelectTokenFromSet()
         self.fake_child_selector.select = MagicMock(return_value = InputUnit())
 
-        self.fake_input_value_getter = IGetValues()
+        self.fake_input_value_getter = IGetInputValues()
         self.fake_input_value_getter.get = MagicMock(side_effect = [
             'a',
             'b'
         ])
 
-        self.fake_element_extractor = IConvertInput()
-        self.fake_element_extractor.convert = MagicMock(side_effect = [
-            [Element('test1')],
-            [Element('test2')]
+        self.fake_element_extractor = IExtractElements()
+        self.fake_element_extractor.extract_single = MagicMock(side_effect = [
+            Element('test1'),
+            Element('test2')
         ])
 
         self.sut = ElementListSelector(
@@ -55,7 +55,7 @@ class ElementListSelectorTests(unittest.TestCase):
         self.assertEqual(self.fake_child_getter.get.call_count, 3)
         self.assertEqual(self.fake_child_selector.select.call_count, 1)
         self.assertEqual(self.fake_input_value_getter.get.call_count, 2)
-        self.assertEqual(self.fake_element_extractor.convert.call_count, 2)
+        self.assertEqual(self.fake_element_extractor.extract_single.call_count, 2)
 
 
 if __name__ == '__main__':

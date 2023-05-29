@@ -16,7 +16,7 @@ from app.src.sym_updaters.update_extractor import UpdateExtractor
 
 from app.src.pattern_updaters.pattern_builder_builder import PatternBuilderBuilder
 
-from app.src.grammar.input_converter_builder import InputConverterBuilder
+from app.src.grammar.element_extractor_builder import ElementExtractorBuilder
 
 from tests.helpers.sample_norm_lib import SampleNorms
 
@@ -29,7 +29,7 @@ class ContractEventTests(unittest.TestCase):
     def setUp(self):
         deps = DependencyBuilder.build(fake=True)
 
-        self.input_converter = InputConverterBuilder.build(deps)
+        self.element_extractor = ElementExtractorBuilder.build(deps)
 
         updater_dict = SymUpdaterDictConstructor.build(deps)
         self.sym_updater = UpdateExtractor(updater_dict)
@@ -49,7 +49,7 @@ class ContractEventTests(unittest.TestCase):
             UserInput(UnitType.CONTRACT_ACTION, 'Terminated')
         ]
 
-        node_list_result = self.input_converter.convert(user_input)
+        node_list_result = self.element_extractor.extract(user_input)
 
         exp_node_list = [
             RootNode(),

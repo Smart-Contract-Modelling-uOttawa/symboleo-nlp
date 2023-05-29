@@ -10,7 +10,7 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter
 from app.src.operations.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
-from app.src.grammar.input_converter import IConvertInput
+from app.src.grammar.element_extractor import IExtractElements
 
 from app.src.operations.contract_updater import ContractUpdater
 
@@ -18,14 +18,14 @@ class ContractUpdaterTests(unittest.TestCase):
     def setUp(self):
         self.contract = ISymboleoContract()
 
-        self.input_converter = IConvertInput()
-        self.input_converter.convert = MagicMock(return_value=[])
+        self.element_extractor = IExtractElements()
+        self.element_extractor.extract = MagicMock(return_value=[])
 
         self.parm_refiner = IRefineParameter()
         self.tp_adder = IAddPower()
         self.domain_updater = IUpdateDomain()
         self.sut = ContractUpdater(
-            self.input_converter,
+            self.element_extractor,
             self.parm_refiner,
             self.tp_adder,
             self.domain_updater
