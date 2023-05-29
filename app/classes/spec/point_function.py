@@ -13,7 +13,7 @@ class TimeUnit(Enum):
 
 
 class PointFunctionName(Enum):
-    DateAdd = 'Date.Add'
+    DateAdd = 'Date.add'
 
 # Note: Changed the arg from PointExpression to PointAtom to avoid recursion
 # This will disallow the existence of recursive pointFunctions (examples?)

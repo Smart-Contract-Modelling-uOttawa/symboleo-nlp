@@ -1,6 +1,7 @@
 from typing import List
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_object import Asset
-from app.classes.spec.declaration import Declaration
+from app.classes.spec.declaration import AssetDeclaration
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.custom_event.noun_phrase import NounPhrase
 
@@ -13,51 +14,40 @@ from app.src.sym_updaters.custom_event.asset_decl_extractor import IExtractAsset
 # MAy want to just return ALL assets, as that may be useful in the subsequent declaration_mapper call
 ## It will need to know about any new assets that have been created...
 class IMapAssetDeclarations:
-    def map(self, custom_event: CustomEvent, asset_decls: List[Declaration] = None) -> List[Declaration]:
+    def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         raise NotImplementedError()
 
 class AssetDeclarationMapper(IMapAssetDeclarations):
     def __init__(self, asset_extractor: IExtractAssetDeclarations):
-        self.__asset_extractor = asset_extractor
+        self.__asset_extractor = asset_extractor # May not need this.
 
-    def map(self, custom_event: CustomEvent, asset_decls: List[Declaration] = None) -> List[Asset]:
+    def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         results = []
-        self.__asset_decls = asset_decls
 
-        if not custom_event.subj.is_role and not self._is_decl(custom_event.subj):
+        # These are types that we do NOT want to add on to the existing contract
+        exclusions = ['Role', 'Date', 'Contract', 'Money']
+        exclusions.extend([x.name for x in contract.domain_model.enums])
+
+        if self._should_include(custom_event.subj, exclusions):
             next_asset = self.__asset_extractor.extract(custom_event.subj)
             results.append(next_asset)
-
-        dobj = custom_event.dobj
-        if dobj and not dobj.is_role and not self._is_decl(dobj):
-            next_asset = self.__asset_extractor.extract(dobj)
-            results.append(next_asset)
         
+        if self._should_include(custom_event.dobj, exclusions):
+            next_asset = self.__asset_extractor.extract(custom_event.dobj)
+            results.append(next_asset)
+
         pps = custom_event.pps
         if pps:
             for pp in pps:
-                if not pp.pobj.is_role and not self._is_decl(pp.pobj):
+                if self._should_include(pp.pobj, exclusions):
                     next_asset = self.__asset_extractor.extract(pp.pobj)
                     results.append(next_asset)
         
         return results
 
 
-    # Make this a bit clearer...
-    def _is_decl(self, np: NounPhrase):
-        # Dont add assets that are contract nouns
-        if np.asset_type == 'Contract': 
-            return True
-        
-        if not self.__asset_decls:
-            return False
-
-        
-        # Will it be str_val or to_text...?
-        ## If we're choosing from a list of options, then probably str_val...
-        if np.str_val in [x.name for x in self.__asset_decls]:
-            return True
-        else:
-            return False
+    def _should_include(self, np: NounPhrase, exclusions: List[str]):
+        return np.asset_type not in exclusions
+    
     
     

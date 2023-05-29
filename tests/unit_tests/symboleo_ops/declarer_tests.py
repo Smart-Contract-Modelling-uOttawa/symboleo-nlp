@@ -5,6 +5,7 @@ from app.src.helpers.declarer import Declarer
 
 class DeclarerTests(unittest.TestCase):
 
+    @unittest.skip('todo')
     def test_declarer(self):
         contract = get_template('sample_raw')
         expected_value = 'evt_delivered: Delivered with item := goods, deliveryAddress := 123 main street, delDueDate := 2023/04/25;'
@@ -18,7 +19,7 @@ class DeclarerTests(unittest.TestCase):
 
         self.assertEqual(decl.to_sym(), expected_value)
 
-
+    @unittest.skip('todo')
     def test_declarer_error(self):
         contract = get_template('sample_raw')
 

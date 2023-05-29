@@ -38,7 +38,7 @@ class ParameterRefiner(IRefineParameter):
 
         for norm in norms:
             # Extract all the required updates
-            update_set = self.__update_processor.process(norm, pattern)
+            update_set = self.__update_processor.process(norm, pattern, contract)
 
             # Run the Symboleo updates
             contract.run_updates(update_set)

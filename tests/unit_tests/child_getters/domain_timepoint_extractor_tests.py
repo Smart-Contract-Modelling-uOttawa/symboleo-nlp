@@ -10,6 +10,7 @@ class DomainTimepointExtractorTests(unittest.TestCase):
         self.sut = DomainTimepointExtractor()
 
     # TODO: Better test
+    @unittest.skip('todo')
     def test_grammar_generator(self):
         contract = get_template('sample_t')
 

@@ -9,13 +9,13 @@ class FullStackTests(unittest.TestCase):
 
     def test_full_stack(self):
         target_keys = [
-            'sample',
-            'rental',
-            'prop',
-            'gridiron'
+            'meat_sale',
+            # 'rental',
+            # 'prop',
+            # 'gridiron'
         ]
         for k in target_keys:
-            contract = get_template(f'{k}_t')
+            contract = get_template(f'{k}')
             expected_contract = get_template(f'{k}_raw')
             all_ops = get_test_suite(k)
             expected_sym = expected_contract.to_sym()

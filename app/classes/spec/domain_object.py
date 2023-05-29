@@ -28,10 +28,11 @@ class IDomainObject:
 class DomainObject(IDomainObject):
     def __init__(self, desc:str, name: str, props: List[DomainProp], base_type: DomainObject = None):
         self.name = name
+        self.base_type = base_type
         self.is_alias = (base_type is not None)
 
         if self.is_alias:
-            self.props = copy.deepcopy(base_type.props)
+            self.props = props
             self.base_type_name = base_type.name
         else:
             self.desc = desc
@@ -46,9 +47,10 @@ class DomainObject(IDomainObject):
     
     def to_sym(self):
         if self.is_alias:
-            return f'{self.name} isA {self.base_type_name};'
+            result =  f'{self.name} isA {self.base_type_name}'
+        else:
+            result = f'{self.name} {self.desc}'
         
-        result = f'{self.name} {self.desc}'
         if len(self.props) > 0:
             result += ' with '
         

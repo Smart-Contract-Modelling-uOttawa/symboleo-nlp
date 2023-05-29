@@ -2,6 +2,7 @@ from typing import List
 from app.classes.patterns.pattern import Pattern
 from app.classes.elements.element import Element
 from app.classes.spec.norm import Norm
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 from app.src.update_processor.pattern_handlers.handle_object import HandleObject
@@ -9,7 +10,7 @@ from app.src.update_processor.domain_update_extractor import IExtractDomainUpdat
 from app.src.update_processor.norm_update_extractor import IExtractNormUpdates
 
 class IProcessUpdates:
-    def process(self, norm: Norm, pattern: Pattern):
+    def process(self, norm: Norm, pattern: Pattern, contract: SymboleoContract):
         raise NotImplementedError()
 
 
@@ -23,9 +24,9 @@ class UpdateProcessor(IProcessUpdates):
         self.__norm_update_extractor = norm_update_extractor
 
     
-    def process(self, norm: Norm, pattern: Pattern) -> ContractUpdateObj:
+    def process(self, norm: Norm, pattern: Pattern, contract: SymboleoContract) -> ContractUpdateObj:
         # Extract domain and declaration updates
-        domain_updates = self.__domain_update_extractor.extract(pattern)
+        domain_updates = self.__domain_update_extractor.extract(pattern, contract)
 
         # Interesting... We could run these updates on the contract first...
         # Maybe not though. 

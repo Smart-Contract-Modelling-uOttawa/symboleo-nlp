@@ -32,7 +32,7 @@ class BeforeDateHandlerTests(unittest.TestCase):
         new_norm = result[0]
         # TODO: Want a cleaner way of inspecting the consequent - convenience method...
         ## Maybe norm.get_predicate...
-        exp_res = 'test: Obligation(partyA, partyB, true, SHappensBefore(evt_a, March 31, 2024));'
+        exp_res = 'test: Obligation(partyA, partyB, true, SHappensBefore(evt_a, "March 31, 2024"));'
         
         self.assertEqual(len(result), 1)
         self.assertEqual(new_norm.to_sym(), exp_res)

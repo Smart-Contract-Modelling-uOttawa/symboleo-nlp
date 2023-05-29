@@ -15,4 +15,4 @@ class DeclarationToDomainMapper(IMapDeclarationToDomain):
         elif declaration.base_type == 'assets':
             return Asset(declaration.type, props)
         
-        raise NotImplementedError('Unhandled domain object type')
+        raise NotImplementedError(f'Unhandled domain object type: {declaration.base_type}')

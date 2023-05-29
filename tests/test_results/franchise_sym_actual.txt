@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_fee: Obligation(grantee, grantor, true, SHappensBefore(evt_pay_fee, March 31, 2017));
+  ob_pay_fee: Obligation(grantee, grantor, true, SHappensBefore(evt_pay_fee, "March 31, 2017"));
 
 Surviving Obligations
 

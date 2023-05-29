@@ -1,7 +1,9 @@
 from __future__ import annotations
 from typing import List
-from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
+from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName, ObligationEvent, ObligationEventName
 from app.classes.custom_event.conj_type import ConjType
+
+from app.classes.custom_event.base_event import BaseEvent
 
 from app.classes.custom_event.noun_phrase import NounPhrase
 from app.classes.custom_event.verb import Verb, VerbType
@@ -11,7 +13,7 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 
 from app.classes.other.helpers import ClassHelpers
 
-class CustomEvent:
+class CustomEvent(BaseEvent):
     def __init__(
         self, 
         subj: NounPhrase = None, 

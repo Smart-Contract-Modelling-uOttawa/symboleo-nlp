@@ -33,7 +33,7 @@ class PatternUpdaterDictConstructor:
         d[PrepElement] = PrepPhraseUpdater()
 
         d[ContractActionElement] = ContractActionUpdater()
-        d[ContractSubjectElement] = ContractSubjectUpdater()
+        #d[ContractSubjectElement] = ContractSubjectUpdater()
 
         d[ObligationActionElement] = ObligationActionUpdater()
         d[ObligationSubjectElement] = ObligationSubjectUpdater()

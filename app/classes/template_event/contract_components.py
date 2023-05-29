@@ -15,6 +15,7 @@ class ContractVerbs:
             lambda: Verb('activated', 'activate', [VerbType.INTRANSITIVE], VerbConjugations('activate', 'activated', 'activated', 'activating')),
     }
 
+
 class HelperVerbs:
     verb_is = lambda: Verb('is', 'be', [VerbType.LINKING], VerbConjugations('is', 'are', 'was', 'is'))
     

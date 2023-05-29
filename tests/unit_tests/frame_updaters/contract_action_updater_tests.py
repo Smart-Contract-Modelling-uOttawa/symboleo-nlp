@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
+from app.classes.custom_event.base_event import StandardContractEvent
 from app.classes.spec.sym_event import ContractEventName
 from app.classes.patterns.pattern import EventPattern
 from app.classes.elements.standard_event_elements import *
@@ -16,8 +17,11 @@ class ContractActionUpdaterTests(unittest.TestCase):
         element = ContractActionElement(ContractEventName.Activated)
         pattern = EventPattern()
         self.sut.update(element, pattern)
-        expected_verb = ContractVerbs.contract_verb_dict[ContractEventName.Activated]()
-        self.assertEqual(pattern.event.verb, expected_verb)
+        
+        if isinstance(pattern.event, StandardContractEvent):
+            self.assertEqual(pattern.event.action, 'Activated')
+        else:
+            self.assertTrue(False)
 
 if __name__ == '__main__':
     unittest.main()

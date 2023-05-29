@@ -109,7 +109,7 @@ fox_test_case = TestCase(
             postconditions=[],
             obligations = {
                 'ob_not_distribute_games': Obligation('ob_not_distribute_games', None, 'fox', 'partyB', PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_distribute_games'), Point(PointVDE('January 1, 2007'))), negation=True)
+                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_distribute_games'), Point(PointVDE('"January 1, 2007"'))), negation=True)
                 )
             },
             surviving_obligations={},

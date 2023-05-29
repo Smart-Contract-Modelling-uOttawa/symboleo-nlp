@@ -11,7 +11,7 @@ class BeforeDateHandler(IHandlePatterns):
     def handle(self, pattern: BeforeDate, handle_object: HandleObject):
         norm: Norm = handle_object.norm
         init_event = norm.get_default_event('consequent') # Need to get consequent?
-        point_val = Point(PointVDE(pattern.date_text))
+        point_val = Point(PointVDE(f'"{pattern.date_text}"'))
         updated_predicate = PredicateFunctionSHappensBefore(init_event, point_val)
         new_norm = copy.deepcopy(norm)
         new_norm.update('consequent', updated_predicate)

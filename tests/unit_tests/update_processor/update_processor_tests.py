@@ -35,7 +35,7 @@ class UpdateProcessorTests(unittest.TestCase):
         norm = INorm()
         pattern = Pattern()
 
-        result = self.sut.process(norm, pattern)
+        result = self.sut.process(norm, pattern, None)
 
         self.assertTrue(isinstance(result, ContractUpdateObj))
         self.assertEqual(len(result.declarations), 1)

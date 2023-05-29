@@ -110,7 +110,7 @@ franchise_test_case = TestCase(
             postconditions=[],
             obligations = {
                 'ob_pay_fee': Obligation('ob_pay_fee', None, 'grantee', 'grantor', PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_pay_fee'), Point(PointVDE('March 31, 2017'))))
+                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_pay_fee'), Point(PointVDE('"March 31, 2017"'))))
                 )
             },
             surviving_obligations={},

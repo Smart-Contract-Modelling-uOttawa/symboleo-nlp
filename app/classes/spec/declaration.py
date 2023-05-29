@@ -1,8 +1,14 @@
 from __future__ import annotations
 from typing import List
+from enum import Enum
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.other.helpers import ClassHelpers
+
+class DeclarationType(Enum):
+    ASSET = 'assets'
+    ROLE = 'roles'
+    EVENT = 'events'
 
 class DeclarationProp:
     def __init__(self, key, value, type):
@@ -32,16 +38,12 @@ class IDeclaration:
     def to_sym(self):
         raise NotImplementedError()
 
-# TODO: Subclass the declaration types (assets, events, roles)
-# TODO: Add evt init onto all Declaration constructors
 class Declaration(IDeclaration):
-    def __init__(self, name: str, type: str, base_type:str, props: List[DeclarationProp], evt: CustomEvent = None):
+    def __init__(self, name: str, type: str, base_type: DeclarationType, props: List[DeclarationProp] = None):
         self.name = name
         self.type = type
         self.base_type = base_type # events, roles, assets 
-        self.props = props
-        self.evt = evt # Will only appear on the events one
-        # The evt will be needed for obligation events (e.g. fulfilling/violatin obligation)
+        self.props = props or []
     
     def __eq__(self, other: Declaration) -> bool:
         return self.base_type == other.base_type and \
@@ -49,11 +51,7 @@ class Declaration(IDeclaration):
             self.type == other.type and \
             ClassHelpers.lists_eq(self.props, other.props, 'key')
 
-    # TODO: Where is this used... need to extend it..
     def to_obj(self):
-        if self.base_type == 'events':
-            return VariableEvent(self.name)
-        
         return self.name
 
 
@@ -75,3 +73,20 @@ class Declaration(IDeclaration):
         result += ';'
         return result
 
+
+
+class EventDeclaration(Declaration):
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, evt: CustomEvent = None):
+        super().__init__(name, type, DeclarationType.EVENT.value, props)
+        self.evt = evt
+    
+    def to_obj(self):
+        return VariableEvent(self.name)
+        
+class AssetDeclaration(Declaration):
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
+        super().__init__(name, type, DeclarationType.ASSET.value, props)
+
+class RoleDeclaration(Declaration):
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
+        super().__init__(name, type, DeclarationType.ROLE.value, props)

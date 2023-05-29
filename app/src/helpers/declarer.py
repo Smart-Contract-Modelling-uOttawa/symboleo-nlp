@@ -3,7 +3,9 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration, DeclarationProp
 
+# KILL THIS
 class Declarer:
+
     @staticmethod
     def declare(dm: DomainModel, obj_type: str, obj_name: str, obj_key: str, props: List = []) -> Declaration:
         dm_obj: DomainObject = dm.__dict__[obj_type][obj_name]

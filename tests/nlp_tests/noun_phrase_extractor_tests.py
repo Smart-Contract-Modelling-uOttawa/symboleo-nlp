@@ -8,6 +8,7 @@ from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import Declaration
 from tests.helpers.test_objects import NounPhrases
 from tests.helpers.test_nlp import TestNLP
+from tests.helpers.test_contract import get_test_contract_for_assets
 from app.src.extractors.custom_event.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
 from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
@@ -21,7 +22,9 @@ test_suite = [
     ('pets', NounPhrases.pets()),
     ('renter', NounPhrases.renter()),
     ('the original digital photo files', NounPhrases.photos()),
-    ('Dolphin', NounPhrases.dolphin())
+    ('Dolphin', NounPhrases.dolphin()),
+    ('$100', NounPhrases.hundred_dollars()),
+    ('CAD', NounPhrases.cad()),
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority
@@ -32,22 +35,12 @@ class NounPhraseExtractorTests(unittest.TestCase):
         nlp = TestNLP.get_nlp()
         asset_type_extractor = AssetTypeExtractor(nlp)
         self.sut = NounPhraseExtractor(nlp, asset_type_extractor)
-        declarations: Dict[str, Declaration] = {
-            'buyer': Declaration('buyer', 'Buyer', 'roles', []),
-            'renter': Declaration('renter', 'Renter', 'roles', []),
-            'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
-            'property': Declaration('property', 'Property', 'assets', []),
-        }
-        self.contract = SymboleoContract(
-            None,
-            ContractSpec('', [], declarations, [], [], {}, {}, {}, []),
-            None
-        )
-
 
     def test_np_extractor(self):
+        contract = get_test_contract_for_assets()
+
         for test_val, exp_val in test_suite:
-            res = self.sut.extract(test_val, self.contract)
+            res = self.sut.extract(test_val, contract)
             # res.print_me()
             # print('----')
             # exp_val.print_me()

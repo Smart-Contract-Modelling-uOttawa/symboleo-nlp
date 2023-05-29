@@ -14,7 +14,7 @@ class NounPhrases:
     pets =  lambda: NounPhrase('pets', 'pets', is_plural=True, asset_type='Pets')
     the_seller = lambda: NounPhrase('the seller', 'seller', is_role=True, det = 'the', asset_type='Role')
     buyer = lambda: NounPhrase('buyer', 'buyer', is_role=True, asset_type='Role')
-    hundred_dollars = lambda: NounPhrase('$100', '$100', asset_type='Money')
+    hundred_dollars = lambda: NounPhrase('$100', '100', asset_type='Money')
     legal_pro = lambda: NounPhrase('a legal professional', 'professional', det='a', adjs=['legal'], asset_type='Professional')
     canada = lambda: NounPhrase('Canada', 'Canada', asset_type='Location')
     property = lambda: NounPhrase('property', 'property', asset_type='Property')
@@ -22,6 +22,10 @@ class NounPhrases:
     renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
     photos = lambda: NounPhrase('the original digital photo files', 'files', True, False, 'the', ['original', 'digital', 'photo'], 'Files')
     dolphin = lambda: NounPhrase('Dolphin', 'Dolphin', False, True, asset_type='Role')
+    cad = lambda: NounPhrase('CAD', 'CAD', False, False, asset_type='Currency')
+
+    def date_np(date_str):
+        return NounPhrase(date_str, date_str, asset_type='Date')
 
 class Verbs:
     become = lambda: Verb('become', 'become', [VerbType.LINKING], VerbConjugations('become', 'becomes', 'became', 'becoming'))

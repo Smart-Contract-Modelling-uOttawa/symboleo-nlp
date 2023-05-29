@@ -12,22 +12,22 @@ class ContractSpec:
         id: str,
         parameters: List[ContractSpecParameter],
         declarations: Dict[str, Declaration],
-        preconditions: List[Proposition],
-        postconditions: List[Proposition],
         obligations: Dict[str, Obligation],
-        surviving_obligations: Dict[str, Obligation],
         powers: Dict[str,Power],
-        constraints: List[Proposition]
+        preconditions: List[Proposition] = None,
+        postconditions: List[Proposition] = None,
+        surviving_obligations: Dict[str, Obligation] = None,
+        constraints: List[Proposition] = None
     ):
         self.id = id
         self.parameters = parameters
         self.declarations = declarations
-        self.preconditions = preconditions
-        self.postconditions = postconditions
         self.obligations = obligations
-        self.surviving_obligations = surviving_obligations
         self.powers = powers
-        self.constraints = constraints
+        self.preconditions = preconditions or []
+        self.postconditions = postconditions or []
+        self.surviving_obligations = surviving_obligations or {}
+        self.constraints = constraints or []
 
     def __eq__(self, other: ContractSpec) -> bool:
         return self.id == other.id and \

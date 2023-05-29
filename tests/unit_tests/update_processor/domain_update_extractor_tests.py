@@ -40,7 +40,7 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         domain_obj = DomainObject('a', 'b', [])
         self.domain_mapper.map = MagicMock(return_value=domain_obj)
 
-        result = self.sut.extract(pattern)
+        result = self.sut.extract(pattern, None)
 
         self.assertEqual(len(result.declarations), 3)
         self.assertEqual(len(result.domain_objects), 3)
@@ -56,7 +56,7 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         self.event_decl_mapper.map = MagicMock(return_value=None)
         self.domain_mapper.map = MagicMock(return_value=None)
 
-        result = self.sut.extract(pattern)
+        result = self.sut.extract(pattern, None)
 
         self.assertEqual(len(result.declarations), 0)
         self.assertEqual(len(result.domain_objects), 0)

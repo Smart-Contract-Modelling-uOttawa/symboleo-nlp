@@ -3,6 +3,7 @@ from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.sym_updaters.custom_event.event_declaration_mapper import IMapEventToDeclaration
 from app.src.sym_updaters.custom_event.asset_declaration_mapper import IMapAssetDeclarations
 from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
@@ -17,7 +18,7 @@ class DomainUpdates:
         self.domain_objects = domain_objects
 
 class IExtractDomainUpdates:
-    def extract(self, pattern: Pattern) -> DomainUpdates:
+    def extract(self, pattern: Pattern, contract: SymboleoContract) -> DomainUpdates:
         raise NotImplementedError()
     
 class DomainUpdateExtractor(IExtractDomainUpdates):
@@ -31,15 +32,14 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         self.__event_decl_mapper = event_decl_mapper
         self.__domain_mapper = domain_mapper
     
-    def extract(self, pattern: Pattern) -> DomainUpdates:
+    def extract(self, pattern: Pattern, contract: SymboleoContract) -> DomainUpdates:
         declarations = []
         domain_objects = []
 
-        if isinstance(pattern, EventPattern):
+        if isinstance(pattern, EventPattern) and isinstance(pattern.event, CustomEvent):
             evt = pattern.event
 
-            # May need to pass in existing declarations from the contract
-            asset_decls = self.__asset_decl_mapper.map(evt)
+            asset_decls = self.__asset_decl_mapper.map(evt, contract)
             declarations.extend(asset_decls)
 
             # Might then be passing asset_decls into this

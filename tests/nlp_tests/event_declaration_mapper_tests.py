@@ -44,7 +44,7 @@ test_suite = [
         CustomEvents.paying(),
         Declaration('evt_pay', 'Pay', 'events', [
             DeclarationProp('paying_agent', 'buyer', 'Role'),
-            DeclarationProp('paid_object', '$100', 'Money'), 
+            DeclarationProp('paid_object', '100', 'Money'), 
             DeclarationProp('paying_target', 'the seller', 'Role'), 
             DeclarationProp('pay_method', 'credit card', 'PaymentMethod'),
         ])
@@ -61,8 +61,8 @@ class EventDeclarationMapperFullTests(unittest.TestCase):
         for evt, exp_res in test_suite:
             res = self.sut.map(evt)
 
-            #res.print_me()
-            #exp_res.print_me()
+            # res.print_me()
+            # exp_res.print_me()
 
             self.assertEqual(exp_res, res )
     

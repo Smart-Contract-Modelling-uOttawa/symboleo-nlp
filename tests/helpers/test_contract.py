@@ -1,6 +1,7 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.domain_model import DomainModel, DomainEnum
+from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import Role, DomainEvent, Asset
 from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.predicate_function import PredicateFunctionHappens
@@ -10,6 +11,32 @@ from app.classes.spec.nl_template import NLTemplate
 class FakeSym:
     def to_sym(self):
         return ''
+
+def get_test_contract_for_assets():
+    return SymboleoContract(
+            domain_model = DomainModel(
+                'test',
+                roles={},
+                events={},
+                assets={},
+                enums=[
+                    DomainEnum('Currency', ['CAD', 'USD'])
+                ] ),
+            contract_spec=ContractSpec(
+                'test',
+                parameters=[],
+                declarations = {
+                    'buyer': Declaration('buyer', 'Buyer', 'roles', []),
+                    'renter': Declaration('renter', 'Renter', 'roles', []),
+                    'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
+                    'property': Declaration('property', 'Property', 'assets', []),
+                },
+                obligations={},
+                powers={}
+            ),
+            nl_template=None
+        )
+
 
 def get_test_contract():
     # TODO: Can make this more realistic

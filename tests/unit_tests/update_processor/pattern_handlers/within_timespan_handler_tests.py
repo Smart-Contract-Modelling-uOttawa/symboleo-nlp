@@ -32,7 +32,7 @@ class WithinTimespanHandlerTests(unittest.TestCase):
 
         result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
-        exp_res = 'test: Obligation(partyA, partyB, true, WhappensBefore(evt_a, Date.Add(evt_pay, 2, days)));'
+        exp_res = 'test: Obligation(partyA, partyB, true, WhappensBefore(evt_a, Date.add(evt_pay, 2, days)));'
         
         self.assertEqual(len(result), 1)
         self.assertEqual(new_norm.to_sym(), exp_res)

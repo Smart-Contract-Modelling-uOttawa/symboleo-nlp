@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.patterns.pattern import EventPattern
+from app.classes.custom_event.base_event import StandardObligationEvent
 from app.classes.elements.standard_event_elements import *
 from app.classes.template_event.obligation_subject import ObligationSubject
 from app.classes.custom_event.noun_phrase import NounPhrase
@@ -19,9 +20,10 @@ class ObligationSubjectUpdaterTests(unittest.TestCase):
         pattern = EventPattern()
         self.sut.update(node, pattern)
 
-        expected_np = NounPhrase('test obligation', 'test obligation')
-
-        self.assertEqual(pattern.event.subj, expected_np)
+        if isinstance(pattern.event, StandardObligationEvent):
+            self.assertEqual(pattern.event.ob_var, 'test')
+        else:
+            self.assertTrue(False)
 
 if __name__ == '__main__':
     unittest.main()

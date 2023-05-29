@@ -1,7 +1,7 @@
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.parameter_config import ParameterConfig
 
-sample_nl_template = NLTemplate(
+nl_template = NLTemplate(
     template_dict = {
         'delivery': TemplateObj(
             'The Seller shall deliver the Order in one delivery to the Buyer [P2]',
@@ -26,8 +26,8 @@ sample_nl_template = NLTemplate(
             'Both Seller and Buyer must keep the contents of this contract confidential [P2]',
             {
                 'P2': [
-                    ParameterConfig('surviving_obligations', 'so1', 'consequent'),
-                    ParameterConfig('surviving_obligations', 'so2', 'consequent')
+                    ParameterConfig('surviving_obligations', 'so_disclosure_seller', 'consequent'),
+                    ParameterConfig('surviving_obligations', 'so_disclosure_buyer', 'consequent')
                 ]
             }
         ),

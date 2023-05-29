@@ -7,16 +7,11 @@ def get_domain_model():
         roles = {
             'Seller': Role(
                 name = 'Seller',
-                props = [
-                    DomainProp('returnAddress', 'String'),
-                    DomainProp('name','String'),
-                ]
+                props = []
             ),
             'Buyer': Role(
                 name = 'Buyer',
-                props = [
-                    DomainProp('warehouse', 'String')
-                ]
+                props = []
             )
         },
         enums = [
@@ -24,26 +19,25 @@ def get_domain_model():
             DomainEnum('MeatQuality', ['PRIME', 'AAA', 'AA', 'A'])
         ],
         events = {
-            'Delivered': DomainEvent(
-                name = 'Delivered',
+            'Deliver': DomainEvent(
+                name = 'Deliver',
                 props = [
                     DomainProp('item', 'Meat'),
-                    DomainProp('deliveryAddress', 'String'),
-                    DomainProp('delDueDate', 'Date')
+                    DomainProp('deliverer', 'Role'),
+                    DomainProp('recipient', 'Role')
                 ]
             ),
-            'Paid': DomainEvent(
-                name = 'Paid',
+            'Pay': DomainEvent(
+                name = 'Pay',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
-                    DomainProp('from', 'Buyer'),
-                    DomainProp('to', 'Seller'),
-                    DomainProp('payDueDate', 'Date')
+                    DomainProp('from', 'Role'),
+                    DomainProp('to', 'Role')
                 ]
             ),
-            'PaidLate': DomainEvent(
-                name = 'PaidLate',
+            'PayLate': DomainEvent(
+                name = 'PayLate',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
@@ -51,8 +45,8 @@ def get_domain_model():
                     DomainProp('to', 'Seller')
                 ]
             ),
-            'Disclosed': DomainEvent(
-                name = 'Disclosed',
+            'Disclose': DomainEvent(
+                name = 'Disclose',
                 props = []
             )
         },
@@ -61,14 +55,20 @@ def get_domain_model():
                 name = 'PerishableGood',
                 props = [
                     DomainProp('quantity', 'Number'),
-                    DomainProp('quality', 'MeatQuality')
+                    DomainProp('unit', 'String'),
                 ]
             )
         }   
     )
-    
-    # Add aliases
+        
+    # # Add aliases
     perishableGood = domain_model.assets['PerishableGood']
-    domain_model.assets['Meat'] = Asset('Meat', [], perishableGood)
+    domain_model.assets['Meat'] = Asset(
+        'Meat', 
+        [
+            DomainProp('quality', 'MeatQuality')
+        ], 
+        perishableGood
+    )
 
     return domain_model
