@@ -1,0 +1,3 @@
+A - nl_key: the Franchise Fee shall be paid to Grantor TODO
+E - nl_key: the Franchise Fee shall be paid to Grantor before March 31, 2017.
+

@@ -1,5 +1,5 @@
 from typing import List
-from tests.test_suites.rq3.TestSymboleoContract import TestInfo, TestCase
+from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel

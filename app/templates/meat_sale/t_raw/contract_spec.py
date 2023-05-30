@@ -17,8 +17,7 @@ from app.classes.spec.proposition import PAnd, PComparison, PEquality, Propositi
 arg_values = {
      'buyer_id': 'buyer',
      'seller_id': 'seller',
-     'quantity': '100',
-     'quantity_unit': 'kilograms',
+     'quantity_kg': '100',
      'quality': 'PRIME',
      'amount': '100',
      'currency': 'CAD',
@@ -31,8 +30,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     parameters = [
         Parm('buyer_id', 'Buyer'),
         Parm('seller_id', 'Seller'),
-        Parm('quantity', 'Number'),
-        Parm('quantity_unit', 'String'),
+        Parm('quantity_kg', 'Number'),
         Parm('quality', 'MeatQuality'),
         Parm('amount', 'Number'),
         Parm('currency', 'Currency'),
@@ -52,8 +50,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     BUYER = buyer.to_obj()
 
     goods = AssetDeclaration('goods', 'Meat', [
-        DeclarationProp('quantity', arg_dict["quantity"], 'Amount'),
-        DeclarationProp('unit', f'"{arg_dict["quantity_unit"]}"', 'String'),
+        DeclarationProp('quantity_kg', arg_dict["quantity_kg"], 'Number'),
         DeclarationProp('quality', f'MeatQuality({arg_dict["quality"]})', 'MeatQuality')
     ])
 

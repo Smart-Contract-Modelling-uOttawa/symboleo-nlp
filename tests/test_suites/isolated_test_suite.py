@@ -2,11 +2,11 @@ import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
-from tests.test_suites.rq3.dolphin import dolphin_test_case
-from tests.test_suites.rq3.maimon import maimon_test_case
-from tests.test_suites.rq3.franchise import franchise_test_case
-from tests.test_suites.rq3.fox import fox_test_case
-from tests.test_suites.rq3.letter import letter_test_case
+from tests.test_suites.isolated_test_cases.dolphin import dolphin_test_case
+from tests.test_suites.isolated_test_cases.maimon import maimon_test_case
+from tests.test_suites.isolated_test_cases.franchise import franchise_test_case
+from tests.test_suites.isolated_test_cases.fox import fox_test_case
+from tests.test_suites.isolated_test_cases.letter import letter_test_case
 
 
 test_suite = [
@@ -23,12 +23,12 @@ class IsolatedTests(unittest.TestCase):
         self.updater = ContractUpdaterBuilder.build()
 
     def test_isolated(self):
-        
+        filepath = 'tests/test_suites/isolated_results'
         for test_case in test_suite:
             k = test_case.case_id
             contract = test_case.init_sym
             
-            with open(f'tests/test_results/{k}_sym_init.txt', 'w') as f:
+            with open(f'{filepath}/{k}_sym_init.txt', 'w') as f:
                 f.write(contract.to_sym())
             
             self.updater.update(
@@ -39,14 +39,14 @@ class IsolatedTests(unittest.TestCase):
             result = contract.to_sym()
             result_nl = contract.nl_template.stringify()
             
-            with open(f'tests/test_results/{k}_sym_actual.txt', 'w') as f:
+            with open(f'{filepath}/{k}_sym_actual.txt', 'w') as f:
                 f.write(result)
             
-            with open(f'tests/test_results/{k}_sym_expected.txt', 'w') as f:
+            with open(f'{filepath}/{k}_sym_expected.txt', 'w') as f:
                 f.write(test_case.exp_sym.to_sym())
 
             nl_summary = self._build_nl_summary(contract, test_case.exp_sym)
-            with open(f'tests/test_results/{k}_nl.txt', 'w') as f:
+            with open(f'{filepath}/{k}_nl.txt', 'w') as f:
                 f.write(nl_summary)
 
             # Verify Symboleo

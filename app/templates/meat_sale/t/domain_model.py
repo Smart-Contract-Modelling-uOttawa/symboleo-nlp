@@ -54,8 +54,7 @@ def get_domain_model():
             'PerishableGood': Asset(
                 name = 'PerishableGood',
                 props = [
-                    DomainProp('quantity', 'Number'),
-                    DomainProp('unit', 'String'),
+                    DomainProp('quantity_kg', 'Number')
                 ]
             )
         }   

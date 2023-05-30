@@ -11,8 +11,6 @@ from app.templates.meat_sale.t.domain_model import get_domain_model as get_meat_
 from app.templates.meat_sale.t.contract_spec import get_contract_spec as get_meat_sale_cs
 from app.templates.meat_sale.t.nl_template import nl_template as meat_sale_nl
 
-from app.templates.meat_sale.test_suite import test_suite as meat_sale_test_suite
-
 
 # ## RENTAL AGREEMENT
 # from app.templates.rental_agreement.t.rental_domain import get_domain_model as get_rental_t_dm
@@ -22,7 +20,6 @@ from app.templates.meat_sale.test_suite import test_suite as meat_sale_test_suit
 # from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model as get_rental_raw_dm
 # from app.templates.rental_agreement.t_raw.rental_contract_spec import get_contract_spec as get_rental_raw_cs
 # from app.templates.rental_agreement.t_raw.nl_template import rental_nl_template as rental_raw_nl
-# from app.templates.rental_agreement.test_suite import test_suite as rental_test_suite
 
 # ## PROP MGMT
 # from app.templates.prop_mgmt.t.domain_model import get_domain_model as get_prop_t_dm
@@ -32,7 +29,6 @@ from app.templates.meat_sale.test_suite import test_suite as meat_sale_test_suit
 # from app.templates.prop_mgmt.t_raw.domain_model import get_domain_model as get_prop_raw_dm
 # from app.templates.prop_mgmt.t_raw.contract_spec import get_contract_spec as get_prop_raw_cs
 # from app.templates.prop_mgmt.t_raw.nl_template import nl_template as prop_raw_nl
-# from app.templates.prop_mgmt.test_suite import test_suite as prop_test_suite
 
 # ## Gridiron
 # from app.templates.gridiron.t.domain_model import get_domain_model as get_gridiron_t_dm
@@ -43,14 +39,8 @@ from app.templates.meat_sale.test_suite import test_suite as meat_sale_test_suit
 # from app.templates.gridiron.t_raw.contract_spec import get_contract_spec as get_gridiron_raw_cs
 # from app.templates.gridiron.t_raw.nl_template import nl_template as gridiron_raw_nl
 
-# from app.templates.gridiron.test_suite import test_suite as gridiron_test_suite
-
-
-
-
 
 template_dict: Dict[str, SymboleoContract] = {
-
     'meat_sale_raw':  SymboleoContract(
         get_meat_sale_raw_dm(),
         get_meat_sale_raw_cs(), 
@@ -114,14 +104,6 @@ template_dict: Dict[str, SymboleoContract] = {
     # ),
 }
 
-test_suite_dict: Dict[str, List[UpdateConfig]] = {
-    'meat_sale': meat_sale_test_suite,
-    # 'rental': rental_test_suite,
-    # 'prop': prop_test_suite,
-    # 'gridiron': gridiron_test_suite,
-}
-
-
 
 def get_template(template_str: str) -> SymboleoContract: #pragma: no cover
     if template_str in template_dict:
@@ -129,9 +111,3 @@ def get_template(template_str: str) -> SymboleoContract: #pragma: no cover
     else:
         raise ValueError(f'Template {template_str} not found')
 
-
-def get_test_suite(template_str: str) -> List[UpdateConfig]:
-    if template_str in test_suite_dict:
-        return test_suite_dict[template_str]
-    else:
-        raise ValueError(f'Template {template_str} not found')

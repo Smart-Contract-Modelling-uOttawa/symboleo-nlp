@@ -1,13 +1,24 @@
 import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.templates.template_getter import get_template, get_test_suite
+from app.templates.template_getter import get_template
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
+
+
+from  tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
+
+
+test_dict = {
+    'meat_sale': meat_sale,
+
+}
 
 class FullStackTests(unittest.TestCase):
     def setUp(self) -> None:
         self.updater = ContractUpdaterBuilder.build()
 
     def test_full_stack(self):
+        filepath = 'tests/test_suites/full_results'
+
         target_keys = [
             'meat_sale',
             # 'rental',
@@ -17,7 +28,7 @@ class FullStackTests(unittest.TestCase):
         for k in target_keys:
             contract = get_template(f'{k}')
             expected_contract = get_template(f'{k}_raw')
-            all_ops = get_test_suite(k)
+            all_ops = test_dict[k]
             expected_sym = expected_contract.to_sym()
             expected_nl = expected_contract.nl_template.stringify()
 
@@ -27,14 +38,14 @@ class FullStackTests(unittest.TestCase):
             result = contract.to_sym()
             result_nl = contract.nl_template.stringify()
             
-            with open(f'tests/test_results/{k}_sym_actual.txt', 'w') as f:
+            with open(f'{filepath}/{k}_sym_actual.txt', 'w') as f:
                 f.write(result)
             
-            with open(f'tests/test_results/{k}_sym_expected.txt', 'w') as f:
+            with open(f'{filepath}/{k}_sym_expected.txt', 'w') as f:
                 f.write(expected_sym)
 
             nl_summary = self._build_nl_summary(contract, expected_contract)
-            with open(f'tests/test_results/{k}_nl.txt', 'w') as f:
+            with open(f'{filepath}/{k}_nl.txt', 'w') as f:
                 f.write(nl_summary)
 
             # Verify Symboleo
@@ -43,7 +54,8 @@ class FullStackTests(unittest.TestCase):
             # Verify NL
             #self.assertEqual(result_nl, expected_nl)
 
-    
+
+    # Pull out into a helper..
     def _build_nl_summary(self, contract: SymboleoContract, expected_contract: SymboleoContract):
         nl_summary = ''
         #nl_summary = f'==ACTUAL==\n{result_nl}\n\n==EXPECTED==\n{expected_nl}\n'

@@ -1,0 +1,28 @@
+Domain franchise_dm
+  Grantor isA Role;
+  Grantee isA Role;
+  PayFee isAn Event with payer: Role, payee: Role;
+
+endDomain
+
+Contract franchise_cs(  )
+
+Declarations
+  grantor: Grantor;
+  grantee: Grantee;
+  evt_pay_fee: PayFee with payer := grantee, payee := grantor;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_fee: Obligation(grantee, grantor, true, Happens(evt_pay_fee));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

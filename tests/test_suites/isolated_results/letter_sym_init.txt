@@ -1,0 +1,28 @@
+Domain letter_dm
+  Buyer isA Role;
+  Bank isA Role;
+  OpenLetter isAn Event with opener: Role, partner: Role;
+
+endDomain
+
+Contract letter_cs(  )
+
+Declarations
+  buyer: Buyer;
+  bank: Bank;
+  evt_open_letter: OpenLetter with opener := buyer, partner := bank;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_open_letter: Obligation(buyer, bank, true, Happens(evt_open_letter));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract
