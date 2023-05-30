@@ -28,8 +28,8 @@ arg_values = {
 
 def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     parameters = [
-        Parm('buyer_id', 'Buyer'),
-        Parm('seller_id', 'Seller'),
+        Parm('buyer_id', 'String'),
+        Parm('seller_id', 'String'),
         Parm('quantity_kg', 'Number'),
         Parm('quality', 'MeatQuality'),
         Parm('amount', 'Number'),

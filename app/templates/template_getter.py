@@ -2,7 +2,7 @@ from typing import Dict, List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_updater_config import UpdateConfig
 
-## MEAT SALE
+## meat_sale
 from app.templates.meat_sale.t_raw.domain_model import get_domain_model as get_meat_sale_raw_dm
 from app.templates.meat_sale.t_raw.contract_spec import get_contract_spec as get_meat_sale_raw_cs
 from app.templates.meat_sale.t_raw.nl_template import nl_template as meat_sale_raw_nl
@@ -11,15 +11,14 @@ from app.templates.meat_sale.t.domain_model import get_domain_model as get_meat_
 from app.templates.meat_sale.t.contract_spec import get_contract_spec as get_meat_sale_cs
 from app.templates.meat_sale.t.nl_template import nl_template as meat_sale_nl
 
+## rental
+from app.templates.rental.t.domain_model import get_domain_model as get_rental_t_dm
+from app.templates.rental.t.contract_spec import get_contract_spec as get_rental_t_cs
+from app.templates.rental.t.nl_template import nl_template as rental_t_nl
 
-# ## RENTAL AGREEMENT
-# from app.templates.rental_agreement.t.rental_domain import get_domain_model as get_rental_t_dm
-# from app.templates.rental_agreement.t.rental_contract_spec import get_contract_spec as get_rental_t_cs
-# from app.templates.rental_agreement.t.nl_template import rental_nl_template as rental_t_nl
-
-# from app.templates.rental_agreement.t_raw.rental_domain import get_domain_model as get_rental_raw_dm
-# from app.templates.rental_agreement.t_raw.rental_contract_spec import get_contract_spec as get_rental_raw_cs
-# from app.templates.rental_agreement.t_raw.nl_template import rental_nl_template as rental_raw_nl
+from app.templates.rental.t_raw.domain_model import get_domain_model as get_rental_raw_dm
+from app.templates.rental.t_raw.contract_spec import get_contract_spec as get_rental_raw_cs
+from app.templates.rental.t_raw.nl_template import nl_template as rental_raw_nl
 
 # ## PROP MGMT
 # from app.templates.prop_mgmt.t.domain_model import get_domain_model as get_prop_t_dm
@@ -52,22 +51,17 @@ template_dict: Dict[str, SymboleoContract] = {
         meat_sale_nl),
     
 
-        
-    # 'goods_sale':  SymboleoContract(
-    #     goods_sale_domain_model_template,
-    #     goods_sale_contract_spec_template, 
-    #     goods_sale_nl_template),
-
-    # 'rental_raw': SymboleoContract(
-    #     get_rental_raw_dm(),
-    #     get_rental_raw_cs(),
-    #     rental_raw_nl
-    # ),
-    # 'rental_t': SymboleoContract(
-    #     get_rental_t_dm(),
-    #     get_rental_t_cs(),
-    #     rental_t_nl
-    # ),
+    'rental_raw': SymboleoContract(
+        get_rental_raw_dm(),
+        get_rental_raw_cs(),
+        rental_raw_nl
+    ),
+    
+    'rental': SymboleoContract(
+        get_rental_t_dm(),
+        get_rental_t_cs(),
+        rental_t_nl
+    ),
 
     # 'sample_raw': SymboleoContract(
     #     get_sample_raw_dm(),

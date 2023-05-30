@@ -53,6 +53,9 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
             asset_decls = self.__asset_decl_mapper.map(evt, contract)
             declarations.extend(asset_decls)
 
+            # for x in asset_decls:
+            #     x.print_me()
+
             # Might then be passing asset_decls into this
             # Any Noun phrase should be an asset by this point... I think...
             event_decl = self.__event_decl_mapper.map(evt)

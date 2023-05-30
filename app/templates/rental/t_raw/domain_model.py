@@ -7,56 +7,43 @@ def get_domain_model():
         roles = {
             'Landlord': Role(
                 name = 'Landlord',
-                props = [
-                    DomainProp('name', 'String'),
-                ]
+                props = []
             ),
             'Renter': Role(
                 name = 'Renter',
-                props = [
-                    DomainProp('name', 'String')
-                ]
+                props = []
             )
         },
         enums = [
-            DomainEnum('Currency', ['CAD', 'USD', 'EUR']),
-            DomainEnum('PaymentMethod', ['Cash', 'Cheque', 'ETransfer'])
+            DomainEnum('Currency', ['CAD', 'USD', 'EUR'])
         ],
 
         events = {
-            'Paid': DomainEvent(
-                name = 'Paid',
+            'Pay': DomainEvent(
+                name = 'Pay',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
-                    DomainProp('paymentMethod', 'PaymentMethod'),
                     DomainProp('from', 'Role'),
                     DomainProp('to', 'Role'),
                 ]
             ),
-            'Occupy': DomainEvent(
-                name = 'Occupy',
+            'OccupyProperty': DomainEvent(
+                name = 'OccupyProperty',
                 props = [
                     DomainProp('agent', 'Role'),
                     DomainProp('property', 'RentalProperty')
                 ]
             ),
-            'ProvideTerminationNotice': DomainEvent(
-                name = 'ProvideTerminationNotice',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('daysInAdvance', 'Number')
-                ]
-            ),
-            'Abandon': DomainEvent(
-                name = 'Abandon',
+            'AbandonProperty': DomainEvent(
+                name = 'AbandonProperty',
                 props = [
                     DomainProp('agent', 'Role'),
                     DomainProp('property', 'RentalProperty')
                 ]
             ),
-            'KeepPets': DomainEvent(
-                name = 'KeepPets',
+            'KeepPet': DomainEvent(
+                name = 'KeepPet',
                 props = [
                     DomainProp('agent', 'Role')
                 ]
@@ -65,13 +52,6 @@ def get_domain_model():
                 name = 'AllowPets',
                 props = [
                     DomainProp('grantor', 'Role')
-                ]
-            ),
-            # Placeholder until I figure out frequency...
-            'DatePasses': DomainEvent(
-                name = 'DatePasses',
-                props = [
-                    DomainProp('date', 'Date')
                 ]
             )
         },

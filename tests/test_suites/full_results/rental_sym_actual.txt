@@ -1,0 +1,50 @@
+Domain propertyRentalDomain
+  Landlord isA Role;
+  Renter isA Role;
+  Currency isAn Enumeration(CAD, USD, EUR);
+  RentalProperty isAn Asset with address: String;
+  Pets isAn Asset;
+  Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
+  KeepPet isAn Event with agent: Role;
+  Occupy isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
+  Allow isAn Event with allowing_agent: Role, allowed_object: Pets;
+  Abandon isAn Event with abandoning_agent: Role, abandoned_object: RentalProperty;
+
+endDomain
+
+Contract PropertyRental( renter_id: String, landlord_id: String, property_address: String, rent_amount: Number, currency: Currency, late_fee_amount: Number, deposit_amount: Number )
+
+Declarations
+  renter: Renter;
+  landlord: Landlord;
+  property: RentalProperty;
+  evt_pay_rent: Pay with amount := 1500, currency := Currency(CAD), from := renter, to := landlord;
+  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
+  evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
+  evt_return_deposit: Pay with amount := 1000, currency := Currency(CAD), from := landlord, to := renter;
+  evt_keep_pet: KeepPet with agent := renter;
+  evt_occupy: Occupy with occupying_agent := renter, occupied_object := property;
+  pets: Pets;
+  evt_allow: Allow with allowing_agent := landlord, allowed_object := pets;
+  evt_abandon: Abandon with abandoning_agent := renter, abandoned_object := property;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_rent: Obligation(renter, landlord, true, Happens(evt_pay_rent));
+  ob_late_payment: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_rent)), Happens(evt_pay_late));
+  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy));
+  ob_return_deposit: Obligation(landlord, renter, Happens(Terminated(self)), Happens(evt_return_deposit));
+  ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
+
+Surviving Obligations
+
+Powers
+  pow_termination_abandon: Power(landlord, renter, Happens(evt_abandon), Terminated(self));
+  pow_suspend_ob_no_pets: Happens(evt_allow) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
+
+Constraints
+
+endContract

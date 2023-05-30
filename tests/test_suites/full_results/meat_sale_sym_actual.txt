@@ -12,7 +12,7 @@ Domain meatSaleDomain
 
 endDomain
 
-Contract MeatSale( buyer_id: Buyer, seller_id: Seller, quantity_kg: Number, quality: MeatQuality, amount: Number, currency: Currency, interest_rate: Number )
+Contract MeatSale( buyer_id: String, seller_id: String, quantity_kg: Number, quality: MeatQuality, amount: Number, currency: Currency, interest_rate: Number )
 
 Declarations
   seller: Seller;

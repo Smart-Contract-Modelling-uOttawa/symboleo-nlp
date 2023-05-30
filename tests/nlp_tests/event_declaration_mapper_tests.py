@@ -13,7 +13,7 @@ test_suite = [
         CustomEvents.occupy_property(),
         Declaration('evt_occupy', 'Occupy', 'events', [
             DeclarationProp('occupying_agent', 'renter', 'Role'),
-            DeclarationProp('occupied_object', 'property', 'Property'),
+            DeclarationProp('occupied_object', 'property', 'RentalProperty'),
         ])
     ),
 
@@ -21,7 +21,7 @@ test_suite = [
         CustomEvents.abandon_property(),
         Declaration('evt_abandon', 'Abandon', 'events', [
             DeclarationProp('abandonning_agent', 'renter', 'Role'),
-            DeclarationProp('abandonned_object', 'property', 'Property'),
+            DeclarationProp('abandonned_object', 'property', 'RentalProperty'),
         ])
     ),
 

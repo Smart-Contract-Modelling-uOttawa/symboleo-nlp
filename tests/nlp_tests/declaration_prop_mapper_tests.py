@@ -18,7 +18,7 @@ subj_test_suite = [
 dobj_test_suite = [
     (
         CustomEvents.occupy_property(),
-        DeclarationProp('occupied_object', 'property', 'Property')
+        DeclarationProp('occupied_object', 'property', 'RentalProperty')
     )
 ]
 

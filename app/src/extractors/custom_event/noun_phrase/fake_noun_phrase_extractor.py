@@ -10,17 +10,25 @@ class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):
         self.__dict = {
             'apple pie': NounPhrases.apple_pie(),
             'bob': NounPhrases.bob(),
+
             'buyer': NounPhrases.buyer(),
             'seller': NounPhrases.the_seller(),
+
+            'renter': NounPhrases.renter(),
+            'landlord': NounPhrases.landlord(),
+            'property': NounPhrases.property(),
+            'the property': NounPhrases.property(),
+
             'legal proceedings': NounPhrases.legal_proceedings(),
             'pets': NounPhrases.pets(),
             'credit card': NounPhrases.credit_card(),
-            'the property': NounPhrases.property(),
+            
             'the original digital photo files': NounPhrases.photos(),
             'Dolphin': NounPhrases.dolphin(),
             '$100': NounPhrases.hundred_dollars(),
             'CAD': NounPhrases.cad(),
             'March 30, 2024': NounPhrases.date_np('March 30, 2024'),
+
         }
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:

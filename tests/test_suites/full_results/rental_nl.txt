@@ -1,0 +1,24 @@
+A - pay_rent: The monthly rent to be paid by the Renter to the Landlord is $1500. It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on March 1, 2024.
+E - pay_rent: The monthly rent to be paid by the Renter to the Landlord is $1500. It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on March 1, 2024.
+
+A - late_payment: TODO The Landlord is entitled to impose a $50 fine as late fee
+E - late_payment: In the event of late payments made by the Renter, the Landlord is entitled to impose a $50 fine as late fee. 
+
+A - pay_security_deposit: The Renter will pay the Landlord an amount of $1000 as a security deposit to cover the cost of any damages suffered by the premises and cleaning TODO
+E - pay_security_deposit: Prior to taking occupancy of the premises, the Renter will pay the Landlord an amount of $1000 as a security deposit to cover the cost of any damages suffered by the premises and cleaning.
+
+A - return_deposit: TODO Such security deposit will be returned to the Renter, provided the premises are left in the same condition as prior to the occupancy
+E - return_deposit: Such security deposit will be returned to the Renter upon the end of this Agreement, provided the premises are left in the same condition as prior to the occupancy.
+
+A - no_pets: The Parties agree that the Renter will not keep any pets on the premises TODO
+E - no_pets: The Parties agree that the Renter will not keep any pets on the premises without obtaining written prior consent from the Landlord.
+
+A - terminate_notice: This Agreement may be terminated in the event that any of the following occurs: 2. At any given time by providing written notice to the other party 30 days prior to terminating the Agreement.
+E - terminate_notice: This Agreement may be terminated in the event that any of the following occurs: 2. At any given time by providing written notice to the other party 30 days prior to terminating the Agreement.
+
+A - terminate_abandon: [P1] the Landlord may terminate this Agreement.
+E - terminate_abandon: In the event that the Renter abandons the premises during the term of this Agreement, the Landlord may terminate this Agreement.
+
+A - pow_termination_abandon: TODO landlord may terminate the contract.
+E - pow_termination_abandon: 
+

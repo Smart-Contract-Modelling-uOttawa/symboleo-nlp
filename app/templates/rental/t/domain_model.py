@@ -7,44 +7,31 @@ def get_domain_model():
         roles = {
             'Landlord': Role(
                 name = 'Landlord',
-                props = [
-                    DomainProp('name', 'String'),
-                ]
+                props = []
             ),
             'Renter': Role(
                 name = 'Renter',
-                props = [
-                    DomainProp('name', 'String')
-                ]
+                props = []
             )
         },
         enums = [
-            DomainEnum('Currency', ['CAD', 'USD', 'EUR']),
-            DomainEnum('PaymentMethod', ['Cash', 'Cheque', 'ETransfer'])
+            DomainEnum('Currency', ['CAD', 'USD', 'EUR'])
         ],
 
         events = {
-            'Paid': DomainEvent(
-                name = 'Paid',
+            'Pay': DomainEvent(
+                name = 'Pay',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
-                    DomainProp('paymentMethod', 'PaymentMethod'),
                     DomainProp('from', 'Role'),
                     DomainProp('to', 'Role'),
                 ]
             ),
-            'KeepPets': DomainEvent(
-                name = 'KeepPets',
+            'KeepPet': DomainEvent(
+                name = 'KeepPet',
                 props = [
                     DomainProp('agent', 'Role')
-                ]
-            ),
-            # Placeholder until I figure out frequency...
-            'DatePasses': DomainEvent(
-                name = 'DatePasses',
-                props = [
-                    DomainProp('date', 'Date')
                 ]
             )
         },
@@ -58,6 +45,7 @@ def get_domain_model():
         }   
     )
     
-    # Add aliases...
+    # Add aliases
+    # ...
 
     return domain_model

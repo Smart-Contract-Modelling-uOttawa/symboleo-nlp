@@ -29,7 +29,7 @@ def get_test_contract_for_assets():
                     'buyer': Declaration('buyer', 'Buyer', 'roles', []),
                     'renter': Declaration('renter', 'Renter', 'roles', []),
                     'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
-                    'property': Declaration('property', 'Property', 'assets', []),
+                    'property': Declaration('property', 'RentalProperty', 'assets', []),
                 },
                 obligations={},
                 powers={}
