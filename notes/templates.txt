@@ -3,29 +3,13 @@ general
 
 questions
 - are we assuming one obligation per sentence? Not completely...
+-- a few exceptions (e.g. both parties...)
+
 - do date refinements need to be added to the domain? Or just as parameters?
 -- probably parms at the very least
 
-== MEAT SALE ==
+- Is there a need to distinguish between events and violated obligations. Since a violated obligation is still an event expression
 
-If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
-- We have an antecedent - straightforward enough
-- "the Seller may suspend performance of all of its obligations under the agreement until payment is completed"
-- normally with "until EVENT", it would be a HappensBeforeEvent predicate. 
-- But since it is a power... we need to treat it as a conditional. There is no HappensBeforeEvent with powers
-- when the event triggers (payment is completed), the seller must resume obligation.
-- this is a quirk of dealing with powers. May not support this for now
-- In this sense, it is actually functioning similar to "unless". So maybe it IS possible to include..
-
-For resuming delivery, should it be a HappensWithin that uses an obligation state 
-- see t_raw 
-
-For the termination power, we have "unless late delivery exceeds 10 days". 
-- This should be a case of a FALSE trigger being flipped to a Happens(). 
-- But the Happens is essentially a point function (10 days after delivery date)
-- We currently dont support that
-- The other option would be to introduce a new event (e.g. delivery exceeds 10 days)
--- also difficult. May need to think on this one some more
 
 XTEXT
 - role issue 

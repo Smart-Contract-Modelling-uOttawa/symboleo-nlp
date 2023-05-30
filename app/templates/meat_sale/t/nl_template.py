@@ -38,5 +38,11 @@ nl_template = NLTemplate(
                 'P2': [ParameterConfig('powers', 'pow_suspend_delivery', 'consequent')]
             }
         ),
+        # 'terminateContract': TemplateObj(
+        #     'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract [P2].',
+        #     {
+        #         'P2': [ParameterConfig('powers', 'pow_terminate_contract', 'trigger')]
+        #     }
+        # ),
     }
 )

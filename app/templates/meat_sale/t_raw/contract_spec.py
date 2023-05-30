@@ -180,16 +180,13 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 BUYER,
                 PropMaker.make_default(),
                 PropMaker.make(
-                    PredicateFunctionHappensWithin(
+                    PredicateFunctionWHappensBefore(
                         EVT_DISCLOSE,
-                        Interval(IntervalFunction(
-                            StartPoint(),
-                            PointFunction(
-                                PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
-                                6, 
-                                TimeUnit.Months
-                            )
-                        ))
+                        PointFunction(
+                            PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
+                            6, 
+                            TimeUnit.Months
+                        )
                     ),
                     negation = True
                 )
@@ -201,16 +198,13 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 SELLER,
                 PropMaker.make_default(),
                 PropMaker.make(
-                    PredicateFunctionHappensWithin(
+                    PredicateFunctionWHappensBefore(
                         EVT_DISCLOSE,
-                        Interval(IntervalFunction(
-                            StartPoint(),
-                            PointFunction(
-                                PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
-                                6, 
-                                TimeUnit.Months
-                            )
-                        ))
+                        PointFunction(
+                            PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
+                            6, 
+                            TimeUnit.Months
+                        )
                     ),
                     negation = True
                 )
@@ -230,31 +224,39 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 ),
                 PFObligation(PFObligationName.Suspended, 'ob_delivery')
             ),
+
             'pow_resume_ob_delivery': Power(
                 'pow_resume_ob_delivery',
                 PropMaker.make(
-                    PredicateFunctionHappens(
-                        ObligationEvent(ObligationEventName.Fulfilled, 'ob_late_payment')
-                    )
-                    # TODO: Should this be a HappensWithin as follows?
-                    # PredicateFunctionHappensWithin(
-                    #     PAID_LATE_EVENT,
-                    #     ObligationState(ObligationStateName.Suspension, 'ob_delivery')
+                    # PredicateFunctionHappens(
+                    #     ObligationEvent(ObligationEventName.Fulfilled, 'ob_late_payment')
                     # )
+                    PredicateFunctionHappensWithin(
+                        ObligationEvent(ObligationEventName.Fulfilled, 'ob_late_payment'),
+                        ObligationState(ObligationStateName.Suspension, 'ob_delivery')
+                    )
                 ),
                 BUYER,
                 SELLER,
                 PropMaker.make_default(),
                 PFObligation(PFObligationName.Resumed, 'ob_delivery')
             ),
+
             'pow_terminate_contract': Power(
                 'pow_terminate_contract',
                 # TODO: Need a representation for Happens(Point)
                 ## Happens(Date.add(delivery_date, 10, days)) 
+                # NOT HappensBefore(evt_delivery, Date.add(evt_delivery.delivery_due_date, 10, days))
                 PropMaker.make(
-                    PredicateFunctionHappens(
-                        ObligationEvent(ObligationEventName.Violated, 'ob_delivery')
-                    )
+                    PredicateFunctionWHappensBefore(
+                        ObligationEvent(ObligationEventName.Fulfilled, 'ob_delivery'),
+                        PointFunction(
+                            PointVDE('evt_delivery.delivery_due_date'),
+                            10, 
+                            TimeUnit.Days
+                        )
+                    ),
+                    negation = True
                 ),
                 BUYER,
                 SELLER,

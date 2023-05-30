@@ -1,7 +1,7 @@
 import copy
 from app.classes.patterns.for_timespan_following_event import ForTimespanFollowingEvent
 from app.classes.spec.norm import Norm
-from app.classes.spec.predicate_function import PredicateFunctionHappensWithin
+from app.classes.spec.predicate_function import PredicateFunctionHappensWithin, PredicateFunctionWHappensBefore
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE, StartPoint
 from app.classes.spec.point_function import PointFunction
@@ -18,9 +18,8 @@ class ForTimespanFollowingEventHandler(IHandlePatterns):
         timespan = pattern.timespan
 
         init_event = norm.get_default_event('consequent') 
-        point_func = Point(PointFunction(evt, timespan.time_value, timespan.time_unit))
-        interval = Interval(IntervalFunction(StartPoint(), point_func))
-        updated_predicate = PredicateFunctionHappensWithin(init_event, interval)
+        point = Point(PointFunction(evt, timespan.time_value, timespan.time_unit))
+        updated_predicate = PredicateFunctionWHappensBefore(init_event, point)
     
         new_norm = copy.deepcopy(norm)
         new_norm.update('consequent', updated_predicate)

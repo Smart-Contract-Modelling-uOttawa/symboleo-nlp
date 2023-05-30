@@ -22,9 +22,9 @@ from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
 
-# Dolphin agrees to complete its photo-editing services [PARAMETER]'
+# Dolphin agrees to complete its photo-editing services [PARAMETER]
 ## Original: within 14 days of receiving the original digital photo files
-## Mine: within 14 days of Dolphin receiving the original digital photo files
+## CNL: within 14 days of Dolphin receiving the original digital photo files
 
 dolphin_test_case = TestCase(
     'dolphin',
@@ -66,7 +66,9 @@ dolphin_test_case = TestCase(
             }
         )
     ),
+
     op_code = OpCode.UPDATE_PARM,
+    
     update_config = UpdateConfig(
         user_inputs = [
             # This will be the list of user inputs...
@@ -84,6 +86,7 @@ dolphin_test_case = TestCase(
         nl_key='parm',
         parm_key='PARM'
     ),
+    
     exp_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

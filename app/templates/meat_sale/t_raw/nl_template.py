@@ -11,11 +11,11 @@ nl_template = NLTemplate(
         'latePayment': TemplateObj(
             'In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.',
         ),
+        'suspendResumeDelivery': TemplateObj(
+            'In the event of late payment of the amount owed due, the Seller may suspend performance of all of its obligations under the agreement until payment of amounts owed has been received in full.',
+        ),
         'disclosure': TemplateObj(
             'Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.',
-        ),
-        'suspendResumeDelivery': TemplateObj(
-            'If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.',
         ),
         'terminateContract': TemplateObj(
             'Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless such delay exceeds 10 days.',

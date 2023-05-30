@@ -25,20 +25,20 @@ class IsolatedTests(unittest.TestCase):
     def test_isolated(self):
         
         for test_case in test_suite:
+            k = test_case.case_id
             contract = test_case.init_sym
+            
+            with open(f'tests/test_results/{k}_sym_init.txt', 'w') as f:
+                f.write(contract.to_sym())
+            
             self.updater.update(
                 contract, 
                 test_case.op_code,
                 test_case.update_config)
 
-
-            #print(contract.to_sym())
-
-            #self.assertEqual(contract, test_case.exp_sym)
-
             result = contract.to_sym()
             result_nl = contract.nl_template.stringify()
-            k = test_case.case_id
+            
             with open(f'tests/test_results/{k}_sym_actual.txt', 'w') as f:
                 f.write(result)
             

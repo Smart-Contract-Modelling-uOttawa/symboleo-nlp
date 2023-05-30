@@ -1,0 +1,28 @@
+Domain maimon_dm
+  Contractor isA Role;
+  Company isA Role;
+  ReturnInfo isAn Event with agent: Role, receiver: Role;
+
+endDomain
+
+Contract maimon_cs(  )
+
+Declarations
+  Maimon: Contractor;
+  company: Company;
+  evt_return_info: ReturnInfo with agent := Maimon, receiver := company;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_return_info: Obligation(Maimon, company, true, Happens(evt_return_info));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

@@ -1,0 +1,62 @@
+delivery: The Seller shall deliver the Order in one delivery to the Buyer [before March 18, 2024].
+- Maps a Happens -> SHappensBefore
+- This is where we may want to add a delivery_due_date domain property to the delivery event/declaration
+-- this SHOULD be feasible, but a bit complicated
+-- This is also why the full-spec tests are valuable. Shows the more holistic view
+
+payment: The Buyer shall pay $100 CAD to the Seller [before March 30, 2024].
+- Maps a Happens -> SHappensBefore
+- Same as above: add a pay_due_date domain property to the pay event/declaration
+
+latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
+- Add an antecedent in the form of violated obligation: Happens(Violated(obligations.ob_payment))
+- Raises the question of if we can represent an obligation event as a regular event 
+- i.e. is it equivalent to the negation of the ob_payment consequent: NOT ShappensBefore(evt_pay, "March 30, 2024") ?
+
+suspendResumeDelivery: [In the event of late payment of the amount owed due,] the Seller may suspend performance of all of its obligations under the agreement [until payment of amounts owed has been received in full].
+- Two parameters
+- First: Adding an antecedent... same question about equivalence to violated obligation 
+- Second: "until EVENT" - this pattern typically results in a HappensBefore-type of refinement
+-- but here it is applied to a POWER, which alters things; since powers dont work with the predicate functions
+-- In this case, we would need to frame it as a conditional. Think about it as "unless EVENT"
+-- Then we could add a trigger - Multiple choices
+--- 1. HappensWithin(evt_pay_late, ObligationState(ObligationStateName.Suspension, 'ob_delivery'))
+--- 2. Happens(evt_pay_late)
+--- 3. Happens(Fulfilled(obligations.ob_late_payment))
+-- All of these are possible to handle in this situation; just need to decide which is ideal 
+-- General rule?: power to suspend ob1 + refined with "unless EVENT" => create a new power with a trigger
+--- HappensWithin(EVENT, ObligationState(ObligationStateName.Suspension, 'ob1'))
+-- It's a bit of a special case. Might want to see if we run into it again. 
+-- Keep track of how the unless "EVENT works"
+
+disclosure: Both Seller and Buyer must keep the contents of this contract confidential [for 6 months following the termination of the contract].
+- not Happens(evt) -> not WHappensBefore(evt, Terminate(self), 6, months)
+- This is a situation in NL, which must be framed as a negated event in Symboleo 
+- The 'FOR TIMESPAN FOLLOWING EVENT' can be used in this case
+- Also note that this applies to two separate obligations (seller and buyer)
+- I debated using a HappenWithin(START, point_func) on this - but sticking with the original 
+
+terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract [unless such delay exceeds 10 days].
+- Tricky one. We should start with an antecedent and consequent with FALSE trigger
+-- FALSE -> Power(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
+-- First Question: Is a FALSE trigger valid in Symboleo 
+- The "unless EVENT" would then flip this to a Happens() predicate
+- General rule: non-power to do X + "unless EVENT" -> flip a False trigger to Happens(EVENT) 
+- This is straightforward. The real catch is how to represent the event: such delay exceeds 10 days
+- We have a "such" coreference.
+- Better phrasing: Unless seller fails to deliver goods within 10 days of the delivery due date
+-- This is an elaborate event. It's not a simple statement, but rather a refined one 
+-- The challenge here is that we need to capture the concept of the delivery_due_date 
+-- Suppose we had Unless seller fails to deliver goods [PARAMETER]
+-- Then we could potentially have a refinement 
+-- But we would probably want to add a delivery_due_date property on the initial refinement. 
+-- So it gets added to our domain model and declaration. ** this may be doable!
+-- Then it can be dynamically referenced in the CNL 
+-- Then we'd get the trigger: NOT HappensBefore(evt_delivery, Date.add(evt_delivery.delivery_due_date, 10, days))
+- I will note this one as too complex for now. But its worth making a note on this. Can describe it in thesis
+
+
+TODOS
+- maybe: add due_date to domain model/declaration on 'Before DATE' pattern
+- maybe: Change the termination power to a the easier case - refine the 'within' part 
+- maybe: incorporate the timepoint into a 'Before' Pattern  

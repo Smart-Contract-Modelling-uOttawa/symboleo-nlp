@@ -26,7 +26,6 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## Original: Upon termination of this Agreement
 ## Mine: If the contract terminates
 
-# TODO: Should change the antecedent...
 maimon_test_case = TestCase(
     'maimon',
     init_sym = SymboleoContract(

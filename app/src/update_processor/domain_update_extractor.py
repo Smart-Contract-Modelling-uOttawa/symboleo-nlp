@@ -1,5 +1,6 @@
 from typing import List
 from app.classes.patterns.pattern import Pattern, EventPattern
+from app.classes.patterns.all_patterns import *
 from app.classes.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
@@ -35,6 +36,16 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
     def extract(self, pattern: Pattern, contract: SymboleoContract) -> DomainUpdates:
         declarations = []
         domain_objects = []
+
+        # TODO: May want to add the date in BEFORE DATE pattern as an event property (e.g. delivery_due_date)
+        ## Would require extracting the initial event declaration - may need to pass in the norm...
+        ## And updating the domain event and declaration
+        ## Then in the contract updates, would need to merge the new properties. 
+        if isinstance(pattern, (BeforeDate)):
+            date_val = pattern.date_text
+            # Get the initial event from the norm 
+            # Find the declaration and copy it
+            # Add the property  
 
         if isinstance(pattern, EventPattern) and isinstance(pattern.event, CustomEvent):
             evt = pattern.event

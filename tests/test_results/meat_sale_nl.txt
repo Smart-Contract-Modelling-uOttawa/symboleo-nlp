@@ -14,7 +14,7 @@ A - suspendDelivery: TODO The Seller may suspend performance of all of its oblig
 E - suspendDelivery: 
 
 A - suspendResumeDelivery: 
-E - suspendResumeDelivery: If payment is not completed, the Seller may suspend performance of all of its obligations under the agreement until payment is completed.
+E - suspendResumeDelivery: In the event of late payment of the amount owed due, the Seller may suspend performance of all of its obligations under the agreement until payment of amounts owed has been received in full.
 
 A - terminateContract: 
 E - terminateContract: Any delay in delivery of the goods will not entitle the Buyer to terminate the Contract unless such delay exceeds 10 days.
