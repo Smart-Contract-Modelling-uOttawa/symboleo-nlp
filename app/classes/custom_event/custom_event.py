@@ -13,6 +13,8 @@ from app.classes.custom_event.prep_phrase import PrepPhrase
 
 from app.classes.other.helpers import ClassHelpers
 
+from app.src.helpers.string_to_class import CaseConverter
+
 class CustomEvent(BaseEvent):
     def __init__(
         self, 
@@ -37,12 +39,24 @@ class CustomEvent(BaseEvent):
         if self.event_type == 'contract':
             return ContractEvent(ContractEventName[self.verb.verb_str.capitalize()])
         else:
-            return VariableEvent(self.get_declaration_name())
+            name = self.get_declaration_name()
+            snake_name = CaseConverter.to_snake(name)
+            return VariableEvent(f'evt_{snake_name}')
 
     # TODO: Will be more complex...
     def get_declaration_name(self):
-        p = self.verb.lemma.lower()
-        return f'evt_{p}'
+        name = self.verb.lemma.lower()
+
+        if VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
+            name = CaseConverter.to_pascal(f'{self.subj.to_text()} {self.predicate.pred_str}')
+        
+        if VerbType.TRANSITIVE in self.verb.verb_types:
+            name = self.verb.lemma.title()
+
+            if self.adverb:
+                name = f'{name}{self.adverb.adverb_str.title()}'
+        
+        return name 
 
     # TODO: This will be more complex. Will need to split it out, potentially into static functions. Need tests
     # Need to incorporate negation

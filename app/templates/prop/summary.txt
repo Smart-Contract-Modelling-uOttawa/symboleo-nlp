@@ -1,0 +1,51 @@
+advertise: The Manager shall advertise the Property for rent, engage and screen potential renters, enter into rental agreement(s) with acceptable renter(s)
+- Straight obligation; no refinement
+- Highlights the possibility of breaking up a sentence in to many separate obligations though
+
+reimburse: The Owner shall reimburse the Manager for all expenses related to such Advertising.
+- Straight obligation; no refinement
+- But there is a "such" coreference
+
+notify_expense: The Manager shall notify the Owner, in advance, of anticipated expenses related to such Advertising
+- Straight obligation. No refinement
+- The 'in advance' is interesting though. It has implications of a HappensBefore
+
+collect_rent: The Manager shall be responsible for all collection of Rent earned on the Property.
+- Straight obligation. no refinement
+- But this suggests recurrences
+
+disbursement: The Manager shall then be responsible for disbursement of those proceeds to the Owner
+- straight obligation. no refinement 
+- coreference is suggested with the word 'then'
+
+accounting: The Manager shall further prepare and provide to the Owner a detailed accounting of all rents, expenses, and disbursements.
+- Straight obligation. No refinement
+- Also suggests a coreference (further)
+- Also, could break this up - lots of commas - suggests separate obligations and assets 
+
+repair: The Manager shall be responsible for performing, or hiring necessary personnel to perform, all necessary maintenance and repairs to the Property.
+- Straight obligation; no refinement
+- Has a disjunction...
+
+legal_proceedings: [In the event that collection and/or legal proceedings become necessary with regard to the rental of the Property,] The Manager shall handle all such proceedings.
+- CNL: If legal proceedings become necessary on the property (eq?)
+- there is a "such" coreference
+- This is a new event that we are trying to handle 
+- Antecedent
+
+termination_notice: This Agreement may be terminated at any time by either Party upon 30 days written notice to the other Party.
+- Another termination notice 
+- see note in the rental one... this is kind of a special case 
+
+disburse_termination: Upon termination, the Manager shall disburse to the Owner any monies in the Manager\'s possession due and owing to the Owner within 3 days from the date of termination
+- Upon termination - if contract terminates -> antecedent
+- within 3 days of termination -> HappensBefore
+
+reimburse_termination: The Owner shall reimburse the Manager for any expenses incurred or approved prior to the date of termination within 10 days from the date of termination
+- within 10 days -> HappensBefore 
+- A case of 'prior to' that isnt used as a refinement. Interesting..
+
+NOTES:
+- lots of straight obligations. We will cut these out for now. Focus on refinements 
+- The refinements we include are quite straightforward; just one event to add 
+- includes another "provide notice" - I think coming up with a way to handle that will be bonus

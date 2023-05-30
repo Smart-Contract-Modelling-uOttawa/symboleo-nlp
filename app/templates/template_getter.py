@@ -20,14 +20,14 @@ from app.templates.rental.t_raw.domain_model import get_domain_model as get_rent
 from app.templates.rental.t_raw.contract_spec import get_contract_spec as get_rental_raw_cs
 from app.templates.rental.t_raw.nl_template import nl_template as rental_raw_nl
 
-# ## PROP MGMT
-# from app.templates.prop_mgmt.t.domain_model import get_domain_model as get_prop_t_dm
-# from app.templates.prop_mgmt.t.contract_spec import get_contract_spec as get_prop_t_cs
-# from app.templates.prop_mgmt.t.nl_template import nl_template as prop_t_nl
+## prop
+from app.templates.prop.t.domain_model import get_domain_model as get_prop_t_dm
+from app.templates.prop.t.contract_spec import get_contract_spec as get_prop_t_cs
+from app.templates.prop.t.nl_template import nl_template as prop_t_nl
 
-# from app.templates.prop_mgmt.t_raw.domain_model import get_domain_model as get_prop_raw_dm
-# from app.templates.prop_mgmt.t_raw.contract_spec import get_contract_spec as get_prop_raw_cs
-# from app.templates.prop_mgmt.t_raw.nl_template import nl_template as prop_raw_nl
+from app.templates.prop.t_raw.domain_model import get_domain_model as get_prop_raw_dm
+from app.templates.prop.t_raw.contract_spec import get_contract_spec as get_prop_raw_cs
+from app.templates.prop.t_raw.nl_template import nl_template as prop_raw_nl
 
 # ## Gridiron
 # from app.templates.gridiron.t.domain_model import get_domain_model as get_gridiron_t_dm
@@ -63,27 +63,17 @@ template_dict: Dict[str, SymboleoContract] = {
         rental_t_nl
     ),
 
-    # 'sample_raw': SymboleoContract(
-    #     get_sample_raw_dm(),
-    #     get_sample_raw_cs(),
-    #     sample_raw_nl
-    # ),
-    # 'sample_t': SymboleoContract(
-    #     get_sample_t_dm(),
-    #     get_sample_t_cs(),
-    #     sample_t_nl
-    # ),
+    'prop_raw': SymboleoContract(
+        get_prop_raw_dm(),
+        get_prop_raw_cs(),
+        prop_raw_nl
+    ),
 
-    # 'prop_raw': SymboleoContract(
-    #     get_prop_raw_dm(),
-    #     get_prop_raw_cs(),
-    #     prop_raw_nl
-    # ),
-    # 'prop_t': SymboleoContract(
-    #     get_prop_t_dm(),
-    #     get_prop_t_cs(),
-    #     prop_t_nl
-    # ),
+    'prop': SymboleoContract(
+        get_prop_t_dm(),
+        get_prop_t_cs(),
+        prop_t_nl
+    ),
 
     # 'gridiron_raw': SymboleoContract(
     #     get_gridiron_raw_dm(),

@@ -32,7 +32,7 @@ class AssetDeclarationMapper(IMapAssetDeclarations):
             next_asset = self.__asset_extractor.extract(custom_event.subj)
             results.append(next_asset)
         
-        if self._should_include(custom_event.dobj, exclusions):
+        if custom_event.dobj and self._should_include(custom_event.dobj, exclusions):
             next_asset = self.__asset_extractor.extract(custom_event.dobj)
             results.append(next_asset)
 

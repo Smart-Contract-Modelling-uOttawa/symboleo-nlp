@@ -6,11 +6,13 @@ from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 
 from tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
 from tests.test_suites.full_test_cases.rental import test_suite as rental
+from tests.test_suites.full_test_cases.prop import test_suite as prop
 
 
 test_dict = {
     'meat_sale': meat_sale,
-    'rental': rental
+    'rental': rental,
+    'prop': prop
 }
 
 class FullStackTests(unittest.TestCase):
@@ -23,7 +25,7 @@ class FullStackTests(unittest.TestCase):
         target_keys = [
             'meat_sale',
             'rental',
-            # 'prop',
+            'prop',
             # 'gridiron'
         ]
         for k in target_keys:

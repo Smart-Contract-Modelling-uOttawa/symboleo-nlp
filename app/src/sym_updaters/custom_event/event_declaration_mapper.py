@@ -36,9 +36,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
     
 
     def _map_linking(self, evt: CustomEvent) -> IDeclaration:
-        subj = evt.subj
-        pred = evt.predicate
-        name = CaseConverter.to_pascal(f'{subj.to_text()} {pred.pred_str}')
+        name = evt.get_declaration_name()
 
         pps = self._map_pps(evt)
 
@@ -47,10 +45,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
     
 
     def _map_transitive(self, evt: CustomEvent) -> IDeclaration:
-        name = evt.verb.lemma.title()
-
-        if evt.adverb:
-            name = f'{name}{evt.adverb.adverb_str.title()}'
+        name = evt.get_declaration_name()
         
         p1 = self.__prop_mapper.map_subject(evt.subj, evt)
         p2 = self.__prop_mapper.map_dobject(evt.dobj, evt)
@@ -59,7 +54,6 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         
         props = [p1, p2]
         props.extend(pps)
-
 
         snake_name = CaseConverter.to_snake(name)
         return Declaration(f'evt_{snake_name}', name, 'events', props)

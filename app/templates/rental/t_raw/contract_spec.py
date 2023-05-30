@@ -1,22 +1,13 @@
-import copy
-from typing import List, Dict
-from app.classes.spec.symboleo_contract import SymboleoContract
+from typing import Dict
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp, RoleDeclaration, AssetDeclaration, EventDeclaration
-from app.classes.spec.domain_model import DomainModel
-from app.classes.spec.domain_object import DomainObject
-from app.classes.spec.norm import Norm, Obligation, Power
+from app.classes.spec.declaration import DeclarationProp, RoleDeclaration, AssetDeclaration, EventDeclaration
+from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
-from app.classes.spec.sym_event import VariableEvent, ObligationEvent, ObligationEventName, ContractEvent, ContractEventName
-from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
-from app.classes.spec.point_function import PointFunction, TimeUnit
-from app.classes.spec.sym_situation import ObligationState, ObligationStateName
+from app.classes.spec.sym_event import ObligationEvent, ObligationEventName, ContractEvent, ContractEventName
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter as Parm
-from app.src.helpers.declarer import Declarer
 from app.classes.spec.other_predicates import *
-from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
 
 arg_values = {
      'renter_id': 'renter',

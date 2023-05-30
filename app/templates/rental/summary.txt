@@ -36,7 +36,7 @@ terminate_notice: This Agreement may be terminated at any given time by providin
 - there will be TWO obligations - renter and landlord
 - Happens(evt_provide_notice) AND DATE_CHECK(curr > evt_provide_notice.end_date) -> P(...)
 -- would require some more sophisticated processing
-- no refinement. Need to know how this is represented in symboleo...
+- no refinement. Need to know how this is represented in symboleo... Ignore for now 
 
 terminate_abandon: In the event that the Renter abandons the premises during the term of this Agreement, the Landlord may terminate this Agreement
 - Need to capture the abandons property event 
@@ -48,3 +48,4 @@ terminate_abandon: In the event that the Renter abandons the premises during the
 TODO
 - add a prior to EVENT pattern - WHappensBeforeEvent
 - app Upon EVENT pattern - antecedent
+- bonus: Figure out how to handle termination notice
