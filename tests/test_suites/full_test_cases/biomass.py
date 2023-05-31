@@ -3,7 +3,7 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 
 test_suite = [
-    # upon execution of this agreement
+    # upon contract activation 
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
@@ -20,47 +20,52 @@ test_suite = [
         parm_key='P1'
     ),
 
-    # if Gridiron determines that third party analysis of the Biomass is required for processing
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.IF),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.CUSTOM_EVENT),
-            UserInput(UnitType.SUBJECT, 'buyer'),
-            UserInput(UnitType.VERB, 'determines'),
-            UserInput(UnitType.DOBJ, 'that third party analysis of the Biomass is required for processing'), # Improve...
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_payment'),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
+
+            # TODO: Want to be able to say 'completes payment'
+            UserInput(UnitType.SUBJECT, 'Gridiron'),
+            UserInput(UnitType.VERB, 'completes'),
+            UserInput(UnitType.DOBJ, 'payment'),
             UserInput(UnitType.FINAL_NODE)
         ],
-        nl_key='delivery_location',
+        nl_key='quarantine',
         parm_key='P1'
     ),
 
-    # If any claim or legal proceeding is filed by a third party
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
             UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.UNTIL),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.CUSTOM_EVENT),
-            UserInput(UnitType.SUBJECT, 'third party'),
-            UserInput(UnitType.VERB, 'files'),
-            UserInput(UnitType.DOBJ, 'claim'),
-            # Prep phrase: Against buyer/seller?
+            UserInput(UnitType.STANDARD_EVENT),
+            UserInput(UnitType.NORM_EVENT),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_delivery_processor'),
+            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
+
+            UserInput(UnitType.SUBJECT, 'Shi Farms'),
+            UserInput(UnitType.VERB, 'completes'),
+            UserInput(UnitType.DOBJ, 'delivery'),
             UserInput(UnitType.FINAL_NODE)
         ],
-        nl_key='legal_proceeding',
-        parm_key='P1'
+        nl_key='quarantine',
+        parm_key='P2'
     ),
 
-    # When the Agreement ends
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
             UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF), # Want a "When" (indicates trigger)
+            UserInput(UnitType.WHEN),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),

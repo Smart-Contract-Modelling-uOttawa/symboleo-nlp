@@ -35,5 +35,5 @@ class UnitType(Enum):
     FOR = 44
     FOLLOWING = 45
     UNLESS = 46
-
+    WHEN = 47
     # ....

@@ -30,13 +30,13 @@ from app.templates.prop.t_raw.contract_spec import get_contract_spec as get_prop
 from app.templates.prop.t_raw.nl_template import nl_template as prop_raw_nl
 
 # ## Gridiron
-# from app.templates.gridiron.t.domain_model import get_domain_model as get_gridiron_t_dm
-# from app.templates.gridiron.t.contract_spec import get_contract_spec as get_gridiron_t_cs
-# from app.templates.gridiron.t.nl_template import nl_template as gridiron_t_nl
+from app.templates.biomass.t.domain_model import get_domain_model as get_biomass_t_dm
+from app.templates.biomass.t.contract_spec import get_contract_spec as get_biomass_t_cs
+from app.templates.biomass.t.nl_template import nl_template as biomass_t_nl
 
-# from app.templates.gridiron.t_raw.domain_model import get_domain_model as get_gridiron_raw_dm
-# from app.templates.gridiron.t_raw.contract_spec import get_contract_spec as get_gridiron_raw_cs
-# from app.templates.gridiron.t_raw.nl_template import nl_template as gridiron_raw_nl
+from app.templates.biomass.t_raw.domain_model import get_domain_model as get_biomass_raw_dm
+from app.templates.biomass.t_raw.contract_spec import get_contract_spec as get_biomass_raw_cs
+from app.templates.biomass.t_raw.nl_template import nl_template as biomass_raw_nl
 
 
 template_dict: Dict[str, SymboleoContract] = {
@@ -75,17 +75,17 @@ template_dict: Dict[str, SymboleoContract] = {
         prop_t_nl
     ),
 
-    # 'gridiron_raw': SymboleoContract(
-    #     get_gridiron_raw_dm(),
-    #     get_gridiron_raw_cs(),
-    #     gridiron_raw_nl
-    # ),
+    'biomass_raw': SymboleoContract(
+        get_biomass_raw_dm(),
+        get_biomass_raw_cs(),
+        biomass_raw_nl
+    ),
 
-    # 'gridiron_t': SymboleoContract(
-    #     get_gridiron_t_dm(),
-    #     get_gridiron_t_cs(),
-    #     gridiron_t_nl
-    # ),
+    'biomass': SymboleoContract(
+        get_biomass_t_dm(),
+        get_biomass_t_cs(),
+        biomass_t_nl
+    ),
 }
 
 

@@ -16,6 +16,7 @@ unit_type_to_class: Dict[UnitType, Type[Element]] = {
     UnitType.BEFORE: BeforeElement,
     UnitType.WITHIN: WithinElement,
     UnitType.IF: IfElement,
+    UnitType.WHEN: WhenElement,
     UnitType.DUMMY: DummyElement,
     UnitType.AFTER: AfterElement,
     UnitType.UNTIL: UntilElement,

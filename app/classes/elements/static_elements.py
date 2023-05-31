@@ -13,6 +13,9 @@ class BeforeElement(Element):
 class IfElement(Element):
     unit_type = UnitType.IF
 
+class WhenElement(Element):
+    unit_type = UnitType.WHEN
+
 class UntilElement(Element):
     unit_type = UnitType.UNTIL
 

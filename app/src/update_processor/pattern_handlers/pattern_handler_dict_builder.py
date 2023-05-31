@@ -10,6 +10,8 @@ from app.src.update_processor.pattern_handlers.if_event_handler import IfEventHa
 from app.src.update_processor.pattern_handlers.within_timespan_handler import WithinTimespanHandler
 from app.src.update_processor.pattern_handlers.for_timespan_following_event_handler import ForTimespanFollowingEventHandler
 from app.src.update_processor.pattern_handlers.unless_event_handler import UnlessEventHandler
+from app.src.update_processor.pattern_handlers.until_event_handler import UntilEventHandler
+from app.src.update_processor.pattern_handlers.when_event_handler import WhenEventHandler
 
 # Maybe I frame it as the operations, rather than the patterns
 # Finite operations. Then just handle those. Multiple patterns may map to same operation...
@@ -27,5 +29,7 @@ class PatternHandlerDictBuilder:
         d[IfEvent] = IfEventHandler()
         d[ForTimespanFollowingEvent] = ForTimespanFollowingEventHandler()
         d[UnlessEvent] = UnlessEventHandler()
+        d[UntilEvent] = UntilEventHandler()
+        d[WhenEvent] = WhenEventHandler()
 
         return d

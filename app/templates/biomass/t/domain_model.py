@@ -17,69 +17,89 @@ def get_domain_model():
                     DomainProp('name','String'),
                 ]
             ),
-            'ThirdParty': Role(
+            'LegalThirdParty': Role(
                 name = 'ThirdParty',
                 props = [
                     DomainProp('name','String'),
                 ]
             )
         },
+        assets = {
+            'Biomass': Asset(
+                name = 'Biomass',
+                props = [
+                    DomainProp('quantity_lbs', 'Number'),
+                    #DomainProp('cannabidiol_percent', 'Number'),
+                    #DomainProp('thc_percent', 'Number'),
+                    # Contaminants...?
+                ]
+            ),
+            'Location': Asset(
+                name = 'Location',
+                props = [
+                    DomainProp('name', 'String')
+                ]
+            )
+        },
         enums = [
+            DomainEnum('Currency', ['CAD', 'USD']),
         ],
         events = {
-            'Payment': DomainEvent(
-                name = 'Payment',
+            'Pay': DomainEvent(
+                name = 'Pay',
                 props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('receiver', 'Role'),
+                    DomainProp('from', 'Role'),
+                    DomainProp('to', 'Role'),
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency')
-
                 ]
             ),
             'Quarantine': DomainEvent(
                 name = 'Quarantine',
                 props = [
+                    DomainProp('agent', 'Role'),
                     DomainProp('product', 'Biomass')
                 ]
             ),
-            ## This one is the challenge:  determines that third party analysis of the Biomass is required for processing
-            ## Can we reference another event?? 
-            ## Or maybe add generic relative clause... as following a certain type of verb
-            # 'DeterminesAnalysis': DomainEvent(
-            #     name = 'DeterminesAnalysis',
-            #     props = [
-            #         DomainProp('agent', 'Role'),
-            #     ]
-            # ),
+            'RemoveQuarantine': DomainEvent(
+                name = 'RemoveQuarantine',
+                props = [
+                    DomainProp('agent', 'Role'),
+                    DomainProp('product', 'Biomass')
+                ]
+            ),
+            'DeterminesAnalysisRequired': DomainEvent(
+                name = 'DeterminesAnalysisRequired',
+                props = [
+                    DomainProp('agent', 'Role'),
+                ]
+            ),
             'Delivery': DomainEvent(
                 name = 'Delivery',
                 props = [
-                    DomainProp('from', 'Role'),
-                    DomainProp('to', 'Role'),
+                    DomainProp('agent', 'Role'),
                     DomainProp('product', 'Biomass'),
-                    DomainProp('location', 'String'),
+                    DomainProp('location', 'Location'),
                 ]
             ),
-            # 'LegalClaim': DomainEvent(
-            #     name = 'LegalClaim',
-            #     props = [
-            #         DomainProp('agent', 'Role'),
-            #         DomainProp('target', 'Role')
-            #     ]
-            # ),
+            'LegalClaim': DomainEvent(
+                name = 'LegalClaim',
+                props = [
+                    DomainProp('agent', 'Role'),
+                    DomainProp('target', 'Role')
+                ]
+            ),
             'LegalNotice': DomainEvent(
                 name = 'LegalNotice',
                 props = [
                     DomainProp('agent', 'Role'),
-                    DomainProp('receiver', 'Role')
+                    DomainProp('target', 'Role')
                 ]
             ),
             'ReturnInfo': DomainEvent(
                 name = 'ReturnInfo',
                 props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('receiver', 'Role')
+                    DomainProp('agent', 'Role')
                 ]
             ),
             'DiscloseInfo': DomainEvent(
@@ -88,18 +108,7 @@ def get_domain_model():
                     DomainProp('agent', 'Role')
                 ]
             )
-        },
-        assets = {
-            'Biomass': Asset(
-                name = 'Biomass',
-                props = [
-                    DomainProp('quantity', 'Number'),
-                    DomainProp('cannabidiol_percent', 'Number'),
-                    DomainProp('thc_percent', 'Number'),
-                    # Contaminants...?
-                ]
-            )
-        }   
+        }
     )
     
     # Add aliases

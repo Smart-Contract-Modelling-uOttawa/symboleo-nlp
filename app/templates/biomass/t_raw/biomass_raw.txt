@@ -1,0 +1,69 @@
+Domain gridironDomain
+  Seller isA Role with name: String;
+  Buyer isA Role with name: String;
+  ThirdParty isA Role with name: String;
+  Currency isAn Enumeration(CAD, USD);
+  Biomass isAn Asset with quantity_lbs: Number;
+  Location isAn Asset with name: String;
+  Pay isAn Event with from: Role, to: Role, amount: Number, currency: Currency;
+  Quarantine isAn Event with agent: Role, product: Biomass;
+  RemoveQuarantine isAn Event with agent: Role, product: Biomass;
+  DeterminesAnalysisRequired isAn Event with agent: Role;
+  Delivery isAn Event with agent: Role, product: Biomass, location: Location;
+  LegalClaim isAn Event with agent: Role, target: Role;
+  LegalNotice isAn Event with agent: Role, target: Role;
+  ReturnInfo isAn Event with agent: Role;
+  DiscloseInfo isAn Event with agent: Role;
+
+endDomain
+
+Contract Gridiron( seller_id: String, seller_name: String, buyer_id: String, buyer_name: String, biomass_quantity: Number, price: Number, currency: Currency )
+
+Declarations
+  seller: Seller with name := "Shi Farms";
+  buyer: Buyer with name := "Gridiron";
+  third_party: ThirdParty with name := "third party";
+  biomass: Biomass with quantity_lbs := 30000;
+  lab: Location with name := "lab";
+  processor: Location with name := "processor";
+  evt_pay: Pay with to := seller, from := buyer, amount := 150000, currency := Currency(USD);
+  evt_quarantine: Quarantine with agent := seller, product := biomass;
+  evt_remove_quarantine: RemoveQuarantine with agent := seller, product := biomass;
+  evt_delivery_lab: Delivery with agent := seller, product := biomass, location := lab;
+  evt_delivery_processor: Delivery with agent := seller, product := biomass, location := processor;
+  evt_determine_analysis: DeterminesAnalysisRequired with agent := buyer;
+  evt_legal_claim_buyer: LegalClaim with agent := third_party, target := buyer;
+  evt_legal_claim_seller: LegalClaim with agent := third_party, target := seller;
+  evt_legal_notice_buyer: LegalNotice with agent := third_party, target := buyer;
+  evt_legal_notice_seller: LegalNotice with agent := third_party, target := seller;
+  evt_return_info_buyer: ReturnInfo with agent := buyer;
+  evt_return_info_seller: ReturnInfo with agent := seller;
+  evt_disclose_info_buyer: DiscloseInfo with agent := buyer;
+  evt_disclose_info_seller: DiscloseInfo with agent := seller;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_payment: Obligation(buyer, seller, Happens(Activated(self)), Happens(evt_pay));
+  ob_quarantine: Obligation(seller, buyer, Happens(evt_pay), Happens(evt_quarantine));
+  ob_keep_quarantine: Obligation(seller, buyer, Happens(evt_quarantine), not WhappensBeforeE(evt_remove_quarantine, evt_delivery_processor));
+  ob_delivery_lab: Obligation(seller, buyer, Happens(evt_determine_analysis), Happens(evt_delivery_lab));
+  ob_delivery_processor: Obligation(seller, buyer, true, Happens(evt_delivery_processor));
+  ob_legal_proceeding_buyer: Happens(evt_legal_claim_buyer) -> Obligation(third_party, buyer, true, Happens(evt_legal_notice_buyer));
+  ob_legal_proceeding_seller: Happens(evt_legal_claim_seller) -> Obligation(third_party, seller, true, Happens(evt_legal_notice_seller));
+  ob_return_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, Happens(evt_return_info_buyer));
+  ob_return_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, Happens(evt_return_info_seller));
+
+Surviving Obligations
+  ob_disclose_info_buyer: Happens(Terminated(self)) -> Obligation(buyer, seller, true, not Happens(evt_disclose_info_buyer));
+  ob_disclose_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, not Happens(evt_disclose_info_seller));
+
+Powers
+  pow_termination_buyer: Power(buyer, seller, true, Terminated(self));
+  pow_termination_seller: Power(seller, buyer, true, Terminated(self));
+
+Constraints
+
+endContract

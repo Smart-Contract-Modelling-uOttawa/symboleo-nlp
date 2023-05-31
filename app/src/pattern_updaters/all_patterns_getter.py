@@ -13,5 +13,7 @@ class AllPatternsGetter(IGetAllPatterns):
             WithinTimespanEvent(),
             IfEvent(),
             ForTimespanFollowingEvent(),
-            UnlessEvent()
+            UnlessEvent(),
+            UntilEvent(),
+            WhenEvent()
         ]

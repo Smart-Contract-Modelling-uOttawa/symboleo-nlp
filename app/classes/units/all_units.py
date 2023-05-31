@@ -8,6 +8,7 @@ from app.classes.units.root_unit import RootUnit
 from app.classes.units.timespan_unit import TimespanUnit
 from app.classes.units.within_unit import WithinUnit
 from app.classes.units.if_unit import IfUnit
+from app.classes.units.when_unit import WhenUnit
 from app.classes.units.after_unit import AfterUnit
 from app.classes.units.until_unit import UntilUnit
 from app.classes.units.unless_unit import UnlessUnit
