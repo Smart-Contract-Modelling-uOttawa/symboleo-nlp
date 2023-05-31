@@ -1,0 +1,52 @@
+Domain IndependentContractorDomain
+  Client isA Role;
+  Contractor isA Role;
+  Subcontractor isA Role;
+  Services isAn Asset;
+  Disclosure isAn Asset;
+  Invoice isAn Event with agent: Role, target: Role;
+  Pay isAn Event with from: Role, to: Role, payment: String;
+  Disclose isAn Event with agent: Role;
+  HireSubcontractor isAn Event with agent: Role, subcontractor: Role;
+  Complete isAn Event with completing_agent: Role, completed_object: Services;
+  Authorize isAn Event with authorizing_agent: Role, authorized_object: Disclosure;
+
+endDomain
+
+Contract IndependentContractor( client_id: String, contractor_id: String, subcontractor_id: String, fee: Number, invoice_payment: String, pro_rata_payment: String, expenses_payment: String, subcontractor_payment: String )
+
+Declarations
+  client: Client;
+  contractor: Contractor;
+  subcontractor: Subcontractor;
+  services: Services;
+  evt_invoice: Invoice with agent := contractor, target := client;
+  evt_pay_invoice: Pay with from := client, to := contractor, payment := "contractor";
+  evt_pay_pro_rata: Pay with from := client, to := contractor, payment := "contractor";
+  evt_reimburse_expenses: Pay with from := client, to := contractor, payment := "reasonable and necessary expenses";
+  evt_disclose_contractor: Disclose with agent := contractor;
+  evt_hire_subcontractor: HireSubcontractor with agent := client, subcontractor := subcontractor;
+  evt_complete: Complete with completing_agent := client, completed_object := services;
+  disclosure: Disclosure;
+  evt_authorize: Authorize with authorizing_agent := client, authorized_object := disclosure;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_invoice: Happens(evt_complete) -> Obligation(contractor, client, true, Happens(evt_invoice));
+  ob_invoice_due: Obligation(client, contractor, true, WhappensBefore(evt_pay_invoice, Date.add(Fulfilled(obligations.ob_invoice), 10, days)));
+  ob_partial_completion: Obligation(client, contractor, Happens(evt_start), Happens(evt_pay_pro_rata));
+  ob_reimburse: Obligation(client, contractor, true, Happens(evt_reimburse_expenses));
+  ob_not_disclose: Obligation(contractor, client, true, not Happens(evt_disclose_contractor));
+  ob_not_subcontract: Obligation(client, contractor, true, not Happens(evt_hire_subcontractor));
+
+Surviving Obligations
+
+Powers
+  pow_suspend_ob_not_disclose: Happens(evt_authorize) -> Power(client, contractor, true, Suspended(obligations.ob_not_disclose));
+
+Constraints
+
+endContract

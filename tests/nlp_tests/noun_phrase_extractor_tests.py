@@ -25,6 +25,12 @@ test_suite = [
     ('Dolphin', NounPhrases.dolphin()),
     ('$100', NounPhrases.hundred_dollars()),
     ('CAD', NounPhrases.cad()),
+
+    ('client', NounPhrases.client()),
+    ('contractor', NounPhrases.contractor()),
+    ('services', NounPhrases.services()),
+    ('disclosure', NounPhrases.disclosure()),
+
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

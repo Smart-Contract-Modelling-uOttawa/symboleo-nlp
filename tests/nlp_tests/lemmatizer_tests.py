@@ -6,7 +6,10 @@ from tests.helpers.test_nlp import TestNLP
 from app.src.extractors.custom_event.verb.lemmatizer import Lemmatizer
 
 test_suite = [
-    ('receiving', 'receive')
+    ('receiving', 'receive'),
+    ('authorizes', 'authorize'),
+    ('completes', 'complete'),
+    ('starts', 'start'),
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

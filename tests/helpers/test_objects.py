@@ -25,6 +25,11 @@ class NounPhrases:
     dolphin = lambda: NounPhrase('Dolphin', 'Dolphin', False, True, asset_type='Role')
     cad = lambda: NounPhrase('CAD', 'CAD', False, False, asset_type='Currency')
 
+    client = lambda: NounPhrase('client', 'client', False, True, asset_type='Role')
+    contractor = lambda: NounPhrase('contractor', 'contractor', False, True, asset_type='Role')
+    services = lambda: NounPhrase('services', 'services', True, False, asset_type='Services')
+    disclosure = lambda: NounPhrase('disclosure', 'disclosure', False, False, asset_type='Disclosure')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 

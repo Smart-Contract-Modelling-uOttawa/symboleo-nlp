@@ -8,7 +8,10 @@ class FakeLemmatizer(ILemmatize):
             'abandons': 'abandon',
             'occupies': 'occupy',
             'allows': 'allow',
-            'receiving': 'receive'
+            'receiving': 'receive',
+            'authorizes': 'authorize',
+            'completes': 'complete',
+            'starts': 'start',
         }
 
     def lemmatize(self, s: str) -> str:

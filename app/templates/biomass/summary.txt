@@ -66,6 +66,9 @@ NOTES
 - not actually a lot I can do with this one... 
 - Still provides some good lessons and roadmaps
 - Highlights the importance of the isolated tests 
+- source: https://contracts.justia.com/companies/gridiron-bionutrients-inc-5090/contract/94875/
+
+
 
 TODO
 - add Upon - upon contract activation

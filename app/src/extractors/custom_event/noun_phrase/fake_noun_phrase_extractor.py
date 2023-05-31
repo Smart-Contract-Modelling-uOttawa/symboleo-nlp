@@ -29,6 +29,11 @@ class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):
             'CAD': NounPhrases.cad(),
             'March 30, 2024': NounPhrases.date_np('March 30, 2024'),
 
+            'client': NounPhrases.client(),
+            'contractor': NounPhrases.contractor(),
+            'services': NounPhrases.services(),
+            'disclosure': NounPhrases.disclosure()
+
         }
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:
