@@ -21,7 +21,11 @@ The tool will process this input into a predictable Symboleo operation, resultin
 
 In general, we will start with a contract template `T` and its corresponding Symboleo specification `S(T)`. The contract author will enter any desired refinements in NL, resulting in a refined NL contract `C`. The role of the tool is to use the inputs `T`,`S(T)`, and `C` to generate the Symboleo that corresponds to the refined NL contract, which we call `S(C)`.
 
-The refinements made by the user are in a _controlled_ Natural Language, which is a subset of NL (English) words and grammar, specialized for the contract domain. This CNL includes various temporal and conditional refinements, as well as a way to specify basic events. 
+In order to function, the application requires the following:
+- A NL contract template, with parameters that meet our constraints `T`. Converting an arbitrary contract to this format is a manual process
+- A Symboleo specification of this NL contract `S(T)`. 
+
+The project includes a variety of contracts pre-formatted for use on the tool. The refinements made by the user are in a _controlled_ Natural Language, which is a subset of NL (English) words and grammar, specialized for the contract domain. This CNL includes various temporal and conditional refinements, as well as a way to specify basic events. 
 
 The tool therefore has two core requirements:
 - Enforce that the user's input adheres to the valid CNL
@@ -64,62 +68,34 @@ Before running the project, set up a virtual environment and install the require
 <!-- next error: Couldn't build proto file into descriptor pool: duplicate file name (sentencepiece_model.proto)
  -->
 
-### Inputs and Outputs
-
-S, S(T), ... Manual processes required
-
-In order to function, the application requires the following:
-- A NL contract template, with parameters that meet our constraints: T
-- A Symboleo specification of the NL contract: S(T)
-
-The applications proceeds as follows:
-- The user selects a parameter from the template to customize
-- A grammar graph is generated from the parameter details and the contract template. This graph represents all of the valid input the user can enter
-- The user enters input by traversing the graph, starting at the root. The result is an ordered list of grammar nodes from the graph
-- This node list will correspond to on the allowed NL patterns (a frame). The NL text represented in the frame will have a corresponding Symboleo specification
-- The Symboleo contract S(C) is generated accordingly
-
-
 
 ### Running the Application
 
-Currently a console app. Run using the notebook
+A demo of the tool can currently be run in the nb_demo.ipynb notebook. This allows a user to select a pre-loaded contract template, refine the parameters with the CNL, and generate a refined Symboleo specification.
 
 ### Web Application
 
 ...
 
 
-### Developing
-
-Currently, the code be interactively run and debugged using a Jupyter notebook.
-
-
 ## Testing and Evaluation
 
-Tests to show and explain:
-- isolated
-- full test
-- unit tests
-- nlp tests
-- show how to run individual files as well
-
-The project is intended to be test-driven. The goal is to define a set of valid test cases for converting NL customizations to Symboleo specifications, and explore how we can get these tests to pass. 
-The tests are written with the unittest module and can be run as follows: `python -m unittest tests/file_to_test.py`
-
-To run the full-stack test suites: `python -m unittest tests/test_suites/full_test_suite.py`. These are not part of regular test coverage
-
-To run all unit tests: `python -m unittest discover -s 'tests/unit_tests' -p '*_tests.py'`
+There are a variety of test sets to demonstrate the reliability of the tool and satisfy the core requirements.
+- Unit tests: Basic unit tests for most components used by the tool: `python -m unittest discover -s 'tests/unit_tests' -p '*_tests.py'`
+- NLP tests: These are specifically designed to test core NLP functionality: `python -m unittest discover -s 'tests/nlp_tests' -p '*_tests.py'`
+- Full test suite: These are designed to test the functionality on an entire NL contract `T` and its specification `S(T)`. These tests do not perform specific validation on the generated Symboleo, but the artifacts can be used to manually inspect the tool's performance, and also provide a general benchmark for how the tool performs against realistic contract: `python -m unittest tests/test_suites/full_test_suite.py`
+- Isolated test suites: These are designed to test the second requirement of ensuring the CNL input is mapped to the proper Symboleo. These test cases are NL refinements taken from real contracts, where we've taken a single obligation in _isolation_ and modelled the expected results in Symboleo: `python -m unittest tests/test_suites/isolated_test_suite.py`
+- Individual tests can be run as well: `python -m unittest tests/file_to_test.py`
 
 Test coverage is done using the coverage library. To use it simply replace the `python` part of the test command with `coverage run`. For example: `coverage run --source=app -m unittest discover -s 'tests/unit_tests' -p '*_tests.py'`. You can then use the `coverage report` command to view a coverage report or `coverage html` to generate a more detailed report that can be viewed in a browser. 
 
 ## Limitations and Future Work
 
 What it cannot do
-- examples of text it cant handle
-- event specification
-- etc.
+- examples of text it cant handle...
+- event specification...
+- ...
 
-Capture some of it as future work
+Capture some of this as future work
 
 
