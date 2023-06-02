@@ -3,16 +3,16 @@ from collections import defaultdict
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.all_units import *
 
-from app.src.child_getters.child_getter import IGetUnitChildren, DefaultChildGetter
-from app.src.child_getters.standard_event_unit_cg import StandardEventUnitCG
-from app.src.child_getters.norm_event_unit_cg import NormEventUnitCG
-from app.src.child_getters.obligation_subject_unit_cg import ObligationSubjectUnitCG
-from app.src.child_getters.custom_event_unit_cg import CustomEventUnitCG
-from app.src.child_getters.verb_unit_cg import VerbUnitCG
-from app.src.child_getters.before_unit_cg import BeforeUnitCG
+from app.src.selection.child_getters.child_getter import IGetUnitChildren, DefaultChildGetter
+from app.src.selection.child_getters.standard_event_unit_cg import StandardEventUnitCG
+from app.src.selection.child_getters.norm_event_unit_cg import NormEventUnitCG
+from app.src.selection.child_getters.obligation_subject_unit_cg import ObligationSubjectUnitCG
+from app.src.selection.child_getters.custom_event_unit_cg import CustomEventUnitCG
+from app.src.selection.child_getters.verb_unit_cg import VerbUnitCG
+from app.src.selection.child_getters.before_unit_cg import BeforeUnitCG
 
 # Helpers (injected)
-from app.src.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
+from app.src.selection.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
 
 class ChildGetterDictConstructor:
     @staticmethod
