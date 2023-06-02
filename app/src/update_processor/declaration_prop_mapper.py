@@ -4,6 +4,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.helpers.string_to_class import CaseConverter
 
+# TODO: E3 - Clean and break this up
 class IMapDeclarationProps:
     def map_subject(self, subject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         raise NotImplementedError()
@@ -14,9 +15,6 @@ class IMapDeclarationProps:
     def map_prep_phrase(self, prep_phrase: PrepPhrase, evt:CustomEvent) -> DeclarationProp:
         raise NotImplementedError()
     
-# Can split this up further: separate for key, type, etc
-# May be able to avoid heavy nlp on this one.
-# TODO: Clean and break this up
 class DeclarationPropMapper(IMapDeclarationProps):
     def __init__(self):
         self.s = 0

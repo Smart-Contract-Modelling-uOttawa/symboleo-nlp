@@ -31,9 +31,8 @@ class FollowingElement(Element):
 class UnlessElement(Element):
     unit_type = UnitType.UNLESS
 
-
-# Final node needs to give initial value... e.g. date, CustomEvent, CommonEvent...
-# TODO: May want to type/alias this
+# TODO: E2 - Should strongly type/alias this
+## And figure out what its purpose is 
 class FinalElement(Element[any]):
     unit_type = UnitType.FINAL_NODE
 

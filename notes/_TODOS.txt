@@ -1,92 +1,48 @@
-May 22-28:
-- Go through RQ3 samples - organize them. Make a few sample ones in a test suite 
-- Set up the rest of the samples - try to get at least 25. Eventually maybe get to 50
-- Try out some specific metrics 
 
-May 29-Jun 4:
-- New and final sample contract
-- clean out all the sample contracts 
-- organize test suites (especially the ob fulfilled/violated stuff)
+====================
+======= TODOS ======
+====================
 
+TOP PRIORITY
+- Update the contract NL 
+- Start making tests and concrete requiresment/metrics for input selection
+- Add CustomEvent template to all declarations 
+- Smooth out the capitalization and punctuation 
+- Figure out the parm customization - will we control the allowed customizations based on the parm?
 
-NL TODOS
-- General
--- obligation fulfilled and violated events
--- Capitalization and punctuation
--- figure out "providing X days notice" event
+IMPORTANT
+- Clean up the Symboleo contract code 
+- Break up the Asset and declaration mappers
+- Rework in common events 
+- Look into adding date as an event property; so it can be referenced again 
+- Figure out if we need more detailed parm config 
+- More Isolated Tests. Aim for 25 in total. Cover all patterns 
 
-- Sample
--- need to work in the 'unless such delay exceeds 10 days' to the template...
-
-- Rental
--- until landlord allows pets should be "unless" - would want to make it written notice as well...
--- termination notice event - figure it out
-
-SYM TODOS
-- General
--- parameters and dates 
-
-- Sample
-
-- Rental
+MAYBE
+- Attempt to represent the "provide X days of notice" termination power  
 
 
-
-NL TODOS
-- domain timepoints should turn into cleaner-looking parameters, e.g. [del_due_date]
-- fulfilled and violated obligations should make use of their event (consequent) 
--- this will require lots of work, including a Declaration -> CustomEvent mapper
-- fix the event to_text - getting some strange results on the rental one
-- after an if, might add a comma, and also lower-case the next word
-- replace "until" with "unless"
-- fix the days in advance on the standard event... - likely a tough one
-- rental: pow_termination_abandon - just way off...?
-- prop: legal proceedings [ON THE PROPERTY??]
-- grid: if buyer determinee necessary ...
-- 
-
-
-GOALS FOR MAY
-- New contract template 
-- SYMBOLEO: re-add parm and parm config; handle multiple norms in one request; More convenience methods; more tests on the spec
-- NLP: Improve extractors (add contract), Better use of spacy and framenet, Have a separate NLP test suite (spacy, MLConjug, Framenet)
-- Metrics Standardization: Have a process that runs the test suites and gives some more detailed metric-related information
-- Clean code: Do some renaming (InputUnit = Token, etc.); clean out older code; unit tests up to 70%
+====================
+===== SCHEDULE =====
+====================
 
 
 JUNE
-- Final contract template
-- Make a web ui
-- Unit tests at 80%
+- Working Web UI
+- Other metric/eval/tests code for mapping 
+- Metric/eval code/tests for selection 
+- Metric/eval for how much of the CNL is covered in the tool
+- 20 Isolated tests
+- Unit tests at 75%
+
 
 JULY
-- Review all templates
+- autocomplete/suggestion functionality; raw string -> input
+- 25 isolated tests
 - Unit tests at 90%
-- autocomplete/suggestion functionality and string -> nodes
+
 
 AUGUST
 - Unit tests at full coverage
 
 
-MAJOR TODOS:
-- More handling on the trigger/consequent... Might require re-introducing parameters and parmConfig; trigger should add to start of NL for example.. 
-- NounPhrase: More work on noun phrase extractor; interfaces for the nlp functionality...
-- PrepPhrase: More work on the extractor. Lots of NLP functionality 
-- Handling the cases where we reference TWO norms (e.g. "either buyer or seller"...)
-- obligation-related events - would be better to use the event rather than ob_payment obligaton is violated (for example) - tough one...
-- Powers: Do we want to allow user to add ANY power - could be constructed... may be too much
-- NL issues: How will we handle coreferences?
-
-
-OTHER TODOS:
-- CustomEvent: more options/parms for custom_events to_text()
-- CustomEvent: Make the is_complete() function more complex
-- NounPhrase: Add more types and complexity to the to_text() 
-- Verb: Negation flag on the verb
-- General: Remove OpCode from Frame ?
-- Grammar: Replace the Until with Unless
-- UpdatePackage: alias/type the update package new_value..
-- Contract Spec: Get rid of the awkward sorting functionality. Will require new eq func on SymboleoContract
-- StandardEvent: Finish adding all the contract components
-- NLP: Make a Fake NLP once I have everything figured out. Or more sophisticated interfaces
-- ParmOpCode: Do we still need ADD_DM_PROP... I dont think so

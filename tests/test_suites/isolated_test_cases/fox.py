@@ -25,7 +25,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## Original: prior to January 1, 2007
 ## Mine: prior to January 1, 2007
 
-# TODO: Need prior to
+# TODO: F2 - Need prior to
 fox_test_case = TestCase(
     'fox',
     init_sym = SymboleoContract(
@@ -75,7 +75,7 @@ fox_test_case = TestCase(
     update_config = UpdateConfig(
         user_inputs = [
             UserInput(UnitType.ROOT),
-            UserInput(UnitType.BEFORE), # TODO: "prior to?"
+            UserInput(UnitType.BEFORE),
             UserInput(UnitType.DATE, 'January 1, 2007'),
             UserInput(UnitType.FINAL_NODE)
         ],

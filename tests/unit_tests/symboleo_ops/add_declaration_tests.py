@@ -24,7 +24,7 @@ class AddDeclarationTests(unittest.TestCase):
         self.assertEqual(found_decl2.name, new_name2)
 
         parms = contract.contract_spec.parameters
-        # TODO: Will need to re-add parms when I figure it out
+        # TODO: E2 - Will need to re-add parms when I figure it out
         found_parms = [x for x in parms if x.name == new_value]
         #self.assertEqual(len(found_parms), 1)
 

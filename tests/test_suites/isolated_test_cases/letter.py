@@ -79,7 +79,7 @@ letter_test_case = TestCase(
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '30 days'),
-            #TODO:Need the 'of'/'after'
+            #TODO: F2 - Need the 'of'/'after'
             UserInput(UnitType.EVENT),
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),

@@ -8,7 +8,7 @@ from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.before_date_handler import BeforeDateHandler
 
 from tests.helpers.test_objects import CustomEvents
@@ -30,7 +30,7 @@ class BeforeDateHandlerTests(unittest.TestCase):
 
         result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
-        # TODO: Want a cleaner way of inspecting the consequent - convenience method...
+        # TODO: E2 - Want a cleaner way of inspecting the consequent - convenience method...
         ## Maybe norm.get_predicate...
         exp_res = 'test: Obligation(partyA, partyB, true, SHappensBefore(evt_a, "March 31, 2024"));'
         

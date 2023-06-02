@@ -5,7 +5,7 @@ from app.classes.spec.declaration import DeclarationProp
 from app.src.update_processor.declaration_prop_mapper import DeclarationPropMapper
 from tests.helpers.test_objects import CustomEvents
 
-# TODO: Should make a test suite, and/or break up the class
+# TODO: E2 - Should make a test suite, and/or break up the class
 
 class DeclarationPropMapperTests(unittest.TestCase):
     def setUp(self) -> None:

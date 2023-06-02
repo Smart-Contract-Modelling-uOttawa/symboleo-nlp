@@ -5,7 +5,7 @@ from app.classes.spec.norm import Norm
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.domain_update_extractor import IExtractDomainUpdates
 from app.src.update_processor.norm_update_extractor import IExtractNormUpdates
 

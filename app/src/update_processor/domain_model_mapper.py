@@ -5,7 +5,6 @@ class IMapDeclarationToDomain:
     def map(self, declaration: Declaration) -> DomainObject:
         raise NotImplementedError()
 
-# TODO: Create a template for the domainEvent... so that we can create new ones
 class DeclarationToDomainMapper(IMapDeclarationToDomain):
     def map(self, declaration: Declaration) -> DomainObject:        
         props = [DomainProp(p.key, p.type) for p in declaration.props]

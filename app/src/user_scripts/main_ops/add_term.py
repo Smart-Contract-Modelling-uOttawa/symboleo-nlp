@@ -4,7 +4,6 @@ from app.src.user_scripts.main_ops.user_deps import UserDependencies
 from app.src.operations.termination_updater import TerminationOperation
 
 # Adding a new termination power
-# TODO: Want to change this to just adding ANY power. Since Powers can be fully defined by the domain model
 def add_term(deps: UserDependencies, contract: SymboleoContract):
     print('\nAdding termination condition...\n')
 

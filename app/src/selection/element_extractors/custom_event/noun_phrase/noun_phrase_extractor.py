@@ -4,6 +4,8 @@ from app.src.selection.element_extractors.value_extractor import IExtractValue
 
 from app.src.selection.element_extractors.custom_event.noun_phrase.asset_type_extractor import IExtractAssetType
 
+# TODO: E3 - Break this class up: validation, determiner, head, adj, etc
+## Maybe make a custom spacy-type of doc that can be passed around
 class NounPhraseExtractor(IExtractValue[NounPhrase]):
     def __init__(
         self, 
@@ -20,14 +22,12 @@ class NounPhraseExtractor(IExtractValue[NounPhrase]):
         ## Ensure that there is one noun_chunk
 
         # Get determiner
-        # TODO: Pull this out
         if doc[0].tag_ == 'DT':
             det = doc[0].text
         else:
             det = None
         
         # Get the head
-        # TODO: Pull this out
         heads = [x for x in doc if x.dep_ == 'ROOT']
         if len(heads) == 1:
             head = heads[0]
@@ -36,7 +36,6 @@ class NounPhraseExtractor(IExtractValue[NounPhrase]):
             raise ValueError('Invalid subject')
         
         # Get adjectives
-        # TODO: Pull this out
         adjs = [x.text for x in doc 
             if x.tag_ == 'JJ' 
             or (x.dep_ == 'compound' and x.head.text == head.text)

@@ -3,7 +3,7 @@ from app.classes.patterns.before_date import BeforeDate
 from app.classes.spec.norm import Norm
 from app.classes.spec.predicate_function import PredicateFunctionSHappensBefore
 from app.classes.spec.sym_point import Point, PointVDE
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.pattern_handler import IHandlePatterns
 
 

@@ -121,7 +121,7 @@ test_suite = [
         parm_key = 'P2'
     ),
     
-    # TODO: Need to represent "unless delay exceeds 10 days". Probably will skip this one
+    # TODO: F2 - Need to represent "unless delay exceeds 10 days". Probably will skip this one
     # UpdateConfig(
     #     OpCode.ADD_TERMINATION_POWER,
     #     user_inputs = [

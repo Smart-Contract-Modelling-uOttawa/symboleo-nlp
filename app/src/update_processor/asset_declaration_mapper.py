@@ -1,19 +1,13 @@
 from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.classes.spec.domain_object import Asset
 from app.classes.spec.declaration import AssetDeclaration
 from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 
 from app.src.update_processor.asset_declaration_extractor import IExtractAssetDeclarations
 
-# Look through the CustomEvent at the noun phrases
-# For any that are not roles and not in the asset set, create a new asset
-# Might create multiple... subj, dobj, pps...
-# This is where we need access to the contract. At the very least we need the assets
-# MAy want to just return ALL assets, as that may be useful in the subsequent declaration_mapper call
-## It will need to know about any new assets that have been created...
-# TODO: Clean and break this up
+
+# TODO: E3 - Clean and break this up
 class IMapAssetDeclarations:
     def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         raise NotImplementedError()

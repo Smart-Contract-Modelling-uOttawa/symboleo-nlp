@@ -42,7 +42,6 @@ class CustomEvent(BaseEvent):
             snake_name = CaseConverter.to_snake(name)
             return VariableEvent(f'evt_{snake_name}')
 
-    # TODO: Will be more complex...
     def get_declaration_name(self):
         name = self.verb.lemma.lower()
 
@@ -57,18 +56,13 @@ class CustomEvent(BaseEvent):
         
         return name 
 
-    # TODO: This will be more complex. Will need to split it out, potentially into static functions. Need tests
-    # Need to incorporate negation
+    # TODO: E2? - Add tests for custom_event.to_text
+    ## It's possible we wont even need this - depends on how we generate the NL refinement
+    ## Most of it may get pushed to the input phase, rather than handling it here
     def to_text(self, conjugation: ConjType = ConjType.PRESENT):
         subj = self.subj.to_text()
         result = subj
 
-        # Some of this may get pushed to the input as well
-        ## e.g. maybe we enforce "fails to" vs "fail to" on the input, rather than handling here
-        ## Would probably make more sense
-
-        # Will depend on the conjugation type as well...
-        # And on plurality...
         if self.negation:
             if self.subj.is_plural:
                 result += ' fail to'
@@ -121,7 +115,7 @@ class CustomEvent(BaseEvent):
             self.predicate == other.predicate and \
             ClassHelpers.lists_eq(self.pps, other.pps, 'key')
 
-    # TODO: Make this more complex
+    # TODO: E1? - This may not be needed either
     def is_complete(self):
         return True
         #return self.subj and self.verb

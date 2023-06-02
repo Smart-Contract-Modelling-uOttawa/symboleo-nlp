@@ -11,13 +11,12 @@ class InputUnit: # pragma: no cover
     needs_value = False
     init_value = ''
     options: List[str] = None
-    # TODO: options...
     
     def __init__(self, options: List[str] = None):
         self.options = options 
     
     def __eq__(self, other: InputUnit) -> bool:
-        return self.unit_type == other.unit_type # more here?
+        return self.unit_type == other.unit_type
 
     def get_value(self):
         raise NotImplementedError()

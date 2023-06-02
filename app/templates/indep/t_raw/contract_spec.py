@@ -48,7 +48,6 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     services = AssetDeclaration('services', 'Services', [])
     SERVICES = services.to_obj()
 
-    # TODO: add the Events...
     evt_start_services = EventDeclaration('evt_start_services', 'StartServices', [
         DeclarationProp('agent', CONTRACTOR, 'Role'),
         DeclarationProp('services', SERVICES, 'Services'),

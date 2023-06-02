@@ -8,7 +8,7 @@ from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.if_event_handler import IfEventHandler
 
 from tests.helpers.test_objects import CustomEvents
@@ -30,8 +30,6 @@ class IfEventHandlerTests(unittest.TestCase):
 
         result = self.sut.handle(pattern, handle_object)
         new_norm = result[0]
-        # TODO: Want a cleaner way of inspecting the consequent - convenience method...
-        ## Maybe norm.get_predicate...
         exp_res = 'test: Obligation(partyA, partyB, Happens(evt_pay), Happens(evt_a));'
         
         self.assertEqual(len(result), 1)

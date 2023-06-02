@@ -6,7 +6,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase
 class ContractNouns:
     contract = lambda: NounPhrase('contract', 'contract', asset_type='Contract')
 
-# TODO: Finish this 
+# TODO: F1 - Finish this 
 class ContractVerbs:
     contract_verb_dict = {
         ContractEventName.Terminated: 

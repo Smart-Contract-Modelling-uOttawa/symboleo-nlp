@@ -9,7 +9,7 @@ class IBuildNorms:
     def build(self, norm1: Norm, event: SymEvent) -> Norm:
         raise NotImplementedError()
 
-# TODO: Re-integrate this... into UnlessEvent PatternHandler
+# TODO: E2 - Re-integrate this... into UnlessEvent PatternHandler
 class NormBuilder(IBuildNorms):
     def build(self, norm1: Norm, event: SymEvent) -> Norm:
         # Need to do some checks in here...

@@ -75,7 +75,7 @@ franchise_test_case = TestCase(
     update_config = UpdateConfig(
         user_inputs = [
             UserInput(UnitType.ROOT),
-            UserInput(UnitType.BEFORE), # TODO: "on or before?"
+            UserInput(UnitType.BEFORE), # TODO: F2 - "on or before?"
             UserInput(UnitType.DATE, 'March 31, 2017'),
             UserInput(UnitType.FINAL_NODE)
         ],

@@ -15,7 +15,6 @@ from app.classes.units.unless_unit import UnlessUnit
 from app.classes.units.for_unit import ForUnit
 from app.classes.units.following_unit import FollowingUnit
 from app.classes.units.timepoint_unit import TimepointUnit
-from app.classes.units.domain_timepoint_unit import DomainTimepointUnit
 from app.classes.units.custom_event_units import *
 from app.classes.units.standard_event_units import *
 

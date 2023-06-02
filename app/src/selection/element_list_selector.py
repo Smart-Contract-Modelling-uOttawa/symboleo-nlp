@@ -10,7 +10,7 @@ from app.src.selection.token_selector_set import ISelectNode
 from app.src.selection.input_value_getter import IGetInputValues
 from app.src.selection.element_extractor import IExtractElements
 
-# TODO: Will need to integrate the CommonEvent handling stuff in though...
+# TODO: F3? - Will need to integrate the CommonEvent handling stuff in though...
 class ISelectElementList:
     def select(self, contract: ISymboleoContract) -> List[Element]:
         raise NotImplementedError()

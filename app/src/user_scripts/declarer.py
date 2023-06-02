@@ -14,7 +14,6 @@ class ManualDeclarer:
 
         for dp in domain_obj.props:
             val = ManualDeclarer.get_input_by_type(contract, dp.key, dp.type)
-            # TODO: Validate type...
             next_prop = DeclarationProp(dp.key, val, dp.type)
             props.append(next_prop)
         

@@ -37,7 +37,7 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         declarations = []
         domain_objects = []
 
-        # TODO: May want to add the date in BEFORE DATE pattern as an event property (e.g. delivery_due_date)
+        # TODO: F3 - For the BEFORE DATE pattern - may want to add event property (e.g. delivery_date)
         ## Would require extracting the initial event declaration - may need to pass in the norm...
         ## And updating the domain event and declaration
         ## Then in the contract updates, would need to merge the new properties. 
@@ -56,8 +56,6 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
             # for x in asset_decls:
             #     x.print_me()
 
-            # Might then be passing asset_decls into this
-            # Any Noun phrase should be an asset by this point... I think...
             event_decl = self.__event_decl_mapper.map(evt)
             if event_decl:
                 declarations.append(event_decl)

@@ -70,7 +70,8 @@ class Asset(DomainObject):
         super().__init__('isAn Asset', name, props, base_type)
     
   
-# TODO: Will eventually want a way to build this in the new_event_updater code
+# TODO: F3? - Will eventually want a way to build this in the new_event_updater code
+## This may not be needed either... More likely to go on the declaration
 ## i.e. the declaration_to_domain mapper
 class EventNLTemplate:
     def __init__(self, t: Template):

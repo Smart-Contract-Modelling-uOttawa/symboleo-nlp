@@ -5,7 +5,7 @@ from app.classes.elements.element import Element
 from app.src.pattern_builder.pattern_builder import IBuildPatterns
 from app.src.update_processor.update_processor import IProcessUpdates
 
-# TODO: Will likely need to specify the norm_component...
+# TODO: E3? - Will likely need to specify the norm_component...
 # Instead of key, can I use the ParmConfig...?
 class ParameterOperation:
     def __init__(self, nl_key:str, parm_key:str, elements: List[Element]):
@@ -43,9 +43,10 @@ class ParameterRefiner(IRefineParameter):
             # Run the Symboleo updates
             contract.run_updates(update_set)
 
-        # TODO: Run the NL Update... Likely need the component here as well
+        # TODO: F3 - Run the NL Update... Likely need the component here as well
         # Or maybe this goes outside of this. Either way, we need the input text
-        contract.update_nl(op.nl_key, op.parm_key, 'TODO') #pattern.to_text()
+        ## Likely just a separate processing function
+        contract.update_nl(op.nl_key, op.parm_key, 'TODO')
 
 
         

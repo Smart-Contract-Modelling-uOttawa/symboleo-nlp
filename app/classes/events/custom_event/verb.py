@@ -29,7 +29,6 @@ class VerbConjugations:
             self.past == __value.past
 
 class Verb:
-    # TODO: Might add a negation flag to support negation. Would need to parse it out though
     def __init__(
             self, 
             verb_str: str,

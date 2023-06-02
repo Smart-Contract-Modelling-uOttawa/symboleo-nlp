@@ -2,7 +2,7 @@ import copy
 from app.classes.patterns.until_event import UntilEvent
 from app.classes.spec.norm import Norm
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBeforeEvent
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.pattern_handler import IHandlePatterns
 
 

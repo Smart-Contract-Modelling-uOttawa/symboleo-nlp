@@ -9,7 +9,7 @@ from app.classes.spec.point_function import TimeUnit
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.within_timespan_handler import WithinTimespanHandler
 
 from tests.helpers.test_objects import CustomEvents

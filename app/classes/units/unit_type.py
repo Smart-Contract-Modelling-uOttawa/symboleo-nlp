@@ -1,5 +1,6 @@
 from enum import Enum
 
+# TODO: E1 - Change the values to strings instead of numbers
 class UnitType(Enum):
     ROOT = 1
     EVENT = 10 

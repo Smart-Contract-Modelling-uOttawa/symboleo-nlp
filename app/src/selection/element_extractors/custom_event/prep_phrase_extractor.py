@@ -11,7 +11,7 @@ class PrepPhraseExtractor(IExtractValue[PrepPhrase]):
     def extract(self, str_val: str, contract: SymboleoContract = None) -> PrepPhrase:
         spl = str_val.split(' ')
 
-        # TODO: May want to verify that its a valid proposition. Can use NLP here...
+        # TODO: F2 - May want to verify that its a valid proposition. Can use NLP here...
         preposition = spl[0]
 
         pobj_str = ' '.join(spl[1:])

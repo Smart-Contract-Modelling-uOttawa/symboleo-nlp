@@ -2,7 +2,7 @@ from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.declaration import Declaration
 
-#  TODO: This is more of a helper. Should it go elsewhere?
+#  TODO: E2 - This is more of a helper. Should it go elsewhere?
 ## Could event be a method on Symboleo Contract
 class IExtractDomainTimePoints:
     def extract(self, contract: SymboleoContract) -> List[str]:

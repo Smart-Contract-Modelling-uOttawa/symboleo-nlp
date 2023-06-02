@@ -2,7 +2,7 @@ from typing import List, Dict
 from app.classes.spec.norm import Norm
 from app.classes.patterns.pattern import Pattern
 
-from app.src.update_processor.pattern_handlers.handle_object import HandleObject
+from app.classes.operations.handle_object import HandleObject
 from app.src.update_processor.pattern_handlers.pattern_handler import IHandlePatterns
 
 class IExtractNormUpdates:

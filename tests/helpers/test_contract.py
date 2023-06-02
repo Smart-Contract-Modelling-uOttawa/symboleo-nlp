@@ -43,7 +43,6 @@ def get_test_contract_for_assets():
 
 
 def get_test_contract():
-    # TODO: Can make this more realistic
     return SymboleoContract(
         
         DomainModel(

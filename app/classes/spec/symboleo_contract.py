@@ -14,7 +14,7 @@ from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 # XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
 
-# TODO: Want to sweep through the SymboleoContract
+# TODO: E3 - Sweep through the SymboleoContract
 ## Improve the interface; make all references to it a reference to the interface
 ## Clean up some of the naming and internals
 ## More convenience methods
@@ -108,13 +108,6 @@ class SymboleoContract(ISymboleoContract):
         for x in self.nl_template.template_dict:
             val = self.nl_template.template_dict[x]
             print(f'{x}: {val.str_val}')
-
-            # TODO: Might get rid of mapping - use the parms...
-            # mapping = val.mapping
-            # for m in mapping:
-            #     t,v = m.split('.')
-            #     norm = self.contract_spec.__dict__[t][v]
-            #     print(f' - {norm.to_sym()}')
             print('\n')
     
     
@@ -126,7 +119,7 @@ class SymboleoContract(ISymboleoContract):
         # Add the declaration
         self.contract_spec.declarations[declaration.name] = declaration
 
-        # TODO: Add any new parameters as well
+        # TODO: F3 - Add any new parameters as well
         # parm_names = [x.name for x in self.contract_spec.parameters]
         # decl_keys = [x for x in self.contract_spec.declarations]
         # for dp in declaration.props:

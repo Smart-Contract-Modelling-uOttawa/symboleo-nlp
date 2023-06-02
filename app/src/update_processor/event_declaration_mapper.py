@@ -28,10 +28,8 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         if VerbType.TRANSITIVE in verb.verb_types:
             result = self._map_transitive(evt)
 
-        # TODO: Intransitive
+        # TODO: F2 - Handle Intransitive case
         
-
-
         return result
     
 
