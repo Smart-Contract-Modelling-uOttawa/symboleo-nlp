@@ -7,7 +7,7 @@ from app.classes.elements.element import Element
 
 from app.classes.units.all_units import CustomEventUnit, SubjectUnit
 
-from app.src.child_getters.child_getter import IGetUnitChildren
+from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class CustomEventUnitCG(IGetUnitChildren):
     def get(self, parent_unit: CustomEventUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:

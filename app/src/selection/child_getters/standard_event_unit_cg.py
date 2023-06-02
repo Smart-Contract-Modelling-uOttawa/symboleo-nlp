@@ -5,7 +5,7 @@ from app.classes.elements.element import Element
 
 from app.classes.units.all_units import StandardEventUnit, ContractEventUnit, NormEventUnit, CommonEventUnit
 
-from app.src.child_getters.child_getter import IGetUnitChildren
+from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class StandardEventUnitCG(IGetUnitChildren):
     def get(self, parent_unit: StandardEventUnit, contract: ISymboleoContract, element: Element) -> List[InputUnit]:

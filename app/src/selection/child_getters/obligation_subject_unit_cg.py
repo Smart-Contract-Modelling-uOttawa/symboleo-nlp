@@ -6,7 +6,7 @@ from app.classes.elements.element import Element
 
 from app.classes.units.all_units import ObligationSubjectUnit, ObligationActionUnit
 
-from app.src.child_getters.child_getter import IGetUnitChildren
+from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class ObligationSubjectUnitCG(IGetUnitChildren):
     def get(self, parent_unit: ObligationSubjectUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:

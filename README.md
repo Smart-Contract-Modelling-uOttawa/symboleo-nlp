@@ -78,7 +78,7 @@ Currently, the code be interactively run and debugged using a Jupyter notebook.
 The project is intended to be test-driven. The goal is to define a set of valid test cases for converting NL customizations to Symboleo specifications, and explore how we can get these tests to pass. 
 The tests are written with the unittest module and can be run as follows: `python -m unittest tests/file_to_test.py`
 
-To run the full-stack test suites: `python -m unittest tests/test_suites/run_test_suites.py`. These are not part of regular test coverage
+To run the full-stack test suites: `python -m unittest tests/test_suites/full_test_suite.py`. These are not part of regular test coverage
 
 To run all unit tests: `python -m unittest discover -s 'tests/unit_tests' -p '*_tests.py'`
 

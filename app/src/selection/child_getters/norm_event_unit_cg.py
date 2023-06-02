@@ -5,7 +5,7 @@ from app.classes.elements.element import Element
 
 from app.classes.units.all_units import NormEventUnit, ObligationSubjectUnit
 
-from app.src.child_getters.child_getter import IGetUnitChildren
+from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class NormEventUnitCG(IGetUnitChildren):
     def get(self, parent_unit: NormEventUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:

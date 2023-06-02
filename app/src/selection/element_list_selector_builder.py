@@ -6,7 +6,7 @@ from app.src.selection.input_value_getter import InputValueGetter
 
 from app.src.selection.child_node_getter import ChildNodeGetter
 from app.src.selection.element_extractors.value_extractor_dict_builder import ValueExtractorDictBuilder
-from app.src.child_getters.child_getter_dict import ChildGetterDictConstructor
+from app.src.selection.child_getters.child_getter_dict import ChildGetterDictConstructor
 
 from app.src.selection.element_list_selector import ElementListSelector
 
