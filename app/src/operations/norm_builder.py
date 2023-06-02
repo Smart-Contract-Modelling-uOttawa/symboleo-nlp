@@ -2,14 +2,14 @@ from app.classes.spec.norm import Norm, Power
 from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
 from app.classes.spec.sym_event import SymEvent
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 
 # May be better to rename to suspensive norm builder or something like that
 class IBuildNorms:
     def build(self, norm1: Norm, event: SymEvent) -> Norm:
         raise NotImplementedError()
 
-
+# TODO: Re-integrate this... into UnlessEvent PatternHandler
 class NormBuilder(IBuildNorms):
     def build(self, norm1: Norm, event: SymEvent) -> Norm:
         # Need to do some checks in here...

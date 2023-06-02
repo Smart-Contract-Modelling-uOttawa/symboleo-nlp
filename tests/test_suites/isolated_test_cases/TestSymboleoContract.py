@@ -8,7 +8,7 @@ from app.classes.spec.nl_template import NLTemplate, TemplateObj
 
 from app.classes.operations.user_input import UserInput, UnitType
 
-from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
+from app.src.update_processor.domain_model_mapper import IMapDeclarationToDomain
 
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode

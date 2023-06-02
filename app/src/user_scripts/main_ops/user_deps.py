@@ -1,12 +1,12 @@
 from app.classes.operations.dependencies import Dependencies
 
-from app.src.operations.refine_parameter.parameter_refiner_constructor import ParameterRefinerConstructor
-from app.src.operations.refine_parameter.parameter_refiner_new import ParameterRefiner
+from app.src.operations.parameter_refiner_constructor import ParameterRefinerConstructor
+from app.src.operations.parameter_refiner import ParameterRefiner
 from app.src.operations.termination_updater import TerminationUpdater
 from app.src.operations.domain_updater import DomainUpdater
 
-from app.src.grammar.element_list_selector_builder import ElementListSelectorBuilder
-from app.src.grammar.element_list_selector import ElementListSelector
+from app.src.selection.element_list_selector_builder import ElementListSelectorBuilder
+from app.src.selection.element_list_selector import ElementListSelector
 
 class UserDependencies:
     def __init__(

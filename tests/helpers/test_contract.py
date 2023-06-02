@@ -5,7 +5,7 @@ from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import Role, DomainEvent, Asset
 from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.predicate_function import PredicateFunctionHappens
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.nl_template import NLTemplate
 
 class FakeSym:

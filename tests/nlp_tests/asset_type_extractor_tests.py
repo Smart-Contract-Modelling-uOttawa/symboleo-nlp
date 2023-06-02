@@ -4,12 +4,7 @@ from unittest.mock import MagicMock
 from tests.helpers.test_nlp import TestNLP
 from tests.helpers.test_contract import get_test_contract_for_assets
 
-from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.domain_model import DomainModel
-from app.classes.spec.domain_object import DomainEnum
-from app.classes.spec.symboleo_contract import SymboleoContract
-from app.classes.spec.declaration import Declaration
-from app.src.extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
+from app.src.selection.element_extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
 
 test_suite = [

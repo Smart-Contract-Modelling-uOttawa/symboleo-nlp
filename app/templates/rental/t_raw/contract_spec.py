@@ -2,7 +2,7 @@ from typing import Dict
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import DeclarationProp, RoleDeclaration, AssetDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation, Power
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
 from app.classes.spec.sym_event import ObligationEvent, ObligationEventName, ContractEvent, ContractEventName

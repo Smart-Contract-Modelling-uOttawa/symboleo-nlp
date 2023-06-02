@@ -5,7 +5,7 @@ from app.classes.spec.sym_interval import Interval, SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
 from app.classes.spec.power_function import PFObligation, PFObligationName
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from app.src.update_processor.pattern_handlers.pattern_handler import HandleObject, IHandlePatterns
 
 # This will be a complex one... Will have multiple cases for how this is handled

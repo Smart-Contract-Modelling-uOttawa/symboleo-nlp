@@ -1,6 +1,6 @@
 from __future__ import annotations
 from enum import Enum
-from app.classes.other.helpers import ClassHelpers
+from app.classes.helpers.list_eq import ClassHelpers
 
 class PAtomicExpression:
     def to_sym(self):

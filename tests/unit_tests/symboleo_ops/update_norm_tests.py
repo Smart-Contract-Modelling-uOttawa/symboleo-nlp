@@ -6,7 +6,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens, Predic
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import PointVDE
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from tests.helpers.test_contract import get_test_contract
 
 

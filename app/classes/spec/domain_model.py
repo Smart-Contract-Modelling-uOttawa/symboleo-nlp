@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Dict, List
 from app.classes.spec.domain_object import Asset, DomainEnum, DomainEvent, Role
-from app.classes.other.helpers import ClassHelpers
+from app.classes.helpers.list_eq import ClassHelpers
 
 class DomainModel:
     def __init__(

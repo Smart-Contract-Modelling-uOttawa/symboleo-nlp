@@ -39,7 +39,7 @@ Postconditions
 Obligations
   ob_invoice: Happens(evt_complete_services) -> Obligation(contractor, client, true, Happens(evt_invoice));
   ob_invoice_due: Obligation(client, contractor, true, WhappensBefore(evt_pay_invoice, Date.add(evt_invoice, 10, days)));
-  ob_partial_completion: Obligation(client, contractor, Happens(evt_start_services) OR not Happens(evt_complete_services) OR not Happens(evt_breach_contractor), Happens(evt_pay_pro_rata));
+  ob_partial_completion: Obligation(client, contractor, Happens(evt_start_services) and WhappensBeforeE(Terminated(self), evt_complete_services) and not Happens(evt_breach_contractor), Happens(evt_pay_pro_rata));
   ob_reimburse: Obligation(client, contractor, true, Happens(evt_reimburse_expenses));
   ob_not_disclose: Obligation(contractor, client, true, not Happens(evt_disclose_contractor));
   ob_not_subcontract: Obligation(client, contractor, true, not Happens(evt_hire_subcontractor));

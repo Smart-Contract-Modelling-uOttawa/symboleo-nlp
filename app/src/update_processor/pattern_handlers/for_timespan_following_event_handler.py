@@ -6,8 +6,8 @@ from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE, StartPoint
 from app.classes.spec.point_function import PointFunction
 from app.classes.spec.sym_interval import Interval, IntervalFunction
-from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.other.timespan import Timespan
+from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.elements.timespan import Timespan
 from app.src.update_processor.pattern_handlers.pattern_handler import HandleObject, IHandlePatterns
 
 

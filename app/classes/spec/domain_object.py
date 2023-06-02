@@ -3,7 +3,7 @@ import copy
 from typing import List, Tuple
 from string import Template
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.other.helpers import ClassHelpers
+from app.classes.helpers.list_eq import ClassHelpers
 
 class DomainProp:
     def __init__(self, key, type):

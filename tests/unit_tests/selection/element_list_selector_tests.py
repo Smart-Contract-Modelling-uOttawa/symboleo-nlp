@@ -7,22 +7,22 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.input_unit import InputUnit
 from app.classes.elements.element import Element
 
-from app.src.grammar.element_list_selector import ElementListSelector
-from app.src.grammar.child_getter import IGetChildren
-from app.src.grammar.token_selector_set import ISelectTokenFromSet
-from app.src.grammar.input_value_getter import IGetInputValues
-from app.src.grammar.element_extractor import IExtractElements
+from app.src.selection.element_list_selector import ElementListSelector
+from app.src.selection.child_node_getter import IGetNodeChildren
+from app.src.selection.token_selector_set import ISelectNode
+from app.src.selection.input_value_getter import IGetInputValues
+from app.src.selection.element_extractor import IExtractElements
 
 class ElementListSelectorTests(unittest.TestCase):
     def setUp(self):
-        self.fake_child_getter = IGetChildren()
+        self.fake_child_getter = IGetNodeChildren()
         self.fake_child_getter.get = MagicMock(side_effect = [
             [InputUnit(), InputUnit()],
             [InputUnit()],
             [],
         ])
         
-        self.fake_child_selector = ISelectTokenFromSet()
+        self.fake_child_selector = ISelectNode()
         self.fake_child_selector.select = MagicMock(return_value = InputUnit())
 
         self.fake_input_value_getter = IGetInputValues()

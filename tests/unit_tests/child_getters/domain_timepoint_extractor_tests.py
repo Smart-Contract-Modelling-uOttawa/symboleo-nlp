@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.templates.template_getter import get_template
 
-from app.src.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
+from app.src.selection.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
 
 class DomainTimepointExtractorTests(unittest.TestCase):
     def setUp(self):

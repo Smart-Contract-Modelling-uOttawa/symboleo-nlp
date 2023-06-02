@@ -1,7 +1,7 @@
 from typing import Dict, List
 from app.classes.spec.symboleo_contract import SymboleoContract, ContractSpec, DomainModel
 from app.classes.spec.norm import Norm, Obligation, Power, SurvivingObligation
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.declaration import RoleDeclaration, AssetDeclaration, EventDeclaration, DeclarationProp
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *

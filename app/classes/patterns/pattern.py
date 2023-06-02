@@ -2,14 +2,12 @@ from __future__ import annotations
 from typing import List
 import copy
 
-from app.classes.custom_event.base_event import BaseEvent
-from app.classes.custom_event.custom_event import CustomEvent
+from app.classes.events.base_event import BaseEvent
+from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.units.unit_type import UnitType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
 
 class Pattern: # pragma: no cover
     sequence: List[UnitType]
-    op_code: ParmOpCode # TODO: May be able to remove this
 
     def to_text(self) -> str:
         raise NotImplementedError()
@@ -30,7 +28,6 @@ class EventPattern(Pattern):
 
 class DummyPattern(Pattern):
     sequence = [UnitType.ROOT]
-    op_code = ParmOpCode.REFINE_PREDICATE
     test_value: str = ''
 
     def is_complete(self):

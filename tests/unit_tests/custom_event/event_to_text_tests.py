@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from typing import Tuple
-from app.classes.custom_event.custom_event import CustomEvent
+from app.classes.events.custom_event.custom_event import CustomEvent
 from tests.helpers.test_objects import CustomEvents
 
 # TODO: Will add many more examples from real test cases...

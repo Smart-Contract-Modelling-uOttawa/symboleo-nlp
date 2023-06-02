@@ -13,7 +13,7 @@ from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionSHappensBefore
 
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_units import *
 

@@ -1,6 +1,5 @@
 from typing import List
 from app.classes.operations.op_code import OpCode
-from app.classes.elements.element import Element
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration
 from app.classes.operations.user_input import UserInput

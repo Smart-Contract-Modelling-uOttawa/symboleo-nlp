@@ -6,7 +6,7 @@ from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
 from app.classes.spec.predicate_function import PredicateFunctionWHappensBeforeEvent
 from app.classes.elements.all_elements import *
-from app.classes.custom_event.conj_type import ConjType
+from app.classes.events.conj_type import ConjType
 from app.classes.operations.user_input import UserInput
 from app.classes.other.helpers import ClassHelpers
 
@@ -14,9 +14,9 @@ from app.src.operations.dependency_builder import DependencyBuilder
 from app.src.sym_updaters.sym_updater_dict import SymUpdaterDictConstructor
 from app.src.sym_updaters.update_extractor import UpdateExtractor
 
-from app.src.pattern_updaters.pattern_builder_builder import PatternBuilderBuilder
+from app.src.pattern_builder.pattern_builder_builder import PatternBuilderBuilder
 
-from app.src.grammar.element_extractor_builder import ElementExtractorBuilder
+from app.src.selection.element_extractor_builder import ElementExtractorBuilder
 
 from tests.helpers.sample_norm_lib import SampleNorms
 

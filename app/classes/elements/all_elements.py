@@ -37,7 +37,6 @@ unit_type_to_class: Dict[UnitType, Type[Element]] = {
     UnitType.PREP_PHRASE: PrepElement,
 
     UnitType.STANDARD_EVENT: StandardEventElement,
-    UnitType.COMMON_EVENT: CommonEventElement,
     UnitType.CONTRACT_EVENT: ContractEventElement,
     UnitType.CONTRACT_ACTION: ContractActionElement,
     UnitType.CONTRACT_SUBJECT: ContractSubjectElement,

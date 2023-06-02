@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 
-from app.src.grammar.element_extractor import ElementExtractor
-from app.src.extractors.value_extractor import IExtractValue 
+from app.src.selection.element_extractor import ElementExtractor
+from app.src.selection.element_extractors.value_extractor import IExtractValue 
 
 class ElementExtractorTests(unittest.TestCase):
     def setUp(self):

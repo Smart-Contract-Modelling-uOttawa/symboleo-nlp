@@ -2,9 +2,9 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.elements.custom_event_elements import VerbElement
-from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
+from app.classes.events.custom_event.verb import Verb, VerbType, VerbConjugations
 
-from app.src.child_getters.verb_unit_cg import VerbUnitCG
+from app.src.selection.child_getters.verb_unit_cg import VerbUnitCG
 
 class VerbNodeCGTests(unittest.TestCase):
     def setUp(self):

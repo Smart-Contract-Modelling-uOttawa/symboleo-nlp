@@ -2,10 +2,10 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.elements.static_elements import BeforeElement
-from app.classes.custom_event.verb import Verb, VerbType, VerbConjugations
+from app.classes.events.custom_event.verb import Verb, VerbType, VerbConjugations
 
-from app.src.child_getters.before_unit_cg import BeforeUnitCG
-from app.src.child_getters.domain_timepoint_extractor import IExtractDomainTimePoints
+from app.src.selection.child_getters.before_unit_cg import BeforeUnitCG
+from app.src.selection.child_getters.domain_timepoint_extractor import IExtractDomainTimePoints
 
 class BeforeNodeCGTests(unittest.TestCase):
     def setUp(self):

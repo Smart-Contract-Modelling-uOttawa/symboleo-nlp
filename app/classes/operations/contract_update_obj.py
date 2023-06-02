@@ -16,6 +16,7 @@ class ContractUpdateObj:
         self.domain_objects = domain_objects or []
         self.declarations = declarations or []
     
+    
     def merge(self, other: ContractUpdateObj):
         if not other:
             return

@@ -1,6 +1,5 @@
 from app.classes.spec.sym_event import ObligationEventName, ContractEventName
-from app.classes.template_event.common_event import CommonEvent
-from app.classes.template_event.obligation_subject import ObligationSubject
+from app.classes.elements.obligation_subject import ObligationSubject
 from app.classes.elements.element import Element
 from app.classes.units.unit_type import UnitType
 
@@ -23,9 +22,6 @@ class ContractSubjectElement(Element):
 
 class ContractEventElement(Element):
     unit_type = UnitType.CONTRACT_EVENT
-
-class CommonEventElement(Element[CommonEvent]):
-    unit_type = UnitType.COMMON_EVENT
 
 class StandardEventElement(Element):
     unit_type = UnitType.STANDARD_EVENT

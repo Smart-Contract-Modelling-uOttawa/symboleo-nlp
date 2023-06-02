@@ -7,10 +7,10 @@ from app.classes.spec.declaration import IDeclaration
 
 from app.classes.operations.op_code import OpCode
 from app.classes.operations.contract_updater_config import UpdateConfig
-from app.src.operations.refine_parameter.parameter_refiner_new import IRefineParameter
+from app.src.operations.parameter_refiner import IRefineParameter
 from app.src.operations.termination_updater import IAddPower
 from app.src.operations.domain_updater import IUpdateDomain
-from app.src.grammar.element_extractor import IExtractElements
+from app.src.selection.element_extractor import IExtractElements
 
 from app.src.operations.contract_updater import ContractUpdater
 

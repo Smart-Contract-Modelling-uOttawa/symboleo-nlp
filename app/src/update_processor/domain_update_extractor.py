@@ -1,13 +1,13 @@
 from typing import List
 from app.classes.patterns.pattern import Pattern, EventPattern
 from app.classes.patterns.all_patterns import *
-from app.classes.custom_event.custom_event import CustomEvent
+from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.sym_updaters.custom_event.event_declaration_mapper import IMapEventToDeclaration
-from app.src.sym_updaters.custom_event.asset_declaration_mapper import IMapAssetDeclarations
-from app.src.sym_updaters.custom_event.domain_model_mapper import IMapDeclarationToDomain
+from app.src.update_processor.event_declaration_mapper import IMapEventToDeclaration
+from app.src.update_processor.asset_declaration_mapper import IMapAssetDeclarations
+from app.src.update_processor.domain_model_mapper import IMapDeclarationToDomain
 
 class DomainUpdates:
     def __init__(

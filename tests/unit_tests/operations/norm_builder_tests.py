@@ -6,7 +6,7 @@ from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
 
 from app.src.operations.norm_builder import NormBuilder
 

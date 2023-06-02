@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.custom_event.conj_type import ConjType
+from app.classes.events.conj_type import ConjType
 
 from tests.helpers.test_objects import CustomEvents
 

@@ -2,7 +2,7 @@ from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.declaration import Declaration, DeclarationProp
-from app.src.helpers.string_to_class import CaseConverter
+from app.classes.helpers.string_to_class import CaseConverter
 
 class ManualDeclarer:
     @staticmethod

@@ -2,8 +2,8 @@ from __future__ import annotations
 from typing import List
 from enum import Enum
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.other.helpers import ClassHelpers
+from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.helpers.list_eq import ClassHelpers
 
 class DeclarationType(Enum):
     ASSET = 'assets'

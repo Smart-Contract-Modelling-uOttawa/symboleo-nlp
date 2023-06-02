@@ -2,10 +2,10 @@ from typing import List
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
-from app.classes.spec.power_function import PowerFunction, PFContract, PFContractName
+from app.classes.spec.power_function import PFContract, PFContractName
 from app.classes.elements.element import Element
 
-from app.src.operations.refine_parameter.parameter_refiner_new import ParameterRefiner, ParameterOperation
+from app.src.operations.parameter_refiner import ParameterRefiner, ParameterOperation
 
 class TerminationOperation:
     def __init__(

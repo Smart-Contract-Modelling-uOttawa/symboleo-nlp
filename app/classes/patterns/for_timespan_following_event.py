@@ -1,12 +1,10 @@
 from app.classes.patterns.pattern import EventPattern
-from app.classes.other.timespan import Timespan
+from app.classes.elements.timespan import Timespan
 from app.classes.units.unit_type import UnitType
-from app.classes.custom_event.conj_type import ConjType
-from app.src.operations.refine_parameter.parm_configs import ParmOpCode
+from app.classes.events.conj_type import ConjType
 
 class ForTimespanFollowingEvent(EventPattern):
     sequence = [UnitType.ROOT, UnitType.FOR, UnitType.TIMESPAN, UnitType.FOLLOWING, UnitType.EVENT]
-    op_code = ParmOpCode.REFINE_PREDICATE
     timespan: Timespan
 
     def is_complete(self):

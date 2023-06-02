@@ -4,7 +4,7 @@ from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.norm import Obligation, Power
 from app.classes.spec.proposition import Proposition
-from app.classes.other.helpers import ClassHelpers
+from app.classes.helpers.list_eq import ClassHelpers
 
 class ContractSpec:
     def __init__(

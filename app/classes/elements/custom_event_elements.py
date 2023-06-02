@@ -1,11 +1,11 @@
 from app.classes.elements.element import Element
 from app.classes.units.unit_type import UnitType
-from app.classes.custom_event.custom_event import CustomEvent
-from app.classes.custom_event.verb import Verb
-from app.classes.custom_event.noun_phrase import NounPhrase
-from app.classes.custom_event.prep_phrase import PrepPhrase
-from app.classes.custom_event.adverb import Adverb
-from app.classes.custom_event.predicate import Predicate
+from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.events.custom_event.verb import Verb
+from app.classes.events.custom_event.noun_phrase import NounPhrase
+from app.classes.events.custom_event.prep_phrase import PrepPhrase
+from app.classes.events.custom_event.adverb import Adverb
+from app.classes.events.custom_event.predicate import Predicate
 
 class PrepElement(Element[PrepPhrase]):
     unit_type = UnitType.PREP_PHRASE

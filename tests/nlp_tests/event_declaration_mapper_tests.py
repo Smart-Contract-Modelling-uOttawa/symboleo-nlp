@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.elements.all_elements import *
 from app.classes.spec.declaration import Declaration, DeclarationProp
 
-from app.src.sym_updaters.custom_event.event_declaration_mapper_builder import EventDeclarationMapperBuilder
+from app.src.update_processor.event_declaration_mapper_builder import EventDeclarationMapperBuilder
 
 from tests.helpers.test_objects import CustomEvents
 

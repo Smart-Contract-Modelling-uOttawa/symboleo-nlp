@@ -2,7 +2,8 @@ from typing import Dict
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import AssetDeclaration, RoleDeclaration, EventDeclaration, DeclarationProp
 from app.classes.spec.norm import Obligation, Power
-from app.classes.spec.prop_maker import PropMaker
+from app.classes.helpers.prop_maker import PropMaker
+from app.classes.spec.sym_event import ContractEvent, ContractEventName
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
 from app.classes.spec.point_function import PointFunction, TimeUnit
@@ -179,7 +180,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 CONTRACTOR,
                 PropMaker.make_multiple([
                     (PredicateFunctionHappens(EVT_START_SERVICES), False),
-                    (PredicateFunctionHappens(EVT_COMPLETE_SERVICES), True),
+                    (PredicateFunctionWHappensBeforeEvent(ContractEvent(ContractEventName.Terminated), EVT_COMPLETE_SERVICES), False),
                     (PredicateFunctionHappens(EVT_BREACH_CONTRACTOR), True)
                 ]),
                 PropMaker.make(
