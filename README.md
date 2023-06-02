@@ -2,49 +2,67 @@
 
 ## Description
 
-This project explores techniques for formalizing natural language (NL) customizations to a contract template. A templating approach to contract specification gives flexibility to create a variety of usable contracts without having to start from scratch.
+SymboleoNLP is a tool used to formalize natural language (NL) refinements for a contract template into the Symboleo specification Language, which is designed for the domain of smart contract monitoring. A contract that is fully specified in Symboleo can be used on other tools in the Symboleo ecosystem (model-checking, compliance-checking, code-generation). (*** add links here) The contract templates are designed to push the flexibility on what can be refined in a contract. Traditional contract templates use simple fill-in-the-blanks for the user. The contract templates used in this project use broader linguistic patterns, giving a contract author much more flexibility. This work can be seen as a step towards full formalization of NL into a specification language like Symboleo.
 
-Suppose that we start with a NL contract template T, as well as a Symboleo specification of that template S(T). 
+### Example
+We illustrate with an example. Suppose we have a delivery contract template with the following obligation: The seller must deliver the goods to the buyer \[PARAMETER\]. Let us suppose that we have a Symboleo specification for this simple contract template, which might look as follows: `ob_delivery: O(seller, buyer, T, Happens(evt_deliver_goods)`, where `evt_delivery` corresponds to a specification of the delivery event. This specification captures the fact that the seller has an obligation towards to the buyer to make this event happen.
 
-We define a limited set of NL customizations that can be made to a contract template. If a user creates an allowable customization C, then our goal is to formalize that into a Symboleo specification S(C).
+The `PARAMETER` can be filled with a variety of different complex NL values, such as:
+- "before March 30, 2023"
+- "within 2 weeks of the buyer completing the payment"
+- "If the buyer requests delivery"
 
-Traditional contract templates typically allow a user to customize simple and single-entity blanks (dates, addresses, names, etc.). Such an approach is trivial to formalize, provided we start with a contract template. We are interested in pushing the boundaries of what types of parameters can be automatically formalized. The long view is to have a new NL contract that can be reliably formalized to a specification language (such as Symboleo). This is a very complex problem, so we are making small, but concrete steps towards that goal.  
+The tool will process this input into a predictable Symboleo operation, resulting in a refined Symboleo contract. The above NL refinements may result in the following Symboleo refinements:
+- `ob_delivery: O(seller, buyer, T, SHappensBefore(evt_deliver_goods, Date("March 30, 2023"))`
+- `ob_delivery: O(seller, buyer, T, WHappensBefore(evt_deliver_goods, Date.add(evt_payment, 2, weeks))`
+- `ob_delivery: O(seller, buyer, Happens(evt_delivery_request), Happens(evt_deliver_goods)`
 
-## Example
+### General Process
 
-** TODO: Add concrete examples
+In general, we will start with a contract template `T` and its corresponding Symboleo specification `S(T)`. The contract author will enter any desired refinements in NL, resulting in a refined NL contract `C`. The role of the tool is to use the inputs `T`,`S(T)`, and `C` to generate the Symboleo that corresponds to the refined NL contract, which we call `S(C)`.
 
-## Requirements
+The refinements made by the user are in a _controlled_ Natural Language, which is a subset of NL (English) words and grammar, specialized for the contract domain. This CNL includes various temporal and conditional refinements, as well as a way to specify basic events. 
 
-- selection
-- mapping
+The tool therefore has two core requirements:
+- Enforce that the user's input adheres to the valid CNL
+- Ensure that the CNL refinement that is entered maps to the correct Symboleo refinement
+
 
 ## Controlled Natural language
-... description - how we obtained it, etc. 
-... grammar and operations
+
+The CNL used in this tool is a result of careful research on NL refinements that occur in real contracts and which have mappings to Symboleo operations. It consists of an EBNF grammar and set of mappings between patterns in that grammar and Symboleo operations.
+
+*** present the grammar
+
+*** present the operation table
 
 ## Running the Project
 
 ### Basic Information
-The code is written in Python, and makes use of popular NLP functionality, such as [spaCy](https://spacy.io/) and [NLTK](https://www.nltk.org/). 
+The tool is written in Python, and makes use of various NLP libraries, such as:
+- [spaCy](https://spacy.io/) and [NLTK](https://www.nltk.org/): Used for procssing raw NL using a standard NLP pipeline, such as tokenization, POS-tagging, entity recognition  
+- MLConjug
+- Benepar
 
-Other tools... MLConjug, spacy info, benepar, ...
+Other libaries have been explored and may potentially have use in this tool in the future:
+- WordNet...
+- Framenet...
+- Coreferee...
 
-Other ones explored, but not used 
 
 ### Env
+Before running the project, set up a virtual environment and install the required packages.
 - Create a virtual env: python -m venv symboleo-env
-- Activate: source symboleo-env/Scripts/activate
+- Activate: source sym-env/Scripts/activate
 - upgrade pip: pip install --upgrade pip
 - install requirements: pip install -r requirements.txt
 - Ensure that notebooks are using the env as well
 
-in the pyenv.cfg in the venv folder:
+<!-- in the pyenv.cfg in the venv folder:
 - include-system-site-packages = true
-- required for protobuf...
-
-next error: Couldn't build proto file into descriptor pool: duplicate file name (sentencepiece_model.proto)
-
+- required for protobuf... -->
+<!-- next error: Couldn't build proto file into descriptor pool: duplicate file name (sentencepiece_model.proto)
+ -->
 
 ### Inputs and Outputs
 
