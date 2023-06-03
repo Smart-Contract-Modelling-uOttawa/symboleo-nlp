@@ -10,6 +10,10 @@ test_suite = [
     ('authorizes', 'authorize'),
     ('completes', 'complete'),
     ('starts', 'start'),
+    ('terminates', 'terminate'),
+    ('terminating', 'terminate'),
+    ('beginning', 'begin'),
+    ('disrupts', 'disrupt'),
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

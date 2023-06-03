@@ -46,7 +46,7 @@ class ContractEventTests(unittest.TestCase):
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Terminated')
+            UserInput(UnitType.CONTRACT_ACTION, 'terminates')
         ]
 
         node_list_result = self.element_extractor.extract(user_input)

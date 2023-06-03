@@ -75,7 +75,7 @@ dolphin_test_case = TestCase(
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '14 days'),
-            #UserInput(UnitType.OF)
+            UserInput(UnitType.OF),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'Dolphin'),
@@ -137,7 +137,7 @@ dolphin_test_case = TestCase(
         NLTemplate(
             {   
                 'parm': TemplateObj(
-                    'Dolphin agrees to complete its photo-editing services within 14 days of receiving the original digital photo files', 
+                    'Dolphin agrees to complete its photo-editing services within 14 days of Dolphin receiving the original digital photo files', 
                     {'PARM': [ParameterConfig('obligations', 'ob_complete', 'consequent')]})
             }
         )

@@ -1,12 +1,12 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 
 from app.src.selection.element_extractors.custom_event.noun_phrase.asset_type_extractor import IExtractAssetType
 
 # TODO: E3 - Break this class up: validation, determiner, head, adj, etc
 ## Maybe make a custom spacy-type of doc that can be passed around
-class NounPhraseExtractor(IExtractValue[NounPhrase]):
+class NounPhraseExtractor(IExtractElement[NounPhrase]):
     def __init__(
         self, 
         nlp,

@@ -1,11 +1,11 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 
 from tests.helpers.test_objects import NounPhrases
 
 # So that we don't need to use nlp
-class FakeNounPhraseExtractor(IExtractValue[NounPhrase]): # pragma: no cover
+class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
     def __init__(self):
         self.__dict = {
             'apple pie': NounPhrases.apple_pie(),

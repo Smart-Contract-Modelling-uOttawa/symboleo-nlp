@@ -33,10 +33,10 @@ class ParameterRefiner(IRefineParameter):
             # Run the Symboleo updates
             contract.run_updates(update_set)
 
-        # TODO: F3 - Run the NL Update... Likely need the component here as well
-        # Or maybe this goes outside of this. Either way, we need the input text
-        ## Likely just a separate processing function
-        contract.update_nl(op.nl_key, op.parm_key, 'TODO')
+        # Extract the NL and update the contract
+        #nl_update = self.__nl_extractor.extract(op.elements)
+        nl_update = pattern.to_text()
+        contract.update_nl(op.nl_key, op.parm_key, nl_update)
 
 
         

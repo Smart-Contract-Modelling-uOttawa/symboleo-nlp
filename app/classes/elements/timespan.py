@@ -10,4 +10,6 @@ class Timespan:
         return self.time_unit == other.time_unit and self.time_value == other.time_value
 
     def to_text(self) -> str:
-        return f'{self.time_value} {self.time_unit}'
+        # Check if time_value == 1 and make singular
+        time_unit = self.time_unit.value.lower()
+        return f'{self.time_value} {time_unit}'

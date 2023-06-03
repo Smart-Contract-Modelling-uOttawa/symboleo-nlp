@@ -1,4 +1,3 @@
-from typing import Dict, Type
 from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.before_unit import BeforeUnit
@@ -13,6 +12,7 @@ from app.classes.units.after_unit import AfterUnit
 from app.classes.units.until_unit import UntilUnit
 from app.classes.units.unless_unit import UnlessUnit
 from app.classes.units.for_unit import ForUnit
+from app.classes.units.of_unit import OfUnit
 from app.classes.units.following_unit import FollowingUnit
 from app.classes.units.timepoint_unit import TimepointUnit
 from app.classes.units.custom_event_units import *

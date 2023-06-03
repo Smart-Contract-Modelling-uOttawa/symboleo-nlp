@@ -101,7 +101,7 @@ bosch_test_case = TestCase(
             },
             events = {
                 'ShareRights': DomainEvent('ShareRights', []),
-                'Disrupts': DomainEvent('Disrupts', [
+                'Disrupt': DomainEvent('Disrupt', [
                     DomainProp('disrupting_agent', 'Role'),
                     DomainProp('disrupted_object', 'Productivity'),
                     DomainProp('disrupting_target', 'Role'),
@@ -116,7 +116,7 @@ bosch_test_case = TestCase(
                 'CLIENT': RoleDeclaration('CLIENT', 'Client'),
                 'productivity': AssetDeclaration('productivity', 'Productivity'),
                 'evt_share_rights': EventDeclaration('evt_share_rights', 'ShareRights'),
-                'evt_disrupts': EventDeclaration('evt_disrupts', 'Disrupts', [
+                'evt_disrupt': EventDeclaration('evt_disrupt', 'Disrupt', [
                     DeclarationProp('disrupting_agent', 'BOSCH', 'Role'),
                     DeclarationProp('disrupted_object', 'productivity', 'Productivity'),
                     DeclarationProp('disrupting_target', 'CLIENT', 'Role'),
@@ -127,7 +127,7 @@ bosch_test_case = TestCase(
                 'ob_not_share': Obligation(
                     'ob_not_share', 
                     PropMaker.make(
-                        PredicateFunctionHappens(VariableEvent('evt_disrupts'))
+                        PredicateFunctionHappens(VariableEvent('evt_disrupt'))
                     ), 
                     'BOSCH', 
                     'CLIENT', 
@@ -143,7 +143,7 @@ bosch_test_case = TestCase(
         NLTemplate(
             {   
                 'parm': TemplateObj(
-                    'BOSCH reserves the right to share rights given TODO', 
+                    'BOSCH reserves the right to share rights given unless BOSCH disrupts productivity of CLIENT', 
                     {'PARM': [ParameterConfig('obligations', 'ob_not_share', 'trigger')]})
             }
         )

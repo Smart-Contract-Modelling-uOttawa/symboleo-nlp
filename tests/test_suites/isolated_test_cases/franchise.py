@@ -121,7 +121,7 @@ franchise_test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'the Franchise Fee shall be paid to Grantor before March 31, 2017.', 
+                    'the Franchise Fee shall be paid to Grantor before March 31, 2017', 
                     {'PARAMETER': [ParameterConfig('obligations', 'ob_pay_fee', 'consequent')]})
             }
         )

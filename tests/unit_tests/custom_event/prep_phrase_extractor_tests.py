@@ -2,13 +2,13 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 from app.src.selection.element_extractors.custom_event.prep_phrase_extractor import PrepPhraseExtractor
 
 class PrepPhraseExtractorTests(unittest.TestCase):
     def setUp(self):
         self.nlp = None
-        self.np_extractor = IExtractValue[NounPhrase]()
+        self.np_extractor = IExtractElement[NounPhrase]()
         self.sut = PrepPhraseExtractor(self.nlp, self.np_extractor)
     
 

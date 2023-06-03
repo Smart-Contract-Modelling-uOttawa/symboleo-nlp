@@ -11,5 +11,5 @@ class ForTimespanFollowingEvent(EventPattern):
         return self.event.is_complete() and self.timespan 
 
     def to_text(self):
-        return f'for {self.timespan.to_text()} following {self.event.to_text(ConjType.CONTINUOUS)}'
+        return f'for {self.timespan.to_text()} following {self.nl_event.to_text(ConjType.CONTINUOUS)}'
 

@@ -9,5 +9,5 @@ class UntilEvent(EventPattern):
         return self.event.is_complete() 
 
     def to_text(self):
-        return f'until {self.event.to_text(ConjType.PRESENT)}'
+        return f'until {self.nl_event.to_text(ConjType.PRESENT)}'
 

@@ -43,11 +43,8 @@ test_suite = [
             #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
             UserInput(UnitType.SUBJECT, 'buyer'),
             UserInput(UnitType.FAILS_TO),
-            UserInput(UnitType.VERB, 'pay'),
-            UserInput(UnitType.DOBJ, '$100'),
-            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
-            UserInput(UnitType.PREP_PHRASE, 'to seller'),
-            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'),
+            UserInput(UnitType.VERB, 'complete'),
+            UserInput(UnitType.DOBJ, 'payment'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='latePayment',
@@ -65,7 +62,7 @@ test_suite = [
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminating'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='disclosure',

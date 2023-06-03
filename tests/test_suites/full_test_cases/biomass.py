@@ -13,7 +13,7 @@ test_suite = [
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Activated'),
+            UserInput(UnitType.CONTRACT_ACTION, 'begins'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='payment',
@@ -70,7 +70,7 @@ test_suite = [
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='return_disclose_info',

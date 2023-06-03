@@ -1,19 +1,19 @@
 A - fee: The Contractor will charge the Client a flat fee of $100 for the Services (the "Compensation").
 E - fee: The Contractor will charge the Client a flat fee of $100 for the Services (the "Compensation").
 
-A - invoice: The Client will be invoiced TODO.
+A - invoice: The Client will be invoiced client completes services.
 E - invoice: The Client will be invoiced when the Services are complete.
 
-A - invoice_due: Invoices submitted by the Contractor to the Client are due TODO.
+A - invoice_due: Invoices submitted by the Contractor to the Client are due within 10 days of ob_invoice Fulfilled contractor sending invoice.
 E - invoice_due: Invoices submitted by the Contractor to the Client are due within 10 days of receipt.
 
-A - partial_completion: TODO the Contractor will be entitled to pro rata payment of the Compensation to the date of termination.
+A - partial_completion: if contractor starts services the Contractor will be entitled to pro rata payment of the Compensation to the date of termination.
 E - partial_completion: In the event that this Agreement is terminated by the Client prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination provided that there has been no breach of contract on the part of the Contractor.
 
 A - reimburse: The Contractor will be reimbursed from time to time for reasonable and necessary expenses incurred by the Contractor in connection with providing the Services.
 E - reimburse: The Contractor will be reimbursed from time to time for reasonable and necessary expenses incurred by the Contractor in connection with providing the Services.
 
-A - disclose: The Contractor agrees that they will not disclose, divulge, reveal, report or use, for any purpose, any Confidential Information which the Contractor has obtained, TODO
+A - disclose: The Contractor agrees that they will not disclose, divulge, reveal, report or use, for any purpose, any Confidential Information which the Contractor has obtained, unless client authorizes disclosure
 E - disclose: The Contractor agrees that they will not disclose, divulge, reveal, report or use, for any purpose, any Confidential Information which the Contractor has obtained, except as authorized by the Client or as required by law.
 
 A - subcontract: Except as otherwise provided in this Agreement, the Contractor may, at the Contractor's absolute discretion, engage a third party sub-contractor to perform some or all of the obligations of the Contractor under this Agreement and the Client will not hire or engage any third parties to assist with the provision of the Services.

@@ -4,10 +4,10 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.selection.element_extractors.custom_event.verb.lemmatizer import ILemmatize
 from app.src.selection.element_extractors.custom_event.verb.conjugator import IConjugate
 
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 
 
-class VerbExtractor(IExtractValue[Verb]):
+class VerbExtractor(IExtractElement[Verb]):
     def __init__(
         self, 
         lemmatizer: ILemmatize,

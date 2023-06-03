@@ -31,6 +31,10 @@ class FollowingElement(Element):
 class UnlessElement(Element):
     unit_type = UnitType.UNLESS
 
+class OfElement(Element):
+    unit_type = UnitType.OF
+
+
 # TODO: E2 - Should strongly type/alias this
 ## And figure out what its purpose is 
 class FinalElement(Element[any]):

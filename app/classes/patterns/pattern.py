@@ -23,7 +23,7 @@ class Pattern: # pragma: no cover
 class EventPattern(Pattern):
     def __init__(self) -> None:
         self.event = CustomEvent() # Need a place to set this to a specific type...
-        # Could have both an NL event and a sym event thing on here...
+        self.nl_event = CustomEvent()
 
 
 class DummyPattern(Pattern):

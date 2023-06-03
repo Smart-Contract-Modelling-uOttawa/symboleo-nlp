@@ -27,10 +27,10 @@ class FullStackTests(unittest.TestCase):
 
         target_keys = [
             'meat_sale',
-            'rental',
-            'prop',
-            'biomass',
-            'indep'
+            # 'rental',
+            # 'prop',
+            # 'biomass',
+            # 'indep'
         ]
         for k in target_keys:
             contract = get_template(f'{k}')

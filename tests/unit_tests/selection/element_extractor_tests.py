@@ -5,11 +5,11 @@ from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 
 from app.src.selection.element_extractor import ElementExtractor
-from app.src.selection.element_extractors.value_extractor import IExtractValue 
+from app.src.selection.element_extractors.element_extractor import IExtractElement 
 
 class ElementExtractorTests(unittest.TestCase):
     def setUp(self):
-        self.fake_extractor = IExtractValue[str]()
+        self.fake_extractor = IExtractElement[str]()
         self.fake_extractor.extract = MagicMock(return_value = 'test')
         self.fake_dict = {
             UnitType.DUMMY: self.fake_extractor

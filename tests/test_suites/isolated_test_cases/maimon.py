@@ -83,7 +83,7 @@ maimon_test_case = TestCase(
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Terminated'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='nl_key',
@@ -135,7 +135,7 @@ maimon_test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'If contract terminates, Maimon agrees to return immediately to the Company all written Confidential Information', 
+                    'if contract terminates Maimon agrees to return immediately to the Company all written Confidential Information', 
                     {'PARAMETER': [ParameterConfig('obligations', 'ob_return_info', 'antecedent')]})
             }
         )

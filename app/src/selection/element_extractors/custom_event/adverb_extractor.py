@@ -1,8 +1,8 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.adverb import Adverb, AdverbDict
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 
-class AdverbExtractor(IExtractValue[Adverb]):
+class AdverbExtractor(IExtractElement[Adverb]):
     def __init__(
         self
     ):

@@ -9,11 +9,12 @@ class ContractNouns:
 # TODO: F1 - Finish this 
 class ContractVerbs:
     contract_verb_dict = {
-        ContractEventName.Terminated: 
-            lambda: Verb('terminated', 'terminate', [VerbType.INTRANSITIVE], VerbConjugations('terminate', 'terminates', 'terminated', 'terminating')),
-        ContractEventName.Activated: 
-            lambda: Verb('activated', 'activate', [VerbType.INTRANSITIVE], VerbConjugations('activate', 'activated', 'activated', 'activating')),
+        'terminate': ContractEventName.Terminated,
+        'begin': ContractEventName.Activated
     }
+
+
+    
 
 
 class HelperVerbs:

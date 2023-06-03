@@ -1,16 +1,16 @@
-A - delivery: The Seller shall deliver the Order in one delivery to the Buyer TODO
+A - delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024
 E - delivery: The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024.
 
-A - payment: The Buyer shall pay $100 to the Seller TODO
+A - payment: The Buyer shall pay $100 to the Seller before March 30, 2024
 E - payment: The Buyer shall pay $100 CAD to the Seller before March 30, 2024.
 
-A - latePayment: TODO The Buyer shall pay interests equal to 8 percent of the payment amount
+A - latePayment: if buyer fails to complete payment The Buyer shall pay interests equal to 8 percent of the payment amount
 E - latePayment: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
 
-A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential TODO
+A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following contract terminating
 E - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
 
-A - suspendDelivery: TODO The Seller may suspend performance of all of its obligations under the agreement TODO
+A - suspendDelivery: if buyer fails to pay $100 in CAD to the seller by March 30, 2024 The Seller may suspend performance of all of its obligations under the agreement unless buyer pays (interest amount) in CAD to the seller by March 30, 2024
 E - suspendDelivery: 
 
 A - suspendResumeDelivery: 

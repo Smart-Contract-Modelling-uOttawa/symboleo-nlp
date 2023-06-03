@@ -57,7 +57,8 @@ class SymboleoContract(ISymboleoContract):
 
     def __eq__(self, other: SymboleoContract) -> bool:
         return self.domain_model == other.domain_model and \
-            self.contract_spec == other.contract_spec
+            self.contract_spec == other.contract_spec and \
+            self.nl_template == other.nl_template
 
 
     def _get_type_key(self, type_str):

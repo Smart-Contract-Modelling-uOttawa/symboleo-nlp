@@ -28,4 +28,5 @@ class ParameterRefinerConstructor:
         norm_update_extractor = NormUpdateExtractor(handler_dict)
         update_processor = UpdateProcessor(declaration_extractor, norm_update_extractor)
 
+
         return ParameterRefiner(pattern_builder, update_processor)

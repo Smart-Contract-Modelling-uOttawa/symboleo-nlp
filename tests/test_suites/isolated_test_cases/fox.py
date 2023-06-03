@@ -25,7 +25,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## Original: prior to January 1, 2007
 ## Mine: prior to January 1, 2007
 
-# TODO: F2 - Need prior to
+# TODO: F2 - Need prior to. Change the exp value in nl_tempalte as well
 fox_test_case = TestCase(
     'fox',
     init_sym = SymboleoContract(
@@ -120,7 +120,7 @@ fox_test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'In no event will Fox develop, publish and/or distribute games derived from the Property "ICE AGE 2" prior to January 1, 2007', 
+                    'In no event will Fox develop, publish and/or distribute games derived from the Property "ICE AGE 2" before January 1, 2007', 
                     {'PARAMETER': [ParameterConfig('obligations', 'ob_not_distribute_games', 'consequent')]})
             }
         )

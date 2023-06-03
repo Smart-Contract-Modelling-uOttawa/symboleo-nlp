@@ -3,7 +3,7 @@ Domain test_dm
   Client isA Role;
   Productivity isAn Asset;
   ShareRights isAn Event;
-  Disrupts isAn Event with disrupting_agent: Role, disrupted_object: Productivity, disrupting_target: Role;
+  Disrupt isAn Event with disrupting_agent: Role, disrupted_object: Productivity, disrupting_target: Role;
 
 endDomain
 
@@ -14,14 +14,14 @@ Declarations
   CLIENT: Client;
   productivity: Productivity;
   evt_share_rights: ShareRights;
-  evt_disrupts: Disrupts with disrupting_agent := BOSCH, disrupted_object := productivity, disrupting_target := CLIENT;
+  evt_disrupt: Disrupt with disrupting_agent := BOSCH, disrupted_object := productivity, disrupting_target := CLIENT;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_not_share: Happens(evt_disrupts) -> Obligation(BOSCH, CLIENT, true, not Happens(evt_share_rights));
+  ob_not_share: Happens(evt_disrupt) -> Obligation(BOSCH, CLIENT, true, not Happens(evt_share_rights));
 
 Surviving Obligations
 

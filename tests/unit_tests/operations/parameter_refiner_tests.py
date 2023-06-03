@@ -11,12 +11,13 @@ from app.src.pattern_builder.pattern_builder import IBuildPatterns
 from app.src.update_processor.update_processor import IProcessUpdates
 from app.src.operations.parameter_refiner import ParameterRefiner
 
-class ContractUpdaterTests(unittest.TestCase):
+class ParameterRefinerTests(unittest.TestCase):
     def setUp(self):
         self.contract = ISymboleoContract()
 
         self.pattern_builder = IBuildPatterns()
         fake_pattern = Pattern()
+        fake_pattern.to_text = MagicMock(return_value='test')
         self.pattern_builder.build = MagicMock(return_value=fake_pattern)
 
         self.update_processor = IProcessUpdates()
@@ -38,6 +39,7 @@ class ContractUpdaterTests(unittest.TestCase):
         self.assertEqual(self.pattern_builder.build.call_count, 1)
         self.assertEqual(self.update_processor.process.call_count, 2)
         self.assertEqual(contract.run_updates.call_count, 2)
+        #self.assertEqual(self.nl_extractor.extract.call_count, 1)
         self.assertEqual(contract.update_nl.call_count, 1)
 
 

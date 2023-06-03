@@ -26,6 +26,7 @@ test_suite = [
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '10 days'),
+            UserInput(UnitType.OF),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.NORM_EVENT),

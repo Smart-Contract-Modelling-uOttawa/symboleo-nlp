@@ -1,3 +1,4 @@
+import copy
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
@@ -7,15 +8,18 @@ from app.src.operations.parameter_refiner import IRefineParameter
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
 from app.src.selection.element_extractor import IExtractElements
+from app.src.operations.user_input_cleaner import ICleanUserInput
 
 class ContractUpdater:
     def __init__(
         self, 
+        input_cleaner: ICleanUserInput,
         element_extractor: IExtractElements,
         parm_refiner: IRefineParameter,
         tp_adder: IAddPower,
         domain_updater: IUpdateDomain
     ):
+        self.__input_cleaner = input_cleaner
         self.__element_extractor = element_extractor
         self.__parm_refiner = parm_refiner
         self.__domain_updater = domain_updater
@@ -23,7 +27,8 @@ class ContractUpdater:
 
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
-        elements = self.__element_extractor.extract(config.user_inputs)
+        user_inputs = self.__input_cleaner.clean(config.user_inputs)
+        elements = self.__element_extractor.extract(user_inputs)
         if op_code == OpCode.UPDATE_PARM:
             parm_op = ParameterOperation(config.nl_key, config.parm_key, elements)
             self.__parm_refiner.refine(contract, parm_op)

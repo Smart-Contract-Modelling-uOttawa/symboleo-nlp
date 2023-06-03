@@ -79,12 +79,12 @@ letter_test_case = TestCase(
             UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '30 days'),
-            #TODO: F2 - Need the 'of'/'after'
+            UserInput(UnitType.OF),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'Activated'),
+            UserInput(UnitType.CONTRACT_ACTION, 'beginning'),
             UserInput(UnitType.FINAL_NODE)
         ],
         nl_key='nl_key',
@@ -133,7 +133,7 @@ letter_test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'The Buyer shall open an irrevocable letter of credit with the bank within 30 days of contract activating', 
+                    'The Buyer shall open an irrevocable letter of credit with the bank within 30 days of contract beginning', 
                     {'PARAMETER': [ParameterConfig('obligations', 'ob_open_letter', 'consequent')]})
             }
         )

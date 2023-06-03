@@ -23,6 +23,7 @@ unit_type_to_class: Dict[UnitType, Type[Element]] = {
     UnitType.UNLESS: UnlessElement,
     UnitType.FOR: ForElement,
     UnitType.FOLLOWING: FollowingElement,
+    UnitType.OF: OfElement,
 
     UnitType.TIMEPOINT: TimepointElement,
     UnitType.DOMAIN_TIMEPOINT: DomainTimepointElement,

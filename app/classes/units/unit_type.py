@@ -37,4 +37,5 @@ class UnitType(Enum):
     FOLLOWING = 45
     UNLESS = 46
     WHEN = 47
+    OF = 48
     # ....

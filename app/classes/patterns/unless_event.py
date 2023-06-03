@@ -9,5 +9,5 @@ class UnlessEvent(EventPattern):
         return self.event.is_complete() 
 
     def to_text(self):
-        return f'unless {self.event.to_text(ConjType.CONTINUOUS)}'
+        return f'unless {self.nl_event.to_text()}'
 

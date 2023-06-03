@@ -1,10 +1,10 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.src.selection.element_extractors.value_extractor import IExtractValue
+from app.src.selection.element_extractors.element_extractor import IExtractElement
 
-class PrepPhraseExtractor(IExtractValue[PrepPhrase]):    
-    def __init__(self, nlp, np_extractor: IExtractValue[NounPhrase]):
+class PrepPhraseExtractor(IExtractElement[PrepPhrase]):    
+    def __init__(self, nlp, np_extractor: IExtractElement[NounPhrase]):
         self.__nlp = nlp
         self.__np_extractor = np_extractor
 

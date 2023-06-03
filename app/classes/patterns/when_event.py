@@ -8,6 +8,6 @@ class WhenEvent(EventPattern):
         return self.event.is_complete()
 
     def to_text(self):
-        event_nl = f'{self.event.to_text()}'
+        event_nl = f'{self.nl_event.to_text()}'
         return f'when {event_nl}'
     
