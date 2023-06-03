@@ -5,6 +5,7 @@ from app.classes.events.custom_event.custom_event import CustomEvent
 from tests.helpers.test_objects import CustomEvents
 
 # TODO: Will add many more examples from real test cases...
+## Or may remove these, if we get rid of the event.to_text functionality...
 test_suite: Tuple[CustomEvent, str] = [
     (
         CustomEvents.abandon_property(),

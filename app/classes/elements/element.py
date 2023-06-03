@@ -4,7 +4,7 @@ from app.classes.units.unit_type import UnitType
 
 T = TypeVar('T')
 
-class Element(Generic[T]): # pragma: no cover
+class Element(Generic[T]):
     unit_type: UnitType = None
 
     def __init__(self, value: T = None):

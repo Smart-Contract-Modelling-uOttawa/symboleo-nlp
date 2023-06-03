@@ -4,8 +4,9 @@ from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PFContract, PFContractName
 from app.classes.elements.element import Element
+from app.classes.operations.parameter_operation import ParameterOperation
 
-from app.src.operations.parameter_refiner import ParameterRefiner, ParameterOperation
+from app.src.operations.parameter_refiner import ParameterRefiner
 
 class TerminationOperation:
     def __init__(

@@ -28,8 +28,6 @@ class ChildGetterDictConstructor:
         d[VerbUnit] = VerbUnitCG()
         d[BeforeUnit] = BeforeUnitCG(dtp_extractor)
 
-        # CommonEvent
-        d[CommonEventUnit] = CustomEventUnitCG()
         d[CustomEventUnit] = CustomEventUnitCG()
 
         # Others to add: Power ones

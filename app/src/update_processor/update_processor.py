@@ -10,7 +10,7 @@ from app.src.update_processor.domain_update_extractor import IExtractDomainUpdat
 from app.src.update_processor.norm_update_extractor import IExtractNormUpdates
 
 class IProcessUpdates:
-    def process(self, norm: Norm, pattern: Pattern, contract: SymboleoContract):
+    def process(self, norm: Norm, pattern: Pattern, contract: SymboleoContract) -> ContractUpdateObj:
         raise NotImplementedError()
 
 

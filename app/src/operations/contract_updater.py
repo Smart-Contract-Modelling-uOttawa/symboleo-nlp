@@ -1,8 +1,9 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
+from app.classes.operations.parameter_operation import ParameterOperation
 
-from app.src.operations.parameter_refiner import IRefineParameter, ParameterOperation
+from app.src.operations.parameter_refiner import IRefineParameter
 from app.src.operations.domain_updater import IUpdateDomain, DomainOperation
 from app.src.operations.termination_updater import IAddPower, TerminationOperation
 from app.src.selection.element_extractor import IExtractElements

@@ -3,7 +3,7 @@ class ILemmatize:
     def lemmatize(self, s: str) -> str:
         raise NotImplementedError()
 
-class Lemmatizer(ILemmatize):
+class Lemmatizer(ILemmatize): # pragma: no cover (NLP)
     def __init__(self, nlp):
         self.__nlp = nlp
 

@@ -29,7 +29,7 @@ class ContractSpec:
         self.surviving_obligations = surviving_obligations or {}
         self.constraints = constraints or []
 
-    def __eq__(self, other: ContractSpec) -> bool:
+    def __eq__(self, other: ContractSpec) -> bool:        
         return self.id == other.id and \
             ClassHelpers.lists_eq(self.parameters, other.parameters, 'name') and \
             ClassHelpers.dicts_eq(self.declarations, other.declarations) and \

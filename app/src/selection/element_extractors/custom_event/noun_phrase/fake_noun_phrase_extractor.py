@@ -5,7 +5,7 @@ from app.src.selection.element_extractors.value_extractor import IExtractValue
 from tests.helpers.test_objects import NounPhrases
 
 # So that we don't need to use nlp
-class FakeNounPhraseExtractor(IExtractValue[NounPhrase]):    
+class FakeNounPhraseExtractor(IExtractValue[NounPhrase]): # pragma: no cover
     def __init__(self):
         self.__dict = {
             'apple pie': NounPhrases.apple_pie(),

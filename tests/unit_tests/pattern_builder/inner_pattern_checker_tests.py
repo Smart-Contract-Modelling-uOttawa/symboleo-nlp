@@ -11,21 +11,21 @@ class InnerPatternCheckerTests(unittest.TestCase):
     def setUp(self):
         self.sut = InnerPatternChecker()
     
-    def test_inner_pattern_checker1(self):
+    def test_inner_pattern_checker_find1(self):
         elements = [RootElement(), BeforeElement(), EventElement(), CustomEventElement()]
         pattern_sequence = [UnitType.ROOT, UnitType.BEFORE, UnitType.EVENT]
 
         result = self.sut.check_pattern(elements, pattern_sequence)
         self.assertTrue(result)
     
-    def test_inner_pattern_checker2(self):
+    def test_inner_pattern_checker_no_find(self):
         elements = [RootElement(), BeforeElement()]
         pattern_pattern = [UnitType.ROOT, UnitType.BEFORE, UnitType.EVENT]
 
         result = self.sut.check_pattern(elements, pattern_pattern)
         self.assertFalse(result)
 
-    def test_inner_pattern_checker1(self):
+    def test_inner_pattern_checker_no_find2(self):
         elements = [RootElement(), BeforeElement(), EventElement(), CustomEventElement()]
         pattern_pattern = [UnitType.ROOT, UnitType.AFTER, UnitType.EVENT]
 

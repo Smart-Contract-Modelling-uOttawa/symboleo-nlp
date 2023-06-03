@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.src.operations.parameter_refiner import ParameterOperation
+from app.classes.operations.parameter_operation import ParameterOperation
 from app.src.user_scripts.main_ops.user_deps import UserDependencies
 
 def refine_parm(deps: UserDependencies, contract: SymboleoContract):

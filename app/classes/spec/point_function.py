@@ -23,7 +23,7 @@ class PointFunction(PointExpression):
     def __init__(self, arg: PointAtom, time_value: int, time_unit: TimeUnit):
         self.name: PointFunctionName = PointFunctionName.DateAdd # Can make this an arg if this type expands
         self.arg = arg
-        self.time_value = time_value
+        self.time_value = int(time_value)
         self.time_unit = time_unit
 
     def __eq__(self, other: PointFunction) -> bool:

@@ -39,6 +39,7 @@ class VerbExtractorTests(unittest.TestCase):
         self.assertEqual(self.lemmatizer.lemmatize.call_count, 1)
         self.assertEqual(self.conjugator.conjugate.call_count, 1)
     
+
     def test_verb_extractor_3(self):
         self.lemmatizer.lemmatize = MagicMock(return_value='terminate')
         fake_conj = VerbConjugations('a', 'b', 'c', 'd')
@@ -51,6 +52,33 @@ class VerbExtractorTests(unittest.TestCase):
         self.assertEqual(result, expected)
         self.assertEqual(self.lemmatizer.lemmatize.call_count, 1)
         self.assertEqual(self.conjugator.conjugate.call_count, 1)
+    
+    def test_verb_extractor_none(self):
+        self.lemmatizer.lemmatize = MagicMock(return_value='X')
+        fake_conj = VerbConjugations('a', 'b', 'c', 'd')
+        self.conjugator.conjugate = MagicMock(return_value=fake_conj)
+        str_val = 'X'
+
+        result = self.sut.extract(str_val)
+        
+        expected = Verb(str_val, 'X', [VerbType.INTRANSITIVE, VerbType.TRANSITIVE, VerbType.LINKING], fake_conj)
+        
+        self.assertEqual(result, expected)
+        self.assertEqual(self.lemmatizer.lemmatize.call_count, 1)
+        self.assertEqual(self.conjugator.conjugate.call_count, 1)
+    
+    def test_verb_extractor_fail(self):
+        self.lemmatizer.lemmatize = MagicMock(return_value=None)
+        self.conjugator.conjugate = MagicMock(return_value=None)
+        str_val = 'two words'
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.extract(str_val)
+
+        self.assertTrue('one word' in str(context.exception))
+
+        self.assertEqual(self.lemmatizer.lemmatize.call_count, 0)
+        self.assertEqual(self.conjugator.conjugate.call_count, 0)
 
 if __name__ == '__main__':
     unittest.main()
