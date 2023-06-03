@@ -32,6 +32,9 @@ def get_test_contract_for_assets():
                     'client': Declaration('client', 'Client', 'roles', []),
                     'contractor': Declaration('contractor', 'Contractor', 'roles', []),
 
+                    'BOSCH': Declaration('BOSCH', 'Company', 'roles', []),
+                    'CLIENT': Declaration('CLIENT', 'Client', 'roles', []),
+
                     'property': Declaration('property', 'RentalProperty', 'assets', []),
                     'services': Declaration('services', 'Services', 'assets', []),
                 },

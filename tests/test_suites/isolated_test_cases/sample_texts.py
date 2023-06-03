@@ -2,15 +2,6 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 
 # Might make a simpler symboleo contract convenience function for building up these examples
 
-
-class SampleText:
-    def __init__(self, text):
-        self.text = text
-        self.sym = ''
-
-
-
-
 # BEFORE DATE
 'the Franchise Fee shall be paid to Grantor on or before March 31, 2017.'
 

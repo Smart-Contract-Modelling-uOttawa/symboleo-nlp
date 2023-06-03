@@ -30,6 +30,10 @@ class NounPhrases:
     services = lambda: NounPhrase('services', 'services', True, False, asset_type='Services')
     disclosure = lambda: NounPhrase('disclosure', 'disclosure', False, False, asset_type='Disclosure')
 
+    client_cap = lambda: NounPhrase('CLIENT', 'CLIENT', False, True, asset_type='Role')
+    bosch = lambda: NounPhrase('BOSCH', 'BOSCH', False, True, asset_type='Role')
+    productivity = lambda: NounPhrase('productivity', 'productivity', False, False, asset_type='Productivity')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 
@@ -41,6 +45,7 @@ class Verbs:
     eats = lambda: Verb('eats', 'eat', [VerbType.TRANSITIVE], VerbConjugations('eat', 'eats', 'ate', 'eating'))
     abandons = lambda: Verb('abandons', 'abandon', [VerbType.TRANSITIVE], VerbConjugations('abandon', 'abandons', 'abandonned', 'abandonning'))
     occupies = lambda: Verb('occupies', 'occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying'))
+    disrupts = lambda: Verb('disrupts', 'disrupt', [VerbType.TRANSITIVE], VerbConjugations('disrupt', 'disrupts', 'disrupted', 'disrupting'))
 
 class CustomEvents:
     legal_proceedings = lambda: CustomEvent(
@@ -98,6 +103,7 @@ class CustomEvents:
         dobj = NounPhrases.property(),
         negation=True
     )
+
 
 class Assets:
     legal_proceedings = lambda: Asset('LegalProceedings', [])

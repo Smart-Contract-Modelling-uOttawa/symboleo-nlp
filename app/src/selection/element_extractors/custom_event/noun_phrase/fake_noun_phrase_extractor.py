@@ -32,7 +32,11 @@ class FakeNounPhraseExtractor(IExtractValue[NounPhrase]): # pragma: no cover
             'client': NounPhrases.client(),
             'contractor': NounPhrases.contractor(),
             'services': NounPhrases.services(),
-            'disclosure': NounPhrases.disclosure()
+            'disclosure': NounPhrases.disclosure(),
+
+            'BOSCH': NounPhrases.bosch(),
+            'CLIENT': NounPhrases.client_cap(),
+            'productivity': NounPhrases.productivity(),
 
         }
 

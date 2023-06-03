@@ -6,12 +6,14 @@
 TOP PRIORITY
 - Update the contract NL 
 - Start making tests and concrete requiresment/metrics for input selection
-- Add CustomEvent template to all declarations 
+- Add CustomEvent template to all needed declarations 
 - Smooth out the capitalization and punctuation 
 - Figure out the parm customization - will we control the allowed customizations based on the parm?
+- Re-add Parameter updates on contract update - and integrate into tests
 
 IMPORTANT
 - Clean up the Symboleo contract code 
+- May change the event declaration to include objects (e.g. OccupyProperty instead of Occupy)
 - Break up the Asset and declaration mappers
 - Rework in common events 
 - Look into adding date as an event property; so it can be referenced again 

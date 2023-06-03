@@ -1,7 +1,7 @@
 from __future__ import annotations
 from enum import Enum
 from app.classes.spec.power_function import PowerFunction
-from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison
+from app.classes.spec.proposition import Proposition, PNegAtom, PAnd, PEquality, PComparison, PAtom
 from app.classes.spec.p_atoms import PAtomPredicate, PAtomPredicateFalseLiteral, PAtomPredicateTrueLiteral
 from app.classes.spec.predicate_function import PredicateFunction, PredicateFunctionHappens
 
@@ -15,6 +15,8 @@ class INorm:
     id: str
     norm_type: NormType # Strongly type this
 
+    def get_component(self, str_component:str) -> PAtom:
+        raise NotImplementedError()
     def update(self, str_component: str, predicate: PredicateFunction):
         raise NotImplementedError()
     def get_default_event(self, str_component:str):
@@ -25,7 +27,7 @@ class INorm:
         raise NotImplementedError()
     
 
-class Norm:
+class Norm(INorm):
     def __init__(
         self,
         id: str,
@@ -75,6 +77,24 @@ class Norm:
         
         setattr(self, str_component, component)
 
+
+    def get_component(self, str_component: str) -> PAtom:
+        if str_component == 'trigger':
+            return self._get_component_from_prop(self.trigger)
+        elif str_component == 'antecedent':
+            return self._get_component_from_prop(self.antecedent)
+        elif str_component == 'consequent':
+            return self._get_component_from_prop(self.consequent)
+        else:
+            raise ValueError('Invalid component name')
+    
+
+    def _get_component_from_prop(self, prop: Proposition) -> PAtom:
+        try:
+            neg_atom: PNegAtom = prop.p_ands[0].p_eqs[0].curr.curr
+            return neg_atom.atom
+        except:
+            return None
 
 
     def get_default_event(self, str_component:str):

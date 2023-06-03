@@ -31,6 +31,11 @@ test_suite = [
     ('services', NounPhrases.services()),
     ('disclosure', NounPhrases.disclosure()),
 
+    
+    ('CLIENT', NounPhrases.client_cap()),
+    ('BOSCH', NounPhrases.bosch()),
+    ('productivity', NounPhrases.productivity()),
+
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

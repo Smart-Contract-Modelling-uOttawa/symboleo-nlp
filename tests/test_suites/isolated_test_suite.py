@@ -7,14 +7,15 @@ from tests.test_suites.isolated_test_cases.maimon import maimon_test_case
 from tests.test_suites.isolated_test_cases.franchise import franchise_test_case
 from tests.test_suites.isolated_test_cases.fox import fox_test_case
 from tests.test_suites.isolated_test_cases.letter import letter_test_case
-
+from tests.test_suites.isolated_test_cases.bosch import bosch_test_case
 
 test_suite = [
     dolphin_test_case,
     maimon_test_case,
     franchise_test_case,
     fox_test_case,
-    letter_test_case
+    letter_test_case,
+    bosch_test_case
 ]
 
 
