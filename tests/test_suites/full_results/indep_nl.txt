@@ -1,13 +1,13 @@
 A - fee: The Contractor will charge the Client a flat fee of $100 for the Services (the "Compensation").
 E - fee: The Contractor will charge the Client a flat fee of $100 for the Services (the "Compensation").
 
-A - invoice: The Client will be invoiced client completes services.
+A - invoice: The Client will be invoiced when client completes services.
 E - invoice: The Client will be invoiced when the Services are complete.
 
-A - invoice_due: Invoices submitted by the Contractor to the Client are due within 10 days of ob_invoice Fulfilled contractor sending invoice.
+A - invoice_due: Invoices submitted by the Contractor to the Client are due within 10 days of contractor sending invoice.
 E - invoice_due: Invoices submitted by the Contractor to the Client are due within 10 days of receipt.
 
-A - partial_completion: if contractor starts services the Contractor will be entitled to pro rata payment of the Compensation to the date of termination.
+A - partial_completion: if contractor starts the Contractor will be entitled to pro rata payment of the Compensation to the date of termination.
 E - partial_completion: In the event that this Agreement is terminated by the Client prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination provided that there has been no breach of contract on the part of the Contractor.
 
 A - reimburse: The Contractor will be reimbursed from time to time for reasonable and necessary expenses incurred by the Contractor in connection with providing the Services.

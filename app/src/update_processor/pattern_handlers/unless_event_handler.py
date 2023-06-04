@@ -1,6 +1,6 @@
 import copy
 from app.classes.patterns.unless_event import UnlessEvent
-from app.classes.spec.norm import Norm, Power, Obligation
+from app.classes.spec.norm import Norm, Power, Obligation, SurvivingObligation
 from app.classes.spec.sym_interval import Interval, SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
@@ -65,7 +65,7 @@ class UnlessEventHandler(IHandlePatterns):
         return isinstance(trigger_atom, PAtomPredicateFalseLiteral)
     
     def _get_not_ob(self, norm: Norm):
-        if isinstance(norm, Obligation):
+        if isinstance(norm, (Obligation, SurvivingObligation)):
             if norm.get_negation('consequent'):
                 return norm.id
         

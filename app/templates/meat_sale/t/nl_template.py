@@ -31,7 +31,7 @@ nl_template = NLTemplate(
                 ]
             }
         ),
-        'suspendDelivery': TemplateObj(
+        'suspendResumeDelivery': TemplateObj(
             '[P1] The Seller may suspend performance of all of its obligations under the agreement [P2]',
             {
                 'P1': [ParameterConfig('powers', 'pow_suspend_delivery', 'trigger')],

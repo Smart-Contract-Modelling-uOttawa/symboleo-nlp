@@ -33,12 +33,10 @@ Obligations
   ob_delivery: Obligation(seller, buyer, true, SHappensBefore(evt_deliver, "March 18, 2024"));
   ob_payment: Obligation(buyer, seller, true, SHappensBefore(evt_pay, "March 30, 2024"));
   ob_late_payment: Obligation(buyer, seller, Happens(Violated(obligations.ob_payment)), Happens(evt_pay_late));
-  so_disclosure_seller: Obligation(seller, buyer, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
-  so_disclosure_buyer: Obligation(buyer, seller, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
 
 Surviving Obligations
-  so_disclosure_seller: Obligation(seller, buyer, true, not Happens(evt_disclose));
-  so_disclosure_buyer: Obligation(buyer, seller, true, not Happens(evt_disclose));
+  so_disclosure_seller: SO(seller, buyer, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
+  so_disclosure_buyer: SO(buyer, seller, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
 
 Powers
   pow_suspend_delivery: Power(seller, buyer, Happens(Violated(obligations.ob_payment)), Suspended(obligations.ob_delivery));

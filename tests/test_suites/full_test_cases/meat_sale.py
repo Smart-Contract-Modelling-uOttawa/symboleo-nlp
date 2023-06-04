@@ -83,14 +83,11 @@ test_suite = [
             #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
             UserInput(UnitType.SUBJECT, 'buyer'),
             UserInput(UnitType.FAILS_TO),
-            UserInput(UnitType.VERB, 'pay'),
-            UserInput(UnitType.DOBJ, '$100'),
-            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
-            UserInput(UnitType.PREP_PHRASE, 'to seller'),
-            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'),
+            UserInput(UnitType.VERB, 'complete'),
+            UserInput(UnitType.DOBJ, 'payment'),
             UserInput(UnitType.FINAL_NODE)
         ],
-        nl_key='suspendDelivery',
+        nl_key='suspendResumeDelivery',
         parm_key='P1'
     ),
 
@@ -107,14 +104,11 @@ test_suite = [
 
             #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
             UserInput(UnitType.SUBJECT, 'buyer'),
-            UserInput(UnitType.VERB, 'pay'),
-            UserInput(UnitType.DOBJ, '(interest amount)'),
-            UserInput(UnitType.PREP_PHRASE, 'in CAD'),
-            UserInput(UnitType.PREP_PHRASE, 'to seller'),
-            UserInput(UnitType.PREP_PHRASE, 'by March 30, 2024'), # late payment due date?
+            UserInput(UnitType.VERB, 'completes'),
+            UserInput(UnitType.DOBJ, 'payment'),
             UserInput(UnitType.FINAL_NODE)
         ],
-        nl_key='suspendDelivery',
+        nl_key='suspendResumeDelivery',
         parm_key = 'P2'
     ),
     

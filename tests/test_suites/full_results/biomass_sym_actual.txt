@@ -56,8 +56,8 @@ Obligations
   ob_return_info_seller: Happens(Terminated(self)) -> Obligation(seller, buyer, true, Happens(evt_return_info_seller));
 
 Surviving Obligations
-  ob_disclose_info_buyer: Obligation(buyer, seller, true, not Happens(evt_disclose_info_buyer));
-  ob_disclose_info_seller: Obligation(seller, buyer, true, not Happens(evt_disclose_info_seller));
+  ob_disclose_info_buyer: SO(buyer, seller, true, not Happens(evt_disclose_info_buyer));
+  ob_disclose_info_seller: SO(seller, buyer, true, not Happens(evt_disclose_info_seller));
 
 Powers
 

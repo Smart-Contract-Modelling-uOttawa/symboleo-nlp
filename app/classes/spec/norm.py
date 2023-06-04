@@ -8,7 +8,7 @@ from app.classes.spec.predicate_function import PredicateFunction, PredicateFunc
 class NormType(Enum):
     Obligation = 'Obligation'
     Power = 'Power'
-    SurvivingObligation = 'Obligation'
+    SurvivingObligation = 'SO'
 
 
 class INorm:

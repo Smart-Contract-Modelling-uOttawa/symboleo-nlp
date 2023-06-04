@@ -1,10 +1,10 @@
 A - pay_rent: The monthly rent to be paid by the Renter to the Landlord is $1500. It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on March 1, 2024.
 E - pay_rent: The monthly rent to be paid by the Renter to the Landlord is $1500. It is to be paid by the Renter before the first day of every month, such that the first rent payment is due on March 1, 2024.
 
-A - late_payment: if ob_pay_rent Violated renter pay rent The Landlord is entitled to impose a $50 fine as late fee
+A - late_payment: if renter fails to pay rent The Landlord is entitled to impose a $50 fine as late fee
 E - late_payment: In the event of late payments made by the Renter, the Landlord is entitled to impose a $50 fine as late fee. 
 
-A - pay_security_deposit: The Renter will pay the Landlord an amount of $1000 as a security deposit to cover the cost of any damages suffered by the premises and cleaning before renter occupies the property
+A - pay_security_deposit: The Renter will pay the Landlord an amount of $1000 as a security deposit to cover the cost of any damages suffered by the premises and cleaning before renter occupies property
 E - pay_security_deposit: Prior to taking occupancy of the premises, the Renter will pay the Landlord an amount of $1000 as a security deposit to cover the cost of any damages suffered by the premises and cleaning.
 
 A - return_deposit: if contract terminates Such security deposit will be returned to the Renter, provided the premises are left in the same condition as prior to the occupancy
@@ -19,6 +19,6 @@ E - terminate_notice: This Agreement may be terminated in the event that any of 
 A - terminate_abandon: [P1] the Landlord may terminate this Agreement.
 E - terminate_abandon: In the event that the Renter abandons the premises during the term of this Agreement, the Landlord may terminate this Agreement.
 
-A - pow_termination_abandon: if renter abandons the property landlord may terminate the contract.
+A - pow_termination_abandon: if renter abandons property landlord may terminate the contract.
 E - pow_termination_abandon: 
 

@@ -1,4 +1,4 @@
-A - legal_proceedings: if legal proceedings become necessary The Manager shall handle all such legal proceedings
+A - legal_proceedings: if legal proceedings becomes necessary The Manager shall handle all such legal proceedings
 E - legal_proceedings: In the event that collection and/or legal proceedings become necessary with regard to the rental of the Property, The Manager shall handle all such proceedings.
 
 A - disburse_termination: if contract terminates the Manager shall disburse to the Owner any monies in the Manager's possession due and owing to the Owner within 3 days of contract terminating

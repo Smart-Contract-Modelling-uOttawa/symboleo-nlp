@@ -6,7 +6,7 @@ nl_template = NLTemplate(
             'The Seller shall deliver the Order in one delivery to the Buyer before March 18, 2024.',
         ),
         'payment': TemplateObj(
-            'The Buyer shall pay $100 CAD to the Seller before March 30, 2024.',
+            'The Buyer shall pay $100 to the Seller before March 30, 2024.',
         ),
         'latePayment': TemplateObj(
             'In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.',
