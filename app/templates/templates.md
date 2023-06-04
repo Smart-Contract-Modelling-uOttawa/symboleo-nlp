@@ -7,3 +7,4 @@ The following contracts are used:
 - A biomass supply contract between a buyer and seller: [Link](https://github.com/reganmeloche/symboleo-nlp/tree/main/app/templates/biomass/t_raw)
 - An independent contractor contract between a client and a contractor: [Link](https://github.com/reganmeloche/symboleo-nlp/tree/main/app/templates/indep/t_raw)
 
+These contracts can be reviewed by clicking on the link and inspecting the NL strings corresponding to the contract (nl_template.py file) as well as the corresponding Symboleo (xxxxx_raw.txt file) 
