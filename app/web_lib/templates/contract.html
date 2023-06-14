@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col">
+      <!-- Contrac NL -->
+      <div class="row">
+        <div id="contract-nl">
+        {% for x in contract.nl %}
+        <div>
+          <strong>{{x.nl_key}}</strong>
+          <span>{{x.nl_text}}</span>
+        </div>
+        <br/>
+        {% endfor %}
+        </div>
+      </div>
+
+      <hr/>
+      <!-- Parameter Input -->
+      <div class="row">
+
+        <div id="parameter-input">
+          <!--Select parameter-->
+          <!--Might remove the button and do onselect...-->
+          <div>
+            <div class="input-group">
+              <select class="form-select" id="parm-selection">
+                {% for x in contract.parms %}
+                <option value="{{x}}">{{ x }}</option>
+                {% endfor %}
+              </select>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary" onclick="selectParameter()">Select Parameter</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input goes here -->
+          <div id="input-container">
+            <div id="running-input">
+            
+            </div>
+            <form action="/submit" method="POST">
+              <!-- Form fields and submit button -->
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+          
+
+          <!-- Contains all the input buttons the user can pick-->
+          <!-- prob make it side-scrolling?-->
+          <div id="selection-container">
+
+          </div>
+
+          <!-- Input entry for dynamic values -->
+          <div id="value-entry">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="input-value-label">Label</span>
+              </div>
+              <input type="text" class="form-control" id="input-value-form">
+              <div class="input-group-append">
+                <button class="btn btn-primary" onclick="submitDynamicValue()">Add Value</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+
+      </div>
+      
+  </div>
+
+
+  <div class="col">
+    <!-- Contract Sym -->
+    <div id="contract-sym">
+      <div>
+        <strong>Domain Model</strong>
+        {% for x in contract.sym.domain_objects %}
+        <div>- {{x}}</div>
+        {% endfor %}
+      </div>
+      <br/>
+      <div>
+        <strong>Contract Spec</strong>
+        <!--Add Parameters...-->
+        <div>
+          <strong>Declarations</strong>
+          {% for x in contract.sym.declarations %}
+          <div>- {{x}}</div>
+          {% endfor %}
+        </div>
+        <br/>
+
+        <div>
+          <strong>Obligations</strong>
+          {% for x in contract.sym.obligations %}
+          <div>- {{x}}</div>
+          {% endfor %}
+        </div>
+        <br/>
+
+        <div>
+          <strong>Surviving Obligations</strong>
+          {% for x in contract.sym.surviving_obligations %}
+          <div>- {{x}}</div>
+          {% endfor %}
+        </div>
+        <br/>
+
+        <div>
+          <strong>Powers</strong>
+          {% for x in contract.sym.powers %}
+          <div>- {{x}}</div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}
+

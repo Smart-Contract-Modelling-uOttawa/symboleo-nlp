@@ -56,7 +56,7 @@ Other libaries have been explored and may potentially have use in this tool in t
 
 ### Env
 Before running the project, set up a virtual environment and install the required packages.
-- Create a virtual env: python -m venv symboleo-env
+- Create a virtual env: python -m venv sym-env
 - Activate: source sym-env/Scripts/activate
 - upgrade pip: pip install --upgrade pip
 - install requirements: pip install -r requirements.txt

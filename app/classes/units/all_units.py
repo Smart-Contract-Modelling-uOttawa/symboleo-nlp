@@ -1,5 +1,6 @@
+from typing import Dict, Type
 from app.classes.units.unit_type import UnitType
-from app.classes.units.input_unit import InputUnit
+from app.classes.units.input_unit import InputUnit, DummyUnit
 from app.classes.units.before_unit import BeforeUnit
 from app.classes.units.date_unit import DateUnit
 from app.classes.units.event_unit import EventUnit
@@ -17,4 +18,49 @@ from app.classes.units.following_unit import FollowingUnit
 from app.classes.units.timepoint_unit import TimepointUnit
 from app.classes.units.custom_event_units import *
 from app.classes.units.standard_event_units import *
+from app.classes.units.fails_to_unit import FailsToUnit
 
+
+unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
+    UnitType.ROOT: RootUnit,
+    UnitType.DATE: DateUnit,
+    UnitType.EVENT: EventUnit,
+    UnitType.TIMESPAN: TimespanUnit,
+    UnitType.BEFORE: BeforeUnit,
+    UnitType.WITHIN: WithinUnit,
+    UnitType.IF: IfUnit,
+    UnitType.WHEN: WhenUnit,
+    UnitType.DUMMY: DummyUnit,
+    UnitType.AFTER: AfterUnit,
+    UnitType.UNTIL: UntilUnit,
+    UnitType.UNLESS: UnlessUnit,
+    UnitType.FOR: ForUnit,
+    UnitType.FOLLOWING: FollowingUnit,
+    UnitType.OF: OfUnit,
+
+    UnitType.TIMEPOINT: TimepointUnit,
+    #UnitType.DOMAIN_TIMEPOINT: DomainTimepointUnit,
+    UnitType.CUSTOM_EVENT: CustomEventUnit,
+    UnitType.ADVERB: AdverbUnit,
+    UnitType.STANDARD_EVENT: StandardEventUnit,
+    UnitType.FAILS_TO: FailsToUnit,
+    UnitType.VERB: VerbUnit,
+    UnitType.SUBJECT: SubjectUnit,
+    UnitType.DOBJ: DobjUnit,
+    UnitType.PREDICATE: PredicateUnit,
+    UnitType.PREP_PHRASE: PrepUnit,
+
+    UnitType.STANDARD_EVENT: StandardEventUnit,
+    UnitType.CONTRACT_EVENT: ContractEventUnit,
+    UnitType.CONTRACT_ACTION: ContractActionUnit,
+    UnitType.CONTRACT_SUBJECT: ContractSubjectUnit,
+
+    UnitType.NORM_EVENT: NormEventUnit,
+    UnitType.OBLIGATION_SUBJECT: ObligationSubjectUnit,
+    UnitType.OBLIGATION_ACTION: ObligationActionUnit,
+
+    UnitType.FINAL_NODE: FinalUnit
+
+
+    ####...
+}
