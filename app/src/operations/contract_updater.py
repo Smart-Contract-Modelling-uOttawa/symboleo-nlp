@@ -10,7 +10,12 @@ from app.classes.operations.user_input import UserInput, UnitType
 from app.src.operations.operation_mapper import IMapCnlToOperations
 from app.src.nl_creator.nl_creator import ICreateNL
 
-class ContractUpdater:
+class IUpdateContract:
+    def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
+        raise NotImplementedError()
+
+
+class ContractUpdater(IUpdateContract):
     def __init__(
         self, 
         operation_mapper: IMapCnlToOperations,

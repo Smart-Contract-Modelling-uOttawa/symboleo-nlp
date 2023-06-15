@@ -23,7 +23,7 @@ class ParameterSelector:
 
         contract = self.__contract_storage.load(unique_key, contract_id)
 
-        children = self.__child_getter.get(root_unit, None, contract)
+        children = self.__child_getter.get(root_unit, contract)
         result = [x.unit_type.name for x in children]
         return result
 
