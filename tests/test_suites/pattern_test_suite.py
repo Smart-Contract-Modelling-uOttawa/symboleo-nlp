@@ -1,31 +1,32 @@
 import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
+from app.src.update_processor2.operation_mapper_builder import OperationMapperBuilder
+from app.src.update_processor2.contract_updater import ContractUpdater
+from app.src.update_processor2.nl_creator import NLCreator
+from app.src.update_processor2.nl_fillers.nl_unit_filler_dict import NLUnitFillerDictConstructor
 
+from app.src.operations.dependency_builder import DependencyBuilder
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
-from tests.test_suites.isolated_test_cases.dolphin import dolphin_test_case
-from tests.test_suites.isolated_test_cases.maimon import maimon_test_case
-from tests.test_suites.isolated_test_cases.franchise import franchise_test_case
-from tests.test_suites.isolated_test_cases.fox import fox_test_case
-from tests.test_suites.isolated_test_cases.letter import letter_test_case
-from tests.test_suites.isolated_test_cases.bosch import bosch_test_case
-# Will replace this with pattern_test_suite
+
+from tests.test_suites.pattern_test_cases.dolphin import dolphin_test_case
+from tests.test_suites.pattern_test_cases.if_event import if_event_test_case
+
 test_suite = [
     dolphin_test_case,
-    maimon_test_case,
-    franchise_test_case,
-    fox_test_case,
-    letter_test_case,
-    bosch_test_case
+    if_event_test_case
 ]
 
 
-class IsolatedTests(unittest.TestCase):
+class PatternTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.updater = ContractUpdaterBuilder.build()
+        deps = DependencyBuilder.build(fake=True)
+        mapper = OperationMapperBuilder.build(deps)
+        nl_filler_dict = NLUnitFillerDictConstructor.build()
+        nl_creator = NLCreator(nl_filler_dict)
+        self.contract_updater = ContractUpdater(mapper, nl_creator) 
 
     def test_isolated(self):
-        filepath = 'tests/test_suites/isolated_results'
+        filepath = 'tests/test_suites/pattern_results'
         for test_case in test_suite:
             k = test_case.case_id
             contract = test_case.init_sym
@@ -35,10 +36,11 @@ class IsolatedTests(unittest.TestCase):
                 f.write(contract.to_sym())
             
             # Perform update
-            self.updater.update(
-                contract, 
+            self.contract_updater.update(
+                contract,
                 test_case.op_code,
-                test_case.update_config)
+                test_case.update_config
+            )
 
             # Print the actual and expected            
             with open(f'{filepath}/{k}_sym_actual.txt', 'w') as f:

@@ -25,14 +25,7 @@ TODO for today
 This week
 - base templates - DONE
 - add a parameter input box - DONE
-- demo a sample input 
-
-parameter input
-- select a parameter from a dropdown - this will need to load some results
-- Then as we build the input, need to update (ajax, partials, async, etc.) - thats the challenge
--- each input will trigger some functionality... need to go back to lib and get children
-- Then when we're done... need a submit button - Make the update 
--- Ideally, we would highlight what has been changed - that will require more interaction... might be a bonus 
+- demo a sample input - DONE
 
 
 Next week
@@ -42,31 +35,8 @@ Next week
 - host it 
 
 
-=====
-Calls
-- select_parameter
--- ajax call
--- input: user selects parm from dropdown (nl_key, parm_key)
--- may also require us to store the contract in the session
--- get any relevant parm config info, and the first input children 
--- might also fetch the norm and store it in the session (or elsewhere)
--- return: valid children 
-
-- entering_input
--- user will be presented with the possible input tokens
--- they will select one. 
---- if static, then done
---- if dynamic, then enter a value 
-
-- sending next_input
--- once the value is entered, it is sent off by the user
--- send: new value, unit type, contract id, norm id, etc
--- fetch the next children (will require an interface to child_getter, etc)
-- return next_children. Present them to the user
-** May also do a frame check... verify if the frame is complete... allows user to submit
-
-- completing input 
--- once the input is complete (And potentially verified by frame checker), user can submit 
--- This will now run the contract updater 
--- will refresh the page with updated parms 
-
+NEXT 
+- When user selects an input type, check for the allowed options
+-- might be part of the existing call, or potentially a new ajax call. Probably the former...
+- Ensure we can perform a full event update 
+- May incorporate frame-checking, to verify that the input is complete and matches a pattern class 

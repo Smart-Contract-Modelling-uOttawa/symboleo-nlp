@@ -1,0 +1,31 @@
+Domain test_dm
+  Contractor isA Role;
+  Client isA Role;
+  CompleteServices isAn Event;
+  Pay isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  buyer: Buyer;
+  seller: Seller;
+  buyer: seller;
+  evt_complete_services: CompleteServices;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_payment: Obligation(buyer, seller, true, Happens(evt_pay));
+  ob_complete: Obligation(Dolphin, client, true, Happens(evt_complete_services));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract
