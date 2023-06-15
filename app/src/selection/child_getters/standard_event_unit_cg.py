@@ -8,7 +8,7 @@ from app.classes.units.all_units import StandardEventUnit, ContractEventUnit, No
 from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class StandardEventUnitCG(IGetUnitChildren):
-    def get(self, parent_unit: StandardEventUnit, contract: ISymboleoContract, element: Element) -> List[InputUnit]:
+    def get(self, parent_unit: StandardEventUnit, contract: ISymboleoContract) -> List[InputUnit]:
         contract_event_unit = ContractEventUnit()
 
         norm_event_unit = NormEventUnit(['obligation', 'power'])

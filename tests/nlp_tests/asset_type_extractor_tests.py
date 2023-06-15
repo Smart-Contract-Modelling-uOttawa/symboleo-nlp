@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from tests.helpers.test_nlp import TestNLP
 from tests.helpers.test_contract import get_test_contract_for_assets
 
-from app.src.selection.element_extractors.custom_event.noun_phrase.asset_type_extractor import AssetTypeExtractor
+from app.src.element_extractors.noun_phrase.asset_type_extractor import AssetTypeExtractor
 
 
 test_suite = [

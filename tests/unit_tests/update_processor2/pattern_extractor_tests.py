@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 from app.classes.units.all_units import *
 from app.classes.patterns.pattern_classes import *
 
-from app.src.update_processor2.pattern_class_getter import AllPatternClassGetter
-from app.src.update_processor2.pattern_class_extractor import PatternClassExtractor
+from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
+from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
 
 test_suite = [
     (

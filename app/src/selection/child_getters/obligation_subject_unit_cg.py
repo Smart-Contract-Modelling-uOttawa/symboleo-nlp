@@ -9,7 +9,7 @@ from app.classes.units.all_units import ObligationSubjectUnit, ObligationActionU
 from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class ObligationSubjectUnitCG(IGetUnitChildren):
-    def get(self, parent_unit: ObligationSubjectUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:
+    def get(self, parent_unit: ObligationSubjectUnit, contract: SymboleoContract) -> List[InputUnit]:
         opts = [str(x.value).lower() for x in ObligationEventName]
             
         node1 = ObligationActionUnit(opts)

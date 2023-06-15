@@ -8,7 +8,7 @@ from app.classes.units.all_units import NormEventUnit, ObligationSubjectUnit
 from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class NormEventUnitCG(IGetUnitChildren):
-    def get(self, parent_unit: NormEventUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:
+    def get(self, parent_unit: NormEventUnit, contract: SymboleoContract) -> List[InputUnit]:
         opts = []
         for x in contract.contract_spec.obligations:
             next_ob = contract.contract_spec.obligations[x]

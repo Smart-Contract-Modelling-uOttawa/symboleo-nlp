@@ -13,8 +13,8 @@ from app.classes.units.all_units import *
 
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
-from app.src.update_processor2.operation_mapper_builder import OperationMapperBuilder
-from app.src.update_processor2.operation_mapper import OperationMapper
+from app.src.operations.operation_mapper_builder import OperationMapperBuilder
+from app.src.operations.operation_mapper import OperationMapper
 
 from tests.helpers.test_contract import get_test_contract_for_assets
 

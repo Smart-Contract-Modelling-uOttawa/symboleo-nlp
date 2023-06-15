@@ -5,8 +5,8 @@ from app.classes.operations.handle_object import HandleObject
 
 from app.classes.spec.norm import INorm
 
-from app.src.update_processor2.norm_update_extractor import NormUpdateExtractor
-from app.src.update_processor2.handlers.norm_update_handler import IHandleNormUpdates
+from app.src.operation_mapper.norm_update_extractor import NormUpdateExtractor
+from app.src.norm_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
 from tests.helpers.test_objects import CustomEvents
 

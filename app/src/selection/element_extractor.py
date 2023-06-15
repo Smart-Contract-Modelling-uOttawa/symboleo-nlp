@@ -2,7 +2,7 @@ from typing import List
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.elements.all_elements import *
 
-from app.src.selection.element_extractors.element_extractor import IExtractElement
+from app.src.element_extractors.element_extractor import IExtractElement
 
 class IExtractElements:
     def extract(self, input: List[UserInput]) -> List[Element]:

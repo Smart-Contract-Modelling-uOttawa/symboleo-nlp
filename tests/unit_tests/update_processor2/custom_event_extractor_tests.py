@@ -8,13 +8,13 @@ from app.classes.events.custom_event.custom_event import CustomEvent, Verb, Noun
 from app.classes.operations.user_input import UserInput, UnitType
 
 
-from app.src.update_processor2.domain_updates.domain_update_extractor import DomainUpdateExtractor
-from app.src.update_processor2.domain_updates.custom_event_extractor import IExtractCustomEvents
-from app.src.update_processor2.domain_updates.asset_declaration_mapper import IMapAssetDeclarations
-from app.src.update_processor2.domain_updates.event_declaration_mapper import IMapEventToDeclaration
-from app.src.selection.element_extractors.element_extractor import IExtractElement
+from app.src.domain_updater.domain_update_extractor import DomainUpdateExtractor
+from app.src.domain_updater.custom_event_extractor import IExtractCustomEvents
+from app.src.domain_updater.asset_declaration_mapper import IMapAssetDeclarations
+from app.src.domain_updater.event_declaration_mapper import IMapEventToDeclaration
+from app.src.element_extractors.element_extractor import IExtractElement
 
-from app.src.update_processor2.domain_updates.custom_event_extractor import CustomEventExtractor
+from app.src.domain_updater.custom_event_extractor import CustomEventExtractor
 
 from tests.helpers.test_objects import CustomEvents, Verbs, NounPhrases
 

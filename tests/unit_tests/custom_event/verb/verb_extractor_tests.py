@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.events.custom_event.verb import Verb, VerbType, VerbConjugations
-from app.src.selection.element_extractors.custom_event.verb.verb_extractor import VerbExtractor
-from app.src.selection.element_extractors.custom_event.verb.lemmatizer import ILemmatize
-from app.src.selection.element_extractors.custom_event.verb.conjugator import IConjugate
+from app.src.element_extractors.verb.verb_extractor import VerbExtractor
+from app.src.element_extractors.verb.lemmatizer import ILemmatize
+from app.src.element_extractors.verb.conjugator import IConjugate
 
 
 class VerbExtractorTests(unittest.TestCase):

@@ -6,8 +6,8 @@ from app.classes.operations.user_input import UnitType, UserInput
 from app.classes.units.all_units import *
 from app.classes.patterns.pattern_classes import *
 
-from app.src.update_processor2.pattern_unit_fillers.pattern_unit_filler_dict import PatternUnitFillerDictConstructor
-from app.src.update_processor2.pattern_class_filler import PatternClassFiller
+from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler_dict import PatternUnitFillerDictConstructor
+from app.src.pattern_builder.pattern_class_filler import PatternClassFiller
 
 test_suite = [
     (

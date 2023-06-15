@@ -8,10 +8,10 @@ from app.classes.spec.norm import INorm
 from app.classes.patterns.pattern_classes import PatternClass
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
-from app.src.update_processor2.operation_mapper import OperationMapper
-from app.src.update_processor2.pattern_class_builder import IBuildPatternClass
-from app.src.update_processor2.norm_update_extractor import IExtractNormUpdates
-from app.src.update_processor2.domain_updates.domain_update_extractor import IExtractDomainUpdates, DomainUpdates
+from app.src.operations.operation_mapper import OperationMapper
+from app.src.pattern_builder.pattern_class_builder import IBuildPatternClass
+from app.src.operation_mapper.norm_update_extractor import IExtractNormUpdates
+from app.src.domain_updater.domain_update_extractor import IExtractDomainUpdates, DomainUpdates
 
 class OperationMapperTests(unittest.TestCase):
     def setUp(self):

@@ -12,7 +12,7 @@ class BeforeUnitCG(IGetUnitChildren):
     def __init__(self, domain_timepoint_extractor: IExtractDomainTimePoints):
         self.__domain_timepoint_extractor = domain_timepoint_extractor
 
-    def get(self, parent_unit: BeforeUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:
+    def get(self, parent_unit: BeforeUnit, contract: SymboleoContract) -> List[InputUnit]:
         children: List[InputUnit] = []
 
         children.append(EventUnit())

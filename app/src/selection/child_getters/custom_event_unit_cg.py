@@ -10,7 +10,7 @@ from app.classes.units.all_units import CustomEventUnit, SubjectUnit
 from app.src.selection.child_getters.child_getter import IGetUnitChildren
 
 class CustomEventUnitCG(IGetUnitChildren):
-    def get(self, parent_unit: CustomEventUnit, contract: SymboleoContract, element: Element) -> List[InputUnit]:
+    def get(self, parent_unit: CustomEventUnit, contract: SymboleoContract) -> List[InputUnit]:
         opts = [str(x.value).lower() for x in ObligationEventName]
             
         decls: List[Declaration] = contract.contract_spec.declarations.values()

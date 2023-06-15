@@ -1,9 +1,9 @@
 import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.update_processor2.operation_mapper_builder import OperationMapperBuilder
-from app.src.update_processor2.contract_updater import ContractUpdater
-from app.src.update_processor2.nl_creator import NLCreator
-from app.src.update_processor2.nl_fillers.nl_unit_filler_dict import NLUnitFillerDictConstructor
+from app.src.operations.operation_mapper_builder import OperationMapperBuilder
+from app.src.operations.contract_updater import ContractUpdater
+from app.src.nl_creator.nl_creator import NLCreator
+from app.src.nl_creator.nl_fillers.nl_unit_filler_dict import NLUnitFillerDictConstructor
 
 from app.src.operations.dependency_builder import DependencyBuilder
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder

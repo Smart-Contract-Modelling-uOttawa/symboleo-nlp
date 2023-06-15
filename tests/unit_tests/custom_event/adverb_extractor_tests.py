@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.events.custom_event.adverb import Adverb, AdverbType
-from app.src.selection.element_extractors.custom_event.adverb_extractor import AdverbExtractor
+from app.src.element_extractors.adverb_extractor import AdverbExtractor
 
 class AdverbExtractorTests(unittest.TestCase):
     def setUp(self):

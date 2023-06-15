@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from tests.helpers.test_nlp import TestNLP
 
-from app.src.selection.element_extractors.custom_event.verb.lemmatizer import Lemmatizer
+from app.src.element_extractors.verb.lemmatizer import Lemmatizer
 
 test_suite = [
     ('receiving', 'receive'),
