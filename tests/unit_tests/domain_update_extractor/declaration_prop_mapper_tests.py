@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.spec.declaration import DeclarationProp
-from app.src.update_processor.declaration_prop_mapper import DeclarationPropMapper
+from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
 from tests.helpers.test_objects import CustomEvents
 
 # TODO: E2 - Should make a test suite, and/or break up the class

@@ -4,6 +4,7 @@ from app.classes.units.all_units import *
 
 from app.classes.spec.sym_event import SymEvent
 
+# Pattern Variables
 class PT(Enum):
     DATE = 'DATE'
     EVENT = 'EVENT'
@@ -12,18 +13,25 @@ class PT(Enum):
     P_BEFORE_S = 'P_BEFORE_S'
     P_BEFORE_WE = 'P_BEFORE_WE'
     P_AFTER_W = 'P_AFTER_W'
+    P_EXCEPTION = 'P_EXECEPTION'
 
-    IF = 'IF'
+    CONDITIONAL_A = 'IF'
+    CONDITIONAL_T = 'WHEN'
+
     WITHIN = 'WITHIN'
     
+    
 
+# Allowed units for pattern variables
 pt_value_dict: Dict[PT, List[UnitType]] = {
     PT.P_BEFORE_S: [UnitType.BEFORE], #...
     PT.P_BEFORE_WE: [UnitType.BEFORE], #...
     PT.P_AFTER_W: [UnitType.OF, UnitType.AFTER], #...
+    PT.P_EXCEPTION: [UnitType.UNLESS],
     
+    PT.CONDITIONAL_T: [UnitType.WHEN],
     PT.WITHIN: [UnitType.WITHIN],
-    PT.IF: [UnitType.IF],
+    PT.CONDITIONAL_A: [UnitType.IF],
 
     PT.EVENT: [UnitType.EVENT],
     PT.DATE: [UnitType.DATE],
@@ -49,13 +57,17 @@ class BeforeDate(PatternClass):
     def __init__(self):
         self.date_text = ''
 
-class IfEvent(EventPatternClass):
-    sequence = [PT.IF, PT.EVENT]
+class CondAEvent(EventPatternClass):
+    sequence = [PT.CONDITIONAL_T, PT.EVENT]
     
+class CondTEvent(EventPatternClass):
+    sequence = [PT.CONDITIONAL_A, PT.EVENT]
+
+class ExceptEvent(EventPatternClass):
+    sequence = [PT.P_EXCEPTION, PT.EVENT]
 
 class BeforeEvent(EventPatternClass):
     sequence = [PT.P_BEFORE_WE, PT.EVENT]
-
 
 class WithinTimespanEvent(EventPatternClass):
     sequence = [PT.WITHIN, PT.TIMESPAN, PT.P_AFTER_W, PT.EVENT]

@@ -21,7 +21,7 @@ class ChildGetterTests(unittest.TestCase):
 
     def test_child_getter(self):
         contract = ISymboleoContract()
-        result = self.sut.get(InputUnit(), Element(), contract)
+        result = self.sut.get(InputUnit(), contract)
 
         self.assertEqual(len(result), 2) 
 

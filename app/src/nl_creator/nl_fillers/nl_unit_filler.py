@@ -2,10 +2,9 @@ from typing import List, Dict
 import copy
 from app.classes.patterns.pattern_classes import *
 from app.classes.operations.user_input import UserInput
-from app.classes.patterns.pattern_classes import List, PatternClass
 
 class IFillNLUnit:
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> PatternClass:
+    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         raise NotImplementedError()
 
 
@@ -18,11 +17,11 @@ value_dict: Dict[UnitType, str] = {
 }
 
 class SkipFiller(IFillNLUnit):
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> PatternClass:
+    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         return copy.deepcopy(curr)
 
 class DefaultNLFiller(IFillNLUnit):
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> PatternClass:
+    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         result = copy.deepcopy(curr)
 
         unit_type = input_list[i].unit_type

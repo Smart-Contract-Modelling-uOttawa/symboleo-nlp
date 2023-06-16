@@ -1,12 +1,13 @@
 import copy
 from typing import List
+
 from app.classes.patterns.pattern_classes import *
 from app.classes.spec.norm import Norm
 from app.classes.spec.predicate_function import PredicateFunctionSHappensBefore
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.operations.handle_object import HandleObject
-from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
+from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
 class BeforeDateHandler(IHandleNormUpdates):
     def handle(self, pattern_class: BeforeDate, handle_object: HandleObject) -> List[Norm]:

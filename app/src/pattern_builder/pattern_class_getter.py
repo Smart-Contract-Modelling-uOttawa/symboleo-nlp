@@ -12,7 +12,9 @@ class AllPatternClassGetter(IGetAllPatternClasses):
             BeforeDate(),
             BeforeEvent(),
             WithinTimespanEvent(),
-            IfEvent()
+            CondAEvent(),
+            CondTEvent(),
+            ExceptEvent(),
         ]
     
     

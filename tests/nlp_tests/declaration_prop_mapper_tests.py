@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.elements.all_elements import *
 from app.classes.spec.declaration import DeclarationProp
-from app.src.update_processor.declaration_prop_mapper import DeclarationPropMapper
+from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
 
 from app.classes.helpers.list_eq import ClassHelpers
 from tests.helpers.test_objects import CustomEvents

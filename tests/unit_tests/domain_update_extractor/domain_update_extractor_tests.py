@@ -1,32 +1,32 @@
 import unittest
 from unittest.mock import MagicMock
-
-from app.classes.patterns.pattern import EventPattern, Pattern
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
 
-from app.src.update_processor.domain_update_extractor import DomainUpdateExtractor
-from app.src.update_processor.asset_declaration_mapper import IMapAssetDeclarations
-from app.src.update_processor.event_declaration_mapper import IMapEventToDeclaration
-from app.src.update_processor.domain_model_mapper import IMapDeclarationToDomain
+from app.src.domain_update_extractor.domain_update_extractor import DomainUpdateExtractor
+from app.src.element_extractors.custom_event_extractor import IExtractCustomEvents
+from app.src.domain_update_extractor.asset_declaration_mapper import IMapAssetDeclarations
+from app.src.domain_update_extractor.event_declaration_mapper import IMapEventToDeclaration
+from app.src.domain_update_extractor.domain_model_mapper import IMapDeclarationToDomain
 
 from tests.helpers.test_objects import CustomEvents
 
 class DomainUpdateExtractorTests(unittest.TestCase):
     def setUp(self) -> None:
+        self.custom_event_extractor = IExtractCustomEvents()
         self.asset_decl_mapper = IMapAssetDeclarations()
         self.event_decl_mapper = IMapEventToDeclaration()
         self.domain_mapper = IMapDeclarationToDomain()
         self.sut = DomainUpdateExtractor(
             self.asset_decl_mapper,
             self.event_decl_mapper,
-            self.domain_mapper
+            self.domain_mapper,
+            self.custom_event_extractor
         )
 
 
     def test_domain_update_extractor(self):
-        pattern = EventPattern()
-        pattern.event = CustomEvents.paying()
+        self.custom_event_extractor.extract = MagicMock(return_value=CustomEvents.paying())
 
         asset_decls = [
             Declaration('a1', 'A1', 'assets', []),
@@ -40,26 +40,30 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         domain_obj = DomainObject('a', 'b', [])
         self.domain_mapper.map = MagicMock(return_value=domain_obj)
 
-        result = self.sut.extract(pattern, None)
+        input_list = []
+
+        result = self.sut.extract(input_list, None)
 
         self.assertEqual(len(result.declarations), 3)
         self.assertEqual(len(result.domain_objects), 3)
         self.assertEqual(result.declarations[2].name, 'evt_e1')
+        self.assertEqual(self.custom_event_extractor.extract.call_count, 1)
         self.assertEqual(self.asset_decl_mapper.map.call_count, 1)
         self.assertEqual(self.event_decl_mapper.map.call_count, 1)
         self.assertEqual(self.domain_mapper.map.call_count, 3)
 
 
     def test_domain_update_extractor_empty(self):
-        pattern = Pattern()
+        self.custom_event_extractor.extract = MagicMock(return_value=None)
         self.asset_decl_mapper.map = MagicMock(return_value=None)
         self.event_decl_mapper.map = MagicMock(return_value=None)
         self.domain_mapper.map = MagicMock(return_value=None)
 
-        result = self.sut.extract(pattern, None)
+        result = self.sut.extract([], None)
 
         self.assertEqual(len(result.declarations), 0)
         self.assertEqual(len(result.domain_objects), 0)
+        self.assertEqual(self.custom_event_extractor.extract.call_count, 1)
         self.assertEqual(self.asset_decl_mapper.map.call_count, 0)
         self.assertEqual(self.event_decl_mapper.map.call_count, 0)
         self.assertEqual(self.domain_mapper.map.call_count, 0)

@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 from tests.helpers.test_objects import CustomEvents, AssetDeclarations
 from tests.helpers.test_contract import get_test_contract_for_assets, get_test_contract
 
-from app.src.update_processor.asset_declaration_extractor import IExtractAssetDeclarations
-from app.src.update_processor.asset_declaration_mapper import AssetDeclarationMapper
+from app.src.domain_update_extractor.asset_declaration_extractor import IExtractAssetDeclarations
+from app.src.domain_update_extractor.asset_declaration_mapper import AssetDeclarationMapper
 
 # TODO: E2 - Should make a test suite
 class AssetDeclarationMapperTests(unittest.TestCase):

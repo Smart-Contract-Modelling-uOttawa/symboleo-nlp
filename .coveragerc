@@ -17,6 +17,11 @@ omit =
     app\src\user_scripts\*.py
     app\src\old\*.py
     
+    app\src\domain_update_extractor\domain_update_extractor_builder.py
+    app\src\element_extractors\custom_event_extractor_builder.py
+    app\src\element_extractors\noun_phrase\fake_noun_phrase_extractor.py
+    app\src\nl_creator\nl_creator_builder.py
+
     app\src\selection\element_list_selector_builder.py
     app\src\selection\element_extractor_builder.py
     app\src\selection\element_extractors\custom_event\verb\verb_extractor_builder.py

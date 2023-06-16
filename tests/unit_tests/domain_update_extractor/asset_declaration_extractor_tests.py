@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.classes.spec.declaration import Declaration
 
-from app.src.update_processor.asset_declaration_extractor import AssetDeclarationExtractor
+from app.src.domain_update_extractor.asset_declaration_extractor import AssetDeclarationExtractor
 
 
 class AssetDeclarationExtractorTests(unittest.TestCase):

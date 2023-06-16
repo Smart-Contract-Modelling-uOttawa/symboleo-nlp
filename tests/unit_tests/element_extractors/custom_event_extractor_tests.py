@@ -1,22 +1,14 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.declaration import Declaration
-from app.classes.spec.domain_object import DomainObject
 
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.classes.events.custom_event.custom_event import CustomEvent, Verb, NounPhrase, Adverb, Predicate, PrepPhrase
+from app.classes.events.custom_event.custom_event import CustomEvent, Verb, NounPhrase
 from app.classes.operations.user_input import UserInput, UnitType
 
-
-from app.src.domain_updater.domain_update_extractor import DomainUpdateExtractor
-from app.src.domain_updater.custom_event_extractor import IExtractCustomEvents
-from app.src.domain_updater.asset_declaration_mapper import IMapAssetDeclarations
-from app.src.domain_updater.event_declaration_mapper import IMapEventToDeclaration
 from app.src.element_extractors.element_extractor import IExtractElement
+from app.src.element_extractors.custom_event_extractor import CustomEventExtractor
 
-from app.src.domain_updater.custom_event_extractor import CustomEventExtractor
-
-from tests.helpers.test_objects import CustomEvents, Verbs, NounPhrases
+from tests.helpers.test_objects import Verbs, NounPhrases
 
 class CustomEventExtractorTests(unittest.TestCase):
     def setUp(self) -> None:
