@@ -24,7 +24,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 
 
 if_event_test_case = TestCase(
-    'iv_event',
+    'if_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',
@@ -86,7 +86,7 @@ if_event_test_case = TestCase(
             #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
             UserInput(UnitType.SUBJECT, 'buyer'),
             UserInput(UnitType.FAILS_TO),
-            UserInput(UnitType.VERB, 'complete'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'complete'),
             UserInput(UnitType.DOBJ, 'payment'),
         ],
         nl_key='parm',

@@ -31,7 +31,8 @@ class CustomEventExtractor(IExtractCustomEvents):
             subj_str = [x.value for x in input_list if x.unit_type == UnitType.SUBJECT][0]
             subj = self.__np_extractor.extract(subj_str, contract)
 
-            verb_str = [x.value for x in input_list if x.unit_type == UnitType.VERB][0]
+
+            verb_str = [x.value for x in input_list if x.unit_type in [UnitType.LINKING_VERB, UnitType.TRANSITIVE_VERB, UnitType.INTRANSITIVE_VERB]][0]
             verb = self.__verb_extractor.extract(verb_str, contract)
 
             dobj = None

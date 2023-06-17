@@ -4,7 +4,7 @@ from app.classes.units.input_unit import InputUnit
 from app.classes.units.custom_event_units import *
 
 from app.src.selection.child_getters.child_getter import IGetUnitChildren
-
+# Kill this
 class VerbUnitCG(IGetUnitChildren):
     def get(self, parent_unit: VerbUnit, contract: ISymboleoContract) -> List[InputUnit]:
         children = [PredicateUnit(), DobjUnit(), AdverbUnit()]

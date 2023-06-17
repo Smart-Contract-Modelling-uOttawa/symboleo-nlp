@@ -58,10 +58,10 @@ class BeforeDate(PatternClass):
         self.date_text = ''
 
 class CondAEvent(EventPatternClass):
-    sequence = [PT.CONDITIONAL_T, PT.EVENT]
+    sequence = [PT.CONDITIONAL_A, PT.EVENT]
     
 class CondTEvent(EventPatternClass):
-    sequence = [PT.CONDITIONAL_A, PT.EVENT]
+    sequence = [PT.CONDITIONAL_T, PT.EVENT]
 
 class ExceptEvent(EventPatternClass):
     sequence = [PT.P_EXCEPTION, PT.EVENT]

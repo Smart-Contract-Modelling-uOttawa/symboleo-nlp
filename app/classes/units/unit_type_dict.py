@@ -18,12 +18,3 @@ from app.classes.units.timepoint_unit import TimepointUnit
 from app.classes.units.custom_event_units import *
 from app.classes.units.standard_event_units import *
 
-unit_type_dict = {
-    UnitType.ADVERB: AdverbUnit,
-    UnitType.ADVERB: AdverbUnit,
-    UnitType.ADVERB: AdverbUnit,
-    UnitType.ADVERB: AdverbUnit,
-    
-
-
-}

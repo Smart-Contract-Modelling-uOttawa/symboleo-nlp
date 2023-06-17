@@ -36,7 +36,7 @@ class CustomEventExtractorTests(unittest.TestCase):
         input_list = [
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'bob'),
-            UserInput(UnitType.VERB, 'buys'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'buys'),
             UserInput(UnitType.DOBJ, 'apple pie')
         ]
 

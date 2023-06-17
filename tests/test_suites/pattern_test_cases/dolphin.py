@@ -78,7 +78,7 @@ dolphin_test_case = TestCase(
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT, 'evt_receive_files'),
             UserInput(UnitType.SUBJECT, 'Dolphin'),
-            UserInput(UnitType.VERB, 'receiving'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'receiving'),
             UserInput(UnitType.DOBJ, 'the original digital photo files')
         ],
         nl_key='parm',

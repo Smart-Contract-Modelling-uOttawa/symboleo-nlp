@@ -38,4 +38,7 @@ class UnitType(Enum):
     UNLESS = 46
     WHEN = 47
     OF = 48
+    TRANSITIVE_VERB = 49
+    INTRANSITIVE_VERB = 50
+    LINKING_VERB = 51
     # ....
