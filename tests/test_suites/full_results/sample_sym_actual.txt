@@ -1,0 +1,45 @@
+Domain propertyRentalDomain
+  Landlord isA Role;
+  Renter isA Role;
+  Currency isAn Enumeration(CAD, USD, EUR);
+  RentalProperty isAn Asset with address: String;
+  Pets isAn Asset;
+  Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
+  OccupyProperty isAn Event with agent: Role, property: RentalProperty;
+  KeepPet isAn Event with agent: Role;
+  AllowPets isAn Event with grantor: Role;
+  Occupying isAn Event with occupyeeking_agent: Role, occupyought_object: RentalProperty;
+  Allow isAn Event with allowing_agent: Role, allowed_object: Pets;
+
+endDomain
+
+Contract PropertyRental( renter_id: String, landlord_id: String, property_address: String, currency: Currency, late_fee_amount: Number, deposit_amount: Number )
+
+Declarations
+  renter: Renter;
+  landlord: Landlord;
+  property: RentalProperty;
+  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
+  evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
+  evt_keep_pet: KeepPet with agent := renter;
+  evt_gwhutziq: Occupying with occupyeeking_agent := renter, occupyought_object := property;
+  pets: Pets;
+  evt_dnvigwbf: Allow with allowing_agent := landlord, allowed_object := pets;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBefore(evt_pay_deposit, Date.add(evt_gwhutziq, 2, weeks)));
+  ob_pay_extra: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_deposit)), Happens(evt_pay_late));
+  ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
+
+Surviving Obligations
+
+Powers
+  pow_suspend_ob_no_pets: Happens(evt_dnvigwbf) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
+
+Constraints
+
+endContract

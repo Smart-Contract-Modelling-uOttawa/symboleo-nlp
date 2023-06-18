@@ -1,10 +1,11 @@
 from typing import List, Dict
 import copy
+from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.patterns.pattern_classes import *
 from app.classes.operations.user_input import UserInput
 
 class IFillNLUnit:
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
+    def fill(self, contract: SymboleoContract, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         raise NotImplementedError()
 
 
@@ -13,15 +14,17 @@ value_dict: Dict[UnitType, str] = {
     UnitType.WITHIN: 'within',
     UnitType.IF: 'if',
     UnitType.OF: 'of',
-    UnitType.FAILS_TO: 'fails to'
+    UnitType.FAILS_TO: 'fails to',
+    UnitType.UNLESS: 'unless',
+    UnitType.BEFORE: 'before',
 }
 
 class SkipFiller(IFillNLUnit):
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
+    def fill(self, contract: SymboleoContract, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         return copy.deepcopy(curr)
 
 class DefaultNLFiller(IFillNLUnit):
-    def fill(self, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
+    def fill(self, contract: SymboleoContract, curr: List[str], input_list: List[UserInput], i: int) -> List[str]:
         result = copy.deepcopy(curr)
 
         unit_type = input_list[i].unit_type

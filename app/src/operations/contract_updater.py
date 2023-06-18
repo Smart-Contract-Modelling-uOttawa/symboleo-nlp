@@ -30,7 +30,8 @@ class ContractUpdater(IUpdateContract):
         user_inputs = self._clean_user_inputs(config.user_inputs)
 
         # Should add this back to pattern. Each pattern should have a text?
-        nl_update = self.__nl_creator.create(user_inputs)
+        # will likely remove this in favour of the pattern
+        nl_update = self.__nl_creator.create(contract, user_inputs)
 
         # Need to get the norm
         norms = contract.get_norms_by_key(config.nl_key, config.parm_key)

@@ -5,6 +5,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.patterns.pattern_classes import PatternClass, EventPatternClass
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler import IFillPatternUnit
 
+# Will need the event extractor here...
 class CustomEventFiller(IFillPatternUnit):
     def fill(self, pattern_class: EventPatternClass, input_list: List[UserInput], i: int) -> PatternClass:
         result = copy.deepcopy(pattern_class)

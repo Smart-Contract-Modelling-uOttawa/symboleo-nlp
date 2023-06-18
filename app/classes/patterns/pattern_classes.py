@@ -3,6 +3,7 @@ from enum import Enum
 from app.classes.units.all_units import *
 
 from app.classes.spec.sym_event import SymEvent
+from app.classes.events.custom_event.custom_event import CustomEvent
 
 # Pattern Variables
 class PT(Enum):
@@ -44,18 +45,27 @@ class PatternClass:
 
     def is_complete(self):
         return True # Will fill this one in...
+    
+    def to_text(self):
+        return '...'
 
 
 class EventPatternClass(PatternClass):
     def __init__(self) -> None:
         self.event: SymEvent = None
+        self.nl_event = CustomEvent
 
 
 class BeforeDate(PatternClass):
     sequence = [PT.P_BEFORE_S, PT.DATE]
     
     def __init__(self):
+        self.p_before_s = ''
         self.date_text = ''
+    
+    def to_text(self):
+        return f'{self.p_before_s} {self.date_text}'
+      
 
 class CondAEvent(EventPatternClass):
     sequence = [PT.CONDITIONAL_A, PT.EVENT]

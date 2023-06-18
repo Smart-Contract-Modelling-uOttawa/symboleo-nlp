@@ -61,6 +61,7 @@ class UpdateProcessorTests(unittest.TestCase):
         self.assertEqual(len(result.norms), 1)
         self.assertEqual(result.norms[0], expected_norm)
     
+
     def test_update_processor2(self):
         test_input = [
             UserInput(UnitType.WITHIN),
@@ -69,7 +70,7 @@ class UpdateProcessorTests(unittest.TestCase):
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'renter'),
-            UserInput(UnitType.VERB, 'occupying'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'occupying'),
             UserInput(UnitType.DOBJ, 'the property'),
         ]
 
@@ -98,7 +99,7 @@ class UpdateProcessorTests(unittest.TestCase):
         
         
         #self.assertEqual(result.norms[0], expected_norm)
-
+    
 
 if __name__ == '__main__':
     unittest.main()

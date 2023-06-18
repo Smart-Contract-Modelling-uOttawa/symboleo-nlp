@@ -47,6 +47,15 @@ from app.templates.indep.t_raw.domain_model import get_domain_model as get_indep
 from app.templates.indep.t_raw.contract_spec import get_contract_spec as get_indep_raw_cs
 from app.templates.indep.t_raw.nl_template import nl_template as indep_raw_nl
 
+## sample
+from app.templates.sample.t.domain_model import get_domain_model as get_sample_t_dm
+from app.templates.sample.t.contract_spec import get_contract_spec as get_sample_t_cs
+from app.templates.sample.t.nl_template import nl_template as sample_t_nl
+
+from app.templates.sample.t_raw.domain_model import get_domain_model as get_sample_raw_dm
+from app.templates.sample.t_raw.contract_spec import get_contract_spec as get_sample_raw_cs
+from app.templates.sample.t_raw.nl_template import nl_template as sample_raw_nl
+
 
 template_dict: Dict[str, SymboleoContract] = {
     'meat_sale_raw':  SymboleoContract(
@@ -106,6 +115,18 @@ template_dict: Dict[str, SymboleoContract] = {
         get_indep_t_dm(),
         get_indep_t_cs(),
         indep_t_nl
+    ),
+
+    'sample_raw': SymboleoContract(
+        get_sample_raw_dm(),
+        get_sample_raw_cs(),
+        sample_raw_nl
+    ),
+
+    'sample': SymboleoContract(
+        get_sample_t_dm(),
+        get_sample_t_cs(),
+        sample_t_nl
     ),
 }
 
