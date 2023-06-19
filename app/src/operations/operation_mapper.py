@@ -27,13 +27,15 @@ class OperationMapper(IMapCnlToOperations):
 
 
     def map(self, input_list: List[UserInput], contract: SymboleoContract, norm:Norm) -> ContractUpdateObj:
-        pattern_class = self.__pattern_class_builder.build(input_list)
+        pattern_class = self.__pattern_class_builder.build(input_list, contract)
 
         handle_object = HandleObject(norm)
 
         norms = self.__norm_update_extractor.extract(pattern_class, handle_object)
 
         domain_updates = self.__domain_update_extractor.extract(input_list, contract)
+
+        nl_update = pattern_class.to_text()
         
-        return ContractUpdateObj(norms, domain_updates.domain_objects, domain_updates.declarations)
+        return ContractUpdateObj(norms, domain_updates.domain_objects, domain_updates.declarations, nl_update)
         

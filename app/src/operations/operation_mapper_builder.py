@@ -19,7 +19,7 @@ class OperationMapperBuilder:
 
         pattern_class_getter = AllPatternClassGetter()
         pattern_class_extractor = PatternClassExtractor(pattern_class_getter)
-        pattern_filler_dict= PatternUnitFillerDictConstructor.build()
+        pattern_filler_dict= PatternUnitFillerDictConstructor.build(deps)
         pattern_class_filler = PatternClassFiller(pattern_filler_dict)
         pattern_class_builder = PatternClassBuilder(pattern_class_extractor, pattern_class_filler)
 

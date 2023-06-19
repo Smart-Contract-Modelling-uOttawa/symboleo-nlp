@@ -10,23 +10,11 @@ class ContractUpdateObj:
         self,
         norms: List[INorm] = None,
         domain_objects: List[IDomainObject] = None,
-        declarations: List[IDeclaration] = None
+        declarations: List[IDeclaration] = None,
+        nl_update: str = None
     ):
         self.norms = norms or []
         self.domain_objects = domain_objects or []
         self.declarations = declarations or []
+        self.nl_update = nl_update
     
-    
-    def merge(self, other: ContractUpdateObj):
-        if not other:
-            return
-        
-        for n in (other.norms or []):
-            self.norms.append(n)
-        
-        for d in (other.declarations or []):
-            self.declarations.append(d)
-        
-        for dm in (other.domain_objects or []):
-            self.domain_objects.append(dm)
-

@@ -31,7 +31,7 @@ class ContractUpdater(IUpdateContract):
 
         # Should add this back to pattern. Each pattern should have a text?
         # will likely remove this in favour of the pattern
-        nl_update = self.__nl_creator.create(contract, user_inputs)
+        # nl_update = self.__nl_creator.create(contract, user_inputs)
 
         # Need to get the norm
         norms = contract.get_norms_by_key(config.nl_key, config.parm_key)
@@ -40,7 +40,7 @@ class ContractUpdater(IUpdateContract):
         if op_code == OpCode.UPDATE_PARM:
             update_obj = self.__operation_mapper.map(user_inputs, contract, norm)
             contract.run_updates(update_obj)
-            contract.update_nl(config.nl_key, config.parm_key, nl_update)
+            contract.update_nl(config.nl_key, config.parm_key, update_obj.nl_update)
         
         # elif op_code == OpCode.ADD_TERMINATION_POWER:
         #     term_op = TerminationOperation(config.norm_id, config.debtor, config.creditor, elements)

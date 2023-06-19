@@ -1,7 +1,7 @@
-A - pay_deposit: The renter must pay a security deposit of $1500 within 2 weeks of renter occupying the property
+A - pay_deposit: The renter must pay a security deposit of $1500 within 2 weeks of renter occupying property
 E - pay_deposit: The renter must pay a security deposit of $1500 within 2 weeks of occupying the property.
 
-A - no_pets: The renter may not keep any pets on the property unless landlord allows pets
+A - no_pets: The renter may not keep any pets on the property unless landlord provides authorization for pets
 E - no_pets: The renter may not keep any pets on the property unless authorization is provided by the landlord 
 
 A - late_payment: if renter fails to pay 1000 to landlord in CAD the renter must pay an extra fee of $50

@@ -34,6 +34,8 @@ class NounPhrases:
     bosch = lambda: NounPhrase('BOSCH', 'BOSCH', False, True, asset_type='Role')
     productivity = lambda: NounPhrase('productivity', 'productivity', False, False, asset_type='Productivity')
 
+    authorization = lambda: NounPhrase('authorization', 'authorization', asset_type='Authorization')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 

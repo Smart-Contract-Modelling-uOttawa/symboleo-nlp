@@ -38,6 +38,8 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'CLIENT': NounPhrases.client_cap(),
             'productivity': NounPhrases.productivity(),
 
+            'authorization': NounPhrases.authorization(),
+
         }
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:

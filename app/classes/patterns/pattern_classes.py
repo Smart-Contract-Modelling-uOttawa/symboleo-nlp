@@ -2,8 +2,9 @@ from typing import List, Dict
 from enum import Enum
 from app.classes.units.all_units import *
 
+from app.classes.spec.point_function import TimeUnit
 from app.classes.spec.sym_event import SymEvent
-from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.events.custom_event.custom_event import CustomEvent, ConjType
 
 # Pattern Variables
 class PT(Enum):
@@ -43,49 +44,83 @@ pt_value_dict: Dict[PT, List[UnitType]] = {
 class PatternClass:
     sequence: List[PT]
 
+    def __init__(self) -> None:
+        self.keyword = ''
+
     def is_complete(self):
         return True # Will fill this one in...
     
-    def to_text(self):
+    def to_text(self) -> str:
         return '...'
 
 
 class EventPatternClass(PatternClass):
     def __init__(self) -> None:
+        super().__init__()
         self.event: SymEvent = None
-        self.nl_event = CustomEvent
+        self.nl_event: CustomEvent = None
 
 
 class BeforeDate(PatternClass):
     sequence = [PT.P_BEFORE_S, PT.DATE]
     
     def __init__(self):
-        self.p_before_s = ''
+        super().__init__()
         self.date_text = ''
     
-    def to_text(self):
-        return f'{self.p_before_s} {self.date_text}'
+    def to_text(self) -> str:
+        return f'{self.keyword} {self.date_text}'
       
 
 class CondAEvent(EventPatternClass):
     sequence = [PT.CONDITIONAL_A, PT.EVENT]
+
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def to_text(self) -> str:
+        return f'{self.keyword} {self.nl_event.to_text()}'
     
 class CondTEvent(EventPatternClass):
     sequence = [PT.CONDITIONAL_T, PT.EVENT]
 
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def to_text(self) -> str:
+        return f'{self.keyword} {self.nl_event.to_text()}'
+
+
 class ExceptEvent(EventPatternClass):
     sequence = [PT.P_EXCEPTION, PT.EVENT]
 
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def to_text(self) -> str:
+        return f'{self.keyword} {self.nl_event.to_text()}'
+
+
 class BeforeEvent(EventPatternClass):
     sequence = [PT.P_BEFORE_WE, PT.EVENT]
+
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def to_text(self) -> str:
+        return f'{self.keyword} {self.nl_event.to_text()}'
+    
 
 class WithinTimespanEvent(EventPatternClass):
     sequence = [PT.WITHIN, PT.TIMESPAN, PT.P_AFTER_W, PT.EVENT]
 
     def __init__(self) -> None:
         super().__init__()
-        self.timespan_unit = ''
+        self.timespan_unit: TimeUnit = None
         self.timespan_value = ''
+    
+    def to_text(self) -> str:
+        return f'within {self.timespan_value} {self.timespan_unit.value} {self.keyword} {self.nl_event.to_text(ConjType.CONTINUOUS)}'
 
 
 # ...

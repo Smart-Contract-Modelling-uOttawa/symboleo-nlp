@@ -5,12 +5,14 @@ from app.classes.operations.user_input import UserInput
 from app.classes.patterns.pattern_classes import *
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler import IFillPatternUnit
 
-class DateFiller(IFillPatternUnit):
+class KeywordFiller(IFillPatternUnit):
+    def __init__(self, keyword:str):
+        self.__keyword = keyword
+
     def fill(self, pattern_class: PatternClass, contract: SymboleoContract, input_list: List[UserInput], i: int) -> PatternClass:
-        if isinstance(pattern_class, (BeforeDate)):
-            result = copy.deepcopy(pattern_class)
-            result.date_text = input_list[i].value
-            return result
-        else:
-            return pattern_class
+        result = copy.deepcopy(pattern_class)
+        result.keyword = self.__keyword
+        return result
+
+
         

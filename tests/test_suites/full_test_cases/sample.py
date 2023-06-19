@@ -28,8 +28,9 @@ test_suite = [
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'landlord'),
-            UserInput(UnitType.TRANSITIVE_VERB, 'allows'),
-            UserInput(UnitType.DOBJ, 'pets'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'provides'),
+            UserInput(UnitType.DOBJ, 'authorization'),
+            UserInput(UnitType.PREP_PHRASE, 'for pets'),
         ],
         nl_key= 'no_pets',
         parm_key = 'P2'

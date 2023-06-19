@@ -1,5 +1,5 @@
 from typing import List
-from app.classes.patterns.pattern import Pattern, EventPattern
+from app.classes.patterns.pattern_classes import PatternClass, EventPatternClass
 from app.classes.patterns.all_patterns import *
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.events.custom_event.custom_event import CustomEvent
@@ -39,12 +39,12 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         self.__event_decl_mapper = event_decl_mapper
         self.__domain_mapper = domain_mapper
     
-    def extract(self, input_list: List[UserInput], contract: SymboleoContract) -> DomainUpdates:
+    def extract(self, pattern_class: PatternClass, contract: SymboleoContract) -> DomainUpdates:
         declarations = []
         domain_objects = []
 
-        evt = self.__custom_event_extractor.extract(input_list, contract)
-        if evt:
+        if isinstance(pattern_class, EventPatternClass):
+            evt = pattern_class.event
             asset_decls = self.__asset_decl_mapper.map(evt, contract)
             declarations.extend(asset_decls)
 
