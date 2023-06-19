@@ -60,7 +60,9 @@ class CustomEventExtractor(IExtractCustomEvents):
             if [x.value for x in input_list if x.unit_type == UnitType.FAILS_TO]:
                 negation = True
 
-            event_key = [x.value for x in input_list if x.unit_type == UnitType.CUSTOM_EVENT][0]
+            # This will change. Might be a function of the event itself...
+            event_key = f'evt_{verb.lemma}_{dobj.head}'
+            
 
             return CustomEvent(
                 subj,

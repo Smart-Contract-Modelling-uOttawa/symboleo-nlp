@@ -76,7 +76,7 @@ dolphin_test_case = TestCase(
             UserInput(UnitType.TIMESPAN, '14 days'),
             UserInput(UnitType.OF),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.CUSTOM_EVENT, 'evt_receive_files'),
+            UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'Dolphin'),
             UserInput(UnitType.TRANSITIVE_VERB, 'receiving'),
             UserInput(UnitType.DOBJ, 'the original digital photo files')

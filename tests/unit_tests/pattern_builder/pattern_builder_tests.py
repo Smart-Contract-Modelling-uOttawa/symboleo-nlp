@@ -29,7 +29,7 @@ class PatternBuilderTests(unittest.TestCase):
             UserInput(UnitType.DUMMY, 'TEST')
         ]
 
-        result = self.sut.build(test_input)
+        result = self.sut.build(test_input, None)
 
         self.assertTrue(isinstance(result, PatternClass))
         self.assertEqual(self.pattern_class_extractor.extract.call_count, 1)

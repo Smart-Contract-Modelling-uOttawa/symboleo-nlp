@@ -2,16 +2,16 @@ Domain test_dm
   Contractor isA Role;
   Client isA Role;
   CompleteServices isAn Event;
-  Pay isAn Event;
+  Pay isAn Event with paying_agent: Role, paid_object: Money, paid_target: Role;
 
 endDomain
 
 Contract test_cs(  )
 
 Declarations
-  buyer: Buyer;
-  seller: Seller;
-  buyer: seller;
+  contractor: Contractor;
+  client: Client;
+  evt_pay: Pay with paying_agent := client, paid_object := money, paying_target := contractor;
   evt_complete_services: CompleteServices;
 
 Preconditions
@@ -19,8 +19,8 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_payment: Obligation(buyer, seller, true, Happens(evt_pay));
-  ob_complete: Obligation(Dolphin, client, true, Happens(evt_complete_services));
+  ob_payment: Obligation(client, contractor, true, Happens(evt_pay));
+  ob_complete: Obligation(contractor, client, true, Happens(evt_complete_services));
 
 Surviving Obligations
 

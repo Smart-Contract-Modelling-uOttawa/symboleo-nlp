@@ -3,10 +3,14 @@ Domain propertyRentalDomain
   Renter isA Role;
   Currency isAn Enumeration(CAD, USD, EUR);
   RentalProperty isAn Asset with address: String;
+  Authorization isAn Asset;
+  Pets isAn Asset;
   Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
   OccupyProperty isAn Event with agent: Role, property: RentalProperty;
   KeepPet isAn Event with agent: Role;
   AllowPets isAn Event with grantor: Role;
+  Occupy isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
+  Provide isAn Event with providing_agent: Role, provided_object: Authorization, Other: Pets;
 
 endDomain
 
@@ -15,24 +19,29 @@ Contract PropertyRental( renter_id: String, landlord_id: String, property_addres
 Declarations
   renter: Renter;
   landlord: Landlord;
-  property: RentalProperty with address := "123 Main Street";
+  property: RentalProperty;
   evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
   evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
   evt_keep_pet: KeepPet with agent := renter;
+  evt_occupy_property: Occupy with occupying_agent := renter, occupied_object := property;
+  authorization: Authorization;
+  pets: Pets;
+  evt_provide_authorization: Provide with providing_agent := landlord, provided_object := authorization, Other := pets;
+  : Pay with paying_agent := renter, paid_object := 1000, paying_target := landlord, Other := CAD;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBefore(evt_pay_deposit, Date.add(evt_gwssrlid, 2, weeks)));
+  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBefore(evt_pay_deposit, Date.add(evt_occupy_property, 2, weeks)));
   ob_pay_extra: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_deposit)), Happens(evt_pay_late));
   ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
 
 Surviving Obligations
 
 Powers
-  pow_suspend_ob_no_pets: Happens(evt_iugizzib) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
+  pow_suspend_ob_no_pets: Happens(evt_provide_authorization) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
 
 Constraints
 

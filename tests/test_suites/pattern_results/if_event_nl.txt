@@ -1,3 +1,3 @@
-A - parm: if buyer fails to complete payment Seller agrees to complete the services
-E - parm: if buyer fails to complete payment Seller agrees to complete the services
+A - parm: if client fails to pay money to contractor Contractor agrees to complete the services
+E - parm: if client fails to pay money to contractor Contractor agrees to complete the services
 

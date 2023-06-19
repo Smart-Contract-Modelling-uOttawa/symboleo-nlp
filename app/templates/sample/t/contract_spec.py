@@ -1,8 +1,4 @@
 from typing import Dict
-from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.classes.events.custom_event.verb import Verb, VerbType, VerbConjugations
-from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import DeclarationProp, RoleDeclaration, AssetDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation, Power
@@ -12,6 +8,8 @@ from app.classes.spec.power_function import *
 from app.classes.spec.sym_event import ObligationEvent, ObligationEventName, ContractEvent, ContractEventName
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter as Parm
 from app.classes.spec.other_predicates import *
+
+from app.templates.sample.event_store import EventStore
 
 arg_values = {
      'renter_id': 'renter',
@@ -44,25 +42,16 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     ])
     PROPERTY = the_property.to_obj()
 
-    evt_pay_deposit = EventDeclaration('evt_pay_deposit', 'Pay', [
-        DeclarationProp('amount', arg_dict["deposit_amount"], 'Number'),
-        DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
-        DeclarationProp('from', RENTER, 'Role'),
-        DeclarationProp('to', LANDLORD, 'Role'),
-    ],
-    CustomEvent(
-            subj = NounPhrase('renter', 'renter', is_role=True),
-            verb = Verb('pays', 'pay', [VerbType.TRANSITIVE], VerbConjugations('pay', 'pays', 'paid', 'paying')),
-            dobj = NounPhrase(arg_dict["deposit_amount"], arg_dict["deposit_amount"], asset_type='Money'),
-            pps= [
-                PrepPhrase('to landlord', 'to', 
-                    NounPhrase('landlord', 'landlord', is_role=True),
-                ),
-                PrepPhrase(f'in {arg_dict["currency"]}', 'in', 
-                    NounPhrase(arg_dict["currency"], arg_dict["currency"], asset_type='Currency'),
-                )
-            ]
-        ))
+    evt_pay_deposit = EventDeclaration('evt_pay_deposit', 'Pay', 
+        [
+            DeclarationProp('amount', arg_dict["deposit_amount"], 'Number'),
+            DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
+            DeclarationProp('from', RENTER, 'Role'),
+            DeclarationProp('to', LANDLORD, 'Role'),
+        ],
+        EventStore.pay(arg_dict["deposit_amount"], arg_dict["currency"], 'landlord')
+    )
+
 
     evt_pay_late = EventDeclaration('evt_pay_late', 'Pay', [
         DeclarationProp('amount', arg_dict["late_fee_amount"], 'Number'),

@@ -6,7 +6,7 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import Declaration, DeclarationProp, EventDeclaration
 from app.classes.spec.sym_event import ObligationEvent, ObligationEventName
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
@@ -22,6 +22,7 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
+from tests.test_suites.pattern_test_cases.event_store import EventStore
 
 if_event_test_case = TestCase(
     'if_event',
@@ -35,25 +36,33 @@ if_event_test_case = TestCase(
             assets = {},
             events = {
                 'CompleteServices': DomainEvent('CompleteServices', []),
-                'Pay': DomainEvent('Pay', [])
+                'Pay': DomainEvent('Pay', [
+                    DomainProp('paying_agent', 'Role'),
+                    DomainProp('paid_object', 'Money'),
+                    DomainProp('paid_target', 'Role')
+                ])
             },
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'buyer': Declaration('buyer', 'Buyer', 'roles', []),
-                'seller': Declaration('seller', 'Seller', 'roles', []),
-                'evt_pay': Declaration('buyer', 'seller', 'events', []),
+                'contractor': Declaration('contractor', 'Contractor', 'roles', []),
+                'client': Declaration('client', 'Client', 'roles', []),
+                'evt_pay': EventDeclaration('evt_pay', 'Pay', [
+                    DeclarationProp('paying_agent', 'client', 'Role'),
+                    DeclarationProp('paid_object', 'money', 'Money'),
+                    DeclarationProp('paying_target', 'contractor', 'Role'),
+                ],
+                    EventStore.pay()
+                ),
                 'evt_complete_services': Declaration('evt_complete_services', 'CompleteServices', 'events', [])
             },
-            preconditions=[],
-            postconditions=[],
             obligations = {
-                'ob_payment': Obligation('ob_payment', None, 'buyer', 'seller', PropMaker.make_default(), 
+                'ob_payment': Obligation('ob_payment', None, 'client', 'contractor', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_pay')))
                 ),
-                'ob_complete': Obligation('ob_complete', None, 'Dolphin', 'client', PropMaker.make_default(), 
+                'ob_complete': Obligation('ob_complete', None, 'contractor', 'client', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_complete_services')))
                 )
             },
@@ -65,7 +74,7 @@ if_event_test_case = TestCase(
         NLTemplate(
             {   
                 'parm': TemplateObj(
-                    '[PARM] Seller agrees to complete the services', 
+                    '[PARM] Contractor agrees to complete the services', 
                     {'PARM': [ParameterConfig('obligations', 'ob_complete', 'antecedent')]})
             }
         )
@@ -79,15 +88,15 @@ if_event_test_case = TestCase(
             UserInput(UnitType.EVENT),
             UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.NORM_EVENT),
-            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_payment'),
+            UserInput(UnitType.OBLIGATION_SUBJECT, 'parm.ob_payment'),
             UserInput(UnitType.OBLIGATION_ACTION, 'Violated'),
             ## We assume this will be generated when user selects ob_payment + Violated
             ## Will need to handle that separately. Falls under input tree management
             #UserInput(UnitType.CUSTOM_EVENT), # May use a different node type here...?
-            UserInput(UnitType.SUBJECT, 'buyer'),
-            UserInput(UnitType.FAILS_TO),
-            UserInput(UnitType.TRANSITIVE_VERB, 'complete'),
-            UserInput(UnitType.DOBJ, 'payment'),
+            # UserInput(UnitType.SUBJECT, 'buyer'),
+            # UserInput(UnitType.FAILS_TO),
+            # UserInput(UnitType.TRANSITIVE_VERB, 'complete'),
+            # UserInput(UnitType.DOBJ, 'payment'),
         ],
         nl_key='parm',
         parm_key='PARM'
@@ -103,26 +112,34 @@ if_event_test_case = TestCase(
             assets = {},
             events = {
                 'CompleteServices': DomainEvent('CompleteServices', []),
-                'Pay': DomainEvent('Pay', [])
+                'Pay': DomainEvent('Pay', [
+                    DomainProp('paying_agent', 'Role'),
+                    DomainProp('paid_object', 'Money'),
+                    DomainProp('paid_target', 'Role')
+                ])
             },
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'buyer': Declaration('buyer', 'Buyer', 'roles', []),
-                'seller': Declaration('seller', 'Seller', 'roles', []),
-                'evt_pay': Declaration('buyer', 'seller', 'events', []),
+                'contractor': Declaration('contractor', 'Contractor', 'roles', []),
+                'client': Declaration('client', 'Client', 'roles', []),
+                'evt_pay': EventDeclaration('evt_pay', 'Pay', [
+                    DeclarationProp('paying_agent', 'client', 'Role'),
+                    DeclarationProp('paid_object', 'money', 'Money'),
+                    DeclarationProp('paying_target', 'contractor', 'Role'),
+                ],
+                    EventStore.pay()
+                ),
                 'evt_complete_services': Declaration('evt_complete_services', 'CompleteServices', 'events', [])
             },
-            preconditions=[],
-            postconditions=[],
             obligations = {
-                'ob_payment': Obligation('ob_payment', None, 'buyer', 'seller', 
+                'ob_payment': Obligation('ob_payment', None, 'client', 'contractor', 
                     PropMaker.make_default(),
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_pay')))
                 ),
-                'ob_complete': Obligation('ob_complete', None, 'Dolphin', 'client', 
+                'ob_complete': Obligation('ob_complete', None, 'contractor', 'client', 
                     PropMaker.make(PredicateFunctionHappens(ObligationEvent(ObligationEventName.Violated, 'ob_payment'))),
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_complete_services')))
                 )
@@ -135,7 +152,7 @@ if_event_test_case = TestCase(
         NLTemplate(
             {   
                 'parm': TemplateObj(
-                    'if buyer fails to complete payment Seller agrees to complete the services', 
+                    'if client fails to pay money to contractor Contractor agrees to complete the services', 
                     {'PARM': [ParameterConfig('obligations', 'ob_complete', 'antecedent')]})
             }
         )

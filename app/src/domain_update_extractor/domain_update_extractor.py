@@ -1,7 +1,6 @@
 from typing import List
 from app.classes.patterns.pattern_classes import PatternClass, EventPatternClass
 from app.classes.patterns.all_patterns import *
-from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
@@ -23,7 +22,7 @@ class DomainUpdates:
         self.domain_objects = domain_objects
 
 class IExtractDomainUpdates:
-    def extract(self, input_list: List[UserInput], contract: SymboleoContract) -> DomainUpdates:
+    def extract(self, pattern_class: PatternClass, contract: SymboleoContract) -> DomainUpdates:
         raise NotImplementedError()
     
 class DomainUpdateExtractor(IExtractDomainUpdates):
@@ -31,10 +30,8 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         self,
         asset_decl_mapper: IMapAssetDeclarations,
         event_decl_mapper: IMapEventToDeclaration,
-        domain_mapper: IMapDeclarationToDomain,
-        custom_event_extractor: IExtractCustomEvents
+        domain_mapper: IMapDeclarationToDomain
     ):
-        self.__custom_event_extractor = custom_event_extractor
         self.__asset_decl_mapper = asset_decl_mapper
         self.__event_decl_mapper = event_decl_mapper
         self.__domain_mapper = domain_mapper
@@ -44,7 +41,7 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         domain_objects = []
 
         if isinstance(pattern_class, EventPatternClass):
-            evt = pattern_class.event
+            evt = pattern_class.nl_event
             asset_decls = self.__asset_decl_mapper.map(evt, contract)
             declarations.extend(asset_decls)
 

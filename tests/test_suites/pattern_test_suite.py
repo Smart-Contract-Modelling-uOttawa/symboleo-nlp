@@ -2,8 +2,6 @@ import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.operations.operation_mapper_builder import OperationMapperBuilder
 from app.src.operations.contract_updater import ContractUpdater
-from app.src.nl_creator.nl_creator import NLCreator
-from app.src.nl_creator.nl_fillers.nl_unit_filler_dict import NLUnitFillerDictConstructor
 
 from app.src.operations.dependency_builder import DependencyBuilder
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
@@ -21,9 +19,7 @@ class PatternTests(unittest.TestCase):
     def setUp(self) -> None:
         deps = DependencyBuilder.build(fake=True)
         mapper = OperationMapperBuilder.build(deps)
-        nl_filler_dict = NLUnitFillerDictConstructor.build()
-        nl_creator = NLCreator(nl_filler_dict)
-        self.contract_updater = ContractUpdater(mapper, nl_creator) 
+        self.contract_updater = ContractUpdater(mapper) 
 
     def test_isolated(self):
         filepath = 'tests/test_suites/pattern_results'
