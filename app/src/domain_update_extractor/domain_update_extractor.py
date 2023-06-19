@@ -40,7 +40,7 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
         declarations = []
         domain_objects = []
 
-        if isinstance(pattern_class, EventPatternClass):
+        if isinstance(pattern_class, EventPatternClass) and pattern_class.nl_event.is_new:
             evt = pattern_class.nl_event
             asset_decls = self.__asset_decl_mapper.map(evt, contract)
             declarations.extend(asset_decls)

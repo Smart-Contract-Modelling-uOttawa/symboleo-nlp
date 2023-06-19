@@ -24,7 +24,8 @@ class CustomEvent(BaseEvent):
         predicate: Predicate = None, 
         pps:List[PrepPhrase] = None,
         negation:bool = False,
-        event_key:str = ''
+        event_key:str = '',
+        is_new: bool = True
     ):
         self.subj = subj
         self.verb = verb
@@ -35,6 +36,7 @@ class CustomEvent(BaseEvent):
         self.negation = negation
         self.event_type = ''
         self.event_key = event_key
+        self.is_new = is_new
 
     def to_sym_event(self):
         if self.event_type == 'contract':

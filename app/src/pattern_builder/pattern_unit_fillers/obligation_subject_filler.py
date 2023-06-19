@@ -31,6 +31,7 @@ class ObligationSubjectFiller(IFillPatternUnit):
         evt_name = self._get_event_name(contract, ob_var)
         if evt_name:
             event = self._get_event(contract, evt_name)
+            event.is_new = False
             return event
         else:
             raise Exception(f'Invalid obligation reference... {ob_var}')

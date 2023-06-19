@@ -1,3 +1,4 @@
+from typing import List, Dict
 from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 from app.classes.units.all_units import unit_type_dict
@@ -18,7 +19,7 @@ class ValueProcessor:
         self.__contract_storage = contract_storage
         self.__input_storage = input_storage
 
-    def process(self, contract_id: str, input_id: str, value: str, unique_key:str):
+    def process(self, contract_id: str, input_id: str, value: str, unique_key:str) -> Dict[str, List[str]]:
         # Get the input type
         unit_type = UnitType[input_id] 
         user_input = UserInput(unit_type, value)
@@ -32,7 +33,12 @@ class ValueProcessor:
         # Fetch the children
         input_unit = unit_type_dict[unit_type]()
         children = self.__child_getter.get(input_unit, contract)
-        result = [x.unit_type.name for x in children]
+        #result = [x.unit_type.name for x in children]
+
+        result = {
+            x.unit_type.name: x.options
+            for x in children  
+        }
 
         # What if there are no children...? That will probably be separate
         return result

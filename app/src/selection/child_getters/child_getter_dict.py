@@ -8,7 +8,7 @@ from app.src.selection.child_getters.standard_event_unit_cg import StandardEvent
 from app.src.selection.child_getters.norm_event_unit_cg import NormEventUnitCG
 from app.src.selection.child_getters.obligation_subject_unit_cg import ObligationSubjectUnitCG
 from app.src.selection.child_getters.custom_event_unit_cg import CustomEventUnitCG
-from app.src.selection.child_getters.verb_unit_cg import VerbUnitCG
+from app.src.selection.child_getters.t_verb_unit_cg import TVerbUnitCG
 from app.src.selection.child_getters.before_unit_cg import BeforeUnitCG
 
 # Helpers (injected)
@@ -25,7 +25,7 @@ class ChildGetterDictConstructor:
         d[StandardEventUnit] = StandardEventUnitCG()
         d[NormEventUnit] = NormEventUnitCG()
         d[ObligationSubjectUnit] = ObligationSubjectUnitCG()
-        d[VerbUnit] = VerbUnitCG()
+        d[TransitiveVerbUnit] = TVerbUnitCG()
         d[BeforeUnit] = BeforeUnitCG(dtp_extractor)
 
         d[CustomEventUnit] = CustomEventUnitCG()

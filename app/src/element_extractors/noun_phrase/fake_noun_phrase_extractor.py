@@ -18,6 +18,7 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'landlord': NounPhrases.landlord(),
             'property': NounPhrases.property(),
             'the property': NounPhrases.property(),
+            'property': NounPhrases.property(),
 
             'legal proceedings': NounPhrases.legal_proceedings(),
             'pets': NounPhrases.pets(),

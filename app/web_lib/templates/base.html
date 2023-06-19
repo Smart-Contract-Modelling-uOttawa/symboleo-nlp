@@ -29,13 +29,65 @@
       font-family: 'Courier New', Courier, monospace;
     }
     #contract-nl {
-      height:60vh;
-      overflow-y: scroll;
+        margin:10px;
+        border-right: 1px solid gray;
+        height:60vh;
+      /* overflow-y: scroll; */ 
     }
 
-    .input-value {
+    #parameter-input{
+        margin:10px;
+        height:60vh
+    }
+
+    #parameter-submission{
+        margin:10px;
+        height:30vh
+    }
+
+    
+
+    .input-step-label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    #unit-selection-container {
+        
+    }
+
+    #unit-selection-grid {
+        border:1px solid lightgray;
+        padding:8px;
+        border-radius:5px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+    #running-input-container {
+        /* border:1px solid lightgray;
+        padding:8px;
+        border-radius:5px; */
+    }
+
+    #running-input{
+        /* display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px; */
+    }
+
+    #value-entry-container {
+        border:1px solid lightgray;
+        padding:8px;
+        border-radius:5px;
+    }
+
+    #running-input-value {
         color:darkblue;
-        margin: 5px;
+        font-size:1.3em;
+        font-family: 'Courier New', Courier, monospace;
+        margin: 3px;
     }
 </style>
 

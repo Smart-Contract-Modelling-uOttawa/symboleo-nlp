@@ -19,13 +19,14 @@ class EventStore:
         return CustomEvent(
             subj = SubjectStore.renter(),
             verb = VerbStore.pay(),
-            dobj = NounPhrase(amount, amount, asset_type='Money'),
-            pps= [
-                PrepPhrase(f'to {target_role}', 'to', 
-                    NounPhrase(target_role, target_role, is_role=True, asset_type='Role'),
-                ),
-                PrepPhrase(f'in {curr}', 'in', 
-                    NounPhrase(curr, curr, asset_type='Currency'),
-                )
-            ]
+            dobj = NounPhrase(target_role, target_role, is_role=True, asset_type='Role'),
+            # dobj = NounPhrase(amount, amount, asset_type='Money'),
+            # pps= [
+            #     PrepPhrase(f'to {target_role}', 'to', 
+            #         NounPhrase(target_role, target_role, is_role=True, asset_type='Role'),
+            #     ),
+            #     PrepPhrase(f'in {curr}', 'in', 
+            #         NounPhrase(curr, curr, asset_type='Currency'),
+            #     )
+            # ]
         )

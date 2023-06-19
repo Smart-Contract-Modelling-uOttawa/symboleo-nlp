@@ -5,37 +5,58 @@ input_value_dict = {
   'IF': 'if',
   'BEFORE': 'before',
   'AFTER': 'after',
+  'OF': 'of',
+  'UNLESS': 'unless',
   'EVENT': EMPTY_VAL,
   'CUSTOM_EVENT': EMPTY_VAL,
+  'NORM_EVENT': EMPTY_VAL,
   'SUBJECT': null,
   'VERB': null,
   'DATE': null,
+  'TIMESPAN': null
   //....
+}
+
+OPTIONS_DICT = {
+
 }
 
 
 // Add new text value to the running input 
 function updateRunningValue(value) {
-  var $inputContainer = $('#running-input');
-  var $span = $('<span>').text(value);
-    $span.addClass('input-value');
-    $inputContainer.append($span);
+  var $inputContainer = $('#running-input-value');
+  currText = $inputContainer.text()
+
+  newText = currText + ' ' + value
+  $inputContainer.text(newText);
+
+  // var $span = $('<span>').text(value);
+  //   $span.addClass('input-value');
+  //   $inputContainer.text(newText);
 }
 
 // Process a value entered by the user
 function processValue(input_id, value) {
-  var data = {
-    input_id: input_id,
-    value: value
-  };
+  // Hide things
+  // $('#unit-selection-container').hide()
+  $('#option-selection-container').hide();
+  $('#value-entry-container').hide();
+  $('#input-value-form').val('')
+  OPTIONS_DICT = {}
+  $('#option-selection').empty();
+
+
 
   // Send the AJAX request
   $.ajax({
     url: '/value',
     method: 'POST',
-    data: data,
+    data: {
+      input_id: input_id,
+      value: value
+    },
     success: function(response) {
-      handleUnits(response.units)
+      presentUnits(response.units)
     },
     error: function(error) {
       console.error('Error updating content:', error);
@@ -52,13 +73,72 @@ function submitDynamicValue() {
   processValue(input_id, value)
 }
 
-// In some cases, it  will be a dropdown with options...
-// Will likely involve an ajax call. Or just store a temp dict on this side...
+
+
+
+
+
+function getUnitClass(s) {
+  if (s in input_value_dict) {
+    v = input_value_dict[s]
+    if (v == EMPTY_VAL) {
+      return 'btn-outline-secondary'
+    }
+    if (v == null) {
+      return 'btn-outline-success'
+    }
+  }
+  
+  return 'btn-outline-primary'
+}
+
+// When user selects value from options dropdown
+function selectDynamicValue() {
+  // Get the type
+  var input_id = $('#select-value-label').text(); 
+
+  // Get the value
+  var selected_value = $('#option-selection').val();
+
+  // Update and process
+  updateRunningValue(selected_value)
+  processValue(input_id, selected_value)
+}
+
+
+function fillDynamicOptions(input_id, options) {
+  // get the select
+  var $selectElement = $("#option-selection");
+
+  // Fill the label
+  $('#select-value-label').text(input_id);
+
+  // Populate
+  $.each(options, function(index, x) {
+    var next_option = $("<option>", { text: x });
+    $selectElement.append(next_option);
+  }); 
+
+    // Show the container
+  $("#option-selection-container").show()  
+}
+
+// Prep for user inputting a dynamic value
 function setupDynamicValue(input_id) {
-  $('#value-entry').show();
+  // Fetch the options
+  options = OPTIONS_DICT[input_id]
+
+  // Fill options
+  if (options && options.length > 0) {
+    console.log('gotcha')
+    fillDynamicOptions(input_id, options)
+  }
+
+  $('#value-entry-container').show();
   $('#input-value-label').text(input_id);  
 }
 
+// User selects an input type
 function handleInputClick(input_id) {
   value = input_value_dict[input_id]
   
@@ -72,46 +152,59 @@ function handleInputClick(input_id) {
   } else {
     // Dynamic unit
     setupDynamicValue(input_id)
-    // will need to fetch potential options (e.g. from domain model)...
   }
 }
 
 
-function handleUnits(units) {
-  var $buttonContainer = $('#selection-container');
+// Fill the selection grid with valid units
+function presentUnits(units) {
+  var $selectionGrid = $('#unit-selection-grid');
 
   // Clear the existing buttons
-  $buttonContainer.empty();
+  $selectionGrid.empty();
+
+  // Store units in a dict for later
+  unit_keys = Object.keys(units)
+  OPTIONS_DICT = units
 
   // Iterate through the strings and create buttons
   // Each button needs a further handler
-  $.each(units, function(index, string) {
+  $.each(unit_keys, function(index, string) {
     var $button = $('<button>').text(string);
+    unit_class = getUnitClass(string)
     $button.addClass('btn');
+    $button.addClass('btn-sm');
+    $button.addClass('unit-button');
+    $button.addClass(unit_class);
     $button.click(function() {
       handleInputClick(string);
     });
-    $buttonContainer.append($button);
-  });    
+    $selectionGrid.append($button);
+  });   
+  
+  // Show the container
+  $('#unit-selection-container').show()
 }
 
+// User chooses a parameter
+// Fetch the initial units and present to user
 function selectParameter() {
-  // Hide the input 
-  $('#value-entry').hide();
-
   var selectedParm = $('#parm-selection').val();
-  // Create the data payload for the AJAX request
-  var data = {
-    parameter: selectedParm
-  };
 
-  // Send the AJAX request
+  // Will want to clear some things
+  $('#running-input-container').show()
+  $('#parameter-submission-container').show()
+  // clear the running input
+  // ...
+
   $.ajax({
     url: '/parameter',
     method: 'POST',
-    data: data,
+    data: {
+      parameter: selectedParm
+    },
     success: function(response) {
-      handleUnits(response.units)
+      presentUnits(response.units)
     },
     error: function(error) {
       console.error('Error updating content:', error);
@@ -119,3 +212,12 @@ function selectParameter() {
   });
 }
 
+// Start
+$( document ).ready(function() {
+  $('#unit-selection-container').hide()
+  $('#option-selection-container').hide();
+  $('#value-entry-container').hide();
+  $('#running-input-container').hide()
+  $('#parameter-submission-container').hide()
+  
+});

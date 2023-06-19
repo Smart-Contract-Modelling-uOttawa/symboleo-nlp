@@ -37,6 +37,7 @@ class CustomEventExtractor(IExtractCustomEvents):
 
             dobj = None
             dobj_strs = [x.value for x in input_list if x.unit_type == UnitType.DOBJ]
+            
             if dobj_strs:
                 dobj = self.__np_extractor.extract(dobj_strs[0], contract)
                 print(dobj.to_text())

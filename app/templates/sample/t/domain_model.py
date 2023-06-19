@@ -28,25 +28,25 @@ def get_domain_model():
                     DomainProp('to', 'Role'),
                 ]
             ),
-            'OccupyProperty': DomainEvent(
-                name = 'OccupyProperty',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('property', 'RentalProperty')
-                ]
-            ),
+            # 'OccupyProperty': DomainEvent(
+            #     name = 'OccupyProperty',
+            #     props = [
+            #         DomainProp('agent', 'Role'),
+            #         DomainProp('property', 'RentalProperty')
+            #     ]
+            # ),
             'KeepPet': DomainEvent(
                 name = 'KeepPet',
                 props = [
                     DomainProp('agent', 'Role')
                 ]
             ),
-            'AllowPets': DomainEvent(
-                name = 'AllowPets',
-                props = [
-                    DomainProp('grantor', 'Role')
-                ]
-            )
+            # 'AllowPets': DomainEvent(
+            #     name = 'AllowPets',
+            #     props = [
+            #         DomainProp('grantor', 'Role')
+            #     ]
+            # )
         },
         assets = {
             'RentalProperty': Asset(

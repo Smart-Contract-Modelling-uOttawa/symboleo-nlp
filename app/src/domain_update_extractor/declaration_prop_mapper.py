@@ -68,6 +68,8 @@ class DeclarationPropMapper(IMapDeclarationProps):
         else: 
             if prep_phrase.preposition == 'with':
                 the_key = f'{evt.verb.lemma}_method' 
+            elif prep_phrase.preposition == 'for':
+                the_key = f'{evt.verb.lemma}_detail'
             else:
                 the_key = 'Other'
         

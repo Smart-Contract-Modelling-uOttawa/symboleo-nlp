@@ -15,115 +15,154 @@
         {% endfor %}
         </div>
       </div>
-
-      <hr/>
-      <!-- Parameter Input -->
-      <div class="row">
-
-        <div id="parameter-input">
-          <!--Select parameter-->
-          <!--Might remove the button and do onselect...-->
-          <div>
-            <div class="input-group">
-              <select class="form-select" id="parm-selection">
-                {% for x in contract.parms %}
-                <option value="{{x}}">{{ x }}</option>
-                {% endfor %}
-              </select>
-              <div class="input-group-append">
-                <button type="button" class="btn btn-primary" onclick="selectParameter()">Select Parameter</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Input goes here -->
-          <div id="input-container">
-            <div id="running-input">
-            
-            </div>
-            <form action="/submit" method="POST">
-              <!-- Form fields and submit button -->
-              <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-          </div>
-          
-
-          <!-- Contains all the input buttons the user can pick-->
-          <!-- prob make it side-scrolling?-->
-          <div id="selection-container">
-
-          </div>
-
-          <!-- Input entry for dynamic values -->
-          <div id="value-entry">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="input-value-label">Label</span>
-              </div>
-              <input type="text" class="form-control" id="input-value-form">
-              <div class="input-group-append">
-                <button class="btn btn-primary" onclick="submitDynamicValue()">Add Value</button>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        
-
-      </div>
       
+      <a href="#" data-bs-toggle="modal" data-bs-target="#symboleo-modal">View Symboleo</a>
+
   </div>
 
 
   <div class="col">
-    <!-- Contract Sym -->
-    <div id="contract-sym">
-      <div>
-        <strong>Domain Model</strong>
-        {% for x in contract.sym.domain_objects %}
-        <div>- {{x}}</div>
-        {% endfor %}
+    <div id="parameter-input">
+      
+      <!--Select parameter-->
+      <div id="parameter-selection-container">
+        <div class="input-step-label">Select Parameter to Refine:</div>
+        <div class="input-group">
+          <span class="input-group-text">Parameter</span>
+          <select class="form-select" id="parm-selection">
+            {% for x in contract.parms %}
+            <option value="{{x}}">{{ x }}</option>
+            {% endfor %}
+          </select>
+          <button type="button" class="btn btn-light" onclick="selectParameter()">Select</button>
+        </div>
+      </div>
+      
+      <br/>
+
+      <!-- Show possible units --> 
+      <div id="unit-selection-container">
+        <div class="input-step-label">Select Input Unit:</div>
+        <div id="unit-selection-grid">
+
+        </div>
       </div>
       <br/>
-      <div>
-        <strong>Contract Spec</strong>
-        <!--Add Parameters...-->
-        <div>
-          <strong>Declarations</strong>
-          {% for x in contract.sym.declarations %}
-          <div>- {{x}}</div>
-          {% endfor %}
+
+      <!-- Input entry for dynamic values -->
+      <div id="value-entry-container">
+        <!--Dropdown input-->
+        <div id="option-selection-container">
+          <div class="input-step-label">Select Value:</div>
+          <div class="input-group">
+            <span class="input-group-text" id="select-value-label">Label</span>
+            <select class="form-select" id="option-selection">
+            </select>
+            <button type="button" class="btn btn-light" onclick="selectDynamicValue()">Select</button>
+          </div>
         </div>
+
         <br/>
 
-        <div>
-          <strong>Obligations</strong>
-          {% for x in contract.sym.obligations %}
-          <div>- {{x}}</div>
-          {% endfor %}
+        <!-- Custom input-->
+        <div id="custom-value-container">
+          <div class="input-step-label">Enter Custom:</div>
+          <div class="input-group">
+            <span class="input-group-text" id="input-value-label">Label</span>
+            <input type="text" class="form-control" id="input-value-form">
+            <button class="btn btn-light" onclick="submitDynamicValue()">Add Custom Value</button>
+          </div>
         </div>
-        <br/>
+      </div>
 
-        <div>
-          <strong>Surviving Obligations</strong>
-          {% for x in contract.sym.surviving_obligations %}
-          <div>- {{x}}</div>
-          {% endfor %}
+      <br/>
+    </div>
+
+    <div id="parameter-submission">
+      <div id="running-input-container">
+        <div class="input-step-label">Refinement:</div>
+        <div id="running-input-value">
         </div>
-        <br/>
+      </div>
 
-        <div>
-          <strong>Powers</strong>
-          {% for x in contract.sym.powers %}
-          <div>- {{x}}</div>
-          {% endfor %}
-        </div>
+      <br/>
 
+      <!-- Submit -->
+      <div id="parameter-submission-container">
+        <form action="/submit" method="POST">
+          <!-- Form fields and submit button -->
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
       </div>
     </div>
+      
   </div>
 
-
 </div>
+
+<!-- Modal structure -->
+<div class="modal" id="symboleo-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Symboleo Specification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="contract-sym">
+          <div>
+            <strong>Domain Model</strong>
+            {% for x in contract.sym.domain_objects %}
+            <div>- {{x}}</div>
+            {% endfor %}
+          </div>
+          <br/>
+          <div>
+            <strong>Contract Spec</strong>
+            <!--Add Parameters...-->
+            <div>
+              <strong>Declarations</strong>
+              {% for x in contract.sym.declarations %}
+              <div>- {{x}}</div>
+              {% endfor %}
+            </div>
+            <br/>
+    
+            <div>
+              <strong>Obligations</strong>
+              {% for x in contract.sym.obligations %}
+              <div>- {{x}}</div>
+              {% endfor %}
+            </div>
+            <br/>
+    
+            <div>
+              <strong>Surviving Obligations</strong>
+              {% for x in contract.sym.surviving_obligations %}
+              <div>- {{x}}</div>
+              {% endfor %}
+            </div>
+            <br/>
+    
+            <div>
+              <strong>Powers</strong>
+              {% for x in contract.sym.powers %}
+              <div>- {{x}}</div>
+              {% endfor %}
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
+      <!--May have a download button...-->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 

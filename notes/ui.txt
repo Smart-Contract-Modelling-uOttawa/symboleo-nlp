@@ -1,42 +1,10 @@
-Goal
-- Create a Web UI to demo the tool
-- Likely will not need things like DB or API, etc
-- Likely wont be allowing NEW contracts. Just work with the ones we have
-- mainly just want a nicer demo interface
+CURRENT STATUS
+- can get through the full sample contract refinements (aligned with the thesis)
 
-Flow
-- show the NL template - have the option to view the Symboleo
-- Choose a parameter to refine. 
-- Select input tokens - static/dybnamic/etc
-- Run updates - show the updated contract and Symboleo
-
-
-
-https://realpython.com/python-web-applications/#build-a-basic-python-web-application
-
-
-TODO for today 
-- get the app running - DONE
-- display a contract NL and sym - DONE
-- integrate bootstrap - DONE
-- cleaner (formatted) display of NL and Sym - DONE
-- ability to select contract from a menu/explorer - DONE
-
-This week
-- base templates - DONE
-- add a parameter input box - DONE
-- demo a sample input - DONE
-
-
-Next week
-- allow for custom input 
-- add an info page
-- make it more interactive 
-- host it 
-
-
-NEXT 
-- When user selects an input type, check for the allowed options
--- might be part of the existing call, or potentially a new ajax call. Probably the former...
-- Ensure we can perform a full event update 
-- May incorporate frame-checking, to verify that the input is complete and matches a pattern class 
+TODOS
+- Verify for frame completion before submit button is allowed. Ensure we have a valid frame, and that we've reached a final node 
+- Figure out what to do with the final node. May be useful, but dont want to present it
+- Punctuation/Capitalization (pattern nl updater)
+- Remove parameter after they have been filled (deeper symboleo)
+- have a "clear" button to restart the flow
+- host it

@@ -24,6 +24,18 @@ test_suite = [
         ], 
         WithinTimespanEvent
     ),
+    (
+        [
+            UnitType.UNLESS,
+            UnitType.EVENT,
+            UnitType.CUSTOM_EVENT,
+            UnitType.SUBJECT,
+            UnitType.TRANSITIVE_VERB,
+            UnitType.DOBJ,
+            UnitType.PREP_PHRASE,
+        ], 
+        ExceptEvent
+    ),
 ]
 
 # TODO: Add all test cases

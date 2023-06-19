@@ -25,7 +25,7 @@ class PredicateUnit(InputUnit):
 class DobjUnit(InputUnit):
     unit_type = UnitType.DOBJ
     prompt = 'Direct Object'
-    children = [AdverbUnit, FinalUnit]
+    children = [AdverbUnit, PrepUnit, FinalUnit]
     needs_value = True
 
 class VerbUnit(InputUnit):

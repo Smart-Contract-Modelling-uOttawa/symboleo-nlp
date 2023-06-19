@@ -17,7 +17,7 @@ arg_values = {
      'property_address': '123 Main Street',
      'rent_amount': 1500,
      'currency': 'CAD',
-     'late_fee_amount': 500,
+     'late_fee_amount': 50,
      'deposit_amount': 1000
 }
 

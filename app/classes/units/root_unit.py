@@ -6,7 +6,9 @@ from app.classes.units.before_unit import BeforeUnit
 from app.classes.units.until_unit import UntilUnit
 from app.classes.units.within_unit import WithinUnit
 from app.classes.units.after_unit import AfterUnit
+from app.classes.units.unless_unit import UnlessUnit
 
+# TODO: Would prefer to have a single tree-like structure to build children
 class RootUnit(InputUnit):
     unit_type = UnitType.ROOT
-    children = [IfUnit, BeforeUnit, UntilUnit, WithinUnit, AfterUnit]
+    children = [IfUnit, BeforeUnit, UntilUnit, WithinUnit, AfterUnit, UnlessUnit]

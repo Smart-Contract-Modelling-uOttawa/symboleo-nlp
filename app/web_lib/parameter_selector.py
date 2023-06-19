@@ -1,3 +1,4 @@
+from typing import List, Dict
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.units.root_unit import RootUnit
 
@@ -16,7 +17,7 @@ class ParameterSelector:
         self.__contract_storage = contract_storage
         self.__input_storage = input_storage
 
-    def select(self, contract_id: str, unique_key:str):
+    def select(self, contract_id: str, unique_key:str) -> Dict[str, List[str]]:
         root_unit = RootUnit()
 
         self.__input_storage.init_input(unique_key)
@@ -24,7 +25,13 @@ class ParameterSelector:
         contract = self.__contract_storage.load(unique_key, contract_id)
 
         children = self.__child_getter.get(root_unit, contract)
-        result = [x.unit_type.name for x in children]
+        
+        result = {
+            x.unit_type.name: x.options
+            for x in children  
+        }
+
+        #result = [x.unit_type.name for x in children]
         return result
 
 

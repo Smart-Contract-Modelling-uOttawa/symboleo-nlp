@@ -4,7 +4,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 nl_template = NLTemplate(
     template_dict = {
         'pay_deposit': TemplateObj(
-            'The renter must pay a security deposit of $1500 [P1]',
+            'The renter must pay a security deposit of $1000 [P1]',
             {
                 'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent')]
             }
