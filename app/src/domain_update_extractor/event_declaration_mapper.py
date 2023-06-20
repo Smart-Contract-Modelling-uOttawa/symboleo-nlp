@@ -36,7 +36,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
     def _map_linking(self, evt: CustomEvent) -> IDeclaration:
         name = evt.get_declaration_name()
         pps = self._map_pps(evt)
-        return Declaration(evt.event_key, name, 'events', pps)
+        return Declaration(evt.event_key(), name, 'events', pps)
     
 
     def _map_transitive(self, evt: CustomEvent) -> IDeclaration:
@@ -50,7 +50,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         props = [p1, p2]
         props.extend(pps)
         
-        return Declaration(evt.event_key, name, 'events', props)
+        return Declaration(evt.event_key(), name, 'events', props)
 
 
     def _map_pps(self, evt: CustomEvent):

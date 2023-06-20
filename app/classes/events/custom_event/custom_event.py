@@ -35,9 +35,18 @@ class CustomEvent(BaseEvent):
         self.pps = pps
         self.negation = negation
         self.event_type = ''
-        self.event_key = event_key
         self.is_new = is_new
 
+    def event_key(self):
+        # This will change. Might be a function of the event itself...
+        if VerbType.TRANSITIVE in self.verb.verb_types:
+            event_key = f'evt_{self.verb.lemma}_{self.dobj.head}'
+        else:
+            event_key = f'evt_{self.verb.lemma}'
+        return event_key
+            
+
+    # kill?
     def to_sym_event(self):
         if self.event_type == 'contract':
             return ContractEvent(ContractEventName[self.verb.verb_str.capitalize()])

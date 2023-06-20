@@ -1,15 +1,20 @@
 EMPTY_VAL = '[EMPTY]'
 
 input_value_dict = {
+  // Static
   'WITHIN': 'within',
   'IF': 'if',
   'BEFORE': 'before',
   'AFTER': 'after',
   'OF': 'of',
   'UNLESS': 'unless',
+  
+  // Empty
   'EVENT': EMPTY_VAL,
   'CUSTOM_EVENT': EMPTY_VAL,
   'NORM_EVENT': EMPTY_VAL,
+
+  // Dynamic
   'SUBJECT': null,
   'VERB': null,
   'DATE': null,

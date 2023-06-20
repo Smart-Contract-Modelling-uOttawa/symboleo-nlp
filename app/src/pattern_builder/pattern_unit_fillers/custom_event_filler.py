@@ -15,7 +15,7 @@ class CustomEventFiller(IFillPatternUnit):
     def fill(self, pattern_class: EventPatternClass, contract: SymboleoContract, input_list: List[UserInput], i: int) -> PatternClass:
         result = copy.deepcopy(pattern_class)
         nl_event = self.__event_extractor.extract(input_list, contract)
-        result.event = VariableEvent(nl_event.event_key)
+        result.event = VariableEvent(nl_event.event_key())
         result.nl_event = nl_event
         
         return result

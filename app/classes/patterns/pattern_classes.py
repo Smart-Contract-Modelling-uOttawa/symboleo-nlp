@@ -79,7 +79,7 @@ class CondAEvent(EventPatternClass):
         super().__init__()
     
     def to_text(self) -> str:
-        return f'{self.keyword} {self.nl_event.to_text()}'
+        return f'{self.keyword.capitalize()} {self.nl_event.to_text()},'
     
 class CondTEvent(EventPatternClass):
     sequence = [PT.CONDITIONAL_T, PT.EVENT]
