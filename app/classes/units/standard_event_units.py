@@ -1,11 +1,13 @@
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.unit_type import UnitType
 from app.classes.units.custom_event_units import SubjectUnit
+from app.classes.units.final_unit import FinalUnit
 
 class ObligationActionUnit(InputUnit):
     unit_type = UnitType.OBLIGATION_ACTION
     prompt = 'Obligation Action'
     needs_value = True
+    children = [FinalUnit]
 
 class ObligationSubjectUnit(InputUnit):
     unit_type = UnitType.OBLIGATION_SUBJECT

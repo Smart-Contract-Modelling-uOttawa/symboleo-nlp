@@ -130,7 +130,6 @@ function setupDynamicValue(input_id) {
 
   // Fill options
   if (options && options.length > 0) {
-    console.log('gotcha')
     fillDynamicOptions(input_id, options)
   }
 
@@ -167,9 +166,16 @@ function presentUnits(units) {
   unit_keys = Object.keys(units)
   OPTIONS_DICT = units
 
+  // Use final node to display the submission
+  // But filter it out from presentation
+  if (unit_keys.includes('FINAL_NODE')) {
+    $('#parameter-submission-container').show()
+  }
+  filtered_keys = unit_keys.filter(x => x !== 'FINAL_NODE');
+
   // Iterate through the strings and create buttons
   // Each button needs a further handler
-  $.each(unit_keys, function(index, string) {
+  $.each(filtered_keys, function(index, string) {
     var $button = $('<button>').text(string);
     unit_class = getUnitClass(string)
     $button.addClass('btn');
@@ -193,7 +199,6 @@ function selectParameter() {
 
   // Will want to clear some things
   $('#running-input-container').show()
-  $('#parameter-submission-container').show()
   // clear the running input
   // ...
 

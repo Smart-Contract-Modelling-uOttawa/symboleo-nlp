@@ -3,8 +3,8 @@
 {% block content %}
 <div class="row">
   <div class="col">
-      <!-- Contrac NL -->
-      <div class="row">
+      <!-- Contract NL -->
+      <div id="left-side">
         <div id="contract-nl">
         {% for x in contract.nl %}
         <div>
@@ -14,88 +14,92 @@
         <br/>
         {% endfor %}
         </div>
-      </div>
-      
-      <a href="#" data-bs-toggle="modal" data-bs-target="#symboleo-modal">View Symboleo</a>
-
+        <div class="text-center">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#symboleo-modal" id="view-sym-button" class="btn btn-primary">View Symboleo</a>
+        </div>
+        
+      </div>  
   </div>
 
 
   <div class="col">
-    <div id="parameter-input">
-      
-      <!--Select parameter-->
-      <div id="parameter-selection-container">
-        <div class="input-step-label">Select Parameter to Refine:</div>
-        <div class="input-group">
-          <span class="input-group-text">Parameter</span>
-          <select class="form-select" id="parm-selection">
-            {% for x in contract.parms %}
-            <option value="{{x}}">{{ x }}</option>
-            {% endfor %}
-          </select>
-          <button type="button" class="btn btn-light" onclick="selectParameter()">Select</button>
-        </div>
-      </div>
-      
-      <br/>
+    <div id="right-ride">
 
-      <!-- Show possible units --> 
-      <div id="unit-selection-container">
-        <div class="input-step-label">Select Input Unit:</div>
-        <div id="unit-selection-grid">
-
-        </div>
-      </div>
-      <br/>
-
-      <!-- Input entry for dynamic values -->
-      <div id="value-entry-container">
-        <!--Dropdown input-->
-        <div id="option-selection-container">
-          <div class="input-step-label">Select Value:</div>
+      <div id="parameter-input">
+        
+        <!--Select parameter-->
+        <div id="parameter-selection-container">
+          <div class="input-step-label">Select Parameter to Refine:</div>
           <div class="input-group">
-            <span class="input-group-text" id="select-value-label">Label</span>
-            <select class="form-select" id="option-selection">
+            <span class="input-group-text">Parameter</span>
+            <select class="form-select" id="parm-selection">
+              {% for x in contract.parms %}
+              <option value="{{x}}">{{ x }}</option>
+              {% endfor %}
             </select>
-            <button type="button" class="btn btn-light" onclick="selectDynamicValue()">Select</button>
+            <button type="button" class="btn btn-light" onclick="selectParameter()">Select</button>
+          </div>
+        </div>
+        
+        <br/>
+
+        <!-- Show possible units --> 
+        <div id="unit-selection-container">
+          <div class="input-step-label">Select Input Unit:</div>
+          <div id="unit-selection-grid">
+
+          </div>
+        </div>
+        <br/>
+
+        <!-- Input entry for dynamic values -->
+        <div id="value-entry-container">
+          <!--Dropdown input-->
+          <div id="option-selection-container">
+            <div class="input-step-label">Select Value:</div>
+            <div class="input-group">
+              <span class="input-group-text" id="select-value-label">Label</span>
+              <select class="form-select" id="option-selection">
+              </select>
+              <button type="button" class="btn btn-light" onclick="selectDynamicValue()">Select</button>
+            </div>
+          </div>
+
+          <br/>
+
+          <!-- Custom input-->
+          <div id="custom-value-container">
+            <div class="input-step-label">Enter Custom:</div>
+            <div class="input-group">
+              <span class="input-group-text" id="input-value-label">Label</span>
+              <input type="text" class="form-control" id="input-value-form">
+              <button class="btn btn-light" onclick="submitDynamicValue()">Add Custom Value</button>
+            </div>
+          </div>
+        </div>
+
+        <br/>
+      </div>
+
+      <div id="parameter-submission">
+        <div id="running-input-container">
+          <div class="input-step-label">Refinement:</div>
+          <div id="running-input-value">
           </div>
         </div>
 
         <br/>
 
-        <!-- Custom input-->
-        <div id="custom-value-container">
-          <div class="input-step-label">Enter Custom:</div>
-          <div class="input-group">
-            <span class="input-group-text" id="input-value-label">Label</span>
-            <input type="text" class="form-control" id="input-value-form">
-            <button class="btn btn-light" onclick="submitDynamicValue()">Add Custom Value</button>
-          </div>
+        <!-- Submit -->
+        <div id="parameter-submission-container">
+          <form action="/submit" method="POST">
+            <!-- Form fields and submit button -->
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
         </div>
       </div>
-
-      <br/>
-    </div>
-
-    <div id="parameter-submission">
-      <div id="running-input-container">
-        <div class="input-step-label">Refinement:</div>
-        <div id="running-input-value">
-        </div>
-      </div>
-
-      <br/>
-
-      <!-- Submit -->
-      <div id="parameter-submission-container">
-        <form action="/submit" method="POST">
-          <!-- Form fields and submit button -->
-          <button class="btn btn-primary" type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
       
+  </div>
   </div>
 
 </div>
