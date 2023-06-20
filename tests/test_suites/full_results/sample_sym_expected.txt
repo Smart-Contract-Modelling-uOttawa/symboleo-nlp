@@ -16,7 +16,7 @@ Declarations
   renter: Renter;
   landlord: Landlord;
   property: RentalProperty with address := "123 Main Street";
-  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
+  evt_pay_late: Pay with amount := 50, currency := Currency(CAD), from := renter, to := landlord;
   evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
   evt_occupy_property: OccupyProperty with agent := renter, property := property;
   evt_keep_pet: KeepPet with agent := renter;

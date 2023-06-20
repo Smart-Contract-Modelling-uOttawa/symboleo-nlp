@@ -6,11 +6,9 @@ Domain propertyRentalDomain
   Authorization isAn Asset;
   Pets isAn Asset;
   Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
-  OccupyProperty isAn Event with agent: Role, property: RentalProperty;
   KeepPet isAn Event with agent: Role;
-  AllowPets isAn Event with grantor: Role;
   Occupy isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
-  Provide isAn Event with providing_agent: Role, provided_object: Authorization, Other: Pets;
+  Provide isAn Event with providing_agent: Role, provided_object: Authorization, provide_detail: Pets;
 
 endDomain
 
@@ -20,14 +18,13 @@ Declarations
   renter: Renter;
   landlord: Landlord;
   property: RentalProperty;
-  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
+  evt_pay_late: Pay with amount := 50, currency := Currency(CAD), from := renter, to := landlord;
   evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
   evt_keep_pet: KeepPet with agent := renter;
   evt_occupy_property: Occupy with occupying_agent := renter, occupied_object := property;
   authorization: Authorization;
   pets: Pets;
-  evt_provide_authorization: Provide with providing_agent := landlord, provided_object := authorization, Other := pets;
-  : Pay with paying_agent := renter, paid_object := 1000, paying_target := landlord, Other := CAD;
+  evt_provide_authorization: Provide with providing_agent := landlord, provided_object := authorization, provide_detail := pets;
 
 Preconditions
 

@@ -48,6 +48,7 @@ class Verbs:
     abandons = lambda: Verb('abandons', 'abandon', [VerbType.TRANSITIVE], VerbConjugations('abandon', 'abandons', 'abandonned', 'abandonning'))
     occupies = lambda: Verb('occupies', 'occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying'))
     disrupts = lambda: Verb('disrupts', 'disrupt', [VerbType.TRANSITIVE], VerbConjugations('disrupt', 'disrupts', 'disrupted', 'disrupting'))
+    provides = lambda: Verb('provides', 'provide', [VerbType.TRANSITIVE], VerbConjugations('provide', 'provides', 'provided', 'providing'))
 
 class CustomEvents:
     legal_proceedings = lambda: CustomEvent(
@@ -105,6 +106,15 @@ class CustomEvents:
         dobj = NounPhrases.property(),
         negation=True
     )
+    provide_authorization = lambda: CustomEvent(
+        subj = NounPhrases.renter(),
+        verb = Verbs.provides(),
+        dobj = NounPhrases.authorization(),
+        pps = [
+            PrepPhrase('for pets', 'for', NounPhrases.pets())
+        ]
+    )
+    
 
 
 class Assets:

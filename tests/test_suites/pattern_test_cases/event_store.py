@@ -24,6 +24,5 @@ class EventStore:
                 PrepPhrase(f'to {target_role}', 'to', 
                     NounPhrase(target_role, target_role, is_role=True, asset_type='Role'),
                 )
-            ],
-            event_key='evt_pay'
+            ]
         )

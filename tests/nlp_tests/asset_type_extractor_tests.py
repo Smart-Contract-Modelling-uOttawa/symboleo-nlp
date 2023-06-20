@@ -14,6 +14,8 @@ test_suite = [
     ('pie', 'pie', 'Pie'),
     ('CAD', 'CAD', 'Currency'),
     ('March 30, 2024', 'March', 'Date'),
+    ('authorization', 'authorization', 'Authorization'),
+    ('pets', 'pets', 'Pets'),
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

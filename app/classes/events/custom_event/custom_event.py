@@ -24,7 +24,6 @@ class CustomEvent(BaseEvent):
         predicate: Predicate = None, 
         pps:List[PrepPhrase] = None,
         negation:bool = False,
-        event_key:str = '',
         is_new: bool = True
     ):
         self.subj = subj
@@ -34,7 +33,6 @@ class CustomEvent(BaseEvent):
         self.predicate = predicate
         self.pps = pps
         self.negation = negation
-        self.event_type = ''
         self.is_new = is_new
 
     def event_key(self):
@@ -46,14 +44,7 @@ class CustomEvent(BaseEvent):
         return event_key
             
 
-    # kill?
-    def to_sym_event(self):
-        if self.event_type == 'contract':
-            return ContractEvent(ContractEventName[self.verb.verb_str.capitalize()])
-        else:
-            name = self.get_declaration_name()
-            snake_name = CaseConverter.to_snake(name)
-            return VariableEvent(f'evt_{snake_name}')
+
 
     def get_declaration_name(self):
         name = self.verb.lemma.lower()

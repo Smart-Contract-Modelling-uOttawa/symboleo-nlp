@@ -12,6 +12,10 @@ subj_test_suite = [
     (
         CustomEvents.occupy_property(),
         DeclarationProp('occupying_agent', 'renter', 'Role')
+    ),
+    (
+        CustomEvents.provide_authorization(),
+        DeclarationProp('providing_agent', 'renter', 'Role')
     )
 ]
 
@@ -19,6 +23,10 @@ dobj_test_suite = [
     (
         CustomEvents.occupy_property(),
         DeclarationProp('occupied_object', 'property', 'RentalProperty')
+    ),
+    (
+        CustomEvents.provide_authorization(),
+        DeclarationProp('provided_object', 'authorization', 'Authorization')
     )
 ]
 
@@ -27,6 +35,12 @@ pp_test_suite = [
         CustomEvents.eating_pie(),
         [
             DeclarationProp('eating_co_agent', 'the seller', 'Role')
+        ]
+    ),
+    (
+        CustomEvents.provide_authorization(),
+        [
+            DeclarationProp('provide_detail', 'pets', 'Pets')
         ]
     )
 ]

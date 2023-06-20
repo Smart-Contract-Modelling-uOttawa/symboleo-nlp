@@ -152,7 +152,7 @@ if_event_test_case = TestCase(
         NLTemplate(
             {   
                 'parm': TemplateObj(
-                    'if client fails to pay money to contractor Contractor agrees to complete the services', 
+                    'If client fails to pay money to contractor, Contractor agrees to complete the services', 
                     {'PARM': [ParameterConfig('obligations', 'ob_complete', 'antecedent')]})
             }
         )

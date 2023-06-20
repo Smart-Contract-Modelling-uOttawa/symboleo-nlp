@@ -14,8 +14,8 @@ benepar==0.2.0
 mlconjug3==3.10.3
 
 # address parsing
-address-parser==1.0.0
-ez-address-parser==0.2.3
+#address-parser==1.0.0
+#ez-address-parser==0.2.3
 
 # web
 Flask==2.3.2

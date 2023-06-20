@@ -19,7 +19,6 @@ test_suite = [
     ('credit card', NounPhrases.credit_card()),
     ('legal proceedings', NounPhrases.legal_proceedings()),
     ('property', NounPhrases.property()),
-    ('pets', NounPhrases.pets()),
     ('renter', NounPhrases.renter()),
     ('the original digital photo files', NounPhrases.photos()),
     ('Dolphin', NounPhrases.dolphin()),
@@ -35,6 +34,9 @@ test_suite = [
     ('CLIENT', NounPhrases.client_cap()),
     ('BOSCH', NounPhrases.bosch()),
     ('productivity', NounPhrases.productivity()),
+
+    ('authorization', NounPhrases.authorization()),
+    ('pets', NounPhrases.pets()),
 
 ]
 

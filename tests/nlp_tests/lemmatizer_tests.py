@@ -14,6 +14,8 @@ test_suite = [
     ('terminating', 'terminate'),
     ('beginning', 'begin'),
     ('disrupts', 'disrupt'),
+    ('occupying', 'occupy'),
+    ('provides', 'provide'),
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

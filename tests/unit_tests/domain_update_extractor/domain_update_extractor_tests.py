@@ -22,7 +22,6 @@ class DomainUpdateExtractorTests(unittest.TestCase):
             self.domain_mapper
         )
 
-
     def test_domain_update_extractor(self):
         asset_decls = [
             Declaration('a1', 'A1', 'assets', []),
@@ -37,7 +36,7 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         self.domain_mapper.map = MagicMock(return_value=domain_obj)
 
         pattern_class = EventPatternClass()
-        pattern_class.event = CustomEvents.paying()
+        pattern_class.nl_event = CustomEvents.paying()
 
         result = self.sut.extract(pattern_class, None)
 
@@ -48,7 +47,7 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         self.assertEqual(self.event_decl_mapper.map.call_count, 1)
         self.assertEqual(self.domain_mapper.map.call_count, 3)
 
-
+    
     def test_domain_update_extractor_empty(self):
         self.asset_decl_mapper.map = MagicMock(return_value=None)
         self.event_decl_mapper.map = MagicMock(return_value=None)
