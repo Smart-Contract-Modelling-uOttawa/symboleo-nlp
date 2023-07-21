@@ -5,7 +5,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 
 from app.src.selection.element_extractor import ElementExtractor
-from app.src.element_extractors.element_extractor import IExtractElement 
+from app.src.custom_event_extractor.element_extractor import IExtractElement 
 
 class ElementExtractorTests(unittest.TestCase):
     def setUp(self):

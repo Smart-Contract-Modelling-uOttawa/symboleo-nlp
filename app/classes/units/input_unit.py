@@ -5,7 +5,7 @@ from app.classes.units.unit_type import UnitType
 class InputUnit: # pragma: no cover
     unit_type: UnitType = None
     prompt: str = None
-    needs_value = False
+    needs_value = False # Should change this to unit_func (static, dynamic, empty)
     init_value = ''
     options: List[str] = None
     

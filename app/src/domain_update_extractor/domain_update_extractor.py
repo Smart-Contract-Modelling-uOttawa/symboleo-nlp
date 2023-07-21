@@ -8,8 +8,6 @@ from app.src.domain_update_extractor.event_declaration_mapper import IMapEventTo
 from app.src.domain_update_extractor.asset_declaration_mapper import IMapAssetDeclarations
 from app.src.domain_update_extractor.domain_model_mapper import IMapDeclarationToDomain
 
-from app.src.element_extractors.custom_event_extractor import IExtractCustomEvents
-
 # TODO: Move to classes
 class DomainUpdates:
     def __init__(

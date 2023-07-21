@@ -1,9 +1,9 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.src.user_scripts.main_ops.user_deps import UserDependencies
+from app.console_app.console_dependencies import UserDependencies
 from app.src.operations.termination_updater import TerminationOperation
 
-# Adding a new termination power
+# TODO: Re-integrate this?
 def add_term(deps: UserDependencies, contract: SymboleoContract):
     print('\nAdding termination condition...\n')
 

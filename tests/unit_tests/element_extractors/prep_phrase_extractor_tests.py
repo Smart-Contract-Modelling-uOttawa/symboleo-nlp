@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.events.custom_event.noun_phrase import NounPhrase
-from app.src.element_extractors.element_extractor import IExtractElement
-from app.src.element_extractors.prep_phrase_extractor import PrepPhraseExtractor
+from app.src.custom_event_extractor.element_extractor import IExtractElement
+from app.src.custom_event_extractor.prep_phrase_extractor import PrepPhraseExtractor
 
 class PrepPhraseExtractorTests(unittest.TestCase):
     def setUp(self):

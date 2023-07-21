@@ -1,10 +1,10 @@
 from app.classes.events.custom_event.verb import Verb, VerbType, VerbLists
 
 from app.classes.spec.symboleo_contract import SymboleoContract
-from app.src.element_extractors.verb.lemmatizer import ILemmatize
-from app.src.element_extractors.verb.conjugator import IConjugate
+from app.src.custom_event_extractor.verb.lemmatizer import ILemmatize
+from app.src.custom_event_extractor.verb.conjugator import IConjugate
 
-from app.src.element_extractors.element_extractor import IExtractElement
+from app.src.custom_event_extractor.element_extractor import IExtractElement
 
 
 class VerbExtractor(IExtractElement[Verb]):

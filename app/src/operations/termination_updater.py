@@ -3,18 +3,16 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.norm import Power
 from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.power_function import PFContract, PFContractName
-from app.classes.elements.element import Element
 from app.classes.operations.parameter_operation import ParameterOperation
 
-from app.src.operations.parameter_refiner import ParameterRefiner
-
+# TODO: Re-integrate this functionality
 class TerminationOperation:
     def __init__(
         self,
         norm_id: str,
         debtor: str,
         creditor: str,
-        elements: List[Element],
+        elements: List[any],
         ):
         self.norm_id = norm_id
         self.debtor = debtor 
@@ -29,7 +27,7 @@ class IAddPower:
 class TerminationUpdater(IAddPower):
     def __init__(
         self,
-        parm_refiner: ParameterRefiner
+        parm_refiner: any
 
     ):
         self.__parm_refiner = parm_refiner

@@ -11,7 +11,8 @@ class IExtractPatternClass:
     def extract(self, set_to_check: List[UnitType]) -> PatternClass:
         raise NotImplementedError()
     
-# TODO: Break this up. Very
+# TODO: Break this up. Very complex
+## Might even put some in the grammar builder. Tree-like operations
 class PatternClassExtractor(IExtractPatternClass):
     def __init__(
         self,

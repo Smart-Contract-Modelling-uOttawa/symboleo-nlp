@@ -6,7 +6,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.pattern_class import PatternClass, EventPatternClass
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler import IFillPatternUnit
 
-from app.src.element_extractors.custom_event_extractor import IExtractCustomEvents
+from app.src.custom_event_extractor.custom_event_extractor import IExtractCustomEvents
 
 class CustomEventFiller(IFillPatternUnit):
     def __init__(self, event_extractor:IExtractCustomEvents):

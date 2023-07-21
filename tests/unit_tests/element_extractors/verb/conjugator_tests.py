@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from mlconjug3 import Conjugator as ML3Conjugator
-from app.src.element_extractors.verb.conjugator import MyConjugator
+from app.src.custom_event_extractor.verb.conjugator import MyConjugator
 
 # Uses a third party... May separate out the tests
 # Or add more

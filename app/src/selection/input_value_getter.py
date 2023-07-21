@@ -1,7 +1,7 @@
 from app.classes.units.input_unit import InputUnit
 from app.classes.operations.user_input import UserInput
 
-# May move this to user_scripts... its an I/O concern
+# TODO: move this to console_app... its an I/O concern
 class IGetInputValues:
     def get(self, unit: InputUnit) -> UserInput:
         raise NotImplementedError()

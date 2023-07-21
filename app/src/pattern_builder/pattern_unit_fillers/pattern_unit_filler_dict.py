@@ -13,7 +13,7 @@ from app.src.pattern_builder.pattern_unit_fillers.date_filler import DateFiller
 from app.src.pattern_builder.pattern_unit_fillers.obligation_action_filler import ObligationActionFiller
 from app.src.pattern_builder.pattern_unit_fillers.obligation_subject_filler import ObligationSubjectFiller
 
-from app.src.element_extractors.custom_event_extractor_builder import CustomEventExtractorBuilder
+from app.src.custom_event_extractor.custom_event_extractor_builder import CustomEventExtractorBuilder
 
 class PatternUnitFillerDictConstructor:
     @staticmethod

@@ -1,12 +1,7 @@
-from typing import List
-import random
-import string
-
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 
-from app.classes.operations.user_input import UserInput, UnitType
 from app.src.operations.operation_mapper import IMapCnlToOperations
 
 class IUpdateContract:

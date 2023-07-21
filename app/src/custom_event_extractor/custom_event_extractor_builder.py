@@ -1,19 +1,17 @@
 from app.classes.operations.dependencies import Dependencies
 
-from app.src.element_extractors.verb.verb_extractor import VerbExtractor
-from app.src.element_extractors.verb.fake_lemmatizer import FakeLemmatizer
-from app.src.element_extractors.verb.lemmatizer import Lemmatizer
-from app.src.element_extractors.verb.conjugator import MyConjugator
-from app.src.element_extractors.verb.conjugator import ML3Conjugator
-from app.src.element_extractors.noun_phrase.asset_type_extractor import AssetTypeExtractor
-from app.src.element_extractors.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
-from app.src.element_extractors.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor
-from app.src.element_extractors.adverb_extractor import AdverbExtractor
-from app.src.element_extractors.predicate_extractor import PredicateExtractor
-from app.src.element_extractors.prep_phrase_extractor import PrepPhraseExtractor
-
-
-from app.src.element_extractors.custom_event_extractor import CustomEventExtractor
+from app.src.custom_event_extractor.verb.verb_extractor import VerbExtractor
+from app.src.custom_event_extractor.verb.fake_lemmatizer import FakeLemmatizer
+from app.src.custom_event_extractor.verb.lemmatizer import Lemmatizer
+from app.src.custom_event_extractor.verb.conjugator import MyConjugator
+from app.src.custom_event_extractor.verb.conjugator import ML3Conjugator
+from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import AssetTypeExtractor
+from app.src.custom_event_extractor.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
+from app.src.custom_event_extractor.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor
+from app.src.custom_event_extractor.adverb_extractor import AdverbExtractor
+from app.src.custom_event_extractor.predicate_extractor import PredicateExtractor
+from app.src.custom_event_extractor.prep_phrase_extractor import PrepPhraseExtractor
+from app.src.custom_event_extractor.custom_event_extractor import CustomEventExtractor
 
 class CustomEventExtractorBuilder:
     @staticmethod

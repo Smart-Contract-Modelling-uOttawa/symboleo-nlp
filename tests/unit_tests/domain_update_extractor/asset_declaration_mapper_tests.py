@@ -7,7 +7,7 @@ from tests.helpers.test_contract import get_test_contract_for_assets, get_test_c
 from app.src.domain_update_extractor.asset_declaration_extractor import IExtractAssetDeclarations
 from app.src.domain_update_extractor.asset_declaration_mapper import AssetDeclarationMapper
 
-# TODO: E2 - Should make a test suite
+# TODO: Make a test suite for this functionality ... will put in test_suites
 class AssetDeclarationMapperTests(unittest.TestCase):
     def setUp(self) -> None:
         self.extractor = IExtractAssetDeclarations()

@@ -3,7 +3,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.custom_event import CustomEvent, Verb, NounPhrase, Adverb, Predicate, PrepPhrase
 from app.classes.operations.user_input import UserInput, UnitType
 
-from app.src.element_extractors.element_extractor import IExtractElement 
+from app.src.custom_event_extractor.element_extractor import IExtractElement 
 
 class IExtractCustomEvents:
     def extract(self, input_list: List[UserInput], contract: SymboleoContract) -> CustomEvent:

@@ -6,7 +6,6 @@ from app.classes.spec.declaration import Declaration
 
 from app.src.domain_update_extractor.asset_declaration_extractor import AssetDeclarationExtractor
 
-
 class AssetDeclarationExtractorTests(unittest.TestCase):
     def setUp(self) -> None:
         self.sut = AssetDeclarationExtractor() 

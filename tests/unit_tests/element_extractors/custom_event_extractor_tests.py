@@ -5,8 +5,8 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.custom_event import CustomEvent, Verb, NounPhrase
 from app.classes.operations.user_input import UserInput, UnitType
 
-from app.src.element_extractors.element_extractor import IExtractElement
-from app.src.element_extractors.custom_event_extractor import CustomEventExtractor
+from app.src.custom_event_extractor.element_extractor import IExtractElement
+from app.src.custom_event_extractor.custom_event_extractor import CustomEventExtractor
 
 from tests.helpers.test_objects import Verbs, NounPhrases
 

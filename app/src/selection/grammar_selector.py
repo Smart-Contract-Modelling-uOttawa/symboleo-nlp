@@ -8,7 +8,7 @@ from app.src.selection.input_value_getter import IGetInputValues
 
 from app.src.grammar_builder.grammar_builder import GrammarNode
 
-# TODO: F3? - Will need to integrate the CommonEvent handling stuff in though...
+# TODO: F3? - Re-integrate this into console application
 class ISelectElementList:
     def select(self, contract: ISymboleoContract) -> List[UserInput]:
         raise NotImplementedError()

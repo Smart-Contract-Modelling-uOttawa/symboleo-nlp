@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.events.custom_event.predicate import Predicate
-from app.src.element_extractors.predicate_extractor import PredicateExtractor
+from app.src.custom_event_extractor.predicate_extractor import PredicateExtractor
 
 class PredicateExtractorTests(unittest.TestCase):
     def setUp(self):

@@ -9,8 +9,6 @@ from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler_dict impor
 from app.src.norm_update_extractor.handlers.norm_update_handler_dict import NormUpdateHandlerDictBuilder
 from app.src.norm_update_extractor.norm_update_extractor import NormUpdateExtractor
 from app.src.domain_update_extractor.domain_update_extractor_builder import DomainUpdateExtractorBuilder
-
-
 from app.src.operations.operation_mapper import OperationMapper
 
 class OperationMapperBuilder:

@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.predicate import Predicate
-from app.src.element_extractors.element_extractor import IExtractElement
+from app.src.custom_event_extractor.element_extractor import IExtractElement
 
 class PredicateExtractor(IExtractElement[Predicate]):    
     def __init__(self):

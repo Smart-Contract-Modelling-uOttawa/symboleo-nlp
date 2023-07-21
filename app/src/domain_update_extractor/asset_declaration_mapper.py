@@ -7,7 +7,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.src.domain_update_extractor.asset_declaration_extractor import IExtractAssetDeclarations
 
 
-# TODO: E3 - Clean and break this up
+# TODO: Break this up
 class IMapAssetDeclarations:
     def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         raise NotImplementedError()

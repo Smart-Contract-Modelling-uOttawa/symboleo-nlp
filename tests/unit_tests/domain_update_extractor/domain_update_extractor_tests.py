@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.declaration import Declaration, EventDeclaration
 from app.classes.spec.domain_object import DomainObject
 
-from app.classes.patterns.pattern_classes import EventPatternClass, PatternClass
+from app.classes.pattern_classes.pattern_class import EventPatternClass, PatternClass
 from app.src.domain_update_extractor.domain_update_extractor import DomainUpdateExtractor
 from app.src.domain_update_extractor.asset_declaration_mapper import IMapAssetDeclarations
 from app.src.domain_update_extractor.event_declaration_mapper import IMapEventToDeclaration

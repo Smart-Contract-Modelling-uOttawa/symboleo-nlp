@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.elements.all_elements import *
 from app.classes.spec.declaration import Declaration, DeclarationProp
 
 from app.src.domain_update_extractor.event_declaration_mapper import EventDeclarationMapper
@@ -60,7 +59,6 @@ class CustomEventTests(unittest.TestCase):
         self.assertEqual(self.prop_mapper.map_dobject.call_count, 1)
         self.assertEqual(self.prop_mapper.map_prep_phrase.call_count, 2)
     
-
 
 if __name__ == '__main__':
     unittest.main()
