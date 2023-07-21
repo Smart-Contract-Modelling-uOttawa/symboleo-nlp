@@ -1,5 +1,5 @@
 import copy
-from app.classes.patterns.pattern_classes import CondTEvent
+from app.classes.pattern_classes.cond_t_event import CondTEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.operations.handle_object import HandleObject
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates

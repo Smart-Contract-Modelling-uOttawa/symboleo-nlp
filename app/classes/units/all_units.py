@@ -1,27 +1,17 @@
 from typing import Dict, Type
 from app.classes.units.unit_type import UnitType
 from app.classes.units.input_unit import InputUnit, DummyUnit
-from app.classes.units.before_unit import BeforeUnit
-from app.classes.units.date_unit import DateUnit
-from app.classes.units.event_unit import EventUnit
-from app.classes.units.root_unit import RootUnit
-from app.classes.units.timespan_unit import TimespanUnit
-from app.classes.units.within_unit import WithinUnit
-from app.classes.units.if_unit import IfUnit
-from app.classes.units.when_unit import WhenUnit
-from app.classes.units.after_unit import AfterUnit
-from app.classes.units.until_unit import UntilUnit
-from app.classes.units.unless_unit import UnlessUnit
-from app.classes.units.for_unit import ForUnit
-from app.classes.units.of_unit import OfUnit
-from app.classes.units.following_unit import FollowingUnit
-from app.classes.units.timepoint_unit import TimepointUnit
+from app.classes.units.cond_units import *
 from app.classes.units.custom_event_units import *
+from app.classes.units.other_units import *
 from app.classes.units.standard_event_units import *
-from app.classes.units.fails_to_unit import FailsToUnit
-
+from app.classes.units.temporal_units import *
+from app.classes.units.time_units import *
 
 unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
+    UnitType.BY_GIVING: ByGivingUnit,
+    UnitType.LATER_THAN: LaterThanUnit,
+    UnitType.WITH: WithUnit,
     UnitType.ROOT: RootUnit,
     UnitType.DATE: DateUnit,
     UnitType.EVENT: EventUnit,
@@ -34,15 +24,23 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.AFTER: AfterUnit,
     UnitType.UNTIL: UntilUnit,
     UnitType.UNLESS: UnlessUnit,
+    UnitType.EXCEPT: ExceptUnit,
+    UnitType.WITHOUT: WithoutUnit,
     UnitType.FOR: ForUnit,
     UnitType.FOLLOWING: FollowingUnit,
     UnitType.OF: OfUnit,
+    UnitType.FROM: FromUnit,
+    UnitType.PRIOR_TO: PriorToUnit,
+    UnitType.BY: ByUnit,
+    UnitType.IN_CASE: InCaseUnit,
+    UnitType.IN_EVENT: InEventUnit,
+    UnitType.ONCE: OnceUnit,
+    UnitType.UPON: UponUnit,
 
     UnitType.TIMEPOINT: TimepointUnit,
     #UnitType.DOMAIN_TIMEPOINT: DomainTimepointUnit,
     UnitType.CUSTOM_EVENT: CustomEventUnit,
     UnitType.ADVERB: AdverbUnit,
-    UnitType.STANDARD_EVENT: StandardEventUnit,
     UnitType.FAILS_TO: FailsToUnit,
     UnitType.VERB: VerbUnit,
     UnitType.TRANSITIVE_VERB: TransitiveVerbUnit,
@@ -53,7 +51,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.PREDICATE: PredicateUnit,
     UnitType.PREP_PHRASE: PrepUnit,
 
-    UnitType.STANDARD_EVENT: StandardEventUnit,
     UnitType.CONTRACT_EVENT: ContractEventUnit,
     UnitType.CONTRACT_ACTION: ContractActionUnit,
     UnitType.CONTRACT_SUBJECT: ContractSubjectUnit,

@@ -1,7 +1,4 @@
-from typing import List
-from flask import escape
 from app.classes.spec.symboleo_contract import SymboleoContract
-
 
 class WebContractNL:
     def __init__(self, nl_key:str, nl_text:str):

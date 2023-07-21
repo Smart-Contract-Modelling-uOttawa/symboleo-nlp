@@ -1,50 +1,63 @@
-
-====================
-======= TODOS ======
-====================
-
-TOP PRIORITY
-- Update the contract NL 
-- Start making tests and concrete requiresment/metrics for input selection
-- Add CustomEvent template to all needed declarations 
-- Smooth out the capitalization and punctuation 
-- Figure out the parm customization - will we control the allowed customizations based on the parm?
-- Re-add Parameter updates on contract update - and integrate into tests
-
-IMPORTANT
-- Clean up the Symboleo contract code 
-- May change the event declaration to include objects (e.g. OccupyProperty instead of Occupy)
-- Break up the Asset and declaration mappers
-- Rework in common events 
-- Look into adding date as an event property; so it can be referenced again 
-- Figure out if we need more detailed parm config 
-- More Isolated Tests. Aim for 25 in total. Cover all patterns 
-
-MAYBE
-- Attempt to represent the "provide X days of notice" termination power  
+PRIORITIES
+- Integrate the full CNL. Identify any weak spots or issues
+- Identify all the tests and test suites we want. Run coverage (this weekend?
+- Answer the key feature questions (related to thesis) and update accordingly
+- Clean out old code
+- Break out complex linguistic function
+- Identify all spots for NLP. Run some simple tests with them
+- Hosting?
 
 
-====================
-===== SCHEDULE =====
-====================
+Plan
+- Jul 3-9: Clean up unit testing and coverage. Clean out old code 
+- Jul 10-16: Add the full CNL; update the tree structure; Integrate feature updates from thesis 
+- Jul 17-23: more unit tests - mostly a thesis week
+- Jul 24-30: Handle all the features and engg. No more todos 
+- Jul 31 - Aug 6: Hosting/env/deployment, tests  
+- Aug 7 - 13: Finish up testing
 
 
-JUNE
-- Working Web UI
-- Other metric/eval/tests code for mapping 
-- Metric/eval code/tests for selection 
-- Metric/eval for how much of the CNL is covered in the tool
-- 20 Isolated tests
-- Unit tests at 75%
+
+FEATURE
+- Full CNL, handlers, integration tests
+- Finish up Custom Events and Norm Events (all verbs and nouns)
+- is_complete: event and pattern class
+- Do we need to link the norm component in the config?
+- Adding needed Parameters
+- Add DATE for BeforeDate as event property?
+- Figure out mapping verb types (trans, intrans, link). also is linking different?
+- Common events? Probably not, but may specify as future work in thesis
+- Do we need Domain Timepoints and DomainTimepointExtractor?
+- Attempt to represent the "provide X days of notice" termination power ?
 
 
-JULY
-- autocomplete/suggestion functionality; raw string -> input
-- 25 isolated tests
-- Unit tests at 90%
+ENGG
+- figure out role of FinalElement/FinalNode
+- instead of children, reference a common EBNF-type grammar
+- Asset Declarations
+- Declaration prop mapper
 
 
-AUGUST
-- Unit tests at full coverage
+BUGS
+
+UI
+- host it?
+
+CLEANUP
+- Elements
+- EventNLTemplate
+- Old
 
 
+TESTS
+- integration tests: custom event to text, pattern class to text
+- full unit test coverage
+- special nlp coverage
+- The full-stack tests? Still relevant? If so, then need updating. Will want to give them another sweep
+
+Deployment
+- will need to clean out the requirements
+- will also need to load an nlp module (unless we want to use the fake one)
+- can build the nlp locally, put it in the file, un-ignore it, so its loaded
+- then can remove the requirements needed to build it...
+- currently looking in to pythonanywhere...

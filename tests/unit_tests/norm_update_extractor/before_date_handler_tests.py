@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
-from app.classes.patterns.pattern_classes import BeforeDate
+from app.classes.pattern_classes.before_date import BeforeDate
 from app.classes.spec.predicate_function import PredicateFunctionSHappensBefore
 from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker

@@ -1,7 +1,7 @@
 import copy
 from typing import List
 
-from app.classes.patterns.pattern_classes import *
+from app.classes.pattern_classes.before_date import BeforeDate
 from app.classes.spec.norm import Norm
 from app.classes.spec.predicate_function import PredicateFunctionSHappensBefore
 from app.classes.spec.sym_point import Point, PointVDE

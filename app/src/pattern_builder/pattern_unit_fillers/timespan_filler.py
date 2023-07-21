@@ -3,7 +3,8 @@ import copy
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.user_input import UserInput
 from app.classes.spec.point_function import TimeUnit
-from app.classes.patterns.pattern_classes import *
+from app.classes.pattern_classes.pattern_class import PatternClass, EventPatternClass
+from app.classes.pattern_classes.within_timespan_event import WithinTimespanEvent
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler import IFillPatternUnit
 
 class TimespanFiller(IFillPatternUnit):

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.patterns.pattern_classes import CondAEvent
+from app.classes.pattern_classes.cond_a_event import CondAEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker

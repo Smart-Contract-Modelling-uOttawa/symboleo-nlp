@@ -172,8 +172,9 @@ function presentUnits(units) {
   OPTIONS_DICT = units
 
   // Use final node to display the submission
+  // OR if no children present
   // But filter it out from presentation
-  if (unit_keys.includes('FINAL_NODE')) {
+  if (unit_keys.includes('FINAL_NODE') || unit_keys.length == 0) {
     $('#parameter-submission-container').show()
   }
   filtered_keys = unit_keys.filter(x => x !== 'FINAL_NODE');

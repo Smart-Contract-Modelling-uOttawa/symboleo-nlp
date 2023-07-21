@@ -4,7 +4,7 @@ from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.spec.sym_interval import SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.patterns.pattern_classes import ExceptEvent
+from app.classes.pattern_classes.except_event import ExceptEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
 from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker

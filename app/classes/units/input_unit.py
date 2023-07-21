@@ -1,13 +1,10 @@
 from __future__ import annotations
-from typing import List, Type
-from app.classes.elements.element import Element
+from typing import List
 from app.classes.units.unit_type import UnitType
 
 class InputUnit: # pragma: no cover
-    id: str = None
     unit_type: UnitType = None
     prompt: str = None
-    children: List[Type[Element]] = []
     needs_value = False
     init_value = ''
     options: List[str] = None

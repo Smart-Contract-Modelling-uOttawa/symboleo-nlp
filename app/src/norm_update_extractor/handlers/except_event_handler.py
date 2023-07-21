@@ -1,5 +1,5 @@
 import copy
-from app.classes.patterns.pattern_classes import ExceptEvent
+from app.classes.pattern_classes.except_event import ExceptEvent
 from app.classes.spec.norm import Norm, Power, Obligation, SurvivingObligation
 from app.classes.spec.sym_interval import Interval, SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName

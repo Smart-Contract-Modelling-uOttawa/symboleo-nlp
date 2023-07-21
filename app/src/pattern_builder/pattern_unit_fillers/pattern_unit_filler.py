@@ -1,9 +1,8 @@
 from typing import List
 import copy
-from app.classes.patterns.pattern_classes import *
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.user_input import UserInput
-from app.classes.patterns.pattern_classes import List, PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 
 class IFillPatternUnit:
     def fill(self, pattern_class: PatternClass, contract: SymboleoContract, input_list: List[UserInput], i: int) -> PatternClass:

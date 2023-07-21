@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.patterns.pattern_classes import PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.operations.handle_object import HandleObject
 
 from app.classes.spec.norm import INorm

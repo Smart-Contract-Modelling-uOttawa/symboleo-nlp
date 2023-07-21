@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point
 from app.classes.spec.point_function import TimeUnit, PointFunction
-from app.classes.patterns.pattern_classes import WithinTimespanEvent
+from app.classes.pattern_classes.within_timespan_event import WithinTimespanEvent
 from app.classes.spec.predicate_function import  PredicateFunctionWHappensBefore
 from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker

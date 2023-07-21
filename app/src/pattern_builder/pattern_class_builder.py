@@ -1,8 +1,8 @@
 from typing import List
-from app.classes.patterns.pattern_classes import *
+from app.classes.pattern_classes.all_pattern_classes import *
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.user_input import UserInput
-from app.classes.patterns.pattern_classes import List, PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 
 from app.src.pattern_builder.pattern_class_filler import IFillPatternClass
 from app.src.pattern_builder.pattern_class_extractor import IExtractPatternClass

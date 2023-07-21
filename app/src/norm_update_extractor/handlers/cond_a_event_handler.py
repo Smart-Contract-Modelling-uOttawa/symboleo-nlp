@@ -1,12 +1,7 @@
 import copy
-from app.classes.patterns.pattern_classes import CondAEvent
-from app.classes.spec.norm import Norm
+
+from app.classes.pattern_classes.cond_a_event import CondAEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
-from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.sym_point import Point, PointVDE
-from app.classes.spec.point_function import PointFunction
-from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.elements.timespan import Timespan
 from app.classes.operations.handle_object import HandleObject
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 

@@ -1,6 +1,5 @@
 from typing import List
-from app.classes.patterns.pattern_classes import PatternClass, EventPatternClass
-from app.classes.patterns.all_patterns import *
+from app.classes.pattern_classes.pattern_class import PatternClass, EventPatternClass
 from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject

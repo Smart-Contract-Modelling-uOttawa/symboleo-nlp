@@ -15,9 +15,11 @@ allowed_ids = [
 ]
 
 class ContractFetcher:
-    def __init__(self, contract_storage: ContractStorage):
+    def __init__(
+        self, 
+        contract_storage: ContractStorage
+    ):
         self.__contract_storage = contract_storage
-
 
     def fetch(self, contract_id: str, unique_key:str) -> WebContract:
         contract =  get_template(contract_id)

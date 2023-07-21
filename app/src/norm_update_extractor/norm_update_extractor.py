@@ -1,6 +1,6 @@
 from typing import List, Dict, Type
 from app.classes.spec.norm import Norm
-from app.classes.patterns.pattern_classes import PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 
 from app.classes.operations.handle_object import HandleObject
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates

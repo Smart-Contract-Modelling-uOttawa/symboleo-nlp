@@ -2,7 +2,8 @@ from typing import List
 import copy
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.operations.user_input import UserInput
-from app.classes.patterns.pattern_classes import *
+from app.classes.pattern_classes.pattern_class import PatternClass
+from app.classes.pattern_classes.before_date import BeforeDate
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler import IFillPatternUnit
 
 class DateFiller(IFillPatternUnit):
