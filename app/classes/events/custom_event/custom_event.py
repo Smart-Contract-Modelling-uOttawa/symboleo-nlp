@@ -65,12 +65,6 @@ class CustomEvent(BaseEvent):
 
         return result
 
-
-
-    # TODO: E2? - Add tests for custom_event.to_text
-    ## It's possible we wont even need this - depends on how we generate the NL refinement
-    ## Most of it may get pushed to the input phase, rather than handling it here
-    ## Or may also have a BASIC conj type, where we just take the str_val of each one...
     def to_text(self, conjugation: ConjType = ConjType.PRESENT):
         
         subj = self.subj.to_text()
@@ -128,8 +122,4 @@ class CustomEvent(BaseEvent):
             self.predicate == other.predicate and \
             ClassHelpers.lists_eq(self.pps, other.pps, 'key')
 
-    # TODO: E1? - This may not be needed either
-    def is_complete(self):
-        return True
-        #return self.subj and self.verb
 

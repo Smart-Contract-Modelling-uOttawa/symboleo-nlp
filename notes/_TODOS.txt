@@ -17,6 +17,8 @@ FEATURES
 - Do we need Domain Timepoints and DomainTimepointExtractor?
 - Attempt to represent the "provide X days of notice" termination power ?
 
+BUGS
+- The parameters disappear from norm_events if theyve been populated
 
 ENGG - need to break these up
 - Asset Declarations

@@ -10,7 +10,7 @@ class EventUnit(InputUnit):
     unit_type = UnitType.EVENT
     prompt = 'Describe an event'
 
-# TODO: ?
+# TODO: Keeping this?
 class TimepointUnit(InputUnit):
     unit_type = UnitType.TIMEPOINT
     prompt = 'Specify a timepoint'

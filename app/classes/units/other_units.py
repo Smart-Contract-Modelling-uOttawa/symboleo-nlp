@@ -6,13 +6,13 @@ class ExceptUnit(InputUnit):
     prompt = 'Except'
     init_value = 'except'
 
-# TODO: ??
+# TODO: Am I supporting this?
 class FailsToUnit(InputUnit):
     unit_type = UnitType.FAILS_TO
     prompt = 'fails to'
     init_value = 'fails to'
 
-# TODO: ??
+# TODO: Do I need this?
 class FinalUnit(InputUnit):
     unit_type = UnitType.FINAL_NODE
     prompt = 'FINISH'
