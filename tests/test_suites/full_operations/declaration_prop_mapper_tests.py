@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.elements.all_elements import *
 from app.classes.spec.declaration import DeclarationProp
 from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
 

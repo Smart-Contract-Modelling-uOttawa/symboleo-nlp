@@ -1,25 +1,12 @@
-PRIORITIES
-- Integrate the full CNL. Identify any weak spots or issues
-- Identify all the tests and test suites we want. Run coverage (this weekend?
-- Answer the key feature questions (related to thesis) and update accordingly
-- Clean out old code
-- Break out complex linguistic function
-- Identify all spots for NLP. Run some simple tests with them
-- Hosting?
+PLAN:
+- Jul 24 - 30: link norm component, add parms, difficult CNL elements, engg work (break up funcs), 75% test coverage 
+- Jul 31 - Aug 6: Any other required todos; 85% test coverage, 
+- Aug 7 - 13: full tests
+- Aug 14 - 20: Deployment and hosting; documentation, cleanup, next steps 
 
 
-Plan
-- Jul 3-9: Clean up unit testing and coverage. Clean out old code 
-- Jul 10-16: Add the full CNL; update the tree structure; Integrate feature updates from thesis 
-- Jul 17-23: more unit tests - mostly a thesis week
-- Jul 24-30: Handle all the features and engg. No more todos 
-- Jul 31 - Aug 6: Hosting/env/deployment, tests  
-- Aug 7 - 13: Finish up testing
-
-
-
-FEATURE
-- Full CNL, handlers, integration tests
+FEATURES
+- Decide on the "difficult" CNL elements: AfterEvent, NoticeEvent, EventInterval
 - Finish up Custom Events and Norm Events (all verbs and nouns)
 - is_complete: event and pattern class
 - Do we need to link the norm component in the config?
@@ -31,29 +18,18 @@ FEATURE
 - Attempt to represent the "provide X days of notice" termination power ?
 
 
-ENGG
-- figure out role of FinalElement/FinalNode
-- instead of children, reference a common EBNF-type grammar
+ENGG - need to break these up
 - Asset Declarations
 - Declaration prop mapper
-
-
-BUGS
-
-UI
-- host it?
-
-CLEANUP
-- Elements
-- EventNLTemplate
-- Old
+- Pattern Extractor (reverse tree building)
 
 
 TESTS
-- integration tests: custom event to text, pattern class to text
-- full unit test coverage
-- special nlp coverage
-- The full-stack tests? Still relevant? If so, then need updating. Will want to give them another sweep
+- Maximize unit test coverage
+- isolated tests: Find one example for each pattern from the real contract. Will alter the events. Should pass
+- full tests: Just to show full suite. Will highlight missing pieces
+- Beef up NLP test coverage
+
 
 Deployment
 - will need to clean out the requirements

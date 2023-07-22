@@ -14,30 +14,14 @@ exclude_lines =
 
 omit =
     app\templates\*
-    app\src\user_scripts\*.py
-    app\src\old\*.py
+    app\web_lib\*
+    app\console_lib\*
     
+    app\src\custom_event_extractor\custom_event_extractor_builder.py
+    app\src\custom_event_extractor\noun_phrase\fake_noun_phrase_extractor.py
+    app\src\custom_event_extractor\verb\fake_lemmatizer.py
     app\src\domain_update_extractor\domain_update_extractor_builder.py
-    app\src\element_extractors\custom_event_extractor_builder.py
-    app\src\element_extractors\noun_phrase\fake_noun_phrase_extractor.py
-    app\src\nl_creator\nl_creator_builder.py
-
-    app\src\selection\element_list_selector_builder.py
-    app\src\selection\element_extractor_builder.py
-    app\src\selection\element_extractors\custom_event\verb\verb_extractor_builder.py
-    app\src\selection\element_extractor_builder.py
-    app\src\selection\element_extractors\value_extractor_dict_builder.py
-    app\src\selection\child_getters\child_getter_dict.py
-    app\src\selection\manual_token_selector.py
-    app\src\selection\input_value_getter.py
+    app\src\grammar_builder\grammar_builder_constructor.py
     app\src\operations\contract_updater_builder.py
     app\src\operations\dependency_builder.py
-    app\src\operations\parameter_refiner_constructor.py
-    app\src\pattern_builder\pattern_builder_builder.py
-    app\src\update_processor\event_declaration_mapper_builder.py
-    app\src\update_processor\pattern_handlers\pattern_handler_dict_builder.py
-    
-
-    app\src\selection\element_extractors\custom_event\noun_phrase\fake_noun_phrase_extractor.py
-    app\src\selection\element_extractors\custom_event\verb\fake_lemmatizer.py
-
+    app\src\operations\operation_mapper_builder.py

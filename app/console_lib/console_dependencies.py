@@ -1,9 +1,9 @@
 from app.classes.operations.dependencies import Dependencies
 
-from app.console_app.parm_getter import IGetParm, ParmGetter
+from app.console_lib.parm_getter import IGetParm, ParmGetter
 
-from app.console_app.input_converter import InputConverter
-from app.console_app.selector import InputSelector, ISelectInput
+from app.console_lib.input_converter import InputConverter
+from app.console_lib.selector import InputSelector, ISelectInput
 
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 from app.src.grammar_builder.grammar_builder import IBuildGrammar

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List
-from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName, ObligationEvent, ObligationEventName
 from app.classes.events.conj_type import ConjType
+from app.classes.events.custom_event.noun_phrase import NPTextType
 
 from app.classes.events.base_event import BaseEvent
 
@@ -35,35 +35,44 @@ class CustomEvent(BaseEvent):
         self.negation = negation
         self.is_new = is_new
 
+
     def event_key(self):
-        # This will change. Might be a function of the event itself...
-        if VerbType.TRANSITIVE in self.verb.verb_types:
-            event_key = f'evt_{self.verb.lemma}_{self.dobj.head}'
-        else:
-            event_key = f'evt_{self.verb.lemma}'
-        return event_key
-            
-
-
+        a = self._split_name()
+        b = a.split(' ')
+        c = [x.lower() for x in b]
+        d = '_'.join(c)
+        e = f'evt_{d}'
+        return e
 
     def get_declaration_name(self):
-        name = self.verb.lemma.lower()
+        a = self._split_name()
+        b = a.split(' ')
+        c = [x.title() for x in b]
+        return ''.join(c)
+    
+
+    # Return space-sep
+    def _split_name(self):
+        result = self.verb.lemma
 
         if VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
-            name = CaseConverter.to_pascal(f'{self.subj.to_text()} {self.predicate.pred_str}')
+            result = f'{self.subj.to_text(NPTextType.BASIC)} {self.predicate.pred_str}'
         
         if VerbType.TRANSITIVE in self.verb.verb_types:
-            name = self.verb.lemma.title()
 
             if self.adverb:
-                name = f'{name}{self.adverb.adverb_str.title()}'
-        
-        return name 
+                result = f'{result} {self.adverb.adverb_str}'
+
+        return result
+
+
 
     # TODO: E2? - Add tests for custom_event.to_text
     ## It's possible we wont even need this - depends on how we generate the NL refinement
     ## Most of it may get pushed to the input phase, rather than handling it here
+    ## Or may also have a BASIC conj type, where we just take the str_val of each one...
     def to_text(self, conjugation: ConjType = ConjType.PRESENT):
+        
         subj = self.subj.to_text()
         result = subj
 
@@ -81,8 +90,13 @@ class CustomEvent(BaseEvent):
                     verb = self.verb.conjugations.present_singular
                 else:
                     verb = self.verb.conjugations.present_plural
+
         elif conjugation == ConjType.CONTINUOUS:
             verb = self.verb.conjugations.continuous
+        
+        elif conjugation == ConjType.BASIC:
+            verb = self.verb.verb_str
+    
 
         if self.dobj and VerbType.TRANSITIVE in self.verb.verb_types:
             dobj = self.dobj.to_text()
@@ -92,11 +106,6 @@ class CustomEvent(BaseEvent):
             result += f' {verb}'
         
         elif VerbType.LINKING in self.verb.verb_types:
-            if self.subj.is_plural:
-                verb = self.verb.conjugations.present_plural
-            else:
-                verb = self.verb.conjugations.present_singular
-            
             if self.predicate:
                 pred = self.predicate.to_text()
                 result += f' {verb} {pred}'

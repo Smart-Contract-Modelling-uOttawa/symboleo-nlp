@@ -1,6 +1,6 @@
 from app.src.operations.dependency_builder import DependencyBuilder
-from app.src.selection.child_getter import ChildGetter
-from app.src.selection.unit_builders.unit_builder_dict import UnitBuilderDictConstructor 
+from app.src.grammar_builder.child_getter import ChildGetter
+from app.src.grammar_builder.unit_builders.unit_builder_dict import UnitBuilderDictConstructor 
 
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 

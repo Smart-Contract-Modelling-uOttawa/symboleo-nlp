@@ -8,14 +8,17 @@ from app.src.domain_update_extractor.declaration_prop_mapper import IMapDeclarat
 
 from tests.helpers.test_objects import CustomEvents
 
-class CustomEventTests(unittest.TestCase):
+class EventDeclarationMapperTests(unittest.TestCase):
     def setUp(self) -> None:
         self.prop_mapper = IMapDeclarationProps()
         self.sut = EventDeclarationMapper(self.prop_mapper)
 
-    @unittest.skip('fix')
+
     def test_evt_decl_mapping_linking(self):
         evt = CustomEvents.legal_proceedings_det()
+
+        evt.get_declaration_name = MagicMock(return_value='decl_name')
+        evt.event_key = MagicMock(return_value='event_key')
 
         sp = DeclarationProp('sk', 'sv', 'st')
         dp = DeclarationProp('dk', 'dv', 'dt')
@@ -25,20 +28,22 @@ class CustomEventTests(unittest.TestCase):
         self.prop_mapper.map_dobject = MagicMock(return_value = dp)
         self.prop_mapper.map_prep_phrase = MagicMock(side_effect = [pp1,pp2])
 
-        exp = Declaration('evt_legal_proceedings_necessary', 'LegalProceedingsNecessary', 'events', [
+        exp = Declaration('event_key', 'decl_name', 'events', [
             pp1, pp2
         ])
 
         result = self.sut.map(evt)
-    
+
         self.assertEqual(result, exp)
         self.assertEqual(self.prop_mapper.map_subject.call_count, 0)
         self.assertEqual(self.prop_mapper.map_dobject.call_count, 0)
         self.assertEqual(self.prop_mapper.map_prep_phrase.call_count, 2)
     
-    @unittest.skip('fix')
+    
     def test_evt_decl_transitive(self):
         evt = CustomEvents.paying()
+        evt.get_declaration_name = MagicMock(return_value='decl_name')
+        evt.event_key = MagicMock(return_value='event_key')
 
         sp = DeclarationProp('sk', 'sv', 'st')
         dp = DeclarationProp('dk', 'dv', 'dt')
@@ -48,12 +53,12 @@ class CustomEventTests(unittest.TestCase):
         self.prop_mapper.map_dobject = MagicMock(return_value = dp)
         self.prop_mapper.map_prep_phrase = MagicMock(side_effect = [pp1,pp2])
 
-        exp = Declaration('evt_pay', 'Pay', 'events', [
+        exp = Declaration('event_key', 'decl_name', 'events', [
             sp, dp, pp1, pp2
         ])
 
         result = self.sut.map(evt)
-    
+
         self.assertEqual(result, exp)
         self.assertEqual(self.prop_mapper.map_subject.call_count, 1)
         self.assertEqual(self.prop_mapper.map_dobject.call_count, 1)

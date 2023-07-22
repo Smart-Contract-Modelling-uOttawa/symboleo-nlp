@@ -7,7 +7,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.grammar_builder.grammar_builder import IBuildGrammar
 from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
 from app.web_lib.grammar_storage import GrammarStorage
-from app.src.selection.child_getter import IGetChildren
+from app.src.grammar_builder.child_getter import IGetChildren
 
 from app.src.grammar_builder.tree_printer import TreePrinter
 

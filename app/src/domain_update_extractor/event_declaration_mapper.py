@@ -1,10 +1,7 @@
-
-from typing import List
 from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.spec.declaration import IDeclaration, Declaration, DeclarationProp
+from app.classes.spec.declaration import IDeclaration, Declaration
 from app.classes.events.custom_event.verb import VerbType
 
-from app.classes.helpers.string_to_class import CaseConverter
 from app.src.domain_update_extractor.declaration_prop_mapper import IMapDeclarationProps
 
 
@@ -28,7 +25,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         if VerbType.TRANSITIVE in verb.verb_types:
             result = self._map_transitive(evt)
 
-        # TODO: F2 - Handle Intransitive case
+        # TODO: Handle Intransitive case
         
         return result
     

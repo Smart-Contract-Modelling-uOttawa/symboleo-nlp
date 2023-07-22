@@ -5,7 +5,7 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.declaration import Declaration
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.norm import INorm
-from app.classes.patterns.pattern_classes import PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 from app.src.operations.operation_mapper import OperationMapper

@@ -1,6 +1,6 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.console_app.console_dependencies import UserDependencies
+from app.console_lib.console_dependencies import UserDependencies
 from app.src.operations.termination_updater import TerminationOperation
 
 # TODO: Re-integrate this?

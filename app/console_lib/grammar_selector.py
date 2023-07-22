@@ -2,13 +2,13 @@ from typing import List
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.operations.user_input import UnitType, UserInput
 
-from app.src.selection.child_getter import IGetChildren
-from app.src.selection.token_selector_set import ISelectNode
-from app.src.selection.input_value_getter import IGetInputValues
+from app.src.grammar_builder.child_getter import IGetChildren
+from app.console_lib.token_selector_set import ISelectNode
+from app.console_lib.input_value_getter import IGetInputValues
 
 from app.src.grammar_builder.grammar_builder import GrammarNode
 
-# TODO: F3? - Re-integrate this into console application
+# TODO: F3? - Re-integrate this into console application. Then Kill
 class ISelectElementList:
     def select(self, contract: ISymboleoContract) -> List[UserInput]:
         raise NotImplementedError()

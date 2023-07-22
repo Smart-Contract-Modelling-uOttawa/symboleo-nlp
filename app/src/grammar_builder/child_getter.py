@@ -4,7 +4,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 
 from app.classes.grammar.grammar_node import GrammarNode
 
-from app.src.selection.unit_builders.unit_builder import IBuildUnit
+from app.src.grammar_builder.unit_builders.unit_builder import IBuildUnit
 
 class IGetChildren:
     def get(self, node: GrammarNode, contract: SymboleoContract) -> List[InputUnit]:

@@ -2,11 +2,11 @@ from typing import DefaultDict
 from collections import defaultdict
 from app.classes.units.all_units import *
 
-from app.src.selection.unit_builders.unit_builder import IBuildUnit, DefaultUnitBuilder
-from app.src.selection.unit_builders.subject_ub import SubjectUB
-from app.src.selection.unit_builders.dobj_ub import DobjUB
-from app.src.selection.unit_builders.obligation_subject_ub import ObligationSubjectUB
-from app.src.selection.unit_builders.obligation_action_ub import ObligationActionUB
+from app.src.grammar_builder.unit_builders.unit_builder import IBuildUnit, DefaultUnitBuilder
+from app.src.grammar_builder.unit_builders.subject_ub import SubjectUB
+from app.src.grammar_builder.unit_builders.dobj_ub import DobjUB
+from app.src.grammar_builder.unit_builders.obligation_subject_ub import ObligationSubjectUB
+from app.src.grammar_builder.unit_builders.obligation_action_ub import ObligationActionUB
 
 # Helpers (injected)
 #from app.src.selection.child_getters.domain_timepoint_extractor import DomainTimepointExtractor

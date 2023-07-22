@@ -3,7 +3,7 @@ from app.classes.grammar.grammar_node import GrammarNode
 from app.classes.units.input_unit import InputUnit
 from app.classes.operations.user_input import UserInput
 
-from app.console_app.input_converter import IConvertNodeToInput
+from app.console_lib.input_converter import IConvertNodeToInput
 
 class ISelectInput:
     def select(self, grammar_node: GrammarNode) -> List[InputUnit]:

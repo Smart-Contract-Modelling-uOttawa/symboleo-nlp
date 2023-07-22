@@ -2,7 +2,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 import re
 
 class IExtractAssetType:
-    def extract(self, str_val: str, head:str, contract: SymboleoContract) -> str:
+    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
         raise NotImplementedError()
 
 class AssetTypeExtractor(IExtractAssetType):
@@ -27,7 +27,7 @@ class AssetTypeExtractor(IExtractAssetType):
         self.__str_dict = s
 
     # Will have a barrage of different potential extractors here 
-    def extract(self, str_val: str, head:str, contract: SymboleoContract) -> str:
+    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
         # Check for role or asset
         decls = contract.contract_spec.declarations
         if str_val in decls:

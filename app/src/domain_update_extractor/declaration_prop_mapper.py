@@ -4,7 +4,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.helpers.string_to_class import CaseConverter
 
-# TODO: E3 - Clean and break this up
+# TODO: Clean and break this up
 class IMapDeclarationProps:
     def map_subject(self, subject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         raise NotImplementedError()

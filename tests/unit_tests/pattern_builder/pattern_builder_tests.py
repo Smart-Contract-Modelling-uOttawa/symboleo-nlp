@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.operations.user_input import UserInput, UnitType
-from app.classes.patterns.pattern_classes import PatternClass
+from app.classes.pattern_classes.pattern_class import PatternClass
 
 from app.src.pattern_builder.pattern_class_builder import PatternClassBuilder
 from app.src.pattern_builder.pattern_class_extractor import IExtractPatternClass

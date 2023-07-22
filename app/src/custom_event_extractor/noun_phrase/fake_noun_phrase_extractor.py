@@ -4,7 +4,7 @@ from app.src.custom_event_extractor.element_extractor import IExtractElement
 
 from tests.helpers.test_objects import NounPhrases
 
-# So that we don't need to use nlp
+# So that we don't need to use nlp all the time when testing
 class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
     def __init__(self):
         self.__dict = {
