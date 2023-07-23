@@ -6,9 +6,9 @@ from app.classes.spec.sym_interval import SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.pattern_classes.except_event import ExceptEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
-from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation, Power
+from app.classes.spec.norm_config import NormConfig, ParameterConfig
 
 from app.src.norm_update_extractor.handlers.except_event_handler import ExceptEventHandler
 from tests.helpers.sample_norm_lib import SampleNorms
@@ -19,12 +19,11 @@ class ExceptEventHandlerTests(unittest.TestCase):
 
     # Obligation not to => power to suspend
     def test_handler(self):
-        norm = SampleNorms.get_sample_obligation('test_id', negation=True)
+        norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=True)
         pattern_class = ExceptEvent()
         pattern_class.event = VariableEvent('evt_test')
-        handle_obj = HandleObject(norm)
 
-        result = self.sut.handle(pattern_class, handle_obj)
+        result = self.sut.handle(pattern_class, norm_config)
 
         new_norm: Obligation = result[0]
         self.assertEqual(len(result), 1)
@@ -47,9 +46,9 @@ class ExceptEventHandlerTests(unittest.TestCase):
         norm = SampleNorms.get_suspension_power('test_id', 'ob_test')
         pattern_class = ExceptEvent()
         pattern_class.event = VariableEvent('evt_test')
-        handle_obj = HandleObject(norm)
+        norm_config = NormConfig(norm, ParameterConfig('powers', 'test_id', 'trigger'))
 
-        result = self.sut.handle(pattern_class, handle_obj)
+        result = self.sut.handle(pattern_class, norm_config)
 
         new_norm: Obligation = result[0]
         self.assertEqual(len(result), 1)

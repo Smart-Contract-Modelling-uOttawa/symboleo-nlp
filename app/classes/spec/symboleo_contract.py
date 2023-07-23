@@ -4,6 +4,7 @@ from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
 from app.classes.spec.norm import INorm, Obligation, Norm
+from app.classes.spec.norm_config import NormConfig
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.declaration import Declaration
@@ -69,6 +70,19 @@ class SymboleoContract(ISymboleoContract):
         }
         return d[type_str]
     
+    def get_norm_configs_by_key(self, nl_key: str, parm_key: str) -> List[NormConfig]:
+        results = []
+        
+        parm_configs = self.nl_template.template_dict[nl_key].parameters[parm_key]
+
+        for parm_config in parm_configs:
+            norm_type = parm_config.norm_type
+            norm_id = parm_config.norm_id
+            next_norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
+            next_nc = NormConfig(next_norm, parm_config)
+            results.append(next_nc)
+        
+        return results
 
     def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
         parm_configs = self.nl_template.template_dict[nl_key].parameters[parm_key]

@@ -4,7 +4,7 @@ from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.pattern_classes.after_date import AfterDate
 from app.classes.spec.predicate_function import PredicateFunctionHappensAfter
-from app.classes.operations.handle_object import HandleObject
+from app.classes.spec.norm_config import NormConfig, ParameterConfig
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
@@ -16,12 +16,11 @@ class AfterDateDateHandlerTests(unittest.TestCase):
         self.sut = AfterDateHandler()
 
     def test_handler(self):
-        norm = SampleNorms.get_sample_obligation('test_id')
+        norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = AfterDate()
         pattern_class.date_text = 'March 30, 2024'
-        handle_obj = HandleObject(norm)
 
-        result = self.sut.handle(pattern_class, handle_obj)
+        result = self.sut.handle(pattern_class, norm_config)
         
         new_norm: Obligation = result[0]
         self.assertEqual(len(result), 1)

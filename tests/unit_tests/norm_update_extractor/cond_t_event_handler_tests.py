@@ -3,7 +3,6 @@ from unittest.mock import MagicMock
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.pattern_classes.cond_t_event import CondTEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
-from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
@@ -15,12 +14,11 @@ class CondTEventHandlerTests(unittest.TestCase):
         self.sut = CondTEventHandler()
 
     def test_handler(self):
-        norm = SampleNorms.get_sample_obligation('test_id')
+        norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = CondTEvent()
         pattern_class.event = VariableEvent('evt_test')
-        handle_obj = HandleObject(norm)
 
-        result = self.sut.handle(pattern_class, handle_obj)
+        result = self.sut.handle(pattern_class, norm_config)
         
         new_norm: Obligation = result[0]
         self.assertEqual(len(result), 1)

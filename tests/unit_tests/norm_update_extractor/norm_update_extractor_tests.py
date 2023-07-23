@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
 from app.classes.pattern_classes.pattern_class import PatternClass
-from app.classes.operations.handle_object import HandleObject
 
 from app.classes.spec.norm import INorm
+from app.classes.spec.norm_config import NormConfig, ParameterConfig
 
 from app.src.norm_update_extractor.norm_update_extractor import NormUpdateExtractor
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
@@ -21,9 +21,9 @@ class NormUpdateExtractorTests(unittest.TestCase):
 
     def test_norm_update_extractor(self):
         pattern = PatternClass()
-        handle_obj = HandleObject(INorm())
+        norm_config = NormConfig(INorm(), ParameterConfig('', '', ''))
 
-        result = self.sut.extract(pattern, handle_obj)
+        result = self.sut.extract(pattern, norm_config)
 
         self.assertEqual(len(result), 1)
         self.assertEqual(self.fake_handler.handle.call_count, 1)

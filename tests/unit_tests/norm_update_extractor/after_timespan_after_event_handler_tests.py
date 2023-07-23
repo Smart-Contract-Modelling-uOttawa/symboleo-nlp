@@ -5,7 +5,6 @@ from app.classes.spec.sym_point import Point
 from app.classes.spec.point_function import TimeUnit, PointFunction
 from app.classes.pattern_classes.after_timespan_after_event import AfterTimespanAfterEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappensAfter
-from app.classes.operations.handle_object import HandleObject
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
@@ -17,14 +16,13 @@ class AfterTimespanAfterEventHandlerTests(unittest.TestCase):
         self.sut = AfterTimespanAfterEventHandler()
 
     def test_handler(self):
-        norm = SampleNorms.get_sample_obligation('test_id')
+        norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = AfterTimespanAfterEvent()
         pattern_class.timespan_unit = TimeUnit.Days
         pattern_class.timespan_value = 10
         pattern_class.event = VariableEvent('evt_test')
-        handle_obj = HandleObject(norm)
 
-        result = self.sut.handle(pattern_class, handle_obj)
+        result = self.sut.handle(pattern_class, norm_config)
         
         new_norm: Obligation = result[0]
         self.assertEqual(len(result), 1)

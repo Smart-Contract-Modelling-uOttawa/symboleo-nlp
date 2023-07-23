@@ -21,5 +21,12 @@ nl_template = NLTemplate(
                 'P3': [ ParameterConfig('obligations', 'ob_pay_extra', 'antecedent')]
             }
         ),
+        # Kill
+        'test_cond': TemplateObj(
+            'if something happens [P4], the renter must pay an extra fee of $50',
+            {
+                'P4': [ ParameterConfig('obligations', 'ob_test', 'antecedent')]
+            }
+        ),
     }
 )

@@ -2,6 +2,7 @@ from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.spec.norm import Norm, Obligation, Power
+from app.classes.spec.norm_config import NormConfig, ParameterConfig
 from app.classes.helpers.prop_maker import PropMaker
 
 class SampleNorms:
@@ -26,6 +27,11 @@ class SampleNorms:
             PropMaker.make_default(),
             PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_action')), negation)
        )
+
+    @staticmethod
+    def get_sample_obligation_config(id='test_id', negation=False) -> NormConfig:
+        norm = SampleNorms.get_sample_obligation(id, negation)
+        return NormConfig(norm, ParameterConfig('obligtions', id, 'consequent'))
     
     @staticmethod
     def get_suspension_power(id='test_pow', ob_id='ob_test') -> Norm:

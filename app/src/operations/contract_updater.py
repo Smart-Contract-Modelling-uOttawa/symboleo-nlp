@@ -19,11 +19,12 @@ class ContractUpdater(IUpdateContract):
 
     def update(self, contract: SymboleoContract, op_code: OpCode, config: UpdateConfig):
         # Need to get the norm
-        norms = contract.get_norms_by_key(config.nl_key, config.parm_key)
-        norm = norms[0]
+        norm_configs = contract.get_norm_configs_by_key(config.nl_key, config.parm_key)
+        norm_config = norm_configs[0]
+
 
         if op_code == OpCode.UPDATE_PARM:
-            update_obj = self.__operation_mapper.map(config.user_inputs, contract, norm)
+            update_obj = self.__operation_mapper.map(config.user_inputs, contract, norm_config)
             contract.run_updates(update_obj)
             contract.update_nl(config.nl_key, config.parm_key, update_obj.nl_update)
         
