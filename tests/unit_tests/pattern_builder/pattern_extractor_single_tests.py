@@ -37,10 +37,10 @@ def mock_event3():
 
 # Want a test for each pattern class
 test_suite = [
-    # (
-    #     [ UnitType.TIMESPAN, UnitType.AFTER ] + mock_event3(), 
-    #     TimespanAfterEvent
-    # )
+    (
+        [ UnitType.FROM, UnitType.TIMEPOINT, UnitType.UNTIL, UnitType.TIMEPOINT ], 
+        FromUntilInterval
+    )
 ]
 
 # TODO: Add all test cases
@@ -48,6 +48,7 @@ class PatternExtractorTests(unittest.TestCase):
     def setUp(self):
         self.getter = IGetAllPatternClasses()
         self.getter.get = MagicMock(return_value = [
+            FromUntilInterval()
         ])
         self.sut = PatternClassExtractor(self.getter)
 
@@ -56,7 +57,7 @@ class PatternExtractorTests(unittest.TestCase):
         for test_val, exp_res in test_suite:
             result = self.sut.extract(test_val)
 
-            self.assertTrue(isinstance(result, exp_res))
+            self.assertTrue(isinstance(result[0], exp_res))
 
 if __name__ == '__main__':
     unittest.main()

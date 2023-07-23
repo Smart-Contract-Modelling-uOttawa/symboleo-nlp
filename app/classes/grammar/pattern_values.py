@@ -32,6 +32,7 @@ temp_tree = {
 
     PV.TIMESPAN: UnitType.TIMESPAN,
     PV.DATE: UnitType.DATE,
+    PV.TIME_PERIOD: UnitType.TIME_PERIOD,
 
     PV.EVENT: GAnd(UnitType.EVENT, GOr(PV.CUSTOM_EVENT, PV.CONTRACT_EVENT, PV.NORM_EVENT)),
     PV.CUSTOM_EVENT: GAnd(UnitType.CUSTOM_EVENT, GAnd(UnitType.SUBJECT, PV.VERB_PHRASE)),
@@ -48,8 +49,6 @@ temp_tree = {
     PV.PRED_PHRASE: GAnd(UnitType.PREDICATE, PV.ADV_AND_PP),
     # Prep phrase...?
 
-    PV.TIMESPAN: UnitType.TIMESPAN,
-    PV.DATE: UnitType.DATE,
     PV.INTERVAL: GOr(
         GAnd(PV.BETWEEN_TIMEPOINT, PV.AND_TIMEPOINT),
         GAnd(PV.FROM_TIMEPOINT, PV.UNTIL_TIMEPOINT),

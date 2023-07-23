@@ -7,13 +7,17 @@ from app.classes.pattern_classes.before_event import BeforeEvent
 from app.classes.pattern_classes.cond_a_event import CondAEvent
 from app.classes.pattern_classes.cond_t_event import CondTEvent
 from app.classes.pattern_classes.except_event import ExceptEvent
-from app.classes.pattern_classes.event_interval import EventInterval
 from app.classes.pattern_classes.notice_event import NoticeEvent
 from app.classes.pattern_classes.timespan_after_event import TimespanAfterEvent
 from app.classes.pattern_classes.timespan_before_event import TimespanBeforeEvent
 from app.classes.pattern_classes.until_date import UntilDate
 from app.classes.pattern_classes.until_event import UntilEvent
 from app.classes.pattern_classes.within_timespan_event import WithinTimespanEvent
+
+from app.classes.pattern_classes.between_interval import BetweenInterval
+from app.classes.pattern_classes.during_time_period import DuringTimePeriod
+from app.classes.pattern_classes.from_until_interval import FromUntilInterval
+from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterval
 
 
 
@@ -28,11 +32,16 @@ def get_all_pattern_classes():
         CondAEvent(),
         CondTEvent(),
         ExceptEvent(),
-        #EventInterval(),
         #NoticeEvent(),
         TimespanAfterEvent(),
         TimespanBeforeEvent(),
         UntilDate(),
         UntilEvent(),
-        WithinTimespanEvent()
+        WithinTimespanEvent(),
+
+        BetweenInterval(),
+        FromUntilInterval(),
+        DuringTimePeriod(),
+        ForTimespanInterval()
+
     ]
