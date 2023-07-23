@@ -8,7 +8,7 @@ from app.src.pattern_builder.pattern_class_filler import IFillPatternClass
 from app.src.pattern_builder.pattern_class_extractor import IExtractPatternClass
 
 class IBuildPatternClass:
-    def build(self, user_input: List[UserInput], contract: SymboleoContract) -> PatternClass:
+    def build(self, user_input: List[UserInput], contract: SymboleoContract) -> List[PatternClass]:
         raise NotImplementedError()
 
 
@@ -21,9 +21,13 @@ class PatternClassBuilder(IBuildPatternClass):
         self.__pattern_class_extractor = pattern_class_extractor
         self.__pattern_class_filler = pattern_class_filler
 
-    def build(self, user_input: List[UserInput], contract: SymboleoContract) -> PatternClass:
+    def build(self, user_input: List[UserInput], contract: SymboleoContract) -> List[PatternClass]:
+        results = []
         input_types = [x.unit_type for x in user_input]
-        pattern_class = self.__pattern_class_extractor.extract(input_types)
+        pattern_classes = self.__pattern_class_extractor.extract(input_types)
 
-        result = self.__pattern_class_filler.fill(pattern_class, contract, user_input)
-        return result
+        for pc in pattern_classes:
+            next_result = self.__pattern_class_filler.fill(pc, contract, user_input)
+            results.append(next_result)
+        
+        return results

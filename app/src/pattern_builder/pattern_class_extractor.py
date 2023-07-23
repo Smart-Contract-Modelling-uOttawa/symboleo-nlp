@@ -8,7 +8,7 @@ from app.classes.grammar.pattern_values import *
 from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
 
 class IExtractPatternClass:
-    def extract(self, set_to_check: List[UnitType]) -> PatternClass:
+    def extract(self, set_to_check: List[UnitType]) -> List[PatternClass]:
         raise NotImplementedError()
     
 # TODO: Break this up. Very complex
@@ -23,7 +23,7 @@ class PatternClassExtractor(IExtractPatternClass):
         # May want a better way of doing this...
         self._optional_pv = [PV.ADV_AND_PP]
 
-    def extract(self, set_to_check: List[UnitType]) -> PatternClass:
+    def extract(self, set_to_check: List[UnitType]) -> List[PatternClass]:
         result_set = []
         all_classes = self.__all_pattern_class_getter.get()
         for pattern_class in all_classes:
@@ -32,10 +32,8 @@ class PatternClassExtractor(IExtractPatternClass):
 
         if len(result_set) == 0:
             raise ValueError('No pattern classes found')
-        if len(result_set) > 1:
-            raise ValueError('Multiple patterns found')
-
-        return result_set[0]        
+    
+        return result_set     
 
     
     def _inner_check(self, set_to_check: List[UnitType], target_set: List[PV]):

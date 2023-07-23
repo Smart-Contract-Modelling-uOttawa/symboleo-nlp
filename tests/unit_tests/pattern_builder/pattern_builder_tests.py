@@ -13,7 +13,7 @@ class PatternBuilderTests(unittest.TestCase):
 
         self.pattern_class_extractor = IExtractPatternClass()
         fake_pattern_class = PatternClass()
-        self.pattern_class_extractor.extract = MagicMock(return_value=fake_pattern_class)
+        self.pattern_class_extractor.extract = MagicMock(return_value=[fake_pattern_class])
 
         self.pattern_class_filler = IFillPatternClass()
         fake_pattern_fill = PatternClass()
@@ -24,14 +24,14 @@ class PatternBuilderTests(unittest.TestCase):
             self.pattern_class_filler
         )
 
-    def test_operation_mapper(self):
+    def test_pattern_builder(self):
         test_input = [
             UserInput(UnitType.DUMMY, 'TEST')
         ]
 
         result = self.sut.build(test_input, None)
 
-        self.assertTrue(isinstance(result, PatternClass))
+        self.assertTrue(isinstance(result[0], PatternClass))
         self.assertEqual(self.pattern_class_extractor.extract.call_count, 1)
         self.assertEqual(self.pattern_class_filler.fill.call_count, 1)
 

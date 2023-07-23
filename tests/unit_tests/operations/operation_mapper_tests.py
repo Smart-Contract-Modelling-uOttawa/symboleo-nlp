@@ -9,6 +9,7 @@ from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 from app.src.operations.operation_mapper import OperationMapper
+from app.src.operations.pattern_class_resolver import IResolvePatternClasses
 from app.src.pattern_builder.pattern_class_builder import IBuildPatternClass
 from app.src.norm_update_extractor.norm_update_extractor import IExtractNormUpdates
 from app.src.domain_update_extractor.domain_update_extractor import IExtractDomainUpdates, DomainUpdates
@@ -18,7 +19,10 @@ class OperationMapperTests(unittest.TestCase):
 
         self.pattern_class_builder = IBuildPatternClass()
         fake_pattern_class = PatternClass()
-        self.pattern_class_builder.build = MagicMock(return_value=fake_pattern_class)
+        self.pattern_class_builder.build = MagicMock(return_value=[fake_pattern_class])
+
+        self.pattern_class_resolver = IResolvePatternClasses()
+        self.pattern_class_resolver.resolve = MagicMock(return_value=fake_pattern_class)
 
         self.domain_update_extractor = IExtractDomainUpdates()
 
@@ -35,6 +39,7 @@ class OperationMapperTests(unittest.TestCase):
 
         self.sut = OperationMapper(
             self.pattern_class_builder,
+            self.pattern_class_resolver,
             self.norm_update_extractor,
             self.domain_update_extractor
         )
@@ -54,6 +59,7 @@ class OperationMapperTests(unittest.TestCase):
         self.assertEqual(len(result.domain_objects), 1)
         self.assertEqual(len(result.norms), 1)
         self.assertEqual(self.pattern_class_builder.build.call_count, 1)
+        self.assertEqual(self.pattern_class_resolver.resolve.call_count, 1)
         self.assertEqual(self.domain_update_extractor.extract.call_count, 1)
         self.assertEqual(self.norm_update_extractor.extract.call_count, 1)
 

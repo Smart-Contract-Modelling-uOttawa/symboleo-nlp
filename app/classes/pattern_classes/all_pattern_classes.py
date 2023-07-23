@@ -20,7 +20,7 @@ from app.classes.pattern_classes.within_timespan_event import WithinTimespanEven
 def get_all_pattern_classes():
     return [
         AfterDate(),
-        #AfterEvent(),
+        AfterEvent(),
         AfterTimespanAfterEvent(),
         AfterTimespanBeforeEvent(),
         BeforeDate(),

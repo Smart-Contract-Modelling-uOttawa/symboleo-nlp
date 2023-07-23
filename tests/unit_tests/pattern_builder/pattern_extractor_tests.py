@@ -122,7 +122,7 @@ class PatternExtractorTests(unittest.TestCase):
         for test_val, exp_res in test_suite:
             result = self.sut.extract(test_val)
 
-            self.assertTrue(isinstance(result, exp_res))
+            self.assertTrue(isinstance(result[0], exp_res))
 
 if __name__ == '__main__':
     unittest.main()

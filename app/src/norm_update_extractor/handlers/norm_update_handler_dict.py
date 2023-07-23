@@ -3,6 +3,7 @@ from typing import DefaultDict, Dict, Type
 from app.classes.pattern_classes.all_pattern_classes import *
 
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
+from app.src.norm_update_extractor.handlers.after_event_handler import AfterEventHandler
 from app.src.norm_update_extractor.handlers.before_date_handler import BeforeDateHandler
 from app.src.norm_update_extractor.handlers.before_event_handler import BeforeEventHandler
 from app.src.norm_update_extractor.handlers.within_timespan_handler import WithinTimespanHandler
@@ -28,15 +29,16 @@ class NormUpdateHandlerDictBuilder:
         d[CondTEvent] = CondTEventHandler()
         d[ExceptEvent] = ExceptEventHandler()
         d[AfterDate] = AfterDateHandler()
+        d[AfterEvent] = AfterEventHandler()
         d[AfterTimespanAfterEvent] = AfterTimespanAfterEventHandler()
         d[AfterTimespanBeforeEvent] = AfterTimespanBeforeEventHandler()
         d[TimespanAfterEvent] = TimespanAfterEventHandler()
         d[TimespanBeforeEvent] = TimespanBeforeEventHandler()
         d[UntilDate] = UntilDateHandler()
         d[UntilEvent] = UntilEventHandler()
+
         
         # TODO: Still missing (tough ones)
         # EventInterval
         # NoticeEvent
-        # AfterEvent
         return d
