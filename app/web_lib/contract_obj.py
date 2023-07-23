@@ -70,8 +70,9 @@ class WebContract:
             nl.append(next_nl)
         
             for parm_key in template_obj.parameters:
-                next_parm = f'{nl_key}.{parm_key}'
-                parms.append(next_parm)
+                if not template_obj.parameters[parm_key][0].filled:
+                    next_parm = f'{nl_key}.{parm_key}'
+                    parms.append(next_parm)
 
         self.nl = nl
         self.parms = parms

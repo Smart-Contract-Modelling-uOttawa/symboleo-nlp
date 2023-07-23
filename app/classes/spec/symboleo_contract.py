@@ -117,8 +117,11 @@ class SymboleoContract(ISymboleoContract):
         old_str = t[nl_key].str_val
         t[nl_key].str_val = old_str.replace(f'[{parm_key}]', nl_refinement)
 
-        # Remove the parm from the template
-        del t[nl_key].parameters[parm_key]
+        # Mark the parm as being filled
+        for pc in t[nl_key].parameters[parm_key]:
+            pc.filled = True
+        
+        #del t[nl_key].parameters[parm_key]
 
 
     # Print the NL template strings and their corresponding symboleo norms

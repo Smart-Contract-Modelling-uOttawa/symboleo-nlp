@@ -3,5 +3,3 @@ class Dependencies:
         self.nlp = nlp
         self.fake = fake
         self.use_new = use_new
-
-

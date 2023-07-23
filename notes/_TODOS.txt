@@ -8,8 +8,7 @@ PLAN:
 FEATURES
 - Decide on the "difficult" CNL elements: AfterEvent, NoticeEvent, EventInterval
 - Finish up Custom Events and Norm Events (all verbs and nouns)
-- is_complete: event and pattern class
-- Do we need to link the norm component in the config?
+- is_complete: event and pattern class - can prob delete
 - Adding needed Parameters
 - Add DATE for BeforeDate as event property?
 - Figure out mapping verb types (trans, intrans, link). also is linking different?
@@ -18,7 +17,7 @@ FEATURES
 - Attempt to represent the "provide X days of notice" termination power ?
 
 BUGS
-- The parameters disappear from norm_events if theyve been populated
+
 
 ENGG - need to break these up
 - Asset Declarations
