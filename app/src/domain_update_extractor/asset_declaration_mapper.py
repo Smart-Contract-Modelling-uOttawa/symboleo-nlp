@@ -7,7 +7,8 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.src.domain_update_extractor.asset_declaration_extractor import IExtractAssetDeclarations
 
 
-# TODO: Break this up
+# Given a CustomEvent, extract all asset declarations
+## The components of the custom event already have associated asset types
 class IMapAssetDeclarations:
     def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         raise NotImplementedError()
@@ -19,18 +20,22 @@ class AssetDeclarationMapper(IMapAssetDeclarations):
     def map(self, custom_event: CustomEvent, contract: SymboleoContract) -> List[AssetDeclaration]:
         results = []
 
-        # These are types that we do NOT want to add on to the existing contract
+        # Get the asset types that we do NOT want to add to the existing contract
+        ## Includes a pre-defined list and enums found on the contract domain model 
         exclusions = ['Role', 'Date', 'Contract', 'Money']
         exclusions.extend([x.name for x in contract.domain_model.enums])
 
+        # Check the subject
         if self._should_include(custom_event.subj, exclusions):
             next_asset = self.__asset_extractor.extract(custom_event.subj)
             results.append(next_asset)
         
+        # The the direct object
         if custom_event.dobj and self._should_include(custom_event.dobj, exclusions):
             next_asset = self.__asset_extractor.extract(custom_event.dobj)
             results.append(next_asset)
 
+        # Check any prep phrases
         pps = custom_event.pps
         if pps:
             for pp in pps:

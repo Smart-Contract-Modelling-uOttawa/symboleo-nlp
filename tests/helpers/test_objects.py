@@ -35,6 +35,7 @@ class NounPhrases:
     productivity = lambda: NounPhrase('productivity', 'productivity', False, False, asset_type='Productivity')
 
     authorization = lambda: NounPhrase('authorization', 'authorization', asset_type='Authorization')
+    phone = lambda: NounPhrase('the phone', 'phone', False, False, 'the', asset_type='Phone')
 
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
@@ -114,6 +115,14 @@ class CustomEvents:
             PrepPhrase('for pets', 'for', NounPhrases.pets())
         ]
     )
+    disrupt_buyer = lambda: CustomEvent(
+        subj = NounPhrases.bob(),
+        verb = Verbs.disrupts(),
+        dobj = NounPhrases.buyer(),
+        pps = [
+            PrepPhrase('on the phone', 'on', NounPhrases.phone())
+        ]
+    )
     
 
 
@@ -127,6 +136,7 @@ class AssetDeclarations:
     legal_proceedings = lambda: Declaration('legal proceedings', 'LegalProceedings', 'assets', [])
     credit_card = lambda: Declaration('credit card', 'CreditCard', 'assets', []) # PaymentMethod...?
     pets = lambda: Declaration('pets', 'Pets', 'assets', []) # ??
-    hundred_dollars = lambda: Declaration('$100', 'Amount', 'assets', [])
+    hundred_dollars = lambda: Declaration('$100', 'Money', 'assets', [])
     canada = lambda: Declaration('Canada', 'Country', 'assets', [])
     property = lambda: Declaration('property', 'Property', 'assets', [])
+    pie = lambda: Declaration('apple_pie', 'Pie', 'assets', [])

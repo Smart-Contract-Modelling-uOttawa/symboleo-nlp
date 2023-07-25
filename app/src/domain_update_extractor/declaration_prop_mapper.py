@@ -4,7 +4,13 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.helpers.string_to_class import CaseConverter
 
-# TODO: Clean and break this up
+# Given a noun phrase and its CustomEvent context, map it to a declaration property
+## Requires a key, a value, and a type
+## The key should be somewhat descriptive. It will be used by the domain model object
+### Identify if its a agent or some other property
+## The type will be the asset type of the incoming noun phrase
+## The value will be some form of the to_text() function on the incoming noun phrase
+# Note: These are all based on rough heuristics, and could be replaced by more evidence-based models
 class IMapDeclarationProps:
     def map_subject(self, subject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         raise NotImplementedError()
@@ -21,42 +27,33 @@ class DeclarationPropMapper(IMapDeclarationProps):
         # framenet
         # Other nlp...?
 
-
     def map_subject(self, subject: NounPhrase, evt: CustomEvent) -> DeclarationProp:
-        the_type = subject.asset_type
-        if subject.is_role:
-            the_value = subject.str_val
-        else:
-            the_value = subject.to_text(NPTextType.BASIC)
-            the_value = CaseConverter.to_snake(the_value)
-        
+        asset_type = subject.asset_type
+
         if subject.is_role:
             the_key = f'{evt.verb.conjugations.continuous}_agent'
+            the_value = subject.to_text()
         else:
-            if the_type == 'String':
-                the_key = 'Other'
-            else:
-                the_key = the_type
+            the_key = f'{evt.verb.conjugations.continuous}_subject'
+            the_value = CaseConverter.to_snake(subject.to_text(NPTextType.BASIC))
                     
-        return DeclarationProp(the_key, the_value, the_type)
+        return DeclarationProp(the_key, the_value, asset_type)
 
     
-
     def map_dobject(self, dobject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
-        the_type = dobject.asset_type
-        the_value = dobject.to_text(NPTextType.BASIC)
-        the_value = CaseConverter.to_snake(the_value)
+        asset_type = dobject.asset_type
+        the_value = CaseConverter.to_snake(dobject.to_text(NPTextType.BASIC))
 
         if dobject.is_role:
-            the_key = f'{evt.verb.conjugations.continuous}_target' 
+            the_key = f'{evt.verb.conjugations.past}_target' 
         else:
             the_key = f'{evt.verb.conjugations.past}_object' 
 
-        return DeclarationProp(the_key, the_value, the_type)
+        return DeclarationProp(the_key, the_value, asset_type)
     
 
     def map_prep_phrase(self, prep_phrase: PrepPhrase, evt:CustomEvent) -> DeclarationProp:
-        the_type = prep_phrase.pobj.asset_type
+        asset_type = prep_phrase.pobj.asset_type
         the_value = prep_phrase.pobj.to_text() # Will prob pass in a "text_type" here (e.g. "basic")
 
         if prep_phrase.pobj.is_role:
@@ -71,7 +68,7 @@ class DeclarationPropMapper(IMapDeclarationProps):
             elif prep_phrase.preposition == 'for':
                 the_key = f'{evt.verb.lemma}_detail'
             else:
-                the_key = 'Other'
+                the_key = f'{evt.verb.lemma}_detail'
         
-        return DeclarationProp(the_key, the_value, the_type)
+        return DeclarationProp(the_key, the_value, asset_type)
     

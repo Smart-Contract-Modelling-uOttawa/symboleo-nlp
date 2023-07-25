@@ -4,133 +4,27 @@ from unittest.mock import MagicMock
 from app.classes.units.all_units import *
 from app.classes.pattern_classes.all_pattern_classes import *
 
-from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter, IGetAllPatternClasses
+from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
+from app.src.pattern_builder.single_pattern_checker import ICheckSinglePattern
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
-
-
-def mock_event():
-    return [
-        UnitType.EVENT, 
-        UnitType.CUSTOM_EVENT, 
-        UnitType.SUBJECT,
-        UnitType.TRANSITIVE_VERB,
-        UnitType.DOBJ, 
-        UnitType.PREP_PHRASE
-    ]
-
-def mock_event2():
-    return [
-        UnitType.EVENT,
-        UnitType.CONTRACT_EVENT,
-        UnitType.CONTRACT_SUBJECT,
-        UnitType.CONTRACT_ACTION
-    ]
-
-def mock_event3():
-    return [
-        UnitType.EVENT,
-        UnitType.CUSTOM_EVENT,
-        UnitType.SUBJECT,
-        UnitType.TRANSITIVE_VERB,
-        UnitType.DOBJ
-    ]
-
-# Want a test for each pattern class
-test_suite = [
-    (
-        [UnitType.LATER_THAN, UnitType.DATE],
-        AfterDate
-    ),
-    # TODO: This one is ambiguous!!! How to handle...?
-    # (
-    #     [UnitType.AFTER, UnitType.EVENT],
-    #     AfterEvent
-    # ),
-    (   
-        [UnitType.FOLLOWING, UnitType.TIMESPAN, UnitType.FOLLOWING] + mock_event(),
-        AfterTimespanAfterEvent
-    ),
-    (   
-        [UnitType.FOLLOWING, UnitType.TIMESPAN, UnitType.BEFORE] + mock_event(),
-        AfterTimespanBeforeEvent
-    ),
-    (
-        [ UnitType.BEFORE, UnitType.DATE], 
-        BeforeDate
-    ),
-    (
-        [ UnitType.PRIOR_TO] + mock_event(), 
-        BeforeEvent
-    ),
-    (
-        [ UnitType.IN_CASE] + mock_event2(), 
-        CondAEvent
-    ),
-    (
-        [ UnitType.WHEN ] + mock_event2(), 
-        CondTEvent
-    ),
-    (
-        [ UnitType.UNLESS] + mock_event(), 
-        ExceptEvent
-    ),
-    (
-        [ UnitType.FOR, UnitType.TIMESPAN, UnitType.FOLLOWING, UnitType.TIMEPOINT ], 
-        ForTimespanInterval
-    ),
-    (
-        [ UnitType.BETWEEN, UnitType.TIMEPOINT, UnitType.AND, UnitType.TIMEPOINT ], 
-        BetweenInterval
-    ),
-    (
-        [ UnitType.DURING, UnitType.TIME_PERIOD ], 
-        DuringTimePeriod
-    ),
-    (
-        [ UnitType.FROM, UnitType.TIMEPOINT, UnitType.UNTIL, UnitType.TIMEPOINT ], 
-        FromUntilInterval
-    ),
-    # (
-    #     [ UnitType.BY_GIVING, UnitType.TIMESPAN, UnitType.NOTICE_EVENT ], 
-    #     NoticeEvent
-    # ),
-    (
-        [ UnitType.TIMESPAN, UnitType.BEFORE ] + mock_event(), 
-        TimespanBeforeEvent
-    ),
-    (
-        [ UnitType.TIMESPAN, UnitType.AFTER ] + mock_event(), 
-        TimespanAfterEvent
-    ),
-    (
-        [ UnitType.TIMESPAN, UnitType.AFTER ] + mock_event3(), 
-        TimespanAfterEvent
-    ),
-    (
-        [ UnitType.UNTIL, UnitType.DATE ], 
-        UntilDate
-    ),
-    (
-        [ UnitType.UNTIL ] + mock_event(), 
-        UntilEvent
-    ),
-    (
-        [ UnitType.WITHIN, UnitType.TIMESPAN, UnitType.OF] + mock_event(), 
-        WithinTimespanEvent
-    )
-]
 
 class PatternExtractorTests(unittest.TestCase):
     def setUp(self):
-        self.getter = AllPatternClassGetter()
-        self.sut = PatternClassExtractor(self.getter)
+        self.getter = IGetAllPatternClasses()
+        self.getter.get = MagicMock(return_value = [BeforeDate(), BeforeEvent()])
+        self.single_checker = ICheckSinglePattern()
+        self.single_checker.check = MagicMock(side_effect=[True, False])
+        self.sut = PatternClassExtractor(self.getter, self.single_checker)
 
+    def test_pattern_extractor(self):
+        self.single_checker.check = MagicMock(side_effect=[True, False])
+        result = self.sut.extract([UnitType.DUMMY])
 
-    def test_update_processor(self):
-        for test_val, exp_res in test_suite:
-            result = self.sut.extract(test_val)
-
-            self.assertTrue(isinstance(result[0], exp_res))
+        self.assertEqual(len(result), 1)
+        self.assertEqual(type(result[0]), type(BeforeDate()))
+        self.assertEqual(self.getter.get.call_count, 1)
+        self.assertEqual(self.single_checker.check.call_count, 2)
+    
 
 if __name__ == '__main__':
     unittest.main()
