@@ -36,6 +36,9 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.IN_EVENT: InEventUnit,
     UnitType.ONCE: OnceUnit,
     UnitType.UPON: UponUnit,
+    UnitType.BETWEEN: BetweenUnit,
+    UnitType.DURING: DuringUnit,
+    UnitType.THROUGHOUT: ThroughoutUnit,
 
     UnitType.TIMEPOINT: TimepointUnit,
     #UnitType.DOMAIN_TIMEPOINT: DomainTimepointUnit,

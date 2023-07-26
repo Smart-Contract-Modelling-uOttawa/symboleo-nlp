@@ -1,9 +1,9 @@
 from typing import List
+from enum import Enum
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 
 from app.classes.spec.sym_event import SymEvent
 from app.classes.events.custom_event.custom_event import CustomEvent
-
 
 class PatternClass:
     sequence: List[PatternVariable]

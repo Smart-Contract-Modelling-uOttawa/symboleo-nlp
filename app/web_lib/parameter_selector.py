@@ -14,13 +14,15 @@ class ParameterSelector:
         self.__input_storage = input_storage
         self.__grammar_handler = grammar_handler
 
-    def select(self, contract_id: str, unique_key:str) -> Dict[str, List[str]]:
+    def select(self, contract_id: str, unique_key:str, nl_key:str, parm_key:str) -> Dict[str, List[str]]:
         self.__input_storage.init_input(unique_key)
 
         contract = self.__contract_storage.load(unique_key, contract_id)
 
+        parm = contract.nl_template.template_dict[nl_key].parameters[parm_key][0]
+        
         # May combine these two
-        self.__grammar_handler.create()
+        self.__grammar_handler.create(parm.pattern_types)
         children = self.__grammar_handler.get_children(contract)
 
         result = {

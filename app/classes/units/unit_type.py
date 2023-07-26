@@ -5,7 +5,7 @@ class UnitType(Enum):
     AFTER = 'AFTER'
     AND = 'AND'
     BEFORE = 'BEFORE'
-    BETWEEN = 'BEWEEN'
+    BETWEEN = 'BETWEEN'
     BY = 'BY'
     BY_GIVING = 'BY_GIVING'
     CONTRACT_ACTION = 'CONTRACT_ACTION'

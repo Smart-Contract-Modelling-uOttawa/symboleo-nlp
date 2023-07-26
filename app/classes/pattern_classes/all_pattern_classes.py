@@ -43,5 +43,32 @@ def get_all_pattern_classes():
         FromUntilInterval(),
         DuringTimePeriod(),
         ForTimespanInterval()
+    ]
 
+def temporal_classes():
+    return [
+        AfterDate(),
+        AfterEvent(),
+        AfterTimespanAfterEvent(),
+        AfterTimespanBeforeEvent(),
+        BeforeDate(),
+        BeforeEvent(),
+        TimespanAfterEvent(),
+        TimespanBeforeEvent(),
+        UntilDate(),
+        UntilEvent(),
+        WithinTimespanEvent(),
+        BetweenInterval(),
+        FromUntilInterval(),
+        DuringTimePeriod(),
+        ForTimespanInterval()
+    ]
+
+def exception_classes():
+    return [ExceptEvent()]
+
+def conditional_classes():
+    return [
+        CondAEvent(),
+        CondTEvent()
     ]

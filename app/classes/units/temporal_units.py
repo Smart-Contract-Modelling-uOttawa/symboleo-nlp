@@ -11,6 +11,11 @@ class BeforeUnit(InputUnit):
     prompt = 'before'
     init_value = 'before'
 
+class BetweenUnit(InputUnit):
+    unit_type = UnitType.BETWEEN
+    prompt = 'between'
+    init_value = 'between'
+
 class ByUnit(InputUnit):
     unit_type = UnitType.BY
     prompt = 'by'
@@ -35,6 +40,11 @@ class PriorToUnit(InputUnit):
     unit_type = UnitType.PRIOR_TO
     prompt = 'Prior To'
     init_value = 'prior to'
+
+class ThroughoutUnit(InputUnit):
+    unit_type = UnitType.THROUGHOUT
+    prompt = 'Throughout'
+    init_value = 'throughout'
 
 class UntilUnit(InputUnit):
     unit_type = UnitType.UNTIL

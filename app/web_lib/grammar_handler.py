@@ -8,6 +8,7 @@ from app.src.grammar_builder.grammar_builder import IBuildGrammar
 from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
 from app.web_lib.grammar_storage import GrammarStorage
 from app.src.grammar_builder.child_getter import IGetChildren
+from app.classes.spec.parameter_config import PatternClassType
 
 from app.src.grammar_builder.tree_printer import TreePrinter
 
@@ -25,8 +26,8 @@ class GrammarHandler:
         self.__child_getter = child_getter
 
 
-    def create(self) -> GrammarNode:
-        pattern_classes = self.__pattern_class_getter.get()
+    def create(self, pattern_types: List[PatternClassType] = None) -> GrammarNode:
+        pattern_classes = self.__pattern_class_getter.get(pattern_types)
         grammar_node = self.__grammar_builder.build(pattern_classes)
 
         tp = TreePrinter()

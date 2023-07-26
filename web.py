@@ -47,7 +47,9 @@ def select_parameter():
 
     units = deps.parameter_selector.select(
         session['contract_id'], 
-        session['unique_key']
+        session['unique_key'],
+        nl_key,
+        parm_key
     )
 
     return jsonify({'units': units})

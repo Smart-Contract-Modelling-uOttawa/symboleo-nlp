@@ -1,12 +1,12 @@
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
-from app.classes.spec.parameter_config import ParameterConfig
+from app.classes.spec.parameter_config import ParameterConfig, PatternClassType as PT
 
 nl_template = NLTemplate(
     template_dict = {
         'pay_deposit': TemplateObj(
             'The renter must pay a security deposit of $1000 [P1]',
             {
-                'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent')]
+                'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent', pattern_types=[PT.TEMPORAL])]
             }
         ),
         'no_pets': TemplateObj(
