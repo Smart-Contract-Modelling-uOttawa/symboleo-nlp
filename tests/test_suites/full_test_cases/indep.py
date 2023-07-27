@@ -1,4 +1,3 @@
-from app.classes.elements.all_elements import *
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode

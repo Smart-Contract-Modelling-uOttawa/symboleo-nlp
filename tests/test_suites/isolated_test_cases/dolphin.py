@@ -60,9 +60,9 @@ dolphin_test_case = TestCase(
         ),
         NLTemplate(
             {   
-                'parm': TemplateObj(
-                    'Dolphin agrees to complete its photo-editing services [PARM]', 
-                    {'PARM': [ParameterConfig('obligations', 'ob_complete', 'consequent')]})
+                'nl_key': TemplateObj(
+                    'Dolphin agrees to complete its photo-editing services [P1]', 
+                    {'P1': [ParameterConfig('obligations', 'ob_complete', 'consequent')]})
             }
         )
     ),
@@ -71,20 +71,17 @@ dolphin_test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
-            # This will be the list of user inputs...
-            UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
             UserInput(UnitType.TIMESPAN, '14 days'),
             UserInput(UnitType.OF),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'Dolphin'),
-            UserInput(UnitType.VERB, 'receiving'),
-            UserInput(UnitType.DOBJ, 'the original digital photo files'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.TRANSITIVE_VERB, 'receiving'),
+            UserInput(UnitType.DOBJ, 'the original digital photo files')
         ],
-        nl_key='parm',
-        parm_key='PARM'
+        nl_key='nl_key',
+        parm_key='P1'
     ),
     
     exp_sym = SymboleoContract(
@@ -136,9 +133,9 @@ dolphin_test_case = TestCase(
         ),
         NLTemplate(
             {   
-                'parm': TemplateObj(
+                'nl_key': TemplateObj(
                     'Dolphin agrees to complete its photo-editing services within 14 days of Dolphin receiving the original digital photo files', 
-                    {'PARM': [ParameterConfig('obligations', 'ob_complete', 'consequent')]})
+                    {'P1': [ParameterConfig('obligations', 'ob_complete', 'consequent')]})
             }
         )
     ),

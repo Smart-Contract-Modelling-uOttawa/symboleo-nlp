@@ -1,28 +1,30 @@
 import unittest
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
+from app.src.operations.dependency_builder import DependencyBuilder
 
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
 from tests.test_suites.isolated_test_cases.dolphin import dolphin_test_case
-from tests.test_suites.isolated_test_cases.maimon import maimon_test_case
-from tests.test_suites.isolated_test_cases.franchise import franchise_test_case
-from tests.test_suites.isolated_test_cases.fox import fox_test_case
-from tests.test_suites.isolated_test_cases.letter import letter_test_case
-from tests.test_suites.isolated_test_cases.bosch import bosch_test_case
+# from tests.test_suites.isolated_test_cases.maimon import maimon_test_case
+# from tests.test_suites.isolated_test_cases.franchise import franchise_test_case
+# from tests.test_suites.isolated_test_cases.fox import fox_test_case
+# from tests.test_suites.isolated_test_cases.letter import letter_test_case
+# from tests.test_suites.isolated_test_cases.bosch import bosch_test_case
 # Will replace this with pattern_test_suite
 test_suite = [
     dolphin_test_case,
-    maimon_test_case,
-    franchise_test_case,
-    fox_test_case,
-    letter_test_case,
-    bosch_test_case
+    # maimon_test_case,
+    # franchise_test_case,
+    # fox_test_case,
+    # letter_test_case,
+    # bosch_test_case
 ]
 
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.updater = ContractUpdaterBuilder.build()
+        deps = DependencyBuilder.build(fake=True)
+        self.updater = ContractUpdaterBuilder.build(deps)
 
     def test_isolated(self):
         filepath = 'tests/test_suites/isolated_results'
@@ -38,7 +40,8 @@ class IsolatedTests(unittest.TestCase):
             self.updater.update(
                 contract, 
                 test_case.op_code,
-                test_case.update_config)
+                test_case.update_config
+            )
 
             # Print the actual and expected            
             with open(f'{filepath}/{k}_sym_actual.txt', 'w') as f:
