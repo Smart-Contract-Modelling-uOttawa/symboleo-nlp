@@ -27,7 +27,7 @@ class PatternUnitFillerDictConstructor:
         # d[UnitType.TIME_UNIT] = TimespanUnitFiller()
         # d[UnitType.TIME_VALUE] = TimespanValueFiller()
         # d[UnitType.DATE] = DateFiller()
-
+        
         d[UnitType.OBLIGATION_ACTION] = ObligationActionFiller()
         d[UnitType.OBLIGATION_SUBJECT] = ObligationSubjectFiller()
 

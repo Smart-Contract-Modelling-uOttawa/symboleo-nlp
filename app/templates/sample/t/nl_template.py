@@ -6,7 +6,8 @@ nl_template = NLTemplate(
         'pay_deposit': TemplateObj(
             'The renter must pay a security deposit of $1000 [P1]',
             {
-                'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent', pattern_types=[PT.TEMPORAL])]
+                'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent')]
+                # 'P1': [ ParameterConfig('obligations', 'ob_pay_deposit', 'consequent', pattern_types=[PT.TEMPORAL])]
             }
         ),
         'no_pets': TemplateObj(

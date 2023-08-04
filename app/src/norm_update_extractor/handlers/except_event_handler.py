@@ -1,4 +1,6 @@
 import copy
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.pattern_classes.except_event import ExceptEvent
 from app.classes.spec.norm import Norm, Power, Obligation, SurvivingObligation
 from app.classes.spec.norm_config import NormConfig

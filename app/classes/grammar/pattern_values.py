@@ -29,12 +29,18 @@ full_grammar = {
     PV.CONDITIONAL_A: GOr(UnitType.AFTER, UnitType.IF, UnitType.IN_EVENT, UnitType.IN_CASE, UnitType.ONCE, UnitType.UPON),
     PV.CONDITIONAL_N: GOr(UnitType.UPON, UnitType.WITH),
 
+    PV.AFTER: UnitType.AFTER,
+    PV.AND: UnitType.AND,
+    PV.BETWEEN: UnitType.BETWEEN,
+    PV.FOR: UnitType.FOR,
+    PV.FROM: UnitType.FROM,
     PV.WITHIN: UnitType.WITHIN,
     PV.UNTIL: UnitType.UNTIL,
-
+    
     PV.TIMESPAN: GAnd(UnitType.TIMESPAN, PV.TIMESPAN_PIECES),
     PV.TIMESPAN_PIECES: GAnd(UnitType.TIME_VALUE, UnitType.TIME_UNIT),
     PV.TIMEPOINT: GOr(PV.DATE, PV.EVENT),
+    PV.TIMEPOINT2: GOr(PV.DATE, PV.EVENT),
 
     PV.DATE: UnitType.DATE,
     PV.TIME_PERIOD: UnitType.TIME_PERIOD,
@@ -55,13 +61,4 @@ full_grammar = {
     PV.ADV_AND_PP: GOr(UnitType.FINAL_NODE, GAnd(UnitType.ADVERB, UnitType.PREP_PHRASE), UnitType.PREP_PHRASE),
     PV.PRED_PHRASE: GAnd(UnitType.PREDICATE, PV.ADV_AND_PP),
     # Prep phrase...?
-
-    # Convenience patterns - so that we only have 2 'GANDs'
-    PV.PF_EVENT: GAnd(GOr(UnitType.BEFORE, UnitType.AFTER), PV.EVENT),
-    PV.BETWEEN_TIMEPOINT: GAnd(UnitType.BETWEEN, UnitType.TIMEPOINT),
-    PV.AND_TIMEPOINT: GAnd(UnitType.AND, UnitType.TIMEPOINT),
-    PV.FROM_TIMEPOINT: GAnd(UnitType.FROM, UnitType.TIMEPOINT),
-    PV.UNTIL_TIMEPOINT: GAnd(UnitType.UNTIL, UnitType.TIMEPOINT),
-    PV.FOR_TIMESPAN: GAnd(UnitType.FOR, PV.TIMESPAN),
-    PV.AFTER_TIMEPOINT: GAnd(PV.P_AFTER_I, UnitType.TIMEPOINT),
 }

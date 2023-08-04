@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.pattern_classes.after_event import AfterEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensAfter

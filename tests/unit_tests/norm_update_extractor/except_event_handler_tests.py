@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.spec.sym_interval import SituationExpression

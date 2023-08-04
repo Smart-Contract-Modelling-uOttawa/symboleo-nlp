@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.spec.point_function import TimeUnit, PointFunction
@@ -18,11 +20,11 @@ class DuringTimePeriodHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
-        pattern_class = ForTimespanInterval()
-        pattern_class.timepoint= 'test_timepoint'
-        pattern_class.timespan_unit = TimeUnit.Days
-        pattern_class.timespan_value = 5
-
+        pattern_class = ForTimespanInterval({
+            PV.TIMEPOINT: 'test_timepoint',
+            PV.TIMESPAN: '5 Days'
+        })
+        
         result = self.sut.handle(pattern_class, norm_config)
         
         new_norm: Obligation = result[0]

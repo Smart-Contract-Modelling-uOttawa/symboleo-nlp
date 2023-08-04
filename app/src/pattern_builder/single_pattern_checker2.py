@@ -1,4 +1,4 @@
-from typing import List, Type
+from typing import List, Type, Dict
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 from app.classes.grammar.pattern_values import *
 from app.classes.units.all_units import UnitType
@@ -26,7 +26,7 @@ class SinglePatternChecker2(ICheckSinglePattern):
         
         unit_ind = 0
 
-        my_dict = {}
+        my_dict: Dict[PatternVariable, List[str]] = {}
 
         # Iterate through the target_set checking the pattern variables
         ## If something doesn't match up, then return false
@@ -36,11 +36,13 @@ class SinglePatternChecker2(ICheckSinglePattern):
 
             if not check:
                 return None
-            
             else:
-                next_text = [x.value for x in set_to_check[unit_ind:next_ind] if x.value]
-                unit_ind = next_ind
+                next_arr = [x.value for x in set_to_check[unit_ind:next_ind] if x.value]
+                next_text = ' '.join(next_arr)
                 my_dict[pattern_variable] = next_text
+                unit_ind = next_ind
+    
+        result = pc_type(my_dict)
 
-        return pc_type(my_dict)
+        return result
 

@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.pattern_classes.until_date import UntilDate
@@ -16,8 +18,9 @@ class UntilDateDateHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=True)
-        pattern_class = UntilDate()
-        pattern_class.date_text = 'March 30, 2024'
+        pattern_class = UntilDate({
+            PV.DATE: 'March 30, 2024'
+        })
 
         result = self.sut.handle(pattern_class, norm_config)
         

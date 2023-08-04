@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.spec.sym_interval import Interval, IntervalFunction
@@ -17,9 +19,10 @@ class DuringTimePeriodHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
-        pattern_class = DuringTimePeriod()
-        pattern_class.time_period = 'test_period'
-
+        pattern_class = DuringTimePeriod({
+            PV.TIME_PERIOD: 'test_period'
+        })
+        
         result = self.sut.handle(pattern_class, norm_config)
         
         new_norm: Obligation = result[0]

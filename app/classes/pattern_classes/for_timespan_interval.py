@@ -2,7 +2,7 @@ from app.classes.pattern_classes.pattern_class import PatternClass, PatternVaria
 from app.classes.spec.point_function import TimeUnit
 
 class ForTimespanInterval(PatternClass):
-    sequence = [PV.FOR_TIMESPAN, PV.AFTER_TIMEPOINT]
+    sequence = [PV.FOR, PV.TIMESPAN, PV.AFTER, PV.TIMEPOINT2]
 
     # def __init__(self) -> None:
     #     super().__init__()

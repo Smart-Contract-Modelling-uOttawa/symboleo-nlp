@@ -1,7 +1,7 @@
 from app.classes.pattern_classes.pattern_class import PatternClass, PatternVariable as PV
 
 class FromUntilInterval(PatternClass):
-    sequence = [PV.FROM_TIMEPOINT, PV.UNTIL_TIMEPOINT]
+    sequence = [PV.FROM, PV.TIMEPOINT, PV.UNTIL, PV.TIMEPOINT2]
 
     # def __init__(self) -> None:
     #     super().__init__()

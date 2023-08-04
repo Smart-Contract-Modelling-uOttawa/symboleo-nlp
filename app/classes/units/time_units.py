@@ -22,8 +22,6 @@ class TimepointUnit(InputUnit):
 class TimespanUnit(InputUnit):
     unit_type = UnitType.TIMESPAN
     unit_var = UnitVariety.EMPTY
-    prompt = 'Enter a timespan'
-    needs_value = True
 
 class TimeUnitUnit(InputUnit):
     unit_type = UnitType.TIME_UNIT
@@ -35,4 +33,10 @@ class TimeValueUnit(InputUnit):
     unit_type = UnitType.TIME_VALUE
     unit_var = UnitVariety.DYNAMIC
     prompt = 'Enter a time value (int)'
+    needs_value = True
+
+class TimePeriodUnit(InputUnit):
+    unit_type = UnitType.TIME_PERIOD
+    unit_var = UnitVariety.DYNAMIC
+    prompt = 'Enter a time period'
     needs_value = True

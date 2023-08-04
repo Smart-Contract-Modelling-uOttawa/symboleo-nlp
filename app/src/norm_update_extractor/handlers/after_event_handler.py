@@ -1,6 +1,7 @@
 import copy
 from typing import List
 
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.pattern_classes.after_event import AfterEvent
 from app.classes.spec.norm import Norm
 from app.classes.spec.norm_config import NormConfig

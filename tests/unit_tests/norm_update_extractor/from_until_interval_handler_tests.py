@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.spec.sym_interval import Interval, IntervalFunction
@@ -17,9 +19,10 @@ class FromUntilIntervalHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
-        pattern_class = FromUntilInterval()
-        pattern_class.timepoint1 = 'test_timepoint1'
-        pattern_class.timepoint2 = 'test_timepoint2'
+        pattern_class = FromUntilInterval({
+            PV.TIMEPOINT: 'test_timepoint1',
+            PV.TIMEPOINT2: 'test_timepoint2'
+        })
 
         result = self.sut.handle(pattern_class, norm_config)
         

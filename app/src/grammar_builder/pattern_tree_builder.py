@@ -35,7 +35,7 @@ class PatternTreeBuilder(IBuildPatternTrees):
 
         elif isinstance(next_obj, GAnd):
             next_set = self._handle_grammar(next_obj.b, children)
-            next_set.extend(children)
+            #next_set.extend(children)
             return self._handle_grammar(next_obj.a, next_set)
 
         else:

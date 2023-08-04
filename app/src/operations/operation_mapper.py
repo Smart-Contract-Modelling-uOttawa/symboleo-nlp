@@ -8,6 +8,7 @@ from app.src.pattern_builder.pattern_class_builder import IBuildPatternClass
 from app.src.operations.pattern_class_resolver import IResolvePatternClasses
 from app.src.norm_update_extractor.norm_update_extractor import IExtractNormUpdates
 from app.src.domain_update_extractor.domain_update_extractor import IExtractDomainUpdates
+from app.classes.pattern_classes.before_date import BeforeDate
 
 class IMapCnlToOperations:
     def map(self, input_list: List[UserInput], contract: SymboleoContract, norm_config: NormConfig) -> ContractUpdateObj:

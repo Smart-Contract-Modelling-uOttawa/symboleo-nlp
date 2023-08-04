@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point
 from app.classes.spec.point_function import TimeUnit, PointFunction
@@ -17,9 +19,9 @@ class TimespanBeforeEventHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
-        pattern_class = TimespanBeforeEvent()
-        pattern_class.timespan_unit = TimeUnit.Days
-        pattern_class.timespan_value = 10
+        pattern_class = TimespanBeforeEvent({
+            PV.TIMESPAN: '10 Days'
+        })
         pattern_class.event = VariableEvent('evt_test')
 
         result = self.sut.handle(pattern_class, norm_config)

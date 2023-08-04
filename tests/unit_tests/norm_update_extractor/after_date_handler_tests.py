@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.pattern_classes.after_date import AfterDate
@@ -17,8 +19,9 @@ class AfterDateDateHandlerTests(unittest.TestCase):
 
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
-        pattern_class = AfterDate()
-        pattern_class.date_text = 'March 30, 2024'
+        pattern_class = AfterDate({
+            PV.DATE: 'March 30, 2024'
+        })
 
         result = self.sut.handle(pattern_class, norm_config)
         

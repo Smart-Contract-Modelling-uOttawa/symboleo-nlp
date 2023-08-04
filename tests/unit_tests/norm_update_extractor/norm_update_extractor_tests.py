@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
+
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.pattern_classes.pattern_class import PatternClass
 
 from app.classes.spec.norm import INorm

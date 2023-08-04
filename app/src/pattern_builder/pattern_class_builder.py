@@ -23,8 +23,7 @@ class PatternClassBuilder(IBuildPatternClass):
 
     def build(self, user_input: List[UserInput], contract: SymboleoContract) -> List[PatternClass]:
         results = []
-        input_types = [x.unit_type for x in user_input]
-        pattern_classes = self.__pattern_class_extractor.extract(input_types)
+        pattern_classes = self.__pattern_class_extractor.extract(user_input)
 
         for pc in pattern_classes:
             next_result = self.__pattern_class_filler.fill(pc, contract, user_input)

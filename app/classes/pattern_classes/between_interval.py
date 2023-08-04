@@ -1,7 +1,8 @@
 from app.classes.pattern_classes.pattern_class import PatternClass, PatternVariable as PV
 
+# TODO: Work to do on this...
 class BetweenInterval(PatternClass):
-    sequence = [PV.BETWEEN_TIMEPOINT, PV.AND_TIMEPOINT]
+    sequence = [PV.BETWEEN, PV.TIMEPOINT, PV.AND, PV.TIMEPOINT2]
 
     # def __init__(self) -> None:
     #     super().__init__()

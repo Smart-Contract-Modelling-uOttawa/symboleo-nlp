@@ -1,5 +1,6 @@
 EMPTY_VAL = '[EMPTY]'
 
+// This needs to come from elsewhere...
 input_value_dict = {
   // Static
   'WITHIN': 'within',
@@ -13,12 +14,13 @@ input_value_dict = {
   'EVENT': EMPTY_VAL,
   'CUSTOM_EVENT': EMPTY_VAL,
   'NORM_EVENT': EMPTY_VAL,
+  'TIMESPAN': EMPTY_VAL,
 
   // Dynamic
   'SUBJECT': null,
   'VERB': null,
   'DATE': null,
-  'TIMESPAN': null
+  'TIME_VALUE': null
   //....
 }
 
