@@ -11,7 +11,12 @@ class KeywordFiller(IFillPatternUnit):
 
     def fill(self, pattern_class: PatternClass, contract: SymboleoContract, input_list: List[UserInput], i: int) -> PatternClass:
         result = copy.deepcopy(pattern_class)
-        result.keyword = self.__keyword
+        if not result.keyword:
+            result.keyword = self.__keyword
+        else:
+            if hasattr(result, 'keyword2') and not result.keyword2:
+                result.keyword2 = self.__keyword
+
         return result
 
 

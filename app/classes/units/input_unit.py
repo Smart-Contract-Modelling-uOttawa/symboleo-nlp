@@ -1,10 +1,11 @@
 from __future__ import annotations
 from typing import List
-from app.classes.units.unit_type import UnitType
+from app.classes.units.unit_type import UnitType, UnitVariety
 
 class InputUnit: # pragma: no cover
     unit_type: UnitType = None
     prompt: str = None
+    unit_var: UnitVariety = UnitVariety.STATIC
     needs_value = False # Should change this to unit_func (static, dynamic, empty)
     init_value = ''
     options: List[str] = None
@@ -17,7 +18,7 @@ class InputUnit: # pragma: no cover
 
     def get_value(self):
         raise NotImplementedError()
-    
+
 
 class DummyUnit(InputUnit):
     prompt = 'dummy'

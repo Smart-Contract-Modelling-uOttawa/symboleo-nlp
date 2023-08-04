@@ -13,4 +13,4 @@ class StandardContractEvent(BaseEvent):
         return super().to_text()
 
     def is_complete() -> bool:
-        return super().to_text()
+        return super().is_complete()

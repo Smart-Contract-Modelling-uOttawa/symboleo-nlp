@@ -44,8 +44,6 @@ class OperationMapperTests(unittest.TestCase):
             self.domain_update_extractor
         )
 
-
-
     def test_operation_mapper(self):
         test_input = [
         ]

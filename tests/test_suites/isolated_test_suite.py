@@ -3,6 +3,11 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.dependency_builder import DependencyBuilder
 
+# Ideally would like to have one isolated test for each pattern class
+# Use realistic ones from the dataset
+# will need to alter the events to make them work
+
+
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
 from tests.test_suites.isolated_test_cases.dolphin import dolphin_test_case
 # from tests.test_suites.isolated_test_cases.maimon import maimon_test_case

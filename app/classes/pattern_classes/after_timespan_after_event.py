@@ -4,13 +4,13 @@ from app.classes.spec.point_function import TimeUnit
 class AfterTimespanAfterEvent(EventPatternClass):
     sequence = [PV.P_AFTER_PF, PV.TIMESPAN, PV.P_AFTER_T, PV.EVENT]
 
-    def __init__(self) -> None:
-        super().__init__()
-        self.timespan_unit: TimeUnit = None
-        self.timespan_value = ''
-        self.keyword1 = 'following'
-        self.keyword2 = 'after'
+    # def __init__(self) -> None:
+    #     super().__init__()
+    #     self.timespan_unit: TimeUnit = None
+    #     self.timespan_value = ''
+    #     self.keyword = 'following'
+    #     self.keyword2 = 'after'
     
-    def to_text(self) -> str:
-        return f'{self.keyword1} {self.timespan_value} {self.timespan_unit.value} {self.keyword2} {self.nl_event.to_text()}'
+    # def to_text(self) -> str:
+    #     return f'{self.keyword} {self.timespan_value} {self.timespan_unit.value} {self.keyword2} {self.nl_event.to_text()}'
 

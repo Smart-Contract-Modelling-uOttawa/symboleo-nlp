@@ -22,7 +22,7 @@ class SinglePatternChecker(ICheckSinglePattern):
         # Iterate through the target_set checking the pattern variables
         ## If something doesn't match up, then return false
         for pattern_variable in target_set:
-            pattern_obj = temp_tree[pattern_variable]
+            pattern_obj = full_grammar[pattern_variable]
             check, unit_ind = self.__recursive_checker.check(set_to_check, unit_ind, pattern_obj)
 
             if not check:

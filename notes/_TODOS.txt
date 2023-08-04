@@ -5,24 +5,23 @@ PLAN:
 - Aug 14 - 20: Deployment and hosting; documentation, cleanup, next steps 
 
 
+
 FEATURES
-- Decide on the "difficult" CNL elements: AfterEvent, NoticeEvent, EventInterval
+- NoticeEvent - 
+- Termination power
 - Finish up Custom Events and Norm Events (all verbs and nouns)
-- is_complete: event and pattern class - can prob delete
 - Adding needed Parameters
 - Add DATE for BeforeDate as event property?
 - Figure out mapping verb types (trans, intrans, link). also is linking different?
 - Common events? Probably not, but may specify as future work in thesis
 - Do we need Domain Timepoints and DomainTimepointExtractor?
-- Attempt to represent the "provide X days of notice" termination power ?
 
 BUGS
 
 
 ENGG - need to break these up
-- Asset Declarations
-- Declaration prop mapper
-- Pattern Extractor (reverse tree building)
+- is_complete: event and pattern class - can prob delete
+- Can break up a few more functions
 
 
 TESTS

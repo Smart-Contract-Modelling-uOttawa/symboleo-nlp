@@ -1,10 +1,8 @@
-from typing import List
+from typing import List, Type
 from copy import deepcopy
 
 from app.classes.grammar.grammar_node import GrammarNode
 from app.classes.pattern_classes.pattern_class import PatternClass
-
-# Make a function here...
 from app.classes.pattern_classes.all_pattern_classes import *
 from app.src.grammar_builder.pattern_tree_builder import IBuildPatternTrees
 from app.src.grammar_builder.tree_merger import IMergeTrees
@@ -24,7 +22,7 @@ class GrammarBuilder(IBuildGrammar):
         self.__tree_merger = tree_merger
 
 
-    def build(self, pattern_classes: List[PatternClass]) -> GrammarNode:
+    def build(self, pattern_classes: List[Type[PatternClass]]) -> GrammarNode:
         curr_tree = GrammarNode('Root')
 
         for pc in pattern_classes:

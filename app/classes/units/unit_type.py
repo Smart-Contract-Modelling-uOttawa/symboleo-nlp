@@ -1,5 +1,11 @@
 from enum import Enum
 
+class UnitVariety:
+    DYNAMIC = 'DYNAMIC'
+    STATIC = 'STATIC'
+    EMPTY = 'EMPTY'
+
+
 class UnitType(Enum):
     ADVERB = 'ADVERB'
     AFTER = 'AFTER'
@@ -35,6 +41,8 @@ class UnitType(Enum):
     LINKING_VERB = 'LINKING_VERB'
     NORM_EVENT = 'NORM_EVENT'
     NOTICE_EVENT = 'NOTICE_EVENT'
+    NOTICE_FROM = 'NOTICE_FROM'
+    NOTIFIER = 'NOTIFIER'
     OBLIGATION_ACTION = 'OBLIGATION_ACTION'
     OBLIGATION_SUBJECT = 'OBLIGATION_SUBJECT'
     OF = 'OF'
@@ -51,6 +59,8 @@ class UnitType(Enum):
     THROUGHOUT = 'THROUGHOUT'
     TIMEPOINT = 'TIMEPOINT'
     TIME_PERIOD = 'TIME_PERIOD'
+    TIME_UNIT = 'TIME_UNIT'
+    TIME_VALUE = 'TIME_VALUE'
     TIMESPAN = 'TIMESPAN'
     TRANSITIVE_VERB = 'TRANSITIVE_VERB'
     TVP = 'TVP'
@@ -63,3 +73,5 @@ class UnitType(Enum):
     WITH = 'WITH'
     WITHIN = 'WITHIN'
     WITHOUT = 'WITHOUT'
+
+    # Time units

@@ -23,52 +23,51 @@ from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterva
 
 def get_all_pattern_classes():
     return [
-        AfterDate(),
-        AfterEvent(),
-        AfterTimespanAfterEvent(),
-        AfterTimespanBeforeEvent(),
-        BeforeDate(),
-        BeforeEvent(),
-        CondAEvent(),
-        CondTEvent(),
-        ExceptEvent(),
-        #NoticeEvent(),
-        TimespanAfterEvent(),
-        TimespanBeforeEvent(),
-        UntilDate(),
-        UntilEvent(),
-        WithinTimespanEvent(),
-
-        BetweenInterval(),
-        FromUntilInterval(),
-        DuringTimePeriod(),
-        ForTimespanInterval()
+        AfterDate,
+        AfterEvent,
+        AfterTimespanAfterEvent,
+        AfterTimespanBeforeEvent,
+        BeforeDate,
+        BeforeEvent,
+        CondAEvent,
+        CondTEvent,
+        ExceptEvent,
+        NoticeEvent,
+        TimespanAfterEvent,
+        TimespanBeforeEvent,
+        UntilDate,
+        UntilEvent,
+        WithinTimespanEvent,
+        BetweenInterval,
+        FromUntilInterval,
+        DuringTimePeriod,
+        ForTimespanInterval
     ]
 
 def temporal_classes():
     return [
-        AfterDate(),
-        AfterEvent(),
-        AfterTimespanAfterEvent(),
-        AfterTimespanBeforeEvent(),
-        BeforeDate(),
-        BeforeEvent(),
-        TimespanAfterEvent(),
-        TimespanBeforeEvent(),
-        UntilDate(),
-        UntilEvent(),
-        WithinTimespanEvent(),
-        BetweenInterval(),
-        FromUntilInterval(),
-        DuringTimePeriod(),
-        ForTimespanInterval()
+        AfterDate,
+        AfterEvent,
+        AfterTimespanAfterEvent,
+        AfterTimespanBeforeEvent,
+        BeforeDate,
+        BeforeEvent,
+        TimespanAfterEvent,
+        TimespanBeforeEvent,
+        UntilDate,
+        UntilEvent,
+        WithinTimespanEvent,
+        BetweenInterval,
+        FromUntilInterval,
+        DuringTimePeriod,
+        ForTimespanInterval
     ]
 
 def exception_classes():
-    return [ExceptEvent()]
+    return [ExceptEvent]
 
 def conditional_classes():
     return [
-        CondAEvent(),
-        CondTEvent()
+        CondAEvent,
+        CondTEvent
     ]

@@ -4,10 +4,10 @@ from app.classes.pattern_classes.pattern_class import PatternClass, PatternVaria
 class BeforeDate(PatternClass):
     sequence = [PV.P_BEFORE_S, PV.DATE]
     
-    def __init__(self):
-        super().__init__()
-        self.date_text = ''
-        self.keyword = 'before'
+    # def __init__(self):
+    #     super().__init__()
+    #     self.date_text = ''
+    #     self.keyword = 'before'
     
-    def to_text(self) -> str:
-        return f'{self.keyword} {self.date_text}'
+    # def to_text(self) -> str:
+    #     return f'{self.keyword} {self.date_text}'
