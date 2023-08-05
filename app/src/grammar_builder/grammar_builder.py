@@ -23,7 +23,7 @@ class GrammarBuilder(IBuildGrammar):
 
 
     def build(self, pattern_classes: List[Type[PatternClass]]) -> GrammarNode:
-        curr_tree = GrammarNode('Root')
+        curr_tree = GrammarNode('ROOT')
 
         for pc in pattern_classes:
             next_trees = self.__pattern_tree_builder.build(pc)

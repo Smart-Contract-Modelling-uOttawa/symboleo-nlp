@@ -23,7 +23,7 @@ class GrammarBuilderTests(unittest.TestCase):
         p = BeforeDate()
         result = self.sut.build([p])
         
-        exp_value = GrammarNode('Root')
+        exp_value = GrammarNode('ROOT')
         self.assertEqual(result, exp_value)
         self.assertEqual(self.fake_merger.merge.call_count, 1)
         self.assertEqual(self.fake_tree_builder.build.call_count, 1)

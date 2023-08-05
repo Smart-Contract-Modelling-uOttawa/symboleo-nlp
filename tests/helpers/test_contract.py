@@ -1,12 +1,15 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel, DomainEnum
-from app.classes.spec.declaration import Declaration
+from app.classes.spec.declaration import Declaration, EventDeclaration, RoleDeclaration, AssetDeclaration
 from app.classes.spec.domain_object import Role, DomainEvent, Asset
 from app.classes.spec.norm import Obligation, Power
+from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens
 from app.classes.helpers.prop_maker import PropMaker
-from app.classes.spec.nl_template import NLTemplate
+from app.classes.spec.nl_template import NLTemplate, TemplateObj, ParameterConfig
+
+from tests.helpers.test_objects import CustomEvents
 
 class FakeSym:
     def to_sym(self):
@@ -51,14 +54,14 @@ def get_test_contract():
         DomainModel(
             id = 'test',
             roles = {
-                'test_role': Role('test_role', [])
+                'TestRole': Role('TestRole', [])
             },
             enums = {},
             events = {
-                'test_event': DomainEvent('test_event', [])
+                'TestEvent': DomainEvent('TestEvent', []),
             },
             assets = {
-                'test_asset': Asset('test_asset', [])
+                'TestAsset': Asset('TestAsset', [])
             },
         ),
         
@@ -71,7 +74,7 @@ def get_test_contract():
                     'debtor',
                     'creditor',
                     PropMaker.make_default(),
-                    PropMaker.make(PredicateFunctionHappens('event_x'))
+                    PropMaker.make(PredicateFunctionHappens(VariableEvent('test_event')))
                 ),
                 
             },
@@ -85,12 +88,24 @@ def get_test_contract():
                     PropMaker.make(PredicateFunctionHappens('event_y'))
                 )
             },
-            declarations={},
+            declarations={
+                'test_event': EventDeclaration('test_event', 'TestEvent', [], evt = CustomEvents.eating_pie()),
+                'test_asset': AssetDeclaration('test_asset', 'TestAsset', []),
+                'test_role': RoleDeclaration('test_role', 'TestRole', []),
+            },
             preconditions=[],
             postconditions=[],
             surviving_obligations={},
             constraints=[],
             parameters=[]
         ),
-        nl_template = NLTemplate({})
+        nl_template = NLTemplate({
+            'test_nl_key': TemplateObj(
+                str_val = 'Event X happens [P1]', 
+                parameters = {
+                    'P1': [
+                        ParameterConfig('obligations', 'test_obligation', 'consequent')
+                    ]
+            })
+        })
     )

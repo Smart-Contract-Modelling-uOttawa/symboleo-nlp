@@ -24,25 +24,17 @@ from app.classes.operations.contract_update_obj import ContractUpdateObj
 class ISymboleoContract:
     def to_sym(self):
         raise NotImplementedError()
-    def add_declaration(self, declaration: Declaration):
-        raise NotImplementedError()
-    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
-        raise NotImplementedError()
-    def update_norm(self, norm: Norm, norm_component: str, pred: PredicateFunction, key: str, nl: str):
-        raise NotImplementedError()
-    def add_dm_object(self, dmo: DomainObject):
-        raise NotImplementedError()
-    def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):
-        raise NotImplementedError()
-    def get_norm(self, norm_id: str, norm_type:str) -> Norm:
-        raise NotImplementedError()
-    def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
+    def get_norm_configs_by_key(self, nl_key: str, parm_key: str) -> List[NormConfig]:
         raise NotImplementedError()
     def run_updates(self, update: ContractUpdateObj):
         raise NotImplementedError()
     def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):
         raise NotImplementedError()
-        
+    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
+        raise NotImplementedError()
+    # Depends on if we use the TerminationUpdater
+    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
+        raise NotImplementedError()
 
 
 
@@ -57,21 +49,10 @@ class SymboleoContract(ISymboleoContract):
         self.contract_spec = contract_spec
         self.nl_template = nl_template
 
-
-    def __eq__(self, other: SymboleoContract) -> bool:
-        return self.domain_model == other.domain_model and \
-            self.contract_spec == other.contract_spec and \
-            self.nl_template == other.nl_template
-
-
-    def _get_type_key(self, type_str):
-        d = {
-            'Obligation': 'obligations',
-            'Power': 'powers',
-            'SO': 'surviving_obligations'
-        }
-        return d[type_str]
+    def to_sym(self):
+        return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'
     
+
     def get_norm_configs_by_key(self, nl_key: str, parm_key: str) -> List[NormConfig]:
         results = []
         
@@ -86,33 +67,15 @@ class SymboleoContract(ISymboleoContract):
         
         return results
 
-    def get_norms_by_key(self, nl_key:str, parm_key:str) -> List[INorm]:
-        parm_configs = self.nl_template.template_dict[nl_key].parameters[parm_key]
-
-        results = []
-        for x in parm_configs:
-            norm_type = x.norm_type
-            norm_id = x.norm_id
-            next_norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
-            results.append(next_norm)
-        
-        return results
-    
     def run_updates(self, update: ContractUpdateObj):
         for x in update.domain_objects:
-            self.add_dm_object(x) # Might make this internal
+            self._add_dm_object(x) # Might make this internal
 
         for x in update.declarations:
-            self.add_declaration(x) # Might make this internal
+            self._add_declaration(x) # Might make this internal
 
         for x in update.norms:
             self._update_norm(x)
-
-
-    def _update_norm(self, norm: INorm):
-        type_key = self._get_type_key(norm.norm_type.value)
-        self.contract_spec.__dict__[type_key][norm.id] = norm
-
 
     def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):        
         t = self.nl_template.template_dict
@@ -125,47 +88,20 @@ class SymboleoContract(ISymboleoContract):
         
         #del t[nl_key].parameters[parm_key]
 
+    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
+        norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
+        cons = norm.get_component(norm_component)
 
-    # Print the NL template strings and their corresponding symboleo norms
-    def print_all_strings(self):
-        for x in self.nl_template.template_dict:
-            val = self.nl_template.template_dict[x]
-            print(f'{x}: {val.str_val}')
-            print('\n')
-    
-    
-    def to_sym(self):
-        return f'{self.domain_model.to_sym()}\n\n{self.contract_spec.to_sym()}'
+        if isinstance(cons, PAtomPredicate):
+            pred_func = cons.predicate_function
+            sym_event: SymEvent = pred_func.event
+            
+            if isinstance(sym_event, VariableEvent):
+                decl: EventDeclaration = self.contract_spec.declarations[sym_event.name]
+                if decl.base_type == 'events':
+                    return decl.evt        
+        return None
 
-
-    def add_declaration(self, declaration: Declaration):
-        # Add the declaration
-        self.contract_spec.declarations[declaration.name] = declaration
-
-        # TODO: F3 - Add any new parameters as well
-        # parm_names = [x.name for x in self.contract_spec.parameters]
-        # decl_keys = [x for x in self.contract_spec.declarations]
-        # for dp in declaration.props:
-        #     if dp.value not in parm_names and dp.value not in decl_keys:
-        #         new_parm = ContractSpecParameter(dp.value, dp.type)
-        #         self.contract_spec.parameters.append(new_parm)
-
-
-    def update_norm(self, norm: Norm, norm_component: str, pred: PredicateFunction, key: str, nl: str):
-        norm.update(norm_component, pred)
-
-        t = self.nl_template.template_dict
-        old_str = t[key].str_val
-        
-        if norm_component == 'trigger':
-            new_nl = nl + ' ' + old_str
-        else:
-            new_nl = old_str + ' ' + nl
-        
-        t[key].str_val =  new_nl
-        
-
-    # May eventually just add a norm.nl property that corresponds to the nl
     def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
         norm_type = 'obligations' if type(norm) == Obligation else 'powers'
         self.contract_spec.__dict__[norm_type][norm.id] = norm
@@ -179,9 +115,41 @@ class SymboleoContract(ISymboleoContract):
                 # This will require some finessing.
             }
             t[norm_key] = TemplateObj(norm_nl, parms)
+
+
+    def __eq__(self, other: SymboleoContract) -> bool:
+        return self.domain_model == other.domain_model and \
+            self.contract_spec == other.contract_spec and \
+            self.nl_template == other.nl_template
+
+    def _get_type_key(self, type_str):
+        d = {
+            'Obligation': 'obligations',
+            'Power': 'powers',
+            'SO': 'surviving_obligations'
+        }
+        return d[type_str]
     
 
-    def add_dm_object(self, dmo: DomainObject):
+    def _update_norm(self, norm: INorm):
+        type_key = self._get_type_key(norm.norm_type.value)
+        self.contract_spec.__dict__[type_key][norm.id] = norm
+
+
+    def _add_declaration(self, declaration: Declaration):
+        # Add the declaration
+        self.contract_spec.declarations[declaration.name] = declaration
+
+        # TODO: F3 - Add any new parameters as well
+        # parm_names = [x.name for x in self.contract_spec.parameters]
+        # decl_keys = [x for x in self.contract_spec.declarations]
+        # for dp in declaration.props:
+        #     if dp.value not in parm_names and dp.value not in decl_keys:
+        #         new_parm = ContractSpecParameter(dp.value, dp.type)
+        #         self.contract_spec.parameters.append(new_parm)
+            
+
+    def _add_dm_object(self, dmo: DomainObject):
         dm_dict = {
             DomainEvent: 'events',
             Asset: 'assets',
@@ -194,28 +162,12 @@ class SymboleoContract(ISymboleoContract):
         if dmo.name not in self.domain_model.__dict__[obj_type]:
             self.domain_model.__dict__[obj_type][dmo.name] = dmo
 
+    # Print the NL template strings and their corresponding symboleo norms
+    def print_all_strings(self): # pragma: no cover
+        for x in self.nl_template.template_dict:
+            val = self.nl_template.template_dict[x]
+            print(f'{x}: {val.str_val}')
+            print('\n')
 
-    # Need domain prop updater...Might need to treat this differently
-    def add_dm_prop(self, domain_prop: DomainProp, obj_type: str, obj_key:str):
-        self.domain_model.__dict__[obj_type][obj_key].props.append(domain_prop)
-
-
-    def get_norm(self, norm_id: str, norm_type:str) -> Norm:
-        result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
-        return result
-    
-    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
-        norm = self.get_norm(norm_id, norm_type)
-        cons = norm.get_component(norm_component)
-
-        if isinstance(cons, PAtomPredicate):
-            pred_func = cons.predicate_function
-            sym_event: SymEvent = pred_func.event
-            
-            if isinstance(sym_event, VariableEvent):
-                decl: EventDeclaration = self.contract_spec.declarations[sym_event.name]
-                if decl.base_type == 'events':
-                    return decl.evt        
-        return None
 
     

@@ -9,7 +9,6 @@ class ObligationSubjectUB(IBuildUnit):
     def build(self, unit_name: str, contract: SymboleoContract) -> InputUnit:
         opts = []
 
-        # TODO: These wont be present if the parms have already been filled. Need to maintain them...
         td = contract.nl_template.template_dict
 
         for nl_key in td:

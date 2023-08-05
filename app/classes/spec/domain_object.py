@@ -1,7 +1,5 @@
 from __future__ import annotations
-import copy
 from typing import List, Tuple
-from string import Template
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.helpers.list_eq import ClassHelpers
 
@@ -69,22 +67,11 @@ class Asset(DomainObject):
     def __init__(self, name: str, props: List[DomainProp], base_type: Asset = None):
         super().__init__('isAn Asset', name, props, base_type)
     
-  
-# TODO: F3? - Will eventually want a way to build this in the new_event_updater code
-## This may not be needed either... More likely to go on the declaration
-## i.e. the declaration_to_domain mapper
-class EventNLTemplate:
-    def __init__(self, t: Template):
-        self.t = t
-        
-    def render(self, arg_vals: List[Tuple[str,str]]):
-        m = {i[0]: i[1] for i in arg_vals}
-        return self.t.substitute(**m)
+
 
 class DomainEvent(DomainObject):
-    def __init__(self, name: str, props: List[DomainProp], event_template: EventNLTemplate = None):
+    def __init__(self, name: str, props: List[DomainProp]):
         super().__init__('isAn Event', name, props)
-        self.event_template = event_template
     
     def to_obj(self):
         return VariableEvent(self.name)
