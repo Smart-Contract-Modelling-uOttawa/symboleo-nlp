@@ -42,7 +42,6 @@ class GrammarSelector(ISelectElementList):
 
             results.append(input_value)
 
-            # TODO: Need to transform curr into a GrammarNode..
             curr = unit
         
         return results

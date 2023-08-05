@@ -241,7 +241,6 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
 
             'pow_terminate_contract': Power(
                 'pow_terminate_contract',
-                # TODO: F2? - Need a representation for Happens(Point)
                 ## Happens(Date.add(delivery_date, 10, days)) 
                 # NOT HappensBefore(evt_delivery, Date.add(evt_delivery.delivery_due_date, 10, days))
                 PropMaker.make(

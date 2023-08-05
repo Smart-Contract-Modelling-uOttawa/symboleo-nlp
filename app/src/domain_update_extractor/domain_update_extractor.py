@@ -1,22 +1,9 @@
-from typing import List
 from app.classes.pattern_classes.pattern_class import PatternClass, EventPatternClass
-from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.spec.declaration import Declaration
-from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.operations.domain_updates import DomainUpdates
 from app.src.domain_update_extractor.event_declaration_mapper import IMapEventToDeclaration
 from app.src.domain_update_extractor.asset_declaration_mapper import IMapAssetDeclarations
 from app.src.domain_update_extractor.domain_model_mapper import IMapDeclarationToDomain
-
-# TODO: Move to classes
-class DomainUpdates:
-    def __init__(
-        self,
-        declarations: List[Declaration],
-        domain_objects: List[DomainObject]
-    ):
-        self.declarations = declarations
-        self.domain_objects = domain_objects
 
 class IExtractDomainUpdates:
     def extract(self, pattern_class: PatternClass, contract: SymboleoContract) -> DomainUpdates:

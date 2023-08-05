@@ -10,8 +10,7 @@ from app.web_lib.grammar_storage import GrammarStorage
 from app.src.grammar_builder.child_getter import IGetChildren
 from app.classes.spec.parameter_config import PatternClassType
 
-from app.src.grammar_builder.tree_printer import TreePrinter
-
+# TODO: Make the cache actually work here
 class GrammarHandler:
     def __init__(
         self, 

@@ -17,10 +17,6 @@ from app.classes.operations.contract_update_obj import ContractUpdateObj
 
 # XText link: https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE/blob/master/ca.uottawa.csmlab.symboleo/src/ca/uottawa/csmlab/symboleo/Symboleo.xtext
 
-# TODO: E3 - Sweep through the SymboleoContract
-## Improve the interface; make all references to it a reference to the interface
-## Clean up some of the naming and internals
-## More convenience methods
 class ISymboleoContract:
     def to_sym(self):
         raise NotImplementedError()

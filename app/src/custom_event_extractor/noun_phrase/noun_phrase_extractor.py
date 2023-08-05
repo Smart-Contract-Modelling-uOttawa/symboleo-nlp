@@ -5,7 +5,6 @@ from app.src.custom_event_extractor.element_extractor import IExtractElement
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import IExtractAssetType
 
 # TODO: Break this up: validation, determiner, head, adj, etc
-## Maybe make a custom spacy-type of doc that can be passed around
 class NounPhraseExtractor(IExtractElement[NounPhrase]):
     def __init__(
         self, 

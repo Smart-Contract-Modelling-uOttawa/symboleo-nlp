@@ -1,10 +1,9 @@
 import copy
 
-from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.pattern_classes.except_event import ExceptEvent
 from app.classes.spec.norm import Norm, Power, Obligation, SurvivingObligation
 from app.classes.spec.norm_config import NormConfig
-from app.classes.spec.sym_interval import Interval, SituationExpression
+from app.classes.spec.sym_interval import SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
 from app.classes.spec.p_atoms import PAtomPredicateFalseLiteral
@@ -13,7 +12,6 @@ from app.classes.helpers.prop_maker import PropMaker
 
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
-# TODO: Can break this up and clean it out
 class ExceptEventHandler(IHandleNormUpdates):
     def handle(self, pattern_class: ExceptEvent, norm_config: NormConfig):
         norm: Norm = norm_config.norm
