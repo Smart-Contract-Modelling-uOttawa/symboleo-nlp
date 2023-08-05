@@ -18,8 +18,9 @@ class ContractActionUnit(InputUnit):
 
 class ContractSubjectUnit(InputUnit):
     unit_type = UnitType.CONTRACT_SUBJECT
-    unit_var = UnitVariety.DYNAMIC
+    unit_var = UnitVariety.STATIC
     prompt = 'Contract Subject'
+    init_value = 'contract'
 
 class ContractEventUnit(InputUnit):
     unit_type = UnitType.CONTRACT_EVENT

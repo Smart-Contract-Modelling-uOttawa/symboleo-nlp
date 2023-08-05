@@ -4,31 +4,31 @@ from app.classes.units.unit_type import UnitType, UnitVariety
 class AfterUnit(InputUnit):
     unit_type = UnitType.AFTER
     unit_var = UnitVariety.STATIC
-    prompt = 'after'
+    prompt = 'After'
     init_value = 'after'
 
 class BeforeUnit(InputUnit):
     unit_type = UnitType.BEFORE
     unit_var = UnitVariety.STATIC
-    prompt = 'before'
+    prompt = 'Before'
     init_value = 'before'
 
 class BetweenUnit(InputUnit):
     unit_type = UnitType.BETWEEN
     unit_var = UnitVariety.STATIC
-    prompt = 'between'
+    prompt = 'Between'
     init_value = 'between'
 
 class ByUnit(InputUnit):
     unit_type = UnitType.BY
     unit_var = UnitVariety.STATIC
-    prompt = 'by'
+    prompt = 'By'
     init_value = 'by'
 
 class DuringUnit(InputUnit):
     unit_type = UnitType.DURING
     unit_var = UnitVariety.STATIC
-    prompt = 'during'
+    prompt = 'During'
     init_value = 'during'
 
 class FromUnit(InputUnit):
@@ -46,7 +46,7 @@ class LaterThanUnit(InputUnit):
 class PriorToUnit(InputUnit):
     unit_type = UnitType.PRIOR_TO
     unit_var = UnitVariety.STATIC
-    prompt = 'Prior To'
+    prompt = 'Prior to'
     init_value = 'prior to'
 
 class ThroughoutUnit(InputUnit):

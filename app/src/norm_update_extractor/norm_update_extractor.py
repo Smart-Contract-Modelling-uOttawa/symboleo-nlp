@@ -17,8 +17,6 @@ class NormUpdateExtractor(IExtractNormUpdates):
         self.__handler_dict = handler_dict
 
     def extract(self, pattern_class: PatternClass, norm_config: NormConfig) -> List[Norm]:
-        print('XXX', pattern_class)
-
         handler = self.__handler_dict[type(pattern_class)]
         norms = handler.handle(pattern_class, norm_config)
         return norms

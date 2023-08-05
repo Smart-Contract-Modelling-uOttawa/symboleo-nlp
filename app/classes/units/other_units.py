@@ -11,7 +11,7 @@ class ExceptUnit(InputUnit):
 class FailsToUnit(InputUnit):
     unit_type = UnitType.FAILS_TO
     unit_var = UnitVariety.STATIC
-    prompt = 'fails to'
+    prompt = 'Fails to'
     init_value = 'fails to'
 
 # TODO: Do I need this?

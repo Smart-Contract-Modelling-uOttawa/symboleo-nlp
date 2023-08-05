@@ -26,7 +26,7 @@ class ForTimespanIntervalHandler(IHandleNormUpdates):
         tp2  = PointFunction(
             PointVDE(timepoint), 
             tv, 
-            TimeUnit[tu])
+            TimeUnit[tu.capitalize()])
         new_interval = Interval(IntervalFunction(tp1, tp2))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)

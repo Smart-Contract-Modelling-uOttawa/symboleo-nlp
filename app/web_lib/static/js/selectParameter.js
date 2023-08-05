@@ -71,8 +71,8 @@ function getUnitClass(unit_variety) {
 // When user selects value from options dropdown
 function selectDynamicValue() {
   // Get the type
-  var input_id = $('#select-value-label').text(); 
-
+  var input_id = $('#select-value-label').attr('data-input-id');
+  
   // Get the value
   var selected_value = $('#option-selection').val();
 
@@ -82,17 +82,18 @@ function selectDynamicValue() {
 }
 
 
-function fillDynamicOptions(input_id, options) {
+function fillDynamicOptions(unit) {
   // get the select
-  var $selectElement = $("#option-selection");
+  var selectElement = $("#option-selection");
 
   // Fill the label
-  $('#select-value-label').text(input_id);
+  $('#select-value-label').text(unit.prompt);
+  $('#select-value-label').attr('data-input-id', unit.unit_type);
 
   // Populate
-  $.each(options, function(index, x) {
+  $.each(unit.options, function(index, x) {
     var next_option = $("<option>", { text: x });
-    $selectElement.append(next_option);
+    selectElement.append(next_option);
   }); 
 
     // Show the container
@@ -100,18 +101,21 @@ function fillDynamicOptions(input_id, options) {
 }
 
 // Prep for user inputting a dynamic value
-function setupDynamicValue(input_id, prompt) {
+function setupDynamicValue(unit) {
+  input_id = unit.unit_type
+  options = unit.options
+  
   // Fetch the options
   options = OPTIONS_DICT[input_id]
 
   // Fill options
   if (options && options.length > 0) {
-    fillDynamicOptions(input_id, options)
+    fillDynamicOptions(unit)
   }
 
   $('#value-entry-container').show();
   $('#input-value-label').attr('data-input-id', input_id);
-  $('#input-value-label').text(prompt);  
+  $('#input-value-label').text(unit.prompt);  
 }
 
 // User selects an input type
@@ -126,7 +130,7 @@ function handleInputClick(unit) {
     processValue(input_id, unit.default_value)    
   } else {
     // Dynamic unit
-    setupDynamicValue(input_id, unit.prompt)
+    setupDynamicValue(unit)
   }
 }
 

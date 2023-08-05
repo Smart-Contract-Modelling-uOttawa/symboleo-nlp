@@ -30,9 +30,6 @@ class GrammarHandler:
         pattern_classes = self.__pattern_class_getter.get(pattern_types)
         grammar_node = self.__grammar_builder.build(pattern_classes)
 
-        tp = TreePrinter()
-        tp.print(grammar_node)
-
         self.__grammar_storage.store('XXX', grammar_node)
         return grammar_node
 

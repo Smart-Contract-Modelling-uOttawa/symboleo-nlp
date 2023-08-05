@@ -1,11 +1,12 @@
 from typing import List, Dict
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 
-from app.classes.spec.sym_event import SymEvent, PowerEvent, ObligationEvent
-from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.spec.sym_event import SymEvent, PowerEvent, ObligationEvent, ContractEvent
+from app.classes.events.custom_event.custom_event import CustomEvent, ConjType
 
 class PatternClass:
     sequence: List[PatternVariable] = []
+    conj_type: ConjType = ConjType.BASIC
 
     def __init__(self, val_dict = None) -> None:
         self.keyword = ''
@@ -24,7 +25,7 @@ class EventPatternClass(PatternClass):
 
     def to_text(self) -> str:
         # If its a norm event, then replace with the nl_event...
-        if isinstance(self.event, (PowerEvent, ObligationEvent)):
-            self.val_dict[PatternVariable.EVENT] = self.nl_event.to_text()
+        if isinstance(self.event, (PowerEvent, ObligationEvent, ContractEvent)):
+            self.val_dict[PatternVariable.EVENT] = self.nl_event.to_text(self.conj_type)
         
         return super().to_text()

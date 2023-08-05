@@ -19,7 +19,7 @@ class WithinTimespanHandler(IHandleNormUpdates):
         
         timespan_str:str = pattern_class.val_dict[PV.TIMESPAN]
         tv, tu = timespan_str.split(' ')
-        point_func = Point(PointFunction(evt, tv, TimeUnit[tu]))
+        point_func = Point(PointFunction(evt, tv, TimeUnit[tu.capitalize()]))
         
         updated_predicate = PredicateFunctionWHappensBefore(init_event, point_func)
         new_norm = copy.deepcopy(norm)
