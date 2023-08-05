@@ -1,13 +1,14 @@
 from __future__ import annotations
 from typing import List
+import json
 from app.classes.units.unit_type import UnitType, UnitVariety
 
 class InputUnit: # pragma: no cover
     unit_type: UnitType = None
     prompt: str = None
     unit_var: UnitVariety = UnitVariety.STATIC
-    needs_value = False # Should change this to unit_func (static, dynamic, empty)
-    init_value = ''
+    info: str = None
+    init_value: str = None
     options: List[str] = None
     
     def __init__(self, options: List[str] = None):
@@ -18,6 +19,16 @@ class InputUnit: # pragma: no cover
 
     def get_value(self):
         raise NotImplementedError()
+    
+    def to_dict(self):
+        return {
+            'options': self.options,
+            'prompt': self.prompt,
+            'variety': str(self.unit_var),
+            'unit_type': str(self.unit_type.name),
+            'default_value': self.init_value,
+            'info': self.info
+        }
 
 
 class DummyUnit(InputUnit):

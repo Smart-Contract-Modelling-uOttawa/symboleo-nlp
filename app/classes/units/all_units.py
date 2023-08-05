@@ -9,7 +9,6 @@ from app.classes.units.temporal_units import *
 from app.classes.units.time_units import *
 
 unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
-    UnitType.BY_GIVING: ByGivingUnit,
     UnitType.LATER_THAN: LaterThanUnit,
     UnitType.WITH: WithUnit,
     UnitType.ROOT: RootUnit,

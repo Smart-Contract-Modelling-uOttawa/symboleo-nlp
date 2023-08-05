@@ -1,29 +1,3 @@
-EMPTY_VAL = '[EMPTY]'
-
-// This needs to come from elsewhere...
-input_value_dict = {
-  // Static
-  'WITHIN': 'within',
-  'IF': 'if',
-  'BEFORE': 'before',
-  'AFTER': 'after',
-  'OF': 'of',
-  'UNLESS': 'unless',
-  
-  // Empty
-  'EVENT': EMPTY_VAL,
-  'CUSTOM_EVENT': EMPTY_VAL,
-  'NORM_EVENT': EMPTY_VAL,
-  'TIMESPAN': EMPTY_VAL,
-
-  // Dynamic
-  'SUBJECT': null,
-  'VERB': null,
-  'DATE': null,
-  'TIME_VALUE': null
-  //....
-}
-
 OPTIONS_DICT = {
 
 }
@@ -73,7 +47,7 @@ function processValue(input_id, value) {
 
 
 function submitDynamicValue() { 
-  var input_id = $('#input-value-label').text();  
+  var input_id = $('#input-value-label').attr('data-input-id');
   var value = $('#input-value-form').val();
 
   updateRunningValue(value)
@@ -82,21 +56,16 @@ function submitDynamicValue() {
 
 
 
-
-
-
-function getUnitClass(s) {
-  if (s in input_value_dict) {
-    v = input_value_dict[s]
-    if (v == EMPTY_VAL) {
-      return 'btn-outline-secondary'
-    }
-    if (v == null) {
-      return 'btn-outline-success'
-    }
+function getUnitClass(unit_variety) {
+  if (unit_variety == 'EMPTY') {
+    return 'btn-outline-secondary'
   }
   
-  return 'btn-outline-primary'
+  if (unit_variety == 'STATIC') {
+    return 'btn-outline-primary'
+  }
+
+  return 'btn-outline-success'
 }
 
 // When user selects value from options dropdown
@@ -131,7 +100,7 @@ function fillDynamicOptions(input_id, options) {
 }
 
 // Prep for user inputting a dynamic value
-function setupDynamicValue(input_id) {
+function setupDynamicValue(input_id, prompt) {
   // Fetch the options
   options = OPTIONS_DICT[input_id]
 
@@ -141,23 +110,23 @@ function setupDynamicValue(input_id) {
   }
 
   $('#value-entry-container').show();
-  $('#input-value-label').text(input_id);  
+  $('#input-value-label').attr('data-input-id', input_id);
+  $('#input-value-label').text(prompt);  
 }
 
 // User selects an input type
-function handleInputClick(input_id) {
-  value = input_value_dict[input_id]
-  
-  if (value == EMPTY_VAL) {
-    // Empty unit
+function handleInputClick(unit) {
+  input_id = unit.unit_type
+
+  if (unit.variety == 'EMPTY') {
     processValue(input_id, null)
-  } else if (value) {
+  } else if (unit.variety == 'STATIC') {
     // Static unit
-    updateRunningValue(value)
-    processValue(input_id, value)    
+    updateRunningValue(unit.default_value)
+    processValue(input_id, unit.default_value)    
   } else {
     // Dynamic unit
-    setupDynamicValue(input_id)
+    setupDynamicValue(input_id, unit.prompt)
   }
 }
 
@@ -171,7 +140,10 @@ function presentUnits(units) {
 
   // Store units in a dict for later
   unit_keys = Object.keys(units)
-  OPTIONS_DICT = units
+  unit_keys.forEach(k => {
+    unit = units[k]
+    OPTIONS_DICT[unit.unit_type] = unit.options
+  })
 
   // Use final node to display the submission
   // OR if no children present
@@ -183,17 +155,25 @@ function presentUnits(units) {
 
   // Iterate through the strings and create buttons
   // Each button needs a further handler
-  $.each(filtered_keys, function(index, string) {
-    var $button = $('<button>').text(string);
-    unit_class = getUnitClass(string)
-    $button.addClass('btn');
-    $button.addClass('btn-sm');
-    $button.addClass('unit-button');
-    $button.addClass(unit_class);
-    $button.click(function() {
-      handleInputClick(string);
-    });
-    $selectionGrid.append($button);
+  $.each(filtered_keys, function(index, k) {
+    unit = units[k]
+
+    var button = $('<button>').text(unit.prompt);
+    unit_class = getUnitClass(unit.variety)
+    button.addClass('btn').addClass('btn-sm').addClass('unit-button').addClass(unit_class)
+    
+    $selectionGrid.append(button);
+
+    (function(b_unit) {
+        button.click(function() {
+          handleInputClick(b_unit);
+        });
+    })(unit);
+
+    // button.click(function() {
+    //   handleInputClick(unit);
+    // });
+    
   });   
   
   // Show the container

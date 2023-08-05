@@ -1,12 +1,6 @@
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.unit_type import UnitType, UnitVariety
 
-class ByGivingUnit(InputUnit):
-    unit_type = UnitType.BY_GIVING
-    unit_var = UnitVariety.STATIC
-    prompt = 'By Giving'
-    init_value = 'by giving'
-
 class FollowingUnit(InputUnit):
     unit_type = UnitType.FOLLOWING
     unit_var = UnitVariety.STATIC

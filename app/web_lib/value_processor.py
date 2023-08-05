@@ -31,11 +31,9 @@ class ValueProcessor:
 
         self.__grammar_handler.select_child(unit_type.name) # Does ID work...?        
         children = self.__grammar_handler.get_children(contract)
-        #result = [x.unit_type.name for x in children]
         
-
         result = {
-            x.unit_type.name: x.options
+            x.unit_type.name: x.to_dict()
             for x in children  
         }
 

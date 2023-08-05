@@ -19,7 +19,6 @@ class FinalUnit(InputUnit):
     unit_type = UnitType.FINAL_NODE
     unit_var = UnitVariety.EMPTY
     prompt = 'FINISH'
-    needs_value = False
     init_value = 'X'
 
 class ForUnit(InputUnit):
@@ -42,7 +41,6 @@ class NoticeFromUnit(InputUnit):
 class NotifierUnit(InputUnit):
     unit_type = UnitType.NOTIFIER
     unit_var = UnitVariety.DYNAMIC
-    needs_value = True
     prompt = 'Notifier'
 
 class OfUnit(InputUnit):
@@ -54,6 +52,7 @@ class OfUnit(InputUnit):
 class RootUnit(InputUnit):
     unit_type = UnitType.ROOT
     unit_var = UnitVariety.EMPTY
+    prompt = 'ROOT'
 
 class UnlessUnit(InputUnit):
     unit_type = UnitType.UNLESS

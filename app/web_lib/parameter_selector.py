@@ -14,7 +14,7 @@ class ParameterSelector:
         self.__input_storage = input_storage
         self.__grammar_handler = grammar_handler
 
-    def select(self, contract_id: str, unique_key:str, nl_key:str, parm_key:str) -> Dict[str, List[str]]:
+    def select(self, contract_id: str, unique_key:str, nl_key:str, parm_key:str) -> Dict[str, any]:
         self.__input_storage.init_input(unique_key)
 
         contract = self.__contract_storage.load(unique_key, contract_id)
@@ -26,7 +26,7 @@ class ParameterSelector:
         children = self.__grammar_handler.get_children(contract)
 
         result = {
-            x.unit_type.name: x.options
+            x.unit_type.name: x.to_dict()
             for x in children  
         }
 
