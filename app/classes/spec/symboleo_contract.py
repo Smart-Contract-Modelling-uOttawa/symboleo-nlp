@@ -7,7 +7,9 @@ from app.classes.spec.norm import INorm, Obligation, Norm
 from app.classes.spec.norm_config import NormConfig
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
-from app.classes.spec.declaration import Declaration
+from app.classes.spec.declaration import Declaration, EventDeclaration, CustomEvent
+from app.classes.spec.sym_event import SymEvent, VariableEvent
+from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.parameter_config import ParameterConfig
 
@@ -201,4 +203,19 @@ class SymboleoContract(ISymboleoContract):
     def get_norm(self, norm_id: str, norm_type:str) -> Norm:
         result: Norm = self.contract_spec.__dict__[norm_type][norm_id]
         return result
+    
+    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
+        norm = self.get_norm(norm_id, norm_type)
+        cons = norm.get_component(norm_component)
+
+        if isinstance(cons, PAtomPredicate):
+            pred_func = cons.predicate_function
+            sym_event: SymEvent = pred_func.event
+            
+            if isinstance(sym_event, VariableEvent):
+                decl: EventDeclaration = self.contract_spec.declarations[sym_event.name]
+                if decl.base_type == 'events':
+                    return decl.evt        
+        return None
+
     

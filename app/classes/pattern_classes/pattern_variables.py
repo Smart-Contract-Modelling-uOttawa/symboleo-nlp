@@ -64,7 +64,4 @@ class PatternVariable(Enum):
     UNTIL_TIMEPOINT = 'UNTIL_TIMEPOINT'
     FOR_TIMESPAN = 'FOR_TIMESPAN'
     AFTER_TIMEPOINT = 'AFTER_TIMEPOINT'
-
-
-
-
+    

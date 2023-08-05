@@ -80,6 +80,7 @@ class ExceptEventHandler(IHandleNormUpdates):
         if isinstance(norm, Power):
             if isinstance(norm.consequent, PFObligation):
                 norm_id = norm.consequent.norm
-                return norm_id
+                if norm.consequent.name == PFObligationName.Suspended:
+                    return norm_id
         
         return None

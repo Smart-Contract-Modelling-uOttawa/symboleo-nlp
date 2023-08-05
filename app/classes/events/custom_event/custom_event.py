@@ -120,6 +120,6 @@ class CustomEvent(BaseEvent):
             self.verb == other.verb and \
             self.adverb == other.adverb and \
             self.predicate == other.predicate and \
-            ClassHelpers.lists_eq(self.pps, other.pps, 'key')
+            ClassHelpers.lists_eq(self.pps, other.pps, 'pp_str')
 
 

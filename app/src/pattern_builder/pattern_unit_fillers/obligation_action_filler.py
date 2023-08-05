@@ -12,14 +12,12 @@ class ObligationActionFiller(IFillPatternUnit):
         val = input_list[i].value
         ob_event = ObligationEventName[val.capitalize()]
 
-
         if isinstance(result.event, ObligationEvent):
             result.event.event_name = ob_event
         else:
             result.event = ObligationEvent(ob_event, 'X')
         
-        if ob_event == ObligationEventName.Violated:
-            result.nl_event.negation = True
+        if result.nl_event:
+            result.nl_event.negation = (ob_event in [ObligationEventName.Violated])
 
-        
         return result

@@ -22,35 +22,24 @@ class ObligationSubjectFiller(IFillPatternUnit):
         else:
             result.event = ObligationEvent(ObligationEventName.Activated, ob_val)
 
-        result.nl_event = self._get_nl_event(contract, ob_val)
+        result.nl_event = contract.try_get_event(ob_val, 'obligations', 'consequent')
 
         return result
     
 
-    def _get_nl_event(self, contract: SymboleoContract, ob_var: str):
-        evt_name = self._get_event_name(contract, ob_var)
-        if evt_name:
-            event = self._get_event(contract, evt_name)
-            event.is_new = False
-            return event
-        else:
-            raise Exception(f'Invalid obligation reference... {ob_var}')
-    
-    
-    def _get_event_name(self, contract: SymboleoContract, ob_var: str) -> str:
-        ob = contract.contract_spec.obligations[ob_var]
-        cons = ob.get_component('consequent')
-        if isinstance(cons, PAtomPredicate):
-            pred_func = cons.predicate_function
-            event: SymEvent = pred_func.event
-            if isinstance(event, VariableEvent):
-                return event.name
-        
-        return None
+    # def _get_nl_event(self, contract: SymboleoContract, ob_var: str):
+    #     sym_evt: VariableEvent = contract.try_get_event(ob_var, 'obligations', 'consequent')
 
+    #     if sym_evt:
+    #         event = self._get_event(contract, sym_evt.name)
+    #         event.is_new = False
+    #         return event
+    #     else:
+    #         raise Exception(f'Invalid obligation reference... {ob_var}')
+    
 
-    def _get_event(self, contract: SymboleoContract, evt_name:str) -> CustomEvent:
-        decl = contract.contract_spec.declarations[evt_name]
-        if decl.base_type == 'events':
-            return decl.evt
-        return None
+    # def _get_event(self, contract: SymboleoContract, evt_name:str) -> CustomEvent:
+    #     decl = contract.contract_spec.declarations[evt_name]
+    #     if decl.base_type == 'events':
+    #         return decl.evt
+    #     return None

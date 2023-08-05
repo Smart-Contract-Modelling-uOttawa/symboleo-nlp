@@ -1,5 +1,4 @@
 from typing import List, Dict
-from enum import Enum
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 
 from app.classes.spec.sym_event import SymEvent, PowerEvent, ObligationEvent
