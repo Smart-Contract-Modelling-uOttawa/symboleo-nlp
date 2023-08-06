@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  PayFees isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Porex: PartyA;
+  Cerus: PartyB;
+  evt_pay_fees: PayFees;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_fees: Obligation(Cerus, Porex, true, Happens(evt_pay_fees));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

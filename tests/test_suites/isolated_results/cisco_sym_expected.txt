@@ -1,0 +1,32 @@
+Domain test_dm
+  Distributor isA Role;
+  Cisco isA Role;
+  Product isAn Asset;
+  ObtainRmaNumber isAn Event;
+  ReturnProduct isAn Event with returning_agent: Role, returned_object: Product, returning_target: Role;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  distributor: Distributor;
+  cisco: Cisco;
+  product: Product;
+  evt_obtain_rma_number: ObtainRmaNumber;
+  evt_return_product: ReturnProduct with returning_agent := distributor, returning_target := cisco, returned_object := product;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_obtain_rma_number: Obligation(distributor, cisco, true, WhappensBeforeE(evt_obtain_rma_number, evt_return_product));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

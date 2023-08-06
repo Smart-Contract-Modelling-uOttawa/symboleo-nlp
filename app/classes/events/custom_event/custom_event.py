@@ -60,8 +60,12 @@ class CustomEvent(BaseEvent):
         
         if VerbType.TRANSITIVE in self.verb.verb_types:
 
-            if self.adverb:
-                result = f'{result} {self.adverb.adverb_str}'
+            # if self.adverb:
+            #     result = f'{result} {self.adverb.adverb_str}'
+            
+            if self.dobj:
+                if self.dobj.asset_type != 'Money':
+                    result = f'{result} {self.dobj.head}'
 
         return result
 

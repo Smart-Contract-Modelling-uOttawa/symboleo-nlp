@@ -25,8 +25,9 @@ from app.classes.spec.parameter_config import ParameterConfig
 # Dolphin agrees to complete its photo-editing services [PARAMETER]
 ## Original: within 14 days of receiving the original digital photo files
 ## CNL: within 14 days of Dolphin receiving the original digital photo files
+## WITHIN TIMESPAN OF EVENT => WHappensBefore
 
-dolphin_test_case = TestCase(
+test_case = TestCase(
     'dolphin',
     init_sym = SymboleoContract(
         DomainModel(
@@ -71,9 +72,11 @@ dolphin_test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.WITHIN),
-            UserInput(UnitType.TIMESPAN, '14 days'),
-            UserInput(UnitType.OF),
+            UserInput(UnitType.WITHIN, 'within'),
+            UserInput(UnitType.TIMESPAN),
+            UserInput(UnitType.TIME_VALUE, '14'),
+            UserInput(UnitType.TIME_UNIT, 'days'),
+            UserInput(UnitType.OF, 'of'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'Dolphin'),
@@ -96,7 +99,7 @@ dolphin_test_case = TestCase(
             }, 
             events = {
                 'CompleteServices': DomainEvent('CompleteServices', []),
-                'Receive': DomainEvent('Receive', [
+                'ReceiveFiles': DomainEvent('ReceiveFiles', [
                     DomainProp('receiving_agent', 'Role'),
                     DomainProp('received_object', 'Files')
                 ]),    
@@ -111,7 +114,7 @@ dolphin_test_case = TestCase(
                 'evt_complete_services': Declaration('evt_complete_services', 'CompleteServices', 'events', []),
                 
                 'photo_files': Declaration('photo_files', 'Files', 'assets', []),
-                'evt_receive': Declaration('evt_receive', 'Receive', 'events', [
+                'evt_receive_files': Declaration('evt_receive_files', 'ReceiveFiles', 'events', [
                     DeclarationProp('receiving_agent', 'Dolphin', 'Role'),
                     DeclarationProp('received_object', 'photo_files', 'Files')
                 ]),
@@ -122,7 +125,7 @@ dolphin_test_case = TestCase(
                 'ob_complete': Obligation('ob_complete', None, 'Dolphin', 'client', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionWHappensBefore(
                         VariableEvent('evt_complete_services'),
-                        Point(PointFunction(PointVDE('evt_receive'), '14', TimeUnit.Days))
+                        Point(PointFunction(PointVDE('evt_receive_files'), '14', TimeUnit.Days))
                     ))
                 )
             },

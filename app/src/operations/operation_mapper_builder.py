@@ -8,6 +8,7 @@ from app.src.pattern_builder.single_pattern_checker2 import SinglePatternChecker
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.operations.pattern_class_resolver import PatternClassResolver
 from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler_dict import PatternUnitFillerDictConstructor
+from app.src.pattern_builder.pattern_builder_constructor import PatternBuilderConstructor
 
 from app.src.norm_update_extractor.handlers.norm_update_handler_dict import NormUpdateHandlerDictBuilder
 from app.src.norm_update_extractor.norm_update_extractor import NormUpdateExtractor
@@ -17,14 +18,7 @@ from app.src.operations.operation_mapper import OperationMapper
 class OperationMapperBuilder:
     @staticmethod
     def build(deps: Dependencies):
-
-        pattern_class_getter = AllPatternClassGetter()
-        recursive_pattern_checker = RecursivePatternChecker()
-        single_pattern_checker = SinglePatternChecker2(recursive_pattern_checker)
-        pattern_class_extractor = PatternClassExtractor(pattern_class_getter, single_pattern_checker)
-        pattern_filler_dict= PatternUnitFillerDictConstructor.build(deps)
-        pattern_class_filler = PatternClassFiller(pattern_filler_dict)
-        pattern_class_builder = PatternClassBuilder(pattern_class_extractor, pattern_class_filler)
+        pattern_class_builder = PatternBuilderConstructor.construct(deps)
 
         pattern_class_resolver = PatternClassResolver()
 

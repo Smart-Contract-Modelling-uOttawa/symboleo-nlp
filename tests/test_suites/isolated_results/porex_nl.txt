@@ -1,0 +1,3 @@
+A - nl_key: Payment to Porex of undisputed fees shall be due 10 days after Porex submits invoice receipt to Cerus
+E - nl_key: Payment to Porex of undisputed fees shall be due 10 days after Porex submits invoice receipt to Cerus
+

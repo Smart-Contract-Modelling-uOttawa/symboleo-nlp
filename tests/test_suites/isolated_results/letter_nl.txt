@@ -1,3 +1,0 @@
-A - nl_key: The Buyer shall open an irrevocable letter of credit with the bank within 30 days of contract beginning
-E - nl_key: The Buyer shall open an irrevocable letter of credit with the bank within 30 days of contract beginning
-

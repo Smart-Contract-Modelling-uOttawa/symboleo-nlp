@@ -21,6 +21,7 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
+## KILL: Duplicate of Within timespan event
 # The Buyer shall open an irrevocable letter of credit with the bank [PARAMETER]
 ## Original: within 30 days after signing the contract
 ## Mine: within 30 days of buyer signing the contract

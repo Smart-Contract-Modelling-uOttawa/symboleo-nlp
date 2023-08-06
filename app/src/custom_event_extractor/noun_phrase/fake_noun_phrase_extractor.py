@@ -3,6 +3,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.src.custom_event_extractor.element_extractor import IExtractElement
 
 from tests.helpers.test_objects import NounPhrases
+from tests.helpers.test_obj_lib.isolated_test_objects import NounPhrases as INP
 
 # So that we don't need to use nlp all the time when testing
 class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
@@ -24,8 +25,6 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'pets': NounPhrases.pets(),
             'credit card': NounPhrases.credit_card(),
             
-            'the original digital photo files': NounPhrases.photos(),
-            'Dolphin': NounPhrases.dolphin(),
             '$100': NounPhrases.hundred_dollars(),
             'CAD': NounPhrases.cad(),
             'March 30, 2024': NounPhrases.date_np('March 30, 2024'),
@@ -40,6 +39,21 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'productivity': NounPhrases.productivity(),
 
             'authorization': NounPhrases.authorization(),
+
+            # dolphin
+            'Dolphin': INP.dolphin(),
+            'the original digital photo files': INP.photos(),
+
+            # cisco
+            'cisco': INP.cisco(),
+            'distributor': INP.distributor(),
+            'any product': INP.product(),
+
+            # porex
+            'Porex': INP.porex(),
+            'Cerus': INP.cerus(),
+            'invoice receipt': INP.receipt(),
+
 
         }
 

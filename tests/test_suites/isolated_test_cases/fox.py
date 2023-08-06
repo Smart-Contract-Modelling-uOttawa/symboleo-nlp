@@ -21,11 +21,11 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
+## Maybe kill this one...
 # In no event will Fox develop, publish and/or distribute games derived from the Property "ICE AGE 2" [PARAMETER]
-## Original: prior to January 1, 2007
-## Mine: prior to January 1, 2007
+## CNL: before January 1, 2007
+## BEFORE DATE => SHappensBefore
 
-# TODO: F2 - Need prior to. Change the exp value in nl_tempalte as well
 fox_test_case = TestCase(
     'fox',
     init_sym = SymboleoContract(
@@ -74,10 +74,8 @@ fox_test_case = TestCase(
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.BEFORE),
-            UserInput(UnitType.DATE, 'January 1, 2007'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.BEFORE, 'before'),
+            UserInput(UnitType.DATE, 'January 1, 2007')
         ],
         nl_key='nl_key',
         parm_key='PARAMETER'

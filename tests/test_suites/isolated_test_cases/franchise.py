@@ -23,9 +23,11 @@ from app.classes.spec.parameter_config import ParameterConfig
 
 # the Franchise Fee shall be paid to Grantor [PARAMETER]
 ## Original: on or before March 31, 2017
-## Mine: before March 31, 2017
+## CNL: before March 31, 2017
+## BEFORE DATE => SHappensBefore
 
-franchise_test_case = TestCase(
+
+test_case = TestCase(
     'franchise',
     init_sym = SymboleoContract(
         DomainModel(
@@ -74,10 +76,8 @@ franchise_test_case = TestCase(
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.BEFORE), # TODO: F2 - "on or before?"
-            UserInput(UnitType.DATE, 'March 31, 2017'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.BEFORE, 'before'),
+            UserInput(UnitType.DATE, 'March 31, 2017')
         ],
         nl_key='nl_key',
         parm_key='PARAMETER'

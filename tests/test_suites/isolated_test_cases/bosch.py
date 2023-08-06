@@ -21,10 +21,12 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
+## TODO: Kill/replace this... not dealing with rights...
 # BOSCH reserves the right to share rights given unless it disrupts and/or interferes with CLIENTS business and/or productivity
 # BOSCH reserves the right to share rights given [PARAMETER]
 ## Original: unless it disrupts and/or interferes with CLIENTS business and/or productivity
 ## CNL: unless BOSCH disrupts productivity of CLIENT
+## Operation: UNLESS EVENT => Power to 
 
 bosch_test_case = TestCase(
     'bosch',
@@ -75,15 +77,13 @@ bosch_test_case = TestCase(
     # unless BOSCH disrupts productivity of CLIENT
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.UNLESS),
+            UserInput(UnitType.UNLESS, 'unless'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'BOSCH'),
-            UserInput(UnitType.VERB, 'disrupts'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'disrupts'),
             UserInput(UnitType.DOBJ, 'productivity'),
-            UserInput(UnitType.PREP_PHRASE, 'of CLIENT'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.PREP_PHRASE, 'of CLIENT')
         ],
         nl_key='parm',
         parm_key='PARM'

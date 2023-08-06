@@ -24,9 +24,10 @@ from app.classes.spec.parameter_config import ParameterConfig
 # Upon termination of this Agreement, Maimon agrees to return immediately to the Company all written Confidential Information
 # [PARAMETER] Maimon agrees to return immediately to the Company all written Confidential Information
 ## Original: Upon termination of this Agreement
-## Mine: If the contract terminates
+## CNL: If the contract terminates
+## COND_A => Antecedent
 
-maimon_test_case = TestCase(
+test_case = TestCase(
     'maimon',
     init_sym = SymboleoContract(
         DomainModel(
@@ -77,14 +78,11 @@ maimon_test_case = TestCase(
     op_code = OpCode.UPDATE_PARM,
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.IF, 'if'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminated')
         ],
         nl_key='nl_key',
         parm_key='PARAMETER'

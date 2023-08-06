@@ -1,0 +1,32 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  Receipt isAn Asset;
+  PayFees isAn Event;
+  SubmitReceipt isAn Event with submitting_agent: Role, submitting_target: Role, submitted_object: Receipt;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Porex: PartyA;
+  Cerus: PartyB;
+  invoice_receipt: Receipt;
+  evt_pay_fees: PayFees;
+  evt_submit_receipt: SubmitReceipt with submitting_agent := Porex, submitting_target := Cerus, submitted_object := invoice_receipt;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_fees: Obligation(Cerus, Porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

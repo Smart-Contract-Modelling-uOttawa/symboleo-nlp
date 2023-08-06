@@ -21,8 +21,6 @@ class NounPhrases:
     bob = lambda: NounPhrase('Bob', 'Bob', is_role=True, asset_type='Role')
     renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
     landlord = lambda: NounPhrase('landlord', 'landlord', is_role=True, asset_type='Role')
-    photos = lambda: NounPhrase('the original digital photo files', 'files', True, False, 'the', ['original', 'digital', 'photo'], 'Files')
-    dolphin = lambda: NounPhrase('Dolphin', 'Dolphin', False, True, asset_type='Role')
     cad = lambda: NounPhrase('CAD', 'CAD', False, False, asset_type='Currency')
 
     client = lambda: NounPhrase('client', 'client', False, True, asset_type='Role')
@@ -50,6 +48,7 @@ class Verbs:
     occupies = lambda: Verb('occupies', 'occupy', [VerbType.TRANSITIVE], VerbConjugations('occupy', 'occupies', 'occupied', 'occupying'))
     disrupts = lambda: Verb('disrupts', 'disrupt', [VerbType.TRANSITIVE], VerbConjugations('disrupt', 'disrupts', 'disrupted', 'disrupting'))
     provides = lambda: Verb('provides', 'provide', [VerbType.TRANSITIVE], VerbConjugations('provide', 'provides', 'provided', 'providing'))
+
 
 class CustomEvents:
     legal_proceedings = lambda: CustomEvent(

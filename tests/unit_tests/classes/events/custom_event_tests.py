@@ -30,8 +30,8 @@ test_set: List[Tuple[CustomEvent,str,str,str, str,str]] = [
         'Bob eats apple pie noisily with the seller',
         'Bob eating apple pie noisily with the seller',
         'Bob eats apple pie noisily with the seller',
-        'evt_eat_noisily',
-        'EatNoisily'
+        'evt_eat_pie',
+        'EatPie'
     ),
 ]
 
