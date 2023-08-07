@@ -1,10 +1,10 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 
-from app.console_lib.console_dependencies import UserDependencies
+from app.console_lib.console_dependencies import ConsoleDependencies
 from app.src.operations.termination_updater import TerminationOperation
 
 # TODO: Re-integrate this?
-def add_term(deps: UserDependencies, contract: SymboleoContract):
+def add_term(deps: ConsoleDependencies, contract: SymboleoContract):
     print('\nAdding termination condition...\n')
 
     # Collect relevant user input (debtor, id).. May make this another script...
@@ -21,9 +21,9 @@ def add_term(deps: UserDependencies, contract: SymboleoContract):
     creditor = roles[1 - debtor_key]
     norm_id = f'termination_{user_id}'
 
-    # Collect parameter info
-    selection = deps.gs.select(contract)
+    # # Collect parameter info
+    # selection = deps..select(contract)
     
-    op = TerminationOperation(norm_id, debtor, creditor, selection)
-    deps.tp_adder.update(contract, op)
+    # op = TerminationOperation(norm_id, debtor, creditor, selection)
+    # deps.tp_adder.update(contract, op)
 

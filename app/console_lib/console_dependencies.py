@@ -1,13 +1,13 @@
 from app.classes.operations.dependencies import Dependencies
 
 from app.console_lib.parm_getter import IGetParm, ParmGetter
-
 from app.console_lib.input_converter import InputConverter
 from app.console_lib.selector import InputSelector, ISelectInput
 
+from app.src.grammar_builder.child_getter import ChildGetter
+from app.src.grammar_builder.unit_builders.unit_builder_dict import UnitBuilderDictConstructor
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 from app.src.grammar_builder.grammar_builder import IBuildGrammar
-
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.contract_updater import IUpdateContract
 
@@ -30,7 +30,9 @@ def get_dependencies(deps: Dependencies) -> ConsoleDependencies:
     grammar_builder = GrammarBuilderConstructor.construct()
 
     input_converter = InputConverter()
-    selector = InputSelector(input_converter)
+    unit_builder_dict = UnitBuilderDictConstructor.build()
+    child_getter = ChildGetter(unit_builder_dict)
+    selector = InputSelector(input_converter, child_getter)
 
     contract_updater = ContractUpdaterBuilder.build(deps)
 

@@ -1,31 +1,32 @@
-from app.classes.grammar.grammar_node import GrammarNode
 from app.classes.operations.user_input import UserInput
-from app.classes.units.unit_type import UnitType, UnitVariety
-
-from app.classes.units.all_units import unit_type_dict
+from app.classes.units.unit_type import UnitVariety
+from app.classes.units.input_unit import InputUnit
 
 class IConvertNodeToInput:
-    def convert(self, node: GrammarNode) -> UserInput:
+    def convert(self, input_unit: InputUnit) -> UserInput:
         raise NotImplementedError()
 
-# TODO: Could add the child_getter so I can populate the options
-## Also need to pass in the contract
 class InputConverter(IConvertNodeToInput):
-    def convert(self, node: GrammarNode) -> UserInput:
-        unit_type = UnitType[node.name]
-        unit = unit_type_dict[unit_type]
-
+    def convert(self, input_unit: InputUnit) -> UserInput:
         # Dynamic
-        if unit.unit_var == UnitVariety.DYNAMIC:
-            value = input(f'\nEnter value for {unit.unit_type}: ')
+        if input_unit.unit_var == UnitVariety.DYNAMIC:
+            prompt = f'\nEnter value for {input_unit.unit_type}: \n'
+            
+            if input_unit.options:
+                for x in input_unit.options:
+                    prompt += f'- {x}\n'
+            
+            print(prompt)
+            value = input('\nEnter value: ')
+
         else:
             # Empty
-            if unit.unit_var == UnitVariety.EMPTY:
+            if input_unit.unit_var == UnitVariety.EMPTY:
                 value = None
             else:
                 # Static
-                value = unit.init_value
+                value = input_unit.init_value
         
-        return UserInput(unit_type, value)
+        return UserInput(input_unit.unit_type, value)
 
             

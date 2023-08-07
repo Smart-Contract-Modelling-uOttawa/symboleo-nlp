@@ -24,7 +24,7 @@ class ParmGetter(IGetParm):
         for i,k in enumerate(list(parm_keys)):
             print(f'{i+1}: {k}')
         
-        sel_parm_key = int(input('\nSelect the parameter # to refine: '))
+        sel_parm_key = int(input('\n\nSelect the parameter # to refine: '))
         
         parm_key = parm_keys[sel_parm_key-1]
 
