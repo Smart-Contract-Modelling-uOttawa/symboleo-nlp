@@ -26,8 +26,25 @@ class AssetTypeExtractor(IExtractAssetType):
         s['cash'] = 'PaymentMethod'
         self.__str_dict = s
 
+        p = {}
+        p['Number'] = ['amount', 'number', 'money', 'price']
+        self.__parm_dict = p
+
     # Will have a barrage of different potential extractors here 
     def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
+        # Check for parm
+        pattern = r'\[([A-Z_]+)\]'
+        match = re.match(pattern, str_val)
+        
+        if match:
+            for p in self.__parm_dict:
+                for pt in self.__parm_dict[p]:
+                    if pt in str_val.lower():
+                        return p
+            
+            return 'String' # This may change...
+        
+
         # Check for role or asset
         decls = contract.contract_spec.declarations
         if str_val in decls:
@@ -60,5 +77,4 @@ class AssetTypeExtractor(IExtractAssetType):
         
         # Default value
         return head.capitalize()
-        #return 'Other'
     

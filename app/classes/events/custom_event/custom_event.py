@@ -64,8 +64,14 @@ class CustomEvent(BaseEvent):
             #     result = f'{result} {self.adverb.adverb_str}'
             
             if self.dobj:
-                if self.dobj.asset_type != 'Money':
+                # e.g. [PAYMENT_AMOUNT] => payment amount
+                if self.dobj.is_parm:
+                    split_parm = self.dobj.str_val[1:-1].replace('_', ' ').lower()
+                    result = f'{result} {split_parm}'
+
+                elif self.dobj.asset_type != 'Money':
                     result = f'{result} {self.dobj.head}'
+                
 
         return result
 

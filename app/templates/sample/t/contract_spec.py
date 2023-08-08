@@ -12,19 +12,19 @@ from app.classes.spec.other_predicates import *
 from app.templates.sample.event_store import EventStore
 
 arg_values = {
-     'renter_id': 'renter',
-     'landlord_id': 'landlord',
-     'property_address': '123 Main Street',
-     'rent_amount': 1500,
-     'currency': 'CAD',
-     'late_fee_amount': 50,
-     'deposit_amount': 1000
+     #'renter_id': 'renter',
+     #'landlord_id': 'landlord',
+     'property_address': '[PROPERTY_ADDRESS]',
+     #'rent_amount': 1500,
+     'currency': '[CURRENCY]',
+     'late_fee_amount': '[LATE_FEE_AMOUNT]',
+     'deposit_amount': '[DEPOSIT_AMOUNT]'
 }
 
 def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     parameters = [
-        Parm('renter_id', 'String'),
-        Parm('landlord_id', 'String'),
+        # Parm('renter_id', 'String'),
+        # Parm('landlord_id', 'String'),
         Parm('property_address', 'String'),
         Parm('currency', 'Currency'),
         Parm('late_fee_amount', 'Number'),
@@ -32,8 +32,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     ]
 
     # Declarations
-    renter = RoleDeclaration(arg_dict["renter_id"], 'Renter')
-    landlord = RoleDeclaration(arg_dict["landlord_id"], 'Landlord')
+    renter = RoleDeclaration('renter', 'Renter')
+    landlord = RoleDeclaration('landlord', 'Landlord')
     RENTER = renter.to_obj()
     LANDLORD = landlord.to_obj()
 

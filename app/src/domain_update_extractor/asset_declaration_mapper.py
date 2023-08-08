@@ -47,7 +47,8 @@ class AssetDeclarationMapper(IMapAssetDeclarations):
 
 
     def _should_include(self, np: NounPhrase, exclusions: List[str]):
-        return np.asset_type not in exclusions
+        return np.asset_type not in exclusions \
+                and not np.is_parm
     
     
     

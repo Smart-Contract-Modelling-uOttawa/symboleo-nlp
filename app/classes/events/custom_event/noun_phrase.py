@@ -17,7 +17,8 @@ class NounPhrase:
         is_role: bool = False,
         det: str = None, 
         adjs: List[str] = None,
-        asset_type: str = None
+        asset_type: str = None,
+        is_parm = False
     ):
         self.str_val = str_val
         self.head = head
@@ -26,6 +27,7 @@ class NounPhrase:
         self.det = det
         self.adjs = adjs
         self.asset_type = asset_type
+        self.is_parm = is_parm
         if self.adjs is None:
             self.adjs = []
 
@@ -37,6 +39,7 @@ class NounPhrase:
             self.is_role == other.is_role and \
             self.det == other.det and \
             self.asset_type == other.asset_type and \
+            self.is_parm == other.is_parm and \
             ClassHelpers.simple_lists_eq(self.adjs, other.adjs)
         
     def print_me(self):
@@ -46,6 +49,7 @@ class NounPhrase:
         print(f'- {self.is_role}')
         print(f'- {self.det}')
         print(f'- {self.asset_type}')
+        print(f'- {self.is_parm}')
         print(f'- {self.adjs}')
 
     def to_text(self, text_type: NPTextType = NPTextType.ORIGINAL):

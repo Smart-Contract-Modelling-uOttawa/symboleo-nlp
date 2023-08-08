@@ -42,7 +42,6 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     # Create the declarations
     seller = RoleDeclaration(arg_dict["seller_id"], 'Seller')
     buyer = RoleDeclaration(arg_dict["buyer_id"], 'Buyer')
-    
     SELLER = seller.to_obj()
     BUYER = buyer.to_obj()
 
@@ -50,14 +49,15 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         DeclarationProp('quantity_kg', arg_dict["quantity_kg"], 'Number'),
         DeclarationProp('quality', f'MeatQuality({arg_dict["quality"]})', 'MeatQuality')
     ])
-
     GOODS = goods.to_obj()
 
     evt_deliver = EventDeclaration('evt_deliver', 'Deliver', [
         DeclarationProp('item', GOODS, 'Meat'),
         DeclarationProp('deliverer', SELLER, 'Role'),
         DeclarationProp('recipient', BUYER, 'Role')
-    ])
+    ],
+    None # need event?
+    )
     
     evt_pay = EventDeclaration('evt_pay', 'Pay', [
             DeclarationProp('amount', arg_dict["amount"], 'Number'),

@@ -1,3 +1,5 @@
+import re
+
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.src.custom_event_extractor.element_extractor import IExtractElement
@@ -20,35 +22,51 @@ class NounPhraseExtractor(IExtractElement[NounPhrase]):
         # Validate
         ## Ensure that there is one noun_chunk
 
-        # Get determiner
-        if doc[0].tag_ == 'DT':
-            det = doc[0].text
+        is_parm = False
+        det = None
+        adjs = []
+        is_plural = False
+
+        # Verify if its a parameter
+        pattern = r'\[([A-Z_]+)\]'
+        match = re.match(pattern, str_val)
+        
+        if match:
+            print('MATCH!!!')
+            head = str_val
+            is_parm = True
+        
         else:
-            det = None
+
+            # Get determiner
+            if doc[0].tag_ == 'DT':
+                det = doc[0].text
+            
+            # Get the head
+            heads = [x for x in doc if x.dep_ == 'ROOT']
+            if len(heads) == 1:
+                head = heads[0].text
+                is_plural = heads[0].tag_ == 'NNS'
+            else:
+                raise ValueError('Invalid subject')
+            
+            # Get adjectives
+            adjs = [x.text for x in doc 
+                if x.tag_ == 'JJ' 
+                or (x.dep_ == 'compound' and x.head.text == head)
+            ]
         
-        # Get the head
-        heads = [x for x in doc if x.dep_ == 'ROOT']
-        if len(heads) == 1:
-            head = heads[0]
-            is_plural = head.tag_ == 'NNS'
-        else:
-            raise ValueError('Invalid subject')
-        
-        # Get adjectives
-        adjs = [x.text for x in doc 
-            if x.tag_ == 'JJ' 
-            or (x.dep_ == 'compound' and x.head.text == head.text)
-        ]
-        
+
         # Get Asset type
-        asset_type = self.__asset_type_extractor.extract(str_val, head.text, contract)
+        asset_type = self.__asset_type_extractor.extract(str_val, head, contract)
 
         return NounPhrase(
             str_val, 
-            head = head.text, 
+            head = head, 
             is_plural = is_plural, 
             is_role = (asset_type=='Role'),
             det = det, 
             adjs = adjs,
-            asset_type = asset_type
+            asset_type = asset_type,
+            is_parm = is_parm
         )

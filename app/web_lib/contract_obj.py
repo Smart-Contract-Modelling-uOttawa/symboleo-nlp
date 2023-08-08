@@ -27,8 +27,14 @@ class WebContractSym:
             next_do = dm.events[x].to_sym()
             domain_objs.append(next_do)
         
-        decls = []
         cs = contract.contract_spec
+        parms = []
+        for x in cs.parameters:
+            next_parm = x.to_sym()
+            parms.append(next_parm)
+
+
+        decls = []
         for x in cs.declarations:
             decl = cs.declarations[x].to_sym()
             decls.append(decl)
@@ -51,7 +57,7 @@ class WebContractSym:
         self.id = dm.id
         self.domain_objects = domain_objs
         self.declarations = decls
-        self.parameters = []
+        self.parameters = parms
         self.obligations = obs
         self.surviving_obligations = sobs
         self.powers = pows

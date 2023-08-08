@@ -48,6 +48,10 @@ class DeclarationPropMapper(IMapDeclarationProps):
             the_key = f'{evt.verb.conjugations.past}_target' 
         else:
             the_key = f'{evt.verb.conjugations.past}_object' 
+        
+        if dobject.is_parm:
+            the_key = dobject.str_val[1:-1].lower()
+            the_value = dobject.str_val
 
         return DeclarationProp(the_key, the_value, asset_type)
     

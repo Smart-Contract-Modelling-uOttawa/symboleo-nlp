@@ -123,7 +123,11 @@
           <br/>
           <div>
             <strong>Contract Spec</strong>
-            <!--Add Parameters...-->
+            <div>Contract(
+              {% for x in contract.sym.parameters %}
+              <div>&nbsp; {{x}},</div>
+              {% endfor %}
+            )</div>
             <div>
               <strong>Declarations</strong>
               {% for x in contract.sym.declarations %}

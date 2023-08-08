@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import List
+import re
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
@@ -136,13 +137,17 @@ class SymboleoContract(ISymboleoContract):
         # Add the declaration
         self.contract_spec.declarations[declaration.name] = declaration
 
-        # TODO: F3 - Add any new parameters as well
-        # parm_names = [x.name for x in self.contract_spec.parameters]
-        # decl_keys = [x for x in self.contract_spec.declarations]
-        # for dp in declaration.props:
-        #     if dp.value not in parm_names and dp.value not in decl_keys:
-        #         new_parm = ContractSpecParameter(dp.value, dp.type)
-        #         self.contract_spec.parameters.append(new_parm)
+        # Add any new parameters 
+        parm_names = [x.name for x in self.contract_spec.parameters]
+
+        for dp in declaration.props:    
+            re_pattern = r'\[([A-Z_]+)\]'
+            match = re.match(re_pattern, dp.value)
+        
+            if match and dp.value not in parm_names:
+                new_parm = ContractSpecParameter(dp.key, dp.type)
+                self.contract_spec.parameters.append(new_parm)
+            
             
 
     def _add_dm_object(self, dmo: DomainObject):
