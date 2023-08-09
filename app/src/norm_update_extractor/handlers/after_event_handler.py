@@ -14,7 +14,9 @@ class AfterEventHandler(IHandleNormUpdates):
         norm: Norm = norm_config.norm
         component_str = norm_config.parm_config.norm_component
         init_event = norm.get_default_event(component_str)
+        
         new_event = pattern_class.event
+        
         updated_predicate = PredicateFunctionHappensAfter(new_event, init_event) # Swapped event order
         new_norm = copy.deepcopy(norm)
         new_norm.update(component_str, updated_predicate)

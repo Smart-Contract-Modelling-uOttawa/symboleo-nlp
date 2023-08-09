@@ -16,7 +16,7 @@ class PointFunctionName(Enum):
     DateAdd = 'Date.add'
 
 # Note: Changed the arg from PointExpression to PointAtom to avoid recursion
-# This will disallow the existence of recursive pointFunctions (examples?)
+# This will disallow the existence of recursive pointFunctions 
 class PointFunction(PointExpression):
     arg = PointAtom()
     
