@@ -35,7 +35,7 @@ class OperationMapper(IMapCnlToOperations):
 
         norms = self.__norm_update_extractor.extract(pattern_class, norm_config)
 
-        domain_updates = self.__domain_update_extractor.extract(pattern_class, contract)
+        domain_updates = self.__domain_update_extractor.extract(pattern_class, contract, norm_config)
 
         nl_update = pattern_class.to_text()
         

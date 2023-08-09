@@ -1,1 +1,24 @@
 Time points 
+
+- if the user enters a date, we want to attach it to the existing event
+- for example: PartyA must perform event X [before March 30, 2024]
+
+- original:
+-- EvtX
+-- evt_x: EvtX;
+- new
+-- EvtX: due_date: Date 
+-- evt_x: EvtX with due_date := 'March 30, 2024'
+
+** could even go a step further and make it a parm 
+
+then in the norm: SHappensBefore(evt_x, evt_x.due_date)
+
+TODOS
+- in the declaration/domain mapper, can just recreate it and add to domain updater. it will be handled properly
+- in the norm updater, use the date ones... 
+-- if its a CSP, then were good
+-- if its a concrete date... then need a link 
+--- BEFORE => before_date, after_date, until_date...
+
+- lets try it out..

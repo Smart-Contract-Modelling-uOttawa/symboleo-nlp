@@ -17,7 +17,7 @@ class ContractParmMapper(IMapContractParms):
         if isinstance(pattern_class, EventPatternClass):
             evt = pattern_class.nl_event
             if evt.dobj and evt.dobj.is_parm:
-                parm_name = self._convert_parm_name(evt.dobj.head)
+                parm_name = ParmChecker.lower_parm(evt.dobj.head)
                 new_parm = ContractSpecParameter(parm_name, evt.dobj.asset_type)
                 results.append(new_parm)
             
@@ -25,13 +25,10 @@ class ContractParmMapper(IMapContractParms):
         if PV.DATE in pattern_class.val_dict:
             date_text = pattern_class.val_dict[PV.DATE]
             if ParmChecker.is_parm(date_text):
-                parm_name = self._convert_parm_name(pattern_class.val_dict[PV.DATE])
+                parm_name = ParmChecker.lower_parm(date_text)
                 new_parm = ContractSpecParameter(parm_name, 'Date')
                 results.append(new_parm)
 
 
         return results
 
-
-    def _convert_parm_name(self, s:str) -> str:
-        return s[1:-1].lower()

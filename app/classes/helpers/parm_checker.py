@@ -8,3 +8,7 @@ class ParmChecker:
         pattern = r'\[([A-Z_]+)\]'
         match = re.match(pattern, s)
         return match 
+    
+    @staticmethod
+    def lower_parm(s:str) -> str:
+        return s[1:-1].lower()
