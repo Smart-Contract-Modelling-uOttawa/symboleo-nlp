@@ -32,7 +32,7 @@ class DuringUnit(InputUnit):
     init_value = 'during'
 
 class FromUnit(InputUnit):
-    unit_type = UnitType.OF
+    unit_type = UnitType.FROM
     unit_var = UnitVariety.STATIC
     prompt = 'From'
     init_value = 'from'
