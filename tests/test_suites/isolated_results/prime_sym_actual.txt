@@ -1,0 +1,32 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  Components isAn Asset;
+  StopFundingLoans isAn Event;
+  CompleteComponents isAn Event with completing_agent: Role, completed_object: Components;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Prime: PartyA;
+  Shareholder: PartyB;
+  evt_stop_funding_loans: StopFundingLoans;
+  project_components: Components;
+  evt_complete_components: CompleteComponents with completing_agent := Prime, completed_object := project_components;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_keep_funding_loans: Obligation(Prime, Shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

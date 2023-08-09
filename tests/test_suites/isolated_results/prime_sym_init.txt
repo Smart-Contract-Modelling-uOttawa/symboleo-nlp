@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  StopFundingLoans isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Prime: PartyA;
+  Shareholder: PartyB;
+  evt_stop_funding_loans: StopFundingLoans;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_keep_funding_loans: Obligation(Prime, Shareholder, true, not Happens(evt_stop_funding_loans));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

@@ -27,6 +27,11 @@ class NounPhrases:
     stadium = lambda: NounPhrase('Stadium', 'Stadium', is_role=True, asset_type='Role')
     party = lambda: NounPhrase('the party', 'party', det='the', asset_type='Party')
 
+    # prime
+    prime = lambda: NounPhrase('Prime', 'Prime', is_role=True, asset_type='Role')
+    shareholder = lambda: NounPhrase('Shareholder', 'Shareholder', is_role=True, asset_type='Role')
+    components = lambda: NounPhrase('all project components', 'components', is_plural=True, det='all', adjs=['project'], asset_type='Components')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 
@@ -39,6 +44,9 @@ class Verbs:
 
     # tianhe
     happening = lambda: Verb('happening', 'happen', [VerbType.INTRANSITIVE], VerbConjugations('happen', 'happens', 'happened', 'happening'))
+
+    # prime
+    completes = lambda: Verb('completes', 'complete', [VerbType.TRANSITIVE], VerbConjugations('complete', 'completes', 'completed', 'completing'))
 
 class CustomEvents:
     # cisco
@@ -64,7 +72,12 @@ class CustomEvents:
     # tianhe
     party_happening = lambda: CustomEvent(
         subj = NounPhrases.party(),
-        verb = Verbs.happening()
-        
+        verb = Verbs.happening()   
     )
 
+    # prime
+    completes_components = lambda: CustomEvent(
+        subj = NounPhrases.prime(),
+        verb = Verbs.completes(),
+        dobj = NounPhrases.components()
+    )

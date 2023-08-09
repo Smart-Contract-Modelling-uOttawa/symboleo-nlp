@@ -5,7 +5,7 @@ from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.pattern_classes.until_event import UntilEvent
 from app.classes.spec.norm import Norm
 from app.classes.spec.norm_config import NormConfig
-from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
+from app.classes.spec.predicate_function import PredicateFunctionWHappensBeforeEvent
 from app.classes.spec.sym_point import Point, PointVDE
 
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
@@ -20,7 +20,7 @@ class UntilEventHandler(IHandleNormUpdates):
         
         new_event = pattern_class.event
         
-        updated_predicate = PredicateFunctionWHappensBefore(init_event, new_event)
+        updated_predicate = PredicateFunctionWHappensBeforeEvent(init_event, new_event)
         new_norm = copy.deepcopy(norm)
         new_norm.update(component_str, updated_predicate)
         

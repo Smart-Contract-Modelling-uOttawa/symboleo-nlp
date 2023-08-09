@@ -57,7 +57,15 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             # tianhe
             'Sponsor': INP.sponsor(),
             'Stadium': INP.stadium(),
-            'the party': INP.party()
+            'the party': INP.party(),
+
+            # prime
+            'Prime': INP.prime(),
+            'Shareholder': INP.shareholder(),
+            'all project components': INP.components(),
+
+            
+
 
         }
 

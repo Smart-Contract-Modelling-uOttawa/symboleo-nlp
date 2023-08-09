@@ -41,7 +41,8 @@ test_suite = [
     ('the original digital photo files', INP.photos()),
     ('any product', INP.product()),
     ('invoice receipt', INP.receipt()),
-    ('the party', INP.party())
+    ('the party', INP.party()),
+    ('all project components', INP.components())
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

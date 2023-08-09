@@ -9,6 +9,7 @@ from tests.test_suites.isolated_test_cases.franchise import test_case as franchi
 from tests.test_suites.isolated_test_cases.cisco import test_case as cisco_test
 from tests.test_suites.isolated_test_cases.porex import test_case as porex_test
 from tests.test_suites.isolated_test_cases.tianhe import test_case as tianhe_test
+from tests.test_suites.isolated_test_cases.prime import test_case as prime_test
 
 test_suite = [
     dolphin_test,
@@ -16,11 +17,12 @@ test_suite = [
     franchise_test,
     cisco_test,
     porex_test,
-    tianhe_test
+    tianhe_test,
+    prime_test
 ]
 
 # test_suite = [
-#     tianhe_test
+#     prime_test
 # ]
 
 class IsolatedTests(unittest.TestCase):
