@@ -11,6 +11,7 @@ from tests.test_suites.isolated_test_cases.porex import test_case as porex_test
 from tests.test_suites.isolated_test_cases.tianhe import test_case as tianhe_test
 from tests.test_suites.isolated_test_cases.prime import test_case as prime_test
 from tests.test_suites.isolated_test_cases.adpro import test_case as adpro_test
+from tests.test_suites.isolated_test_cases.pincode import test_case as pincode_test
 
 test_suite = [
     dolphin_test,
@@ -20,12 +21,13 @@ test_suite = [
     porex_test,
     tianhe_test,
     prime_test,
-    adpro_test
+    adpro_test,
+    pincode_test
 ]
 
-# test_suite = [
-#     adpro_test
-# ]
+test_suite = [
+    pincode_test
+]
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:
