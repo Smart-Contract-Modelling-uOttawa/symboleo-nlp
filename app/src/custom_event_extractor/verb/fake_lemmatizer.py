@@ -20,7 +20,8 @@ class FakeLemmatizer(ILemmatize):
             'sending': 'send',
             'occupying': 'occupy',
             'returns': 'return',
-            'submits': 'submit'
+            'submits': 'submit',
+            'happening': 'happen'
         }
 
     def lemmatize(self, s: str) -> str:

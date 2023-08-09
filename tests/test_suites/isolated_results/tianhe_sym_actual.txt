@@ -1,0 +1,32 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  Party isAn Asset;
+  DeliverMaterials isAn Event;
+  PartyHappen isAn Event with happening_subject: Party;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Stadium: PartyA;
+  Sponsor: PartyB;
+  evt_deliver_materials: DeliverMaterials;
+  party: Party;
+  evt_party_happen: PartyHappen with happening_subject := party;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_deliver_materials: Obligation(Sponsor, Stadium, true, WhappensBefore(evt_deliver_materials, Date.add(evt_party_happen, -2, days)));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

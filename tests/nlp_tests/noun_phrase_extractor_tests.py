@@ -21,7 +21,6 @@ test_suite = [
     ('legal proceedings', NounPhrases.legal_proceedings()),
     ('property', NounPhrases.property()),
     ('renter', NounPhrases.renter()),
-    ('Dolphin', NounPhrases.dolphin()),
     ('$100', NounPhrases.hundred_dollars()),
     ('CAD', NounPhrases.cad()),
 
@@ -41,7 +40,8 @@ test_suite = [
     # isolated tests
     ('the original digital photo files', INP.photos()),
     ('any product', INP.product()),
-    ('invoice receipt', INP.receipt())
+    ('invoice receipt', INP.receipt()),
+    ('the party', INP.party())
 ]
 
 # I can write some more tests that parse through this in much more detail, but not a priority

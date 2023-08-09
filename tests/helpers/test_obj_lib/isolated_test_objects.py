@@ -22,6 +22,11 @@ class NounPhrases:
     cerus = lambda: NounPhrase('Cerus', 'Cerus', is_role=True, asset_type='Role')
     receipt = lambda: NounPhrase('invoice receipt', 'receipt', adjs=['invoice'], asset_type='Receipt')
 
+    # tianhe
+    sponsor = lambda: NounPhrase('Sponsor', 'Sponsor', is_role=True, asset_type='Role')
+    stadium = lambda: NounPhrase('Stadium', 'Stadium', is_role=True, asset_type='Role')
+    party = lambda: NounPhrase('the party', 'party', det='the', asset_type='Party')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 
@@ -31,6 +36,9 @@ class Verbs:
     
     # porex
     submit = lambda: Verb('submits', 'submit', [VerbType.TRANSITIVE], VerbConjugations('submit', 'submits', 'submitted', 'submitting'))
+
+    # tianhe
+    happening = lambda: Verb('happening', 'happen', [VerbType.INTRANSITIVE], VerbConjugations('happen', 'happens', 'happened', 'happening'))
 
 class CustomEvents:
     # cisco
@@ -51,5 +59,12 @@ class CustomEvents:
         pps = [
             PrepPhrase('to Cerus', 'to', NounPhrases.cerus())
         ]
+    )
+
+    # tianhe
+    party_happening = lambda: CustomEvent(
+        subj = NounPhrases.party(),
+        verb = Verbs.happening()
+        
     )
 

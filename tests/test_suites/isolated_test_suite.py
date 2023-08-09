@@ -8,15 +8,20 @@ from tests.test_suites.isolated_test_cases.maimon import test_case as maimon_tes
 from tests.test_suites.isolated_test_cases.franchise import test_case as franchise_test
 from tests.test_suites.isolated_test_cases.cisco import test_case as cisco_test
 from tests.test_suites.isolated_test_cases.porex import test_case as porex_test
+from tests.test_suites.isolated_test_cases.tianhe import test_case as tianhe_test
 
 test_suite = [
     dolphin_test,
     maimon_test,
     franchise_test,
     cisco_test,
-    porex_test
+    porex_test,
+    tianhe_test
 ]
 
+# test_suite = [
+#     tianhe_test
+# ]
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:

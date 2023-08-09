@@ -55,9 +55,6 @@ class CustomEvent(BaseEvent):
     def _split_name(self):
         result = self.verb.lemma
 
-        if VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
-            result = f'{self.subj.to_text(NPTextType.BASIC)} {self.predicate.pred_str}'
-        
         if VerbType.TRANSITIVE in self.verb.verb_types:
 
             # if self.adverb:
@@ -71,7 +68,13 @@ class CustomEvent(BaseEvent):
 
                 elif self.dobj.asset_type != 'Money':
                     result = f'{result} {self.dobj.head}'
-                
+            
+        elif VerbType.INTRANSITIVE in self.verb.verb_types:
+            result = f'{self.subj.head} {self.verb.lemma}'
+
+        elif VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
+            result = f'{self.subj.to_text(NPTextType.BASIC)} {self.predicate.pred_str}'
+        
 
         return result
 

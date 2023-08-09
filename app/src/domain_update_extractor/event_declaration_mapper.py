@@ -1,5 +1,5 @@
 from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.spec.declaration import IDeclaration, Declaration
+from app.classes.spec.declaration import IDeclaration, Declaration, EventDeclaration
 from app.classes.events.custom_event.verb import VerbType
 
 from app.src.domain_update_extractor.declaration_prop_mapper import IMapDeclarationProps
@@ -21,11 +21,13 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         if VerbType.LINKING in verb.verb_types and len(verb.verb_types) == 1:
             result = self._map_linking(evt)
         
+        
+        if VerbType.INTRANSITIVE in verb.verb_types:
+            result = self._map_intransitive(evt)
+
         # Transitive verb
         if VerbType.TRANSITIVE in verb.verb_types:
             result = self._map_transitive(evt)
-
-        # TODO: Handle Intransitive case
         
         return result
     
@@ -33,7 +35,15 @@ class EventDeclarationMapper(IMapEventToDeclaration):
     def _map_linking(self, evt: CustomEvent) -> IDeclaration:
         name = evt.get_declaration_name()
         pps = self._map_pps(evt)
-        return Declaration(evt.event_key(), name, 'events', pps)
+        return EventDeclaration(evt.event_key(), name, pps)
+    
+
+    def _map_intransitive(self, evt: CustomEvent) -> EventDeclaration:
+        name = evt.get_declaration_name()
+
+        p1 = self.__prop_mapper.map_subject(evt.subj, evt)
+        
+        return EventDeclaration(evt.event_key(), name, [p1])
     
 
     def _map_transitive(self, evt: CustomEvent) -> IDeclaration:
@@ -47,7 +57,7 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         props = [p1, p2]
         props.extend(pps)
         
-        return Declaration(evt.event_key(), name, 'events', props)
+        return EventDeclaration(evt.event_key(), name, props)
 
 
     def _map_pps(self, evt: CustomEvent):

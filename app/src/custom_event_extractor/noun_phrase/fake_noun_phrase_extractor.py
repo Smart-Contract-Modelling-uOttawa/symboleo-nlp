@@ -54,6 +54,11 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'Cerus': INP.cerus(),
             'invoice receipt': INP.receipt(),
 
+            # tianhe
+            'Sponsor': INP.sponsor(),
+            'Stadium': INP.stadium(),
+            'the party': INP.party()
+
         }
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> NounPhrase:

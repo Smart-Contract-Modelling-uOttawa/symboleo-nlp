@@ -25,7 +25,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 # [PARAMETER] Maimon agrees to return immediately to the Company all written Confidential Information
 ## Original: Upon termination of this Agreement
 ## CNL: If the contract terminates
-## COND_A => Antecedent
+## COND_A EVENT => Antecedent
 
 test_case = TestCase(
     'maimon',

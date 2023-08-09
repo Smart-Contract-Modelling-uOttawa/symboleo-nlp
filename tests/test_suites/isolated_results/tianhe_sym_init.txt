@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  DeliverMaterials isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Stadium: PartyA;
+  Sponsor: PartyB;
+  evt_deliver_materials: DeliverMaterials;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_deliver_materials: Obligation(Sponsor, Stadium, true, Happens(evt_deliver_materials));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract
