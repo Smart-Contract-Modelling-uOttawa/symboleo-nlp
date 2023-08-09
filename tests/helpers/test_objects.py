@@ -22,6 +22,7 @@ class NounPhrases:
     renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
     landlord = lambda: NounPhrase('landlord', 'landlord', is_role=True, asset_type='Role')
     cad = lambda: NounPhrase('CAD', 'CAD', False, False, asset_type='Currency')
+    test_value_parm = lambda: NounPhrase('[TEST_VALUE]', '[TEST_VALUE]', is_parm=True, asset_type='String')
 
     client = lambda: NounPhrase('client', 'client', False, True, asset_type='Role')
     contractor = lambda: NounPhrase('contractor', 'contractor', False, True, asset_type='Role')
@@ -89,6 +90,11 @@ class CustomEvents:
         dobj = NounPhrases.apple_pie(),
         adverb = Adverb('noisily'),
         pps = [PrepPhrase('with the seller', 'with', NounPhrases.the_seller())]
+    )
+    eating_parm = lambda: CustomEvent(
+        subj = NounPhrases.bob(),
+        verb = Verbs.eats(),
+        dobj = NounPhrases.test_value_parm()
     )
     abandon_property = lambda: CustomEvent(
         subj = NounPhrases.renter(),

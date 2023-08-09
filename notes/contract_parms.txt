@@ -1,0 +1,50 @@
+How do we want to handle the contract spec parameters
+- these are typically values that are customizable by the user... prices, dates, names,
+- In line with the traditional FITB parameters, but not exclusively
+
+
+Ideally
+- user would be able to indicate that they want to enter a csp (contract spec parameter). 
+- they would also be given a choice as to the type (DATE, NUMBER, STRING, etc.)
+- e.g. BEFORE DATE - they wouldnt actually enter a date, they would enter a date parameter... [START_DATE]
+- this could get processed into a parameter, and could also potentially be added as a declaration
+- for events... BEFORE EVENT CUSTOM_EVENT subj
+-- subject could be role or asset or a new parameter - user can name it and specify type (e.g. string)
+-- verbs would likely stay the same 
+-- dobject -
+
+Ultimately a lot of this is tied up with events - i dont think i want to spend too much time on this area,
+- since its not 
+
+
+Currently
+- not really handling parms. Just treating them as actual words and then parsing stuff out. 
+- might be able to make the processing a bit easier though tbh...
+
+ideas
+- dates - always parameters
+- amounts
+- other strings
+
+** Can just detect parameters and handle them accordingly - maybe encourage it...
+
+types of parms 
+- dates - that would be an easy one: enforce that they enter a parm [LIKE_THIS]; captured as a date 
+-- e.g. before [DUE_DATE]
+-- add a csp... due_date: DATE
+-- no declaration, no event
+-- potentially would want to add a date to the declaration... this relates to date timepoint...separate convo 
+
+- amounts - allow option to enter a parm and ask the type (number)
+-- essentially this is asking about the FITB parts of the contract 
+-- e.g. if user pays [RENTAL_FEE_AMOUNT]
+-- could potentially be triggered by certain verbs
+-- parm: rental_fee_amount: Number, ...
+-- event: PayRentalFeeAmount: rental_fee_amount: Number 
+-- decl: evt_pay_rental_fee_amount: PayRentalFeeAmount with rental_fee_amount := [RENTAL_FEE_AMOUNT]
+
+- strings - for dobj/pobj/subj, user has the option of entering a parm; ask the type as well  
+-- e.g. before the renter notifies [STRING_TARGET]
+-- parm: string_target: String 
+-- 
+

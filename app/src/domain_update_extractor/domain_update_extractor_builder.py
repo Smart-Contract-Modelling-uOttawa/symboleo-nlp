@@ -7,6 +7,7 @@ from app.src.domain_update_extractor.asset_declaration_mapper import AssetDeclar
 from app.src.domain_update_extractor.event_declaration_mapper import EventDeclarationMapper
 from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
 from app.src.domain_update_extractor.domain_model_mapper import DeclarationToDomainMapper
+from app.src.domain_update_extractor.contract_parm_mapper import ContractParmMapper
 
 class DomainUpdateExtractorBuilder:
 
@@ -20,8 +21,11 @@ class DomainUpdateExtractorBuilder:
 
         domain_mapper = DeclarationToDomainMapper()
 
+        contract_parm_extractor = ContractParmMapper()
+
         return DomainUpdateExtractor(
             asset_decl_mapper,
             event_decl_mapper,
-            domain_mapper
+            domain_mapper,
+            contract_parm_extractor
         )

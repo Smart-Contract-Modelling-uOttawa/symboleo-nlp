@@ -27,34 +27,23 @@ class NounPhraseExtractor(IExtractElement[NounPhrase]):
         adjs = []
         is_plural = False
 
-        # Verify if its a parameter
-        pattern = r'\[([A-Z_]+)\]'
-        match = re.match(pattern, str_val)
+        # Get determiner
+        if doc[0].tag_ == 'DT':
+            det = doc[0].text
         
-        if match:
-            print('MATCH!!!')
-            head = str_val
-            is_parm = True
-        
+        # Get the head
+        heads = [x for x in doc if x.dep_ == 'ROOT']
+        if len(heads) == 1:
+            head = heads[0].text
+            is_plural = heads[0].tag_ == 'NNS'
         else:
-
-            # Get determiner
-            if doc[0].tag_ == 'DT':
-                det = doc[0].text
-            
-            # Get the head
-            heads = [x for x in doc if x.dep_ == 'ROOT']
-            if len(heads) == 1:
-                head = heads[0].text
-                is_plural = heads[0].tag_ == 'NNS'
-            else:
-                raise ValueError('Invalid subject')
-            
-            # Get adjectives
-            adjs = [x.text for x in doc 
-                if x.tag_ == 'JJ' 
-                or (x.dep_ == 'compound' and x.head.text == head)
-            ]
+            raise ValueError('Invalid subject')
+        
+        # Get adjectives
+        adjs = [x.text for x in doc 
+            if x.tag_ == 'JJ' 
+            or (x.dep_ == 'compound' and x.head.text == head)
+        ]
         
 
         # Get Asset type

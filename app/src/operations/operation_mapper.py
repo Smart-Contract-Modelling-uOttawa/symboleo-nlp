@@ -39,5 +39,11 @@ class OperationMapper(IMapCnlToOperations):
 
         nl_update = pattern_class.to_text()
         
-        return ContractUpdateObj(norms, domain_updates.domain_objects, domain_updates.declarations, nl_update)
+        return ContractUpdateObj(
+            norms, 
+            domain_updates.domain_objects, 
+            domain_updates.declarations,
+            domain_updates.contract_parms, 
+            nl_update
+        )
         

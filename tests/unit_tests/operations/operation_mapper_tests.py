@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.spec.declaration import Declaration
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.norm import INorm
 from app.classes.pattern_classes.pattern_class import PatternClass
@@ -28,7 +29,8 @@ class OperationMapperTests(unittest.TestCase):
 
         fake_domain_update = DomainUpdates(
             [Declaration('a', 'b', 'c', [])],
-            [DomainObject('a', 'b', [])]
+            [DomainObject('a', 'b', [])],
+            [ContractSpecParameter('a','b')]
         )
         self.domain_update_extractor.extract = MagicMock(return_value=fake_domain_update)
 

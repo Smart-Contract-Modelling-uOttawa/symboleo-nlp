@@ -36,6 +36,8 @@ class DeclarationPropMapper(IMapDeclarationProps):
         else:
             the_key = f'{evt.verb.conjugations.continuous}_subject'
             the_value = CaseConverter.to_snake(subject.to_text(NPTextType.BASIC))
+        
+        # May want to add parm-handling here as well
                     
         return DeclarationProp(the_key, the_value, asset_type)
 
@@ -50,6 +52,7 @@ class DeclarationPropMapper(IMapDeclarationProps):
             the_key = f'{evt.verb.conjugations.past}_object' 
         
         if dobject.is_parm:
+            # May want to indicate that its a parameter... add a flag to DeclarationProp (is_parm)
             the_key = dobject.str_val[1:-1].lower()
             the_value = dobject.str_val
 
@@ -65,6 +68,8 @@ class DeclarationPropMapper(IMapDeclarationProps):
                 the_key = f'{evt.verb.conjugations.continuous}_co_agent' 
             else:
                 the_key = f'{evt.verb.conjugations.continuous}_target' 
+        
+        # May want to add parm-handling here as well
         
         else: 
             if prep_phrase.preposition == 'with':

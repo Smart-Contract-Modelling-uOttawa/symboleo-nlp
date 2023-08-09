@@ -71,6 +71,9 @@ class SymboleoContract(ISymboleoContract):
         for x in update.declarations:
             self._add_declaration(x) # Might make this internal
 
+        for x in update.contract_parms:
+            self._add_contract_parm(x)
+
         for x in update.norms:
             self._update_norm(x)
 
@@ -133,21 +136,16 @@ class SymboleoContract(ISymboleoContract):
         self.contract_spec.__dict__[type_key][norm.id] = norm
 
 
-    def _add_declaration(self, declaration: Declaration):
-        # Add the declaration
-        self.contract_spec.declarations[declaration.name] = declaration
-
+    def _add_contract_parm(self, csp: ContractSpecParameter):
         # Add any new parameters 
         parm_names = [x.name for x in self.contract_spec.parameters]
 
-        for dp in declaration.props:    
-            re_pattern = r'\[([A-Z_]+)\]'
-            match = re.match(re_pattern, dp.value)
-        
-            if match and dp.value not in parm_names:
-                new_parm = ContractSpecParameter(dp.key, dp.type)
-                self.contract_spec.parameters.append(new_parm)
-            
+        if csp.name not in parm_names:
+            self.contract_spec.parameters.append(csp)
+
+    def _add_declaration(self, declaration: Declaration):
+        # Add the declaration
+        self.contract_spec.declarations[declaration.name] = declaration       
             
 
     def _add_dm_object(self, dmo: DomainObject):

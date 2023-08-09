@@ -7,6 +7,7 @@ from app.src.custom_event_extractor.verb.conjugator import MyConjugator
 from app.src.custom_event_extractor.verb.conjugator import ML3Conjugator
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import AssetTypeExtractor
 from app.src.custom_event_extractor.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
+from app.src.custom_event_extractor.noun_phrase.csp_noun_phrase_extractor import CspNounPhraseExtractor
 from app.src.custom_event_extractor.noun_phrase.fake_noun_phrase_extractor import FakeNounPhraseExtractor
 from app.src.custom_event_extractor.adverb_extractor import AdverbExtractor
 from app.src.custom_event_extractor.predicate_extractor import PredicateExtractor
@@ -18,11 +19,13 @@ class CustomEventExtractorBuilder:
     def build(deps: Dependencies):
         if deps.fake:
             lemmatizer = FakeLemmatizer()
-            np_extractor = FakeNounPhraseExtractor()
+            inner_extractor = FakeNounPhraseExtractor()
         else:
             lemmatizer = Lemmatizer(deps.nlp)
             asset_type_extractor = AssetTypeExtractor(deps.nlp)
-            np_extractor = NounPhraseExtractor(deps.nlp, asset_type_extractor)
+            inner_extractor = NounPhraseExtractor(deps.nlp, asset_type_extractor)
+        
+        np_extractor = CspNounPhraseExtractor(inner_extractor)
 
         inner_conjugator = ML3Conjugator(language = 'en')
         conjugator = MyConjugator(inner_conjugator)

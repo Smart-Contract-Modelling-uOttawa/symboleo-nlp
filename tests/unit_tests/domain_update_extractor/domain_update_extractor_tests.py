@@ -2,12 +2,14 @@ import unittest
 from unittest.mock import MagicMock
 from app.classes.spec.declaration import Declaration, EventDeclaration
 from app.classes.spec.domain_object import DomainObject
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 
 from app.classes.pattern_classes.pattern_class import EventPatternClass, PatternClass
 from app.src.domain_update_extractor.domain_update_extractor import DomainUpdateExtractor
 from app.src.domain_update_extractor.asset_declaration_mapper import IMapAssetDeclarations
 from app.src.domain_update_extractor.event_declaration_mapper import IMapEventToDeclaration
 from app.src.domain_update_extractor.domain_model_mapper import IMapDeclarationToDomain
+from app.src.domain_update_extractor.contract_parm_mapper import IMapContractParms
 
 from tests.helpers.test_objects import CustomEvents
 
@@ -16,10 +18,13 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         self.asset_decl_mapper = IMapAssetDeclarations()
         self.event_decl_mapper = IMapEventToDeclaration()
         self.domain_mapper = IMapDeclarationToDomain()
+        self.csp_mapper = IMapContractParms()
+
         self.sut = DomainUpdateExtractor(
             self.asset_decl_mapper,
             self.event_decl_mapper,
-            self.domain_mapper
+            self.domain_mapper,
+            self.csp_mapper
         )
 
     def test_domain_update_extractor(self):
@@ -35,6 +40,9 @@ class DomainUpdateExtractorTests(unittest.TestCase):
         domain_obj = DomainObject('a', 'b', [])
         self.domain_mapper.map = MagicMock(return_value=domain_obj)
 
+        csps = [ContractSpecParameter('a','b')]
+        self.csp_mapper.map = MagicMock(return_value = csps)
+
         pattern_class = EventPatternClass()
         pattern_class.nl_event = CustomEvents.paying()
 
@@ -42,25 +50,30 @@ class DomainUpdateExtractorTests(unittest.TestCase):
 
         self.assertEqual(len(result.declarations), 3)
         self.assertEqual(len(result.domain_objects), 3)
+        self.assertEqual(len(result.contract_parms), 1)
         self.assertEqual(result.declarations[2].name, 'evt_e1')
         self.assertEqual(self.asset_decl_mapper.map.call_count, 1)
         self.assertEqual(self.event_decl_mapper.map.call_count, 1)
         self.assertEqual(self.domain_mapper.map.call_count, 3)
+        self.assertEqual(self.csp_mapper.map.call_count, 1)
 
     
     def test_domain_update_extractor_empty(self):
         self.asset_decl_mapper.map = MagicMock(return_value=None)
         self.event_decl_mapper.map = MagicMock(return_value=None)
         self.domain_mapper.map = MagicMock(return_value=None)
+        self.csp_mapper.map = MagicMock(return_value=[])
 
         pattern_class = PatternClass()
         result = self.sut.extract(pattern_class, None)
 
         self.assertEqual(len(result.declarations), 0)
         self.assertEqual(len(result.domain_objects), 0)
+        self.assertEqual(len(result.contract_parms), 0)
         self.assertEqual(self.asset_decl_mapper.map.call_count, 0)
         self.assertEqual(self.event_decl_mapper.map.call_count, 0)
         self.assertEqual(self.domain_mapper.map.call_count, 0)
+        self.assertEqual(self.csp_mapper.map.call_count, 1)
 
 
 if __name__ == '__main__':
