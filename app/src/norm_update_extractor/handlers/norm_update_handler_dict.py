@@ -25,6 +25,7 @@ from app.src.norm_update_extractor.handlers.during_time_period_handler import Du
 
 # Helpers
 from app.src.object_mappers.time_period_mapper import TimePeriodMapper
+from app.src.object_mappers.timepoint_mapper import TimepointMapper
 # Can add a timespan mapper as well
 
 
@@ -35,6 +36,7 @@ class NormUpdateHandlerDictBuilder:
 
 
         time_period_mapper = TimePeriodMapper()
+        timepoint_mapper = TimepointMapper()
 
 
         d = {}
@@ -54,7 +56,7 @@ class NormUpdateHandlerDictBuilder:
         d[UntilEvent] = UntilEventHandler()
 
         d[DuringTimePeriod] = DuringTimePeriodHandler(time_period_mapper)
-        d[ForTimespanInterval] = ForTimespanIntervalHandler()
+        d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper)
         d[FromUntilInterval] = FromUntilIntervalHandler()
         d[BetweenInterval] = BetweenIntervalHandler()
 

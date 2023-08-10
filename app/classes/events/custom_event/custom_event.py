@@ -81,8 +81,7 @@ class CustomEvent(BaseEvent):
 
         return result
 
-    def to_text(self, conjugation: ConjType = ConjType.PRESENT):
-        
+    def to_text(self, conjugation: ConjType = ConjType.PRESENT):        
         subj = self.subj.to_text()
         result = subj
 

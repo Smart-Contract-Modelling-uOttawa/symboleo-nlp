@@ -11,19 +11,23 @@ from app.classes.spec.predicate_function import PredicateFunctionHappensWithin
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
+from app.src.object_mappers.timepoint_mapper import IMapTimepoint
 from app.src.norm_update_extractor.handlers.for_timespan_interval_handler import ForTimespanIntervalHandler
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class DuringTimePeriodHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = ForTimespanIntervalHandler()
+        self.tp_mapper = IMapTimepoint()
+        self.sut = ForTimespanIntervalHandler(self.tp_mapper)
 
     def test_handler(self):
+        self.tp_mapper.map = MagicMock(return_value = 'evt_test.start')
+
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = ForTimespanInterval({
-            PV.TIMEPOINT: 'test_timepoint',
             PV.TIMESPAN: '5 Days'
         })
+        pattern_class.event = VariableEvent('evt_test')
         
         result = self.sut.handle(pattern_class, norm_config)
         
@@ -41,8 +45,8 @@ class DuringTimePeriodHandlerTests(unittest.TestCase):
                     VariableEvent('evt_action'),
                     Interval(
                         IntervalFunction(
-                            PointVDE('test_timepoint'),
-                            PointFunction(PointVDE('test_timepoint'), 5, TimeUnit.Days)
+                            PointVDE('evt_test.start'),
+                            PointFunction(PointVDE('evt_test.start'), 5, TimeUnit.Days)
                         )
                     )
                 )

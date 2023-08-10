@@ -5,7 +5,7 @@ from app.classes.pattern_classes.pattern_class import PatternClass, PatternVaria
 
 from app.src.object_mappers.time_period_mapper import TimePeriodMapper, TimePeriod
 
-class OperationMapperTests(unittest.TestCase):
+class TimePeriodMapperTests(unittest.TestCase):
     def setUp(self):
         self.sut = TimePeriodMapper()
 
