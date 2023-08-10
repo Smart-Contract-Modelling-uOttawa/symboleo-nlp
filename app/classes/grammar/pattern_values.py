@@ -55,10 +55,24 @@ full_grammar = {
     PV.VERB_PHRASE: GOr(PV.IVP, PV.TVP, PV.LVP),
     PV.IVP: GAnd(UnitType.INTRANSITIVE_VERB, PV.ADV_AND_PP),
     PV.TVP: GAnd(UnitType.TRANSITIVE_VERB, PV.DOBJ_PHRASE),
-    PV.LVP: GAnd(UnitType.LINKING_VERB, PV.PRED_PHRASE),
+    PV.LVP: GAnd(
+        UnitType.LINKING_VERB, 
+        GOr(
+            PV.PRED_PHRASE, 
+            GAnd(
+                UnitType.NOT,
+                PV.PRED_PHRASE
+            )
+        )
+    ),
     
     PV.DOBJ_PHRASE: GAnd(UnitType.DOBJ, PV.ADV_AND_PP),
     PV.ADV_AND_PP: GOr(UnitType.FINAL_NODE, GAnd(UnitType.ADVERB, UnitType.PREP_PHRASE), UnitType.PREP_PHRASE),
-    PV.PRED_PHRASE: GAnd(UnitType.PREDICATE, PV.ADV_AND_PP),
-    # Prep phrase...?
+    PV.PRED_PHRASE: GAnd(
+        UnitType.PREDICATE, 
+        GOr(
+            UnitType.FINAL_NODE,
+            UnitType.PREP_PHRASE
+        )
+    ),
 }

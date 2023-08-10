@@ -11,12 +11,13 @@ from app.classes.spec.sym_point import Point, PointVDE
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
 class UntilEventHandler(IHandleNormUpdates):
-    # TODO: This only applies to negated events. Can have a check here
-    ## Better to handle earlier though. Prevent it...
     def handle(self, pattern_class: UntilEvent, norm_config: NormConfig) -> List[Norm]:
         norm: Norm = norm_config.norm
         component_str = norm_config.parm_config.norm_component
         init_event = norm.get_default_event(component_str)
+
+        if not norm.get_negation(component_str):
+            raise ValueError('UntilEventHandler can only be used with a negated norm')
         
         new_event = pattern_class.event
         

@@ -39,7 +39,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.DURING: DuringUnit,
     UnitType.THROUGHOUT: ThroughoutUnit,
 
-    UnitType.TIMEPOINT: TimepointUnit,
     UnitType.TIME_PERIOD: TimePeriodUnit,
     UnitType.TIME_VALUE: TimeValueUnit,
     UnitType.TIME_UNIT: TimeUnitUnit,
@@ -47,6 +46,7 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.CUSTOM_EVENT: CustomEventUnit,
     UnitType.ADVERB: AdverbUnit,
     UnitType.FAILS_TO: FailsToUnit,
+    UnitType.NOT: NotUnit,
     UnitType.VERB: VerbUnit,
     UnitType.TRANSITIVE_VERB: TransitiveVerbUnit,
     UnitType.INTRANSITIVE_VERB: IntransitiveVerbUnit,

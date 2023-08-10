@@ -51,5 +51,4 @@ class NormUpdateHandlerDictBuilder:
 
         
         # TODO: Still missing (tough ones)
-        # NoticeEvent
         return d

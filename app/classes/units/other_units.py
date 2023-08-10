@@ -7,19 +7,23 @@ class ExceptUnit(InputUnit):
     prompt = 'Except'
     init_value = 'except'
 
-# TODO: Am I supporting this?
 class FailsToUnit(InputUnit):
     unit_type = UnitType.FAILS_TO
     unit_var = UnitVariety.STATIC
     prompt = 'Fails to'
     init_value = 'fails to'
 
-# TODO: Do I need this?
+class NotUnit(InputUnit):
+    unit_type = UnitType.NOT
+    unit_var = UnitVariety.STATIC
+    prompt = 'Not'
+    init_value = 'not'
+
 class FinalUnit(InputUnit):
     unit_type = UnitType.FINAL_NODE
     unit_var = UnitVariety.EMPTY
     prompt = 'FINISH'
-    init_value = 'X'
+    init_value = ''
 
 class ForUnit(InputUnit):
     unit_type = UnitType.FOR

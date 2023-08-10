@@ -54,13 +54,17 @@ def temporal_classes():
         BeforeEvent,
         TimespanAfterEvent,
         TimespanBeforeEvent,
-        UntilDate,
-        UntilEvent,
         WithinTimespanEvent,
         BetweenInterval,
         FromUntilInterval,
         DuringTimePeriod,
         ForTimespanInterval
+    ]
+
+def until_classes():
+    return [       
+        UntilDate,
+        UntilEvent
     ]
 
 def exception_classes():

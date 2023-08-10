@@ -73,7 +73,10 @@ class CustomEvent(BaseEvent):
             result = f'{self.subj.head} {self.verb.lemma}'
 
         elif VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
-            result = f'{self.subj.to_text(NPTextType.BASIC)} {self.predicate.pred_str}'
+            result = f'{self.subj.to_text(NPTextType.BASIC)}'
+            if self.negation: 
+                result += ' not '
+            result += f' {self.predicate.pred_str}'
         
 
         return result

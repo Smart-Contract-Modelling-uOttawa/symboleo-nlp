@@ -56,7 +56,7 @@ class CustomEventExtractor(IExtractCustomEvents):
                 pps.append(pp)
             
             negation = False
-            if [x.value for x in input_list if x.unit_type == UnitType.FAILS_TO]:
+            if [x.value for x in input_list if x.unit_type in [UnitType.FAILS_TO, UnitType.NOT]]:
                 negation = True
 
             return CustomEvent(

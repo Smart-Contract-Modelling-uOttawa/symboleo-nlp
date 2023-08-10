@@ -25,9 +25,9 @@ test_suite = [
     pincode_test
 ]
 
-test_suite = [
-    pincode_test
-]
+# test_suite = [
+#     pincode_test
+# ]
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:

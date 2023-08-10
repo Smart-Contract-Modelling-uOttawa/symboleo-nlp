@@ -10,16 +10,12 @@ class ICheckRecursivePattern:
 class RecursivePatternChecker(ICheckRecursivePattern):
     def __init__(self):
         self._tree = full_grammar
-        # May want a better way of doing this...
-        self._optional_pv = [PV.ADV_AND_PP]
 
 
     def check(self, units: List[UnitType], unit_ind: int, pattern_obj:any) -> Tuple[bool, int]:
         # Do a preliminary check for out of bounds
-        # OK if we have a final node option
         if unit_ind >= len(units):
-            if isinstance(pattern_obj, PV) and pattern_obj in self._optional_pv:
-                return (True, unit_ind + 1)
+            return (True, unit_ind + 1)
         
         unit = units[unit_ind]
 

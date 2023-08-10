@@ -25,6 +25,9 @@ class AllPatternClassGetter(IGetAllPatternClasses):
             if PatternClassType.TEMPORAL in config:
                 result.extend(temporal_classes())
 
+                if PatternClassType.UNTIL in config:
+                    result.extend(until_classes())
+
             if PatternClassType.CONDITIONAL in config:
                 result.extend(conditional_classes())
             
