@@ -36,43 +36,20 @@ class ExceptEventHandler(IHandleNormUpdates):
 
             return [new_power]
 
-        # If init norm is a 'not' obligation => create power to suspend it
-        not_ob_id = self._get_not_ob(norm)
-        if not_ob_id:
-            # Check trigger. If false => replace trigger 
-            ## May kill this one...Not supported right now. Should be throwing error
-            if self._trigger_is_false(norm):
-                new_trigger = PredicateFunctionHappens(evt)
-                new_norm = copy.deepcopy(norm)
-                new_norm.update('trigger', new_trigger)
-                
-                return [new_norm]
-
-            else:
-                # If trigger is Not false => power to suspend
-                trigger_pred = PredicateFunctionHappens(evt)
-                new_power = Power(
-                    f'pow_suspend_{not_ob_id}',
-                    PropMaker.make(trigger_pred),
-                    norm.creditor,
-                    norm.debtor,
-                    PropMaker.make_default(),
-                    PFObligation(PFObligationName.Suspended, not_ob_id)
-                )
-
-                return [new_power]
-        
-
-    def _trigger_is_false(self, norm: Norm):
-        trigger_atom = norm.get_component('trigger')
-        return isinstance(trigger_atom, PAtomPredicateFalseLiteral)
-    
-    def _get_not_ob(self, norm: Norm):
+        # If init norm is an obligation => create power to suspend it
         if isinstance(norm, (Obligation, SurvivingObligation)):
-            if norm.get_negation('consequent'):
-                return norm.id
-        
-        return None
+            trigger_pred = PredicateFunctionHappens(evt)
+            new_power = Power(
+                f'pow_suspend_{norm.id}',
+                PropMaker.make(trigger_pred),
+                norm.creditor,
+                norm.debtor,
+                PropMaker.make_default(),
+                PFObligation(PFObligationName.Suspended, norm.id)
+            )
+
+            return [new_power]
+     
 
     def _get_suspension_norm_id(self, norm: Norm):
         if isinstance(norm, Power):

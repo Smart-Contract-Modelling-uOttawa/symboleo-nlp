@@ -1,0 +1,33 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  Approval isAn Asset;
+  PayDamages isAn Event;
+  ProvideApproval isAn Event with providing_agent: Role, provided_object: Approval;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  partyA: PartyA;
+  partyB: PartyB;
+  evt_pay_damages: PayDamages;
+  approval: Approval;
+  evt_provide_approval: ProvideApproval with providing_agent := partyA, provided_object := approval;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_damages: Obligation(partyA, partyB, true, Happens(evt_pay_damages));
+
+Surviving Obligations
+
+Powers
+  pow_suspend_ob_pay_damages: Happens(evt_provide_approval) -> Power(partyB, partyA, true, Suspended(obligations.ob_pay_damages));
+
+Constraints
+
+endContract

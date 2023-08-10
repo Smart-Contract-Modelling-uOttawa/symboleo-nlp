@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  PayDamages isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  partyA: PartyA;
+  partyB: PartyB;
+  evt_pay_damages: PayDamages;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_damages: Obligation(partyA, partyB, true, Happens(evt_pay_damages));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

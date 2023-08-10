@@ -32,6 +32,11 @@ class NounPhrases:
     shareholder = lambda: NounPhrase('Shareholder', 'Shareholder', is_role=True, asset_type='Role')
     components = lambda: NounPhrase('all project components', 'components', is_plural=True, det='all', adjs=['project'], asset_type='Components')
 
+    # except_event
+    partyA = lambda: NounPhrase('partyA', 'partyA', is_role=True, asset_type='Role')
+    partyB = lambda: NounPhrase('partyB', 'partyB', is_role=True, asset_type='Role')
+    approval = lambda: NounPhrase('approval', 'approval', asset_type='Approval')
+
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
 
@@ -47,6 +52,9 @@ class Verbs:
 
     # prime
     completes = lambda: Verb('completes', 'complete', [VerbType.TRANSITIVE], VerbConjugations('complete', 'completes', 'completed', 'completing'))
+
+    # except_event
+    provides = lambda: Verb('provides', 'provide', [VerbType.TRANSITIVE], VerbConjugations('provide', 'provides', 'provided', 'providing'))
 
 class CustomEvents:
     # cisco
@@ -80,4 +88,11 @@ class CustomEvents:
         subj = NounPhrases.prime(),
         verb = Verbs.completes(),
         dobj = NounPhrases.components()
+    )
+
+    # except_event
+    provides_approval = lambda: CustomEvent(
+        subj = NounPhrases.partyA(),
+        verb = Verbs.provides(),
+        dobj = NounPhrases.approval()
     )

@@ -64,6 +64,11 @@ class FakeNounPhraseExtractor(IExtractElement[NounPhrase]): # pragma: no cover
             'Shareholder': INP.shareholder(),
             'all project components': INP.components(),
 
+            # except_event
+            'partyA': INP.partyA(),
+            'partyB': INP.partyB(),
+            'approval': INP.approval(),
+
             
 
 

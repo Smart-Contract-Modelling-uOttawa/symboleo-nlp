@@ -1,0 +1,3 @@
+A - nl_key: partyB shall pay liquidated damages to partyA unless partyA provides approval
+E - nl_key: partyB shall pay liquidated damages to partyA unless partyA provides approval
+
