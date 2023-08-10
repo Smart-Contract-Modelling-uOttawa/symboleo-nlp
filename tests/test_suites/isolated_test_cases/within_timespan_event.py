@@ -1,9 +1,7 @@
-from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
-from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec

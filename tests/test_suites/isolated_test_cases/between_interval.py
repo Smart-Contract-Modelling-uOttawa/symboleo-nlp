@@ -1,37 +1,33 @@
-from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
-from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
+from app.classes.spec.domain_object import Role, DomainEvent
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp, RoleDeclaration,AssetDeclaration, EventDeclaration
+from app.classes.spec.declaration import RoleDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_interval import Interval, IntervalFunction
-from app.classes.spec.sym_point import Point, PointVDE
-from app.classes.spec.point_function import PointFunction, TimeUnit
+from app.classes.spec.sym_point import PointVDE
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
-
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_units import *
-
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
-# During the term of this agreement, licensee shall use the licensed mark only to the extent permitted under this license territory.
-# [P1] licensee shall use the licensed mark only to the extent permitted under this license territory
-## Original: During the term of this agreement
-## CNL: during the contract period
-## P_DURING TIME_PERIOD => HappensWithin
+# During the period beginning October 1, 2009 and ending March 31, 2010, charity tunes shall not enable another program sponsorship
+# [P1] charity tunes shall not enable another program sponsorship
+## Original: During the period beginning October 1, 2009 and ending March 31, 2010
+## CNL: between October 1, 2009 and March 31, 2010
+## BETWEEN DATE AND DATE => HappensWithin
 
 ## Need to negate the event
 
 test_case = TestCase(
-    'licensee',
+    'between_interval',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',
@@ -40,26 +36,26 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {},
-            events = {'CeaseUsingMark': DomainEvent('CeaseUsingMark', [])},
+            events = {'EnableSponsorship': DomainEvent('EnableSponsorship', [])},
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'licensee': RoleDeclaration('licensee', 'PartyA', []),
-                'licensor': RoleDeclaration('licensor', 'PartyB', []),
-                'evt_cease_using_mark': EventDeclaration('evt_cease_using_mark', 'CeaseUsingMark', [])
+                'charity': RoleDeclaration('charity', 'PartyA', []),
+                'sponsor': RoleDeclaration('sponsor', 'PartyB', []),
+                'evt_enable_sponsorship': EventDeclaration('evt_enable_sponsorship', 'EnableSponsorship', [])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_keep_using_mark': Obligation(
-                    'ob_keep_using_mark', 
+                'ob_no_sponsorship': Obligation(
+                    'ob_no_sponsorship', 
                     None, 
-                    'licensee', 
-                    'licensor', 
+                    'charity', 
+                    'sponsor', 
                     PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_cease_using_mark')), negation=True)
+                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_enable_sponsorship')), negation=True)
                 )
             },
             surviving_obligations={},
@@ -70,8 +66,8 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    '[P1] licensee shall use the licensed mark only to the extent permitted under this license territory', 
-                    {'P1': [ParameterConfig('obligations', 'ob_keep_using_mark', 'consequent')]})
+                    '[P1] charity tunes shall not enable another program sponsorship', 
+                    {'P1': [ParameterConfig('obligations', 'ob_no_sponsorship', 'consequent')]})
             }
         )
     ),
@@ -80,8 +76,10 @@ test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.DURING, 'during'),
-            UserInput(UnitType.TIME_PERIOD, 'the contract period')
+            UserInput(UnitType.BETWEEN, 'between'),
+            UserInput(UnitType.DATE, 'October 1, 2009'),
+            UserInput(UnitType.AND, 'and'),
+            UserInput(UnitType.DATE, 'March 31, 2010')
         ],
         nl_key='nl_key',
         parm_key='P1'
@@ -95,32 +93,32 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {},
-            events = {'CeaseUsingMark': DomainEvent('CeaseUsingMark', [])},
+            events = {'EnableSponsorship': DomainEvent('EnableSponsorship', [])},
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'licensee': RoleDeclaration('licensee', 'PartyA', []),
-                'licensor': RoleDeclaration('licensor', 'PartyB', []),
-                'evt_cease_using_mark': EventDeclaration('evt_cease_using_mark', 'CeaseUsingMark', [])
+                'charity': RoleDeclaration('charity', 'PartyA', []),
+                'sponsor': RoleDeclaration('sponsor', 'PartyB', []),
+                'evt_enable_sponsorship': EventDeclaration('evt_enable_sponsorship', 'EnableSponsorship', [])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_keep_using_mark': Obligation(
-                    'ob_keep_using_mark', 
+                'ob_no_sponsorship': Obligation(
+                    'ob_no_sponsorship', 
                     None, 
-                    'licensee', 
-                    'licensor', 
+                    'charity', 
+                    'sponsor', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionHappensWithin(
-                            VariableEvent('evt_cease_using_mark'),
+                            VariableEvent('evt_enable_sponsorship'),
                             Interval(
                                 IntervalFunction(
-                                    PointVDE('self.start'),
-                                    PointVDE('self.end'),
+                                    PointVDE('October 1, 2009'),
+                                    PointVDE('March 31, 2010')
                                 )
                             )
                         ), 
@@ -136,8 +134,8 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'during the contract period licensee shall use the licensed mark only to the extent permitted under this license territory', 
-                    {'P1': [ParameterConfig('obligations', 'ob_keep_using_mark', 'consequent')]})
+                    'between October 1, 2009 and March 31, 2010 charity tunes shall not enable another program sponsorship', 
+                    {'P1': [ParameterConfig('obligations', 'ob_no_sponsorship', 'consequent')]})
             }
         )
     ),

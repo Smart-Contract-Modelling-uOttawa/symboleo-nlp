@@ -26,7 +26,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 # [P1], licensee shall specify on all public-facing materials that licensee is no longer operating under the licensed mark.
 ## Original: For 24 months following termination of this agreement
 ## CNL: For 24 months after contract terminates
-## FOR TIMESPAN AFTER TIMEPOINT => HappensWithin
+## FOR TIMESPAN AFTER EVENT => HappensWithin
 
 ## Need to negate the event
 

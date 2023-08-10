@@ -1,5 +1,4 @@
-from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
@@ -9,14 +8,10 @@ from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import Declaration, DeclarationProp
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.sym_point import Point, PointVDE
-from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionWHappensBeforeEvent
-
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_units import *
-
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig

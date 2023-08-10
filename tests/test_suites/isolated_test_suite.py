@@ -3,35 +3,37 @@ from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.dependency_builder import DependencyBuilder
 
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
-from tests.test_suites.isolated_test_cases.dolphin import test_case as dolphin_test
-from tests.test_suites.isolated_test_cases.maimon import test_case as maimon_test
-from tests.test_suites.isolated_test_cases.franchise import test_case as franchise_test
-from tests.test_suites.isolated_test_cases.cisco import test_case as cisco_test
-from tests.test_suites.isolated_test_cases.porex import test_case as porex_test
-from tests.test_suites.isolated_test_cases.tianhe import test_case as tianhe_test
-from tests.test_suites.isolated_test_cases.prime import test_case as prime_test
-from tests.test_suites.isolated_test_cases.adpro import test_case as adpro_test
-from tests.test_suites.isolated_test_cases.pincode import test_case as pincode_test
-from tests.test_suites.isolated_test_cases.licensee import test_case as licensee_test
-from tests.test_suites.isolated_test_cases.materials import test_case as materials_test
+from tests.test_suites.isolated_test_cases.within_timespan_event import test_case as within_timespan_event_test
+from tests.test_suites.isolated_test_cases.cond_a_event import test_case as cond_a_event_test
+from tests.test_suites.isolated_test_cases.before_date import test_case as before_date_test
+from tests.test_suites.isolated_test_cases.before_event import test_case as before_event_test
+from tests.test_suites.isolated_test_cases.timespan_after_event import test_case as timespan_after_event_test
+from tests.test_suites.isolated_test_cases.timespan_before_event import test_case as timespan_before_event_test
+from tests.test_suites.isolated_test_cases.until_event import test_case as until_event_test
+from tests.test_suites.isolated_test_cases.after_timespan_after_event import test_case as after_timespan_after_event_test
+from tests.test_suites.isolated_test_cases.after_date import test_case as after_date_test
+from tests.test_suites.isolated_test_cases.during_time_period import test_case as during_time_period_test
+from tests.test_suites.isolated_test_cases.for_timespan import test_case as for_timespan_test
+from tests.test_suites.isolated_test_cases.between_interval import test_case as between_interval_test
 
 test_suite = [
-    dolphin_test,
-    maimon_test,
-    franchise_test,
-    cisco_test,
-    porex_test,
-    tianhe_test,
-    prime_test,
-    adpro_test,
-    pincode_test,
-    licensee_test,
-    materials_test
+    after_date_test,
+    after_timespan_after_event_test,
+    before_date_test,
+    before_event_test,
+    between_interval_test,
+    cond_a_event_test,
+    during_time_period_test,
+    for_timespan_test,
+    timespan_after_event_test,
+    timespan_before_event_test,
+    until_event_test,
+    within_timespan_event_test,
 ]
 
-test_suite = [
-    materials_test
-]
+# test_suite = [
+#     between_interval_test
+# ]
 
 class IsolatedTests(unittest.TestCase):
     def setUp(self) -> None:

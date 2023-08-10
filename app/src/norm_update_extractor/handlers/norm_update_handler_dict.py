@@ -19,7 +19,6 @@ from app.src.norm_update_extractor.handlers.until_date_handler import UntilDateH
 from app.src.norm_update_extractor.handlers.until_event_handler import UntilEventHandler
 
 from app.src.norm_update_extractor.handlers.between_interval_handler import BetweenIntervalHandler
-from app.src.norm_update_extractor.handlers.from_until_interval_handler import FromUntilIntervalHandler
 from app.src.norm_update_extractor.handlers.for_timespan_interval_handler import ForTimespanIntervalHandler
 from app.src.norm_update_extractor.handlers.during_time_period_handler import DuringTimePeriodHandler
 
@@ -57,7 +56,6 @@ class NormUpdateHandlerDictBuilder:
 
         d[DuringTimePeriod] = DuringTimePeriodHandler(time_period_mapper)
         d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper)
-        d[FromUntilInterval] = FromUntilIntervalHandler()
         d[BetweenInterval] = BetweenIntervalHandler()
 
         

@@ -17,8 +17,8 @@ class BetweenIntervalHandler(IHandleNormUpdates):
         component_str = norm_config.parm_config.norm_component
         init_event = norm.get_default_event(component_str)
 
-        tp1 = PointVDE(pattern_class.val_dict[PV.TIMEPOINT])
-        tp2 = PointVDE(pattern_class.val_dict[PV.TIMEPOINT2])
+        tp1 = PointVDE(pattern_class.val_dict[PV.DATE])
+        tp2 = PointVDE(pattern_class.val_dict[PV.DATE2])
         new_interval = Interval(IntervalFunction(tp1, tp2))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)

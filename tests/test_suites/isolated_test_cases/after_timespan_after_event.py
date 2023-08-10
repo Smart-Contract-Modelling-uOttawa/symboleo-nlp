@@ -1,15 +1,14 @@
-from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
-from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
+from app.classes.spec.domain_object import Role, DomainEvent
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp, RoleDeclaration,AssetDeclaration, EventDeclaration
+from app.classes.spec.declaration import RoleDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
-from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent
+from app.classes.spec.sym_point import Point
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensAfter
 
@@ -29,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 
 
 test_case = TestCase(
-    'adpro',
+    'after_timespan_after_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

@@ -16,7 +16,6 @@ from app.classes.pattern_classes.within_timespan_event import WithinTimespanEven
 
 from app.classes.pattern_classes.between_interval import BetweenInterval
 from app.classes.pattern_classes.during_time_period import DuringTimePeriod
-from app.classes.pattern_classes.from_until_interval import FromUntilInterval
 from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterval
 
 
@@ -39,7 +38,6 @@ def get_all_pattern_classes():
         UntilEvent,
         WithinTimespanEvent,
         BetweenInterval,
-        FromUntilInterval,
         DuringTimePeriod,
         ForTimespanInterval
     ]
@@ -56,7 +54,6 @@ def temporal_classes():
         TimespanBeforeEvent,
         WithinTimespanEvent,
         BetweenInterval,
-        FromUntilInterval,
         DuringTimePeriod,
         ForTimespanInterval
     ]

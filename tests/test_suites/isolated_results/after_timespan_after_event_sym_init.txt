@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  CeaseAdvertising isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  Company: PartyA;
+  Professional: PartyB;
+  evt_cease_advertising: CeaseAdvertising;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_cease_advertising: Obligation(Company, Professional, true, Happens(evt_cease_advertising));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

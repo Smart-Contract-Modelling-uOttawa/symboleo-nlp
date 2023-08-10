@@ -12,15 +12,10 @@ from app.src.grammar_builder.unit_builders.contract_action_ub import ContractAct
 from app.src.grammar_builder.unit_builders.linking_verb_ub import LinkingVerbUB
 from app.src.grammar_builder.unit_builders.time_period_ub import TimePeriodUB
 
-# Helpers (injected)
-#from app.src.selection.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
 
 class UnitBuilderDictConstructor:
     @staticmethod
     def build() -> DefaultDict[UnitType, IBuildUnit]:
-        # # Injection...?
-        # dtp_extractor = DomainTimepointExtractor()
-        
         d = defaultdict(lambda: DefaultUnitBuilder())
 
         d[UnitType.SUBJECT] = SubjectUB()

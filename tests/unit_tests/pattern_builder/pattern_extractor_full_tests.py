@@ -82,20 +82,16 @@ test_suite = [
         ExceptEvent
     ),
     (
-        [ UnitType.FOR] + mock_timespan() + [UnitType.FOLLOWING, UnitType.TIMEPOINT ], 
+        [ UnitType.FOR] + mock_timespan() + [UnitType.FOLLOWING, UnitType.EVENT ], 
         ForTimespanInterval
     ),
     (
-        [ UnitType.BETWEEN, UnitType.TIMEPOINT, UnitType.AND, UnitType.TIMEPOINT ], 
+        [ UnitType.BETWEEN, UnitType.DATE, UnitType.AND, UnitType.DATE ], 
         BetweenInterval
     ),
     (
         [ UnitType.DURING, UnitType.TIME_PERIOD ], 
         DuringTimePeriod
-    ),
-    (
-        [ UnitType.FROM, UnitType.TIMEPOINT, UnitType.UNTIL, UnitType.TIMEPOINT ], 
-        FromUntilInterval
     ),
     (
         [ UnitType.UPON] + mock_timespan() + [UnitType.NOTICE_EVENT, UnitType.NOTICE_FROM, UnitType.NOTIFIER ], 

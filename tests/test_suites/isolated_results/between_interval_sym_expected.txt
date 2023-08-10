@@ -1,0 +1,28 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  EnableSponsorship isAn Event;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  charity: PartyA;
+  sponsor: PartyB;
+  evt_enable_sponsorship: EnableSponsorship;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_no_sponsorship: Obligation(charity, sponsor, true, not HappensWithin(evt_enable_sponsorship, Interval(October 1, 2009, March 31, 2010));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

@@ -20,8 +20,8 @@ class BetweenIntervalHandlerTests(unittest.TestCase):
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = BetweenInterval({
-            PV.TIMEPOINT: 'test_timepoint1',
-            PV.TIMEPOINT2: 'test_timepoint2'
+            PV.DATE: 'March 1, 2023',
+            PV.DATE2: 'March 10, 2023'
         })
 
         result = self.sut.handle(pattern_class, norm_config)
@@ -40,8 +40,8 @@ class BetweenIntervalHandlerTests(unittest.TestCase):
                     VariableEvent('evt_action'),
                     Interval(
                         IntervalFunction(
-                            PointVDE('test_timepoint1'),
-                            PointVDE('test_timepoint2')
+                            PointVDE('March 1, 2023'),
+                            PointVDE('March 10, 2023')
                         )
                     )
                 )
