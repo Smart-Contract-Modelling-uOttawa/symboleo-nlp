@@ -10,14 +10,19 @@ from app.classes.spec.predicate_function import PredicateFunctionHappensWithin
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
+from app.src.object_mappers.time_period_mapper import IMapTimePeriod, TimePeriod
 from app.src.norm_update_extractor.handlers.during_time_period_handler import DuringTimePeriodHandler
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class DuringTimePeriodHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = DuringTimePeriodHandler()
+        self.tp_mapper = IMapTimePeriod()
+
+        self.sut = DuringTimePeriodHandler(self.tp_mapper)
 
     def test_handler(self):
+        self.tp_mapper.map = MagicMock(return_value = TimePeriod('test_period'))
+
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = DuringTimePeriod({
             PV.TIME_PERIOD: 'test_period'

@@ -9,17 +9,23 @@ from app.classes.spec.norm_config import NormConfig
 from app.classes.spec.predicate_function import PredicateFunctionHappensWithin
 from app.classes.spec.sym_point import Point, PointVDE
 
+from app.src.object_mappers.time_period_mapper import IMapTimePeriod
+
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
 class DuringTimePeriodHandler(IHandleNormUpdates):
+    def __init__(self, time_period_mapper: IMapTimePeriod):
+        self.__time_period_mapper = time_period_mapper
+
+
     def handle(self, pattern_class: DuringTimePeriod, norm_config: NormConfig) -> List[Norm]:
         norm: Norm = norm_config.norm
         component_str = norm_config.parm_config.norm_component
         init_event = norm.get_default_event(component_str)
 
-        time_period = pattern_class.val_dict[PV.TIME_PERIOD]
-        tp1 = PointVDE(f'{time_period}.start')
-        tp2 = PointVDE(f'{time_period}.end')
+        time_period = self.__time_period_mapper.map(pattern_class)
+        tp1 = PointVDE(time_period.start)
+        tp2 = PointVDE(time_period.end)
         new_interval = Interval(IntervalFunction(tp1, tp2))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)

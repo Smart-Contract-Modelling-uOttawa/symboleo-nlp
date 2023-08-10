@@ -12,6 +12,7 @@ from tests.test_suites.isolated_test_cases.tianhe import test_case as tianhe_tes
 from tests.test_suites.isolated_test_cases.prime import test_case as prime_test
 from tests.test_suites.isolated_test_cases.adpro import test_case as adpro_test
 from tests.test_suites.isolated_test_cases.pincode import test_case as pincode_test
+from tests.test_suites.isolated_test_cases.licensee import test_case as licensee_test
 
 test_suite = [
     dolphin_test,
@@ -22,11 +23,12 @@ test_suite = [
     tianhe_test,
     prime_test,
     adpro_test,
-    pincode_test
+    pincode_test,
+    licensee_test
 ]
 
 # test_suite = [
-#     pincode_test
+#     licensee_test
 # ]
 
 class IsolatedTests(unittest.TestCase):

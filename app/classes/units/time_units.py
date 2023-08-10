@@ -11,11 +11,6 @@ class EventUnit(InputUnit):
     unit_var = UnitVariety.EMPTY
     prompt = 'Event'
 
-# TODO: Keeping this?
-class TimepointUnit(InputUnit):
-    unit_type = UnitType.TIMEPOINT
-    unit_var = UnitVariety.DYNAMIC
-    prompt = 'Timepoint'
 
 class TimespanUnit(InputUnit):
     unit_type = UnitType.TIMESPAN

@@ -23,11 +23,20 @@ from app.src.norm_update_extractor.handlers.from_until_interval_handler import F
 from app.src.norm_update_extractor.handlers.for_timespan_interval_handler import ForTimespanIntervalHandler
 from app.src.norm_update_extractor.handlers.during_time_period_handler import DuringTimePeriodHandler
 
+# Helpers
+from app.src.object_mappers.time_period_mapper import TimePeriodMapper
+# Can add a timespan mapper as well
+
 
 
 class NormUpdateHandlerDictBuilder:
     @staticmethod
     def build() -> Dict[Type, IHandleNormUpdates]:
+
+
+        time_period_mapper = TimePeriodMapper()
+
+
         d = {}
         d[BeforeDate] = BeforeDateHandler()
         d[BeforeEvent] = BeforeEventHandler()
@@ -44,11 +53,12 @@ class NormUpdateHandlerDictBuilder:
         d[UntilDate] = UntilDateHandler()
         d[UntilEvent] = UntilEventHandler()
 
-        d[DuringTimePeriod] = DuringTimePeriodHandler()
+        d[DuringTimePeriod] = DuringTimePeriodHandler(time_period_mapper)
         d[ForTimespanInterval] = ForTimespanIntervalHandler()
         d[FromUntilInterval] = FromUntilIntervalHandler()
         d[BetweenInterval] = BetweenIntervalHandler()
 
         
         # TODO: Still missing (tough ones)
+        ## NoticeEventHandler
         return d

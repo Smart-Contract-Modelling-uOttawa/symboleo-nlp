@@ -10,6 +10,7 @@ from app.src.grammar_builder.unit_builders.obligation_action_ub import Obligatio
 from app.src.grammar_builder.unit_builders.time_unit_ub import TimeUnitUB
 from app.src.grammar_builder.unit_builders.contract_action_ub import ContractActionUB
 from app.src.grammar_builder.unit_builders.linking_verb_ub import LinkingVerbUB
+from app.src.grammar_builder.unit_builders.time_period_ub import TimePeriodUB
 
 # Helpers (injected)
 #from app.src.selection.child_getters.domain_timepoint_extractor import DomainTimepointExtractor
@@ -29,6 +30,7 @@ class UnitBuilderDictConstructor:
         d[UnitType.CONTRACT_ACTION] = ContractActionUB()
         d[UnitType.TIME_UNIT] = TimeUnitUB()
         d[UnitType.LINKING_VERB] = LinkingVerbUB()
+        d[UnitType.TIME_PERIOD] = TimePeriodUB()
 
 
         return d
