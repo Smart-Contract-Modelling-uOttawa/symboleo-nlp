@@ -28,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## Need to negate the event
 
 test_case = TestCase(
-    'licensee',
+    'during_time_period',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

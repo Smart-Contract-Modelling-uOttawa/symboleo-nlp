@@ -1,0 +1,30 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  ReturnInfo isAn Event with agent: Role, receiver: Role;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  partyA: PartyA;
+  partyB: PartyB;
+  evt_return_info_a: ReturnInfo with agent := partyA, receiver := partyB;
+  evt_return_info_b: ReturnInfo with agent := partyB, receiver := partyA;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_return_info_a: Obligation(partyA, partyB, true, Happens(evt_return_info_a));
+  ob_return_info_b: Obligation(partyB, partyA, true, Happens(evt_return_info_b));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

@@ -28,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## COND_A EVENT => Antecedent
 
 test_case = TestCase(
-    'maimon',
+    'cond_a_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'maimon_dm',

@@ -10,7 +10,9 @@ from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNo
 class CondTEventHandler(IHandleNormUpdates):
     def handle(self, pattern_class: CondTEvent, norm_config: NormConfig):
         evt = pattern_class.event
+        
         predicate = PredicateFunctionHappens(evt)
+        
         new_norm = copy.deepcopy(norm_config.norm)
         new_norm.update('trigger', predicate)
 

@@ -1,0 +1,3 @@
+A - nl_key: when contract terminates each party shall return all copies of information to the other
+E - nl_key: when contract terminates each party shall return all copies of information to the other
+

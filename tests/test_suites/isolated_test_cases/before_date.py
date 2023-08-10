@@ -28,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 
 
 test_case = TestCase(
-    'franchise',
+    'before_date',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'franchise_dm',

@@ -30,7 +30,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 # Since its 'until', we are dealing with a situation - need to negate the event
 
 test_case = TestCase(
-    'prime',
+    'until_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

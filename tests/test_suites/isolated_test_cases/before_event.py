@@ -23,7 +23,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## BEFORE EVENT => WHappensBeforeEvent
 
 test_case = TestCase(
-    'cisco',
+    'before_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

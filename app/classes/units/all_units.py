@@ -42,7 +42,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.TIME_PERIOD: TimePeriodUnit,
     UnitType.TIME_VALUE: TimeValueUnit,
     UnitType.TIME_UNIT: TimeUnitUnit,
-    #UnitType.DOMAIN_TIMEPOINT: DomainTimepointUnit,
     UnitType.CUSTOM_EVENT: CustomEventUnit,
     UnitType.ADVERB: AdverbUnit,
     UnitType.FAILS_TO: FailsToUnit,

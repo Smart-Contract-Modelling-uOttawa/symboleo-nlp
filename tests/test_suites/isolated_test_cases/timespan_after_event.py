@@ -28,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## TIMESPAN P_AFTER_T EVENT => WHappensBefore
 
 test_case = TestCase(
-    'porex',
+    'timespan_after_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',

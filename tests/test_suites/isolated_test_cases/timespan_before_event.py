@@ -28,7 +28,7 @@ from app.classes.spec.parameter_config import ParameterConfig
 ## TIMESPAN P_BEFORE_T EVENT => WHappensBefore
 
 test_case = TestCase(
-    'tianhe',
+    'timespan_before_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',
