@@ -7,7 +7,6 @@ from app.classes.pattern_classes.before_event import BeforeEvent
 from app.classes.pattern_classes.cond_a_event import CondAEvent
 from app.classes.pattern_classes.cond_t_event import CondTEvent
 from app.classes.pattern_classes.except_event import ExceptEvent
-from app.classes.pattern_classes.notice_event import NoticeEvent
 from app.classes.pattern_classes.timespan_after_event import TimespanAfterEvent
 from app.classes.pattern_classes.timespan_before_event import TimespanBeforeEvent
 from app.classes.pattern_classes.until_date import UntilDate
@@ -31,7 +30,6 @@ def get_all_pattern_classes():
         CondAEvent,
         CondTEvent,
         ExceptEvent,
-        NoticeEvent,
         TimespanAfterEvent,
         TimespanBeforeEvent,
         UntilDate,

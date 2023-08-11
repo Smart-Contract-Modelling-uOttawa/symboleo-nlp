@@ -27,8 +27,6 @@ from app.src.object_mappers.time_period_mapper import TimePeriodMapper
 from app.src.object_mappers.timepoint_mapper import TimepointMapper
 # Can add a timespan mapper as well
 
-
-
 class NormUpdateHandlerDictBuilder:
     @staticmethod
     def build() -> Dict[Type, IHandleNormUpdates]:
@@ -58,7 +56,4 @@ class NormUpdateHandlerDictBuilder:
         d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper)
         d[BetweenInterval] = BetweenIntervalHandler()
 
-        
-        # TODO: Still missing (tough ones)
-        ## NoticeEventHandler
         return d

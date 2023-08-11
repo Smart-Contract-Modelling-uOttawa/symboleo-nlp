@@ -63,10 +63,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.OBLIGATION_SUBJECT: ObligationSubjectUnit,
     UnitType.OBLIGATION_ACTION: ObligationActionUnit,
 
-    UnitType.NOTICE_EVENT: NoticeEventUnit,
-    UnitType.NOTICE_FROM: NoticeFromUnit,
-    UnitType.NOTIFIER: NotifierUnit,
-
     UnitType.FINAL_NODE: FinalUnit
 
 

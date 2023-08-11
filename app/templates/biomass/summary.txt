@@ -69,7 +69,3 @@ NOTES
 - source: https://contracts.justia.com/companies/gridiron-bionutrients-inc-5090/contract/94875/
 
 
-
-TODO
-- add Upon - upon contract activation
-- add When - for trigger

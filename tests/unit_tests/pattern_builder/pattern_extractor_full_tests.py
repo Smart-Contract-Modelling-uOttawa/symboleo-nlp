@@ -94,10 +94,6 @@ test_suite = [
         DuringTimePeriod
     ),
     (
-        [ UnitType.UPON] + mock_timespan() + [UnitType.NOTICE_EVENT, UnitType.NOTICE_FROM, UnitType.NOTIFIER ], 
-        NoticeEvent
-    ),
-    (
         mock_timespan() + [UnitType.BEFORE ] + mock_event(), 
         TimespanBeforeEvent
     ),

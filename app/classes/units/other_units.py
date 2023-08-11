@@ -31,22 +31,6 @@ class ForUnit(InputUnit):
     prompt = 'For'
     init_value = 'for'
 
-class NoticeEventUnit(InputUnit):
-    unit_type = UnitType.NOTICE_EVENT
-    unit_var = UnitVariety.EMPTY
-    prompt = 'Notice Event'
-
-class NoticeFromUnit(InputUnit):
-    unit_type = UnitType.NOTICE_FROM
-    unit_var = UnitVariety.STATIC
-    prompt = 'Notice from'
-    init_value = 'termination notice from'
-
-class NotifierUnit(InputUnit):
-    unit_type = UnitType.NOTIFIER
-    unit_var = UnitVariety.DYNAMIC
-    prompt = 'Notifier'
-
 class OfUnit(InputUnit):
     unit_type = UnitType.OF
     unit_var = UnitVariety.STATIC
