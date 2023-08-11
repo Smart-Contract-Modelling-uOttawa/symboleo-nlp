@@ -4,6 +4,7 @@ class FakeLemmatizer(ILemmatize):
     def __init__(self):
         self.__dict = {
             'become': 'become',
+            'becomes': 'become',
             'provides': 'provide',
             'abandons': 'abandon',
             'occupies': 'occupy',

@@ -1,5 +1,5 @@
 from app.classes.events.custom_event.custom_event import CustomEvent
-from app.classes.spec.declaration import IDeclaration, Declaration, EventDeclaration
+from app.classes.spec.declaration import IDeclaration, Declaration, EventDeclaration, DeclarationProp
 from app.classes.events.custom_event.verb import VerbType
 
 from app.src.domain_update_extractor.declaration_prop_mapper import IMapDeclarationProps
@@ -34,8 +34,14 @@ class EventDeclarationMapper(IMapEventToDeclaration):
 
     def _map_linking(self, evt: CustomEvent) -> IDeclaration:
         name = evt.get_declaration_name()
+        props = []
+        if evt.subj.is_role:
+            agent_prop = DeclarationProp('agent', evt.subj.str_val, 'Role')
+            props.append(agent_prop)
+
         pps = self._map_pps(evt)
-        return EventDeclaration(evt.event_key(), name, pps)
+        props.extend(pps)
+        return EventDeclaration(evt.event_key(), name, props)
     
 
     def _map_intransitive(self, evt: CustomEvent) -> EventDeclaration:

@@ -1,0 +1,3 @@
+A - nl_key: If dividends are credited after partyA becomes insolvent dividends will be paid in cash
+E - nl_key: If dividends are credited after partyA becomes insolvent dividends will be paid in cash
+

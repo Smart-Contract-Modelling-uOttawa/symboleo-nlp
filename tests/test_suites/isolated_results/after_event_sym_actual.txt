@@ -1,0 +1,32 @@
+Domain test_dm
+  PartyA isA Role;
+  PartyB isA Role;
+  PayDividends isAn Event with payment_method: String, paying_agent: Role, paying_target: Role;
+  CreditDividends isAn Event with crediting_agent: Role;
+  AgentInsolvent isAn Event with agent: Role;
+
+endDomain
+
+Contract test_cs(  )
+
+Declarations
+  partyA: PartyA;
+  partyB: PartyB;
+  evt_pay_dividends: PayDividends with paying_agent := partyA, paying_target := partyB, payment_method := cash;
+  evt_credit_dividends: CreditDividends with crediting_agent := partyB;
+  evt_agent_insolvent: AgentInsolvent with agent := partyA;
+
+Preconditions
+
+Postconditions
+
+Obligations
+  ob_pay_dividends: Obligation(partyA, partyB, WhappensBeforeE(evt_agent_insolvent, evt_credit_dividends), Happens(evt_pay_dividends));
+
+Surviving Obligations
+
+Powers
+
+Constraints
+
+endContract

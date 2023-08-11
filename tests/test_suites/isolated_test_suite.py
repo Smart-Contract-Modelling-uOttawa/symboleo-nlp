@@ -18,9 +18,11 @@ from tests.test_suites.isolated_test_cases.between_interval import test_case as 
 from tests.test_suites.isolated_test_cases.cond_t_event import test_case as cond_t_event_test
 from tests.test_suites.isolated_test_cases.except_event import test_case as except_event_test
 from tests.test_suites.isolated_test_cases.until_date import test_case as until_date_test
+from tests.test_suites.isolated_test_cases.after_event import test_case as after_event_test
 
 test_suite = [
     after_date_test,
+    after_event_test,
     after_timespan_after_event_test,
     before_date_test,
     before_event_test,
