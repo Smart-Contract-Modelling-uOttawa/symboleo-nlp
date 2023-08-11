@@ -17,6 +17,7 @@ from tests.test_suites.isolated_test_cases.for_timespan import test_case as for_
 from tests.test_suites.isolated_test_cases.between_interval import test_case as between_interval_test
 from tests.test_suites.isolated_test_cases.cond_t_event import test_case as cond_t_event_test
 from tests.test_suites.isolated_test_cases.except_event import test_case as except_event_test
+from tests.test_suites.isolated_test_cases.until_date import test_case as until_date_test
 
 test_suite = [
     after_date_test,
@@ -29,16 +30,15 @@ test_suite = [
     during_time_period_test,
     except_event_test,
     for_timespan_test,
-    # notice_termination_test,
     timespan_after_event_test,
     timespan_before_event_test,
-    # until_date_test,
+    until_date_test,
     until_event_test,
     within_timespan_event_test,
 ]
 
 # test_suite = [
-#     except_event_test
+#     until_date_test
 # ]
 
 class IsolatedTests(unittest.TestCase):

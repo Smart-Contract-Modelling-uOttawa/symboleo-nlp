@@ -1,0 +1,3 @@
+A - nl_key: Shi farms will use its best efforts to quarantine product until [DELIVERY_DATE]
+E - nl_key: Shi farms will use its best efforts to quarantine product until [DELIVERY_DATE]
+
