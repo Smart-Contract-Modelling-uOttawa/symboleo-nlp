@@ -8,9 +8,3 @@ class Predicate:
     
     def __eq__(self, __value: object) -> bool:
         return self.pred_str == __value.pred_str
-
-    def to_text(self):
-        return self.pred_str
-    
-
-    

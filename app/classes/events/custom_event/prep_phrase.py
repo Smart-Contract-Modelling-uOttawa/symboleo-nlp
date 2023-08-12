@@ -15,7 +15,3 @@ class PrepPhrase:
         return self.pp_str == __value.pp_str and \
             self.preposition == __value.preposition and \
             self.pobj == __value.pobj
-
-    def to_text(self):
-        return f'{self.preposition} {self.pobj.to_text()}'
-    

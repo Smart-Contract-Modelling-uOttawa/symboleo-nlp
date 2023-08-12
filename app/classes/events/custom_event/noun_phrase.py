@@ -42,7 +42,7 @@ class NounPhrase:
             self.is_parm == other.is_parm and \
             ClassHelpers.simple_lists_eq(self.adjs, other.adjs)
         
-    def print_me(self):
+    def print_me(self): # pragma: no cover
         print(f'- {self.str_val}')
         print(f'- {self.head}')
         print(f'- {self.is_plural}')

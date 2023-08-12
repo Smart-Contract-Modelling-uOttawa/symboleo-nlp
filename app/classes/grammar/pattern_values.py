@@ -53,13 +53,7 @@ full_grammar = {
     PV.TVP: GAnd(UnitType.TRANSITIVE_VERB, PV.DOBJ_PHRASE),
     PV.LVP: GAnd(
         UnitType.LINKING_VERB, 
-        GOr(
-            PV.PRED_PHRASE, 
-            GAnd(
-                UnitType.NOT,
-                PV.PRED_PHRASE
-            )
-        )
+        PV.PRED_PHRASE
     ),
     
     PV.DOBJ_PHRASE: GAnd(UnitType.DOBJ, PV.ADV_AND_PP),

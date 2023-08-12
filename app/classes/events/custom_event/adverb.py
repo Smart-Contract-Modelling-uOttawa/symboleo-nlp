@@ -27,9 +27,6 @@ class Adverb:
         return self.adverb_str == __value.adverb_str and \
             ClassHelpers.simple_lists_eq(self.adverb_types, __value.adverb_types)
 
-    def to_text(self):
-        return self.adverb_str
-    
 
 # These were generated using ChatGPT (Limitation) - not perfect
 class AdverbDict:

@@ -18,18 +18,21 @@ omit =
     app\console_lib\*
     
     app\src\custom_event_extractor\custom_event_extractor_builder.py
-    app\src\custom_event_extractor\noun_phrase\fake_noun_phrase_extractor.py
-    app\src\custom_event_extractor\verb\fake_lemmatizer.py
     app\src\domain_update_extractor\domain_update_extractor_builder.py
     app\src\grammar_builder\grammar_builder_constructor.py
     app\src\grammar_builder\tree_printer.py
     app\src\operations\contract_updater_builder.py
     app\src\operations\dependency_builder.py
     app\src\operations\operation_mapper_builder.py
+    app\src\pattern_builder\pattern_builder_constructor.py
 
     app\src\norm_update_extractor\handlers\norm_update_handler_dict.py
     app\src\pattern_builder\pattern_unit_fillers\pattern_unit_filler_dict.py
     app\src\grammar_builder\unit_builders\unit_builder_dict.py
 
-    app\src\custom_event_extractor\noun_phrase\noun_phrase_extractor.py
-    app\src\custom_event_extractor\noun_phrase\asset_type_extractor.py
+    app\src\custom_event_extractor\nlp\fake_lemmatizer.py
+    app\src\custom_event_extractor\nlp\lemmatizer.py
+    app\src\custom_event_extractor\nlp\label_getter.py
+    app\src\custom_event_extractor\nlp\fake_label_getter.py
+    app\src\custom_event_extractor\nlp\doc_parser.py
+    app\src\custom_event_extractor\nlp\fake_doc_parser.py

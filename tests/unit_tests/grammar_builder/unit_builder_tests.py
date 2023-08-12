@@ -8,6 +8,8 @@ from app.src.grammar_builder.unit_builders.contract_action_ub import ContractAct
 from app.src.grammar_builder.unit_builders.subject_ub import SubjectUB
 from app.src.grammar_builder.unit_builders.time_unit_ub import TimeUnitUB
 from app.src.grammar_builder.unit_builders.unit_builder import DefaultUnitBuilder
+from app.src.grammar_builder.unit_builders.linking_verb_ub import LinkingVerbUB
+from app.src.grammar_builder.unit_builders.time_period_ub import TimePeriodUB
 
 from tests.helpers.test_contract import get_test_contract
 
@@ -17,6 +19,18 @@ class UnitBuilderTests(unittest.TestCase):
         self.sut = DobjUB()
 
 
+    def test_linking_ub(self):
+        ub = LinkingVerbUB()
+        contract = get_test_contract()
+        result = ub.build('', contract)
+        self.assertTrue(ClassHelpers.simple_lists_eq(result.options, ['become', 'becomes']))
+
+
+    def test_time_period_ub(self):
+        ub = TimePeriodUB()
+        contract = get_test_contract()
+        result = ub.build('', contract)
+        self.assertTrue(ClassHelpers.simple_lists_eq(result.options, ['the contract period']))
 
     def test_dobj_ub(self):
         ub = DobjUB()

@@ -11,7 +11,7 @@ class IGetChildren:
         raise NotImplementedError()
 
 class ChildGetter(IGetChildren):
-    def __init__(self, child_builder_dict: Dict[Type[InputUnit], IBuildUnit]):
+    def __init__(self, child_builder_dict: Dict[UnitType, IBuildUnit]):
         self.__dict = child_builder_dict
     
     def get(self, node: GrammarNode, contract: SymboleoContract) -> List[InputUnit]:
