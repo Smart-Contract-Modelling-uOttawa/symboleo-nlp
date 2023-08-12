@@ -11,7 +11,7 @@ from tests.helpers.test_nlp import TestNLP
 from tests.helpers.test_obj_lib.isolated_test_objects import Verbs as IVP
 from tests.helpers.test_contract import get_test_contract_for_assets
 from app.src.custom_event_extractor.verb.verb_extractor import VerbExtractor
-from app.src.custom_event_extractor.verb.lemmatizer import Lemmatizer
+from app.src.custom_event_extractor.nlp.lemmatizer import Lemmatizer
 from app.src.custom_event_extractor.verb.conjugator import MyConjugator
 from app.src.custom_event_extractor.verb.conjugator import ML3Conjugator
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import AssetTypeExtractor

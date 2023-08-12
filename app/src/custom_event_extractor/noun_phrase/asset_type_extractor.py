@@ -1,14 +1,15 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 import re
 
+from app.src.custom_event_extractor.nlp.label_getter import IGetLabels
+
 class IExtractAssetType:
     def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
         raise NotImplementedError()
 
 class AssetTypeExtractor(IExtractAssetType):
-    def __init__(self, nlp) -> None:
-        self.__nlp = nlp
-        # wordnet, framenet, regex...
+    def __init__(self, label_getter: IGetLabels) -> None:
+        self.__label_getter = label_getter
         
         d = {}
         d['FAC'] = 'Location'
@@ -37,10 +38,10 @@ class AssetTypeExtractor(IExtractAssetType):
             elif decl.base_type == 'assets':
                 return decl.type
         
-        # Check enums
-        for x in contract.domain_model.enums:
-            if str_val.lower() in [x.lower() for x in x.enum_items]:
-                return x.name
+        # # Check enums
+        # for x in contract.domain_model.enums:
+        #     if str_val.lower() in [x.lower() for x in x.enum_items]:
+        #         return x.name
 
         # Money Amount
         money = re.search('\$\d+(?:\.\d+)?', str_val)
@@ -51,12 +52,10 @@ class AssetTypeExtractor(IExtractAssetType):
         if str_val in self.__str_dict:
             return self.__str_dict[str_val]
         
-        # Check spacy entities
-        doc = self.__nlp(str_val)
-        if len(doc.ents) > 0:
-            label = doc.ents[0].label_
-            if label in self.__ent_dict:
-                return self.__ent_dict[label]
+        # Check labels
+        label = self.__label_getter.get(str_val)
+        if label and label in self.__ent_dict:
+            return self.__ent_dict[label]
         
         # Default value
         return head.capitalize()

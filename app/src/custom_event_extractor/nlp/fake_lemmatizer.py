@@ -1,4 +1,4 @@
-from app.src.custom_event_extractor.verb.lemmatizer import ILemmatize
+from app.src.custom_event_extractor.nlp.lemmatizer import ILemmatize
 
 class FakeLemmatizer(ILemmatize):
     def __init__(self):
