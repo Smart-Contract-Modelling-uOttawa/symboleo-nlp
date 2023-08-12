@@ -42,19 +42,19 @@ class NounPhrases:
 
 class Verbs:
     # cisco
-    return_verb = lambda: Verb('returns', 'return', [VerbType.TRANSITIVE], VerbConjugations('return', 'returns', 'returned', 'returning') )
+    return_verb = lambda: Verb('returns', 'return', VerbType.TRANSITIVE, VerbConjugations('return', 'returns', 'returned', 'returning') )
     
     # porex
-    submit = lambda: Verb('submits', 'submit', [VerbType.TRANSITIVE], VerbConjugations('submit', 'submits', 'submitted', 'submitting'))
+    submit = lambda: Verb('submits', 'submit', VerbType.TRANSITIVE, VerbConjugations('submit', 'submits', 'submitted', 'submitting'))
 
     # tianhe
-    happening = lambda: Verb('happening', 'happen', [VerbType.INTRANSITIVE], VerbConjugations('happen', 'happens', 'happened', 'happening'))
+    happening = lambda: Verb('happening', 'happen', VerbType.INTRANSITIVE, VerbConjugations('happen', 'happens', 'happened', 'happening'))
 
     # prime
-    completes = lambda: Verb('completes', 'complete', [VerbType.TRANSITIVE], VerbConjugations('complete', 'completes', 'completed', 'completing'))
+    completes = lambda: Verb('completes', 'complete', VerbType.TRANSITIVE, VerbConjugations('complete', 'completes', 'completed', 'completing'))
 
     # except_event
-    provides = lambda: Verb('provides', 'provide', [VerbType.TRANSITIVE], VerbConjugations('provide', 'provides', 'provided', 'providing'))
+    provides = lambda: Verb('provides', 'provide', VerbType.TRANSITIVE, VerbConjugations('provide', 'provides', 'provided', 'providing'))
 
 class CustomEvents:
     # cisco

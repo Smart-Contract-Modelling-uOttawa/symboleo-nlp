@@ -23,7 +23,6 @@ class CustomEvent(BaseEvent):
         dobj: NounPhrase = None, 
         predicate: Predicate = None, 
         pps:List[PrepPhrase] = None,
-        negation:bool = False,
         is_new: bool = True
     ):
         self.subj = subj
@@ -32,106 +31,50 @@ class CustomEvent(BaseEvent):
         self.dobj = dobj
         self.predicate = predicate
         self.pps = pps
-        self.negation = negation
         self.is_new = is_new
 
 
     def event_key(self):
         a = self._split_name()
-        b = a.split(' ')
-        c = [x.lower() for x in b]
+        c = [x.lower() for x in a.split(' ')]
         d = '_'.join(c)
         e = f'evt_{d}'
         return e
 
     def get_declaration_name(self):
         a = self._split_name()
-        b = a.split(' ')
-        c = [x.title() for x in b]
+        c = [x.title() for x in a.split(' ')]
         return ''.join(c)
     
 
-    # Return space-sep
-    def _split_name(self):
-        result = self.verb.lemma
+    def _split_name(self) -> str:
+        # ROLE, VERB, OBJ
+        a = []
 
-        if VerbType.TRANSITIVE in self.verb.verb_types:
-
-            # if self.adverb:
-            #     result = f'{result} {self.adverb.adverb_str}'
-            
-            if self.dobj:
-                # e.g. [PAYMENT_AMOUNT] => payment amount
-                if self.dobj.is_parm:
-                    split_parm = self.dobj.str_val[1:-1].replace('_', ' ').lower()
-                    result = f'{result} {split_parm}'
-
-                elif self.dobj.asset_type != 'Money':
-                    result = f'{result} {self.dobj.head}'
-            
-        elif VerbType.INTRANSITIVE in self.verb.verb_types:
-            result = f'{self.subj.head} {self.verb.lemma}'
-
-        elif VerbType.LINKING in self.verb.verb_types and len(self.verb.verb_types) == 1:
+        # ROLE
+        if self.verb.verb_type in [VerbType.LINKING, VerbType.INTRANSITIVE]:
             if self.subj.is_role:
-                result = 'agent'
+                a.append('agent')
             else:
-                result = f'{self.subj.to_text(NPTextType.BASIC)}'
-            
-            if self.negation: 
-                result += ' not '
-            result += f' {self.predicate.pred_str}'
+                a.append(self.subj.to_text(NPTextType.BASIC))
+
+        # VERB
+        if self.verb.verb_type in [VerbType.TRANSITIVE, VerbType.INTRANSITIVE]:
+            a.append(self.verb.lemma)
         
+        # OBJ
+        if self.verb.verb_type == VerbType.TRANSITIVE:
+            if self.dobj.is_parm:
+                split_parm = self.dobj.str_val[1:-1].replace('_', ' ').lower()
+                a.append(split_parm)
+            elif self.dobj.asset_type != 'Money':
+                    a.append(self.dobj.head)
 
-        return result
-
-    def to_text(self, conjugation: ConjType = ConjType.PRESENT):        
-        subj = self.subj.to_text()
-        result = subj
-
-        if self.negation:
-            if self.subj.is_plural:
-                result += ' fail to'
-            else:
-                result += ' fails to'
-
-        if conjugation == ConjType.PRESENT:
-            if self.subj.is_plural:
-                verb = self.verb.conjugations.present_singular
-            else:
-                if self.negation:
-                    verb = self.verb.conjugations.present_singular
-                else:
-                    verb = self.verb.conjugations.present_plural
-
-        elif conjugation == ConjType.CONTINUOUS:
-            verb = self.verb.conjugations.continuous
+        elif self.verb.verb_type == VerbType.LINKING:
+            a.append(self.predicate.pred_str)
         
-        elif conjugation == ConjType.BASIC:
-            verb = self.verb.verb_str
-    
+        return ' '.join(a)
 
-        if self.dobj and VerbType.TRANSITIVE in self.verb.verb_types:
-            dobj = self.dobj.to_text()
-            result += f' {verb} {dobj}'
-
-        elif VerbType.INTRANSITIVE in self.verb.verb_types:
-            result += f' {verb}'
-        
-        elif VerbType.LINKING in self.verb.verb_types:
-            if self.predicate:
-                pred = self.predicate.to_text()
-                result += f' {verb} {pred}'
-            
-        if self.adverb:
-            adverb = self.adverb.to_text()
-            result = f'{result} {adverb}'
-        
-        if self.pps:
-            for pp in self.pps:
-                result = f'{result} {pp.to_text()}'
-
-        return result
 
     def __eq__(self, other: CustomEvent) -> bool:
         return self.subj == other.subj and \

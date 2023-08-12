@@ -18,15 +18,15 @@ class EventDeclarationMapper(IMapEventToDeclaration):
         result = None
 
         # Linking verb
-        if VerbType.LINKING in verb.verb_types and len(verb.verb_types) == 1:
+        if verb.verb_type == VerbType.LINKING:
             result = self._map_linking(evt)
         
         
-        if VerbType.INTRANSITIVE in verb.verb_types:
+        if verb.verb_type == VerbType.INTRANSITIVE:
             result = self._map_intransitive(evt)
 
         # Transitive verb
-        if VerbType.TRANSITIVE in verb.verb_types:
+        if verb.verb_type == VerbType.TRANSITIVE:
             result = self._map_transitive(evt)
         
         return result

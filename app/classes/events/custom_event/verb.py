@@ -1,8 +1,5 @@
 from __future__ import annotations
 from enum import Enum
-from typing import List
-
-from app.classes.helpers.list_eq import ClassHelpers
 
 class VerbType(Enum):
     LINKING = 'linking',
@@ -33,29 +30,27 @@ class Verb:
             self, 
             verb_str: str,
             lemma: str, 
-            verb_types: List[VerbType],
+            verb_type: VerbType,
             conjugations: VerbConjugations
         ):
         self.verb_str = verb_str
         self.lemma = lemma
-        self.verb_types = verb_types # This is a list because sometimes we cannot be certain
+        self.verb_type = verb_type
         self.conjugations = conjugations
     
     def print_me(self):
         print(f'Verb String: {self.verb_str}')
         print(f'Lemma: {self.lemma}')
-        print(f'Verb Types: {", ".join([x.name for x in self.verb_types])}')
+        print(f'Verb Type: {self.verb_type.value}')
         conj_str = self.conjugations.to_string()
         print(f'Conjugations:\n{conj_str}')
 
 
     def __eq__(self, other: Verb) -> bool:
-        vt1 = [x.name for x in self.verb_types]
-        vt2 = [x.name for x in other.verb_types]
         return self.verb_str == other.verb_str and \
             self.lemma == other.lemma and \
             self.conjugations == other.conjugations and \
-            ClassHelpers.simple_lists_eq(vt1, vt2)
+            self.verb_type == other.verb_type
 
 
 

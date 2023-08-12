@@ -4,6 +4,7 @@ from app.classes.events.custom_event.custom_event import CustomEvent, Verb, Noun
 from app.classes.operations.user_input import UserInput, UnitType
 
 from app.src.custom_event_extractor.element_extractor import IExtractElement 
+from app.src.custom_event_extractor.verb.verb_extractor import IExtractVerb
 
 class IExtractCustomEvents:
     def extract(self, input_list: List[UserInput], contract: SymboleoContract) -> CustomEvent:
@@ -12,7 +13,7 @@ class IExtractCustomEvents:
 class CustomEventExtractor(IExtractCustomEvents):
     def __init__(
         self,
-        verb_extractor: IExtractElement[Verb],
+        verb_extractor: IExtractVerb,
         np_extractor: IExtractElement[NounPhrase],
         advb_extractor: IExtractElement[Adverb],
         pred_extractor: IExtractElement[Predicate],
@@ -31,8 +32,8 @@ class CustomEventExtractor(IExtractCustomEvents):
             subj_str = [x.value for x in input_list if x.unit_type == UnitType.SUBJECT][0]
             subj = self.__np_extractor.extract(subj_str, contract)
 
-            verb_str = [x.value for x in input_list if x.unit_type in [UnitType.LINKING_VERB, UnitType.TRANSITIVE_VERB, UnitType.INTRANSITIVE_VERB]][0]
-            verb = self.__verb_extractor.extract(verb_str, contract)
+            verb_str, verb_ut = [(x.value, x.unit_type) for x in input_list if x.unit_type in [UnitType.LINKING_VERB, UnitType.TRANSITIVE_VERB, UnitType.INTRANSITIVE_VERB]][0]
+            verb = self.__verb_extractor.extract(verb_str, verb_ut)
 
             dobj = None
             dobj_strs = [x.value for x in input_list if x.unit_type == UnitType.DOBJ]
@@ -55,9 +56,6 @@ class CustomEventExtractor(IExtractCustomEvents):
                 pp = self.__pp_extractor.extract(pp_str, contract)
                 pps.append(pp)
             
-            negation = False
-            if [x.value for x in input_list if x.unit_type in [UnitType.FAILS_TO, UnitType.NOT]]:
-                negation = True
 
             return CustomEvent(
                 subj,
@@ -65,8 +63,7 @@ class CustomEventExtractor(IExtractCustomEvents):
                 advb,
                 dobj,
                 pred,
-                pps,
-                negation
+                pps
             )
         
         return None

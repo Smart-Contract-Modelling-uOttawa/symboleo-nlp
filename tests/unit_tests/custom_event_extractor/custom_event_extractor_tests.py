@@ -7,13 +7,14 @@ from app.classes.events.custom_event.adverb import AdverbType
 from app.classes.operations.user_input import UserInput, UnitType
 
 from app.src.custom_event_extractor.element_extractor import IExtractElement
+from app.src.custom_event_extractor.verb.verb_extractor import IExtractVerb
 from app.src.custom_event_extractor.custom_event_extractor import CustomEventExtractor
 
 from tests.helpers.test_objects import Verbs, NounPhrases
 
 class CustomEventExtractorTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.fake_verb_extractor = IExtractElement[Verb]()
+        self.fake_verb_extractor = IExtractVerb()
         fake_verb = Verbs.eats()
         self.fake_verb_extractor.extract = MagicMock(return_value=fake_verb)
 

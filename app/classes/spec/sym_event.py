@@ -6,7 +6,7 @@ class SymEvent:
         raise NotImplementedError()
 
 # Note: I am trying to get rid of the VariableDotExpression in favour of specific dot expressions for each type
-## e.g. a VariableEvent, VarriablePoint, etc
+## e.g. a VariableEvent, VariablePoint, etc
 ## This will keep the graph much cleaner, and should have no other impact
 class VariableEvent(SymEvent):
     def __init__(self, name: str):
@@ -79,7 +79,7 @@ class ContractEvent(SymEvent):
         self.event_name = event_name
 
     def __eq__(self, other: ContractEvent) -> bool:
-        return self.event_name == other.event_name
+        return self.event_name == other.event_name    
 
     def to_sym(self):
         return f'{self.event_name.value}(self)'

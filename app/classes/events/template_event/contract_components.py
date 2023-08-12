@@ -8,10 +8,14 @@ class ContractNouns:
     contract = lambda: NounPhrase('contract', 'contract', asset_type='Contract')
 
 class ContractVerbs:
-    terminated = lambda: Verb('terminate', 'terminate', [VerbType.INTRANSITIVE], VerbConjugations('terminate', 'terminates', 'terminated', 'terminating'))
+    
+    terminated = lambda: Verb('terminate', 'terminate', VerbType.INTRANSITIVE, VerbConjugations('terminate', 'terminates', 'terminated', 'terminating'))
+    
+    activated = lambda: Verb('activate', 'activate', VerbType.INTRANSITIVE, VerbConjugations('activate', 'activates', 'activated', 'activating'))
 
     verb_dict = {
-        ContractEventName.Terminated: terminated
+        ContractEventName.Terminated: terminated,
+        ContractEventName.Activated: activated
     }
 
 
@@ -26,6 +30,6 @@ class ContractEvents:
 
 
 class HelperVerbs:
-    verb_is = lambda: Verb('is', 'be', [VerbType.LINKING], VerbConjugations('is', 'are', 'was', 'is'))
+    verb_is = lambda: Verb('is', 'be', VerbType.LINKING, VerbConjugations('is', 'are', 'was', 'is'))
     
     

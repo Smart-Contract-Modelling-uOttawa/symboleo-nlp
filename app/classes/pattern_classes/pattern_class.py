@@ -1,8 +1,9 @@
 from typing import List, Dict
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 
-from app.classes.spec.sym_event import SymEvent, PowerEvent, ObligationEvent, ContractEvent
+from app.classes.spec.sym_event import SymEvent, ContractEvent
 from app.classes.events.custom_event.custom_event import CustomEvent, ConjType
+from app.classes.events.template_event.contract_components import ContractVerbs
 
 class PatternClass:
     sequence: List[PatternVariable] = []
@@ -25,7 +26,17 @@ class EventPatternClass(PatternClass):
 
     def to_text(self) -> str:
         # If its a norm event, then replace with the nl_event...
-        if isinstance(self.event, (PowerEvent, ObligationEvent, ContractEvent)):
-            self.val_dict[PatternVariable.EVENT] = self.nl_event.to_text(self.conj_type)
+        if isinstance(self.event, ContractEvent):
+            self.val_dict[PatternVariable.EVENT] = self._contract_event(self.conj_type)
         
         return super().to_text()
+
+
+    def _contract_event(self, conj_type: ConjType):
+        evt: ContractEvent = self.event
+        verb = ContractVerbs.verb_dict[evt.event_name]()
+
+        if conj_type == ConjType.CONTINUOUS:
+            return f'contract {verb.conjugations.continuous}'
+        else:
+            return f'contract {verb.conjugations.present_plural}'

@@ -59,10 +59,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.CONTRACT_ACTION: ContractActionUnit,
     UnitType.CONTRACT_SUBJECT: ContractSubjectUnit,
 
-    UnitType.NORM_EVENT: NormEventUnit,
-    UnitType.OBLIGATION_SUBJECT: ObligationSubjectUnit,
-    UnitType.OBLIGATION_ACTION: ObligationActionUnit,
-
     UnitType.FINAL_NODE: FinalUnit
 
 

@@ -6,7 +6,6 @@ class PatternVariable(Enum):
     EVENT = 'EVENT'
     CUSTOM_EVENT = 'CUSTOM_EVENT'
     CONTRACT_EVENT = 'CONTRACT_EVENT'
-    NORM_EVENT = 'NORM_EVENT'
     SUBJECT = 'SUBJECT'
     VERB_PHRASE = 'VERB_PHRASE'
     IVP = 'IVP'
