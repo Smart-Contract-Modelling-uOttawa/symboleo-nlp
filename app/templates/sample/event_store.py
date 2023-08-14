@@ -7,7 +7,6 @@ from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.events.custom_event.predicate import Predicate
 from app.classes.events.custom_event.adverb import Adverb
 
-from app.classes.events.custom_event.verb_store import VerbStore
 
 class SubjectStore:
     renter = lambda: NounPhrase('renter', 'renter', is_role=True, asset_type='Role')
@@ -18,7 +17,7 @@ class EventStore:
     def pay(amount:str, curr, target_role):
         return CustomEvent(
             subj = SubjectStore.renter(),
-            verb = VerbStore.pay(),
+            verb = None,
             dobj = NounPhrase(target_role, target_role, is_role=True, asset_type='Role'),
             # dobj = NounPhrase(amount, amount, asset_type='Money'),
             # pps= [

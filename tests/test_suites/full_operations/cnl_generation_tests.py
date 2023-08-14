@@ -1,13 +1,23 @@
 import unittest
 from unittest.mock import MagicMock
-
+from typing import List
 from app.classes.units.all_units import *
+from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.all_pattern_classes import *
 
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
-from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
+from app.src.pattern_builder.single_pattern_checker2 import SinglePatternChecker2
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
+from app.classes.grammar.grammar_node import GrammarNode
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
+
+from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
+from app.src.grammar_builder.grammar_builder import GrammarBuilder
+from app.src.grammar_builder.child_getter import ChildGetter
+
+from app.src.grammar_builder.unit_builders.unit_builder_dict import UnitBuilderDictConstructor
+
+from tests.helpers.test_contract import get_test_contract
 
 def mock_timespan():
     return [
@@ -82,7 +92,7 @@ test_suite = [
         ExceptEvent
     ),
     (
-        [ UnitType.FOR] + mock_timespan() + [UnitType.FOLLOWING, UnitType.EVENT ], 
+        [ UnitType.FOR] + mock_timespan() + [UnitType.AFTER, UnitType.EVENT ], 
         ForTimespanInterval
     ),
     (
@@ -115,19 +125,38 @@ test_suite = [
     )
 ]
 
+# Tests generation of all pattern classes
 class PatternExtractorTests(unittest.TestCase):
     def setUp(self):
-        self.getter = AllPatternClassGetter()
+        self.pc_getter = AllPatternClassGetter()
+        self.grammar_builder = GrammarBuilderConstructor.construct()
 
         recursive_checker = RecursivePatternChecker()
-        single_checker = SinglePatternChecker(recursive_checker)
-        self.sut = PatternClassExtractor(self.getter, single_checker)
+        single_checker = SinglePatternChecker2(recursive_checker)
+        self.pc_extractor = PatternClassExtractor(self.pc_getter, single_checker)
+        
+        unit_dict = UnitBuilderDictConstructor.build()
+        self.child_getter = ChildGetter(unit_dict)
 
-    @unittest.skip('FIX')
-    def test_update_processor(self):
-        for test_val, exp_res in test_suite:
-            result = self.sut.extract(test_val)
-            self.assertTrue(exp_res in [type(x) for x in result])
+
+    def test_cnl_generation(self):
+        for test_list, exp_pc in test_suite:
+            pattern_classes = self.pc_getter.get()
+            curr_node = self.grammar_builder.build(pattern_classes)
+            contract = get_test_contract()
+            i = 0
+            
+            while i < len(test_list):
+                input_list = self.child_getter.get(curr_node, contract)
+                next_input = [x for x in input_list if x.unit_type == test_list[i]][0]
+                curr_node = [x for x in curr_node.children if x.name == next_input.unit_type.value][0]
+                i += 1
+            
+            user_inputs = [UserInput(x) for x in test_list]
+            result = self.pc_extractor.extract(user_inputs)
+            self.assertTrue(exp_pc in [type(x) for x in result])
+
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -9,6 +9,7 @@ from app.classes.units.temporal_units import *
 from app.classes.units.time_units import *
 
 unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
+    UnitType.AND: AndUnit,
     UnitType.LATER_THAN: LaterThanUnit,
     UnitType.WITH: WithUnit,
     UnitType.ROOT: RootUnit,
@@ -46,6 +47,9 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.ADVERB: AdverbUnit,
     UnitType.FAILS_TO: FailsToUnit,
     UnitType.NOT: NotUnit,
+    UnitType.NOTICE_EVENT: NoticeEventUnit,
+    UnitType.NOTICE_FROM: NoticeFromUnit,
+    UnitType.NOTIFIER: NotifierUnit,
     UnitType.VERB: VerbUnit,
     UnitType.TRANSITIVE_VERB: TransitiveVerbUnit,
     UnitType.INTRANSITIVE_VERB: IntransitiveVerbUnit,

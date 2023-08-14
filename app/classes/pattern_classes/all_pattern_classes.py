@@ -12,13 +12,13 @@ from app.classes.pattern_classes.timespan_before_event import TimespanBeforeEven
 from app.classes.pattern_classes.until_date import UntilDate
 from app.classes.pattern_classes.until_event import UntilEvent
 from app.classes.pattern_classes.within_timespan_event import WithinTimespanEvent
-
+from app.classes.pattern_classes.notice_event import NoticeEvent
 from app.classes.pattern_classes.between_interval import BetweenInterval
 from app.classes.pattern_classes.during_time_period import DuringTimePeriod
 from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterval
 
 
-
+# TODO: Will have a separate list for testing and web/prod
 def get_all_pattern_classes():
     return [
         AfterDate,
@@ -29,6 +29,7 @@ def get_all_pattern_classes():
         BeforeEvent,
         CondAEvent,
         CondTEvent,
+        NoticeEvent,
         ExceptEvent,
         TimespanAfterEvent,
         TimespanBeforeEvent,
@@ -69,4 +70,9 @@ def conditional_classes():
     return [
         CondAEvent,
         CondTEvent
+    ]
+
+def termination_notice():
+    return [
+        NoticeEvent
     ]

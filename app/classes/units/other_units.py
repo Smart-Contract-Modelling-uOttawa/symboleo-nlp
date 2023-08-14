@@ -1,6 +1,12 @@
 from app.classes.units.input_unit import InputUnit
 from app.classes.units.unit_type import UnitType, UnitVariety
 
+class AndUnit(InputUnit):
+    unit_type = UnitType.AND
+    unit_var = UnitVariety.STATIC
+    prompt = 'And'
+    init_value = 'and'
+
 class ExceptUnit(InputUnit):
     unit_type = UnitType.EXCEPT
     unit_var = UnitVariety.STATIC

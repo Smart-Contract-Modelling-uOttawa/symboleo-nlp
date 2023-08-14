@@ -1,13 +1,6 @@
 
 from app.classes.operations.dependencies import Dependencies
-from app.src.pattern_builder.pattern_class_filler import PatternClassFiller
-from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
-from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
-from app.src.pattern_builder.pattern_class_builder import PatternClassBuilder
-from app.src.pattern_builder.single_pattern_checker2 import SinglePatternChecker2
-from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.operations.pattern_class_resolver import PatternClassResolver
-from app.src.pattern_builder.pattern_unit_fillers.pattern_unit_filler_dict import PatternUnitFillerDictConstructor
 from app.src.pattern_builder.pattern_builder_constructor import PatternBuilderConstructor
 
 from app.src.norm_update_extractor.handlers.norm_update_handler_dict import NormUpdateHandlerDictBuilder

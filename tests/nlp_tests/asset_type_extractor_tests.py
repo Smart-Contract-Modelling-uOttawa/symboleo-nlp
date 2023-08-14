@@ -18,10 +18,6 @@ test_suite = [
     ('pets', 'pets', 'Pets'),
 ]
 
-# I can write some more tests that parse through this in much more detail, but not a priority
-# In that case, I may also just build my own test contract and verify the proper values
-# There may eventually be some NLP to verify as well
-# TODO: May just want to add the roles/assets in here as well... If I do, it would be on the call, not the init
 class AssetTypeExtractorFullTests(unittest.TestCase):
     def setUp(self):
         nlp = TestNLP.get_nlp()

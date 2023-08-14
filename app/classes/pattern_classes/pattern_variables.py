@@ -44,6 +44,8 @@ class PatternVariable(Enum):
     CONDITIONAL_T = 'CONDITIONAL_T'
     CONDITIONAL_N = 'CONDITIONAL_N'
 
+    NOTICE_EVENT = 'NOTICE_EVENT'
+
     AFTER = 'AFTER'
     AND = 'AND'
     BETWEEN = 'BETWEEN'

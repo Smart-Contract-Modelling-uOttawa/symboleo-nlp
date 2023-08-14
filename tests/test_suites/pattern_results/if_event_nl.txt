@@ -1,3 +1,0 @@
-A - parm: If client fails to pay money to contractor, Contractor agrees to complete the services
-E - parm: If client fails to pay money to contractor, Contractor agrees to complete the services
-

@@ -85,8 +85,6 @@ class SymboleoContract(ISymboleoContract):
         # Mark the parm as being filled
         for pc in t[nl_key].parameters[parm_key]:
             pc.filled = True
-        
-        #del t[nl_key].parameters[parm_key]
 
     def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
         norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
