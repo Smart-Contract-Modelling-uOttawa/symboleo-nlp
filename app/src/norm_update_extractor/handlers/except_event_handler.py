@@ -36,16 +36,16 @@ class ExceptEventHandler(IHandleNormUpdates):
 
             return [new_power]
 
-        # If init norm is an obligation => create power to suspend it
+        # If init norm is an obligation => create power to terminate it
         if isinstance(norm, (Obligation, SurvivingObligation)):
             trigger_pred = PredicateFunctionHappens(evt)
             new_power = Power(
-                f'pow_suspend_{norm.id}',
+                f'pow_terminate_{norm.id}',
                 PropMaker.make(trigger_pred),
                 norm.creditor,
                 norm.debtor,
                 PropMaker.make_default(),
-                PFObligation(PFObligationName.Suspended, norm.id)
+                PFObligation(PFObligationName.Terminated, norm.id)
             )
 
             return [new_power]

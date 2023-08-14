@@ -26,7 +26,7 @@ Obligations
 Surviving Obligations
 
 Powers
-  pow_suspend_ob_pay_damages: Happens(evt_provide_approval) -> Power(partyB, partyA, true, Suspended(obligations.ob_pay_damages));
+  pow_terminate_ob_pay_damages: Happens(evt_provide_approval) -> Power(partyB, partyA, true, Terminated(obligations.ob_pay_damages));
 
 Constraints
 

@@ -129,13 +129,13 @@ test_case = TestCase(
             },
             surviving_obligations={},
             powers = {
-                'pow_suspend_ob_pay_damages': Power(
-                    'pow_suspend_ob_pay_damages', 
+                'pow_terminate_ob_pay_damages': Power(
+                    'pow_terminate_ob_pay_damages', 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_provide_approval'))), 
                     'partyB', 
                     'partyA', 
                     PropMaker.make_default(), 
-                    PFObligation(PFObligationName.Suspended, 'ob_pay_damages')
+                    PFObligation(PFObligationName.Terminated, 'ob_pay_damages')
                 )
             },
             constraints=[],

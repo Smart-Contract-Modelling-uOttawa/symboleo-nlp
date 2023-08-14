@@ -31,14 +31,14 @@ class ExceptEventHandlerTests(unittest.TestCase):
         self.assertEqual(len(result), 1)
 
         exp_norm = Power(
-            'pow_suspend_test_id',
+            'pow_terminate_test_id',
             PropMaker.make(
                 PredicateFunctionHappens(VariableEvent('evt_test'))
             ),
             'creditor',
             'debtor',
             PropMaker.make_default(),
-            PFObligation(PFObligationName.Suspended, 'test_id')
+            PFObligation(PFObligationName.Terminated, 'test_id')
         )
 
         self.assertEqual(new_norm, exp_norm)
