@@ -21,8 +21,8 @@ test_set: List[Tuple[CustomEvent,str,str]] = [
     ),
     (
         CustomEvents.eating_pie(),
-        'evt_eat_pie',
-        'EatPie'
+        'evt_eat_pie_noisily',
+        'EatPieNoisily'
     ),
 ]
 

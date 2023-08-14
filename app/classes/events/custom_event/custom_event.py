@@ -73,6 +73,9 @@ class CustomEvent(BaseEvent):
         elif self.verb.verb_type == VerbType.LINKING:
             a.append(self.predicate.pred_str)
         
+        if self.adverb:
+            a.append(self.adverb.adverb_str)
+        
         return ' '.join(a)
 
 

@@ -17,7 +17,7 @@ arg_values = {
      'property_address': '[PROPERTY_ADDRESS]',
      #'rent_amount': 1500,
      'currency': '[CURRENCY]',
-     'late_fee_amount': '[LATE_FEE_AMOUNT]',
+     'extra_amount': '[EXTRA_AMOUNT]',
      'deposit_amount': '[DEPOSIT_AMOUNT]'
 }
 
@@ -27,7 +27,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         # Parm('landlord_id', 'String'),
         Parm('property_address', 'String'),
         Parm('currency', 'Currency'),
-        Parm('late_fee_amount', 'Number'),
+        Parm('extra_amount', 'Number'),
         Parm('deposit_amount', 'Number')
     ]
 
@@ -40,51 +40,44 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     the_property = AssetDeclaration('property', 'RentalProperty', [
         DeclarationProp('address', f'"{arg_dict["property_address"]}"','String')
     ])
-    PROPERTY = the_property.to_obj()
+    security_deposit = AssetDeclaration('security_deposit', 'SecurityDeposit', [
+        DeclarationProp('amount', arg_dict["deposit_amount"], 'Number'),
+        DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
+    ])
 
-    evt_pay_deposit = EventDeclaration('evt_pay_deposit', 'Pay', 
+    PROPERTY = the_property.to_obj()
+    SECURITY_DEPOSIT = security_deposit.to_obj()
+
+    evt_pay_deposit = EventDeclaration('evt_pay_deposit', 'PayDeposit', 
         [
-            DeclarationProp('amount', arg_dict["deposit_amount"], 'Number'),
-            DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
+            DeclarationProp('deposit', SECURITY_DEPOSIT, 'Number'),
             DeclarationProp('from', RENTER, 'Role'),
             DeclarationProp('to', LANDLORD, 'Role'),
-        ],
-        EventStore.pay(arg_dict["deposit_amount"], arg_dict["currency"], 'landlord')
+        ]
     )
 
-
-    evt_pay_late = EventDeclaration('evt_pay_late', 'Pay', [
-        DeclarationProp('amount', arg_dict["late_fee_amount"], 'Number'),
+    evt_pay_extra = EventDeclaration('evt_pay_extra', 'PayAmount', [
+        DeclarationProp('amount', arg_dict["extra_amount"], 'Number'),
         DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
         DeclarationProp('from', RENTER, 'Role'),
         DeclarationProp('to', LANDLORD, 'Role'),
     ])
 
-    # evt_occupy_property = EventDeclaration('evt_occupy_property', 'OccupyProperty', [
-    #     DeclarationProp('agent', RENTER, 'Role'),
-    #     DeclarationProp('property', PROPERTY, 'RentalProperty'),
-    # ])
-
     evt_keep_pet = EventDeclaration('evt_keep_pet', 'KeepPet', [
         DeclarationProp('agent', RENTER, 'Role')
     ])
     
-    # evt_allow_pets = EventDeclaration('evt_allow_pets', 'AllowPets', [
-    #     DeclarationProp('grantor', LANDLORD, 'Role')
-    # ])
-
     # Variables to use
-    EVT_PAY_LATE = evt_pay_late.to_obj()
+    EVT_PAY_EXTRA = evt_pay_extra.to_obj()
     EVT_PAY_DEPOSIT = evt_pay_deposit.to_obj()
-    # EVT_OCCUPY_PROPERTY = evt_occupy_property.to_obj()
     EVT_KEEP_PET = evt_keep_pet.to_obj()
-    # EVT_ALLOW_PETS = evt_allow_pets.to_obj()
     
     declarations = {
         'renter': renter,
         'landlord': landlord,
         'property': the_property,
-        'evt_pay_late': evt_pay_late,
+        'security_deposit': security_deposit,
+        'evt_pay_extra': evt_pay_extra,
         'evt_pay_deposit': evt_pay_deposit,
         # 'evt_occupy_property': evt_occupy_property,
         'evt_keep_pet': evt_keep_pet,
@@ -118,7 +111,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 # PropMaker.make(
                 #     PredicateFunctionHappens(ObligationEvent(ObligationEventName.Violated, 'ob_pay_deposit')) 
                 # ),
-                PropMaker.make(PredicateFunctionHappens(EVT_PAY_LATE))
+                PropMaker.make(PredicateFunctionHappens(EVT_PAY_EXTRA))
             ),
             'ob_no_pets': Obligation(
                 'ob_no_pets',

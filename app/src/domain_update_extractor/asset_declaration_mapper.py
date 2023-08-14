@@ -24,6 +24,7 @@ class AssetDeclarationMapper(IMapAssetDeclarations):
         ## Includes a pre-defined list and enums found on the contract domain model 
         exclusions = ['Role', 'Date', 'Contract', 'Money']
         exclusions.extend([x.name for x in contract.domain_model.enums])
+        exclusions.extend([x for x in contract.domain_model.assets])
 
         # Check the subject
         if self._should_include(custom_event.subj, exclusions):

@@ -19,8 +19,16 @@ def get_domain_model():
         ],
 
         events = {
-            'Pay': DomainEvent(
-                name = 'Pay',
+            'PayDeposit': DomainEvent(
+                name = 'PayDeposit',
+                props = [
+                    DomainProp('deposit', 'SecurityDeposit'),
+                    DomainProp('from', 'Role'),
+                    DomainProp('to', 'Role'),
+                ]
+            ),
+            'PayAmount': DomainEvent(
+                name = 'PayAmount',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
@@ -54,7 +62,14 @@ def get_domain_model():
                 props = [
                     DomainProp('address', 'String')
                 ]
-            )
+            ),
+            'SecurityDeposit': Asset(
+                name = 'SecurityDeposit',
+                props = [
+                    DomainProp('amount', 'Number'),
+                    DomainProp('currency', 'Currency')
+                ]
+            ),
         }   
     )
     
