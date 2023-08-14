@@ -122,6 +122,10 @@ test_suite = [
     (
         [ UnitType.WITHIN] + mock_timespan() + [UnitType.OF] + mock_event(), 
         WithinTimespanEvent
+    ),
+    (
+        [UnitType.UPON] + mock_timespan() + [ UnitType.NOTICE_EVENT, UnitType.NOTICE_FROM, UnitType.NOTIFIER], 
+        NoticeEvent
     )
 ]
 
