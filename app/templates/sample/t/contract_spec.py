@@ -40,7 +40,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     the_property = AssetDeclaration('property', 'RentalProperty', [
         DeclarationProp('address', f'"{arg_dict["property_address"]}"','String')
     ])
-    security_deposit = AssetDeclaration('security_deposit', 'SecurityDeposit', [
+    security_deposit = AssetDeclaration('security deposit', 'SecurityDeposit', [
         DeclarationProp('amount', arg_dict["deposit_amount"], 'Number'),
         DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
     ])

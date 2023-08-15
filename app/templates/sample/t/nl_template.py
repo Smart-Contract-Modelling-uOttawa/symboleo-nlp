@@ -16,7 +16,7 @@ nl_template = NLTemplate(
                 'P2': [ ParameterConfig('obligations', 'ob_no_pets', 'consequent')]
             }
         ),
-        'late_payment': TemplateObj(
+        'pay_extra': TemplateObj(
             '[P3] the renter must pay an extra fee of $50',
             {
                 'P3': [ ParameterConfig('obligations', 'ob_pay_extra', 'antecedent')]

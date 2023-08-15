@@ -57,7 +57,7 @@ class FakeDocParser(IParseDoc):
                 DocUnit('approval', 'NN', 'ROOT', 'approval')
             ]),
 
-            'security_deposit': NlpDoc([
+            'security deposit': NlpDoc([
                 DocUnit('security', 'NN', 'compound', 'deposit'),
                 DocUnit('deposit', 'NN', 'ROOT', 'deposit'),
             ]),

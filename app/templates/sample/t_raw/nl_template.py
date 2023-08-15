@@ -8,7 +8,7 @@ nl_template = NLTemplate(
         'no_pets': TemplateObj(
             'The renter may not keep any pets on the property unless authorization is provided by the landlord '
         ),
-        'late_payment': TemplateObj(
+        'pay_extra': TemplateObj(
             'In the event of a late payment, the renter must pay an extra fee of $50.'
         ),
     }
