@@ -3,7 +3,7 @@ from app.classes.spec.domain_object import DomainEvent, DomainProp, Role, Asset,
 
 def get_domain_model():
     domain_model = DomainModel(
-        'gridironDomain',
+        'biomassDomain',
         roles = {
             'Seller': Role(
                 name = 'Seller',
@@ -13,12 +13,6 @@ def get_domain_model():
             ),
             'Buyer': Role(
                 name = 'Buyer',
-                props = [
-                    DomainProp('name','String'),
-                ]
-            ),
-            'LegalThirdParty': Role(
-                name = 'ThirdParty',
                 props = [
                     DomainProp('name','String'),
                 ]
@@ -68,44 +62,12 @@ def get_domain_model():
                     DomainProp('product', 'Biomass')
                 ]
             ),
-            'DeterminesAnalysisRequired': DomainEvent(
-                name = 'DeterminesAnalysisRequired',
-                props = [
-                    DomainProp('agent', 'Role'),
-                ]
-            ),
             'Delivery': DomainEvent(
                 name = 'Delivery',
                 props = [
                     DomainProp('agent', 'Role'),
                     DomainProp('product', 'Biomass'),
                     DomainProp('location', 'Location'),
-                ]
-            ),
-            'LegalClaim': DomainEvent(
-                name = 'LegalClaim',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('target', 'Role')
-                ]
-            ),
-            'LegalNotice': DomainEvent(
-                name = 'LegalNotice',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('target', 'Role')
-                ]
-            ),
-            'ReturnInfo': DomainEvent(
-                name = 'ReturnInfo',
-                props = [
-                    DomainProp('agent', 'Role')
-                ]
-            ),
-            'DiscloseInfo': DomainEvent(
-                name = 'DiscloseInfo',
-                props = [
-                    DomainProp('agent', 'Role')
                 ]
             )
         }

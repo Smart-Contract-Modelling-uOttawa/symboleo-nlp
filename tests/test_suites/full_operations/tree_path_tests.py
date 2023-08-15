@@ -32,7 +32,7 @@ class TreePathTests(unittest.TestCase):
 
         tp = TreeParser()
         all_paths = tp.traverse_tree_paths(grammar_tree)
-        #print(len(all_paths))
+        # print(len(all_paths))
 
         for path in all_paths:
             units = [UnitType[p] for p in path[1:]]

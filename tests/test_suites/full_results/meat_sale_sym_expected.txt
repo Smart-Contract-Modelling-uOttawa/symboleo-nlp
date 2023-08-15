@@ -7,8 +7,8 @@ Domain meatSaleDomain
   Meat isA PerishableGood with quality: MeatQuality;
   Deliver isAn Event with item: Meat, deliverer: Role, recipient: Role;
   Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
-  PayLate isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
-  Disclose isAn Event;
+  PayInterest isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
+  Disclose isAn Event with agent: Role;
 
 endDomain
 
@@ -19,7 +19,7 @@ Declarations
   buyer: Buyer;
   goods: Meat with quantity_kg := 100, quality := MeatQuality(PRIME);
   evt_deliver: Deliver with item := goods, deliverer := seller, recipient := buyer;
-  evt_pay_late: PayLate with amount := "(1 + 8 / 100) * 100", currency := Currency(CAD), from := buyer, to := seller;
+  evt_pay_interest: PayInterest with amount := "(1 + 8 / 100) * 100", currency := Currency(CAD), from := buyer, to := seller;
   evt_pay: Pay with amount := 100, currency := Currency(CAD), from := buyer, to := seller;
   evt_disclose: Disclose;
 
@@ -32,7 +32,7 @@ Postconditions
 Obligations
   ob_delivery: Obligation(seller, buyer, true, SHappensBefore(evt_deliver, "March 18, 2024"));
   ob_payment: Obligation(buyer, seller, true, SHappensBefore(evt_pay, "March 30, 2024"));
-  ob_late_payment: Obligation(buyer, seller, Happens(Violated(obligations.ob_payment)), Happens(evt_pay_late));
+  ob_pay_interest: Obligation(buyer, seller, Happens(Violated(obligations.ob_payment)), Happens(evt_pay_interest));
 
 Surviving Obligations
   so_disclosure_seller: SO(seller, buyer, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));

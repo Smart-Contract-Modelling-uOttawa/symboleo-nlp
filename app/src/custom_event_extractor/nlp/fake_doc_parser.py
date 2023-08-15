@@ -70,6 +70,22 @@ class FakeDocParser(IParseDoc):
             'Cerus': NlpDoc([DocUnit('Cerus', 'NN', 'ROOT', 'Cerus')]),
             'Prime': NlpDoc([DocUnit('Prime', 'NN', 'ROOT', 'Prime')]),
             'Dolphin': NlpDoc([DocUnit('Dolphin', 'NN', 'ROOT', 'Dolphin')]),
+
+            'buyer': NlpDoc([DocUnit('buyer', 'NN', 'ROOT', 'buyer')]),
+            'GridIron': NlpDoc([DocUnit('GridIron', 'NN', 'ROOT', 'GridIron')]),
+            'Shi Farms': NlpDoc([DocUnit('Shi Farms', 'NN', 'ROOT', 'Shi Farms')]),
+
+            # Full stack tests
+            'payment': NlpDoc([
+                DocUnit('payment', 'NN', 'ROOT', 'payment'),
+            ]),
+            'third-party analysis': NlpDoc([
+                DocUnit('third-party', 'JJ', 'amod', 'analysis'),
+                DocUnit('analysis', 'NN', 'ROOT', 'analysis')
+            ]),
+            'biomass': NlpDoc([
+                DocUnit('biomass', 'NN', 'ROOT', 'biomass')
+            ]),
         }
 
     def parse(self, str_val: str) -> NlpDoc:

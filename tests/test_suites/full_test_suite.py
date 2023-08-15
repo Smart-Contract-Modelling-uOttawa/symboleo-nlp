@@ -6,19 +6,19 @@ from app.src.operations.dependency_builder import DependencyBuilder
 
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
 from tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
-from tests.test_suites.full_test_cases.rental import test_suite as rental
-from tests.test_suites.full_test_cases.prop import test_suite as prop
+# from tests.test_suites.full_test_cases.rental import test_suite as rental
+# from tests.test_suites.full_test_cases.prop import test_suite as prop
 from tests.test_suites.full_test_cases.biomass import test_suite as biomass
-from tests.test_suites.full_test_cases.indep import test_suite as indep
-from tests.test_suites.full_test_cases.sample import test_suite as sample
+# from tests.test_suites.full_test_cases.indep import test_suite as indep
+# from tests.test_suites.full_test_cases.sample import test_suite as sample
 
 test_dict = {
     'meat_sale': meat_sale,
-    'rental': rental,
-    'prop': prop,
+    # 'rental': rental,
+    # 'prop': prop,
     'biomass': biomass,
-    'indep': indep,
-    'sample': sample
+    # 'indep': indep,
+    # 'sample': sample
 }
 
 class FullStackTests(unittest.TestCase):
@@ -30,12 +30,12 @@ class FullStackTests(unittest.TestCase):
         filepath = 'tests/test_suites/full_results'
 
         target_keys = [
-            # 'meat_sale',
+            'meat_sale',
             # 'rental',
             # 'prop',
-            # 'biomass',
+            'biomass',
             # 'indep',
-            'sample'
+            #'sample'
         ]
 
         for k in target_keys:

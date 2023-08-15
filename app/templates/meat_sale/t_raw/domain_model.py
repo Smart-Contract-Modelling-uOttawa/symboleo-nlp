@@ -36,8 +36,8 @@ def get_domain_model():
                     DomainProp('to', 'Role')
                 ]
             ),
-            'PayLate': DomainEvent(
-                name = 'PayLate',
+            'PayInterest': DomainEvent(
+                name = 'PayInterest',
                 props = [
                     DomainProp('amount', 'Number'),
                     DomainProp('currency', 'Currency'),
@@ -47,7 +47,9 @@ def get_domain_model():
             ),
             'Disclose': DomainEvent(
                 name = 'Disclose',
-                props = []
+                props = [
+                    DomainProp('agent', 'Role'),
+                ]
             )
         },
         assets = {

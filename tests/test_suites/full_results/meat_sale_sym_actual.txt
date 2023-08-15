@@ -5,10 +5,12 @@ Domain meatSaleDomain
   MeatQuality isAn Enumeration(PRIME, AAA, AA, A);
   PerishableGood isAn Asset with quantity_kg: Number;
   Meat isA PerishableGood with quality: MeatQuality;
+  Payment isAn Asset;
   Deliver isAn Event with item: Meat, deliverer: Role, recipient: Role;
   Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
-  PayLate isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
+  PayInterest isAn Event with amount: Number, currency: Currency, from: Buyer, to: Seller;
   Disclose isAn Event;
+  MissPayment isAn Event with missing_agent: Role, missed_object: Payment;
 
 endDomain
 
@@ -19,9 +21,11 @@ Declarations
   buyer: Buyer;
   goods: Meat with quantity_kg := 100, quality := MeatQuality(PRIME);
   evt_deliver: Deliver with item := goods, deliverer := seller, recipient := buyer;
-  evt_pay_late: PayLate with amount := "(1 + 8 / 100) * 100", currency := Currency(CAD), from := buyer, to := seller;
+  evt_pay_interest: PayInterest with amount := "(1 + 8 / 100) * 100", currency := Currency(CAD), from := buyer, to := seller;
   evt_pay: Pay with amount := 100, currency := Currency(CAD), from := buyer, to := seller;
   evt_disclose: Disclose;
+  payment: Payment;
+  evt_miss_payment: MissPayment with missing_agent := buyer, missed_object := payment;
 
 Preconditions
   IsOwner(goods, seller);
@@ -32,16 +36,15 @@ Postconditions
 Obligations
   ob_delivery: Obligation(seller, buyer, true, SHappensBefore(evt_deliver, "March 18, 2024"));
   ob_payment: Obligation(buyer, seller, true, SHappensBefore(evt_pay, "March 30, 2024"));
-  ob_late_payment: Obligation(buyer, seller, Happens(Violated(obligations.ob_payment)), Happens(evt_pay_late));
+  ob_late_payment: Obligation(buyer, seller, Happens(evt_miss_payment), Happens(evt_pay_interest));
 
 Surviving Obligations
-  so_disclosure_seller: SO(seller, buyer, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
-  so_disclosure_buyer: SO(buyer, seller, true, not WhappensBefore(evt_disclose, Date.add(Terminated(self), 6, months)));
+  so_disclosure_seller: SO(seller, buyer, true, not HappensWithin(evt_disclose, Interval(self.end, Date.add(self.end, 6, months)));
+  so_disclosure_buyer: SO(buyer, seller, true, not HappensWithin(evt_disclose, Interval(self.end, Date.add(self.end, 6, months)));
 
 Powers
-  pow_suspend_delivery: Power(seller, buyer, Happens(Violated(obligations.ob_payment)), Suspended(obligations.ob_delivery));
+  pow_suspend_delivery: Power(seller, buyer, true, Suspended(obligations.ob_delivery));
   pow_terminate_contract: F -> Power(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
-  pow_resume_ob_delivery: HappensWithin(Fulfilled(obligations.ob_late_payment), Suspension(obligations.ob_delivery)) -> Power(buyer, seller, true, Resumed(obligations.ob_delivery));
 
 Constraints
   not IsEqual(buyer, seller);

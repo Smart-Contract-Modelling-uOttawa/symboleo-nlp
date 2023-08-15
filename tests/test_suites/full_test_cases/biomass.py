@@ -3,18 +3,14 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 
 test_suite = [
-    # upon contract activation 
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.UPON, 'upon'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'begins'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'activated')
         ],
         nl_key='payment',
         parm_key='P1'
@@ -23,19 +19,12 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.ONCE, 'once'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
-            UserInput(UnitType.NORM_EVENT),
-            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_payment'),
-            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
-
-            # TODO: Want to be able to say 'completes payment'
-            UserInput(UnitType.SUBJECT, 'Gridiron'),
-            UserInput(UnitType.VERB, 'completes'),
-            UserInput(UnitType.DOBJ, 'payment'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'GridIron'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'pays'),
+            UserInput(UnitType.DOBJ, 'Shi Farms'),
         ],
         nl_key='quarantine',
         parm_key='P1'
@@ -44,18 +33,12 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.UNTIL),
+            UserInput(UnitType.UNTIL, 'until'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
-            UserInput(UnitType.NORM_EVENT),
-            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_delivery_processor'),
-            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
-
+            UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'Shi Farms'),
-            UserInput(UnitType.VERB, 'completes'),
-            UserInput(UnitType.DOBJ, 'delivery'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.TRANSITIVE_VERB, 'delivers'),
+            UserInput(UnitType.DOBJ, 'biomass')
         ],
         nl_key='quarantine',
         parm_key='P2'
@@ -64,16 +47,14 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.WHEN),
+            UserInput(UnitType.IF, 'if'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
-            UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CUSTOM_EVENT),
+            UserInput(UnitType.SUBJECT, 'GridIron'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'mandates'),
+            UserInput(UnitType.DOBJ, 'third-party analysis')
         ],
-        nl_key='return_disclose_info',
+        nl_key='delivery_location',
         parm_key='P1'
     )
 ]

@@ -24,6 +24,10 @@ class FakeLemmatizer(ILemmatize):
             'submits': 'submit',
             'happening': 'happen',
             'completes': 'complete',
+            'misses': 'miss',
+            'mandates': 'mandate',
+            'pays': 'pay',
+            'delivers': 'deliver'
         }
 
     def lemmatize(self, s: str) -> str:

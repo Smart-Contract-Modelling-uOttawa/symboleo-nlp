@@ -68,7 +68,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         None # Need event...
     )
 
-    evt_pay_late = EventDeclaration('evt_pay_late', 'PayLate', [
+    evt_pay_interest = EventDeclaration('evt_pay_interest', 'PayInterest', [
             DeclarationProp('amount', f'"(1 + {arg_dict["interest_rate"]} / 100) * {arg_dict["amount"]}"', 'Number'),
             DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
             DeclarationProp('from', BUYER, 'Role'),
@@ -82,7 +82,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
 
     EVT_DELIVER = evt_deliver.to_obj()
     EVT_PAY = evt_pay.to_obj()
-    EVT_PAY_LATE = evt_pay_late.to_obj()
+    EVT_PAY_INTEREST = evt_pay_interest.to_obj()
     EVT_DISCLOSE = evt_disclose.to_obj()
 
     # Declarations
@@ -91,7 +91,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         'buyer': buyer,
         'goods': goods,
         'evt_deliver': evt_deliver,
-        'evt_pay_late': evt_pay_late,
+        'evt_pay_interest': evt_pay_interest,
         'evt_pay': evt_pay,
         'evt_disclose': evt_disclose
     }
@@ -137,7 +137,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                 SELLER,
                 PropMaker.make_default(),
                 PropMaker.make(
-                    PredicateFunctionHappens(EVT_PAY_LATE)
+                    PredicateFunctionHappens(EVT_PAY_INTEREST)
                 )
             )
         },

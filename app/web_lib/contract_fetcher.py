@@ -23,9 +23,7 @@ class ContractFetcher:
 
     def fetch(self, contract_id: str, unique_key:str) -> WebContract:
         contract =  get_template(contract_id)
-
         self.__contract_storage.store(unique_key, contract_id, contract)
-
         result = WebContract(contract)
         return result
 

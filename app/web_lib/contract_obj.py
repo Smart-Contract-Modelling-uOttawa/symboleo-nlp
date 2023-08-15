@@ -11,10 +11,11 @@ class WebContractSym:
         # Domain Objects
         dm = contract.domain_model
         domain_objs = []
+
         for x in dm.enums:
             next_do = x.to_sym()
             domain_objs.append(next_do)
-
+        
         for x in dm.roles:
             next_do = dm.roles[x].to_sym()
             domain_objs.append(next_do)
@@ -70,12 +71,12 @@ class WebContract:
         nl = []
         parms = []
         template_dict = contract.nl_template.template_dict
+        
         for nl_key in template_dict:
             template_obj = template_dict[nl_key]
             next_nl = WebContractNL(nl_key, template_obj.str_val)
             nl.append(next_nl)
-        
-            for parm_key in template_obj.parameters:
+            for parm_key in template_obj.parameters or []:
                 if not template_obj.parameters[parm_key][0].filled:
                     next_parm = f'{nl_key}.{parm_key}'
                     parms.append(next_parm)

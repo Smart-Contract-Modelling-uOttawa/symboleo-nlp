@@ -62,22 +62,15 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         DeclarationProp('recipient', BUYER, 'Role')
     ])
     
-    # May need the delduedate...
-    # evt_delivered = Declarer.declare(dm, 'events', 'Delivered', 'evt_delivered', [
-    #     ('item', 'goods'),
-    #     ('deliveryAddress', 'delAdd'),
-    #     ('delDueDate', 'Date.add(effDate, delDueDateDays, days)')
-    # ])
     evt_pay = EventDeclaration('evt_pay', 'Pay', [
             DeclarationProp('amount', arg_dict["amount"], 'Number'),
             DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
             DeclarationProp('from', BUYER, 'Role'),
             DeclarationProp('to', SELLER, 'Role')
-        ],
-        None # Need event...
+        ]
     )
 
-    evt_pay_late = EventDeclaration('evt_pay_late', 'PayLate', [
+    evt_pay_interest = EventDeclaration('evt_pay_interest', 'PayInterest', [
             DeclarationProp('amount', f'"(1 + {arg_dict["interest_rate"]} / 100) * {arg_dict["amount"]}"', 'Number'),
             DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
             DeclarationProp('from', BUYER, 'Role'),
@@ -91,7 +84,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
 
     EVT_DELIVER = evt_deliver.to_obj()
     EVT_PAY = evt_pay.to_obj()
-    EVT_PAY_LATE = evt_pay_late.to_obj()
+    EVT_PAY_INTEREST = evt_pay_interest.to_obj()
     EVT_DISCLOSE = evt_disclose.to_obj()
 
     DELIVERY_DUE_DATE = f'"{arg_dict["delivery_due_date"]}"'
@@ -103,7 +96,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         'buyer': buyer,
         'goods': goods,
         'evt_deliver': evt_deliver,
-        'evt_pay_late': evt_pay_late,
+        'evt_pay_interest': evt_pay_interest,
         'evt_pay': evt_pay,
         'evt_disclose': evt_disclose
     }
@@ -152,8 +145,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                     )
                 )
             ),
-            'ob_late_payment': Obligation(
-                'ob_late_payment',
+            'ob_pay_interest': Obligation(
+                'ob_pay_interest',
                 None,
                 BUYER,
                 SELLER,
@@ -163,7 +156,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
                     )
                 ),
                 PropMaker.make(
-                    PredicateFunctionHappens(EVT_PAY_LATE)
+                    PredicateFunctionHappens(EVT_PAY_INTEREST)
                 )
             )
         },
