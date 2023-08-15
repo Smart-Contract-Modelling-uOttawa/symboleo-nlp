@@ -1,49 +1,50 @@
-Domain propertyRentalDomain
+Domain rentalDomain
   Landlord isA Role;
   Renter isA Role;
   Currency isAn Enumeration(CAD, USD, EUR);
   RentalProperty isAn Asset with address: String;
+  SecurityDeposit isAn Asset with amount: Number, currency: Currency;
+  Authorization isAn Asset;
   Pets isAn Asset;
-  Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
+  Deposit isAn Asset;
+  PayDeposit isAn Event with deposit: SecurityDeposit, from: Role, to: Role;
+  PayAmount isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
   KeepPet isAn Event with agent: Role;
-  Occupy isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
-  Allow isAn Event with allowing_agent: Role, allowed_object: Pets;
-  Abandon isAn Event with abandoning_agent: Role, abandoned_object: RentalProperty;
+  OccupyProperty isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
+  ProvideAuthorization isAn Event with providing_agent: Role, provided_object: Authorization, provide_detail: Pets;
+  PayDepositLate isAn Event with paying_agent: Role, paid_object: Deposit;
 
 endDomain
 
-Contract PropertyRental( renter_id: String, landlord_id: String, property_address: String, rent_amount: Number, currency: Currency, late_fee_amount: Number, deposit_amount: Number )
+Contract rental( property_address: String, currency: Currency, extra_amount: Number, deposit_amount: Number )
 
 Declarations
   renter: Renter;
   landlord: Landlord;
-  property: RentalProperty;
-  evt_pay_rent: Pay with amount := 1500, currency := Currency(CAD), from := renter, to := landlord;
-  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
-  evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
-  evt_return_deposit: Pay with amount := 1000, currency := Currency(CAD), from := landlord, to := renter;
+  property: RentalProperty with address := "[PROPERTY_ADDRESS]";
+  security_deposit: Deposit;
+  evt_pay_extra: PayAmount with amount := [EXTRA_AMOUNT], currency := Currency([CURRENCY]), from := renter, to := landlord;
+  evt_pay_deposit: PayDeposit with deposit := security deposit, from := renter, to := landlord;
   evt_keep_pet: KeepPet with agent := renter;
-  evt_occupy: Occupy with occupying_agent := renter, occupied_object := property;
+  evt_occupy_property: OccupyProperty with occupying_agent := renter, occupied_object := property;
+  authorization: Authorization;
   pets: Pets;
-  evt_allow: Allow with allowing_agent := landlord, allowed_object := pets;
-  evt_abandon: Abandon with abandoning_agent := renter, abandoned_object := property;
+  evt_provide_authorization: ProvideAuthorization with providing_agent := landlord, provided_object := authorization, provide_detail := pets;
+  evt_pay_deposit_late: PayDepositLate with paying_agent := renter, paid_object := security_deposit;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_pay_rent: Obligation(renter, landlord, true, Happens(evt_pay_rent));
-  ob_late_payment: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_rent)), Happens(evt_pay_late));
-  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy));
-  ob_return_deposit: Obligation(landlord, renter, Happens(Terminated(self)), Happens(evt_return_deposit));
+  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBefore(evt_pay_deposit, Date.add(evt_occupy_property, 2, weeks)));
+  ob_pay_extra: Obligation(renter, landlord, Happens(evt_pay_deposit_late), Happens(evt_pay_extra));
   ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
 
 Surviving Obligations
 
 Powers
-  pow_termination_abandon: Power(landlord, renter, Happens(evt_abandon), Terminated(self));
-  pow_suspend_ob_no_pets: Happens(evt_allow) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
+  pow_terminate_ob_no_pets: Happens(evt_provide_authorization) -> Power(landlord, renter, true, Terminated(obligations.ob_no_pets));
 
 Constraints
 

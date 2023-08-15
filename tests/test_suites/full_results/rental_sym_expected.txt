@@ -1,28 +1,27 @@
-Domain propertyRentalDomain
+Domain rentalDomain
   Landlord isA Role;
   Renter isA Role;
   Currency isAn Enumeration(CAD, USD, EUR);
   RentalProperty isAn Asset with address: String;
-  Pay isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
+  SecurityDeposit isAn Asset with amount: Number, currency: Currency;
+  PayDeposit isAn Event with deposit: SecurityDeposit, from: Role, to: Role;
+  PayAmount isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
   OccupyProperty isAn Event with agent: Role, property: RentalProperty;
-  AbandonProperty isAn Event with agent: Role, property: RentalProperty;
   KeepPet isAn Event with agent: Role;
   AllowPets isAn Event with grantor: Role;
 
 endDomain
 
-Contract PropertyRental( renter_id: String, landlord_id: String, property_address: String, rent_amount: Number, currency: Currency, late_fee_amount: Number, deposit_amount: Number )
+Contract rental( property_address: String, currency: Currency, extra_amount: Number, deposit_amount: Number )
 
 Declarations
   renter: Renter;
   landlord: Landlord;
-  property: RentalProperty with address := "123 Main Street";
-  evt_pay_rent: Pay with amount := 1500, currency := Currency(CAD), from := renter, to := landlord;
-  evt_pay_late: Pay with amount := 500, currency := Currency(CAD), from := renter, to := landlord;
-  evt_pay_deposit: Pay with amount := 1000, currency := Currency(CAD), from := renter, to := landlord;
-  evt_return_deposit: Pay with amount := 1000, currency := Currency(CAD), from := landlord, to := renter;
+  property: RentalProperty with address := "[PROPERTY_ADDRESS]";
+  security_deposit: SecurityDeposit with amount := [DEPOSIT_AMOUNT], currency := Currency([CURRENCY]);
+  evt_pay_extra: PayAmount with amount := [EXTRA_AMOUNT], currency := Currency([CURRENCY]), from := renter, to := landlord;
+  evt_pay_deposit: PayDeposit with deposit := security_deposit, from := renter, to := landlord;
   evt_occupy_property: OccupyProperty with agent := renter, property := property;
-  evt_abandon_property: AbandonProperty with agent := renter, property := property;
   evt_keep_pet: KeepPet with agent := renter;
   evt_allow_pets: AllowPets with grantor := landlord;
 
@@ -31,17 +30,14 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_rent: Obligation(renter, landlord, true, Happens(evt_pay_rent));
-  ob_late_payment: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_rent)), Happens(evt_pay_late));
   ob_pay_deposit: Obligation(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy_property));
-  ob_return_deposit: Obligation(landlord, renter, Happens(Terminated(self)), Happens(evt_return_deposit));
+  ob_pay_extra: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_deposit)), Happens(evt_pay_extra));
   ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
 
 Surviving Obligations
 
 Powers
-  pow_suspend_ob_no_pets: Happens(evt_allow_pets) -> Power(landlord, renter, true, Suspended(obligations.ob_no_pets));
-  pow_termination_abandon: Power(landlord, renter, Happens(evt_abandon_property), Terminated(self));
+  pow_terminate_ob_no_pets: Happens(evt_allow_pets) -> Power(landlord, renter, true, Terminated(obligations.ob_no_pets));
 
 Constraints
 

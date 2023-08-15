@@ -100,7 +100,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
 
     # Contract Spec
     contract_spec = ContractSpec(
-        'PropertyRental',
+        'rental',
         parameters = parameters,
         declarations = declarations,
         obligations = {

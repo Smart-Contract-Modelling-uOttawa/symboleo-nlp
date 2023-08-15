@@ -6,19 +6,17 @@ from app.src.operations.dependency_builder import DependencyBuilder
 
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
 from tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
-# from tests.test_suites.full_test_cases.rental import test_suite as rental
+from tests.test_suites.full_test_cases.rental import test_suite as rental
 # from tests.test_suites.full_test_cases.prop import test_suite as prop
 from tests.test_suites.full_test_cases.biomass import test_suite as biomass
 # from tests.test_suites.full_test_cases.indep import test_suite as indep
-# from tests.test_suites.full_test_cases.sample import test_suite as sample
 
 test_dict = {
     'meat_sale': meat_sale,
-    # 'rental': rental,
+    'rental': rental,
     # 'prop': prop,
     'biomass': biomass,
-    # 'indep': indep,
-    # 'sample': sample
+    # 'indep': indep
 }
 
 class FullStackTests(unittest.TestCase):
@@ -31,11 +29,10 @@ class FullStackTests(unittest.TestCase):
 
         target_keys = [
             'meat_sale',
-            # 'rental',
+            'rental',
             # 'prop',
             'biomass',
-            # 'indep',
-            #'sample'
+            # 'indep'
         ]
 
         for k in target_keys:

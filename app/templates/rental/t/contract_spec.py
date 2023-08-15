@@ -9,8 +9,6 @@ from app.classes.spec.sym_event import ObligationEvent, ObligationEventName, Con
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter as Parm
 from app.classes.spec.other_predicates import *
 
-from app.templates.sample.event_store import EventStore
-
 arg_values = {
      #'renter_id': 'renter',
      #'landlord_id': 'landlord',
@@ -87,7 +85,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
 
     # Contract Spec
     contract_spec = ContractSpec(
-        'PropertyRental',
+        'rental',
         parameters = parameters,
         declarations = declarations,
         obligations = {

@@ -3,7 +3,7 @@ from app.classes.spec.domain_object import DomainEvent, DomainProp, Role, Asset,
 
 def get_domain_model():
     domain_model = DomainModel(
-        'propertyRentalDomain',
+        'rentalDomain',
         roles = {
             'Landlord': Role(
                 name = 'Landlord',
@@ -36,23 +36,10 @@ def get_domain_model():
                     DomainProp('to', 'Role'),
                 ]
             ),
-            'OccupyProperty': DomainEvent(
-                name = 'OccupyProperty',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('property', 'RentalProperty')
-                ]
-            ),
             'KeepPet': DomainEvent(
                 name = 'KeepPet',
                 props = [
                     DomainProp('agent', 'Role')
-                ]
-            ),
-            'AllowPets': DomainEvent(
-                name = 'AllowPets',
-                props = [
-                    DomainProp('grantor', 'Role')
                 ]
             )
         },

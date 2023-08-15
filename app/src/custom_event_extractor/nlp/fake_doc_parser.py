@@ -71,6 +71,7 @@ class FakeDocParser(IParseDoc):
             'Prime': NlpDoc([DocUnit('Prime', 'NN', 'ROOT', 'Prime')]),
             'Dolphin': NlpDoc([DocUnit('Dolphin', 'NN', 'ROOT', 'Dolphin')]),
 
+            'renter': NlpDoc([DocUnit('renter', 'NN', 'ROOT', 'renter')]),
             'buyer': NlpDoc([DocUnit('buyer', 'NN', 'ROOT', 'buyer')]),
             'GridIron': NlpDoc([DocUnit('GridIron', 'NN', 'ROOT', 'GridIron')]),
             'Shi Farms': NlpDoc([DocUnit('Shi Farms', 'NN', 'ROOT', 'Shi Farms')]),
