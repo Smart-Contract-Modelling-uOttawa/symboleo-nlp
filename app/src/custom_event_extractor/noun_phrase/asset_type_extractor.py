@@ -1,7 +1,7 @@
 from app.classes.spec.symboleo_contract import SymboleoContract
 import re
 
-from app.src.custom_event_extractor.nlp.label_getter import IGetLabels
+from app.src.nlp.label_getter import IGetLabels
 
 class IExtractAssetType:
     def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
@@ -29,8 +29,8 @@ class AssetTypeExtractor(IExtractAssetType):
 
     # Will have a barrage of different potential extractors here 
     def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
-        # Check for role or asset
-        decls = contract.contract_spec.declarations
+        # Check for role or asset (by NAME, not id)
+        decls = {x.name: x for x in contract.contract_spec.declarations.values()}
         if str_val in decls:
             decl = decls[str_val]
             if decl.base_type == 'roles':

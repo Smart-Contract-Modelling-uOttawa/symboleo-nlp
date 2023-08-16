@@ -1,7 +1,7 @@
 from app.classes.events.custom_event.verb import Verb, VerbType
 
 from app.classes.units.unit_type import UnitType
-from app.src.custom_event_extractor.nlp.lemmatizer import ILemmatize
+from app.src.nlp.lemmatizer import ILemmatize
 from app.src.custom_event_extractor.verb.conjugator import IConjugate
 
 from app.src.custom_event_extractor.element_extractor import IExtractElement

@@ -16,7 +16,7 @@ arg_values = {
      'seller_id': 'shi_farms',
      'seller_name': 'Shi Farms',
      'buyer_id': 'gridiron',
-     'buyer_name': 'Gridiron',
+     'buyer_name': 'GridIron',
      'biomass_quantity_lbs': 30000,
      'currency': 'USD',
      'price': 150000
@@ -35,12 +35,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         Parm('currency', 'Currency'),
     ]
 
-    shi_farms = RoleDeclaration(arg_dict["seller_id"], 'Seller', [
-        DeclarationProp('name', f'"{arg_dict["seller_name"]}"', 'String')
-    ])
-    gridiron = RoleDeclaration(arg_dict["buyer_id"], 'Buyer', [
-        DeclarationProp('name', f'"{arg_dict["buyer_name"]}"', 'String')
-    ])
+    shi_farms = RoleDeclaration(arg_dict["seller_name"], 'Seller')
+    gridiron = RoleDeclaration(arg_dict["buyer_name"], 'Buyer')
     SELLER = shi_farms.to_obj()
     BUYER = gridiron.to_obj()
 

@@ -1,4 +1,4 @@
-from app.src.custom_event_extractor.nlp.label_getter import IGetLabels
+from app.src.nlp.label_getter import IGetLabels
 
 class FakeLabelGetter(IGetLabels):
     def __init__(self):

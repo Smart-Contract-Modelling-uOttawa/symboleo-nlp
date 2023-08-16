@@ -35,12 +35,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         Parm('currency', 'Currency'),
     ]
 
-    shi_farms = RoleDeclaration(arg_dict["seller_id"], 'Seller', [
-        DeclarationProp('name', f'"{arg_dict["seller_name"]}"', 'String')
-    ])
-    gridiron = RoleDeclaration(arg_dict["buyer_id"], 'Buyer', [
-        DeclarationProp('name', f'"{arg_dict["buyer_name"]}"', 'String')
-    ])
+    shi_farms = RoleDeclaration(arg_dict["seller_name"], 'Seller')
+    gridiron = RoleDeclaration(arg_dict["buyer_name"], 'Buyer')
     SELLER = shi_farms.to_obj()
     BUYER = gridiron.to_obj()
 
@@ -49,13 +45,9 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         # Cannabidiol, THC, ... contaminants
     ])
 
-    lab = AssetDeclaration('lab', 'Location', [
-        DeclarationProp('name', '"lab"', 'String'),
-    ])
+    lab = AssetDeclaration('lab', 'Location', [])
 
-    processor = AssetDeclaration('processor', 'Location', [
-        DeclarationProp('name', '"processor"', 'String'),
-    ])
+    processor = AssetDeclaration('processor', 'Location', [])
 
     BIOMASS = biomass.to_obj()
     LAB = lab.to_obj()

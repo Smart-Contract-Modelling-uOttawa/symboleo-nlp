@@ -1,4 +1,4 @@
-from app.src.custom_event_extractor.nlp.doc_parser import IParseDoc, NlpDoc, DocUnit
+from app.src.nlp.doc_parser import IParseDoc, NlpDoc, DocUnit
 
 class FakeDocParser(IParseDoc):
     def __init__(self):
@@ -66,26 +66,38 @@ class FakeDocParser(IParseDoc):
             'partyA': NlpDoc([DocUnit('partyA', 'NN', 'ROOT', 'partyA')]),
             'distributor': NlpDoc([DocUnit('distributor', 'NN', 'ROOT', 'distributor')]),
             'cisco': NlpDoc([DocUnit('cisco', 'NN', 'ROOT', 'cisco')]),
-            'Porex': NlpDoc([DocUnit('Porex', 'NN', 'ROOT', 'Porex')]),
-            'Cerus': NlpDoc([DocUnit('Cerus', 'NN', 'ROOT', 'Cerus')]),
-            'Prime': NlpDoc([DocUnit('Prime', 'NN', 'ROOT', 'Prime')]),
-            'Dolphin': NlpDoc([DocUnit('Dolphin', 'NN', 'ROOT', 'Dolphin')]),
+            'Porex': NlpDoc([DocUnit('Porex', 'NNP', 'ROOT', 'Porex')]),
+            'Cerus': NlpDoc([DocUnit('Cerus', 'NNP', 'ROOT', 'Cerus')]),
+            'Prime': NlpDoc([DocUnit('Prime', 'NNP', 'ROOT', 'Prime')]),
+            'Dolphin': NlpDoc([DocUnit('Dolphin', 'NNP', 'ROOT', 'Dolphin')]),
 
             'renter': NlpDoc([DocUnit('renter', 'NN', 'ROOT', 'renter')]),
+            'landlord': NlpDoc([DocUnit('landlord', 'NN', 'ROOT', 'landlord')]),
             'buyer': NlpDoc([DocUnit('buyer', 'NN', 'ROOT', 'buyer')]),
-            'GridIron': NlpDoc([DocUnit('GridIron', 'NN', 'ROOT', 'GridIron')]),
-            'Shi Farms': NlpDoc([DocUnit('Shi Farms', 'NN', 'ROOT', 'Shi Farms')]),
+            'GridIron': NlpDoc([DocUnit('GridIron', 'NNP', 'ROOT', 'GridIron')]),
+            'Shi Farms': NlpDoc([
+                DocUnit('Shi', 'NNP', 'compound', 'Farms'),
+                DocUnit('Farms', 'NNPS', 'ROOT', 'Farms'),
+            ]),
 
             # Full stack tests
             'payment': NlpDoc([
                 DocUnit('payment', 'NN', 'ROOT', 'payment'),
             ]),
             'third-party analysis': NlpDoc([
-                DocUnit('third-party', 'JJ', 'amod', 'analysis'),
+                DocUnit('third', 'JJ', 'amod', 'party'),
+                DocUnit('-', 'HYPH', 'punct', 'party'),
+                DocUnit('party', 'NN', 'compound', 'analysis'),
                 DocUnit('analysis', 'NN', 'ROOT', 'analysis')
             ]),
             'biomass': NlpDoc([
                 DocUnit('biomass', 'NN', 'ROOT', 'biomass')
+            ]),
+            'property': NlpDoc([
+                DocUnit('property', 'NN', 'ROOT', 'property')
+            ]),
+            'pets': NlpDoc([
+                DocUnit('pets', 'NNS', 'ROOT', 'pets')
             ]),
         }
 
@@ -99,6 +111,8 @@ class FakeDocParser(IParseDoc):
             DocUnit(x, self._check_plural(x), 'ROOT', x) for x in str_val.split(' ')
         ])
         
+    def get_dict(self):
+        return self.__fake_dict
 
     def _check_plural(self, t):
         if t[-1] == 's':

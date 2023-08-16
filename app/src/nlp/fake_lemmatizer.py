@@ -1,4 +1,4 @@
-from app.src.custom_event_extractor.nlp.lemmatizer import ILemmatize
+from app.src.nlp.lemmatizer import ILemmatize
 
 class FakeLemmatizer(ILemmatize):
     def __init__(self):
@@ -29,6 +29,9 @@ class FakeLemmatizer(ILemmatize):
             'pays': 'pay',
             'delivers': 'deliver'
         }
+    
+    def get_dict(self):
+        return self.__dict
 
     def lemmatize(self, s: str) -> str:
         if s in self.__dict:

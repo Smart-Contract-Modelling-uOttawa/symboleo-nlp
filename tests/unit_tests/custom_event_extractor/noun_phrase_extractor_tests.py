@@ -4,9 +4,8 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 
 from app.src.custom_event_extractor.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
-from app.src.custom_event_extractor.nlp.doc_parser import IParseDoc, NlpDoc, DocUnit
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import IExtractAssetType
-
+from app.src.nlp.doc_parser import IParseDoc, NlpDoc, DocUnit
 
 class NounPhraseExtractorTests(unittest.TestCase):
     def setUp(self):

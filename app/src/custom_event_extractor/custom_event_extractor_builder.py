@@ -1,8 +1,6 @@
 from app.classes.operations.dependencies import Dependencies
 
 from app.src.custom_event_extractor.verb.verb_extractor import VerbExtractor
-from app.src.custom_event_extractor.nlp.fake_lemmatizer import FakeLemmatizer
-from app.src.custom_event_extractor.nlp.lemmatizer import Lemmatizer
 from app.src.custom_event_extractor.verb.conjugator import MyConjugator
 from app.src.custom_event_extractor.verb.conjugator import ML3Conjugator
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import AssetTypeExtractor
@@ -13,10 +11,12 @@ from app.src.custom_event_extractor.predicate_extractor import PredicateExtracto
 from app.src.custom_event_extractor.prep_phrase_extractor import PrepPhraseExtractor
 from app.src.custom_event_extractor.custom_event_extractor import CustomEventExtractor
 
-from app.src.custom_event_extractor.nlp.fake_doc_parser import FakeDocParser
-from app.src.custom_event_extractor.nlp.doc_parser import DocParser
-from app.src.custom_event_extractor.nlp.label_getter import LabelGetter
-from app.src.custom_event_extractor.nlp.fake_label_getter import FakeLabelGetter
+from app.src.nlp.fake_lemmatizer import FakeLemmatizer
+from app.src.nlp.lemmatizer import Lemmatizer
+from app.src.nlp.fake_doc_parser import FakeDocParser
+from app.src.nlp.doc_parser import DocParser
+from app.src.nlp.label_getter import LabelGetter
+from app.src.nlp.fake_label_getter import FakeLabelGetter
 
 class CustomEventExtractorBuilder:
     @staticmethod

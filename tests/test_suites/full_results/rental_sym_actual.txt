@@ -6,13 +6,12 @@ Domain rentalDomain
   SecurityDeposit isAn Asset with amount: Number, currency: Currency;
   Authorization isAn Asset;
   Pets isAn Asset;
-  Deposit isAn Asset;
   PayDeposit isAn Event with deposit: SecurityDeposit, from: Role, to: Role;
   PayAmount isAn Event with amount: Number, currency: Currency, from: Role, to: Role;
   KeepPet isAn Event with agent: Role;
   OccupyProperty isAn Event with occupying_agent: Role, occupied_object: RentalProperty;
   ProvideAuthorization isAn Event with providing_agent: Role, provided_object: Authorization, provide_detail: Pets;
-  PayDepositLate isAn Event with paying_agent: Role, paid_object: Deposit;
+  PayDepositLate isAn Event with paying_agent: Role, paid_object: SecurityDeposit;
 
 endDomain
 
@@ -22,7 +21,7 @@ Declarations
   renter: Renter;
   landlord: Landlord;
   property: RentalProperty with address := "[PROPERTY_ADDRESS]";
-  security_deposit: Deposit;
+  security deposit: SecurityDeposit with amount := [DEPOSIT_AMOUNT], currency := Currency([CURRENCY]);
   evt_pay_extra: PayAmount with amount := [EXTRA_AMOUNT], currency := Currency([CURRENCY]), from := renter, to := landlord;
   evt_pay_deposit: PayDeposit with deposit := security deposit, from := renter, to := landlord;
   evt_keep_pet: KeepPet with agent := renter;

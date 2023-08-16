@@ -17,6 +17,8 @@ from app.classes.spec.proposition import PAnd, PComparison, PEquality, Propositi
 arg_values = {
      'buyer_id': 'buyer',
      'seller_id': 'seller',
+     'buyer_name': 'buyer',
+     'seller_name': 'seller',
      'quantity_kg': '100',
      'quality': 'PRIME',
      'amount': '100',
@@ -30,6 +32,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     parameters = [
         Parm('buyer_id', 'String'),
         Parm('seller_id', 'String'),
+        Parm('buyer_name', 'String'),
+        Parm('seller_name', 'String'),
         Parm('quantity_kg', 'Number'),
         Parm('quality', 'MeatQuality'),
         Parm('amount', 'Number'),
@@ -40,8 +44,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     ]
 
     # Create the declarations
-    seller = RoleDeclaration(arg_dict["seller_id"], 'Seller')
-    buyer = RoleDeclaration(arg_dict["buyer_id"], 'Buyer')
+    seller = RoleDeclaration(arg_dict["seller_name"], 'Seller')
+    buyer = RoleDeclaration(arg_dict["buyer_name"], 'Buyer')
     SELLER = seller.to_obj()
     BUYER = buyer.to_obj()
 

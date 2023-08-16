@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import AssetTypeExtractor
-from app.src.custom_event_extractor.nlp.label_getter import IGetLabels
+from app.src.nlp.label_getter import IGetLabels
 
 from tests.helpers.test_contract import get_test_contract
 
