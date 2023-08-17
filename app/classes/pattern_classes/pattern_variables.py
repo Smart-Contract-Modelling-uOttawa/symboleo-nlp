@@ -46,6 +46,7 @@ class PatternVariable(Enum):
 
     NOTICE_EVENT = 'NOTICE_EVENT'
 
+    AT_LEAST = 'AT_LEAST'
     AFTER = 'AFTER'
     AND = 'AND'
     BETWEEN = 'BETWEEN'

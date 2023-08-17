@@ -29,6 +29,7 @@ full_grammar = {
     PV.CONDITIONAL_A: GOr(UnitType.AFTER, UnitType.IF, UnitType.IN_EVENT, UnitType.IN_CASE, UnitType.ONCE, UnitType.UPON),
     PV.CONDITIONAL_N: GOr(UnitType.UPON, UnitType.WITH),
 
+    PV.AT_LEAST: UnitType.AT_LEAST,
     PV.AFTER: UnitType.AFTER,
     PV.AND: UnitType.AND,
     PV.BETWEEN: UnitType.BETWEEN,

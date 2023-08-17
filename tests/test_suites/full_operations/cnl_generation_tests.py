@@ -104,11 +104,11 @@ test_suite = [
         DuringTimePeriod
     ),
     (
-        mock_timespan() + [UnitType.BEFORE ] + mock_event(), 
+        [UnitType.AT_LEAST] + mock_timespan() + [UnitType.BEFORE ] + mock_event(), 
         TimespanBeforeEvent
     ),
     (
-        mock_timespan() + [UnitType.AFTER ] + mock_event3(), 
+        [UnitType.AT_LEAST] + mock_timespan() + [UnitType.AFTER ] + mock_event3(), 
         TimespanAfterEvent
     ),
     (

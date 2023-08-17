@@ -77,6 +77,7 @@ test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
+            UserInput(UnitType.AT_LEAST, 'at least'),
             UserInput(UnitType.TIMESPAN),
             UserInput(UnitType.TIME_VALUE, '2'),
             UserInput(UnitType.TIME_UNIT, 'days'),
@@ -144,7 +145,7 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'Display materials from the sponsor must be delivered to the Tian-He stadium 2 days prior to the party happening', 
+                    'Display materials from the sponsor must be delivered to the Tian-He stadium at least 2 days prior to the party happening', 
                     {'P1': [ParameterConfig('obligations', 'ob_deliver_materials', 'consequent')]})
             }
         )

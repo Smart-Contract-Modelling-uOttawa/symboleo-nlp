@@ -10,6 +10,7 @@ from app.classes.units.time_units import *
 
 unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.AND: AndUnit,
+    UnitType.AT_LEAST: AtLeastUnit,
     UnitType.LATER_THAN: LaterThanUnit,
     UnitType.WITH: WithUnit,
     UnitType.ROOT: RootUnit,

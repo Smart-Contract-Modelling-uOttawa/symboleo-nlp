@@ -77,6 +77,7 @@ test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
+            UserInput(UnitType.AT_LEAST, 'at least'),
             UserInput(UnitType.TIMESPAN),
             UserInput(UnitType.TIME_VALUE, '10'),
             UserInput(UnitType.TIME_UNIT, 'days'),
@@ -150,7 +151,7 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'Payment to Porex of undisputed fees shall be due 10 days after Porex submits invoice receipt to Cerus', 
+                    'Payment to Porex of undisputed fees shall be due at least 10 days after Porex submits invoice receipt to Cerus', 
                     {'P1': [ParameterConfig('obligations', 'ob_pay_fees', 'consequent')]})
             }
         )

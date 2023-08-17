@@ -1,3 +1,3 @@
-A - nl_key: Display materials from the sponsor must be delivered to the Tian-He stadium 2 days prior to the party happening
-E - nl_key: Display materials from the sponsor must be delivered to the Tian-He stadium 2 days prior to the party happening
+A - nl_key: Display materials from the sponsor must be delivered to the Tian-He stadium at least 2 days prior to the party happening
+E - nl_key: Display materials from the sponsor must be delivered to the Tian-He stadium at least 2 days prior to the party happening
 

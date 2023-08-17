@@ -10,6 +10,7 @@ class UnitType(Enum):
     ADVERB = 'ADVERB'
     AFTER = 'AFTER'
     AND = 'AND'
+    AT_LEAST = 'AT_LEAST'
     BEFORE = 'BEFORE'
     BETWEEN = 'BETWEEN'
     BY = 'BY'

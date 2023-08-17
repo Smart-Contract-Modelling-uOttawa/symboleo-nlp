@@ -7,6 +7,12 @@ class AfterUnit(InputUnit):
     prompt = 'After'
     init_value = 'after'
 
+class AtLeastUnit(InputUnit):
+    unit_type = UnitType.AT_LEAST
+    unit_var = UnitVariety.STATIC
+    prompt = 'At least'
+    init_value = 'at least'
+
 class BeforeUnit(InputUnit):
     unit_type = UnitType.BEFORE
     unit_var = UnitVariety.STATIC
