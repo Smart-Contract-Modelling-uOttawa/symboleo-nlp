@@ -9,6 +9,7 @@ from app.src.domain_update_extractor.event_declaration_mapper import EventDeclar
 from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
 from app.src.domain_update_extractor.domain_model_mapper import DeclarationToDomainMapper
 from app.src.domain_update_extractor.contract_parm_mapper import ContractParmMapper
+from app.src.object_mappers.date_mapper import DateMapper
 
 class DomainUpdateExtractorBuilder:
 
@@ -27,7 +28,8 @@ class DomainUpdateExtractorBuilder:
 
         domain_mapper = DeclarationToDomainMapper()
 
-        contract_parm_extractor = ContractParmMapper()
+        date_mapper = DateMapper()
+        contract_parm_extractor = ContractParmMapper(date_mapper)
 
         return DomainUpdateExtractor(
             decl_mapper,

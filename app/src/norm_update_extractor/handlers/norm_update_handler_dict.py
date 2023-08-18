@@ -25,6 +25,7 @@ from app.src.norm_update_extractor.handlers.during_time_period_handler import Du
 # Helpers
 from app.src.object_mappers.time_period_mapper import TimePeriodMapper
 from app.src.object_mappers.timepoint_mapper import TimepointMapper
+from app.src.object_mappers.date_mapper import DateMapper
 # Can add a timespan mapper as well
 
 class NormUpdateHandlerDictBuilder:
@@ -34,26 +35,27 @@ class NormUpdateHandlerDictBuilder:
 
         time_period_mapper = TimePeriodMapper()
         timepoint_mapper = TimepointMapper()
+        date_mapper = DateMapper()
 
 
         d = {}
-        d[BeforeDate] = BeforeDateHandler()
+        d[BeforeDate] = BeforeDateHandler(date_mapper)
         d[BeforeEvent] = BeforeEventHandler()
         d[WithinTimespanEvent] = WithinTimespanHandler()
         d[CondAEvent] = CondAEventHandler()
         d[CondTEvent] = CondTEventHandler()
         d[ExceptEvent] = ExceptEventHandler()
-        d[AfterDate] = AfterDateHandler()
+        d[AfterDate] = AfterDateHandler(date_mapper)
         d[AfterEvent] = AfterEventHandler()
         d[AfterTimespanAfterEvent] = AfterTimespanAfterEventHandler()
         d[AfterTimespanBeforeEvent] = AfterTimespanBeforeEventHandler()
         d[TimespanAfterEvent] = TimespanAfterEventHandler()
         d[TimespanBeforeEvent] = TimespanBeforeEventHandler()
-        d[UntilDate] = UntilDateHandler()
+        d[UntilDate] = UntilDateHandler(date_mapper)
         d[UntilEvent] = UntilEventHandler()
 
         d[DuringTimePeriod] = DuringTimePeriodHandler(time_period_mapper)
         d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper)
-        d[BetweenInterval] = BetweenIntervalHandler()
+        d[BetweenInterval] = BetweenIntervalHandler(date_mapper)
 
         return d

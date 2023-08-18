@@ -11,13 +11,16 @@ from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
 from app.src.norm_update_extractor.handlers.between_interval_handler import BetweenIntervalHandler
+from app.src.object_mappers.date_mapper import IMapDate
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class BetweenIntervalHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = BetweenIntervalHandler()
+        self.date_mapper = IMapDate()
+        self.sut = BetweenIntervalHandler(self.date_mapper)
 
     def test_handler(self):
+        self.date_mapper.map = MagicMock(side_effect=['test_date1', 'test_date2'])
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = BetweenInterval({
             PV.DATE: 'March 1, 2023',
@@ -40,8 +43,8 @@ class BetweenIntervalHandlerTests(unittest.TestCase):
                     VariableEvent('evt_action'),
                     Interval(
                         IntervalFunction(
-                            PointVDE('March 1, 2023'),
-                            PointVDE('March 10, 2023')
+                            PointVDE('test_date1'),
+                            PointVDE('test_date2')
                         )
                     )
                 )
@@ -49,6 +52,7 @@ class BetweenIntervalHandlerTests(unittest.TestCase):
         )
 
         self.assertEqual(new_norm, exp_norm)
+        self.assertEqual(self.date_mapper.map.call_count, 2)
 
 if __name__ == '__main__':
     unittest.main()

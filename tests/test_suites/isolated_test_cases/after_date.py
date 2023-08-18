@@ -2,6 +2,7 @@ from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, DomainEvent
 from app.classes.spec.contract_spec import ContractSpec
@@ -38,6 +39,7 @@ test_case = TestCase(
         ),
         ContractSpec(
             id = 'test_cs',
+            parameters=[ContractSpecParameter('x', 'String'), ContractSpecParameter('y', 'String')],
             declarations = {
                 'partyA': RoleDeclaration('partyA', 'PartyA', []),
                 'partyB': RoleDeclaration('partyB', 'PartyB', []),
@@ -57,8 +59,7 @@ test_case = TestCase(
             },
             surviving_obligations={},
             powers = {},
-            constraints=[],
-            parameters=[]
+            constraints=[]
         ),
         NLTemplate(
             {   
@@ -93,6 +94,7 @@ test_case = TestCase(
         ),
         ContractSpec(
             id = 'test_cs',
+            parameters=[ContractSpecParameter('x', 'String'), ContractSpecParameter('y', 'String'), ContractSpecParameter('ob_redeem_pin_date', 'Date')],
             declarations = {
                 'partyA': RoleDeclaration('partyA', 'PartyA', []),
                 'partyB': RoleDeclaration('partyB', 'PartyB', []),
@@ -110,7 +112,7 @@ test_case = TestCase(
                     PropMaker.make(
                         PredicateFunctionHappensAfter(
                             VariableEvent('evt_redeem_pin'),
-                            Point(PointVDE('"March 31, 2010"'))
+                            Point(PointVDE('ob_redeem_pin_date'))
                         ),
                         negation=True
                     )
@@ -118,8 +120,7 @@ test_case = TestCase(
             },
             surviving_obligations={},
             powers = {},
-            constraints=[],
-            parameters=[]
+            constraints=[]
         ),
         NLTemplate(
             {   

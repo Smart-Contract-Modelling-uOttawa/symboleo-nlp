@@ -5,7 +5,7 @@ Domain test_dm
 
 endDomain
 
-Contract test_cs(  )
+Contract test_cs( x: String, y: String, ob_redeem_pin_date: Date )
 
 Declarations
   partyA: PartyA;
@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_redeem_pin: Obligation(partyA, partyB, true, not HappensAfter(evt_redeem_pin, "March 31, 2010"));
+  ob_redeem_pin: Obligation(partyA, partyB, true, not HappensAfter(evt_redeem_pin, ob_redeem_pin_date));
 
 Surviving Obligations
 

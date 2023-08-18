@@ -24,6 +24,6 @@ class DomainUpdateExtractor(IExtractDomainUpdates):
     def extract(self, pattern_class: PatternClass, contract: SymboleoContract, norm_config: NormConfig) -> DomainUpdates:
         declarations = self.__decl_mapper.map(pattern_class, contract, norm_config)
         domain_objects = [self.__domain_mapper.map(x) for x in declarations]
-        contract_parms = self.__contract_parm_extractor.map(pattern_class)
+        contract_parms = self.__contract_parm_extractor.map(pattern_class, norm_config)
         return DomainUpdates(declarations, domain_objects, contract_parms)
         

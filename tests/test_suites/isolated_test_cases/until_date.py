@@ -109,6 +109,9 @@ test_case = TestCase(
         ),
         ContractSpec(
             id = 'test_cs',
+            parameters=[
+                ContractSpecParameter('delivery_date', 'Date')
+            ],
             declarations = {
                 'shi farms': RoleDeclaration('shi farms', 'PartyA', []),
                 'partyB': RoleDeclaration('partyB', 'PartyB', []),
@@ -126,7 +129,7 @@ test_case = TestCase(
                     PropMaker.make(
                         PredicateFunctionSHappensBefore(
                             VariableEvent('evt_unquarantine_product'),
-                            Point(PointVDE('"[DELIVERY_DATE]"'))
+                            Point(PointVDE('delivery_date'))
                         ), 
                         negation = True
                     )
@@ -135,9 +138,6 @@ test_case = TestCase(
             surviving_obligations={},
             powers = {},
             constraints=[],
-            parameters=[
-                ContractSpecParameter('delivery_date', 'Date')
-            ]
         ),
         NLTemplate(
             {   

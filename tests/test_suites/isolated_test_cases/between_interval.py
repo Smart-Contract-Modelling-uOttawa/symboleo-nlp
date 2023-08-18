@@ -2,6 +2,7 @@ from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, DomainEvent
 from app.classes.spec.contract_spec import ContractSpec
@@ -98,6 +99,10 @@ test_case = TestCase(
         ),
         ContractSpec(
             id = 'test_cs',
+            parameters = [
+                ContractSpecParameter('ob_no_sponsorship_date', 'Date'),
+                ContractSpecParameter('ob_no_sponsorship_date2', 'Date')
+            ],
             declarations = {
                 'charity': RoleDeclaration('charity', 'PartyA', []),
                 'sponsor': RoleDeclaration('sponsor', 'PartyB', []),
@@ -117,8 +122,8 @@ test_case = TestCase(
                             VariableEvent('evt_enable_sponsorship'),
                             Interval(
                                 IntervalFunction(
-                                    PointVDE('October 1, 2009'),
-                                    PointVDE('March 31, 2010')
+                                    PointVDE('ob_no_sponsorship_date'),
+                                    PointVDE('ob_no_sponsorship_date2')
                                 )
                             )
                         ), 
@@ -129,7 +134,6 @@ test_case = TestCase(
             surviving_obligations={},
             powers = {},
             constraints=[],
-            parameters=[]
         ),
         NLTemplate(
             {   

@@ -3,6 +3,7 @@ from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo,
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
+from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
@@ -98,6 +99,7 @@ test_case = TestCase(
         ),
         ContractSpec(
             id = 'franchise_cs',
+            parameters=[ContractSpecParameter('ob_pay_fee_date', 'Date')],
             declarations = {
                 'grantor': Declaration('grantor', 'Grantor', 'roles', []),
                 'grantee': Declaration('grantee', 'Grantee', 'roles', []),
@@ -110,13 +112,12 @@ test_case = TestCase(
             postconditions=[],
             obligations = {
                 'ob_pay_fee': Obligation('ob_pay_fee', None, 'grantee', 'grantor', PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_pay_fee'), Point(PointVDE('"March 31, 2017"'))))
+                    PropMaker.make(PredicateFunctionSHappensBefore(VariableEvent('evt_pay_fee'), Point(PointVDE('ob_pay_fee_date'))))
                 )
             },
             surviving_obligations={},
             powers = {},
-            constraints=[],
-            parameters=[]
+            constraints=[]
         ),
         NLTemplate(
             {   

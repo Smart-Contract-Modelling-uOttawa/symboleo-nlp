@@ -9,8 +9,12 @@ from app.classes.spec.predicate_function import PredicateFunctionSHappensBefore
 from app.classes.spec.sym_point import Point, PointVDE
 
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
+from app.src.object_mappers.date_mapper import IMapDate
 
 class UntilDateHandler(IHandleNormUpdates):
+    def __init__(self, date_mapper: IMapDate):
+        self.__date_mapper = date_mapper
+
     def handle(self, pattern_class: UntilDate, norm_config: NormConfig) -> List[Norm]:
         norm: Norm = norm_config.norm
         component_str = norm_config.parm_config.norm_component
@@ -19,8 +23,8 @@ class UntilDateHandler(IHandleNormUpdates):
         if not norm.get_negation(component_str):
             raise ValueError('UntilDateHandler can only be used with a negated norm')
 
-        date_text = pattern_class.val_dict[PV.DATE]
-        point_val = Point(PointVDE(f'"{date_text}"'))
+        date_text = self.__date_mapper.map(pattern_class.val_dict[PV.DATE], PV.DATE, norm_config)
+        point_val = Point(PointVDE(date_text))
         
         updated_predicate = PredicateFunctionSHappensBefore(init_event, point_val)
         new_norm = copy.deepcopy(norm)

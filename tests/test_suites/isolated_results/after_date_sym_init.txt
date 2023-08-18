@@ -5,7 +5,7 @@ Domain test_dm
 
 endDomain
 
-Contract test_cs(  )
+Contract test_cs( x: String, y: String )
 
 Declarations
   partyA: PartyA;
