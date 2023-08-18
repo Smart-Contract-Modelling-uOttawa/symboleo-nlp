@@ -73,6 +73,8 @@ class FakeDocParser(IParseDoc):
 
             'renter': NlpDoc([DocUnit('renter', 'NN', 'ROOT', 'renter')]),
             'landlord': NlpDoc([DocUnit('landlord', 'NN', 'ROOT', 'landlord')]),
+            'contractor': NlpDoc([DocUnit('contractor', 'NN', 'ROOT', 'contractor')]),
+            'client': NlpDoc([DocUnit('client', 'NN', 'ROOT', 'client')]),
             'buyer': NlpDoc([DocUnit('buyer', 'NN', 'ROOT', 'buyer')]),
             'GridIron': NlpDoc([DocUnit('GridIron', 'NNP', 'ROOT', 'GridIron')]),
             'Shi Farms': NlpDoc([
@@ -98,6 +100,12 @@ class FakeDocParser(IParseDoc):
             ]),
             'pets': NlpDoc([
                 DocUnit('pets', 'NNS', 'ROOT', 'pets')
+            ]),
+            'invoice': NlpDoc([
+                DocUnit('invoice', 'NN', 'ROOT', 'invoice')
+            ]),
+            'contract': NlpDoc([
+                DocUnit('contract', 'NN', 'ROOT', 'contract')
             ]),
         }
 

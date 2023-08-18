@@ -12,13 +12,23 @@ def get_domain_model():
             'Contractor': Role(
                 name = 'Contractor',
                 props = []
-            ),
-            'Subcontractor': Role(
-                name = 'Subcontractor',
-                props = []
             )
         },
         enums=[],
+                assets = {
+            'Services': Asset(
+                name = 'Services',
+                props = []
+            ),
+            'Invoice': Asset(
+                name = 'Invoice',
+                props = []
+            ),
+            'Expenses': Asset(
+                name = 'Expenses',
+                props = []
+            )
+        },
         events = {
             'StartServices': DomainEvent(
                 name = 'StartServices',
@@ -34,19 +44,41 @@ def get_domain_model():
                     DomainProp('services', 'Services')
                 ]
             ),
-            'Invoice': DomainEvent(
-                name = 'Invoice',
+            'SendInvoice': DomainEvent(
+                name = 'SendInvoice',
                 props = [
                     DomainProp('agent', 'Role'),
-                    DomainProp('target', 'Role')
+                    DomainProp('target', 'Role'),
+                    DomainProp('invoice', 'Invoice')
                 ]
             ),
-            'Pay': DomainEvent(
-                name = 'Pay',
+            'PayInvoice': DomainEvent(
+                name = 'PayInvoice',
                 props = [
                     DomainProp('from', 'Role'),
                     DomainProp('to', 'Role'),
-                    DomainProp('payment', 'String')
+                    DomainProp('invoice', 'Invoice')
+                ]
+            ),
+            'PayProRata': DomainEvent(
+                name = 'PayProRata',
+                props = [
+                    DomainProp('from', 'Role'),
+                    DomainProp('to', 'Role')
+                ]
+            ),
+            'BreachContract': DomainEvent(
+                name = 'BreachContract',
+                props = [
+                    DomainProp('agent', 'Role')
+                ]
+            ),
+            'ReimburseExpenses': DomainEvent(
+                name = 'ReimburseExpenses',
+                props = [
+                    DomainProp('to', 'Role'),
+                    DomainProp('from', 'Role'),
+                    DomainProp('expenses', 'Expenses'),
                 ]
             ),
             'Disclose': DomainEvent(
@@ -61,26 +93,7 @@ def get_domain_model():
                     DomainProp('agent', 'Role')
                 ]
             ),
-            'Breach': DomainEvent(
-                name = 'Breach',
-                props = [
-                    DomainProp('agent', 'Role')
-                ]
-            ),
-            'HireSubcontractor': DomainEvent(
-                name = 'HireSubcontractor',
-                props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('subcontractor', 'Role')
-                ]
-            )
-        },
-        assets = {
-            'Services': Asset(
-                name = 'Services',
-                props = []
-            )
-        }   
+        }  
     )
     
     # Add aliases

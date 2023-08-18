@@ -25,6 +25,8 @@ class AssetTypeExtractor(IExtractAssetType):
         s = {}
         s['credit card'] = 'PaymentMethod'
         s['cash'] = 'PaymentMethod'
+        s['contract'] = 'Contract'
+        s['agreement'] = 'Contract'
         self.__str_dict = s
 
     # Will have a barrage of different potential extractors here 

@@ -37,3 +37,7 @@ Deployment
 - can build the nlp locally, put it in the file, un-ignore it, so its loaded
 - then can remove the requirements needed to build it...
 - currently looking in to pythonanywhere...
+
+Future ideas
+- Symboleo to python converter
+- Way of referencing existing events (similar to norm event)

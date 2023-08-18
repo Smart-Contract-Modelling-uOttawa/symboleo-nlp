@@ -6,52 +6,44 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.WHEN),
+            UserInput(UnitType.WHEN, 'when'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
-            UserInput(UnitType.SUBJECT, 'client'),
-            UserInput(UnitType.VERB, 'completes'),
-            UserInput(UnitType.DOBJ, 'services'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.SUBJECT, 'contractor'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'completes'),
+            UserInput(UnitType.DOBJ, 'services')
         ],
-        nl_key='invoice',
+        nl_key='send_invoice',
         parm_key='P1'
     ),
 
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.WITHIN),
-            UserInput(UnitType.TIMESPAN, '10 days'),
-            UserInput(UnitType.OF),
+            UserInput(UnitType.WITHIN, 'within'),
+            UserInput(UnitType.TIMESPAN),
+            UserInput(UnitType.TIME_VALUE, '10'),
+            UserInput(UnitType.TIME_UNIT, 'days'),
+            UserInput(UnitType.OF, 'of'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
-            UserInput(UnitType.NORM_EVENT),
-            UserInput(UnitType.OBLIGATION_SUBJECT, 'ob_invoice'),
-            UserInput(UnitType.OBLIGATION_ACTION, 'Fulfilled'),
-
+            UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'contractor'),
-            UserInput(UnitType.VERB, 'sending'),
-            UserInput(UnitType.DOBJ, 'invoice'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.TRANSITIVE_VERB, 'sending'),
+            UserInput(UnitType.DOBJ, 'invoice')
         ],
-        nl_key='invoice_due',
+        nl_key='pay_invoice',
         parm_key='P1'
     ),
 
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.IF, 'if'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'contractor'),
-            UserInput(UnitType.VERB, 'starts'),
-            UserInput(UnitType.DOBJ, 'services'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.TRANSITIVE_VERB, 'breaches'),
+            UserInput(UnitType.DOBJ, 'contract')
         ],
         nl_key='partial_completion',
         parm_key='P1'
@@ -60,14 +52,12 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.UNLESS),
+            UserInput(UnitType.UNLESS, 'unless'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'client'),
-            UserInput(UnitType.VERB, 'authorizes'),
-            UserInput(UnitType.DOBJ, 'disclosure'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.TRANSITIVE_VERB, 'authorizes'),
+            UserInput(UnitType.DOBJ, 'disclosure')
         ],
         nl_key='disclose',
         parm_key = 'P1'

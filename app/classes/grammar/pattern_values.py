@@ -38,8 +38,7 @@ full_grammar = {
     PV.WITHIN: UnitType.WITHIN,
     PV.UNTIL: UnitType.UNTIL,
     
-    PV.TIMESPAN: GAnd(UnitType.TIMESPAN, PV.TIMESPAN_PIECES),
-    PV.TIMESPAN_PIECES: GAnd(UnitType.TIME_VALUE, UnitType.TIME_UNIT),
+    PV.TIMESPAN: GAnd(UnitType.TIMESPAN, GAnd(UnitType.TIME_VALUE, UnitType.TIME_UNIT)),
 
     PV.DATE: UnitType.DATE,
     PV.DATE2: UnitType.DATE,

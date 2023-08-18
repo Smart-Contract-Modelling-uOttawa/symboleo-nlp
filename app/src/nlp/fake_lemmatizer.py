@@ -27,7 +27,8 @@ class FakeLemmatizer(ILemmatize):
             'misses': 'miss',
             'mandates': 'mandate',
             'pays': 'pay',
-            'delivers': 'deliver'
+            'delivers': 'deliver',
+            'breaches': 'breach'
         }
     
     def get_dict(self):
