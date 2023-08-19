@@ -8,8 +8,8 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Company: PartyA;
-  Professional: PartyB;
+  company: PartyA;
+  professional: PartyB;
   evt_cease_advertising: CeaseAdvertising;
 
 Preconditions
@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_cease_advertising: Obligation(Company, Professional, true, HappensAfter(evt_cease_advertising, Date.add(Terminated(self), 90, days)));
+  ob_cease_advertising: Obligation(company, professional, true, HappensAfter(evt_cease_advertising, Date.add(Terminated(self), 90, days)));
 
 Surviving Obligations
 

@@ -8,7 +8,7 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Dolphin: Contractor;
+  dolphin: Contractor;
   client: Client;
   evt_complete_services: CompleteServices;
 
@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_complete: Obligation(Dolphin, client, true, Happens(evt_complete_services));
+  ob_complete: Obligation(dolphin, client, true, Happens(evt_complete_services));
 
 Surviving Obligations
 

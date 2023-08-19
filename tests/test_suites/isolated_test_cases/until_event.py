@@ -45,8 +45,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Prime': RoleDeclaration('Prime', 'PartyA', []),
-                'Shareholder': RoleDeclaration('Shareholder', 'PartyB', []),
+                'prime': RoleDeclaration('Prime', 'PartyA', id='prime'),
+                'shareholder': RoleDeclaration('Shareholder', 'PartyB', id='shareholder'),
                 'evt_stop_funding_loans': EventDeclaration('evt_stop_funding_loans', 'StopFundingLoans', [])
             },
             preconditions=[],
@@ -55,8 +55,8 @@ test_case = TestCase(
                 'ob_keep_funding_loans': Obligation(
                     'ob_keep_funding_loans', 
                     None, 
-                    'Prime', 
-                    'Shareholder', 
+                    'prime', 
+                    'shareholder', 
                     PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_stop_funding_loans')), negation=True)
                 )
@@ -113,12 +113,12 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Prime': RoleDeclaration('Prime', 'PartyA', []),
-                'Shareholder': RoleDeclaration('Shareholder', 'PartyB', []),
+                'prime': RoleDeclaration('Prime', 'PartyA', id='prime'),
+                'shareholder': RoleDeclaration('Shareholder', 'PartyB', id='shareholder'),
                 'project_components': AssetDeclaration('project_components', 'Components', []),
                 'evt_stop_funding_loans': EventDeclaration('evt_stop_funding_loans', 'StopFundingLoans', []),
                 'evt_complete_components': EventDeclaration('evt_complete_components', 'CompleteComponents', [
-                    DeclarationProp('completing_agent', 'Prime', 'Role'),
+                    DeclarationProp('completing_agent', 'prime', 'Role'),
                     DeclarationProp('completed_object', 'project_components', 'Components'),
                 ])
             },
@@ -128,8 +128,8 @@ test_case = TestCase(
                 'ob_keep_funding_loans': Obligation(
                     'ob_keep_funding_loans', 
                     None, 
-                    'Prime', 
-                    'Shareholder', 
+                    'prime', 
+                    'shareholder', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionWHappensBeforeEvent(

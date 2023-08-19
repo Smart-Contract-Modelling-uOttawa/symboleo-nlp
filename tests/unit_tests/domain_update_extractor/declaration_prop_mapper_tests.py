@@ -47,7 +47,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
     def test_declaration_prop_mapper_pp1(self):
         evt = CustomEvents.paying()
 
-        exp_res = DeclarationProp('paying_target', 'the seller', 'Role') 
+        exp_res = DeclarationProp('paying_target', 'seller', 'Role') 
         result = self.sut.map_prep_phrase(evt.pps[0], evt)
 
         self.assertEqual(result, exp_res)
@@ -65,7 +65,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
     def test_declaration_prop_mapper_pp3(self):
         evt = CustomEvents.eating_pie()
 
-        exp_res = DeclarationProp('eating_co_agent', 'the seller', 'Role') 
+        exp_res = DeclarationProp('eating_co_agent', 'seller', 'Role') 
         result = self.sut.map_prep_phrase(evt.pps[0], evt)
 
         self.assertEqual(result, exp_res)

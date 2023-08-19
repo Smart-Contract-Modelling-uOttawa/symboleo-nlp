@@ -8,8 +8,8 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Stadium: PartyA;
-  Sponsor: PartyB;
+  stadium: PartyA;
+  sponsor: PartyB;
   evt_deliver_materials: DeliverMaterials;
 
 Preconditions
@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_deliver_materials: Obligation(Sponsor, Stadium, true, Happens(evt_deliver_materials));
+  ob_deliver_materials: Obligation(sponsor, stadium, true, Happens(evt_deliver_materials));
 
 Surviving Obligations
 

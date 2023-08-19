@@ -51,18 +51,18 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'shi farms': RoleDeclaration('shi farms', 'PartyA', []),
-                'partyB': RoleDeclaration('partyB', 'PartyB', []),
-                'the product': AssetDeclaration('the product', 'Product'),
+                'shi_farms': RoleDeclaration('Shi Farms', 'PartyA', id='shi_farms'),
+                'partyB': RoleDeclaration('partyB', 'PartyB'),
+                'product': AssetDeclaration('the product', 'Product', id='product'),
                 'evt_unquarantine_product': EventDeclaration('evt_unquarantine_product', 'UnquarantineProduct', [
-                    DeclarationProp('agent', 'shi farms', 'Role'),
-                    DeclarationProp('product', 'the product', 'Product'),
+                    DeclarationProp('agent', 'shi_farms', 'Role'),
+                    DeclarationProp('product', 'product', 'Product'),
                 ])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_keep_quarantine': Obligation('ob_keep_quarantine', None, 'shi farms', 'partyB', PropMaker.make_default(), 
+                'ob_keep_quarantine': Obligation('ob_keep_quarantine', None, 'shi_farms', 'partyB', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_unquarantine_product')), negation = True)
                 )
             },
@@ -113,19 +113,18 @@ test_case = TestCase(
                 ContractSpecParameter('delivery_date', 'Date')
             ],
             declarations = {
-                'shi farms': RoleDeclaration('shi farms', 'PartyA', []),
-                'partyB': RoleDeclaration('partyB', 'PartyB', []),
-                'the product': AssetDeclaration('the product', 'Product'),
-
+                'shi_farms': RoleDeclaration('Shi Farms', 'PartyA', id='shi_farms'),
+                'partyB': RoleDeclaration('partyB', 'PartyB'),
+                'product': AssetDeclaration('the product', 'Product', id='product'),
                 'evt_unquarantine_product': EventDeclaration('evt_unquarantine_product', 'UnquarantineProduct', [
-                    DeclarationProp('agent', 'shi farms', 'Role'),
-                    DeclarationProp('product', 'the product', 'Product'),
+                    DeclarationProp('agent', 'shi_farms', 'Role'),
+                    DeclarationProp('product', 'product', 'Product'),
                 ])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_keep_quarantine': Obligation('ob_keep_quarantine', None, 'shi farms', 'partyB', PropMaker.make_default(), 
+                'ob_keep_quarantine': Obligation('ob_keep_quarantine', None, 'shi_farms', 'partyB', PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionSHappensBefore(
                             VariableEvent('evt_unquarantine_product'),

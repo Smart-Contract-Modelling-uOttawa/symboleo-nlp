@@ -32,7 +32,7 @@ class DeclarationPropMapper(IMapDeclarationProps):
 
         if subject.is_role:
             the_key = f'{evt.verb.conjugations.continuous}_agent'
-            the_value = subject.to_text()
+            the_value = subject.asset_id
         else:
             the_key = f'{evt.verb.conjugations.continuous}_subject'
             the_value = CaseConverter.to_snake(subject.to_text(NPTextType.BASIC))
@@ -45,9 +45,9 @@ class DeclarationPropMapper(IMapDeclarationProps):
     def map_dobject(self, dobject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         asset_type = dobject.asset_type
         the_value = CaseConverter.to_snake(dobject.to_text(NPTextType.BASIC))
-        
         if dobject.is_role:
             the_key = f'{evt.verb.conjugations.past}_target' 
+            the_value = dobject.asset_id
         else:
             the_key = f'{evt.verb.conjugations.past}_object' 
         
@@ -64,6 +64,7 @@ class DeclarationPropMapper(IMapDeclarationProps):
         the_value = prep_phrase.pobj.to_text() # Will prob pass in a "text_type" here (e.g. "basic")
 
         if prep_phrase.pobj.is_role:
+            the_value = prep_phrase.pobj.asset_id
             if prep_phrase.preposition == 'with':
                 the_key = f'{evt.verb.conjugations.continuous}_co_agent' 
             else:

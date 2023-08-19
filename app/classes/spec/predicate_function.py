@@ -41,7 +41,7 @@ class PredicateFunctionSHappensBefore(PredicateFunctionHappens):
     point = SymPoint()
 
     def __init__(self, event: SymEvent, point: SymPoint):
-        self.name = 'SHappensBefore'
+        self.name = 'ShappensBefore'
         self.event = event
         self.point = point
     

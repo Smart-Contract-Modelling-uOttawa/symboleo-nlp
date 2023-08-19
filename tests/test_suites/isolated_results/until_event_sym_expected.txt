@@ -10,18 +10,18 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Prime: PartyA;
-  Shareholder: PartyB;
+  prime: PartyA;
+  shareholder: PartyB;
   project_components: Components;
   evt_stop_funding_loans: StopFundingLoans;
-  evt_complete_components: CompleteComponents with completing_agent := Prime, completed_object := project_components;
+  evt_complete_components: CompleteComponents with completing_agent := prime, completed_object := project_components;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_keep_funding_loans: Obligation(Prime, Shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
+  ob_keep_funding_loans: Obligation(prime, shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
 
 Surviving Obligations
 

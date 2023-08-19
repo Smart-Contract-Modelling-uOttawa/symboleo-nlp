@@ -10,8 +10,8 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Stadium: PartyA;
-  Sponsor: PartyB;
+  stadium: PartyA;
+  sponsor: PartyB;
   party: Party;
   evt_deliver_materials: DeliverMaterials;
   evt_party_happen: PartyHappen with happening_subject := party;
@@ -21,7 +21,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_deliver_materials: Obligation(Sponsor, Stadium, true, WhappensBefore(evt_deliver_materials, Date.add(evt_party_happen, -2, days)));
+  ob_deliver_materials: Obligation(sponsor, stadium, true, WhappensBefore(evt_deliver_materials, Date.add(evt_party_happen, -2, days)));
 
 Surviving Obligations
 

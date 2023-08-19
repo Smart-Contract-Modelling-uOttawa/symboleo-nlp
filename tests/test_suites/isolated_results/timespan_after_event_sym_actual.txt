@@ -10,18 +10,18 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Porex: PartyA;
-  Cerus: PartyB;
+  porex: PartyA;
+  cerus: PartyB;
   evt_pay_fees: PayFees;
   invoice_receipt: Receipt;
-  evt_submit_receipt: SubmitReceipt with submitting_agent := Porex, submitted_object := invoice_receipt, submitting_target := Cerus;
+  evt_submit_receipt: SubmitReceipt with submitting_agent := porex, submitted_object := invoice_receipt, submitting_target := cerus;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_pay_fees: Obligation(Cerus, Porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
+  ob_pay_fees: Obligation(cerus, porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
 
 Surviving Obligations
 

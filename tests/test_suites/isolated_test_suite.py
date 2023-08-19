@@ -40,7 +40,7 @@ test_suite = [
 ]
 
 # test_suite = [
-#     until_date_test
+#     within_timespan_event_test
 # ]
 
 class IsolatedTests(unittest.TestCase):

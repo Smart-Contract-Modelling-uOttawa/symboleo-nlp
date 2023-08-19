@@ -39,7 +39,8 @@ class IDeclaration:
         raise NotImplementedError()
 
 class Declaration(IDeclaration):
-    def __init__(self, name: str, type: str, base_type: DeclarationType, props: List[DeclarationProp] = None):
+    def __init__(self, name: str, type: str, base_type: DeclarationType, props: List[DeclarationProp] = None, id:str = None):
+        self.id = id or name
         self.name = name
         self.type = type
         self.base_type = base_type # events, roles, assets 
@@ -47,6 +48,7 @@ class Declaration(IDeclaration):
     
     def __eq__(self, other: Declaration) -> bool:
         return self.base_type == other.base_type and \
+            self.id == other.id and \
             self.name == other.name and \
             self.type == other.type and \
             ClassHelpers.lists_eq(self.props, other.props, 'key')
@@ -56,7 +58,8 @@ class Declaration(IDeclaration):
 
 
     def print_me(self):
-        print(f'\n- name: {self.name}')
+        print(f'\n- id: {self.id}')
+        print(f'- name: {self.name}')
         print(f'- type: {self.type}')
         print(f'- base_type: {self.base_type}')
         for x in self.props:
@@ -64,7 +67,7 @@ class Declaration(IDeclaration):
 
 
     def to_sym(self):
-        result = f'{self.name}: {self.type}'
+        result = f'{self.id}: {self.type}'
         if len(self.props) > 0:
             result += ' with '
         
@@ -84,9 +87,9 @@ class EventDeclaration(Declaration):
         return VariableEvent(self.name)
         
 class AssetDeclaration(Declaration):
-    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
-        super().__init__(name, type, DeclarationType.ASSET.value, props)
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):
+        super().__init__(name, type, DeclarationType.ASSET.value, props, id)
 
 class RoleDeclaration(Declaration):
-    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
-        super().__init__(name, type, DeclarationType.ROLE.value, props)
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):
+        super().__init__(name, type, DeclarationType.ROLE.value, props, id)

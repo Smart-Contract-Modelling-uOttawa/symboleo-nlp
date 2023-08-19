@@ -25,7 +25,7 @@ class IntervalFunction(IntervalExpression):
         return self.arg1 == other.arg1 and self.arg2 == other.arg2
 
     def to_sym(self):
-        return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()}'
+        return f'Interval({self.arg1.to_sym()}, {self.arg2.to_sym()})'
 
 
 class SituationExpression(IntervalExpression):

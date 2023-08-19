@@ -8,16 +8,16 @@ endDomain
 Contract maimon_cs(  )
 
 Declarations
-  Maimon: Contractor;
+  maimon: Contractor;
   company: Company;
-  evt_return_info: ReturnInfo with agent := Maimon, receiver := company;
+  evt_return_info: ReturnInfo with agent := maimon, receiver := company;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_return_info: Obligation(Maimon, company, Happens(Terminated(self)), Happens(evt_return_info));
+  ob_return_info: Obligation(maimon, company, Happens(Terminated(self)), Happens(evt_return_info));
 
 Surviving Obligations
 

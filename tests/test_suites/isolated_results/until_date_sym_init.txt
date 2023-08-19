@@ -9,17 +9,17 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  shi farms: PartyA;
+  shi_farms: PartyA;
   partyB: PartyB;
-  the product: Product;
-  evt_unquarantine_product: UnquarantineProduct with agent := shi farms, product := the product;
+  product: Product;
+  evt_unquarantine_product: UnquarantineProduct with agent := shi_farms, product := product;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_keep_quarantine: Obligation(shi farms, partyB, true, not Happens(evt_unquarantine_product));
+  ob_keep_quarantine: Obligation(shi_farms, partyB, true, not Happens(evt_unquarantine_product));
 
 Surviving Obligations
 

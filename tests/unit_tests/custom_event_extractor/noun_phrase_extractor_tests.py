@@ -4,7 +4,7 @@ from app.classes.spec.symboleo_contract import ISymboleoContract
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 
 from app.src.custom_event_extractor.noun_phrase.noun_phrase_extractor import NounPhraseExtractor
-from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import IExtractAssetType
+from app.src.custom_event_extractor.noun_phrase.asset_type_extractor import IExtractAssetType, AssetType
 from app.src.nlp.doc_parser import IParseDoc, NlpDoc, DocUnit
 
 class NounPhraseExtractorTests(unittest.TestCase):
@@ -25,7 +25,7 @@ class NounPhraseExtractorTests(unittest.TestCase):
             DocUnit('files', 'NNS', 'ROOT', 'files'),
         ])
         self.doc_parser.parse = MagicMock(return_value=nlp_doc)
-        self.asset_type_extractor.extract = MagicMock(return_value='Files')
+        self.asset_type_extractor.extract = MagicMock(return_value=AssetType('Files'))
 
         exp_val = NounPhrase(
             str_val, 
@@ -35,7 +35,8 @@ class NounPhraseExtractorTests(unittest.TestCase):
             det = 'the',
             adjs = ['original', 'digital', 'photo'],
             asset_type = 'Files',
-            is_parm = False
+            is_parm = False,
+            asset_id=''
         )
 
         result = self.sut.extract(str_val, contract)
@@ -53,7 +54,7 @@ class NounPhraseExtractorTests(unittest.TestCase):
             DocUnit('pie', 'NN', 'ROOT', 'pie'),
         ])
         self.doc_parser.parse = MagicMock(return_value=nlp_doc)
-        self.asset_type_extractor.extract = MagicMock(return_value='Pie')
+        self.asset_type_extractor.extract = MagicMock(return_value=AssetType('Pie'))
         
         exp_val = NounPhrase(
             str_val, 
@@ -63,10 +64,12 @@ class NounPhraseExtractorTests(unittest.TestCase):
             det = None,
             adjs = ['apple'],
             asset_type = 'Pie',
-            is_parm = False
+            is_parm = False,
+            asset_id=''
         )
 
         result = self.sut.extract(str_val, contract)
+
         self.assertEqual(result, exp_val)
         self.assertEqual(self.asset_type_extractor.extract.call_count, 1)
         self.assertEqual(self.doc_parser.parse.call_count, 1)

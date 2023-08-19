@@ -10,18 +10,18 @@ endDomain
 Contract test_cs(  )
 
 Declarations
-  Dolphin: Contractor;
+  dolphin: Contractor;
   client: Client;
   evt_complete_services: CompleteServices;
   photo_files: Files;
-  evt_receive_files: ReceiveFiles with receiving_agent := Dolphin, received_object := photo_files;
+  evt_receive_files: ReceiveFiles with receiving_agent := dolphin, received_object := photo_files;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_complete: Obligation(Dolphin, client, true, WhappensBefore(evt_complete_services, Date.add(evt_receive_files, 14, days)));
+  ob_complete: Obligation(dolphin, client, true, WhappensBefore(evt_complete_services, Date.add(evt_receive_files, 14, days)));
 
 Surviving Obligations
 

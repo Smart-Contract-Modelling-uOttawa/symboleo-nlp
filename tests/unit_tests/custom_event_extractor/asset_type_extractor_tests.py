@@ -19,7 +19,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, str_val, contract)
 
-        self.assertEqual(result, 'Role')
+        self.assertEqual(result.type_name, 'Role')
         self.assertEqual(self.label_getter.get.call_count, 0)
     
     def test_asset_type_extractor2(self):
@@ -30,7 +30,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, str_val, contract)
 
-        self.assertEqual(result, 'TestAsset')
+        self.assertEqual(result.type_name, 'TestAsset')
         self.assertEqual(self.label_getter.get.call_count, 0)
     
     def test_asset_type_extractor3(self):
@@ -41,7 +41,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, 'card', contract)
 
-        self.assertEqual(result, 'PaymentMethod')
+        self.assertEqual(result.type_name, 'PaymentMethod')
         self.assertEqual(self.label_getter.get.call_count, 0)
     
     def test_asset_type_extractor4(self):
@@ -52,7 +52,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, str_val, contract)
 
-        self.assertEqual(result, 'Money')
+        self.assertEqual(result.type_name, 'Money')
         self.assertEqual(self.label_getter.get.call_count, 0)
 
 
@@ -64,7 +64,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, str_val, contract)
 
-        self.assertEqual(result, 'Location')
+        self.assertEqual(result.type_name, 'Location')
         self.assertEqual(self.label_getter.get.call_count, 1)
     
 
@@ -76,7 +76,7 @@ class AssetTypeExtractorTests(unittest.TestCase):
 
         result = self.sut.extract(str_val, str_val, contract)
 
-        self.assertEqual(result, 'Nothing')
+        self.assertEqual(result.type_name, 'Nothing')
         self.assertEqual(self.label_getter.get.call_count, 1)
     
 

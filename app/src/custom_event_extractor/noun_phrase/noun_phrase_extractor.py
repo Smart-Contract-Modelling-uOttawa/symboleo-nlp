@@ -47,9 +47,10 @@ class NounPhraseExtractor(IExtractElement[NounPhrase]):
             str_val, 
             head = head, 
             is_plural = is_plural, 
-            is_role = (asset_type=='Role'),
+            is_role = (asset_type.type_name=='Role'),
             det = det, 
             adjs = adjs,
-            asset_type = asset_type,
-            is_parm = is_parm
+            asset_type = asset_type.type_name,
+            is_parm = is_parm,
+            asset_id = asset_type.id
         )

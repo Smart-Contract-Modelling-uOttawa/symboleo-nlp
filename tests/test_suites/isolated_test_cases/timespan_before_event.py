@@ -43,8 +43,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Stadium': RoleDeclaration('Stadium', 'PartyA', []),
-                'Sponsor': RoleDeclaration('Sponsor', 'PartyB', []),
+                'stadium': RoleDeclaration('Stadium', 'PartyA', id='stadium'),
+                'sponsor': RoleDeclaration('Sponsor', 'PartyB', id='sponsor'),
                 'evt_deliver_materials': EventDeclaration('evt_deliver_materials', 'DeliverMaterials', [])
             },
             preconditions=[],
@@ -53,8 +53,8 @@ test_case = TestCase(
                 'ob_deliver_materials': Obligation(
                     'ob_deliver_materials', 
                     None, 
-                    'Sponsor', 
-                    'Stadium', 
+                    'sponsor', 
+                    'stadium', 
                     PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_deliver_materials')))
                 )
@@ -112,8 +112,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Stadium': RoleDeclaration('Stadium', 'PartyA', []),
-                'Sponsor': RoleDeclaration('Sponsor', 'PartyB', []),
+                'stadium': RoleDeclaration('Stadium', 'PartyA', id='stadium'),
+                'sponsor': RoleDeclaration('Sponsor', 'PartyB', id='sponsor'),
                 'party': AssetDeclaration('party', 'Party', []),
                 'evt_deliver_materials': EventDeclaration('evt_deliver_materials', 'DeliverMaterials', []),
                 'evt_party_happen': EventDeclaration('evt_party_happen', 'PartyHappen', [
@@ -126,8 +126,8 @@ test_case = TestCase(
                 'ob_deliver_materials': Obligation(
                     'ob_deliver_materials', 
                     None, 
-                    'Sponsor', 
-                    'Stadium', 
+                    'sponsor', 
+                    'stadium', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionWHappensBefore(

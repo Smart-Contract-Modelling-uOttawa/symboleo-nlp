@@ -43,8 +43,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Porex': RoleDeclaration('Porex', 'PartyA', []),
-                'Cerus': RoleDeclaration('Cerus', 'PartyB', []),
+                'porex': RoleDeclaration('Porex', 'PartyA', id='porex'),
+                'cerus': RoleDeclaration('Cerus', 'PartyB', id='cerus'),
                 'evt_pay_fees': EventDeclaration('evt_pay_fees', 'PayFees', [])
             },
             preconditions=[],
@@ -53,8 +53,8 @@ test_case = TestCase(
                 'ob_pay_fees': Obligation(
                     'ob_pay_fees', 
                     None, 
-                    'Cerus', 
-                    'Porex', 
+                    'cerus', 
+                    'porex', 
                     PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_pay_fees')))
                 )
@@ -116,13 +116,13 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Porex': RoleDeclaration('Porex', 'PartyA', []),
-                'Cerus': RoleDeclaration('Cerus', 'PartyB', []),
+                'porex': RoleDeclaration('Porex', 'PartyA', id='porex'),
+                'cerus': RoleDeclaration('Cerus', 'PartyB', id='cerus'),
                 'invoice_receipt': AssetDeclaration('invoice_receipt', 'Receipt', []),
                 'evt_pay_fees': EventDeclaration('evt_pay_fees', 'PayFees', []),
                 'evt_submit_receipt': EventDeclaration('evt_submit_receipt', 'SubmitReceipt', [
-                    DeclarationProp('submitting_agent', 'Porex', 'Role'),
-                    DeclarationProp('submitting_target', 'Cerus', 'Role'),
+                    DeclarationProp('submitting_agent', 'porex', 'Role'),
+                    DeclarationProp('submitting_target', 'cerus', 'Role'),
                     DeclarationProp('submitted_object', 'invoice_receipt', 'Receipt'),
                 ])
             },
@@ -132,8 +132,8 @@ test_case = TestCase(
                 'ob_pay_fees': Obligation(
                     'ob_pay_fees', 
                     None, 
-                    'Cerus', 
-                    'Porex', 
+                    'cerus', 
+                    'porex', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionWHappensBefore(

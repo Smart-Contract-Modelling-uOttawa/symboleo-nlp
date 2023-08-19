@@ -43,8 +43,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Company': RoleDeclaration('Company', 'PartyA', []),
-                'Professional': RoleDeclaration('Professional', 'PartyB', []),
+                'company': RoleDeclaration('Company', 'PartyA', id='company'),
+                'professional': RoleDeclaration('Professional', 'PartyB', id='professional'),
                 'evt_cease_advertising': EventDeclaration('evt_cease_advertising', 'CeaseAdvertising', [])
             },
             preconditions=[],
@@ -53,8 +53,8 @@ test_case = TestCase(
                 'ob_cease_advertising': Obligation(
                     'ob_cease_advertising', 
                     None, 
-                    'Company', 
-                    'Professional', 
+                    'company', 
+                    'professional', 
                     PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_cease_advertising')))
                 )
@@ -105,8 +105,8 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Company': RoleDeclaration('Company', 'PartyA', []),
-                'Professional': RoleDeclaration('Professional', 'PartyB', []),
+                'company': RoleDeclaration('Company', 'PartyA', id='company'),
+                'professional': RoleDeclaration('Professional', 'PartyB', id='professional'),
                 'evt_cease_advertising': EventDeclaration('evt_cease_advertising', 'CeaseAdvertising', [])
             },
             preconditions=[],
@@ -115,8 +115,8 @@ test_case = TestCase(
                 'ob_cease_advertising': Obligation(
                     'ob_cease_advertising', 
                     None, 
-                    'Company', 
-                    'Professional', 
+                    'company', 
+                    'professional', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionHappensAfter(

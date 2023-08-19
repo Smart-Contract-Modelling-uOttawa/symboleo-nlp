@@ -5,7 +5,7 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import Declaration, DeclarationProp, RoleDeclaration, EventDeclaration, AssetDeclaration
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
@@ -42,14 +42,14 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
-                'client': Declaration('client', 'Client', 'roles', []),
-                'evt_complete_services': Declaration('evt_complete_services', 'CompleteServices', 'events', [])
+                'dolphin': RoleDeclaration('Dolphin', 'Contractor', id='dolphin'),
+                'client': RoleDeclaration('client', 'Client'),
+                'evt_complete_services': EventDeclaration('evt_complete_services', 'CompleteServices', [])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_complete': Obligation('ob_complete', None, 'Dolphin', 'client', PropMaker.make_default(), 
+                'ob_complete': Obligation('ob_complete', None, 'dolphin', 'client', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_complete_services')))
                 )
             },
@@ -109,20 +109,21 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
-                'client': Declaration('client', 'Client', 'roles', []),
-                'evt_complete_services': Declaration('evt_complete_services', 'CompleteServices', 'events', []),
+                'dolphin': RoleDeclaration('Dolphin', 'Contractor', id='dolphin'),
+                'client': RoleDeclaration('client', 'Client'),
+                'evt_complete_services': EventDeclaration('evt_complete_services', 'CompleteServices', []),
                 
-                'photo_files': Declaration('photo_files', 'Files', 'assets', []),
-                'evt_receive_files': Declaration('evt_receive_files', 'ReceiveFiles', 'events', [
-                    DeclarationProp('receiving_agent', 'Dolphin', 'Role'),
+                'photo_files': AssetDeclaration('photo_files', 'Files', []),
+                
+                'evt_receive_files': EventDeclaration('evt_receive_files', 'ReceiveFiles', [
+                    DeclarationProp('receiving_agent', 'dolphin', 'Role'),
                     DeclarationProp('received_object', 'photo_files', 'Files')
                 ]),
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_complete': Obligation('ob_complete', None, 'Dolphin', 'client', PropMaker.make_default(), 
+                'ob_complete': Obligation('ob_complete', None, 'dolphin', 'client', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionWHappensBefore(
                         VariableEvent('evt_complete_services'),
                         Point(PointFunction(PointVDE('evt_receive_files'), '14', TimeUnit.Days))

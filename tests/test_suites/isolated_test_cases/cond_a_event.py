@@ -6,7 +6,7 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import RoleDeclaration, EventDeclaration, AssetDeclaration, Declaration, DeclarationProp
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
 from app.classes.spec.sym_point import Point, PointVDE
@@ -48,17 +48,17 @@ test_case = TestCase(
         ContractSpec(
             id = 'maimon_cs',
             declarations = {
-                'Maimon': Declaration('Maimon', 'Contractor', 'roles', []),
-                'company': Declaration('company', 'Company', 'roles', []),
-                'evt_return_info': Declaration('evt_return_info', 'ReturnInfo', 'events', [
-                    DeclarationProp('agent', 'Maimon', 'Role'),
+                'maimon': RoleDeclaration('Maimon', 'Contractor', id='maimon'),
+                'company': RoleDeclaration('company', 'Company'),
+                'evt_return_info': EventDeclaration('evt_return_info', 'ReturnInfo', [
+                    DeclarationProp('agent', 'maimon', 'Role'),
                     DeclarationProp('receiver', 'company', 'Role')
                 ])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_return_info': Obligation('ob_return_info', None, 'Maimon', 'company', PropMaker.make_default(), 
+                'ob_return_info': Obligation('ob_return_info', None, 'maimon', 'company', PropMaker.make_default(), 
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_return_info')))
                 )
             },
@@ -106,10 +106,10 @@ test_case = TestCase(
         ContractSpec(
             id = 'maimon_cs',
             declarations = {
-                'Maimon': Declaration('Maimon', 'Contractor', 'roles', []),
-                'company': Declaration('company', 'Company', 'roles', []),
-                'evt_return_info': Declaration('evt_return_info', 'ReturnInfo', 'events', [
-                    DeclarationProp('agent', 'Maimon', 'Role'),
+                'maimon': RoleDeclaration('Maimon', 'Contractor', id='maimon'),
+                'company': RoleDeclaration('company', 'Company'),
+                'evt_return_info': EventDeclaration('evt_return_info', 'ReturnInfo', [
+                    DeclarationProp('agent', 'maimon', 'Role'),
                     DeclarationProp('receiver', 'company', 'Role')
                 ])
             },
@@ -119,7 +119,7 @@ test_case = TestCase(
                 'ob_return_info': Obligation(
                     'ob_return_info', 
                     None,
-                    'Maimon', 
+                    'maimon', 
                     'company', 
                     PropMaker.make(PredicateFunctionHappens(ContractEvent(ContractEventName.Terminated))),
                     PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_return_info')))

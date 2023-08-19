@@ -3,8 +3,13 @@ import re
 
 from app.src.nlp.label_getter import IGetLabels
 
+class AssetType:
+    def __init__(self, type_name:str, id:str = ''):
+        self.type_name = type_name
+        self.id = id
+
 class IExtractAssetType:
-    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
+    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> AssetType:
         raise NotImplementedError()
 
 class AssetTypeExtractor(IExtractAssetType):
@@ -30,15 +35,16 @@ class AssetTypeExtractor(IExtractAssetType):
         self.__str_dict = s
 
     # Will have a barrage of different potential extractors here 
-    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> str:
+    def extract(self, str_val: str, head: str, contract: SymboleoContract) -> AssetType:
         # Check for role or asset (by NAME, not id)
         decls = {x.name: x for x in contract.contract_spec.declarations.values()}
+
         if str_val in decls:
             decl = decls[str_val]
             if decl.base_type == 'roles':
-                return 'Role'
+                return AssetType('Role', decl.id)
             elif decl.base_type == 'assets':
-                return decl.type
+                return AssetType(decl.type, decl.id)
         
         # # Check enums
         # for x in contract.domain_model.enums:
@@ -48,17 +54,17 @@ class AssetTypeExtractor(IExtractAssetType):
         # Money Amount
         money = re.search('\$\d+(?:\.\d+)?', str_val)
         if money:
-            return 'Money'
+            return AssetType('Money')
         
         # Check custom dict
         if str_val in self.__str_dict:
-            return self.__str_dict[str_val]
-        
+            return AssetType(self.__str_dict[str_val])
+            
         # Check labels
         label = self.__label_getter.get(str_val)
         if label and label in self.__ent_dict:
-            return self.__ent_dict[label]
+            return AssetType(self.__ent_dict[label])
         
         # Default value
-        return head.capitalize()
+        return AssetType(head.capitalize())
     

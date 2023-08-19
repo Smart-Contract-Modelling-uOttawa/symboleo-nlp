@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_no_sponsorship: Obligation(charity, sponsor, true, not HappensWithin(evt_enable_sponsorship, Interval(ob_no_sponsorship_date, ob_no_sponsorship_date2));
+  ob_no_sponsorship: Obligation(charity, sponsor, true, not HappensWithin(evt_enable_sponsorship, Interval(ob_no_sponsorship_date, ob_no_sponsorship_date2)));
 
 Surviving Obligations
 
