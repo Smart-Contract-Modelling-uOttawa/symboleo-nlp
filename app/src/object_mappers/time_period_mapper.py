@@ -15,7 +15,7 @@ class TimePeriodMapper(IMapTimePeriod):
             tpv = pattern_class.val_dict[PV.TIME_PERIOD]
 
             if tpv in self.__dict:
-                return TimePeriod(self.__dict[tpv])
+                return self.__dict[tpv]
             else:
                 return TimePeriod(CaseConverter.to_snake(tpv))
 

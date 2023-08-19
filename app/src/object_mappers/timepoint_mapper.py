@@ -1,22 +1,17 @@
 from app.classes.spec.sym_event import SymEvent, VariableEvent, ContractEvent, ContractEventName
+from app.classes.spec.sym_point import PointExpression, PointVDE, PointAtomContractEvent
 
 class IMapTimepoint:
-    def map(self, evt: SymEvent) -> str:
+    def map(self, evt: SymEvent) -> PointExpression:
         raise NotImplementedError()
 
 class TimepointMapper(IMapTimepoint):
-    def __init__(self):
-        self.__contract_event_dict = {
-            ContractEventName.Activated: 'self.start',
-            ContractEventName.Terminated: 'self.end',
-        }
 
-
-    def map(self, evt: SymEvent) -> str:
+    def map(self, evt: SymEvent) -> PointExpression:
         if isinstance(evt, VariableEvent):
-            timepoint = f'{evt.name}.start'
+            timepoint = PointVDE(f'{evt.name}.start')
         elif isinstance(evt, ContractEvent):
-            timepoint = self.__contract_event_dict[evt.event_name]
+            timepoint = PointAtomContractEvent(evt)
         else:
             raise ValueError('Invalid Timepoint event')
 

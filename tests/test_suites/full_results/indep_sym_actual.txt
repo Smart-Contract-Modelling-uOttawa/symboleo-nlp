@@ -6,13 +6,13 @@ Domain IndependentContractorDomain
   Expenses isAn Asset;
   Disclosure isAn Asset;
   StartServices isAn Event with agent: Role, services: Services;
-  CompleteServices isAn Event with agent: Role, services: Services;
-  SendInvoice isAn Event with agent: Role, target: Role, invoice: Invoice;
+  CompleteServices isAn Event with completing_agent: Role, completed_object: Services;
+  SendInvoice isAn Event with sending_agent: Role, sent_object: Invoice;
   PayInvoice isAn Event with from: Role, to: Role, invoice: Invoice;
   PayProRata isAn Event with from: Role, to: Role;
   ReimburseExpenses isAn Event with to: Role, from: Role, expenses: Expenses;
   Disclose isAn Event with agent: Role;
-  BreachContract isAn Event with breaching_agent: Role, breached_object: Contract;
+  BreachContract isAn Event with breaching_agent: Role;
   AuthorizeDisclosure isAn Event with authorizing_agent: Role, authorized_object: Disclosure;
 
 endDomain
@@ -24,14 +24,15 @@ Declarations
   contractor: Contractor;
   services: Services;
   invoice: Invoice;
+  expenses: Expenses;
   evt_start_services: StartServices with agent := contractor, services := services;
   evt_complete_services: CompleteServices with completing_agent := contractor, completed_object := services;
   evt_send_invoice: SendInvoice with sending_agent := contractor, sent_object := invoice;
   evt_pay_invoice: PayInvoice with from := client, to := contractor, invoice := invoice;
   evt_pay_pro_rata: PayProRata with from := client, to := contractor;
-  evt_reimburse_expenses: Pay with from := client, to := contractor, expenses := expenses;
+  evt_reimburse_expenses: ReimburseExpenses with from := client, to := contractor, expenses := expenses;
   evt_disclose_contractor: Disclose with agent := contractor;
-  evt_breach_contract: BreachContract with breaching_agent := contractor, breached_object := contract;
+  evt_breach_contract: BreachContract with breaching_agent := contractor;
   disclosure: Disclosure;
   evt_authorize_disclosure: AuthorizeDisclosure with authorizing_agent := client, authorized_object := disclosure;
 
@@ -40,16 +41,16 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_send_invoice: Happens(evt_complete_services) -> Obligation(contractor, client, true, Happens(evt_send_invoice));
-  ob_pay_invoice: Obligation(client, contractor, true, WhappensBefore(evt_pay_invoice, Date.add(evt_send_invoice, 10, days)));
-  ob_partial_completion: Obligation(client, contractor, Happens(evt_breach_contract), Happens(evt_pay_pro_rata));
-  ob_reimburse_expenses: Obligation(client, contractor, true, Happens(evt_reimburse_expenses));
-  ob_not_disclose: Obligation(contractor, client, true, not Happens(evt_disclose_contractor));
+  ob_send_invoice: Happens(evt_complete_services) -> O(contractor, client, true, Happens(evt_send_invoice));
+  ob_pay_invoice: O(client, contractor, true, WhappensBefore(evt_pay_invoice, Date.add(evt_send_invoice, 10, days)));
+  ob_partial_completion: O(client, contractor, Happens(evt_breach_contract), Happens(evt_pay_pro_rata));
+  ob_reimburse_expenses: O(client, contractor, true, Happens(evt_reimburse_expenses));
+  ob_not_disclose: O(contractor, client, true, not Happens(evt_disclose_contractor));
 
 Surviving Obligations
 
 Powers
-  pow_terminate_ob_not_disclose: Happens(evt_authorize_disclosure) -> Power(client, contractor, true, Terminated(obligations.ob_not_disclose));
+  pow_terminate_ob_not_disclose: Happens(evt_authorize_disclosure) -> P(client, contractor, true, Terminated(obligations.ob_not_disclose));
 
 Constraints
 

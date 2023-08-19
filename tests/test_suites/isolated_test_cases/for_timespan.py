@@ -6,11 +6,11 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp, RoleDeclaration,AssetDeclaration, EventDeclaration
+from app.classes.spec.declaration import RoleDeclaration,AssetDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation
-from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.sym_event import VariableEvent, ContractEventName, ContractEvent
 from app.classes.spec.sym_interval import Interval, IntervalFunction
-from app.classes.spec.sym_point import Point, PointVDE
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
 
@@ -126,9 +126,9 @@ test_case = TestCase(
                             VariableEvent('evt_cease_specifying_mark'),
                             Interval(
                                 IntervalFunction(
-                                    PointVDE('self.end'),
+                                    PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
                                     PointFunction(
-                                        PointVDE('self.end'),
+                                        PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
                                         '24',
                                         TimeUnit.Months
                                     )

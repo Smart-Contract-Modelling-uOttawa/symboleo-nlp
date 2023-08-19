@@ -54,13 +54,17 @@ class EventDeclarationMapper(IMapEventToDeclaration):
 
     def _map_transitive(self, evt: CustomEvent) -> IDeclaration:
         name = evt.get_declaration_name()
+        props = []
         
         p1 = self.__prop_mapper.map_subject(evt.subj, evt)
+        props.append(p1)
+        
         p2 = self.__prop_mapper.map_dobject(evt.dobj, evt)
+        if p2:
+            props.append(p2)
 
         pps = self._map_pps(evt)
         
-        props = [p1, p2]
         props.extend(pps)
         
         return EventDeclaration(evt.event_key(), name, props)

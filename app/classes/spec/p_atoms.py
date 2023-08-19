@@ -48,7 +48,7 @@ class PAtomPredicateFalseLiteral(PAtom):
         return True
     
     def to_sym(self):
-        return 'F'
+        return 'false'
 
 
 

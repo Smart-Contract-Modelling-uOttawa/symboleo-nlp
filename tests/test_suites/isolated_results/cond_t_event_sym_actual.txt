@@ -18,8 +18,8 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_return_info_a: Happens(Terminated(self)) -> Obligation(partyA, partyB, true, Happens(evt_return_info_a));
-  ob_return_info_b: Happens(Terminated(self)) -> Obligation(partyB, partyA, true, Happens(evt_return_info_b));
+  ob_return_info_a: Happens(Terminated(self)) -> O(partyA, partyB, true, Happens(evt_return_info_a));
+  ob_return_info_b: Happens(Terminated(self)) -> O(partyB, partyA, true, Happens(evt_return_info_b));
 
 Surviving Obligations
 

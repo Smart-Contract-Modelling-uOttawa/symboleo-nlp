@@ -7,9 +7,8 @@ from app.src.custom_event_extractor.prep_phrase_extractor import PrepPhraseExtra
 
 class PrepPhraseExtractorTests(unittest.TestCase):
     def setUp(self):
-        self.nlp = None
         self.np_extractor = IExtractElement[NounPhrase]()
-        self.sut = PrepPhraseExtractor(self.nlp, self.np_extractor)
+        self.sut = PrepPhraseExtractor(self.np_extractor)
     
 
     def test_pp_extractor(self):

@@ -18,8 +18,8 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_return_info_a: Obligation(partyA, partyB, true, Happens(evt_return_info_a));
-  ob_return_info_b: Obligation(partyB, partyA, true, Happens(evt_return_info_b));
+  ob_return_info_a: O(partyA, partyB, true, Happens(evt_return_info_a));
+  ob_return_info_b: O(partyB, partyA, true, Happens(evt_return_info_b));
 
 Surviving Obligations
 

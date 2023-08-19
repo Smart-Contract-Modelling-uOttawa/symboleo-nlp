@@ -8,7 +8,7 @@ from app.classes.spec.norm import INorm, Obligation, Norm
 from app.classes.spec.norm_config import NormConfig
 from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
-from app.classes.spec.declaration import Declaration, EventDeclaration, CustomEvent
+from app.classes.spec.declaration import Declaration, EventDeclaration
 from app.classes.spec.sym_event import SymEvent, VariableEvent
 from app.classes.spec.p_atoms import PAtomPredicate
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
@@ -27,12 +27,6 @@ class ISymboleoContract:
         raise NotImplementedError()
     def update_nl(self, nl_key: str, parm_key: str, nl_refinement: str):
         raise NotImplementedError()
-    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
-        raise NotImplementedError()
-    # Depends on if we use the TerminationUpdater
-    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
-        raise NotImplementedError()
-
 
 
 class SymboleoContract(ISymboleoContract):
@@ -85,35 +79,6 @@ class SymboleoContract(ISymboleoContract):
         # Mark the parm as being filled
         for pc in t[nl_key].parameters[parm_key]:
             pc.filled = True
-
-    def try_get_event(self, norm_id: str, norm_type: str, norm_component:str) -> CustomEvent:
-        norm: Norm = self.contract_spec.__dict__[norm_type][norm_id]
-        cons = norm.get_component(norm_component)
-
-        if isinstance(cons, PAtomPredicate):
-            pred_func = cons.predicate_function
-            sym_event: SymEvent = pred_func.event
-            
-            if isinstance(sym_event, VariableEvent):
-                decl: EventDeclaration = self.contract_spec.declarations[sym_event.name]
-                if decl.base_type == 'events':
-                    return decl.evt        
-        return None
-
-    def add_norm(self, norm: Norm, norm_key: str, norm_nl: str):
-        norm_type = 'obligations' if type(norm) == Obligation else 'powers'
-        self.contract_spec.__dict__[norm_type][norm.id] = norm
-
-        t = self.nl_template.template_dict
-        if norm_key in t: # Does this ever happen...?
-            t[norm_key].str_val += norm_nl # This will also require some finessing...
-        else:
-            parms = {
-                'P1': [ParameterConfig(norm_type, norm.id, 'trigger')]
-                # This will require some finessing.
-            }
-            t[norm_key] = TemplateObj(norm_nl, parms)
-
 
     def __eq__(self, other: SymboleoContract) -> bool:
         return self.domain_model == other.domain_model and \

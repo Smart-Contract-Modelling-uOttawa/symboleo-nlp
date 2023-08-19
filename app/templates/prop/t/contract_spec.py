@@ -5,6 +5,9 @@ from app.classes.spec.norm import Obligation, Power
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
+from app.classes.spec.sym_event import ContractEvent, ContractEventName
+from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
+from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter as Parm
 from app.classes.spec.other_predicates import *
 
@@ -35,30 +38,26 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     the_property = AssetDeclaration('property', 'RentalProperty', [
         DeclarationProp('address', f'"{arg_dict["property_address"]}"','String')
     ])
+    legal_proceedings = AssetDeclaration('legal proceedings', 'LegalProceedings', id = 'legal_proceedings')
     PROPERTY = the_property.to_obj()
+    LEGAL_PROCEEDINGS = legal_proceedings.to_obj()
 
     evt_handle_legal_proceedings = EventDeclaration('evt_handle_legal_proceedings', 'HandleLegalProceedings', [
         DeclarationProp('agent', MANAGER, 'Role'),
-        DeclarationProp('property', PROPERTY, 'RentalProperty'),
-    ]
-    # event...
-    )
+        DeclarationProp('handled_object', LEGAL_PROCEEDINGS, 'LegalProceedings'),
+    ])
 
     evt_disburse_termination = EventDeclaration('evt_disburse_termination', 'Disburse', [
         DeclarationProp('from', MANAGER, 'Role'),
         DeclarationProp('to', OWNER, 'Role'),
         DeclarationProp('amount', f'"{arg_dict["var_termination_disbursement"]}"', 'String'),
-    ]
-    # event...
-    )
+    ])
 
     evt_reimburse_termination = EventDeclaration('evt_reimburse_termination', 'Reimburse', [
         DeclarationProp('from', OWNER, 'Role'),
         DeclarationProp('to', MANAGER, 'Role'),
         DeclarationProp('amount', f'"{arg_dict["var_termination_reimbursement"]}"', 'String'),
-    ]
-    # event...
-    )
+    ])
 
     EVT_HANDLE_LEGAL_PROCEEDINGS = evt_handle_legal_proceedings.to_obj()
     EVT_DISBURSE_TERMINATION = evt_disburse_termination.to_obj()
@@ -70,9 +69,8 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         'manager': manager,
         'owner': owner,
         'property': the_property,
+        'legal_proceedings': legal_proceedings,
         'evt_handle_legal_proceedings': evt_handle_legal_proceedings,
-        # 'evt_provide_termination_notice_owner': evt_provide_termination_notice_owner,
-        # 'evt_provide_termination_notice_manager': evt_provide_termination_notice_manager,
         'evt_disburse_termination': evt_disburse_termination,
         'evt_reimburse_termination': evt_reimburse_termination
     }
@@ -119,30 +117,6 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         },
 
         powers = {
-            # 'pow_terminate_notice_owner': Power(
-            #     'pow_terminate_notice_owner',
-            #     PropMaker.make(
-            #         PredicateFunctionHappens(
-            #             EVT_PROVIDE_TERMINATION_NOTICE_OWNER
-            #         )
-            #     ),
-            #     OWNER,
-            #     MANAGER,
-            #     PropMaker.make_default(),
-            #     PFContract(PFContractName.Terminated)
-            # ),
-            # 'pow_terminate_notice_manager': Power(
-            #     'pow_terminate_notice_manager',
-            #     PropMaker.make(
-            #         PredicateFunctionHappens(
-            #             EVT_PROVIDE_TERMINATION_NOTICE_MANAGER
-            #         )
-            #     ),
-            #     MANAGER,
-            #     OWNER,
-            #     PropMaker.make_default(),
-            #     PFContract(PFContractName.Terminated)
-            # )
         }
     )
 

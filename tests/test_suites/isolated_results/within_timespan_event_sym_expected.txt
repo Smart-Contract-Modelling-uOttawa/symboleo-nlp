@@ -21,7 +21,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_complete: Obligation(dolphin, client, true, WhappensBefore(evt_complete_services, Date.add(evt_receive_files, 14, days)));
+  ob_complete: O(dolphin, client, true, WhappensBefore(evt_complete_services, Date.add(evt_receive_files, 14, days)));
 
 Surviving Obligations
 

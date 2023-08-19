@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_keep_using_mark: Obligation(licensee, licensor, true, not HappensWithin(evt_cease_using_mark, Interval(self.start, self.end)));
+  ob_keep_using_mark: O(licensee, licensor, true, not HappensWithin(evt_cease_using_mark, Interval(Activated(self), Terminated(self))));
 
 Surviving Obligations
 

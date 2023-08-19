@@ -30,14 +30,14 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_deposit: Obligation(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy_property));
-  ob_pay_extra: Obligation(renter, landlord, Happens(Violated(obligations.ob_pay_deposit)), Happens(evt_pay_extra));
-  ob_no_pets: Obligation(renter, landlord, true, not Happens(evt_keep_pet));
+  ob_pay_deposit: O(renter, landlord, true, WhappensBeforeE(evt_pay_deposit, evt_occupy_property));
+  ob_pay_extra: O(renter, landlord, Happens(Violated(obligations.ob_pay_deposit)), Happens(evt_pay_extra));
+  ob_no_pets: O(renter, landlord, true, not Happens(evt_keep_pet));
 
 Surviving Obligations
 
 Powers
-  pow_terminate_ob_no_pets: Happens(evt_allow_pets) -> Power(landlord, renter, true, Terminated(obligations.ob_no_pets));
+  pow_terminate_ob_no_pets: Happens(evt_allow_pets) -> P(landlord, renter, true, Terminated(obligations.ob_no_pets));
 
 Constraints
 

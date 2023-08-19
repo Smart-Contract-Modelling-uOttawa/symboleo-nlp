@@ -7,14 +7,14 @@ from app.src.operations.dependency_builder import DependencyBuilder
 from tests.test_suites.nl_summary_builder import NLSummaryBuilder
 from tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
 from tests.test_suites.full_test_cases.rental import test_suite as rental
-# from tests.test_suites.full_test_cases.prop import test_suite as prop
+from tests.test_suites.full_test_cases.prop import test_suite as prop
 from tests.test_suites.full_test_cases.biomass import test_suite as biomass
 from tests.test_suites.full_test_cases.indep import test_suite as indep
 
 test_dict = {
     'meat_sale': meat_sale,
     'rental': rental,
-    # 'prop': prop,
+    'prop': prop,
     'biomass': biomass,
     'indep': indep
 }
@@ -28,11 +28,11 @@ class FullStackTests(unittest.TestCase):
         filepath = 'tests/test_suites/full_results'
 
         target_keys = [
+            'biomass',
+            'indep',
             'meat_sale',
             'rental',
-            # 'prop',
-            'biomass',
-            'indep'
+            'prop',
         ]
 
         for k in target_keys:

@@ -21,7 +21,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_keep_funding_loans: Obligation(prime, shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
+  ob_keep_funding_loans: O(prime, shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
 
 Surviving Obligations
 

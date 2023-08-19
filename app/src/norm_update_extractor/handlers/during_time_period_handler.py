@@ -24,9 +24,7 @@ class DuringTimePeriodHandler(IHandleNormUpdates):
         init_event = norm.get_default_event(component_str)
 
         time_period = self.__time_period_mapper.map(pattern_class)
-        tp1 = PointVDE(time_period.start)
-        tp2 = PointVDE(time_period.end)
-        new_interval = Interval(IntervalFunction(tp1, tp2))
+        new_interval = Interval(IntervalFunction(time_period.start, time_period.end))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)
         new_norm = copy.deepcopy(norm)

@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_complete: Obligation(dolphin, client, true, Happens(evt_complete_services));
+  ob_complete: O(dolphin, client, true, Happens(evt_complete_services));
 
 Surviving Obligations
 

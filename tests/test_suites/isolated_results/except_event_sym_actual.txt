@@ -21,12 +21,12 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_damages: Obligation(partyA, partyB, true, Happens(evt_pay_damages));
+  ob_pay_damages: O(partyA, partyB, true, Happens(evt_pay_damages));
 
 Surviving Obligations
 
 Powers
-  pow_terminate_ob_pay_damages: Happens(evt_provide_approval) -> Power(partyB, partyA, true, Terminated(obligations.ob_pay_damages));
+  pow_terminate_ob_pay_damages: Happens(evt_provide_approval) -> P(partyB, partyA, true, Terminated(obligations.ob_pay_damages));
 
 Constraints
 

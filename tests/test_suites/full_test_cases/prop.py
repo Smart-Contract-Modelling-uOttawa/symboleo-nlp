@@ -6,14 +6,12 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.IF, 'if'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
             UserInput(UnitType.SUBJECT, 'legal proceedings'),
-            UserInput(UnitType.VERB, 'become'),
-            UserInput(UnitType.PREDICATE, 'necessary'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.LINKING_VERB, 'become'),
+            UserInput(UnitType.PREDICATE, 'necessary')
         ],
         nl_key='legal_proceedings',
         parm_key='P1'
@@ -22,14 +20,11 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
-            UserInput(UnitType.IF),
+            UserInput(UnitType.IF, 'if'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminated')
         ],
         nl_key='disburse_termination',
         parm_key='P1'
@@ -38,16 +33,15 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
-            UserInput(UnitType.TIMESPAN, '3 days'),
-            UserInput(UnitType.OF),
+            UserInput(UnitType.TIMESPAN),
+            UserInput(UnitType.TIME_VALUE, '3'),
+            UserInput(UnitType.TIME_UNIT, 'days'),
+            UserInput(UnitType.OF, 'of'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminating'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminated')
         ],
         nl_key='disburse_termination',
         parm_key='P2'
@@ -56,16 +50,15 @@ test_suite = [
     UpdateConfig(
         OpCode.UPDATE_PARM,
         user_inputs = [
-            UserInput(UnitType.ROOT),
             UserInput(UnitType.WITHIN),
-            UserInput(UnitType.TIMESPAN, '10 days'),
-            UserInput(UnitType.OF),
+            UserInput(UnitType.TIMESPAN),
+            UserInput(UnitType.TIME_VALUE, '10'),
+            UserInput(UnitType.TIME_UNIT, 'days'),
+            UserInput(UnitType.OF, 'of'),
             UserInput(UnitType.EVENT),
-            UserInput(UnitType.STANDARD_EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
-            UserInput(UnitType.CONTRACT_SUBJECT),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminating'),
-            UserInput(UnitType.FINAL_NODE)
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminated')
         ],
         nl_key='reimburse_termination',
         parm_key='P2'

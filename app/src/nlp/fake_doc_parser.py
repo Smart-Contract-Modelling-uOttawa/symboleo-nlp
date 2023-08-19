@@ -107,6 +107,10 @@ class FakeDocParser(IParseDoc):
             'contract': NlpDoc([
                 DocUnit('contract', 'NN', 'ROOT', 'contract')
             ]),
+            'legal proceedings': NlpDoc([
+                DocUnit('legal', 'JJ', 'amod', 'proceedings'),
+                DocUnit('proceedings', 'NNS', 'ROOT', 'proceedings')
+            ]),
         }
 
     def parse(self, str_val: str) -> NlpDoc:

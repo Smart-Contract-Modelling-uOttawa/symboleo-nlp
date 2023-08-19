@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from app.classes.spec.declaration import Declaration, EventDeclaration
+from app.classes.spec.declaration import EventDeclaration, AssetDeclaration
 from app.classes.spec.domain_object import DomainObject
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 
@@ -27,9 +27,9 @@ class DomainUpdateExtractorTests(unittest.TestCase):
 
     def test_domain_update_extractor(self):
         asset_decls = [
-            Declaration('a1', 'A1', 'assets', []),
-            Declaration('a2', 'A2', 'assets', []),
-            EventDeclaration('evt_e1', 'E1', 'events', [])
+            AssetDeclaration('a1', 'A1', []),
+            AssetDeclaration('a2', 'A2', []),
+            EventDeclaration('evt_e1', 'E1',  [])
         ]
         self.decl_mapper.map = MagicMock(return_value=asset_decls)
 

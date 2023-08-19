@@ -2,10 +2,10 @@ Domain propMgmtDomain
   Owner isA Role;
   Manager isA Role;
   RentalProperty isAn Asset with address: String;
-  Proceedings isAn Asset;
+  LegalProceedings isAn Asset;
   Disburse isAn Event with from: Role, to: Role, amount: String;
   Reimburse isAn Event with from: Role, to: Role, amount: String;
-  HandleLegalProceedings isAn Event with agent: Role, property: RentalProperty;
+  HandleLegalProceedings isAn Event with agent: Role, handled_object: LegalProceedings;
   LegalProceedingsNecessary isAn Event;
 
 endDomain
@@ -16,10 +16,10 @@ Declarations
   manager: Manager;
   owner: Owner;
   property: RentalProperty with address := "123 Main Street";
-  evt_handle_legal_proceedings: HandleLegalProceedings with agent := manager, property := property;
+  legal_proceedings: LegalProceedings;
+  evt_handle_legal_proceedings: HandleLegalProceedings with agent := manager, handled_object := legal_proceedings;
   evt_disburse_termination: Disburse with from := manager, to := owner, amount := "any monies in the Manager's possession due";
   evt_reimburse_termination: Reimburse with from := owner, to := manager, amount := "any expenses incurred or approved prior to the date of termination";
-  legal_proceedings: Proceedings;
   evt_legal_proceedings_necessary: LegalProceedingsNecessary;
 
 Preconditions
@@ -27,9 +27,9 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_legal_proceedings: Obligation(manager, owner, Happens(evt_legal_proceedings_necessary), Happens(evt_handle_legal_proceedings));
-  ob_disburse_termination: Obligation(manager, owner, Happens(Terminated(self)), WhappensBefore(evt_disburse_termination, Date.add(Terminated(self), 3, days)));
-  ob_reimburse_termination: Obligation(owner, manager, true, WhappensBefore(evt_reimburse_termination, Date.add(Terminated(self), 10, days)));
+  ob_legal_proceedings: O(manager, owner, Happens(evt_legal_proceedings_necessary), Happens(evt_handle_legal_proceedings));
+  ob_disburse_termination: O(manager, owner, Happens(Terminated(self)), WhappensBefore(evt_disburse_termination, Date.add(Terminated(self), 3, days)));
+  ob_reimburse_termination: O(owner, manager, true, WhappensBefore(evt_reimburse_termination, Date.add(Terminated(self), 10, days)));
 
 Surviving Obligations
 

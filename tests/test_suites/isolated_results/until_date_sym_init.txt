@@ -19,7 +19,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_keep_quarantine: Obligation(shi_farms, partyB, true, not Happens(evt_unquarantine_product));
+  ob_keep_quarantine: O(shi_farms, partyB, true, not Happens(evt_unquarantine_product));
 
 Surviving Obligations
 

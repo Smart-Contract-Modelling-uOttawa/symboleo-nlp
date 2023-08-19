@@ -40,7 +40,7 @@ test_suite = [
 ]
 
 # test_suite = [
-#     within_timespan_event_test
+#     during_time_period_test
 # ]
 
 class IsolatedTests(unittest.TestCase):
@@ -52,6 +52,7 @@ class IsolatedTests(unittest.TestCase):
     def test_isolated(self):
         filepath = 'tests/test_suites/isolated_results'
         for test_case in test_suite:
+            #print('----', test_case.case_id)
             k = test_case.case_id
             contract = test_case.init_sym
             

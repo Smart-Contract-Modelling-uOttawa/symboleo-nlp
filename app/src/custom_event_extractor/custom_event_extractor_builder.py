@@ -43,7 +43,7 @@ class CustomEventExtractorBuilder:
 
         advb_extractor = AdverbExtractor()
 
-        pp_extractor = PrepPhraseExtractor(deps.nlp, np_extractor)
+        pp_extractor = PrepPhraseExtractor(np_extractor)
 
         return CustomEventExtractor(
             verb_extractor,

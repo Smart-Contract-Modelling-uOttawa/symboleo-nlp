@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_no_sponsorship: Obligation(charity, sponsor, true, not Happens(evt_enable_sponsorship));
+  ob_no_sponsorship: O(charity, sponsor, true, not Happens(evt_enable_sponsorship));
 
 Surviving Obligations
 

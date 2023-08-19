@@ -30,12 +30,11 @@ class ForTimespanIntervalHandler(IHandleNormUpdates):
         timespan_str:str = pattern_class.val_dict[PV.TIMESPAN]
         tv, tu = timespan_str.split(' ')
 
-        tp1 = PointVDE(timepoint) 
-        tp2  = PointFunction(
-            PointVDE(timepoint), 
+        timepoint2  = PointFunction(
+            timepoint, 
             tv, 
             TimeUnit[tu.capitalize()])
-        new_interval = Interval(IntervalFunction(tp1, tp2))
+        new_interval = Interval(IntervalFunction(timepoint, timepoint2))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)
         new_norm = copy.deepcopy(norm)

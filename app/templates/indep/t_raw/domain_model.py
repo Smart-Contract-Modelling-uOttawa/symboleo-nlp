@@ -40,16 +40,15 @@ def get_domain_model():
             'CompleteServices': DomainEvent(
                 name = 'CompleteServices',
                 props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('services', 'Services')
+                    DomainProp('completing_agent', 'Role'),
+                    DomainProp('completed_object', 'Services')
                 ]
             ),
             'SendInvoice': DomainEvent(
                 name = 'SendInvoice',
                 props = [
-                    DomainProp('agent', 'Role'),
-                    DomainProp('target', 'Role'),
-                    DomainProp('invoice', 'Invoice')
+                    DomainProp('sending_agent', 'Role'),
+                    DomainProp('sent_object', 'Invoice')
                 ]
             ),
             'PayInvoice': DomainEvent(

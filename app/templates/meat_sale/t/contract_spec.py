@@ -59,29 +59,22 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         DeclarationProp('item', GOODS, 'Meat'),
         DeclarationProp('deliverer', SELLER, 'Role'),
         DeclarationProp('recipient', BUYER, 'Role')
-    ],
-    None # need event?
-    )
+    ])
     
     evt_pay = EventDeclaration('evt_pay', 'Pay', [
             DeclarationProp('amount', arg_dict["amount"], 'Number'),
             DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
             DeclarationProp('from', BUYER, 'Role'),
             DeclarationProp('to', SELLER, 'Role')
-        ],
-        None # Need event...
-    )
+        ])
 
     evt_pay_interest = EventDeclaration('evt_pay_interest', 'PayInterest', [
             DeclarationProp('amount', f'"(1 + {arg_dict["interest_rate"]} / 100) * {arg_dict["amount"]}"', 'Number'),
             DeclarationProp('currency', f'Currency({arg_dict["currency"]})', 'Currency'),
             DeclarationProp('from', BUYER, 'Role'),
             DeclarationProp('to', SELLER, 'Role')
-        ],
-        None # Need event...
-    )
+        ])
     
-    # Need event...
     evt_disclose = EventDeclaration('evt_disclose', 'Disclose')
 
     EVT_DELIVER = evt_deliver.to_obj()

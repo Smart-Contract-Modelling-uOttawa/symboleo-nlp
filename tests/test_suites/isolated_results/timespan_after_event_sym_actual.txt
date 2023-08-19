@@ -21,7 +21,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_fees: Obligation(cerus, porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
+  ob_pay_fees: O(cerus, porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
 
 Surviving Obligations
 

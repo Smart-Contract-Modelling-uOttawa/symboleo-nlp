@@ -44,6 +44,9 @@ class DeclarationPropMapper(IMapDeclarationProps):
     
     def map_dobject(self, dobject: NounPhrase, evt:CustomEvent) -> DeclarationProp:
         asset_type = dobject.asset_type
+        if asset_type == 'Contract':
+            return None
+
         the_value = CaseConverter.to_snake(dobject.to_text(NPTextType.BASIC))
         if dobject.is_role:
             the_key = f'{evt.verb.conjugations.past}_target' 

@@ -15,6 +15,15 @@ def get_domain_model():
             )
         },
         enums=[],
+        assets = {
+            'RentalProperty': Asset(
+                name = 'RentalProperty',
+                props = [
+                    DomainProp('address', 'String')
+                ]
+            ),
+            'LegalProceedings': Asset(name='LegalProceedings', props=[])
+        },
         events = {
             'Disburse': DomainEvent(
                 name = 'Disburse',
@@ -35,25 +44,17 @@ def get_domain_model():
             'LegalProceedingsNecessary': DomainEvent(
                 name = 'LegalProceedingsNecessary',
                 props = [
-                    DomainProp('property', 'RentalProperty')
+                    DomainProp('necessary_thing', 'LegalProceedings')
                 ]
             ),
             'HandleLegalProceedings': DomainEvent(
                 name = 'HandleLegalProceedings',
                 props = [
                     DomainProp('agent', 'Role'),    
-                    DomainProp('property', 'RentalProperty')
+                    DomainProp('handled_object', 'LegalProceedings')
                 ]
             )
-        },
-        assets = {
-            'RentalProperty': Asset(
-                name = 'RentalProperty',
-                props = [
-                    DomainProp('address', 'String')
-                ]
-            )
-        }   
+        } 
     )
     
     # Add aliases

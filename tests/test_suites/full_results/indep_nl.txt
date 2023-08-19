@@ -1,7 +1,7 @@
 A - send_invoice: The Client will be invoiced when contractor completes services.
 E - send_invoice: The Client will be invoiced when the Services are complete.
 
-A - pay_invoice: Invoices submitted by the Contractor to the Client are due  10 days of contractor sending invoice.
+A - pay_invoice: Invoices submitted by the Contractor to the Client are due within 10 days of contractor sending invoice.
 E - pay_invoice: Invoices submitted by the Contractor to the Client are due within 10 days of receipt.
 
 A - partial_completion: In the event that this Agreement is terminated prior to completion of the Services, but where the Services have been partially performed, the Contractor will be entitled to pro rata payment of the Compensation to the date of termination if contractor breaches contract.

@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_fee: Obligation(grantee, grantor, true, ShappensBefore(evt_pay_fee, ob_pay_fee_date));
+  ob_pay_fee: O(grantee, grantor, true, ShappensBefore(evt_pay_fee, ob_pay_fee_date));
 
 Surviving Obligations
 

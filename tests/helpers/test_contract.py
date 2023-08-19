@@ -89,7 +89,7 @@ def get_test_contract():
                 )
             },
             declarations={
-                'test_event': EventDeclaration('test_event', 'TestEvent', [], evt = CustomEvents.eating_pie()),
+                'test_event': EventDeclaration('test_event', 'TestEvent', []),
                 'test_asset': AssetDeclaration('test_asset', 'TestAsset', []),
                 'test_role': RoleDeclaration('test_role', 'TestRole', []),
             },

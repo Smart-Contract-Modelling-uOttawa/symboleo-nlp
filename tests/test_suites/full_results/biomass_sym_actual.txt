@@ -18,28 +18,28 @@ endDomain
 Contract biomass( seller_id: String, seller_name: String, buyer_id: String, buyer_name: String, biomass_quantity: Number, price: Number, currency: Currency )
 
 Declarations
-  Shi Farms: Seller;
-  GridIron: Buyer;
+  shi_farms: Seller with name := "Shi Farms";
+  gridiron: Buyer with name := "GridIron";
   biomass: Biomass with quantity_lbs := 30000;
   lab: Location with name := "lab";
-  evt_pay: Pay with to := Shi Farms, from := GridIron, amount := 150000, currency := Currency(USD);
-  evt_quarantine: Quarantine with agent := Shi Farms, product := biomass;
-  evt_remove_quarantine: RemoveQuarantine with agent := Shi Farms, product := biomass;
-  evt_delivery_lab: Delivery with agent := Shi Farms, product := biomass, location := lab;
-  evt_pay_farms: PayFarms with paying_agent := GridIron, paid_target := shi_farms;
-  evt_deliver_biomass: DeliverBiomass with delivering_agent := Shi Farms, delivered_object := biomass;
+  evt_pay: Pay with to := shi_farms, from := gridiron, amount := 150000, currency := Currency(USD);
+  evt_quarantine: Quarantine with agent := shi_farms, product := biomass;
+  evt_remove_quarantine: RemoveQuarantine with agent := shi_farms, product := biomass;
+  evt_delivery_lab: Delivery with agent := shi_farms, product := biomass, location := lab;
+  evt_pay_farms: PayFarms with paying_agent := gridiron, paid_target := shi_farms;
+  evt_deliver_biomass: DeliverBiomass with delivering_agent := shi_farms, delivered_object := biomass;
   party_analysis: Analysis;
-  evt_mandate_analysis: MandateAnalysis with mandghting_agent := GridIron, mandt_object := party_analysis;
+  evt_mandate_analysis: MandateAnalysis with mandghting_agent := gridiron, mandt_object := party_analysis;
 
 Preconditions
 
 Postconditions
 
 Obligations
-  ob_payment: Obligation(GridIron, Shi Farms, Happens(Activated(self)), Happens(evt_pay));
-  ob_quarantine: Obligation(Shi Farms, GridIron, Happens(evt_pay_farms), Happens(evt_quarantine));
-  ob_keep_quarantine: Obligation(Shi Farms, GridIron, Happens(evt_quarantine), not WhappensBeforeE(evt_remove_quarantine, evt_deliver_biomass));
-  ob_delivery_lab: Obligation(Shi Farms, GridIron, Happens(evt_mandate_analysis), Happens(evt_delivery_lab));
+  ob_payment: O(gridiron, shi_farms, Happens(Activated(self)), Happens(evt_pay));
+  ob_quarantine: O(shi_farms, gridiron, Happens(evt_pay_farms), Happens(evt_quarantine));
+  ob_keep_quarantine: O(shi_farms, gridiron, Happens(evt_quarantine), not WhappensBeforeE(evt_remove_quarantine, evt_deliver_biomass));
+  ob_delivery_lab: O(shi_farms, gridiron, Happens(evt_mandate_analysis), Happens(evt_delivery_lab));
 
 Surviving Obligations
 

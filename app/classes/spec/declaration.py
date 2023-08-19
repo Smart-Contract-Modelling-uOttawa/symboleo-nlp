@@ -2,7 +2,6 @@ from __future__ import annotations
 from typing import List
 from enum import Enum
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.helpers.list_eq import ClassHelpers
 
 class DeclarationType(Enum):
@@ -54,7 +53,7 @@ class Declaration(IDeclaration):
             ClassHelpers.lists_eq(self.props, other.props, 'key')
 
     def to_obj(self):
-        return self.name
+        return self.id
 
 
     def print_me(self):
@@ -79,9 +78,8 @@ class Declaration(IDeclaration):
 
 
 class EventDeclaration(Declaration):
-    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, evt: CustomEvent = None):
+    def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
         super().__init__(name, type, DeclarationType.EVENT.value, props)
-        self.evt = evt
     
     def to_obj(self):
         return VariableEvent(self.name)

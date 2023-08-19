@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_return_info: Obligation(maimon, company, Happens(Terminated(self)), Happens(evt_return_info));
+  ob_return_info: O(maimon, company, Happens(Terminated(self)), Happens(evt_return_info));
 
 Surviving Obligations
 

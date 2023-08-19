@@ -4,8 +4,7 @@ from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.src.custom_event_extractor.element_extractor import IExtractElement
 
 class PrepPhraseExtractor(IExtractElement[PrepPhrase]):    
-    def __init__(self, nlp, np_extractor: IExtractElement[NounPhrase]):
-        self.__nlp = nlp
+    def __init__(self, np_extractor: IExtractElement[NounPhrase]):
         self.__np_extractor = np_extractor
 
     def extract(self, str_val: str, contract: SymboleoContract = None) -> PrepPhrase:

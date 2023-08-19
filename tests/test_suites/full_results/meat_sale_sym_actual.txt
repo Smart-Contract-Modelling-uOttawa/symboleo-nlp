@@ -14,7 +14,7 @@ Domain meatSaleDomain
 
 endDomain
 
-Contract MeatSale( buyer_id: String, seller_id: String, buyer_name: String, seller_name: String, quantity_kg: Number, quality: MeatQuality, amount: Number, currency: Currency, interest_rate: Number )
+Contract MeatSale( buyer_id: String, seller_id: String, buyer_name: String, seller_name: String, quantity_kg: Number, quality: MeatQuality, amount: Number, currency: Currency, interest_rate: Number, ob_delivery_date: Date, ob_payment_date: Date )
 
 Declarations
   seller: Seller;
@@ -34,17 +34,17 @@ Postconditions
   IsOwner(goods, buyer) and not IsOwner(goods, seller);
 
 Obligations
-  ob_delivery: Obligation(seller, buyer, true, SHappensBefore(evt_deliver, "March 18, 2024"));
-  ob_payment: Obligation(buyer, seller, true, SHappensBefore(evt_pay, "March 30, 2024"));
-  ob_late_payment: Obligation(buyer, seller, Happens(evt_miss_payment), Happens(evt_pay_interest));
+  ob_delivery: O(seller, buyer, true, ShappensBefore(evt_deliver, ob_delivery_date));
+  ob_payment: O(buyer, seller, true, ShappensBefore(evt_pay, ob_payment_date));
+  ob_late_payment: O(buyer, seller, Happens(evt_miss_payment), Happens(evt_pay_interest));
 
 Surviving Obligations
-  so_disclosure_seller: SO(seller, buyer, true, not HappensWithin(evt_disclose, Interval(self.end, Date.add(self.end, 6, months)));
-  so_disclosure_buyer: SO(buyer, seller, true, not HappensWithin(evt_disclose, Interval(self.end, Date.add(self.end, 6, months)));
+  so_disclosure_seller: O(seller, buyer, true, not HappensWithin(evt_disclose, Interval(Terminated(self), Date.add(Terminated(self), 6, months))));
+  so_disclosure_buyer: O(buyer, seller, true, not HappensWithin(evt_disclose, Interval(Terminated(self), Date.add(Terminated(self), 6, months))));
 
 Powers
-  pow_suspend_delivery: Power(seller, buyer, true, Suspended(obligations.ob_delivery));
-  pow_terminate_contract: F -> Power(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
+  pow_suspend_delivery: P(seller, buyer, true, Suspended(obligations.ob_delivery));
+  pow_terminate_contract: false -> P(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
 
 Constraints
   not IsEqual(buyer, seller);

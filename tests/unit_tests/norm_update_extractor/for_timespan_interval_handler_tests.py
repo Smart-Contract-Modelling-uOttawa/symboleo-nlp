@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
-from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.sym_point import Point, PointVDE
+from app.classes.spec.sym_event import VariableEvent, ContractEventName, ContractEvent
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent
 from app.classes.spec.point_function import TimeUnit, PointFunction
 from app.classes.spec.sym_interval import Interval, IntervalFunction
 from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterval
@@ -21,7 +21,7 @@ class DuringTimePeriodHandlerTests(unittest.TestCase):
         self.sut = ForTimespanIntervalHandler(self.tp_mapper)
 
     def test_handler(self):
-        self.tp_mapper.map = MagicMock(return_value = 'evt_test.start')
+        self.tp_mapper.map = MagicMock(return_value = PointVDE('evt_test.start'))
 
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = ForTimespanInterval({
@@ -46,7 +46,11 @@ class DuringTimePeriodHandlerTests(unittest.TestCase):
                     Interval(
                         IntervalFunction(
                             PointVDE('evt_test.start'),
-                            PointFunction(PointVDE('evt_test.start'), 5, TimeUnit.Days)
+                            PointFunction(
+                                PointVDE('evt_test.start'),
+                                5, 
+                                TimeUnit.Days
+                            )
                         )
                     )
                 )

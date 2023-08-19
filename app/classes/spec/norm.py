@@ -45,6 +45,12 @@ class Norm(INorm):
         self.antecedent = antecedent
         self.consequent = consequent
         self.norm_type = norm_type
+
+        self.__norm_key_dict = {
+            NormType.Obligation: 'O',
+            NormType.Power: 'P',
+            NormType.SurvivingObligation: 'O'
+        }
     
 
     def __eq__(self, other: Norm) -> bool:
@@ -135,12 +141,13 @@ class Norm(INorm):
         if self.trigger:
             trigger_text = self.trigger.to_sym() + ' -> '
 
+        nt = self.__norm_key_dict[self.norm_type]
         deb_text = self.debtor
         cred_text = self.creditor
         ant_text = self.antecedent.to_sym()        
         con_text = self.consequent.to_sym()
 
-        return f'{self.id}: {trigger_text}{self.norm_type.value}({deb_text}, {cred_text}, {ant_text}, {con_text});'
+        return f'{self.id}: {trigger_text}{nt}({deb_text}, {cred_text}, {ant_text}, {con_text});'
 
 
 class Obligation(Norm):

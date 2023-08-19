@@ -8,9 +8,9 @@ from app.classes.spec.domain_object import Role, DomainEvent
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.declaration import RoleDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation
-from app.classes.spec.sym_event import VariableEvent
+from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
 from app.classes.spec.sym_interval import Interval, IntervalFunction
-from app.classes.spec.sym_point import PointVDE
+from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
@@ -116,8 +116,8 @@ test_case = TestCase(
                             VariableEvent('evt_cease_using_mark'),
                             Interval(
                                 IntervalFunction(
-                                    PointVDE('self.start'),
-                                    PointVDE('self.end'),
+                                    PointAtomContractEvent(ContractEvent(ContractEventName.Activated)),
+                                    PointAtomContractEvent(ContractEvent(ContractEventName.Terminated))
                                 )
                             )
                         ), 

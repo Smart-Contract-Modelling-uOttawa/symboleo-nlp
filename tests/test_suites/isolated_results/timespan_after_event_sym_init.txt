@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_fees: Obligation(cerus, porex, true, Happens(evt_pay_fees));
+  ob_pay_fees: O(cerus, porex, true, Happens(evt_pay_fees));
 
 Surviving Obligations
 

@@ -42,14 +42,13 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     ])
 
     evt_complete_services = EventDeclaration('evt_complete_services', 'CompleteServices', [
-        DeclarationProp('agent', CONTRACTOR, 'Role'),
-        DeclarationProp('services', SERVICES, 'Services'),
+        DeclarationProp('completing_agent', CONTRACTOR, 'Role'),
+        DeclarationProp('completed_object', SERVICES, 'Services'),
     ])
 
     evt_send_invoice = EventDeclaration('evt_send_invoice', 'SendInvoice', [
-        DeclarationProp('agent', CONTRACTOR, 'Role'),
-        DeclarationProp('target', CLIENT, 'Role'),
-        DeclarationProp('invoice', INVOICE, 'Invoice')
+        DeclarationProp('sending_agent', CONTRACTOR, 'Role'),
+        DeclarationProp('sent_object', INVOICE, 'Invoice')
     ])
 
     evt_pay_invoice = EventDeclaration('evt_pay_invoice', 'PayInvoice', [
@@ -67,7 +66,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
     #     DeclarationProp('agent', CONTRACTOR, 'Role')
     # ])
 
-    evt_reimburse_expenses = EventDeclaration('evt_reimburse_expenses', 'Pay', [
+    evt_reimburse_expenses = EventDeclaration('evt_reimburse_expenses', 'ReimburseExpenses', [
         DeclarationProp('from', CLIENT, 'Role'),
         DeclarationProp('to', CONTRACTOR, 'Role'),
         DeclarationProp('expenses', EXPENSES, 'Expenses'),
@@ -98,6 +97,7 @@ def get_contract_spec(arg_dict: Dict[str,str] = arg_values):
         
         'services': services,
         'invoice': invoice,
+        'expenses': expenses,
         
         'evt_start_services': evt_start_services,
         'evt_complete_services': evt_complete_services,

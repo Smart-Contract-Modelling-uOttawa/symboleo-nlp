@@ -17,7 +17,7 @@ Preconditions
 Postconditions
 
 Obligations
-  ob_pay_damages: Obligation(partyA, partyB, true, Happens(evt_pay_damages));
+  ob_pay_damages: O(partyA, partyB, true, Happens(evt_pay_damages));
 
 Surviving Obligations
 
