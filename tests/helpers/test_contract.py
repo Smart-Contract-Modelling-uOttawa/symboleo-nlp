@@ -85,7 +85,7 @@ def get_test_contract():
                     'debtor',
                     'creditor', 
                     PropMaker.make_default(),
-                    PropMaker.make(PredicateFunctionHappens('event_y'))
+                    PropMaker.make(PredicateFunctionHappens(VariableEvent('event_y')))
                 )
             },
             declarations={

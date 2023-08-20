@@ -9,6 +9,8 @@ class ContractEqualityTests(unittest.TestCase):
         c2 = get_test_contract()
         
         self.assertEqual(c1, c2)
+
+        self.assertEqual(c1.to_sym(), c2.to_sym())
     
   
 if __name__ == '__main__':

@@ -66,13 +66,13 @@ class ObligationEvent(SymEvent):
 
 class ContractEventName(Enum):
     Activated = 'Activated'
-    Suspended = 'Suspended'
-    Resumed = 'Resumed'
-    FulfilledObligations = 'FulfilledObligations'
-    RevokedParty = 'RevokedParty'
-    AssignedParty = 'AssignedParty'
+    # Suspended = 'Suspended'
+    # Resumed = 'Resumed'
+    # FulfilledObligations = 'FulfilledObligations'
+    # RevokedParty = 'RevokedParty'
+    # AssignedParty = 'AssignedParty'
     Terminated = 'Terminated'
-    Rescinded = 'Rescinded'
+    # Rescinded = 'Rescinded'
 
 class ContractEvent(SymEvent):
     def __init__(self, event_name: ContractEventName = ContractEventName.Activated):

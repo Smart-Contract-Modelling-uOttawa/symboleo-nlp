@@ -13,8 +13,17 @@ class FakeLemmatizer(ILemmatize):
             'authorizes': 'authorize',
             'completes': 'complete',
             'starts': 'start',
+            
+            'activate': 'activate',
+            'activated': 'activate',
+            'activates': 'activate',
+            'activating': 'activate',
+
+            'terminate': 'terminate',
+            'terminated': 'terminate',
             'terminates': 'terminate',
             'terminating': 'terminate',
+            
             'beginning': 'begin',
             'begins': 'begin',
             'disrupts': 'disrupt',

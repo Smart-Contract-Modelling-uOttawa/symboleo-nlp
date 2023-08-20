@@ -50,6 +50,7 @@ class Verbs:
     occupies = lambda: Verb('occupies', 'occupy', VerbType.TRANSITIVE, VerbConjugations('occupy', 'occupies', 'occupied', 'occupying'))
     disrupts = lambda: Verb('disrupts', 'disrupt', VerbType.TRANSITIVE, VerbConjugations('disrupt', 'disrupts', 'disrupted', 'disrupting'))
     provides = lambda: Verb('provides', 'provide', VerbType.TRANSITIVE, VerbConjugations('provide', 'provides', 'provided', 'providing'))
+    complies = lambda: Verb('complies', 'comply', VerbType.INTRANSITIVE, VerbConjugations('comply', 'complies', 'complied', 'complying'))
 
 
 class CustomEvents:

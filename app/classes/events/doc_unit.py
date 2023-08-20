@@ -18,7 +18,7 @@ class NlpDoc:
     def __init__(self, tokens: List[DocUnit]):
         self.tokens = tokens
     
-    def print_me(self):
+    def print_me(self): # pragma: no cover
         print('\n')
         for x in self.tokens:
             print('-----\n')

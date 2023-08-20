@@ -51,9 +51,6 @@ class ClassHelpers:
             return False
 
         for x in dict1:
-            if x not in dict2:
-                return False
-            
             if dict1[x] != dict2[x]:
                 return False
         

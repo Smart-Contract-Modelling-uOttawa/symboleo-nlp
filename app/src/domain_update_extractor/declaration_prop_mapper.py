@@ -2,7 +2,7 @@ from app.classes.spec.declaration import DeclarationProp
 from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
-from app.classes.helpers.string_to_class import CaseConverter
+from app.classes.helpers.case_converter import CaseConverter
 
 # Given a noun phrase and its CustomEvent context, map it to a declaration property
 ## Requires a key, a value, and a type

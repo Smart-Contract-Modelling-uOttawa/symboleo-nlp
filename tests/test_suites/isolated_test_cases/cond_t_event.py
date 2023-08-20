@@ -96,7 +96,7 @@ test_case = TestCase(
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CONTRACT_EVENT),
             UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
-            UserInput(UnitType.CONTRACT_ACTION, 'terminated')
+            UserInput(UnitType.CONTRACT_ACTION, 'terminates')
         ],
         nl_key='nl_key',
         parm_key='P1'

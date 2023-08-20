@@ -1,6 +1,6 @@
 from app.classes.spec.declaration import AssetDeclaration
 from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
-from app.classes.helpers.string_to_class import CaseConverter
+from app.classes.helpers.case_converter import CaseConverter
 
 class IExtractAssetDeclarations:
     def extract(self, noun_phrase: NounPhrase) -> AssetDeclaration:

@@ -9,6 +9,8 @@ from app.src.pattern_builder.pattern_unit_fillers.custom_event_filler import Cus
 
 from app.src.pattern_builder.pattern_unit_fillers.contract_action_filler import ContractActionFiller
 from app.src.custom_event_extractor.custom_event_extractor_builder import CustomEventExtractorBuilder
+from app.src.nlp.lemmatizer import Lemmatizer
+from app.src.nlp.fake_lemmatizer import FakeLemmatizer
 
 class PatternUnitFillerDictConstructor:
     @staticmethod
@@ -17,7 +19,12 @@ class PatternUnitFillerDictConstructor:
         
         event_extractor = CustomEventExtractorBuilder.build(deps)
 
+        if deps.fake:
+            lemmatizer = FakeLemmatizer()
+        else:
+            lemmatizer = Lemmatizer(deps.nlp)
+
         d[UnitType.CUSTOM_EVENT] = CustomEventFiller(event_extractor)
-        d[UnitType.CONTRACT_ACTION] = ContractActionFiller()
+        d[UnitType.CONTRACT_ACTION] = ContractActionFiller(lemmatizer)
 
         return d

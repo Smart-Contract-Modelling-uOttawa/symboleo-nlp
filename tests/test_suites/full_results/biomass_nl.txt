@@ -4,7 +4,7 @@ E - sell_buy: Shi Farms agrees to sell Product and Gridiron agrees to purchase 3
 A - biomass_contents: Biomass must contain a minimum of six percent (6%) total Cannabidiol (CBD/and or CBDA) and all Biomass must have less than three percent (3%) total THC content.
 E - biomass_contents: Biomass must contain a minimum of six percent (6%) total Cannabidiol (CBD/and or CBDA) and all Biomass must have less than three percent (3%) total THC content.
 
-A - payment: Both Parties agree that once the Parties have agreed to transaction which includes the purchase and sale of the Product that the Buyer will remit payment upon contract activates
+A - payment: Both Parties agree that once the Parties have agreed to transaction which includes the purchase and sale of the Product that the Buyer will remit payment upon contract activated
 E - payment: Both Parties agree that once the Parties have agreed to transaction which includes the purchase and sale of the Product that the Buyer will remit payment upon execution of this agreement.
 
 A - quarantine: once GridIron pays Shi Farms Shi Farms will use its best efforts to quarantine product to ensure safe keeping of the Product until Shi Farms delivers biomass

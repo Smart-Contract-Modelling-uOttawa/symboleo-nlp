@@ -10,6 +10,7 @@ from app.src.grammar_builder.unit_builders.time_unit_ub import TimeUnitUB
 from app.src.grammar_builder.unit_builders.unit_builder import DefaultUnitBuilder
 from app.src.grammar_builder.unit_builders.linking_verb_ub import LinkingVerbUB
 from app.src.grammar_builder.unit_builders.time_period_ub import TimePeriodUB
+from app.src.grammar_builder.unit_builders.notifier_unit_ub import NotifierUnitUB
 
 from tests.helpers.test_contract import get_test_contract
 
@@ -43,6 +44,12 @@ class UnitBuilderTests(unittest.TestCase):
         contract = get_test_contract()
         result = ub.build('', contract)
         self.assertIn('terminated', result.options)
+
+    def test_notifier_unit_ub(self):
+        ub = NotifierUnitUB()
+        contract = get_test_contract()
+        result = ub.build('', contract)
+        self.assertIn('test_role', result.options)
 
 
     def test_subj_ub(self):

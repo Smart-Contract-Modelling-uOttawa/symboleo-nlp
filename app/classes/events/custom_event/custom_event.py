@@ -12,7 +12,7 @@ from app.classes.events.custom_event.adverb import Adverb
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 
 from app.classes.helpers.list_eq import ClassHelpers
-from app.classes.helpers.string_to_class import CaseConverter
+from app.classes.helpers.case_converter import CaseConverter
 
 class CustomEvent(BaseEvent):
     def __init__(

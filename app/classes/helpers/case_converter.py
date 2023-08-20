@@ -9,11 +9,6 @@ from app.classes.spec.sym_event import *
 from app.classes.spec.sym_situation import *
 
 
-class StringToClass:
-    @staticmethod
-    def convert(classname: str):
-        return getattr(sys.modules[__name__], classname)
-
 class CaseConverter:
     @staticmethod
     def to_pascal(s: str):

@@ -3,7 +3,6 @@ from app.classes.events.custom_event.verb import Verb, VerbType, VerbConjugation
 from app.classes.events.custom_event.custom_event import CustomEvent
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 
-
 class ContractNouns:
     contract = lambda: NounPhrase('contract', 'contract', asset_type='Contract')
 
@@ -26,10 +25,3 @@ class ContractEvents:
             verb = ContractVerbs.verb_dict[c_event](),
             is_new = False
         )
-
-
-
-class HelperVerbs:
-    verb_is = lambda: Verb('is', 'be', VerbType.LINKING, VerbConjugations('is', 'are', 'was', 'is'))
-    
-    

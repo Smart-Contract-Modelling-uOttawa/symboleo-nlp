@@ -7,7 +7,7 @@ E - payment: The Buyer shall pay $100 to the Seller before March 30, 2024.
 A - pay_interest: if buyer misses payment The Buyer shall pay interests equal to 8 percent of the payment amount
 E - pay_interest: In the event of late payment of the amount owed due, the Buyer shall pay interests equal to 8 percent of the payment amount.
 
-A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months after contract terminates
+A - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months after contract terminated
 E - disclosure: Both Seller and Buyer must keep the contents of this contract confidential for 6 months following the termination of the contract.
 
 A - suspend_resume_delivery: In the event of late payment of the amount owed due, the Seller may suspend performance of all of its obligations under the agreement until payment of amounts owed has been received in full.

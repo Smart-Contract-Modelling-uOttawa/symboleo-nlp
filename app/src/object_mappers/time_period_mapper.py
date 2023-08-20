@@ -1,5 +1,5 @@
 from app.classes.pattern_classes.pattern_class import PatternClass, PatternVariable as PV
-from app.classes.helpers.string_to_class import CaseConverter
+from app.classes.helpers.case_converter import CaseConverter
 from app.classes.operations.time_period import TimePeriod
 
 class IMapTimePeriod:

@@ -17,8 +17,14 @@ class TimePeriodMapperTests(unittest.TestCase):
 
         result = self.sut.map(pattern_class)
 
-        exp_res = PointAtomContractEvent(ContractEvent(ContractEventName.Activated))
-        self.assertEqual(result.start, exp_res)
+        s1 = PointAtomContractEvent(ContractEvent(ContractEventName.Activated))
+        s2 = PointAtomContractEvent(ContractEvent(ContractEventName.Terminated))
+        exp_res = TimePeriod(
+            'contract',
+            s1,
+            s2
+        )
+        self.assertEqual(result, exp_res)
 
 
 if __name__ == '__main__':

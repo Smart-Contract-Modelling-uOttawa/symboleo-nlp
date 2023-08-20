@@ -8,11 +8,13 @@ from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEve
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.pattern_classes.pattern_class import PatternClass, EventPatternClass
 
-from app.src.pattern_builder.pattern_unit_fillers.contract_action_filler import ContractActionFiller
+from app.src.pattern_builder.pattern_unit_fillers.contract_action_filler import ContractActionFiller, ILemmatize
 
 class ContractActionFillerTests(unittest.TestCase):
     def setUp(self):
-        self.sut = ContractActionFiller()
+        self.lemmatizer = ILemmatize()
+        self.lemmatizer.lemmatize = MagicMock(return_value='terminate')
+        self.sut = ContractActionFiller(self.lemmatizer)
 
     def test_contract_action_filler(self):
         pattern_class = EventPatternClass()

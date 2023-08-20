@@ -3,12 +3,38 @@ from unittest.mock import MagicMock
 from typing import List, Tuple
 
 from app.classes.events.conj_type import ConjType
-from app.classes.events.custom_event.custom_event import CustomEvent
+from app.classes.events.custom_event.custom_event import CustomEvent, Predicate
 
-from tests.helpers.test_objects import CustomEvents
+from tests.helpers.test_objects import CustomEvents, NounPhrases, Verbs
 
 
 test_set: List[Tuple[CustomEvent,str,str]] = [
+    (
+        CustomEvent(
+            NounPhrases.bob(),
+            Verbs.become(),
+            predicate = Predicate('happy')
+        ),
+        'evt_agent_happy',
+        'AgentHappy'
+    ),
+    (
+        CustomEvent(
+            NounPhrases.bob(),
+            Verbs.complies()
+        ),
+        'evt_agent_comply',
+        'AgentComply'
+    ),
+    (
+        CustomEvent(
+            NounPhrases.bob(),
+            Verbs.pays(),
+            dobj = NounPhrases.test_value_parm()
+        ),
+        'evt_pay_test_value',
+        'PayTestValue'
+    ),
     (
         CustomEvents.legal_proceedings(),
         'evt_legal_proceedings_necessary',

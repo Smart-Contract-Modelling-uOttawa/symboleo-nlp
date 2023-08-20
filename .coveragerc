@@ -16,7 +16,10 @@ omit =
     app\templates\*
     app\web_lib\*
     app\console_lib\*
+    app\src\nlp\*
     
+    app\classes\pattern_classes\all_pattern_classes.py
+
     app\src\custom_event_extractor\custom_event_extractor_builder.py
     app\src\domain_update_extractor\domain_update_extractor_builder.py
     app\src\grammar_builder\grammar_builder_constructor.py

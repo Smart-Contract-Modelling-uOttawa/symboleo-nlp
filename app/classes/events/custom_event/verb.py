@@ -13,7 +13,7 @@ class VerbConjugations:
         self.past = past
         self.continuous = continuous
 
-    def to_string(self):
+    def to_string(self): # pragma: no cover
         return f'- present singular: {self.present_singular}\n' + \
             f'- present plural: {self.present_plural}\n' + \
             f'- preterite: {self.past}\n' + \
@@ -38,7 +38,7 @@ class Verb:
         self.verb_type = verb_type
         self.conjugations = conjugations
     
-    def print_me(self):
+    def print_me(self): # pragma: no cover
         print(f'Verb String: {self.verb_str}')
         print(f'Lemma: {self.lemma}')
         print(f'Verb Type: {self.verb_type.value}')
