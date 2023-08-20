@@ -1,4 +1,5 @@
 import os
+import uuid
 from flask import Flask, request, render_template, jsonify, session
 from app.web_lib.web_dependencies import WebDependencyBuilder
 
@@ -15,7 +16,7 @@ deps = WebDependencyBuilder.build(use_fake_nlp)
 
 @app.route("/")
 def index():
-    session['unique_key'] = 'test' # can randomly generate this...
+    session['unique_key'] = str(uuid.uuid4())
     return render_template('index.html')
 
 

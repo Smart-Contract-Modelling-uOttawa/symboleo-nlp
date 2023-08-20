@@ -58,5 +58,3 @@ test_suite = [
         parm_key='P1'
     )
 ]
-
-# TODO: Add the determines analysis one here.. It will be choppy...

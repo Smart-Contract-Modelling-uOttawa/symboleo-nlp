@@ -3,8 +3,8 @@ from app.src.operations.contract_updater import IUpdateContract
 from app.classes.operations.op_code import OpCode
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.web_lib.contract_obj import WebContract
-from app.web_lib.contract_storage import ContractStorage
-from app.web_lib.input_storage import InputStorage
+from app.web_lib.cache.contract_storage import ContractStorage
+from app.web_lib.cache.input_storage import InputStorage
 
 class RefinementSubmitter:
     def __init__(

@@ -7,9 +7,9 @@ from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 
-from app.web_lib.contract_storage import ContractStorage
-from app.web_lib.input_storage import InputStorage
-from app.web_lib.grammar_storage import GrammarStorage
+from app.web_lib.cache.contract_storage import ContractStorage
+from app.web_lib.cache.input_storage import InputStorage
+from app.web_lib.cache.grammar_storage import GrammarStorage
 from app.web_lib.contract_fetcher import ContractFetcher
 from app.web_lib.parameter_selector import ParameterSelector
 from app.web_lib.value_processor import ValueProcessor

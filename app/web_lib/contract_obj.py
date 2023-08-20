@@ -5,7 +5,6 @@ class WebContractNL:
         self.nl_key = nl_key
         self.nl_text = nl_text
 
-# Pull out into separate functionality
 class WebContractSym:
     def __init__(self, contract: SymboleoContract):
         # Domain Objects
@@ -55,7 +54,8 @@ class WebContractSym:
             pow = cs.powers[x].to_sym()
             pows.append(pow)
 
-        self.id = dm.id
+        self.domain_id = dm.id
+        self.id = cs.id
         self.domain_objects = domain_objs
         self.declarations = decls
         self.parameters = parms
@@ -64,8 +64,6 @@ class WebContractSym:
         self.powers = pows
 
 
-
-# May have a separate builder...
 class WebContract:
     def __init__(self, contract: SymboleoContract):
         nl = []

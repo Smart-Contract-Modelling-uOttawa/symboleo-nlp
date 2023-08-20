@@ -55,8 +55,3 @@ terminateContract: Any delay in delivery of the goods will not entitle the Buyer
 -- Then we'd get the trigger: NOT HappensBefore(evt_delivery, Date.add(evt_delivery.delivery_due_date, 10, days))
 - I will note this one as too complex for now. But its worth making a note on this. Can describe it in thesis
 
-
-TODOS
-- maybe: add due_date to domain model/declaration on 'Before DATE' pattern
-- maybe: Change the termination power to a the easier case - refine the 'within' part 
-- maybe: incorporate the timepoint into a 'Before' Pattern  

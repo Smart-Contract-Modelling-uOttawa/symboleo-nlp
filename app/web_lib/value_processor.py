@@ -2,8 +2,8 @@ from typing import List, Dict
 from app.classes.operations.user_input import UserInput
 from app.classes.units.unit_type import UnitType
 
-from app.web_lib.contract_storage import ContractStorage
-from app.web_lib.input_storage import InputStorage
+from app.web_lib.cache.contract_storage import ContractStorage
+from app.web_lib.cache.input_storage import InputStorage
 from app.web_lib.grammar_handler import GrammarHandler
 
 class ValueProcessor:
@@ -29,8 +29,8 @@ class ValueProcessor:
         # Get the contract
         contract = self.__contract_storage.load(unique_key, contract_id)
 
-        self.__grammar_handler.select_child(unit_type.name) # Does ID work...?        
-        children = self.__grammar_handler.get_children(contract)
+        self.__grammar_handler.select_child(unique_key, unit_type.name) # Does ID work...?        
+        children = self.__grammar_handler.get_children(unique_key, contract)
         
         result = {
             x.unit_type.name: x.to_dict()

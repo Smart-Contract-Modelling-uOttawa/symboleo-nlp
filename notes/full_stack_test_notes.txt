@@ -74,3 +74,4 @@ More XTEXT issues
 - how to specify dates
 - the START spec for HappensWithin is a new one
 - if using the False trigger, how is it represented - may be a new one
+- negatives in the PointFunction not accepted

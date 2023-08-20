@@ -1,6 +1,6 @@
 from typing import List, Dict
-from app.web_lib.contract_storage import ContractStorage
-from app.web_lib.input_storage import InputStorage
+from app.web_lib.cache.contract_storage import ContractStorage
+from app.web_lib.cache.input_storage import InputStorage
 from app.web_lib.grammar_handler import GrammarHandler
 
 class ParameterSelector:
@@ -22,8 +22,8 @@ class ParameterSelector:
         parm = contract.nl_template.template_dict[nl_key].parameters[parm_key][0]
         
         # May combine these two
-        self.__grammar_handler.create(parm.pattern_types)
-        children = self.__grammar_handler.get_children(contract)
+        self.__grammar_handler.create(unique_key, parm.pattern_types)
+        children = self.__grammar_handler.get_children(unique_key, contract)
 
         result = {
             x.unit_type.name: x.to_dict()

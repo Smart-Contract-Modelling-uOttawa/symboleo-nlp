@@ -115,49 +115,52 @@
       <div class="modal-body">
         <div id="contract-sym">
           <div>
-            <strong>Domain Model</strong>
+            <span>Domain {{contract.sym.domain_id}}</span>
             {% for x in contract.sym.domain_objects %}
-            <div>- {{x}}</div>
+            <div>&nbsp; {{x}}</div>
             {% endfor %}
           </div>
+          <span>endDomain</span>
+          <br/>
           <br/>
           <div>
-            <strong>Contract Spec</strong>
-            <div>Contract(
+            <div>Contract {{contract.sym.id}} (
               {% for x in contract.sym.parameters %}
               <div>&nbsp; {{x}},</div>
               {% endfor %}
             )</div>
             <div>
-              <strong>Declarations</strong>
+              <span>Declarations</span>
               {% for x in contract.sym.declarations %}
-              <div>- {{x}}</div>
+              <div>&nbsp; {{x}}</div>
               {% endfor %}
             </div>
             <br/>
     
             <div>
-              <strong>Obligations</strong>
+              <span>Obligations</span>
               {% for x in contract.sym.obligations %}
-              <div>- {{x}}</div>
+              <div>&nbsp; {{x}}</div>
               {% endfor %}
             </div>
             <br/>
     
             <div>
-              <strong>Surviving Obligations</strong>
+              <span>Surviving Obligations</span>
               {% for x in contract.sym.surviving_obligations %}
-              <div>- {{x}}</div>
+              <div>&nbsp; {{x}}</div>
               {% endfor %}
             </div>
             <br/>
     
             <div>
-              <strong>Powers</strong>
+              <span>Powers</span>
               {% for x in contract.sym.powers %}
-              <div>- {{x}}</div>
+              <div>&nbsp; {{x}}</div>
               {% endfor %}
             </div>
+            <br/>
+            <span>endContract</span>
     
           </div>
         </div>
