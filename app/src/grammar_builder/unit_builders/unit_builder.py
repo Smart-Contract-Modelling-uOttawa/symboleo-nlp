@@ -4,7 +4,7 @@ from app.classes.units.input_unit import InputUnit
 from app.classes.units.all_units import unit_type_dict, UnitType
 
 class IBuildUnit:
-    def build(self, unit_name: str, contract: ISymboleoContract, prev_unit: str = None) -> InputUnit:
+    def build(self, unit_name: str, contract: ISymboleoContract) -> InputUnit:
         raise NotImplementedError()
 
 

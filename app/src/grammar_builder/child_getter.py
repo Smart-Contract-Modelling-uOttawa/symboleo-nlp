@@ -20,7 +20,7 @@ class ChildGetter(IGetChildren):
         for x in node.children:
             unit_type = UnitType[x.name]
             op = self.__dict[unit_type]
-            next_result = op.build(x.name, contract, prev_unit = node.name)
+            next_result = op.build(x.name, contract)
             results.append(next_result)
 
         return results

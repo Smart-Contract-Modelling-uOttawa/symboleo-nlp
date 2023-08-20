@@ -8,9 +8,9 @@ from app.src.grammar_builder.unit_builders.unit_builder import IBuildUnit
 
 class ContractActionUB(IBuildUnit):
 
-    def build(self, unit_name: str, contract: ISymboleoContract, prev_unit: str = None) -> InputUnit:
+    def build(self, unit_name: str, contract: ISymboleoContract) -> InputUnit:
         #verbs = ['activate', 'terminate']
-        opts = ['activating', 'activates', 'activated', 'terminated' 'terminating', 'terminates', 'terminated']
+        opts = ['activating', 'activates', 'activated', 'terminated', 'terminating', 'terminates', 'terminated']
 
         #opts = [str(x.value).lower() for x in ContractEventName]            
         return ContractActionUnit(opts)
