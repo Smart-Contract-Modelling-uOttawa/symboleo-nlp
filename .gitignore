@@ -8,6 +8,8 @@ lib/
 
 symboleo-env/
 sym-env/
+sym-env2/
+sym-env3/
 
 # Cache files from simple_cache
 *.cache

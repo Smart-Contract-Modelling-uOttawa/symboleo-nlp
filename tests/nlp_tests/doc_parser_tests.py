@@ -22,7 +22,9 @@ class DocParserTests(unittest.TestCase):
             result = self.sut.parse(x)
 
             # print(x)
+            # print('\n\nRESULT')
             # result.print_me()
+            # print('\n\nEXP')
             # exp_val.print_me()
 
             self.assertEqual(result, exp_val)

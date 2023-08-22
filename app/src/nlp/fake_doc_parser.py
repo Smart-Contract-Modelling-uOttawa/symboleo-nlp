@@ -32,7 +32,7 @@ class FakeDocParser(IParseDoc):
             'the original digital photo files': NlpDoc([
                 DocUnit('the', 'DT', 'det', 'files'),
                 DocUnit('original', 'JJ', 'amod', 'files'),
-                DocUnit('digital', 'JJ', 'amod', 'photo'),
+                DocUnit('digital', 'JJ', 'amod', 'files'),
                 DocUnit('photo', 'NN', 'compound', 'files'),
                 DocUnit('files', 'NNS', 'ROOT', 'files'),
             ]),
