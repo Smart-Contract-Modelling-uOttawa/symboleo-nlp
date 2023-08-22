@@ -16,8 +16,6 @@ class DomainProp:
 
 
 class IDomainObject:
-    def to_obj(self):
-        raise NotImplementedError()
     def to_sym(self):
         raise NotImplementedError()
     
@@ -39,9 +37,6 @@ class DomainObject(IDomainObject):
     def __eq__(self, other: DomainObject) -> bool:
         return self.name == other.name and \
             ClassHelpers.lists_eq(self.props, other.props, 'key')
-    
-    def to_obj(self):
-        return self.name
     
     def to_sym(self):
         if self.is_alias:
@@ -73,15 +68,16 @@ class DomainEvent(DomainObject):
     def __init__(self, name: str, props: List[DomainProp]):
         super().__init__('isAn Event', name, props)
     
-    def to_obj(self):
-        return VariableEvent(self.name)
-    
 
 class DomainEnum:
     def __init__(self, name:str, enum_items: List[str]):
         self.name = name
         self.enum_items = enum_items
-    
+
+    def __eq__(self, __value: DomainEnum) -> bool:
+        return self.name == __value.name and \
+            ClassHelpers.simple_lists_eq(self.enum_items, __value.enum_items)
+
     def to_sym(self):
         result = f'{self.name} isAn Enumeration'
         item_syms = ', '.join(self.enum_items)

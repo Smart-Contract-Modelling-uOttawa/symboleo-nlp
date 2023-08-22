@@ -1,5 +1,6 @@
+from app.classes.units.unit_variety import UnitVariety
 from app.classes.units.input_unit import InputUnit
-from app.classes.units.unit_type import UnitType, UnitVariety
+from app.classes.units.unit_type import UnitType
 
 class DateUnit(InputUnit):
     unit_type = UnitType.DATE

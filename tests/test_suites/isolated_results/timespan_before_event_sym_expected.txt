@@ -16,17 +16,11 @@ Declarations
   evt_deliver_materials: DeliverMaterials;
   evt_party_happen: PartyHappen with happening_subject := party;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_deliver_materials: O(sponsor, stadium, true, WhappensBefore(evt_deliver_materials, Date.add(evt_party_happen, -2, days)));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

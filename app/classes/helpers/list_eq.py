@@ -6,7 +6,6 @@ class ClassHelpers:
         if len(list1) != len(list2):
             return False
         
-        # Problem is they aren't sorted...
         s1 = sorted(list1, key=operator.attrgetter(key))
         s2 = sorted(list2, key=operator.attrgetter(key))
         
@@ -32,7 +31,6 @@ class ClassHelpers:
         if len(list1) != len(list2):
             return False
         
-        # Problem is they aren't sorted...
         s1 = sorted(list1)
         s2 = sorted(list2)
 

@@ -51,7 +51,6 @@ unit_type_dict: Dict[UnitType, Type[InputUnit]] = {
     UnitType.NOTICE_EVENT: NoticeEventUnit,
     UnitType.NOTICE_FROM: NoticeFromUnit,
     UnitType.NOTIFIER: NotifierUnit,
-    UnitType.VERB: VerbUnit,
     UnitType.TRANSITIVE_VERB: TransitiveVerbUnit,
     UnitType.INTRANSITIVE_VERB: IntransitiveVerbUnit,
     UnitType.LINKING_VERB: LinkingVerbUnit,

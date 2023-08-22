@@ -12,17 +12,11 @@ Declarations
   professional: PartyB;
   evt_cease_advertising: CeaseAdvertising;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_cease_advertising: O(company, professional, true, Happens(evt_cease_advertising));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

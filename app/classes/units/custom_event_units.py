@@ -1,5 +1,6 @@
+from app.classes.units.unit_variety import UnitVariety
 from app.classes.units.input_unit import InputUnit
-from app.classes.units.unit_type import UnitType, UnitVariety
+from app.classes.units.unit_type import UnitType
 
 class PrepUnit(InputUnit):
     unit_type = UnitType.PREP_PHRASE
@@ -21,22 +22,17 @@ class DobjUnit(InputUnit):
     unit_var = UnitVariety.DYNAMIC
     prompt = 'Direct Object'
 
-class VerbUnit(InputUnit):
-    unit_type = UnitType.VERB
-    unit_var = UnitVariety.DYNAMIC
-    prompt = 'Verb'
-
-class TransitiveVerbUnit(VerbUnit):
+class TransitiveVerbUnit(InputUnit):
     unit_type = UnitType.TRANSITIVE_VERB
     unit_var = UnitVariety.DYNAMIC
     prompt = 'Transitive Verb'
 
-class IntransitiveVerbUnit(VerbUnit):
+class IntransitiveVerbUnit(InputUnit):
     unit_type = UnitType.INTRANSITIVE_VERB
     unit_var = UnitVariety.DYNAMIC
     prompt = 'Intransitive Verb'
 
-class LinkingVerbUnit(VerbUnit):
+class LinkingVerbUnit(InputUnit):
     unit_type = UnitType.LINKING_VERB
     unit_var = UnitVariety.DYNAMIC
     prompt = 'Linking Verb'

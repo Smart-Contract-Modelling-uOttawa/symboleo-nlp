@@ -1,11 +1,5 @@
 from enum import Enum
 
-class UnitVariety:
-    DYNAMIC = 'DYNAMIC'
-    STATIC = 'STATIC'
-    EMPTY = 'EMPTY'
-
-
 class UnitType(Enum):
     ADVERB = 'ADVERB'
     AFTER = 'AFTER'
@@ -45,13 +39,10 @@ class UnitType(Enum):
     NOTIFIER = 'NOTIFIER'
     OF = 'OF'
     ONCE = 'ONCE'
-    POWER_ACTION = 'POWER_ACTION'
-    POWER_SUBJECT = 'POWER_SUBJECT'
     PREDICATE = 'PREDICATE'
     PREP_PHRASE = 'PREP_PHRASE'
     PRIOR_TO = 'PRIOR_TO'
     ROOT = 'ROOT'
-    STANDARD_EVENT = 'STANDARD_EVENT'
     SUBJECT = 'SUBJECT'
     THEN = 'THEN'
     THROUGHOUT = 'THROUGHOUT'
@@ -64,11 +55,7 @@ class UnitType(Enum):
     UNTIL = 'UNTIL'
     UNLESS = 'UNLESS'
     UPON = 'UPON'
-    VERB = 'VERB'
-    VERB_PHRASE = 'VERB_PHRASE'
     WHEN = 'WHEN'
     WITH = 'WITH'
     WITHIN = 'WITHIN'
     WITHOUT = 'WITHOUT'
-
-    # Time units

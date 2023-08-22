@@ -12,17 +12,11 @@ Declarations
   sponsor: PartyB;
   evt_enable_sponsorship: EnableSponsorship;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_no_sponsorship: O(charity, sponsor, true, not HappensWithin(evt_enable_sponsorship, Interval(ob_no_sponsorship_date, ob_no_sponsorship_date2)));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

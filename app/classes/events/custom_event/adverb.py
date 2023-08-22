@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 from typing import List
 
@@ -23,12 +24,12 @@ class Adverb:
         self.adverb_str = adverb_str
         self.adverb_types = adverb_types
     
-    def __eq__(self, __value: object) -> bool:
+    def __eq__(self, __value: Adverb) -> bool:
         return self.adverb_str == __value.adverb_str and \
             ClassHelpers.simple_lists_eq(self.adverb_types, __value.adverb_types)
 
 
-# These were generated using ChatGPT (Limitation) - not perfect
+# These were generated using ChatGPT 
 class AdverbDict:
     adverb_type_dict = {
         AdverbType.TIME: ['yesterday', 'today', 'tomorrow', 'now', 'soon', 'later', 'early', 'late', 'before', 'after', 'already'],

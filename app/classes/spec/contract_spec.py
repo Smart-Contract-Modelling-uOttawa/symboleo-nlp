@@ -36,9 +36,6 @@ class ContractSpec:
             ClassHelpers.dicts_eq(self.obligations, other.obligations) and \
             ClassHelpers.dicts_eq(self.surviving_obligations, other.surviving_obligations) and \
             ClassHelpers.dicts_eq(self.powers, other.powers)
-            #ClassHelpers.lists_eq(self.preconditions, other.preconditions, 'name') and \
-            #ClassHelpers.lists_eq(self.postconditions, other.postconditions, 'name') and \
-            #ClassHelpers.lists_eq(self.constraints, other.constraints, 'name') and \
             
             
     def to_sym(self):
@@ -50,13 +47,13 @@ class ContractSpec:
         for x in self.declarations:
             result += f'  {self.declarations[x].to_sym()}\n'
 
-        result += '\nPreconditions\n'
-        for x in self.preconditions:
-            result += f'  {x.to_sym()};\n'
+        # result += '\nPreconditions\n'
+        # for x in self.preconditions:
+        #     result += f'  {x.to_sym()};\n'
 
-        result += '\nPostconditions\n'
-        for x in self.postconditions:
-            result += f'  {x.to_sym()};\n'
+        # result += '\nPostconditions\n'
+        # for x in self.postconditions:
+        #     result += f'  {x.to_sym()};\n'
 
         result += '\nObligations\n'
         for x in self.obligations:
@@ -70,9 +67,9 @@ class ContractSpec:
         for x in self.powers:
             result += f'  {self.powers[x].to_sym()}\n'
 
-        result += '\nConstraints\n'
-        for x in self.constraints:
-            result += f'  {x.to_sym()};\n'
+        # result += '\nConstraints\n'
+        # for x in self.constraints:
+        #     result += f'  {x.to_sym()};\n'
 
         result += '\nendContract'
         return result

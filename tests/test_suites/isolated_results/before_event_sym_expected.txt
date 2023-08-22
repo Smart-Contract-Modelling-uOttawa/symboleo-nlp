@@ -16,17 +16,11 @@ Declarations
   evt_obtain_rma_number: ObtainRmaNumber;
   evt_return_product: ReturnProduct with returning_agent := distributor, returning_target := cisco, returned_object := product;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_obtain_rma_number: O(distributor, cisco, true, WhappensBeforeE(evt_obtain_rma_number, evt_return_product));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

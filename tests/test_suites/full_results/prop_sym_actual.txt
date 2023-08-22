@@ -22,10 +22,6 @@ Declarations
   evt_reimburse_termination: Reimburse with from := owner, to := manager, amount := "any expenses incurred or approved prior to the date of termination";
   evt_legal_proceedings_necessary: LegalProceedingsNecessary;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_legal_proceedings: O(manager, owner, Happens(evt_legal_proceedings_necessary), Happens(evt_handle_legal_proceedings));
   ob_disburse_termination: O(manager, owner, Happens(Terminated(self)), WhappensBefore(evt_disburse_termination, Date.add(Terminated(self), 3, days)));
@@ -34,7 +30,5 @@ Obligations
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

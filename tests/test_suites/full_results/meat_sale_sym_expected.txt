@@ -23,12 +23,6 @@ Declarations
   evt_pay: Pay with amount := 100, currency := Currency(CAD), from := buyer, to := seller;
   evt_disclose: Disclose;
 
-Preconditions
-  IsOwner(goods, seller);
-
-Postconditions
-  IsOwner(goods, buyer) and not IsOwner(goods, seller);
-
 Obligations
   ob_delivery: O(seller, buyer, true, ShappensBefore(evt_deliver, "March 18, 2024"));
   ob_payment: O(buyer, seller, true, ShappensBefore(evt_pay, "March 30, 2024"));
@@ -42,14 +36,5 @@ Powers
   pow_suspend_delivery: P(seller, buyer, Happens(Violated(obligations.ob_payment)), Suspended(obligations.ob_delivery));
   pow_resume_ob_delivery: HappensWithin(Fulfilled(obligations.ob_late_payment), Suspension(obligations.ob_delivery)) -> P(buyer, seller, true, Resumed(obligations.ob_delivery));
   pow_terminate_contract: not WhappensBefore(Fulfilled(obligations.ob_delivery), Date.add(evt_delivery.delivery_due_date, 10, days)) -> P(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
-
-Constraints
-  not IsEqual(buyer, seller);
-  CannotBeAssigned(suspendDelivery);
-  CannotBeAssigned(resumeDelivery);
-  CannotBeAssigned(terminateContract);
-  CannotBeAssigned(delivery);
-  CannotBeAssigned(payment);
-  CannotBeAssigned(latePayment);
 
 endContract

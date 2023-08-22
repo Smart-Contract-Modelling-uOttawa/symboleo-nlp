@@ -16,10 +16,6 @@ Declarations
   approval: Approval;
   evt_provide_approval: ProvideApproval with providing_agent := partyA, provided_object := approval;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_damages: O(partyA, partyB, true, Happens(evt_pay_damages));
 
@@ -27,7 +23,5 @@ Surviving Obligations
 
 Powers
   pow_terminate_ob_pay_damages: Happens(evt_provide_approval) -> P(partyB, partyA, true, Terminated(obligations.ob_pay_damages));
-
-Constraints
 
 endContract

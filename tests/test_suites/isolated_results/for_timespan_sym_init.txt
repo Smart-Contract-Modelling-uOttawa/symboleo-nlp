@@ -12,17 +12,11 @@ Declarations
   licensor: PartyB;
   evt_cease_specifying_mark: CeaseSpecifyingMark;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_keep_using_mark: O(licensee, licensor, true, not Happens(evt_cease_specifying_mark));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

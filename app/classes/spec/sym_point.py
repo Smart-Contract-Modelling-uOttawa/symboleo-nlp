@@ -79,17 +79,4 @@ class Point(SymPoint):
     def to_sym(self):
         return self.point_expression.to_sym()
 
-class StartPoint(PointExpression):
-    def __eq__(self, other) -> bool:
-        return isinstance(other, StartPoint)
-
-    def to_sym(self):
-        return 'START'
-    
-class Infinity(PointExpression):
-    def __eq__(self, other) -> bool:
-        return isinstance(other, Infinity)
-
-    def to_sym(self):
-        return 'INF'
 

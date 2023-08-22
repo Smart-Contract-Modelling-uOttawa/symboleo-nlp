@@ -5,14 +5,10 @@ from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.declaration import RoleDeclaration, AssetDeclaration, EventDeclaration, DeclarationProp
 from app.classes.spec.predicate_function import *
 from app.classes.spec.power_function import *
-from app.classes.spec.sym_event import VariableEvent, ObligationEvent, ObligationEventName, ContractEvent, ContractEventName
-from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent, StartPoint, Infinity
-from app.classes.spec.point_function import PointFunction, TimeUnit
-from app.classes.spec.sym_situation import ObligationState, ObligationStateName
-from app.classes.spec.sym_interval import Interval, IntervalFunction
+from app.classes.spec.sym_event import VariableEvent, ObligationEvent, ObligationEventName
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter as Parm
 from app.classes.spec.other_predicates import *
-from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom, PAtomStringLiteral, PComparisonOp
+from app.classes.spec.proposition import PAnd, PComparison, PEquality, Proposition, PNegAtom
 
 arg_values = {
      'buyer_id': 'buyer',

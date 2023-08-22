@@ -18,11 +18,8 @@ class DeclarationProp:
     def __eq__(self, other: DeclarationProp) -> bool:
         return self.key == other.key and self.value == other.value and self.type == other.type
     
-    def print_me(self):
+    def print_me(self): # pragma: no cover
         print(f'-- {self.key} ({self.type}): {self.value}')
-
-    def to_string(self):
-        return f'{self.key} ({self.type}): {self.value}'
 
     def to_sym(self):
         return f'{self.key} := {self.value}'
@@ -36,6 +33,7 @@ class IDeclaration:
         raise NotImplementedError()
     def to_sym(self):
         raise NotImplementedError()
+
 
 class Declaration(IDeclaration):
     def __init__(self, name: str, type: str, base_type: DeclarationType, props: List[DeclarationProp] = None, id:str = None):
@@ -56,7 +54,7 @@ class Declaration(IDeclaration):
         return self.id
 
 
-    def print_me(self):
+    def print_me(self): # pragma: no cover
         print(f'\n- id: {self.id}')
         print(f'- name: {self.name}')
         print(f'- type: {self.type}')
@@ -84,9 +82,11 @@ class EventDeclaration(Declaration):
     def to_obj(self):
         return VariableEvent(self.name)
         
+
 class AssetDeclaration(Declaration):
     def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):
         super().__init__(name, type, DeclarationType.ASSET.value, props, id)
+
 
 class RoleDeclaration(Declaration):
     def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from app.classes.spec.proposition import PAtom
 from app.classes.spec.predicate_function import PredicateFunction
-from app.classes.spec.other_predicates import OtherFunction
 
 # In Symboleo, PAtomicExpression has many subclasses, which allow for recursive specification
 # I am limiting recursion in this implementation
@@ -25,14 +24,14 @@ class PAtomPredicate(PAtom):
         return self.predicate_function.to_sym()
 
 
-class PAtomFunction(PAtom):
-    function: OtherFunction()
+# class PAtomFunction(PAtom):
+#     function: OtherFunction()
 
-    def __init__(self, function: OtherFunction):
-        self.function = function
+#     def __init__(self, function: OtherFunction):
+#         self.function = function
     
-    def to_sym(self):
-        return super().to_sym()
+#     def to_sym(self):
+#         return super().to_sym()
 
 
 class PAtomPredicateTrueLiteral(PAtom):
@@ -45,7 +44,7 @@ class PAtomPredicateTrueLiteral(PAtom):
 
 class PAtomPredicateFalseLiteral(PAtom):
     def __eq__(self, other: PAtomPredicateFalseLiteral) -> bool:
-        return True
+        return type(other) == PAtomPredicateFalseLiteral
     
     def to_sym(self):
         return 'false'

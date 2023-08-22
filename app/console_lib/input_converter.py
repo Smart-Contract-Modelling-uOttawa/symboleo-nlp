@@ -1,5 +1,5 @@
 from app.classes.operations.user_input import UserInput
-from app.classes.units.unit_type import UnitVariety
+from app.classes.units.unit_variety import UnitVariety
 from app.classes.units.input_unit import InputUnit
 
 class IConvertNodeToInput:

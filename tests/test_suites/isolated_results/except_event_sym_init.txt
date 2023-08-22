@@ -12,17 +12,11 @@ Declarations
   partyB: PartyB;
   evt_pay_damages: PayDamages;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_damages: O(partyA, partyB, true, Happens(evt_pay_damages));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

@@ -31,10 +31,6 @@ Declarations
   evt_provide_authorization: ProvideAuthorization with providing_agent := landlord, provided_object := authorization, provide_detail := pets;
   evt_pay_deposit_late: PayDepositLate with paying_agent := renter, paid_object := security_deposit;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_deposit: O(renter, landlord, true, WhappensBefore(evt_pay_deposit, Date.add(evt_occupy_property, 2, weeks)));
   ob_pay_extra: O(renter, landlord, Happens(evt_pay_deposit_late), Happens(evt_pay_extra));
@@ -44,7 +40,5 @@ Surviving Obligations
 
 Powers
   pow_terminate_ob_no_pets: Happens(evt_provide_authorization) -> P(landlord, renter, true, Terminated(obligations.ob_no_pets));
-
-Constraints
 
 endContract

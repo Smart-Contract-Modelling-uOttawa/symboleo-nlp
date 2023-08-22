@@ -1,6 +1,6 @@
 from typing import List
 from app.classes.pattern_classes.pattern_variables import PatternVariable
-from app.classes.grammar.pattern_values import *
+from app.classes.grammar.full_grammar import *
 from app.classes.units.all_units import UnitType
 
 from app.src.pattern_builder.recursive_pattern_checker import ICheckRecursivePattern
@@ -22,7 +22,7 @@ class SinglePatternChecker(ICheckSinglePattern):
         # Iterate through the target_set checking the pattern variables
         ## If something doesn't match up, then return false
         for pattern_variable in target_set:
-            pattern_obj = full_grammar[pattern_variable]
+            pattern_obj = FULL_GRAMMAR[pattern_variable]
             check, unit_ind = self.__recursive_checker.check(set_to_check, unit_ind, pattern_obj)
 
             if not check:

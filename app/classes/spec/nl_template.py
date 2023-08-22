@@ -22,7 +22,7 @@ class NLTemplate:
     def __eq__(self, other: NLTemplate) -> bool:
         return ClassHelpers.dicts_eq(self.template_dict, other.template_dict)
 
-    def stringify(self):
+    def stringify(self): # pragma: no cover
         result = ''
         for x in self.template_dict:
             str_val = self.template_dict[x].str_val

@@ -36,10 +36,6 @@ Declarations
   disclosure: Disclosure;
   evt_authorize_disclosure: AuthorizeDisclosure with authorizing_agent := client, authorized_object := disclosure;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_send_invoice: Happens(evt_complete_services) -> O(contractor, client, true, Happens(evt_send_invoice));
   ob_pay_invoice: O(client, contractor, true, WhappensBefore(evt_pay_invoice, Date.add(evt_send_invoice, 10, days)));
@@ -51,7 +47,5 @@ Surviving Obligations
 
 Powers
   pow_terminate_ob_not_disclose: Happens(evt_authorize_disclosure) -> P(client, contractor, true, Terminated(obligations.ob_not_disclose));
-
-Constraints
 
 endContract

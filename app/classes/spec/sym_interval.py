@@ -52,9 +52,3 @@ class Interval(SymInterval):
     
     def to_sym(self):
         return self.interval_expression.to_sym()
-
-
-# Added to handle certain dynamic situations. May not need it?
-class Never(SymInterval):
-    def to_sym(self):
-        return 'NEVER'

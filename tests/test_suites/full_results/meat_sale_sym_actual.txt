@@ -27,12 +27,6 @@ Declarations
   payment: Payment;
   evt_miss_payment: MissPayment with missing_agent := buyer, missed_object := payment;
 
-Preconditions
-  IsOwner(goods, seller);
-
-Postconditions
-  IsOwner(goods, buyer) and not IsOwner(goods, seller);
-
 Obligations
   ob_delivery: O(seller, buyer, true, ShappensBefore(evt_deliver, ob_delivery_date));
   ob_payment: O(buyer, seller, true, ShappensBefore(evt_pay, ob_payment_date));
@@ -45,14 +39,5 @@ Surviving Obligations
 Powers
   pow_suspend_delivery: P(seller, buyer, true, Suspended(obligations.ob_delivery));
   pow_terminate_contract: false -> P(buyer, seller, not Happens(Violated(obligations.ob_delivery)), Terminated(self));
-
-Constraints
-  not IsEqual(buyer, seller);
-  CannotBeAssigned(suspendDelivery);
-  CannotBeAssigned(resumeDelivery);
-  CannotBeAssigned(terminateContract);
-  CannotBeAssigned(delivery);
-  CannotBeAssigned(payment);
-  CannotBeAssigned(latePayment);
 
 endContract

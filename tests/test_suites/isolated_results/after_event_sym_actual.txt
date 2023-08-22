@@ -16,17 +16,11 @@ Declarations
   evt_credit_dividends: CreditDividends with crediting_agent := partyB;
   evt_agent_insolvent: AgentInsolvent with agent := partyA;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_dividends: O(partyA, partyB, WhappensBeforeE(evt_agent_insolvent, evt_credit_dividends), Happens(evt_pay_dividends));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

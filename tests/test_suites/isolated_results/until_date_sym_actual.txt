@@ -14,17 +14,11 @@ Declarations
   product: Product;
   evt_unquarantine_product: UnquarantineProduct with agent := shi_farms, product := product;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_keep_quarantine: O(shi_farms, partyB, true, not ShappensBefore(evt_unquarantine_product, delivery_date));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

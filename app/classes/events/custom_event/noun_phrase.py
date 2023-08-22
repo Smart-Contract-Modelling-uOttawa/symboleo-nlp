@@ -56,6 +56,7 @@ class NounPhrase:
         print(f'- {self.asset_id}')
         print(f'- {self.adjs}')
 
+
     def to_text(self, text_type: NPTextType = NPTextType.ORIGINAL):
         if text_type == NPTextType.ORIGINAL:
             return self.str_val

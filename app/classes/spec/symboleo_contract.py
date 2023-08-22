@@ -1,18 +1,13 @@
 from __future__ import annotations
 from typing import List
-import re
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.domain_model import DomainModel
-from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject, DomainProp
-from app.classes.spec.norm import INorm, Obligation, Norm
+from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainObject
+from app.classes.spec.norm import INorm, Norm
 from app.classes.spec.norm_config import NormConfig
-from app.classes.spec.predicate_function import PredicateFunction
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
-from app.classes.spec.declaration import Declaration, EventDeclaration
-from app.classes.spec.sym_event import SymEvent, VariableEvent
-from app.classes.spec.p_atoms import PAtomPredicate
-from app.classes.spec.nl_template import NLTemplate, TemplateObj
-from app.classes.spec.parameter_config import ParameterConfig
+from app.classes.spec.declaration import Declaration
+from app.classes.spec.nl_template import NLTemplate
 
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 

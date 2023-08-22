@@ -2,11 +2,10 @@ from typing import List, Dict
 from app.classes.pattern_classes.pattern_variables import PatternVariable
 
 from app.classes.spec.sym_event import SymEvent
-from app.classes.events.custom_event.custom_event import CustomEvent, ConjType
+from app.classes.events.custom_event.custom_event import CustomEvent
 
 class PatternClass:
     sequence: List[PatternVariable] = []
-    conj_type: ConjType = ConjType.BASIC
 
     def __init__(self, val_dict = None) -> None:
         self.keyword = ''

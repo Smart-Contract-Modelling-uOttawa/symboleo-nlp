@@ -1,16 +1,9 @@
+from app.classes.grammar.g_and import GAnd
+from app.classes.grammar.g_or import GOr
 from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.units.all_units import UnitType
 
-class GOr:
-    def __init__(self, *args):
-        self.args = args
-
-class GAnd:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-
-full_grammar = {
+FULL_GRAMMAR = {
     PV.P_BEFORE_S: GOr(UnitType.BEFORE, UnitType.BY), 
     PV.P_BEFORE_T: GOr(UnitType.BEFORE, UnitType.PRIOR_TO), 
     PV.P_BEFORE_E: GOr(UnitType.BEFORE, UnitType.PRIOR_TO), 
@@ -38,27 +31,66 @@ full_grammar = {
     PV.WITHIN: UnitType.WITHIN,
     PV.UNTIL: UnitType.UNTIL,
     
-    PV.TIMESPAN: GAnd(UnitType.TIMESPAN, GAnd(UnitType.TIME_VALUE, UnitType.TIME_UNIT)),
+    PV.TIMESPAN: GAnd(
+        UnitType.TIMESPAN, 
+        GAnd(
+            UnitType.TIME_VALUE, 
+            UnitType.TIME_UNIT
+        )
+    ),
 
     PV.DATE: UnitType.DATE,
     PV.DATE2: UnitType.DATE,
     PV.TIME_PERIOD: UnitType.TIME_PERIOD,
     
-    PV.EVENT: GAnd(UnitType.EVENT, GOr(PV.CUSTOM_EVENT, PV.CONTRACT_EVENT)),
-    PV.CUSTOM_EVENT: GAnd(UnitType.CUSTOM_EVENT, GAnd(UnitType.SUBJECT, PV.VERB_PHRASE)),
-    PV.CONTRACT_EVENT: GAnd(UnitType.CONTRACT_EVENT, GAnd(UnitType.CONTRACT_SUBJECT, UnitType.CONTRACT_ACTION)),
-    PV.NOTICE_EVENT: GAnd(UnitType.NOTICE_EVENT, GAnd(UnitType.NOTICE_FROM, UnitType.NOTIFIER)),
+    PV.EVENT: GAnd(
+        UnitType.EVENT, 
+        GOr(
+            PV.CUSTOM_EVENT, 
+            PV.CONTRACT_EVENT
+        )
+    ),
+
+    PV.CUSTOM_EVENT: GAnd(
+        UnitType.CUSTOM_EVENT, 
+        GAnd(
+            UnitType.SUBJECT,
+            PV.VERB_PHRASE
+        )
+    ),
+    
+    PV.CONTRACT_EVENT: GAnd(
+        UnitType.CONTRACT_EVENT, 
+        GAnd(
+            UnitType.CONTRACT_SUBJECT, 
+            UnitType.CONTRACT_ACTION
+        )
+    ),
+
+    PV.NOTICE_EVENT: GAnd(
+        UnitType.NOTICE_EVENT, 
+        GAnd(
+            UnitType.NOTICE_FROM, 
+            UnitType.NOTIFIER
+        )
+    ),
 
     PV.VERB_PHRASE: GOr(PV.IVP, PV.TVP, PV.LVP),
     PV.IVP: GAnd(UnitType.INTRANSITIVE_VERB, PV.ADV_AND_PP),
     PV.TVP: GAnd(UnitType.TRANSITIVE_VERB, PV.DOBJ_PHRASE),
-    PV.LVP: GAnd(
-        UnitType.LINKING_VERB, 
-        PV.PRED_PHRASE
+    PV.LVP: GAnd(UnitType.LINKING_VERB, PV.PRED_PHRASE),
+    PV.DOBJ_PHRASE: GAnd(UnitType.DOBJ, PV.ADV_AND_PP),
+
+    PV.ADV_AND_PP: GOr(
+        UnitType.FINAL_NODE, 
+        GAnd(
+            UnitType.ADVERB, 
+            UnitType.PREP_PHRASE
+        ), 
+        UnitType.PREP_PHRASE
     ),
     
-    PV.DOBJ_PHRASE: GAnd(UnitType.DOBJ, PV.ADV_AND_PP),
-    PV.ADV_AND_PP: GOr(UnitType.FINAL_NODE, GAnd(UnitType.ADVERB, UnitType.PREP_PHRASE), UnitType.PREP_PHRASE),
+    
     PV.PRED_PHRASE: GAnd(
         UnitType.PREDICATE, 
         GOr(

@@ -13,10 +13,6 @@ Declarations
   evt_return_info_a: ReturnInfo with agent := partyA, receiver := partyB;
   evt_return_info_b: ReturnInfo with agent := partyB, receiver := partyA;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_return_info_a: Happens(Terminated(self)) -> O(partyA, partyB, true, Happens(evt_return_info_a));
   ob_return_info_b: Happens(Terminated(self)) -> O(partyB, partyA, true, Happens(evt_return_info_b));
@@ -24,7 +20,5 @@ Obligations
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

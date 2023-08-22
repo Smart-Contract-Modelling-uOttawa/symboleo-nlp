@@ -16,17 +16,11 @@ Declarations
   project_components: Components;
   evt_complete_components: CompleteComponents with completing_agent := prime, completed_object := project_components;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_keep_funding_loans: O(prime, shareholder, true, not WhappensBeforeE(evt_stop_funding_loans, evt_complete_components));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

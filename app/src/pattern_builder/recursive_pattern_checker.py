@@ -1,6 +1,8 @@
 from typing import List, Tuple
-from app.classes.grammar.pattern_values import PV, UnitType
-from app.classes.grammar.pattern_values import GAnd, GOr, full_grammar
+from app.classes.grammar.g_and import GAnd
+from app.classes.grammar.g_or import GOr
+from app.classes.grammar.full_grammar import PV, UnitType
+from app.classes.grammar.full_grammar import FULL_GRAMMAR
 
 
 class ICheckRecursivePattern:
@@ -9,7 +11,7 @@ class ICheckRecursivePattern:
 
 class RecursivePatternChecker(ICheckRecursivePattern):
     def __init__(self):
-        self._tree = full_grammar
+        self._tree = FULL_GRAMMAR
 
 
     def check(self, units: List[UnitType], unit_ind: int, pattern_obj:any) -> Tuple[bool, int]:
@@ -34,7 +36,7 @@ class RecursivePatternChecker(ICheckRecursivePattern):
             return (False, unit_ind)
         
         elif isinstance(pattern_obj, PV):
-            return self.check(units, unit_ind, full_grammar[pattern_obj])
+            return self.check(units, unit_ind, FULL_GRAMMAR[pattern_obj])
 
         elif isinstance(pattern_obj, GAnd):
             check_a, next_ind = self.check(units, unit_ind, pattern_obj.a)

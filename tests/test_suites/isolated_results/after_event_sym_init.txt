@@ -14,17 +14,11 @@ Declarations
   evt_pay_dividends: PayDividends with paying_agent := partyA, paying_target := partyB, payment_method := cash;
   evt_credit_dividends: CreditDividends with crediting_agent := partyB;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_dividends: O(partyA, partyB, Happens(evt_credit_dividends), Happens(evt_pay_dividends));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

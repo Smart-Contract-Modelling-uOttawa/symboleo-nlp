@@ -1,9 +1,11 @@
 from typing import List, Type
+from app.classes.grammar.g_and import GAnd
+from app.classes.grammar.g_or import GOr
 
 from app.classes.grammar.grammar_node import GrammarNode
 from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
-from app.classes.grammar.pattern_values import full_grammar, UnitType, GOr, GAnd
+from app.classes.grammar.full_grammar import FULL_GRAMMAR, UnitType
 
 # Make a function here...
 from app.classes.pattern_classes.all_pattern_classes import *
@@ -28,7 +30,7 @@ class PatternTreeBuilder(IBuildPatternTrees):
             return [GrammarNode(next_obj.name, children)]
 
         elif isinstance(next_obj, PV):
-            return self._handle_grammar(full_grammar[next_obj], children)
+            return self._handle_grammar(FULL_GRAMMAR[next_obj], children)
 
         elif isinstance(next_obj, GOr):
             return [self._handle_grammar(x, children)[0] for x in next_obj.args]

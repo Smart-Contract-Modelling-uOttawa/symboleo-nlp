@@ -1,20 +1,14 @@
 from __future__ import annotations
 from typing import List
-from app.classes.events.conj_type import ConjType
-from app.classes.events.custom_event.noun_phrase import NPTextType
 
-from app.classes.events.base_event import BaseEvent
-
-from app.classes.events.custom_event.noun_phrase import NounPhrase
+from app.classes.events.custom_event.noun_phrase import NounPhrase, NPTextType
 from app.classes.events.custom_event.verb import Verb, VerbType
 from app.classes.events.custom_event.predicate import Predicate
 from app.classes.events.custom_event.adverb import Adverb
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
-
 from app.classes.helpers.list_eq import ClassHelpers
-from app.classes.helpers.case_converter import CaseConverter
 
-class CustomEvent(BaseEvent):
+class CustomEvent:
     def __init__(
         self, 
         subj: NounPhrase = None, 
@@ -85,6 +79,7 @@ class CustomEvent(BaseEvent):
             self.verb == other.verb and \
             self.adverb == other.adverb and \
             self.predicate == other.predicate and \
+            self.is_new == other.is_new and \
             ClassHelpers.lists_eq(self.pps, other.pps, 'pp_str')
 
 

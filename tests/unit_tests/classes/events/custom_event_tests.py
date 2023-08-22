@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import MagicMock
 from typing import List, Tuple
 
-from app.classes.events.conj_type import ConjType
 from app.classes.events.custom_event.custom_event import CustomEvent, Predicate
 
 from tests.helpers.test_objects import CustomEvents, NounPhrases, Verbs

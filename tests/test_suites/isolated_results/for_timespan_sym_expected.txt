@@ -12,17 +12,11 @@ Declarations
   licensor: PartyB;
   evt_cease_specifying_mark: CeaseSpecifyingMark;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_keep_using_mark: O(licensee, licensor, true, not HappensWithin(evt_cease_specifying_mark, Interval(Terminated(self), Date.add(Terminated(self), 24, months))));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

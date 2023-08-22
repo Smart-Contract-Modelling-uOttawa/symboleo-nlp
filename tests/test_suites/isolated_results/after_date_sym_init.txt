@@ -12,17 +12,11 @@ Declarations
   partyB: PartyB;
   evt_redeem_pin: RedeemPin;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_redeem_pin: O(partyA, partyB, true, not Happens(evt_redeem_pin));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

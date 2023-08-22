@@ -27,10 +27,6 @@ Declarations
   evt_delivery_processor: Delivery with agent := shi_farms, product := biomass, location := processor;
   evt_determine_analysis: DeterminesAnalysisRequired with agent := gridiron;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_payment: O(gridiron, shi_farms, Happens(Activated(self)), Happens(evt_pay));
   ob_quarantine: O(shi_farms, gridiron, Happens(evt_pay), Happens(evt_quarantine));
@@ -40,7 +36,5 @@ Obligations
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

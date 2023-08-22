@@ -12,17 +12,11 @@ Declarations
   cisco: Cisco;
   evt_obtain_rma_number: ObtainRmaNumber;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_obtain_rma_number: O(distributor, cisco, true, Happens(evt_obtain_rma_number));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

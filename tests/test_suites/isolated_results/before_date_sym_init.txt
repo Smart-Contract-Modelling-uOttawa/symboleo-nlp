@@ -12,17 +12,11 @@ Declarations
   grantee: Grantee;
   evt_pay_fee: PayFee with payer := grantee, payee := grantor;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_fee: O(grantee, grantor, true, Happens(evt_pay_fee));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

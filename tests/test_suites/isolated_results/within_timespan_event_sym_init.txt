@@ -12,17 +12,11 @@ Declarations
   client: Client;
   evt_complete_services: CompleteServices;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_complete: O(dolphin, client, true, Happens(evt_complete_services));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

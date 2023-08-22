@@ -31,10 +31,6 @@ Declarations
   party_analysis: Analysis;
   evt_mandate_analysis: MandateAnalysis with mandghting_agent := gridiron, mandt_object := party_analysis;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_payment: O(gridiron, shi_farms, Happens(Activated(self)), Happens(evt_pay));
   ob_quarantine: O(shi_farms, gridiron, Happens(evt_pay_farms), Happens(evt_quarantine));
@@ -44,7 +40,5 @@ Obligations
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

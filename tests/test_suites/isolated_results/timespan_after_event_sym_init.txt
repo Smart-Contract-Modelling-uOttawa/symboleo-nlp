@@ -12,17 +12,11 @@ Declarations
   cerus: PartyB;
   evt_pay_fees: PayFees;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_fees: O(cerus, porex, true, Happens(evt_pay_fees));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

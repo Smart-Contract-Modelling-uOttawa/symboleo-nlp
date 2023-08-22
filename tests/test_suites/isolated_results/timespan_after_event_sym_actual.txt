@@ -16,17 +16,11 @@ Declarations
   invoice_receipt: Receipt;
   evt_submit_receipt: SubmitReceipt with submitting_agent := porex, submitted_object := invoice_receipt, submitting_target := cerus;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_pay_fees: O(cerus, porex, true, WhappensBefore(evt_pay_fees, Date.add(evt_submit_receipt, 10, days)));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

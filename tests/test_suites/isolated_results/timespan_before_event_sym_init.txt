@@ -12,17 +12,11 @@ Declarations
   sponsor: PartyB;
   evt_deliver_materials: DeliverMaterials;
 
-Preconditions
-
-Postconditions
-
 Obligations
   ob_deliver_materials: O(sponsor, stadium, true, Happens(evt_deliver_materials));
 
 Surviving Obligations
 
 Powers
-
-Constraints
 
 endContract

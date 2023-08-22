@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List
-import json
-from app.classes.units.unit_type import UnitType, UnitVariety
+from app.classes.units.unit_variety import UnitVariety
+from app.classes.units.unit_type import UnitType
 
 class InputUnit: # pragma: no cover
     unit_type: UnitType = None
