@@ -13,6 +13,23 @@ class NounPhraseExtractorTests(unittest.TestCase):
         self.asset_type_extractor = IExtractAssetType()
         self.sut = NounPhraseExtractor(self.doc_parser, self.asset_type_extractor)
     
+    
+    def test_np_extractor_fail(self):
+        str_val = 'a b'
+        contract = ISymboleoContract()
+
+        nlp_doc = NlpDoc([
+            DocUnit('a', 'NN', 'ROOT', 'a'),
+            DocUnit('b', 'NN', 'ROOT', 'b'),
+        ])
+        self.doc_parser.parse = MagicMock(return_value=nlp_doc)
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.extract(str_val, contract)
+
+        self.assertTrue('Too many heads' in str(context.exception))
+
+
     def test_np_extractor1(self):
         str_val = 'the original digital photo files'
         contract = ISymboleoContract()

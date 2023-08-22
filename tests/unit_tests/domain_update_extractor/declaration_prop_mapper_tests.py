@@ -17,6 +17,7 @@ class DeclarationPropMapperTests(unittest.TestCase):
 
         self.assertEqual(subj_result, exp_subj_prop)
     
+
     def test_declaration_prop_mapper_subject_not_role(self):
         evt = CustomEvents.legal_proceedings()
 
@@ -30,6 +31,22 @@ class DeclarationPropMapperTests(unittest.TestCase):
         evt = CustomEvents.paying()
 
         exp_prop = DeclarationProp('paid_object', '100', 'Money') 
+        result = self.sut.map_dobject(evt.dobj, evt)
+
+        self.assertEqual(result, exp_prop)
+
+
+    def test_declaration_prop_mapper_dobject_contract(self):
+        evt = CustomEvents.contract_dobj()
+
+        result = self.sut.map_dobject(evt.dobj, evt)
+
+        self.assertIsNone(result)
+    
+    def test_declaration_prop_mapper_dobject_parm(self):
+        evt = CustomEvents.eating_parm()
+
+        exp_prop = DeclarationProp('test_value', '[TEST_VALUE]', 'String') 
         result = self.sut.map_dobject(evt.dobj, evt)
 
         self.assertEqual(result, exp_prop)

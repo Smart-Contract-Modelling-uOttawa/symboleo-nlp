@@ -1,5 +1,5 @@
 from app.classes.spec.domain_object import Asset
-from app.classes.spec.declaration import Declaration
+from app.classes.spec.declaration import RoleDeclaration, AssetDeclaration, EventDeclaration
 from app.classes.events.custom_event.noun_phrase import NounPhrase
 from app.classes.events.custom_event.prep_phrase import PrepPhrase
 from app.classes.events.custom_event.verb import Verb, VerbConjugations, VerbType
@@ -36,6 +36,7 @@ class NounPhrases:
 
     authorization = lambda: NounPhrase('authorization', 'authorization', asset_type='Authorization')
     phone = lambda: NounPhrase('the phone', 'phone', False, False, 'the', asset_type='Phone')
+    contract = lambda: NounPhrase('contract', 'contract', asset_type='Contract')
 
     def date_np(date_str):
         return NounPhrase(date_str, date_str, asset_type='Date')
@@ -124,6 +125,20 @@ class CustomEvents:
             PrepPhrase('on the phone', 'on', NounPhrases.phone())
         ]
     )
+    contract_dobj = lambda: CustomEvent(
+        subj = NounPhrases.bob(),
+        verb = Verbs.buys(),
+        dobj = NounPhrases.contract()
+    )
+    bob_complies = lambda: CustomEvent(
+        subj = NounPhrases.bob(),
+        verb = Verbs.complies(),
+    )
+    bob_happy = lambda: CustomEvent(
+        subj = NounPhrases.bob(),
+        verb = Verbs.become(),
+        predicate = Predicate('happy')
+    )
     
 
 
@@ -134,10 +149,10 @@ class Assets:
     property = lambda: Asset('Property', [])
 
 class AssetDeclarations:
-    legal_proceedings = lambda: Declaration('legal proceedings', 'LegalProceedings', 'assets', [])
-    credit_card = lambda: Declaration('credit card', 'CreditCard', 'assets', []) # PaymentMethod...?
-    pets = lambda: Declaration('pets', 'Pets', 'assets', []) # ??
-    hundred_dollars = lambda: Declaration('$100', 'Money', 'assets', [])
-    canada = lambda: Declaration('Canada', 'Country', 'assets', [])
-    property = lambda: Declaration('property', 'Property', 'assets', [])
-    pie = lambda: Declaration('apple_pie', 'Pie', 'assets', [])
+    legal_proceedings = lambda: AssetDeclaration('legal proceedings', 'LegalProceedings')
+    credit_card = lambda: AssetDeclaration('credit card', 'CreditCard') # PaymentMethod...?
+    pets = lambda: AssetDeclaration('pets', 'Pets') # ??
+    hundred_dollars = lambda: AssetDeclaration('$100', 'Money')
+    canada = lambda: AssetDeclaration('Canada', 'Country')
+    property = lambda: AssetDeclaration('property', 'Property')
+    pie = lambda: AssetDeclaration('apple_pie', 'Pie')

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import EventDeclaration, DeclarationProp
 
 from app.src.domain_update_extractor.event_declaration_mapper import EventDeclarationMapper
 from app.src.domain_update_extractor.declaration_prop_mapper import DeclarationPropMapper
@@ -11,7 +11,7 @@ from tests.helpers.test_objects import CustomEvents
 test_suite = [
     (
         CustomEvents.occupy_property(),
-        Declaration('evt_occupy', 'Occupy', 'events', [
+        EventDeclaration('evt_occupy', 'Occupy', [
             DeclarationProp('occupying_agent', 'renter', 'Role'),
             DeclarationProp('occupied_object', 'property', 'RentalProperty'),
         ])
@@ -19,7 +19,7 @@ test_suite = [
 
     (
         CustomEvents.abandon_property(),
-        Declaration('evt_abandon', 'Abandon', 'events', [
+        EventDeclaration('evt_abandon', 'Abandon', [
             DeclarationProp('abandonning_agent', 'renter', 'Role'),
             DeclarationProp('abandonned_object', 'property', 'RentalProperty'),
         ])
@@ -27,13 +27,13 @@ test_suite = [
 
     (
         CustomEvents.legal_proceedings(),
-        Declaration('evt_legal_proceedings_necessary', 'LegalProceedingsNecessary', 'events', [
+        EventDeclaration('evt_legal_proceedings_necessary', 'LegalProceedingsNecessary', [
         ])
     ),
 
     (
         CustomEvents.eating_pie(),
-        Declaration('evt_eat_noisily', 'EatNoisily', 'events', [
+        EventDeclaration('evt_eat_noisily', 'EatNoisily', [
             DeclarationProp('eating_agent', 'Bob', 'Role'),
             DeclarationProp('ate_object', 'apple_pie', 'Pie'),
             DeclarationProp('eating_co_agent', 'the seller', 'Role'),
@@ -42,7 +42,7 @@ test_suite = [
 
     (
         CustomEvents.paying(),
-        Declaration('evt_pay', 'Pay', 'events', [
+        EventDeclaration('evt_pay', 'Pay', [
             DeclarationProp('paying_agent', 'buyer', 'Role'),
             DeclarationProp('paid_object', '100', 'Money'), 
             DeclarationProp('paying_target', 'the seller', 'Role'), 

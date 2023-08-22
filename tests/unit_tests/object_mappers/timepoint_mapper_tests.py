@@ -17,6 +17,11 @@ class TimepointMapperTests(unittest.TestCase):
         result = self.sut.map(ContractEvent(ContractEventName.Activated))
         self.assertEqual(result, PointAtomContractEvent(ContractEvent(ContractEventName.Activated)))
 
+    def test_timepoint_mapper_fail(self):
+        with self.assertRaises(ValueError) as context:
+            self.sut.map('fail')
+
+        self.assertTrue('Invalid Timepoint event' in str(context.exception))
 
 if __name__ == '__main__':
     unittest.main()

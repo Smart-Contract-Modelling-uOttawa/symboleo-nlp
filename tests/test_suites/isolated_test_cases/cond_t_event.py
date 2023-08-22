@@ -6,12 +6,10 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import RoleDeclaration, EventDeclaration, AssetDeclaration, DeclarationProp
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
-from app.classes.spec.sym_point import Point, PointVDE
-from app.classes.spec.point_function import PointFunction, TimeUnit
-from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionWHappensBefore
+from app.classes.spec.predicate_function import PredicateFunctionHappens
 
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
@@ -48,13 +46,13 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'partyA': Declaration('partyA', 'PartyA', 'roles', []),
-                'partyB': Declaration('partyB', 'PartyB', 'roles', []),
-                'evt_return_info_a': Declaration('evt_return_info_a', 'ReturnInfo', 'events', [
+                'partyA': RoleDeclaration('partyA', 'PartyA'),
+                'partyB': RoleDeclaration('partyB', 'PartyB'),
+                'evt_return_info_a': EventDeclaration('evt_return_info_a', 'ReturnInfo', [
                     DeclarationProp('agent', 'partyA', 'Role'),
                     DeclarationProp('receiver', 'partyB', 'Role')
                 ]),
-                'evt_return_info_b': Declaration('evt_return_info_b', 'ReturnInfo', 'events', [
+                'evt_return_info_b': EventDeclaration('evt_return_info_b', 'ReturnInfo', [
                     DeclarationProp('agent', 'partyB', 'Role'),
                     DeclarationProp('receiver', 'partyA', 'Role')
                 ])
@@ -120,13 +118,13 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'partyA': Declaration('partyA', 'PartyA', 'roles', []),
-                'partyB': Declaration('partyB', 'PartyB', 'roles', []),
-                'evt_return_info_a': Declaration('evt_return_info_a', 'ReturnInfo', 'events', [
+                'partyA': RoleDeclaration('partyA', 'PartyA'),
+                'partyB': RoleDeclaration('partyB', 'PartyB'),
+                'evt_return_info_a': EventDeclaration('evt_return_info_a', 'ReturnInfo', [
                     DeclarationProp('agent', 'partyA', 'Role'),
                     DeclarationProp('receiver', 'partyB', 'Role')
                 ]),
-                'evt_return_info_b': Declaration('evt_return_info_b', 'ReturnInfo', 'events', [
+                'evt_return_info_b': EventDeclaration('evt_return_info_b', 'ReturnInfo', [
                     DeclarationProp('agent', 'partyB', 'Role'),
                     DeclarationProp('receiver', 'partyA', 'Role')
                 ])

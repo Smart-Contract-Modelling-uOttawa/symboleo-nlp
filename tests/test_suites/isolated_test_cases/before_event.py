@@ -5,7 +5,7 @@ from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import RoleDeclaration, AssetDeclaration, EventDeclaration, DeclarationProp
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionWHappensBeforeEvent
@@ -38,9 +38,9 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'distributor': Declaration('distributor', 'Distributor', 'roles', []),
-                'cisco': Declaration('cisco', 'Cisco', 'roles', []),
-                'evt_obtain_rma_number': Declaration('evt_obtain_rma_number', 'ObtainRmaNumber', 'events', [])
+                'distributor': RoleDeclaration('distributor', 'Distributor'),
+                'cisco': RoleDeclaration('cisco', 'Cisco'),
+                'evt_obtain_rma_number': EventDeclaration('evt_obtain_rma_number', 'ObtainRmaNumber')
             },
             preconditions=[],
             postconditions=[],
@@ -102,16 +102,16 @@ test_case = TestCase(
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'distributor': Declaration('distributor', 'Distributor', 'roles', []),
-                'cisco': Declaration('cisco', 'Cisco', 'roles', []),
-                'product': Declaration('product', 'Product', 'assets'),
-                'evt_obtain_rma_number': Declaration('evt_obtain_rma_number', 'ObtainRmaNumber', 'events', []),
-                'evt_return_product': Declaration('evt_return_product', 'ReturnProduct', 'events', [
+                'distributor': RoleDeclaration('distributor', 'Distributor'),
+                'cisco': RoleDeclaration('cisco', 'Cisco'),
+                'product': AssetDeclaration('product', 'Product'),
+                'evt_obtain_rma_number': EventDeclaration('evt_obtain_rma_number', 'ObtainRmaNumber'),
+                'evt_return_product': EventDeclaration('evt_return_product', 'ReturnProduct', [
                     DeclarationProp('returning_agent', 'distributor', 'Role'),
                     DeclarationProp('returning_target', 'cisco', 'Role'),
                     DeclarationProp('returned_object', 'product', 'Product'),
                 ]),
-                'evt_obtain_rma_number': Declaration('evt_obtain_rma_number', 'ObtainRmaNumber', 'events', []),
+                'evt_obtain_rma_number': EventDeclaration('evt_obtain_rma_number', 'ObtainRmaNumber'),
             },
             preconditions=[],
             postconditions=[],

@@ -79,6 +79,16 @@ class AssetTypeExtractorTests(unittest.TestCase):
         self.assertEqual(result.type_name, 'Nothing')
         self.assertEqual(self.label_getter.get.call_count, 1)
     
+    def test_asset_type_extractor_event_fail(self):
+        str_val = 'test_event'
+        contract = get_test_contract()
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.extract(str_val, str_val, contract)
+
+        self.assertTrue('event' in str(context.exception))
+
+    
 
 if __name__ == '__main__':
     unittest.main()

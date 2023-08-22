@@ -7,7 +7,7 @@ from app.classes.spec.p_atoms import PAtomPredicateTrueLiteral
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.domain_object import DomainEvent, DomainProp
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import DeclarationProp, EventDeclaration
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.contract_update_obj import ContractUpdateObj
 from tests.helpers.test_contract import get_test_contract
@@ -24,7 +24,7 @@ class RunUpdateTests(unittest.TestCase):
 
         new_dm_obj = DomainEvent('NewEvent', [DomainProp('k', 'String')])
 
-        new_decl = Declaration('test_decl', 'events', 'NewEvent', [ DeclarationProp('k', 'test_value', 'String')])
+        new_decl = EventDeclaration('test_decl', 'NewEvent', [ DeclarationProp('k', 'test_value', 'String')])
 
         new_parm = ContractSpecParameter('test_parm', 'String')
 

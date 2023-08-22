@@ -32,7 +32,7 @@ class NounPhraseExtractor(IExtractElement[NounPhrase]):
             head = heads[0].text
             is_plural = heads[0].tag == 'NNS'
         else:
-            raise ValueError('Invalid subject')
+            raise ValueError('Invalid subject: Too many heads')
         
         # Get adjectives
         adjs = [x.text for x in doc.tokens

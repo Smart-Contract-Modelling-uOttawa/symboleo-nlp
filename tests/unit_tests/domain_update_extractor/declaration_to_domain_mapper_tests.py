@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import DeclarationProp, EventDeclaration, AssetDeclaration
 from app.classes.spec.domain_object import Asset, DomainEvent, DomainProp
 from app.src.domain_update_extractor.domain_model_mapper import DeclarationToDomainMapper
 
@@ -10,7 +10,7 @@ class DeclarationToDomainMapperTests(unittest.TestCase):
         self.sut = DeclarationToDomainMapper()
 
     def test_declaration_to_domain_mapper_event(self):
-        evt = Declaration('test', 'Test', 'events', [
+        evt = EventDeclaration('test', 'Test', [
             DeclarationProp('k', 'v', 't')
         ])
         expected_event = DomainEvent('Test', [DomainProp('k','t')])
@@ -18,7 +18,7 @@ class DeclarationToDomainMapperTests(unittest.TestCase):
         self.assertEqual(result, expected_event)
     
     def test_declaration_to_domain_mapper_asset(self):
-        evt = Declaration('test', 'Test', 'assets', [
+        evt = AssetDeclaration('test', 'Test', [
             DeclarationProp('k', 'v', 't')
         ])
         expected = Asset('Test', [DomainProp('k','t')])

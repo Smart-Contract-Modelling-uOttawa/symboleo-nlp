@@ -2,7 +2,7 @@ from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.contract_spec import ContractSpec
 from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.domain_model import DomainModel, DomainEnum
-from app.classes.spec.declaration import Declaration, EventDeclaration, RoleDeclaration, AssetDeclaration, DeclarationProp
+from app.classes.spec.declaration import EventDeclaration, RoleDeclaration, AssetDeclaration, DeclarationProp
 from app.classes.spec.domain_object import Role, DomainEvent, Asset, DomainProp
 from app.classes.spec.norm import Obligation, Power, SurvivingObligation
 from app.classes.spec.sym_event import VariableEvent
@@ -30,17 +30,17 @@ def get_test_contract_for_assets():
                 'test',
                 parameters=[],
                 declarations = {
-                    'buyer': Declaration('buyer', 'Buyer', 'roles', []),
-                    'renter': Declaration('renter', 'Renter', 'roles', []),
-                    'Dolphin': Declaration('Dolphin', 'Contractor', 'roles', []),
-                    'client': Declaration('client', 'Client', 'roles', []),
-                    'contractor': Declaration('contractor', 'Contractor', 'roles', []),
+                    'buyer': RoleDeclaration('buyer', 'Buyer', []),
+                    'renter': RoleDeclaration('renter', 'Renter', []),
+                    'Dolphin': RoleDeclaration('Dolphin', 'Contractor', []),
+                    'client': RoleDeclaration('client', 'Client', []),
+                    'contractor': RoleDeclaration('contractor', 'Contractor', []),
 
-                    'BOSCH': Declaration('BOSCH', 'Company', 'roles', []),
-                    'CLIENT': Declaration('CLIENT', 'Client', 'roles', []),
+                    'BOSCH': RoleDeclaration('BOSCH', 'Company', []),
+                    'CLIENT': RoleDeclaration('CLIENT', 'Client', []),
 
-                    'property': Declaration('property', 'RentalProperty', 'assets', []),
-                    'services': Declaration('services', 'Services', 'assets', []),
+                    'property': AssetDeclaration('property', 'RentalProperty', []),
+                    'services': AssetDeclaration('services', 'Services', []),
                 },
                 obligations={},
                 powers={}

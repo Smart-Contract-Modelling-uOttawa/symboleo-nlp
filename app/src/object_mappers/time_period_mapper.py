@@ -11,16 +11,12 @@ class TimePeriodMapper(IMapTimePeriod):
         self.__dict = TimePeriod.time_period_dict()
 
     def map(self, pattern_class: PatternClass) -> TimePeriod:
-        if PV.TIME_PERIOD in pattern_class.val_dict:
-            tpv = pattern_class.val_dict[PV.TIME_PERIOD]
+        tpv = pattern_class.val_dict[PV.TIME_PERIOD]
 
-            if tpv in self.__dict:
-                return self.__dict[tpv]
-            else:
-                return TimePeriod(CaseConverter.to_snake(tpv))
-
+        if tpv in self.__dict:
+            return self.__dict[tpv]
         else:
-            raise ValueError('Pattern class is missing time period')
+            return TimePeriod(CaseConverter.to_snake(tpv))
 
 
         

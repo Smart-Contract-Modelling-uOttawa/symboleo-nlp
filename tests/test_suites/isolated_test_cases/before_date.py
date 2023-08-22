@@ -7,7 +7,7 @@ from app.classes.spec.contract_spec_parameter import ContractSpecParameter
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
 from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import Declaration, DeclarationProp
+from app.classes.spec.declaration import RoleDeclaration, EventDeclaration, AssetDeclaration, DeclarationProp
 from app.classes.spec.norm import Obligation
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.sym_point import Point, PointVDE
@@ -47,9 +47,9 @@ test_case = TestCase(
         ContractSpec(
             id = 'franchise_cs',
             declarations = {
-                'grantor': Declaration('grantor', 'Grantor', 'roles', []),
-                'grantee': Declaration('grantee', 'Grantee', 'roles', []),
-                'evt_pay_fee': Declaration('evt_pay_fee', 'PayFee', 'events', [
+                'grantor': RoleDeclaration('grantor', 'Grantor'),
+                'grantee': RoleDeclaration('grantee', 'Grantee'),
+                'evt_pay_fee': EventDeclaration('evt_pay_fee', 'PayFee', [
                     DeclarationProp('payer', 'grantee', 'Role'),
                     DeclarationProp('payee', 'grantor', 'Role'),
                 ])
@@ -101,9 +101,9 @@ test_case = TestCase(
             id = 'franchise_cs',
             parameters=[ContractSpecParameter('ob_pay_fee_date', 'Date')],
             declarations = {
-                'grantor': Declaration('grantor', 'Grantor', 'roles', []),
-                'grantee': Declaration('grantee', 'Grantee', 'roles', []),
-                'evt_pay_fee': Declaration('evt_pay_fee', 'PayFee', 'events', [
+                'grantor': RoleDeclaration('grantor', 'Grantor'),
+                'grantee': RoleDeclaration('grantee', 'Grantee'),
+                'evt_pay_fee': EventDeclaration('evt_pay_fee', 'PayFee', [
                     DeclarationProp('payer', 'grantee', 'Role'),
                     DeclarationProp('payee', 'grantor', 'Role'),
                 ])

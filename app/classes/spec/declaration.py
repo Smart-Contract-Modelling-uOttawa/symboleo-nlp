@@ -40,7 +40,7 @@ class Declaration(IDeclaration):
         self.id = id or name
         self.name = name
         self.type = type
-        self.base_type = base_type # events, roles, assets 
+        self.base_type = base_type
         self.props = props or []
     
     def __eq__(self, other: Declaration) -> bool:
@@ -58,7 +58,7 @@ class Declaration(IDeclaration):
         print(f'\n- id: {self.id}')
         print(f'- name: {self.name}')
         print(f'- type: {self.type}')
-        print(f'- base_type: {self.base_type}')
+        print(f'- base_type: {self.base_type.value}')
         for x in self.props:
             x.print_me()
 
@@ -77,7 +77,7 @@ class Declaration(IDeclaration):
 
 class EventDeclaration(Declaration):
     def __init__(self, name: str, type: str, props: List[DeclarationProp] = None):
-        super().__init__(name, type, DeclarationType.EVENT.value, props)
+        super().__init__(name, type, DeclarationType.EVENT, props)
     
     def to_obj(self):
         return VariableEvent(self.name)
@@ -85,9 +85,9 @@ class EventDeclaration(Declaration):
 
 class AssetDeclaration(Declaration):
     def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):
-        super().__init__(name, type, DeclarationType.ASSET.value, props, id)
+        super().__init__(name, type, DeclarationType.ASSET, props, id)
 
 
 class RoleDeclaration(Declaration):
     def __init__(self, name: str, type: str, props: List[DeclarationProp] = None, id:str = None):
-        super().__init__(name, type, DeclarationType.ROLE.value, props, id)
+        super().__init__(name, type, DeclarationType.ROLE, props, id)

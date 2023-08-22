@@ -1,5 +1,6 @@
-from app.classes.spec.symboleo_contract import SymboleoContract
 import re
+from app.classes.spec.symboleo_contract import SymboleoContract
+from app.classes.spec.declaration import DeclarationType
 
 from app.src.nlp.label_getter import IGetLabels
 
@@ -41,10 +42,14 @@ class AssetTypeExtractor(IExtractAssetType):
 
         if str_val in decls:
             decl = decls[str_val]
-            if decl.base_type == 'roles':
+            if decl.base_type == DeclarationType.ROLE:
                 return AssetType('Role', decl.id)
-            elif decl.base_type == 'assets':
+            elif decl.base_type == DeclarationType.ASSET:
                 return AssetType(decl.type, decl.id)
+            else:
+                # Event
+                raise ValueError('Cannot reference event as an asset')
+                
         
         # # Check enums
         # for x in contract.domain_model.enums:
