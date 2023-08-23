@@ -62,7 +62,6 @@ class PatternExtractorTests(unittest.TestCase):
 
 
     def test_update_processor(self):
-
         for test_val, pc_type, exp_text in test_suite:
             result = self.sut.check(test_val, pc_type)
 
