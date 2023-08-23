@@ -7,7 +7,7 @@ from app.classes.units.unit_type import UnitType
 from app.classes.operations.user_input import UserInput
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
-from app.src.pattern_builder.single_pattern_checker2 import SinglePatternChecker2
+from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
 
@@ -25,7 +25,7 @@ class TreePathTests(unittest.TestCase):
         gb = GrammarBuilderConstructor.construct()
 
         recursive_checker = RecursivePatternChecker()
-        single_checker = SinglePatternChecker2(recursive_checker)
+        single_checker = SinglePatternChecker(recursive_checker)
         pattern_extractor = PatternClassExtractor(getter, single_checker)
 
         grammar_tree = gb.build(all_pcs)

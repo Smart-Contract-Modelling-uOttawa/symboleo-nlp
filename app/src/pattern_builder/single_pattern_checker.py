@@ -12,7 +12,7 @@ class ICheckSinglePattern:
         raise NotImplementedError()
 
 
-class SinglePatternChecker2(ICheckSinglePattern):
+class SinglePatternChecker(ICheckSinglePattern):
     def __init__(self, recursive_checker: ICheckRecursivePattern):
         self.__recursive_checker = recursive_checker
 

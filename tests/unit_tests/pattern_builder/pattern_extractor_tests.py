@@ -5,7 +5,7 @@ from app.classes.units.all_units import *
 from app.classes.pattern_classes.all_pattern_classes import *
 
 from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
-from app.src.pattern_builder.single_pattern_checker2 import ICheckSinglePattern
+from app.src.pattern_builder.single_pattern_checker import ICheckSinglePattern
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
 
 class PatternExtractorTests(unittest.TestCase):

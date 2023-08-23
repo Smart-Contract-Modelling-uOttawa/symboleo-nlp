@@ -6,7 +6,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.all_pattern_classes import *
 
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
-from app.src.pattern_builder.single_pattern_checker2 import SinglePatternChecker2
+from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
 
@@ -58,7 +58,7 @@ class PatternExtractorTests(unittest.TestCase):
         self.getter = AllPatternClassGetter()
 
         recursive_checker = RecursivePatternChecker()
-        self.sut = SinglePatternChecker2(recursive_checker)
+        self.sut = SinglePatternChecker(recursive_checker)
 
 
     def test_update_processor(self):

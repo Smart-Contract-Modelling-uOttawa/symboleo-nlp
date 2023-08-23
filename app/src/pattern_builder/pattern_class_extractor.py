@@ -3,7 +3,7 @@ from app.classes.units.unit_type import UnitType
 from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.operations.user_input import UserInput
 
-from app.src.pattern_builder.single_pattern_checker2 import ICheckSinglePattern
+from app.src.pattern_builder.single_pattern_checker import ICheckSinglePattern
 from app.src.pattern_builder.pattern_class_getter import IGetAllPatternClasses
 
 # Given a list of units, return the pattern classes that match it
