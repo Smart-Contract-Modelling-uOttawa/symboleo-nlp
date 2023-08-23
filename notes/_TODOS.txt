@@ -13,8 +13,14 @@ Future ideas
 
 
 
-
-
+Deployent Steps
+- using pythonanywhere: set up account, etc
+- ensure you can connect to github: https://www.youtube.com/watch?v=4sTZN15J33A&ab_channel=KevinTech
+- clone your repo from github
+- Make a web application with the correct python version (python 3.9)
+- Configure it to link to the proper web.py filepath
+- in the bash console, install the requirements. Must be aligned with the python version: e.g. `pip3.9 install -r requirements.txt` 
+- re-deploy and run
 
 
 

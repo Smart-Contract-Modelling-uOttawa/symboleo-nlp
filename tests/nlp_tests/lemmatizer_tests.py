@@ -1,13 +1,13 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tests.helpers.test_nlp import TestNLP
+from app.src.nlp.nlp_getter import NLPGetter
 from app.src.nlp.lemmatizer import Lemmatizer
 from app.src.nlp.fake_lemmatizer import FakeLemmatizer
 
 class LemmatizerTests(unittest.TestCase):
     def setUp(self):
-        nlp = TestNLP.get_nlp()
+        nlp = NLPGetter.get()
         self.sut = Lemmatizer(nlp)
 
     def test_lemmatizer(self):

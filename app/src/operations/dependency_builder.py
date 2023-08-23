@@ -1,10 +1,10 @@
 from app.classes.operations.dependencies import Dependencies
-from tests.helpers.test_nlp import TestNLP
+from app.src.nlp.nlp_getter import NLPGetter
 
 class DependencyBuilder:
     def build(fake:bool = False):
         if not fake:
-            nlp = TestNLP.get_nlp()
+            nlp = NLPGetter.get()
         else:
             nlp = None
 

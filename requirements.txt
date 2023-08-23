@@ -1,4 +1,6 @@
-coverage==6.4.4
 mlconjug3==3.10.3
 Flask==2.3.2
 simple-cache==0.35
+
+# DEV
+coverage==6.4.4

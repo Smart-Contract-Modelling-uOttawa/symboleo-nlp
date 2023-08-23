@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tests.helpers.test_nlp import TestNLP
+from app.src.nlp.nlp_getter import NLPGetter
 from app.src.nlp.fake_doc_parser import FakeDocParser
 from app.src.nlp.doc_parser import DocParser
 
@@ -10,7 +10,7 @@ from app.src.nlp.doc_parser import DocParser
 # There may eventually be some NLP to verify as well
 class DocParserTests(unittest.TestCase):
     def setUp(self):
-        nlp = TestNLP.get_nlp()
+        nlp = NLPGetter.get()
         self.sut = DocParser(nlp)
 
     def test_doc_parser(self):
