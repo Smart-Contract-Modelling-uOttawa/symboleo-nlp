@@ -9,14 +9,7 @@ class IGetAllPatternClasses:
     
 class AllPatternClassGetter(IGetAllPatternClasses):
     def get(self, config: List[PatternClassType] = None) -> List[Type[PatternClass]]:
-        # return [
-        #     BeforeDate(),
-        #     BeforeEvent(),
-        #     WithinTimespanEvent(),
-        #     CondAEvent(),
-        #     CondTEvent(),
-        #     ExceptEvent(),
-        # ]
+
         result = []
 
         if not config or len(config) == 0:
