@@ -4,12 +4,12 @@ from app.templates.template_getter import get_template
 from app.src.operations.contract_updater_builder import ContractUpdaterBuilder
 from app.src.operations.dependency_builder import DependencyBuilder
 
-from tests.test_suites.nl_summary_builder import NLSummaryBuilder
-from tests.test_suites.full_test_cases.meat_sale import test_suite as meat_sale
-from tests.test_suites.full_test_cases.rental import test_suite as rental
-from tests.test_suites.full_test_cases.prop import test_suite as prop
-from tests.test_suites.full_test_cases.biomass import test_suite as biomass
-from tests.test_suites.full_test_cases.indep import test_suite as indep
+from tests.helpers.nl_summary_builder import NLSummaryBuilder
+from tests.full_tests.full_test_cases.meat_sale import test_suite as meat_sale
+from tests.full_tests.full_test_cases.rental import test_suite as rental
+from tests.full_tests.full_test_cases.prop import test_suite as prop
+from tests.full_tests.full_test_cases.biomass import test_suite as biomass
+from tests.full_tests.full_test_cases.indep import test_suite as indep
 
 test_dict = {
     'meat_sale': meat_sale,
@@ -25,7 +25,7 @@ class FullStackTests(unittest.TestCase):
         self.updater = ContractUpdaterBuilder.build(deps)
 
     def test_full_stack(self):
-        filepath = 'tests/test_suites/full_results'
+        filepath = 'tests/full_tests/full_results'
 
         target_keys = [
             'biomass',

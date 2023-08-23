@@ -1,5 +1,5 @@
 from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.full_tests.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
@@ -21,14 +21,14 @@ from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
-# Display materials from the sponsor must be delivered to the Tian-He stadium at least two days prior to the event.
-# Display materials from the sponsor must be delivered to the Tian-He stadium [P1]
-## Original: at least two days prior to the event.
-## CNL: 2 days prior to the event happening
-## TIMESPAN P_BEFORE_T EVENT => WHappensBefore
+
+# Payment to Porex of undisputed fees shall be due [P1]
+## Original: 10 days following Cerus' receipt of the invoice submitted by Porex
+## CNL: 10 days after Porex submits invoice receipt to Cerus
+## TIMESPAN P_AFTER_T EVENT => WHappensBefore
 
 test_case = TestCase(
-    'timespan_before_event',
+    'timespan_after_event',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',
@@ -37,26 +37,26 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {},
-            events = {'DeliverMaterials': DomainEvent('DeliverMaterials', [])},
+            events = {'PayFees': DomainEvent('PayFees', [])},
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'stadium': RoleDeclaration('Stadium', 'PartyA', id='stadium'),
-                'sponsor': RoleDeclaration('Sponsor', 'PartyB', id='sponsor'),
-                'evt_deliver_materials': EventDeclaration('evt_deliver_materials', 'DeliverMaterials', [])
+                'porex': RoleDeclaration('Porex', 'PartyA', id='porex'),
+                'cerus': RoleDeclaration('Cerus', 'PartyB', id='cerus'),
+                'evt_pay_fees': EventDeclaration('evt_pay_fees', 'PayFees', [])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_deliver_materials': Obligation(
-                    'ob_deliver_materials', 
+                'ob_pay_fees': Obligation(
+                    'ob_pay_fees', 
                     None, 
-                    'sponsor', 
-                    'stadium', 
+                    'cerus', 
+                    'porex', 
                     PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_deliver_materials')))
+                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_pay_fees')))
                 )
             },
             surviving_obligations={},
@@ -67,8 +67,8 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'Display materials from the sponsor must be delivered to the Tian-He stadium [P1]', 
-                    {'P1': [ParameterConfig('obligations', 'ob_deliver_materials', 'consequent')]})
+                    'Payment to Porex of undisputed fees shall be due [P1]', 
+                    {'P1': [ParameterConfig('obligations', 'ob_pay_fees', 'consequent')]})
             }
         )
     ),
@@ -79,13 +79,15 @@ test_case = TestCase(
         user_inputs = [
             UserInput(UnitType.AT_LEAST, 'at least'),
             UserInput(UnitType.TIMESPAN),
-            UserInput(UnitType.TIME_VALUE, '2'),
+            UserInput(UnitType.TIME_VALUE, '10'),
             UserInput(UnitType.TIME_UNIT, 'days'),
-            UserInput(UnitType.PRIOR_TO, 'prior to'),
+            UserInput(UnitType.AFTER, 'after'),
             UserInput(UnitType.EVENT),
             UserInput(UnitType.CUSTOM_EVENT),
-            UserInput(UnitType.SUBJECT, 'the party'),
-            UserInput(UnitType.INTRANSITIVE_VERB, 'happening'),
+            UserInput(UnitType.SUBJECT, 'Porex'),
+            UserInput(UnitType.TRANSITIVE_VERB, 'submits'),
+            UserInput(UnitType.DOBJ, 'invoice receipt'),
+            UserInput(UnitType.PREP_PHRASE, 'to Cerus'),
         ],
         nl_key='nl_key',
         parm_key='P1'
@@ -99,40 +101,44 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {
-                'Party': Asset('Party', []),
+                'Receipt': Asset('Receipt', []),
             },
             events = {
-                'DeliverMaterials': DomainEvent('DeliverMaterials', []),
-                'PartyHappen': DomainEvent('PartyHappen', [
-                    DomainProp('happening_subject', 'Party')
+                'PayFees': DomainEvent('PayFees', []),
+                'SubmitReceipt': DomainEvent('SubmitReceipt', [
+                    DomainProp('submitting_agent', 'Role'),
+                    DomainProp('submitting_target', 'Role'),
+                    DomainProp('submitted_object', 'Receipt')
                 ])
-            },
+                },
             enums=[]
         ),
         ContractSpec(
             id = 'test_cs',
             declarations = {
-                'stadium': RoleDeclaration('Stadium', 'PartyA', id='stadium'),
-                'sponsor': RoleDeclaration('Sponsor', 'PartyB', id='sponsor'),
-                'party': AssetDeclaration('party', 'Party', []),
-                'evt_deliver_materials': EventDeclaration('evt_deliver_materials', 'DeliverMaterials', []),
-                'evt_party_happen': EventDeclaration('evt_party_happen', 'PartyHappen', [
-                    DeclarationProp('happening_subject', 'party', 'Party')
+                'porex': RoleDeclaration('Porex', 'PartyA', id='porex'),
+                'cerus': RoleDeclaration('Cerus', 'PartyB', id='cerus'),
+                'invoice_receipt': AssetDeclaration('invoice_receipt', 'Receipt', []),
+                'evt_pay_fees': EventDeclaration('evt_pay_fees', 'PayFees', []),
+                'evt_submit_receipt': EventDeclaration('evt_submit_receipt', 'SubmitReceipt', [
+                    DeclarationProp('submitting_agent', 'porex', 'Role'),
+                    DeclarationProp('submitting_target', 'cerus', 'Role'),
+                    DeclarationProp('submitted_object', 'invoice_receipt', 'Receipt'),
                 ])
             },
             preconditions=[],
             postconditions=[],
             obligations = {
-                'ob_deliver_materials': Obligation(
-                    'ob_deliver_materials', 
+                'ob_pay_fees': Obligation(
+                    'ob_pay_fees', 
                     None, 
-                    'sponsor', 
-                    'stadium', 
+                    'cerus', 
+                    'porex', 
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionWHappensBefore(
-                            VariableEvent('evt_deliver_materials'),
-                            Point(PointFunction(PointVDE('evt_party_happen'), '-2', TimeUnit.Days))
+                            VariableEvent('evt_pay_fees'),
+                            Point(PointFunction(PointVDE('evt_submit_receipt'), '10', TimeUnit.Days))
                         )
                     )
                 )
@@ -145,8 +151,8 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'Display materials from the sponsor must be delivered to the Tian-He stadium at least 2 days prior to the party happening', 
-                    {'P1': [ParameterConfig('obligations', 'ob_deliver_materials', 'consequent')]})
+                    'Payment to Porex of undisputed fees shall be due at least 10 days after Porex submits invoice receipt to Cerus', 
+                    {'P1': [ParameterConfig('obligations', 'ob_pay_fees', 'consequent')]})
             }
         )
     ),

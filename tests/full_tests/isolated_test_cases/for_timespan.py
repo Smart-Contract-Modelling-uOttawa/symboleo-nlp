@@ -1,34 +1,37 @@
 from typing import List
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
+from tests.full_tests.isolated_test_cases.TestSymboleoContract import TestInfo, TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
 from app.classes.spec.nl_template import NLTemplate, TemplateObj
-from app.classes.spec.domain_object import Role, DomainEvent
+from app.classes.spec.domain_object import Role, Asset, DomainEvent, DomainProp
 from app.classes.spec.contract_spec import ContractSpec
-from app.classes.spec.declaration import RoleDeclaration, EventDeclaration
+from app.classes.spec.declaration import RoleDeclaration,AssetDeclaration, EventDeclaration
 from app.classes.spec.norm import Obligation
-from app.classes.spec.sym_event import VariableEvent, ContractEvent, ContractEventName
+from app.classes.spec.sym_event import VariableEvent, ContractEventName, ContractEvent
 from app.classes.spec.sym_interval import Interval, IntervalFunction
-from app.classes.spec.sym_point import PointVDE, PointAtomContractEvent
+from app.classes.spec.sym_point import Point, PointVDE, PointAtomContractEvent
+from app.classes.spec.point_function import PointFunction, TimeUnit
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
+
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.operations.user_input import UserInput, UnitType
 from app.classes.units.all_units import *
+
 from app.classes.operations.contract_updater_config import UpdateConfig
 from app.classes.operations.op_code import OpCode
 from app.classes.spec.parameter_config import ParameterConfig
 
-# During the term of this agreement, licensee shall use the licensed mark only to the extent permitted under this license territory.
-# [P1] licensee shall use the licensed mark only to the extent permitted under this license territory
-## Original: During the term of this agreement
-## CNL: during the contract period
-## P_DURING TIME_PERIOD => HappensWithin
+# For 24 months following termination of this agreement, licensee shall specify on all public-facing materials that licensee is no longer operating under the licensed mark.
+# [P1], licensee shall specify on all public-facing materials that licensee is no longer operating under the licensed mark.
+## Original: For 24 months following termination of this agreement
+## CNL: For 24 months after contract terminates
+## FOR TIMESPAN AFTER EVENT => HappensWithin
 
 ## Need to negate the event
 
 test_case = TestCase(
-    'during_time_period',
+    'for_timespan',
     init_sym = SymboleoContract(
         DomainModel(
             id = 'test_dm',
@@ -37,7 +40,7 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {},
-            events = {'CeaseUsingMark': DomainEvent('CeaseUsingMark', [])},
+            events = {'CeaseSpecifyingMark': DomainEvent('CeaseSpecifyingMark', [])},
             enums=[]
         ),
         ContractSpec(
@@ -45,7 +48,7 @@ test_case = TestCase(
             declarations = {
                 'licensee': RoleDeclaration('licensee', 'PartyA', []),
                 'licensor': RoleDeclaration('licensor', 'PartyB', []),
-                'evt_cease_using_mark': EventDeclaration('evt_cease_using_mark', 'CeaseUsingMark', [])
+                'evt_cease_specifying_mark': EventDeclaration('evt_cease_specifying_mark', 'CeaseSpecifyingMark', [])
             },
             preconditions=[],
             postconditions=[],
@@ -56,7 +59,7 @@ test_case = TestCase(
                     'licensee', 
                     'licensor', 
                     PropMaker.make_default(), 
-                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_cease_using_mark')), negation=True)
+                    PropMaker.make(PredicateFunctionHappens(VariableEvent('evt_cease_specifying_mark')), negation=True)
                 )
             },
             surviving_obligations={},
@@ -67,7 +70,7 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    '[P1] licensee shall use the licensed mark only to the extent permitted under this license territory', 
+                    '[P1] licensee shall specify on all public-facing materials that licensee is no longer operating under the licensed mark.', 
                     {'P1': [ParameterConfig('obligations', 'ob_keep_using_mark', 'consequent')]})
             }
         )
@@ -77,8 +80,15 @@ test_case = TestCase(
     
     update_config = UpdateConfig(
         user_inputs = [
-            UserInput(UnitType.DURING, 'during'),
-            UserInput(UnitType.TIME_PERIOD, 'the contract period')
+            UserInput(UnitType.FOR, 'for'),
+            UserInput(UnitType.TIMESPAN),
+            UserInput(UnitType.TIME_VALUE, '24'),
+            UserInput(UnitType.TIME_UNIT, 'months'),
+            UserInput(UnitType.AFTER, 'after'),
+            UserInput(UnitType.EVENT),
+            UserInput(UnitType.CONTRACT_EVENT),
+            UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
+            UserInput(UnitType.CONTRACT_ACTION, 'terminates'),
         ],
         nl_key='nl_key',
         parm_key='P1'
@@ -92,7 +102,7 @@ test_case = TestCase(
                 'PartyB': Role('PartyB', [])
             },
             assets = {},
-            events = {'CeaseUsingMark': DomainEvent('CeaseUsingMark', [])},
+            events = {'CeaseSpecifyingMark': DomainEvent('CeaseSpecifyingMark', [])},
             enums=[]
         ),
         ContractSpec(
@@ -100,7 +110,7 @@ test_case = TestCase(
             declarations = {
                 'licensee': RoleDeclaration('licensee', 'PartyA', []),
                 'licensor': RoleDeclaration('licensor', 'PartyB', []),
-                'evt_cease_using_mark': EventDeclaration('evt_cease_using_mark', 'CeaseUsingMark', [])
+                'evt_cease_specifying_mark': EventDeclaration('evt_cease_specifying_mark', 'CeaseSpecifyingMark', [])
             },
             preconditions=[],
             postconditions=[],
@@ -113,13 +123,16 @@ test_case = TestCase(
                     PropMaker.make_default(), 
                     PropMaker.make(
                         PredicateFunctionHappensWithin(
-                            VariableEvent('evt_cease_using_mark'),
+                            VariableEvent('evt_cease_specifying_mark'),
                             Interval(
                                 IntervalFunction(
-                                    PointAtomContractEvent(ContractEvent(ContractEventName.Activated)),
-                                    PointAtomContractEvent(ContractEvent(ContractEventName.Terminated))
-                                )
-                            )
+                                    PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
+                                    PointFunction(
+                                        PointAtomContractEvent(ContractEvent(ContractEventName.Terminated)),
+                                        '24',
+                                        TimeUnit.Months
+                                    )
+                                ))
                         ), 
                         negation=True
                     )
@@ -133,7 +146,7 @@ test_case = TestCase(
         NLTemplate(
             {   
                 'nl_key': TemplateObj(
-                    'during the contract period licensee shall use the licensed mark only to the extent permitted under this license territory', 
+                    'for 24 months after contract terminates licensee shall specify on all public-facing materials that licensee is no longer operating under the licensed mark.', 
                     {'P1': [ParameterConfig('obligations', 'ob_keep_using_mark', 'consequent')]})
             }
         )

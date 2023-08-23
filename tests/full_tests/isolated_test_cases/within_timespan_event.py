@@ -1,4 +1,4 @@
-from tests.test_suites.isolated_test_cases.TestSymboleoContract import TestCase
+from tests.full_tests.isolated_test_cases.TestSymboleoContract import TestCase
 
 from app.classes.spec.symboleo_contract import SymboleoContract
 from app.classes.spec.domain_model import DomainModel
