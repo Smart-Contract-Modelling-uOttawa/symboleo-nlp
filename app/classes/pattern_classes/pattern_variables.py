@@ -53,3 +53,4 @@ class PatternVariable(Enum):
     FROM = 'FROM'
     WITHIN = 'WITHIN'
     UNTIL = 'UNTIL'
+    DUMMY = 'DUMMY'

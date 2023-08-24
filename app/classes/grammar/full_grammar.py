@@ -1,9 +1,12 @@
+from typing import Dict
 from app.classes.grammar.g_and import GAnd
 from app.classes.grammar.g_or import GOr
 from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.units.all_units import UnitType
 
-FULL_GRAMMAR = {
+GrammarUnit = PV or GOr or GAnd or UnitType
+
+FULL_GRAMMAR: Dict[PV, GrammarUnit] = {
     PV.P_BEFORE_S: GOr(UnitType.BEFORE, UnitType.BY), 
     PV.P_BEFORE_T: GOr(UnitType.BEFORE, UnitType.PRIOR_TO), 
     PV.P_BEFORE_E: GOr(UnitType.BEFORE, UnitType.PRIOR_TO), 

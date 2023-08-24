@@ -1,20 +1,18 @@
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from app.classes.grammar.g_and import GAnd
 from app.classes.grammar.g_or import GOr
-from app.classes.grammar.full_grammar import PV, UnitType
-from app.classes.grammar.full_grammar import FULL_GRAMMAR
+from app.classes.grammar.full_grammar import PV, UnitType, GrammarUnit
 
 
 class ICheckRecursivePattern:
-    def check(self, units: List[UnitType], unit_ind: int, pattern_obj:any) -> Tuple[bool, int]:
+    def check(self, units: List[UnitType], unit_ind: int, pattern_obj:GrammarUnit) -> Tuple[bool, int]:
         raise NotImplementedError()
 
 class RecursivePatternChecker(ICheckRecursivePattern):
-    def __init__(self):
-        self._tree = FULL_GRAMMAR
+    def __init__(self, grammar: Dict[PV, GrammarUnit]):
+        self.__grammar = grammar
 
-
-    def check(self, units: List[UnitType], unit_ind: int, pattern_obj:any) -> Tuple[bool, int]:
+    def check(self, units: List[UnitType], unit_ind: int, pattern_obj:GrammarUnit) -> Tuple[bool, int]:
         # Do a preliminary check for out of bounds
         if unit_ind >= len(units):
             return (True, unit_ind + 1)
@@ -36,7 +34,7 @@ class RecursivePatternChecker(ICheckRecursivePattern):
             return (False, unit_ind)
         
         elif isinstance(pattern_obj, PV):
-            return self.check(units, unit_ind, FULL_GRAMMAR[pattern_obj])
+            return self.check(units, unit_ind, self.__grammar[pattern_obj])
 
         elif isinstance(pattern_obj, GAnd):
             check_a, next_ind = self.check(units, unit_ind, pattern_obj.a)
@@ -47,7 +45,6 @@ class RecursivePatternChecker(ICheckRecursivePattern):
             if check_b:
                 return (True, next_ind)
 
-        else: 
-            return (False, unit_ind)
+        return (False, unit_ind)
 
 

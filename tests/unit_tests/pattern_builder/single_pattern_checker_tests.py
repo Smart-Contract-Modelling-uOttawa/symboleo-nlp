@@ -3,71 +3,54 @@ from unittest.mock import MagicMock
 
 from app.classes.units.all_units import *
 from app.classes.operations.user_input import UserInput
+from app.classes.pattern_classes.pattern_class import PatternClass
 from app.classes.pattern_classes.all_pattern_classes import *
+from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
 from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
-from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
-from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
+from app.src.pattern_builder.recursive_pattern_checker import ICheckRecursivePattern
 
-def mock_timespan():
-    return [
-        UserInput(UnitType.TIMESPAN),
-        UserInput(UnitType.TIME_VALUE, '2'),
-        UserInput(UnitType.TIME_UNIT, 'weeks')
-    ]
 
-def mock_event(verb = 'eats'):
-    return [
-        UserInput(UnitType.EVENT), 
-        UserInput(UnitType.CUSTOM_EVENT), 
-        UserInput(UnitType.SUBJECT, 'bob'),
-        UserInput(UnitType.TRANSITIVE_VERB, verb),
-        UserInput(UnitType.DOBJ, 'pie'), 
-        UserInput(UnitType.PREP_PHRASE, 'with mary')
-    ]
+class TestClass1(PatternClass):
+    sequence = [PV.DUMMY, PV.DUMMY]
 
-def mock_event2():
-    return [
-        UserInput(UnitType.EVENT),
-        UserInput(UnitType.CONTRACT_EVENT),
-        UserInput(UnitType.CONTRACT_SUBJECT, 'contract'),
-        UserInput(UnitType.CONTRACT_ACTION, 'terminates')
-    ]
+class TestClass2(PatternClass):
+    sequence = [PV.DUMMY]
 
-def mock_event3(verb = 'eats'):
-    return [
-        UserInput(UnitType.EVENT),
-        UserInput(UnitType.CUSTOM_EVENT),
-        UserInput(UnitType.SUBJECT, 'bob'),
-        UserInput(UnitType.TRANSITIVE_VERB, verb),
-        UserInput(UnitType.DOBJ, 'pie')
-    ]
 
-# Want a test for each pattern class
-test_suite = [
-    (
-        [ UserInput(UnitType.WITHIN, 'within')] + mock_timespan() + [UserInput(UnitType.OF, 'of')] + mock_event('eating'), 
-        WithinTimespanEvent,
-        'within 2 weeks of bob eating pie with mary'
-    )
-]
-
-class PatternExtractorTests(unittest.TestCase):
+class SinglePatternCheckerTests(unittest.TestCase):
     def setUp(self):
         self.getter = AllPatternClassGetter()
 
-        recursive_checker = RecursivePatternChecker()
-        self.sut = SinglePatternChecker(recursive_checker)
+        self.recursive_checker = ICheckRecursivePattern()
+        self.sut = SinglePatternChecker(self.recursive_checker, {
+            PV.DUMMY: UnitType.DUMMY
+        })
+
+    def test_single_pattern_checker1(self):
+        set_to_check = [UserInput(UnitType.DUMMY)]
+        result = self.sut.check(set_to_check, TestClass1)
+
+        self.assertIsNone(result)
 
 
-    def test_update_processor(self):
-        for test_val, pc_type, exp_text in test_suite:
-            result = self.sut.check(test_val, pc_type)
+    def test_single_pattern_checker2(self):
+        self.recursive_checker.check = MagicMock(return_value=(False,1))
 
-            self.assertEqual(type(result), pc_type)
+        set_to_check = [UserInput(UnitType.DUMMY)]
+        result = self.sut.check(set_to_check, TestClass2)
 
-            self.assertEqual(result.to_text(), exp_text)
+        self.assertIsNone(result)
+    
+    def test_single_pattern_checker3(self):
+        self.recursive_checker.check = MagicMock(return_value=(True,1))
+
+        set_to_check = [UserInput(UnitType.DUMMY, 'test')]
+        result = self.sut.check(set_to_check, TestClass2)
+
+        self.assertEqual(type(result), TestClass2)
+        self.assertEqual(result.val_dict, {PV.DUMMY: 'test'})
 
 
 if __name__ == '__main__':

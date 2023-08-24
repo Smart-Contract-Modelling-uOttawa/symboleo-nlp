@@ -16,6 +16,16 @@ class UntilEventHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
         self.sut = UntilEventHandler()
 
+    def test_handler_fail(self):
+        norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=False)
+        pattern_class = UntilEvent()
+        pattern_class.event = VariableEvent('evt_test')
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.handle(pattern_class, norm_config)
+        self.assertTrue('UntilEventHandler can only be used with a negated norm' in str(context.exception))
+        
+
     def test_handler(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=True)
         pattern_class = UntilEvent()

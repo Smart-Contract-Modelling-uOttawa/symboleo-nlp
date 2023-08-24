@@ -19,8 +19,8 @@ class ExceptEventHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
         self.sut = ExceptEventHandler()
 
-    # Obligation not to => power to suspend
-    def test_handler(self):
+    # Obligation not to => power to terminate
+    def test_handler_terminate(self):
         norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=True)
         pattern_class = ExceptEvent()
         pattern_class.event = VariableEvent('evt_test')
@@ -44,7 +44,7 @@ class ExceptEventHandlerTests(unittest.TestCase):
         self.assertEqual(new_norm, exp_norm)
     
     # Power to suspend => power to resume
-    def test_handler(self):
+    def test_handler_resume(self):
         norm = SampleNorms.get_suspension_power('test_id', 'ob_test')
         pattern_class = ExceptEvent()
         pattern_class.event = VariableEvent('evt_test')

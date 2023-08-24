@@ -13,12 +13,31 @@ class PatternClassGetterTests(unittest.TestCase):
     def test_pattern_builder(self):
         config = [PatternClassType.CONDITIONAL, PatternClassType.EXCEPTION, PatternClassType.TEMPORAL, PatternClassType.UNTIL]
         result = self.sut.get(config)
-
         self.assertEqual(len(result), len(set(result)))
     
+    def test_pattern_builder1(self):
+        config = [PatternClassType.CONDITIONAL]
+        result = self.sut.get(config)
+        self.assertEqual(len(result), len(set(result)))
+    
+    def test_pattern_builder2(self):
+        config = [PatternClassType.EXCEPTION]
+        result = self.sut.get(config)
+        self.assertEqual(len(result), len(set(result)))
+    
+    def test_pattern_builder3(self):
+        config = [PatternClassType.TEMPORAL]
+        result = self.sut.get(config)
+        self.assertEqual(len(result), len(set(result)))
+    
+    def test_pattern_builder4(self):
+        config = [PatternClassType.UNTIL]
+        result = self.sut.get(config)
+        self.assertEqual(len(result), len(set(result)))
+    
+
     def test_pattern_builder_all(self):
         result = self.sut.get()
-
         self.assertEqual(len(result), len(set(result)))
 
 

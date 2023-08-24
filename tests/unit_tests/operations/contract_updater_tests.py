@@ -18,6 +18,15 @@ class ContractUpdaterTests(unittest.TestCase):
 
         self.sut = ContractUpdater(self.operation_mapper)
 
+    def test_contract_updater_fail(self):
+        contract = ISymboleoContract()
+        fake_configs = [NormConfig(INorm(), ParameterConfig('a', 'b', 'c'))]
+        contract.get_norm_configs_by_key = MagicMock(return_value=fake_configs)
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.update(contract, OpCode.ADD_TERMINATION_POWER, UpdateConfig())
+        self.assertTrue('Invalid operation requested' in str(context.exception))
+        
 
     def test_contract_updater(self):
         contract = ISymboleoContract()

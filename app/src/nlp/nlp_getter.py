@@ -1,9 +1,11 @@
 import pickle
 
 class NLPGetter:
+    FILEPATH = 'app/src/nlp'
+    FILENAME = 'nlp' 
     @staticmethod
     def get():
-        with open('app/src/nlp/nlp.pickle', 'rb') as f:
+        with open(f'./{NLPGetter.FILEPATH}/{NLPGetter.FILENAME}.pickle', 'rb') as f:
             nlp = pickle.load(f)
         
         return nlp

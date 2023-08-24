@@ -18,6 +18,18 @@ class UntilDateDateHandlerTests(unittest.TestCase):
         self.date_mapper = IMapDate()
         self.sut = UntilDateHandler(self.date_mapper)
 
+    def test_handler_fail(self):
+        self.date_mapper.map = MagicMock(return_value='test_date')
+        norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=False)
+        pattern_class = UntilDate({
+            PV.DATE: 'March 30, 2024'
+        })
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.handle(pattern_class, norm_config)
+        self.assertTrue('UntilDateHandler can only be used with a negated norm' in str(context.exception))
+        
+
     def test_handler(self):
         self.date_mapper.map = MagicMock(return_value='test_date')
         norm_config = SampleNorms.get_sample_obligation_config('test_id', negation=True)

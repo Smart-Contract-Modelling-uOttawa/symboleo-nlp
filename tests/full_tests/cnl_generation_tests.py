@@ -4,15 +4,14 @@ from unittest.mock import MagicMock
 from app.classes.units.all_units import *
 from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.all_pattern_classes import *
+from app.classes.grammar.full_grammar import FULL_GRAMMAR
 
 from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
 from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
-
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 from app.src.grammar_builder.child_getter import ChildGetter
-
 from app.src.grammar_builder.unit_builders.unit_builder_dict import UnitBuilderDictConstructor
 
 from tests.helpers.test_contract import get_test_contract
@@ -133,8 +132,8 @@ class PatternExtractorTests(unittest.TestCase):
         self.pc_getter = AllPatternClassGetter()
         self.grammar_builder = GrammarBuilderConstructor.construct()
 
-        recursive_checker = RecursivePatternChecker()
-        single_checker = SinglePatternChecker(recursive_checker)
+        recursive_checker = RecursivePatternChecker(FULL_GRAMMAR)
+        single_checker = SinglePatternChecker(recursive_checker, FULL_GRAMMAR)
         self.pc_extractor = PatternClassExtractor(self.pc_getter, single_checker)
         
         unit_dict = UnitBuilderDictConstructor.build()

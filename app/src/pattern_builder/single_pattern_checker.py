@@ -1,7 +1,6 @@
 from typing import List, Type, Dict
 from app.classes.pattern_classes.pattern_variables import PatternVariable
-from app.classes.grammar.full_grammar import *
-from app.classes.units.all_units import UnitType
+from app.classes.grammar.full_grammar import PV, GrammarUnit
 from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.pattern_class import PatternClass
 
@@ -13,14 +12,15 @@ class ICheckSinglePattern:
 
 
 class SinglePatternChecker(ICheckSinglePattern):
-    def __init__(self, recursive_checker: ICheckRecursivePattern):
+    def __init__(self, recursive_checker: ICheckRecursivePattern, grammar: Dict[PV, GrammarUnit]):
+        self.__grammar = grammar
         self.__recursive_checker = recursive_checker
 
     def check(self, set_to_check: List[UserInput], pc_type: Type[PatternClass]) -> PatternClass:
         pv_seq = pc_type.sequence
 
         if len(set_to_check) < len(pv_seq):
-            return False
+            return None
         
         input_types = [x.unit_type for x in set_to_check]
         
@@ -31,7 +31,7 @@ class SinglePatternChecker(ICheckSinglePattern):
         # Iterate through the target_set checking the pattern variables
         ## If something doesn't match up, then return false
         for pattern_variable in pv_seq:
-            pattern_obj = FULL_GRAMMAR[pattern_variable]
+            pattern_obj = self.__grammar[pattern_variable]
             check, next_ind = self.__recursive_checker.check(input_types, unit_ind, pattern_obj)
 
             if not check:

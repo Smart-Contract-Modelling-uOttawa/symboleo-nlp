@@ -5,6 +5,8 @@ from typing import List
 from app.classes.grammar.grammar_node import GrammarNode
 from app.classes.units.unit_type import UnitType
 from app.classes.operations.user_input import UserInput
+from app.classes.grammar.full_grammar import FULL_GRAMMAR
+
 from app.src.grammar_builder.grammar_builder_constructor import GrammarBuilderConstructor
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
 from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
@@ -24,8 +26,8 @@ class TreePathTests(unittest.TestCase):
         all_pcs = getter.get()
         gb = GrammarBuilderConstructor.construct()
 
-        recursive_checker = RecursivePatternChecker()
-        single_checker = SinglePatternChecker(recursive_checker)
+        recursive_checker = RecursivePatternChecker(FULL_GRAMMAR)
+        single_checker = SinglePatternChecker(recursive_checker, FULL_GRAMMAR)
         pattern_extractor = PatternClassExtractor(getter, single_checker)
 
         grammar_tree = gb.build(all_pcs)

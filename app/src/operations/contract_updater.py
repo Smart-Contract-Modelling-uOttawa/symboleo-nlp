@@ -29,5 +29,5 @@ class ContractUpdater(IUpdateContract):
                 contract.update_nl(config.nl_key, config.parm_key, update_obj.nl_update)
 
             else:
-                raise ValueError('Invalid operation requested.')
+                raise ValueError('Invalid operation requested')
     
