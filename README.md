@@ -53,16 +53,25 @@ Other libaries have been explored and may potentially have use in this tool in t
 
 ### Env
 Before running the project, set up a virtual environment and install the required packages.
-- Create a virtual env: python -m venv sym-env
-- Activate: source sym-env/Scripts/activate
-- upgrade pip: pip install --upgrade pip
-- install requirements: pip install -r requirements.txt
+- Create a virtual env: `python -m venv sym-env`
+- Activatethe environment: `source sym-env/Scripts/activate`
+- upgrade pip: `pip install --upgrade pip`. This may require administrative permissions.
+- install requirements: `pip install -r requirements.txt`
 - Ensure that any relevant notebooks are configured to use the target environment as well
 
 ### Running the Application
 
-A demo of the tool can currently be run in the nb_console.ipynb notebook. This allows a user to select a pre-loaded contract template, refine the parameters with the CNL, and generate a refined Symboleo specification. This application can be used for limited demonstrations.
 
+### NLP Modules
+
+The tool's functionality relies on SpaCy's NLP pipeline for some of the internal processing steps. The `nlp` object must be injected as a dependency into the application. Since this dependency is time-consuming to install, we can generate it in advance, and store it in a pickle file, which is then injected into the application. The construction of this nlp module is done in the `nb_setup.ipynb' notebook. This notebook walks you through the steps of generating the nlp module and then storing it for later use. Since the module is so big (>250MB), it is not pushed up to source control with the rest of the code. 
+
+The functionality that uses the nlp module has been abstracted away into a series of special-purpose classes. In order to facilitate testing, these classes also have "fake" implementations (fakeLemmatizer, fakeNounPhraseExtractor, etc.). The dependency builder for the application takes in an argument that determines whether to use these fake nlp-based classes or the real ones.  
+
+### Console Application
+
+A demo of the tool can currently be run in the nb_console.ipynb notebook. This allows a user to select a pre-loaded contract template, refine the parameters with the CNL, and generate a refined Symboleo specification. This application can be used for limited demonstrations.
+  
 ### Web Application
 
 The Web application provides a much more intuitive user interface to the tool's functionality. A user is able to select from a set of pre-defined sample contracts and enter refinements corresponding to the CNL. Once a refinement is entered, the Symboleo contract is updated with the relevant operations.
@@ -90,6 +99,9 @@ The web application can be deployed to an environment capable of hosting a Pytho
 - Configure the web application to use the /web.py file as the entry point to the application.
 - Going back to the web console, install the requirements: `pip3.9 install -r requirements.txt'. The pip version must align with the Python version selected in the web app creation, otherwise you may get import errors.
 - Re-deploy the web app from pythonanywhere
+
+A challenge facing deployment is the proper integration of Spacy's nlp module. The free tier for pythonanywhere has limited storage, so in some cases it cannot handle the large file. As a workaround, the "fake" nlp classes can be used for demonstration purposes. 
+
 
 ## Limitations and Future Work
 
