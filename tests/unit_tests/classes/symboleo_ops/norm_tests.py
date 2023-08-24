@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from app.classes.spec.norm import Norm, NormType
-from app.classes.spec.predicate_function import PredicateFunctionHappens
+from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionOccurs
 from app.classes.spec.sym_event import VariableEvent
 from app.classes.spec.p_atoms import PAtom, PAtomPredicateTrueLiteral, PAtomPredicate
 
@@ -45,6 +45,23 @@ class NormTests(unittest.TestCase):
         
         cons_event = norm.get_default_event('consequent')
         self.assertEqual(cons_event, VariableEvent('evt_test'))
+    
+    def test_norm_fail_event(self):
+        norm = Norm(
+            'norm_id', 
+            None, 
+            'debtor', 
+            'creditor', 
+            PropMaker.make_default(),
+            PropMaker.make(
+                PredicateFunctionOccurs(None, None)
+            ),
+            NormType.Obligation
+            )
+
+        with self.assertRaises(ValueError) as context:
+            norm.get_default_event('consequent')
+        self.assertTrue('Default event not found' in str(context.exception))
 
 
 

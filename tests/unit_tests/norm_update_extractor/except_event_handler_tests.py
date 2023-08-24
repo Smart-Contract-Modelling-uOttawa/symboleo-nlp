@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from app.classes.pattern_classes.pattern_variables import PatternVariable as PV
 from app.classes.spec.sym_event import VariableEvent
-from app.classes.spec.power_function import PFObligation, PFObligationName
+from app.classes.spec.power_function import PFObligation, PFObligationName, PFContract, PFContractName
 from app.classes.spec.sym_interval import SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.pattern_classes.except_event import ExceptEvent
@@ -73,6 +73,22 @@ class ExceptEventHandlerTests(unittest.TestCase):
 
         self.assertEqual(new_norm, exp_norm)
         
+    def test_handler_fail(self):
+        norm = Power(
+            'test_id',
+            None,
+            'debtor',
+            'creditor',
+            PropMaker.make_default(),
+            PFContract(PFContractName.Terminated)
+        )
+        norm_config = NormConfig(norm, ParameterConfig('powers', 'test_id', 'trigger'))
+        pattern_class = ExceptEvent()
+        pattern_class.event = VariableEvent('evt_test')
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.handle(pattern_class, norm_config)
+        self.assertTrue('Invalid Norm in ExceptEventHandler' in str(context.exception))
 
 if __name__ == '__main__':
     unittest.main()

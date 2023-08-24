@@ -6,7 +6,6 @@ from app.classes.spec.norm_config import NormConfig
 from app.classes.spec.sym_interval import SituationExpression
 from app.classes.spec.sym_situation import ObligationState, ObligationStateName
 from app.classes.spec.predicate_function import PredicateFunctionHappens, PredicateFunctionHappensWithin
-from app.classes.spec.p_atoms import PAtomPredicateFalseLiteral
 from app.classes.spec.power_function import PFObligation, PFObligationName
 from app.classes.helpers.prop_maker import PropMaker
 
@@ -49,6 +48,8 @@ class ExceptEventHandler(IHandleNormUpdates):
             )
 
             return [new_power]
+    
+        raise ValueError('Invalid Norm in ExceptEventHandler')
      
 
     def _get_suspension_norm_id(self, norm: Norm):

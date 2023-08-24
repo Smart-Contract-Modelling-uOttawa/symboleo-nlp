@@ -107,13 +107,12 @@ class Norm(INorm):
         component: Proposition = getattr(self, str_component)
 
         if component:
-            p_neg_atom = component.p_ands[0].p_eqs[0].curr.curr        
-            if isinstance(p_neg_atom, PNegAtom):
-                p_atom = p_neg_atom.atom
-                if isinstance (p_atom, PAtomPredicate):
-                    predicate_function = p_atom.predicate_function
-                    if isinstance(predicate_function, PredicateFunctionHappens):
-                        return predicate_function.event
+            p_neg_atom: PNegAtom = component.p_ands[0].p_eqs[0].curr.curr         
+            p_atom = p_neg_atom.atom
+            if isinstance (p_atom, PAtomPredicate):
+                predicate_function = p_atom.predicate_function
+                if isinstance(predicate_function, PredicateFunctionHappens):
+                    return predicate_function.event
 
         raise ValueError('Default event not found')
 
