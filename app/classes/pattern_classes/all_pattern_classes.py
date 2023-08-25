@@ -18,7 +18,6 @@ from app.classes.pattern_classes.during_time_period import DuringTimePeriod
 from app.classes.pattern_classes.for_timespan_interval import ForTimespanInterval
 
 
-# TODO: Will have a separate list for testing and web/prod
 def web_pattern_classes():
     return [
         AfterDate,

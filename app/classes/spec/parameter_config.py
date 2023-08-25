@@ -6,6 +6,7 @@ class PatternClassType(Enum):
     TEMPORAL = 'TEMPORAL'
     EXCEPTION = 'EXCEPTION'
     UNTIL = 'UNTIL'
+    WEB = 'WEB'
 
 class ParameterConfig:
     def __init__(self, norm_type: str, norm_id: str, norm_component: str = '', pattern_types = None):

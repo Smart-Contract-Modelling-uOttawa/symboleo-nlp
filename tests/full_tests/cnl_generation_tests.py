@@ -6,7 +6,7 @@ from app.classes.operations.user_input import UserInput
 from app.classes.pattern_classes.all_pattern_classes import *
 from app.classes.grammar.full_grammar import FULL_GRAMMAR
 
-from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter
+from app.src.pattern_builder.pattern_class_getter import AllPatternClassGetter, PatternClassType
 from app.src.pattern_builder.single_pattern_checker import SinglePatternChecker
 from app.src.pattern_builder.recursive_pattern_checker import RecursivePatternChecker
 from app.src.pattern_builder.pattern_class_extractor import PatternClassExtractor
@@ -143,6 +143,7 @@ class PatternExtractorTests(unittest.TestCase):
     def test_cnl_generation(self):
         for test_list, exp_pc in test_suite:
             pattern_classes = self.pc_getter.get()
+            self.assertTrue(exp_pc in pattern_classes)
             curr_node = self.grammar_builder.build(pattern_classes)
             contract = get_test_contract()
             i = 0
