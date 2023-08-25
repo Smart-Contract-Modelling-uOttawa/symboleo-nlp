@@ -7,5 +7,10 @@ from app.src.grammar_builder.unit_builders.unit_builder import IBuildUnit
 
 class TimeUnitUB(IBuildUnit):
     def build(self, unit_name: str, contract: SymboleoContract) -> InputUnit:
-        opts = [str(x.value).lower() for x in TimeUnit]            
+        opts = []
+        for x in TimeUnit:
+            val = str(x.value).lower()
+            opts.append(val[:-1])
+            opts.append(val)
+
         return TimeUnitUnit(opts)

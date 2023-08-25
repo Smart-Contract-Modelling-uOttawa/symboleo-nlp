@@ -10,14 +10,17 @@ from app.classes.spec.predicate_function import PredicateFunctionHappensAfter
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
-from app.src.norm_update_extractor.handlers.after_timespan_after_event_handler import AfterTimespanAfterEventHandler
+from app.src.norm_update_extractor.handlers.after_timespan_after_event_handler import AfterTimespanAfterEventHandler, IMapTimespan
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class AfterTimespanAfterEventHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = AfterTimespanAfterEventHandler()
+        self.timespan_mapper = IMapTimespan()
+        self.sut = AfterTimespanAfterEventHandler(self.timespan_mapper)
 
     def test_handler(self):
+        self.timespan_mapper.map = MagicMock(return_value=('10', TimeUnit.Days))
+
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = AfterTimespanAfterEvent({
             PV.TIMESPAN: '10 Days'

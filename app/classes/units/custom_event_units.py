@@ -5,7 +5,8 @@ from app.classes.units.unit_type import UnitType
 class PrepUnit(InputUnit):
     unit_type = UnitType.PREP_PHRASE
     unit_var = UnitVariety.DYNAMIC
-    prompt = 'Preposition'
+    prompt = 'Prep Phrase'
+    info = 'Enter a prepositional phrase (preposition followed by a noun phrase)'
 
 class AdverbUnit(InputUnit):
     unit_type = UnitType.ADVERB

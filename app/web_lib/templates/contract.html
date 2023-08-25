@@ -6,13 +6,13 @@
       <!-- Contract NL -->
       <div id="left-side">
         <div id="contract-nl">
-        {% for x in contract.nl %}
-        <div>
-          <strong>{{x.nl_key}}</strong>
-          <span>{{x.nl_text}}</span>
-        </div>
-        <br/>
-        {% endfor %}
+          {% for x in contract.nl %}
+          <div>
+            <strong>{{x.nl_key}}</strong>
+            <span>{{x.nl_text}}</span>
+          </div>
+          <br/>
+          {% endfor %}
         </div>
         <div class="text-center">
           <a href="#" data-bs-toggle="modal" data-bs-target="#symboleo-modal" id="view-sym-button" class="btn btn-primary">View Symboleo</a>
@@ -65,14 +65,12 @@
             </div>
           </div>
 
-          <br/>
-
           <!-- Custom input-->
           <div id="custom-value-container">
             <div class="input-step-label">Enter Custom:</div>
             <div class="input-group">
               <span class="input-group-text" id="input-value-label">Label</span>
-              <input type="text" class="form-control" id="input-value-form">
+              <input type="text" class="form-control" id="input-value-form" autocomplete="off">
               <button class="btn btn-light" onclick="submitDynamicValue()">Add Custom Value</button>
             </div>
           </div>
@@ -80,7 +78,6 @@
 
         <br/>
       </div>
-
       <div id="parameter-submission">
         <div id="running-input-container">
           <div class="input-step-label">Refinement:</div>
@@ -161,7 +158,7 @@
             </div>
             <br/>
             <span>endContract</span>
-    
+            
           </div>
         </div>
       </div>

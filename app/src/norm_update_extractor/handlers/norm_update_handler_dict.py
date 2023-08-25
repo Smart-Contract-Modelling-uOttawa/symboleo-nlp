@@ -26,7 +26,7 @@ from app.src.norm_update_extractor.handlers.during_time_period_handler import Du
 from app.src.object_mappers.time_period_mapper import TimePeriodMapper
 from app.src.object_mappers.timepoint_mapper import TimepointMapper
 from app.src.object_mappers.date_mapper import DateMapper
-# Can add a timespan mapper as well
+from app.src.object_mappers.timespan_mapper import TimespanMapper
 
 class NormUpdateHandlerDictBuilder:
     @staticmethod
@@ -35,27 +35,28 @@ class NormUpdateHandlerDictBuilder:
 
         time_period_mapper = TimePeriodMapper()
         timepoint_mapper = TimepointMapper()
+        timespan_mapper = TimespanMapper()
         date_mapper = DateMapper()
 
 
         d = {}
         d[BeforeDate] = BeforeDateHandler(date_mapper)
         d[BeforeEvent] = BeforeEventHandler()
-        d[WithinTimespanEvent] = WithinTimespanHandler()
+        d[WithinTimespanEvent] = WithinTimespanHandler(timespan_mapper)
         d[CondAEvent] = CondAEventHandler()
         d[CondTEvent] = CondTEventHandler()
         d[ExceptEvent] = ExceptEventHandler()
         d[AfterDate] = AfterDateHandler(date_mapper)
         d[AfterEvent] = AfterEventHandler()
-        d[AfterTimespanAfterEvent] = AfterTimespanAfterEventHandler()
-        d[AfterTimespanBeforeEvent] = AfterTimespanBeforeEventHandler()
-        d[TimespanAfterEvent] = TimespanAfterEventHandler()
-        d[TimespanBeforeEvent] = TimespanBeforeEventHandler()
+        d[AfterTimespanAfterEvent] = AfterTimespanAfterEventHandler(timespan_mapper)
+        d[AfterTimespanBeforeEvent] = AfterTimespanBeforeEventHandler(timespan_mapper)
+        d[TimespanAfterEvent] = TimespanAfterEventHandler(timespan_mapper)
+        d[TimespanBeforeEvent] = TimespanBeforeEventHandler(timespan_mapper)
         d[UntilDate] = UntilDateHandler(date_mapper)
         d[UntilEvent] = UntilEventHandler()
 
         d[DuringTimePeriod] = DuringTimePeriodHandler(time_period_mapper)
-        d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper)
+        d[ForTimespanInterval] = ForTimespanIntervalHandler(timepoint_mapper, timespan_mapper)
         d[BetweenInterval] = BetweenIntervalHandler(date_mapper)
 
         return d

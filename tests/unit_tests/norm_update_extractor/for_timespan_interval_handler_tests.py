@@ -12,16 +12,18 @@ from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
 from app.src.object_mappers.timepoint_mapper import IMapTimepoint
-from app.src.norm_update_extractor.handlers.for_timespan_interval_handler import ForTimespanIntervalHandler
+from app.src.norm_update_extractor.handlers.for_timespan_interval_handler import ForTimespanIntervalHandler, IMapTimespan
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class DuringTimePeriodHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
         self.tp_mapper = IMapTimepoint()
-        self.sut = ForTimespanIntervalHandler(self.tp_mapper)
+        self.timespan_mapper = IMapTimespan()
+        self.sut = ForTimespanIntervalHandler(self.tp_mapper, self.timespan_mapper)
 
     def test_handler(self):
         self.tp_mapper.map = MagicMock(return_value = PointVDE('evt_test.start'))
+        self.timespan_mapper.map = MagicMock(return_value=('5', TimeUnit.Days))
 
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = ForTimespanInterval({

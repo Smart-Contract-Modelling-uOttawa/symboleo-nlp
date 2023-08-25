@@ -89,6 +89,7 @@ function fillDynamicOptions(unit) {
   // Fill the label
   $('#select-value-label').text(unit.prompt);
   $('#select-value-label').attr('data-input-id', unit.unit_type);
+  $('#select-value-label').attr('title', unit.info);
 
   // Populate
   $.each(unit.options, function(index, x) {
@@ -116,6 +117,7 @@ function setupDynamicValue(unit) {
   $('#value-entry-container').show();
   $('#input-value-label').attr('data-input-id', input_id);
   $('#input-value-label').text(unit.prompt);  
+  $('#input-value-label').attr('title', unit.info);  
 }
 
 // User selects an input type

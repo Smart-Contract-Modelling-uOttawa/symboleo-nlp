@@ -27,7 +27,8 @@ class AllPatternClassGetter(IGetAllPatternClasses):
             if PatternClassType.EXCEPTION in config:
                 result.extend(exception_classes())
         
-        return self._dedupe(result)
+        return list(set(result))
+        #return self._dedupe(result)
 
     def _dedupe(self, my_list: List[Type[PatternClass]]) -> List[Type[PatternClass]]:
         d_a: List[Type[PatternClass]] = []

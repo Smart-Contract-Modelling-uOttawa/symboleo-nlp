@@ -10,14 +10,17 @@ from app.classes.spec.predicate_function import PredicateFunctionWHappensBefore
 from app.classes.helpers.prop_maker import PropMaker
 from app.classes.spec.norm import Obligation
 
-from app.src.norm_update_extractor.handlers.timespan_before_event_handler import TimespanBeforeEventHandler
+from app.src.norm_update_extractor.handlers.timespan_before_event_handler import TimespanBeforeEventHandler, IMapTimespan
 from tests.helpers.sample_norm_lib import SampleNorms
 
 class TimespanBeforeEventHandlerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.sut = TimespanBeforeEventHandler()
+        self.timespan_mapper = IMapTimespan()
+        self.sut = TimespanBeforeEventHandler(self.timespan_mapper)
 
     def test_handler(self):
+        self.timespan_mapper.map = MagicMock(return_value=('10', TimeUnit.Days))
+        
         norm_config = SampleNorms.get_sample_obligation_config('test_id')
         pattern_class = TimespanBeforeEvent({
             PV.TIMESPAN: '10 Days'

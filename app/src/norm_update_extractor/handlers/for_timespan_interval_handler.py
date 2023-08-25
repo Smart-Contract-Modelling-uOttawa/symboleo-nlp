@@ -12,12 +12,13 @@ from app.classes.spec.sym_point import Point, PointVDE
 from app.classes.spec.point_function import PointFunction, TimeUnit
 
 from app.src.object_mappers.timepoint_mapper import IMapTimepoint
-
+from app.src.object_mappers.timespan_mapper import IMapTimespan
 from app.src.norm_update_extractor.handlers.norm_update_handler import IHandleNormUpdates
 
 class ForTimespanIntervalHandler(IHandleNormUpdates):
-    def __init__(self, timepoint_mapper: IMapTimepoint):
+    def __init__(self, timepoint_mapper: IMapTimepoint, timespan_mapper: IMapTimespan):
         self.__timepoint_mapper = timepoint_mapper
+        self.__timespan_mapper = timespan_mapper
 
     def handle(self, pattern_class: ForTimespanInterval, norm_config: NormConfig) -> List[Norm]:
         norm: Norm = norm_config.norm
@@ -27,13 +28,8 @@ class ForTimespanIntervalHandler(IHandleNormUpdates):
         evt = pattern_class.event
         timepoint = self.__timepoint_mapper.map(evt)
 
-        timespan_str:str = pattern_class.val_dict[PV.TIMESPAN]
-        tv, tu = timespan_str.split(' ')
-
-        timepoint2  = PointFunction(
-            timepoint, 
-            tv, 
-            TimeUnit[tu.capitalize()])
+        tv, tu = self.__timespan_mapper.map(pattern_class)
+        timepoint2  = PointFunction(timepoint, tv, tu)
         new_interval = Interval(IntervalFunction(timepoint, timepoint2))
 
         updated_predicate = PredicateFunctionHappensWithin(init_event, new_interval)

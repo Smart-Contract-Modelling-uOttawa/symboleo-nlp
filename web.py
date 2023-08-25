@@ -10,7 +10,7 @@ static_dir = os.path.relpath('app/web_lib/static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 app.secret_key = 'your-secret-key'  # Set a secret key for session encryption
 
-use_fake_nlp = False
+use_fake_nlp = True
 deps = WebDependencyBuilder.build(use_fake_nlp)
 
 
