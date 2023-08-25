@@ -1,7 +1,82 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    Welcome to Symboleo NLP...
+<div id="about-content">
+    <div id="about-intro">
+        <h5>SymboleoNLP</h5>
+        <hr/>
+        <p>SymboleoNLP is a tool used to formalize natural language (NL) refinements for a contract template into the Symboleo specification Language, which is designed for the domain of smart contract monitoring.</p> 
+        <p>A contract that is fully specified in Symboleo can be used on other tools in the Symboleo ecosystem:</p>
+        <div>
+            <ul>
+                <li><a href="https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-Model-Checker" target="_blank">Model-Checking</a></li>
+                <li><a href="https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-Compliance-Checker" target="_blank">Compliance-Checking</a></li>
+                <li><a href="https://github.com/Smart-Contract-Modelling-uOttawa/Symboleo-IDE" target="_blank">Code Generation</a></li>
+              </ul>
+        </div>
+        
+    </div>
+
+    <div id="about-example">
+        <h5>Example</h5>
+        <hr/>
+        <div>
+            <p>Suppose we have a delivery contract template with the following obligation: </p>
+            
+            <p><span class="sample-ob-text">The seller must deliver the goods to the buyer [PARAMETER]</span></p>
+            
+            <p>Let us suppose that we have a Symboleo specification for this simple contract template, which might look as follows:</p>
+            
+            <p><span class="sample-ob-sym">ob_delivery: O(seller, buyer, true, Happens(evt_deliver_goods)</span></p>
+            
+            <p>This specification captures the fact that the seller has an obligation towards to the buyer to make this event happen.</p>
+            
+            <p>The <span class="sample-ob-text">PARAMETER</span> can be filled with a variety of different complex NL values, such as:</p>
+            <ul>
+                <li><span class="sample-ob-text">before March 30, 2023</span></li>
+                <li><span class="sample-ob-text">within 2 weeks of the buyer completing the payment</span></li>
+                <li><span class="sample-ob-text">If the buyer requests delivery</span></li>
+            </ul>
+
+            <p>The tool will process this input into a predictable Symboleo operation, resulting in a refined Symboleo contract. The above NL refinements may result in the following Symboleo refinements:</p>
+            <ul>
+                <li><span class="sample-ob-sym">ob_delivery: O(seller, buyer, true, ShappensBefore(evt_deliver_goods, Date("March 30, 2023"))</span></li>
+                <li><span class="sample-ob-sym">ob_delivery: O(seller, buyer, true, WhappensBefore(evt_deliver_goods, Date.add(evt_payment, 2, weeks))</span></li>
+                <li><span class="sample-ob-sym">ob_delivery: O(seller, buyer, Happens(evt_delivery_request), Happens(evt_deliver_goods))</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="about-process">
+        <h5>Process</h5>
+        <hr/>
+
+        <p>In general, we will start with a contract template <span class="mform">T</span> and its corresponding Symboleo specification <span class="mform">S(T)</span>. The contract author will enter any desired refinements in NL, resulting in a refined NL contract <span class="mform">C</span>. </p>
+        <p>The role of the tool is to use the inputs <span class="mform">T</span>, <span class="mform">S(T)</span>, and <span class="mform">C</span> to generate the Symboleo that corresponds to the refined NL contract, which we call <span class="mform">S(C)</span>.</p>
+        
+        <p>The tool requires the following inputs:</p>
+        <ul>
+            <li>A NL contract template, with parameters that meet our constraints <span class="mform">T</span></li>
+            <li>A Symboleo specification of this NL contract <span class="mform">S(T)</span> </li>
+        </ul>
+
+        <p>These 2 inputs must be manually created from a generic contract. This web app includes a set of these pre-processed inputs (Templates) that the user can experiment with.</p>
+    </div>
+
+    <div id="about-cnl">
+        <h5>CNL</h5>
+        <hr/>
+        <p>The refinements made by the user are in a Controlled Natural Language, which is a subset of NL (English) words and grammar, specialized for the contract domain.</p>
+        <p>This CNL includes various temporal and conditional refinements, as well as a way to specify basic events.</p>
+        <p>It is a result of careful research on NL refinements that occur in real contracts and which have mappings to Symboleo operations. It consists of an EBNF grammar and set of mappings between patterns in that grammar and Symboleo operations.</p>
+
+        <p>The tool therefore has two core requirements:</p>
+        <ul>
+            <li>Enforce that the user's input adheres to the valid CNL.</li>
+            <li>Ensure that the CNL refinement that is entered maps to the correct Symboleo refinement.</li>
+        </ul>
+    </div>
+
 </div>
 {% endblock %}
+
