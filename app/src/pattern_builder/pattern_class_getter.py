@@ -28,14 +28,6 @@ class AllPatternClassGetter(IGetAllPatternClasses):
                 result.extend(exception_classes())
         
         return list(set(result))
-        #return self._dedupe(result)
-
-    def _dedupe(self, my_list: List[Type[PatternClass]]) -> List[Type[PatternClass]]:
-        d_a: List[Type[PatternClass]] = []
-        for x in my_list:
-            if type(x) not in [type(y) for y in d_a]:
-                d_a.append(x)
-        return d_a
 
     
     

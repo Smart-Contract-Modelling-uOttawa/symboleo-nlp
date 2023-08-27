@@ -11,7 +11,7 @@ from tests.helpers.test_objects import CustomEvents
 test_suite = [
     (
         CustomEvents.occupy_property(),
-        EventDeclaration('evt_occupy', 'Occupy', [
+        EventDeclaration('evt_occupy_property', 'OccupyProperty', [
             DeclarationProp('occupying_agent', 'renter', 'Role'),
             DeclarationProp('occupied_object', 'property', 'RentalProperty'),
         ])
@@ -19,7 +19,7 @@ test_suite = [
 
     (
         CustomEvents.abandon_property(),
-        EventDeclaration('evt_abandon', 'Abandon', [
+        EventDeclaration('evt_abandon_property', 'AbandonProperty', [
             DeclarationProp('abandonning_agent', 'renter', 'Role'),
             DeclarationProp('abandonned_object', 'property', 'RentalProperty'),
         ])
@@ -33,10 +33,10 @@ test_suite = [
 
     (
         CustomEvents.eating_pie(),
-        EventDeclaration('evt_eat_noisily', 'EatNoisily', [
-            DeclarationProp('eating_agent', 'Bob', 'Role'),
+        EventDeclaration('evt_eat_pie_noisily', 'EatPieNoisily', [
+            DeclarationProp('eating_agent', 'bob', 'Role'),
             DeclarationProp('ate_object', 'apple_pie', 'Pie'),
-            DeclarationProp('eating_co_agent', 'the seller', 'Role'),
+            DeclarationProp('eating_co_agent', 'seller', 'Role'),
         ])
     ),
 
@@ -45,7 +45,7 @@ test_suite = [
         EventDeclaration('evt_pay', 'Pay', [
             DeclarationProp('paying_agent', 'buyer', 'Role'),
             DeclarationProp('paid_object', '100', 'Money'), 
-            DeclarationProp('paying_target', 'the seller', 'Role'), 
+            DeclarationProp('paying_target', 'seller', 'Role'), 
             DeclarationProp('pay_method', 'credit card', 'PaymentMethod'),
         ])
     )
@@ -57,7 +57,6 @@ class EventDeclarationMapperFullTests(unittest.TestCase):
         prop_mapper = DeclarationPropMapper()
         self.sut = EventDeclarationMapper(prop_mapper)
 
-    @unittest.skip('fix')
     def test_event_declaration_mapping(self):
         for evt, exp_res in test_suite:
             res = self.sut.map(evt)

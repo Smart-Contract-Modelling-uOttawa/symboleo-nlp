@@ -114,10 +114,7 @@ class SymboleoContract(ISymboleoContract):
         }
         obj_type = dm_dict[type(dmo)]
 
-        # Check to make sure it doesnt already exist...
-        # If it exists, then maybe we just replace it ???
-        if dmo.name not in self.domain_model.__dict__[obj_type]:
-            self.domain_model.__dict__[obj_type][dmo.name] = dmo
+        self.domain_model.__dict__[obj_type][dmo.name] = dmo
 
     # Print the NL template strings and their corresponding symboleo norms
     def print_all_strings(self): # pragma: no cover

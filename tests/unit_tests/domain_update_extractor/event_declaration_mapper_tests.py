@@ -39,6 +39,7 @@ class EventDeclarationMapperTests(unittest.TestCase):
         self.assertEqual(self.prop_mapper.map_dobject.call_count, 0)
         self.assertEqual(self.prop_mapper.map_prep_phrase.call_count, 2)
     
+
     def test_evt_decl_mapping_linking_role(self):
         evt = CustomEvents.bob_happy()
         evt.get_declaration_name = MagicMock(return_value='decl_name')
@@ -94,6 +95,25 @@ class EventDeclarationMapperTests(unittest.TestCase):
         self.assertEqual(self.prop_mapper.map_subject.call_count, 1)
         self.assertEqual(self.prop_mapper.map_dobject.call_count, 1)
         self.assertEqual(self.prop_mapper.map_prep_phrase.call_count, 2)
+    
+    def test_evt_decl_transitive_no_dobj(self):
+        evt = CustomEvents.contract_dobj()
+        evt.get_declaration_name = MagicMock(return_value='decl_name')
+        evt.event_key = MagicMock(return_value='event_key')
+
+        sp = DeclarationProp('sk', 'sv', 'st')
+        self.prop_mapper.map_subject = MagicMock(return_value = sp)
+        self.prop_mapper.map_dobject = MagicMock(return_value = None)
+
+        exp = EventDeclaration('event_key', 'decl_name', [
+            sp
+        ])
+
+        result = self.sut.map(evt)
+
+        self.assertEqual(result, exp)
+        self.assertEqual(self.prop_mapper.map_subject.call_count, 1)
+        self.assertEqual(self.prop_mapper.map_dobject.call_count, 1)
     
 
 if __name__ == '__main__':

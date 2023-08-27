@@ -76,6 +76,13 @@ class RecursivePatternCheckerTests(unittest.TestCase):
         result = self.sut.check(units, ind, pattern_obj)
         self.assertEqual(result, (True, 1))
     
+    def test_recursive_pattern_checker_false(self):
+        units = [UnitType.WITHIN]
+        ind = 0
+        pattern_obj = 'X'
+        result = self.sut.check(units, ind, pattern_obj)
+        self.assertEqual(result, (False, 0))
+    
     
 
 

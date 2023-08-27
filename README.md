@@ -103,7 +103,12 @@ The web application can be deployed to an environment capable of hosting a Pytho
 A challenge facing deployment is the proper integration of Spacy's nlp module. The free tier for pythonanywhere has limited storage, so in some cases it cannot handle the large file. As a workaround, the "fake" nlp classes can be used for demonstration purposes. 
 
 
-## Limitations and Future Work
+## Todos
+
+- Update to use a production server
+- Add a config file
+- Minor grammar improvements (e.g. relevant capitalization and punctuation)
+- Further CNL constraints on specific parameters
 
 
 

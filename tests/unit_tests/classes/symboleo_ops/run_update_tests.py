@@ -26,13 +26,14 @@ class RunUpdateTests(unittest.TestCase):
 
         new_decl = EventDeclaration('test_decl', 'NewEvent', [ DeclarationProp('k', 'test_value', 'String')])
 
-        new_parm = ContractSpecParameter('test_parm', 'String')
+        new_parm1 = ContractSpecParameter('test_parm', 'String')
+        new_parm2 = ContractSpecParameter('test_parm', 'String')
 
         update_obj = ContractUpdateObj(
             norms = [new_norm],
             domain_objects = [new_dm_obj],
             declarations = [new_decl],
-            contract_parms = [new_parm]
+            contract_parms = [new_parm1, new_parm2]
         )
 
         contract.run_updates(update_obj)
@@ -40,7 +41,7 @@ class RunUpdateTests(unittest.TestCase):
         self.assertEqual(contract.contract_spec.obligations['new_ob'], new_norm)
         self.assertEqual(contract.contract_spec.declarations['test_decl'], new_decl)
         self.assertEqual(contract.domain_model.events['NewEvent'], new_dm_obj)
-        self.assertEqual(contract.contract_spec.parameters[1], new_parm)
+        self.assertEqual(contract.contract_spec.parameters[1], new_parm1)
 
 
   

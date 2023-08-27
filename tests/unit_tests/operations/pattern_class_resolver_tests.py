@@ -14,7 +14,7 @@ class PatternClassResolverTests(unittest.TestCase):
         self.sut = PatternClassResolver()
 
     def test_pattern_class_resolver_default(self):
-        norm_config = NormConfig(INorm(), ParameterConfig('', '', ''))
+        norm_config = NormConfig(INorm(), ParameterConfig('', '', '',[]))
         result = self.sut.resolve([BeforeDate(), AfterDate()], norm_config)
 
         self.assertTrue(isinstance(result, BeforeDate))

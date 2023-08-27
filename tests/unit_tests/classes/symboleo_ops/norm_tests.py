@@ -62,8 +62,22 @@ class NormTests(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             norm.get_default_event('consequent')
         self.assertTrue('Default event not found' in str(context.exception))
+    
+    def test_norm_with_trigger(self):
+        norm = Norm(
+            'norm_id', 
+            None, 
+            'debtor', 
+            'creditor', 
+            PropMaker.make_default(),
+            PropMaker.make(
+                PredicateFunctionHappens(VariableEvent('evt_test'))
+            ),
+            NormType.Obligation
+        )
 
-
+        norm_sym = norm.to_sym()
+        self.assertEqual(norm_sym, 'norm_id: O(debtor, creditor, true, Happens(evt_test));')
 
 if __name__ == '__main__':
     unittest.main()

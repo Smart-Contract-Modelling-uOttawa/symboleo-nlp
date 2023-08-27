@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from tests.helpers.test_contract import get_test_contract
 
 class UpdateNLTests(unittest.TestCase):
-    def test_run_update(self):
+    def test_update_nl(self):
         contract = get_test_contract()
 
         contract.update_nl('test_nl_key', 'P1', 'before Y happens')

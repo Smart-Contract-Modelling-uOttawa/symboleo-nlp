@@ -80,6 +80,24 @@ class ExceptEventHandlerTests(unittest.TestCase):
             'debtor',
             'creditor',
             PropMaker.make_default(),
+            PFObligation(PFObligationName.Discharged, 'test_ob')
+        )
+        norm_config = NormConfig(norm, ParameterConfig('powers', 'test_id', 'trigger'))
+        pattern_class = ExceptEvent()
+        pattern_class.event = VariableEvent('evt_test')
+
+        with self.assertRaises(ValueError) as context:
+            self.sut.handle(pattern_class, norm_config)
+        self.assertTrue('Invalid Norm in ExceptEventHandler' in str(context.exception))
+    
+
+    def test_handler_fail2(self):
+        norm = Power(
+            'test_id',
+            None,
+            'debtor',
+            'creditor',
+            PropMaker.make_default(),
             PFContract(PFContractName.Terminated)
         )
         norm_config = NormConfig(norm, ParameterConfig('powers', 'test_id', 'trigger'))
