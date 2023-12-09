@@ -47,6 +47,15 @@ from app.templates.indep.t_raw.domain_model import get_domain_model as get_indep
 from app.templates.indep.t_raw.contract_spec import get_contract_spec as get_indep_raw_cs
 from app.templates.indep.t_raw.nl_template import nl_template as indep_raw_nl
 
+## energy
+from app.templates.energy.t.domain_model import get_domain_model as get_energy_t_dm
+from app.templates.energy.t.contract_spec import get_contract_spec as get_energy_t_cs
+from app.templates.energy.t.nl_template import nl_template as energy_t_nl
+
+from app.templates.energy.t_raw.domain_model import get_domain_model as get_energy_raw_dm
+from app.templates.energy.t_raw.contract_spec import get_contract_spec as get_energy_raw_cs
+from app.templates.energy.t_raw.nl_template import nl_template as energy_raw_nl
+
 
 
 template_dict: Dict[str, SymboleoContract] = {
@@ -107,6 +116,18 @@ template_dict: Dict[str, SymboleoContract] = {
         get_indep_t_dm(),
         get_indep_t_cs(),
         indep_t_nl
+    ),
+
+    'energy_raw': SymboleoContract(
+        get_energy_raw_dm(),
+        get_energy_raw_cs(),
+        energy_raw_nl
+    ),
+
+    'energy': SymboleoContract(
+        get_energy_t_dm(),
+        get_energy_t_cs(),
+        energy_t_nl
     ),
 }
 

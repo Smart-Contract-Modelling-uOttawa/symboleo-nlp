@@ -102,6 +102,28 @@ The web application can be deployed to an environment capable of hosting a Pytho
 
 A challenge facing deployment is the proper integration of Spacy's nlp module. The free tier for pythonanywhere has limited storage, so in some cases it cannot handle the large file. As a workaround, the "fake" nlp classes can be used for demonstration purposes. 
 
+## Adding a New Contract Template
+
+As a developer, you can follow these steps add a new template to test with in the web application. For most steps, it will be helpful to use the existing templates as a guide:
+- Create a new folder in app/templates (e.g. "/energy")
+- In that folder, create a new folder called "/t_raw"
+- In the t_raw folder, create the nl_template.py file
+- In the t_raw folder, create the domain_model.py and the contract_spec.py in Symboleo using the Python specification
+- Add the raw contract info to the template_getter.py file in the /templates folder
+- Use the nb_console.ipynb notebook to test the initial contract and verify the generated Symboleo
+
+Next you will need to broaden the contract into the official template: 
+- Copy the t_raw folder and rename the copied version to simply 't'
+- Start with the t/contract_spec.py - broaden any refined predicate
+- In t/domain_model.py - remove anything that is no longer needed
+- In t/nl_template.py - identify the corresponding adjuncts to the Symboleo components that were removed, and replace with parameters
+- add the broadened contract info to the template_getter.py file
+- Test the broadened contract in nb_console
+
+Finally, you will need to update a few files in the web_lib folder, so that it appears in the web app.
+- Add the relevant code to navbar.html
+- Add the relevant code to contract_fetcher.py
+
 
 ## XText specification
 

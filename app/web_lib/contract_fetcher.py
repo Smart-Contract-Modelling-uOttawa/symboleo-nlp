@@ -10,6 +10,7 @@ allowed_ids = [
     'biomass',
     'rental',
     'prop',
+    'energy'
 ]
 
 class ContractFetcher:
