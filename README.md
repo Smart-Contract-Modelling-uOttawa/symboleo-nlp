@@ -52,7 +52,7 @@ Other libaries have been explored and may potentially have use in this tool in t
 
 
 ### Env
-Before running the project, set up a virtual environment and install the required packages.
+Before running the project, set up a virtual environment and install the required packages. This should be using Python 3.12.0.
 - Create a virtual env: `python -m venv sym-env`
 - Activate the environment: `source sym-env/Scripts/activate`
 - upgrade pip: `pip install --upgrade pip`. This may require administrative permissions.
